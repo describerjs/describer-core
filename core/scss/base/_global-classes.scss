@@ -1,0 +1,48 @@
+/*------------------------------------*\
+    $GLOBAL CLASSES
+\*------------------------------------*/
+
+/*------------------------------------*\
+    $JS/NOJS
+\*------------------------------------*/
+
+// JS
+.js-element {
+    /**/
+}
+
+// NO-JS
+.nojs-element {
+    display: none;
+}
+
+/*------------------------------------*\
+    $VISIBILITY/DISPLAY
+\*------------------------------------*/
+
+// Default Hidden
+.is-hidden {
+    display: none;
+    visibility: hidden;
+}
+
+// Default Visible
+.is-visible {
+    display: block;
+    visibility: visible;
+}
+
+// Completely remove from the flow but leave available to screen readers.
+.is-vishidden {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

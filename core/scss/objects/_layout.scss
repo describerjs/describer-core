@@ -1,0 +1,118 @@
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/**
+ * Grid-Column..........................Grid-System Column
+ * Grid-Row.............................Grid-System Row
+ * Grid-System..........................Using the Grid-System
+**/
+
+/*------------------------------------*\
+    $GRID_COLUMN
+\*------------------------------------*/
+
+.col {
+	.demo & {
+		border: 1px dashed grey;
+	}
+}
+
+/*------------------------------------*\
+    $GRID_ROW
+\*------------------------------------*/
+
+%row {
+	@include row;
+
+	.col {
+		@include column(12);
+	}
+}
+
+/*------------------------------------*\
+    $GRID_SYSTEM
+\*------------------------------------*/
+
+.row {
+	@extend %row;
+}
+
+// 2 Cols
+.row2 {
+	@extend %row;
+
+	.col {
+		@media all and (min-width: $bp-med) {
+			@include column(12);
+			margin-bottom: $space-3quarter;
+		}
+
+		@media all and (min-width: $bp-large) {
+			@include column(6);
+		}
+	}
+}
+
+// 3 Cols
+.row3 {
+	@extend %row;
+
+	.col {
+		@media all and (min-width: $bp-med) {
+			@include column(12)
+		}
+
+		@media all and (min-width: $bp-large) {
+			@include column(4);
+		}
+	}
+}
+
+// 4 Cols
+.row4 {
+	@extend %row;
+
+	.col {
+		@media all and (min-width: $bp-med) {
+			@include column(6)
+		}
+
+		@media all and (min-width: $bp-large) {
+			@include column(3);
+		}
+	}
+}
+
+// 5 Cols
+.row5 {
+	@extend %row;
+
+	.col {
+		@media all and (min-width: $bp-med) {
+			@include column(4);
+		}
+
+		@media all and (min-width: $bp-large) {
+			@include column(2.4);
+		}
+	}
+}
+
+// 6 Cols
+.row6 {
+	@extend %row;
+
+	.col {
+		@media all and (min-width: $bp-med) {
+			@include column(4)
+		}
+
+		@media all and (min-width: $bp-large) {
+			@include column(2);
+		}
+	}
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

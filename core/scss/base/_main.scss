@@ -1,0 +1,71 @@
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+/**
+ * Text Selection......................Background & Text color of selected Text
+ * HTML................................The <html> Element
+ * BODY................................The <body> Element
+ * Body-Wrapper........................Content Wrapper
+**/
+
+/*------------------------------------*\
+    $TEXT_SELECTION
+\*------------------------------------*/
+
+::-moz-selection {
+    background: $theme-selection-background;
+    color: $theme-selection-color;
+    text-shadow: none;
+}
+
+::selection {
+    background: $theme-selection-background;
+    color: $theme-selection-color;
+    text-shadow: none;
+}
+
+/*------------------------------------*\
+    $HTML
+\*------------------------------------*/
+
+html {
+	/*background-color: $theme-body;*/
+	/*color: $theme-text;*/
+	/*font: 100% $font;*/
+	font-weight: 100;
+	/*line-height: em-font($base-line-height);*/
+	-ms-text-size-adjust:		100%;
+	-webkit-text-size-adjust:	100%;
+}
+
+/*------------------------------------*\
+    $BODY
+\*------------------------------------*/
+
+body {
+	position: relative;
+	width: 100%;
+}
+
+@media print {
+	body {
+		@include adjust-leading-to(2);
+		font-size: percentage(10 / 16);
+	}
+}
+
+/*------------------------------------*\
+    $BODY_WRAPPER
+\*------------------------------------*/
+
+.body {
+	@include baseline-grid;
+	margin: 0 auto;
+	/*max-width: $layout-maxwidth;*/
+	overflow: hidden;
+	width: 100%;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

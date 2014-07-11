@@ -1,0 +1,41 @@
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+h1, .h1 {
+	@include as-heading__largest;
+	@include as-heading__largest--typeset;
+}
+
+h2, .h2 {
+	@include as-heading__large;
+	@include as-heading__large--typeset;
+}
+
+h3, .h3 {
+	@include as-heading__medium;
+	@include as-heading__medium--typeset;
+}
+
+h4, .h4 {
+	@include as-heading__normal;
+	@include as-heading__normal--typeset;
+}
+
+h5, .h5 {
+	@include as-heading__small;
+	@include as-heading__small--typeset;
+}
+
+h6, .h6 {
+	@include as-heading__smallest;
+	@include as-heading__smallest--typeset;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
