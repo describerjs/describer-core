@@ -15,6 +15,10 @@ using Castle.DynamicProxy;
 using System.Diagnostics;
 using JM.Foundation;
 using JM.Foundation.ErrorHandling;
+using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks;
+using Microsoft.Practices.EnterpriseLibrary.SemanticLogging;
+using JM.Foundation.Logging;
 
 namespace JM.ReferenceApplication
 {
@@ -45,6 +49,11 @@ namespace JM.ReferenceApplication
 			autofacBuilder.RegisterType<LameManager>().As<ILameManager>();
 	        var container = autofacBuilder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            //EventTextFormatter formatter = new EventTextFormatter();
+            //DefaultConsoleColorMapper colorMapper = new DefaultConsoleColorMapper();
+            //ConsoleSink sink = new ConsoleSink(formatter, colorMapper);
+            var listener = Microsoft.Practices.EnterpriseLibrary.SemanticLogging.ConsoleLog.CreateListener();
+            listener.EnableEvents(CommonTraceEvents.Log, System.Diagnostics.Tracing.EventLevel.LogAlways);
         }
     }
 
