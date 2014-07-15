@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorHandling\ErrorHttpModule.cs" />
+    <Compile Include="ErrorHandling\IErrorHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemBoundaryAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\" />
