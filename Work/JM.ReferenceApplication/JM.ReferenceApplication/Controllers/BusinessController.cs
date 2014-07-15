@@ -25,10 +25,39 @@ namespace JM.ReferenceApplication.Controllers
 		    return View(model);
 	    }
 
+		public ActionResult ImportantDetails(int id)
+		{
+			var model = new StringManagerModel
+			{
+				String = _importantManager.GetDataByIndex(id),
+				ID = id,
+				Manager = "ImportantManager"
+			};
+			return View("Details", model);
+		}
+
 		public ActionResult Lame()
 		{
 			var model = _lameManager.GetCompleteData();
 			return View(model);
 		}
+
+		public ActionResult LameDetails(int id)
+		{
+			var model = new StringManagerModel
+			{
+				String = _lameManager.GetDataByIndex(id),
+				ID = id,
+				Manager = "LameManager"
+			};
+			return View("Details", model);
+		}
+	}
+
+	public class StringManagerModel
+	{
+		public int ID { get; set; }
+		public string String { get; set; }
+		public string Manager { get; set; }
 	}
 }

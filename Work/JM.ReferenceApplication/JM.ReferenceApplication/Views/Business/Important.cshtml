@@ -9,12 +9,14 @@
 	<tr>
 		<th>Index</th>
 		<th>Content</th>
+		<th>Details</th>
 	</tr>
 	@for(var i = 0; i < Model.Count; i++)
 	{
 		<tr>
 			<td>@i</td>
 			<td>@Model.ElementAt(i)</td>
+			<td>@Html.ActionLink("Details zu No." +i.ToString(), "ImportantDetails", new { id = i})</td>
 		</tr>
 	}
 </table>
