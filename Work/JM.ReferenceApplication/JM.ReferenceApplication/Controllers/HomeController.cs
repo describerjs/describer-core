@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JM.Foundation;
 
 namespace JM.ReferenceApplication.Controllers
 {
@@ -13,10 +14,8 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Errors()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -27,9 +26,37 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-	    public ActionResult BadlyDone()
+		public ActionResult CustomError404()
+		{
+			var ex = new HttpException(404, "Die Seite 'CustomError404' wurde nicht gefunden");
+			throw ex;
+		}
+		
+		public ActionResult CustomErrorNoView()
+		{
+			return View();
+		}
+
+		public ActionResult CustomError()
+		{
+			var ex = new HttpException(500, "Stuffs broken");
+			throw ex;
+		}
+
+	    public ActionResult CustomErrorWithUserMessage()
 	    {
-		    throw new HttpException(500, "Hm ich hab wohl ein Semicolon vergessen");
+		    var ex= new JMApplicationException("Hm ich hab wohl ein Semicolon vergessen");
+		    ex.UserMessage = "Leider ist das ziemlich schief gegangen";
+
+		    throw ex;
 	    }
+
+		public ActionResult CustomErrorWithRedirect()
+		{
+			var ex = new JMApplicationException("Hm ich hab wohl ein Semicolon vergessen");
+			ex.RedirectUrl = "/";
+
+			throw ex;
+		}
     }
 }

@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>Fehler DemoSeite</h2>
+
+<p>Hier ein paar Fehler die schon getestet werden können:</p>
+<ul>
+	<li>@Html.ActionLink("400 - Nicht gefunden", "CustomError404", null, new { target="_blank"})</li>
+	<li>@Html.ActionLink("500 - 'Normaler' Fehler", "CustomError", null, new { target="_blank"})</li>
+	<li>@Html.ActionLink("500 - View nicht gefunden", "CustomErrorNoView", null, new { target="_blank"})</li>
+	<li>@Html.ActionLink("500 - Fehler mit Redirect an andere Seite", "CustomErrorWithRedirect", null, new { target="_blank"})</li>
+	<li>@Html.ActionLink("500 - Fehler mit Message für den Endkunden", "CustomErrorWithUserMessage", null, new { target="_blank"})</li>
+</ul>

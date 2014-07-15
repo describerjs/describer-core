@@ -51,6 +51,8 @@ namespace JM.Foundation.ErrorHandling
 				? httpException.GetHttpCode()
 				: (int)HttpStatusCode.InternalServerError;
 
+			var exceptionMessage = exception.Message;
+
 			// Wenn der Fehler im Fehlercontroller passiert wollen wir natürlich keinen Loop
 			var p = HttpContext.Current.Request.Path;
 			if (HttpContext.Current.Request.Path.ToLower().StartsWith("/" + _errorControllerRouteName.ToLower() + "/"))
@@ -59,6 +61,23 @@ namespace JM.Foundation.ErrorHandling
 					"Fehler bei der Erzeugung der Fehlerseite.",
 					HttpContext.Current.Server.GetLastError());
 			}
+			
+			// Prüfen ob es sich um eine JMException handelt, in dem Fall auf Redirect und UserMessage prüfen
+			var jmException = exception as JMApplicationException;
+
+			if (jmException != null)
+			{
+				if(jmException.HasRedirectUrl)
+				{
+					HttpContext.Current.Server.ClearError();
+					HttpContext.Current.Response.Redirect(jmException.RedirectUrl);
+					return;
+				}
+
+				if (jmException.HasUserMessage)
+					exceptionMessage = jmException.UserMessage;
+			}
+
 
 			// Fehlerseite anzeigen, falls das fehlschlägt minimale Fehlerseite anzeigen
 			try
@@ -68,7 +87,7 @@ namespace JM.Foundation.ErrorHandling
 				routeData.Values.Add("controller", _errorControllerRouteName);
 				routeData.Values.Add("action", _errorControllerAction);
 				routeData.Values.Add("statusCode", httpStatusCode);
-				routeData.Values.Add("message", !String.IsNullOrEmpty(exception.Message) ? exception.Message : "No exception message");
+				routeData.Values.Add("message", exceptionMessage);
 
 				var requestContext = new RequestContext(new HttpContextWrapper(HttpContext.Current), routeData);
 				var controllerFactory = ControllerBuilder.Current.GetControllerFactory();
