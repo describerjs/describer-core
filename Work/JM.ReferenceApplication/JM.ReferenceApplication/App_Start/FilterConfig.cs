@@ -7,7 +7,8 @@ namespace JM.ReferenceApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+			// Wird nicht gebraucht wenn das Exceptionhandling über das HttpModule kommt
+            //filters.Add(new HandleErrorAttribute());
         }
     }
 }

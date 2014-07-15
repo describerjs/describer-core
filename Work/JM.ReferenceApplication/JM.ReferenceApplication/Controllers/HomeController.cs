@@ -26,5 +26,10 @@ namespace JM.ReferenceApplication.Controllers
 
             return View();
         }
+
+	    public ActionResult BadlyDone()
+	    {
+		    throw new HttpException(500, "Hm ich hab wohl ein Semicolon vergessen");
+	    }
     }
 }
