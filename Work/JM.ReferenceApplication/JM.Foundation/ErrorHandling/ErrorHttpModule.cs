@@ -68,7 +68,7 @@ namespace JM.Foundation.ErrorHandling
 				routeData.Values.Add("controller", _errorControllerRouteName);
 				routeData.Values.Add("action", _errorControllerAction);
 				routeData.Values.Add("statusCode", httpStatusCode);
-				routeData.Values.Add("message", httpException.Message);
+				routeData.Values.Add("message", !String.IsNullOrEmpty(exception.Message) ? exception.Message : "No exception message");
 
 				var requestContext = new RequestContext(new HttpContextWrapper(HttpContext.Current), routeData);
 				var controllerFactory = ControllerBuilder.Current.GetControllerFactory();

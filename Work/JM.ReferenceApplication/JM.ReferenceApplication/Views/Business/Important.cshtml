@@ -1,0 +1,21 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Important";
+}
+
+<h2>Important Manager</h2>
+<p>Hier eine Liste der Daten, die der ImportantManager uns liefert:</p>
+<table class="table table-striped">
+	<tr>
+		<th>Index</th>
+		<th>Content</th>
+	</tr>
+	@for(var i = 0; i < Model.Count; i++)
+	{
+		<tr>
+			<td>@i</td>
+			<td>@Model.ElementAt(i)</td>
+		</tr>
+	}
+</table>
+
