@@ -1,8 +1,10 @@
 ﻿using JM.Business.Data;
+using JM.Foundation;
 using System.Collections.Generic;
 
 namespace JM.Business.Manager
 {
+    [SystemBoundary("Verkauf", BusinesImpact.Low)]
 	public interface ILameManager
 	{
 		List<string> GetCompleteData();

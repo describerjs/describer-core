@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using JM.Business.Data;
+using JM.Foundation;
+using System;
 
 namespace JM.Business.Manager
 {
+    [SystemBoundary("Verkauf", BusinesImpact.High)]
 	public interface IImportantManager
 	{
 		List<string> GetCompleteData();
@@ -20,12 +23,14 @@ namespace JM.Business.Manager
 
 		public List<string> GetCompleteData()
 		{
-			return _repository.GetData();
+            //return _repository.GetData();
+            throw new NotImplementedException(); 
 		}
 
 		public string GetDataByIndex(int index)
 		{
-			return _repository.GetDatabyIndex(index);
+            throw new NotImplementedException(); 
+			//return _repository.GetDatabyIndex(index);
 		}
 	}
 }
