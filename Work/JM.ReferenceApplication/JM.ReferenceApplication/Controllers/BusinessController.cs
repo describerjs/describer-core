@@ -36,6 +36,17 @@ namespace JM.ReferenceApplication.Controllers
 			return View("Details", model);
 		}
 
+	    public ActionResult ImportantModuleInfo()
+	    {
+		    return View("ImportantModuleInfo", "", _importantManager.GetModuleInfo());
+	    }
+
+		public ActionResult ImportantConfiguredDeviceInfo(int index = 0)
+		{
+			ViewBag.Index = index;
+			return View("ImportantConfiguredDeviceInfo", "", _importantManager.GetDeviceFromConfig(index));
+		}
+
 		public ActionResult Lame()
 		{
 			var model = _lameManager.GetCompleteData();

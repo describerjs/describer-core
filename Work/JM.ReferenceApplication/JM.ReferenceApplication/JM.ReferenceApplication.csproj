@@ -198,6 +198,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\JM.Business.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -245,10 +246,10 @@
     <Content Include="Views\Business\Important.cshtml" />
     <Content Include="Views\Business\Lame.cshtml" />
     <Content Include="Views\Business\Details.cshtml" />
+    <Content Include="Views\Business\ImportantModuleInfo.cshtml" />
+    <Content Include="Views\Business\ImportantConfiguredDeviceInfo.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
