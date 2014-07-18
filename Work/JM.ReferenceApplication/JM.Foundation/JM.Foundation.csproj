@@ -70,7 +70,6 @@
     <Compile Include="ErrorHandling\JMEventSourceBase.cs" />
     <Compile Include="Extensions\RouteExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
-    <Compile Include="JMApplicationException.cs" />
     <Compile Include="Logging\ICommonTraceEvents.cs" />
     <Compile Include="Mvc\Routing\HyphenatedRouteHandler.cs" />
     <Compile Include="Mvc\Routing\RegexConstraint.cs" />
