@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace JM.Foundation
 {
-    public class SystemBoundaryAttribute : Attribute
+    public abstract class ContextAttribute : Attribute
+    {
+
+    }
+
+    public class SystemBoundaryAttribute : ContextAttribute
     {
         public SystemBoundaryAttribute(string businessContext, BusinesImpact impact)
         {

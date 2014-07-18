@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy2">
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.4\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
@@ -65,17 +74,18 @@
   <ItemGroup>
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="ErrorHandling\ErrorHttpModule.cs" />
+    <Compile Include="ErrorHandling\ErrorIntercepter.cs" />
     <Compile Include="ErrorHandling\IErrorHandler.cs" />
     <Compile Include="ErrorHandling\JMApplicationException.cs" />
     <Compile Include="ErrorHandling\JMEventSourceBase.cs" />
     <Compile Include="Extensions\RouteExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
-    <Compile Include="Logging\ICommonTraceEvents.cs" />
+    <Compile Include="Monitoring\ICommonTraceEvents.cs" />
     <Compile Include="Mvc\Routing\HyphenatedRouteHandler.cs" />
     <Compile Include="Mvc\Routing\RegexConstraint.cs" />
     <Compile Include="Mvc\Validation\RegexValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemBoundaryAttribute.cs" />
+    <Compile Include="Monitoring\SystemBoundaryAttribute.cs" />
     <Compile Include="Utils\RequestParameter.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,8 +45,7 @@ namespace JM.ReferenceApplication
             autofacBuilder
                 .RegisterType<ImportantManager>()
                 .As<IImportantManager>()
-                .EnableInterfaceInterceptors()
-                .InterceptedBy(typeof(ErrorInterceptor));
+                .EnableInterfaceInterceptors();
 
 			autofacBuilder.RegisterType<LameManager>().As<ILameManager>();
 	        var container = autofacBuilder.Build();
@@ -56,62 +55,6 @@ namespace JM.ReferenceApplication
             //ConsoleSink sink = new ConsoleSink(formatter, colorMapper);
             var listener = Microsoft.Practices.EnterpriseLibrary.SemanticLogging.ConsoleLog.CreateListener();
             //listener.EnableEvents(CommonTraceEvents.Log, System.Diagnostics.Tracing.EventLevel.LogAlways);
-        }
-    }
-
-    public class ErrorInterceptor : IInterceptor
-    {
-        IErrorHandler handler;
-
-        public ErrorInterceptor(IErrorHandler handler)
-        {
-            this.handler = handler;
-        }
-
-        public void Intercept(IInvocation invocation)
-        {
-            try
-            {
-                invocation.Proceed();
-            }
-            catch (Exception ex)
-            {
-                HandleInternal(ex, invocation);
-            }
-        }
-
-        private void HandleInternal(Exception ex, IInvocation invocation)
-        {
-            string businessContext = string.Empty;
-            BusinesImpact impact = BusinesImpact.Low;
-
-            var methodAttribute =
-                (SystemBoundaryAttribute)invocation
-                .Method
-                .GetCustomAttributes(typeof(SystemBoundaryAttribute), true)
-                .FirstOrDefault();
-
-            if (methodAttribute != null)
-            {
-                businessContext = methodAttribute.BusinessContext;
-                impact = methodAttribute.Impact;
-            }
-            else
-            {
-                var attribute =
-                    (SystemBoundaryAttribute)invocation
-                    .Method
-                    .DeclaringType
-                    .GetCustomAttributes(typeof(SystemBoundaryAttribute), true)
-                    .FirstOrDefault();
-
-                if (attribute != null)
-                {
-                    businessContext = attribute.BusinessContext;
-                }
-            }
-
-            this.handler.Handle(ex, ExceptionPolicy.LogAndReplace, businessContext);
         }
     }
 }

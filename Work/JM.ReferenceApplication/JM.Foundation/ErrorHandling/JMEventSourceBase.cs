@@ -22,13 +22,13 @@ namespace JM.Foundation.ErrorHandling
         }
 
         [NonEvent]
-        public void LogException(Exception ex)
+        public void Exception(Exception ex)
         {
             GenericException(ex.Message, ex.ToString(), string.Empty);
         }
 
         [NonEvent]
-        public void LogException(Exception ex, MethodInfo callContext, object[] arguments)
+        public void Exception(Exception ex, MethodInfo callContext, object[] arguments)
         {
             string message = string.Format("Fehler in {'0'}", callContext.Name);
             
@@ -37,12 +37,34 @@ namespace JM.Foundation.ErrorHandling
             GenericException(ex.Message, ex.ToString(), joinedParameters);
         }
 
+        [NonEvent]
+        public void FatalBusinessException(Exception ex, string businessContext, object[] arguments)
+        {
+            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
+            var joinedParameters = string.Join(", ", parameters);
+            FatalBusinessException(ex.Message, ex.ToString(), businessContext, joinedParameters);
+        }
+
+        [NonEvent]
+        public void BusinessException(Exception ex, string businessContext, object[] arguments)
+        {
+            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
+            var joinedParameters = string.Join(", ", parameters);
+            FatalBusinessException(ex.Message, ex.ToString(), businessContext, joinedParameters);
+        }
+
         protected abstract void GenericException(
             string message, 
             string details, 
             string parameters);
 
         protected abstract void FatalBusinessException(
+            string message,
+            string details,
+            string context,
+            string parameters);
+
+        protected abstract void BusinessException(
             string message,
             string details,
             string context,

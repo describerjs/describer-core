@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Monitoring\ApplicationEvents._Events.cs" />
     <Compile Include="Monitoring\ApplicationEvents.Category.cs" />
     <Compile Include="Monitoring\ApplicationEvents.Events.cs" />
     <Compile Include="Monitoring\ApplicationEvents.ErrorLog.cs" />

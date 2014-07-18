@@ -54,7 +54,7 @@ namespace JM.Foundation.ErrorHandling
 			var httpException = exception as HttpException;
 
 			// Exception loggen
-			logException(exception);
+			LogException(exception);
 
 			var httpStatusCode = httpException != null
 				? httpException.GetHttpCode()
@@ -149,10 +149,23 @@ namespace JM.Foundation.ErrorHandling
 		/// Loggt die übergebene Exception
 		/// </summary>
 		/// <param name="exception">Exception</param>
-		private static void logException(Exception exception)
+		private static void LogException(Exception exception)
 		{
-			// TODO Exceptionlogging anschliessen
+            JMEventSourceBase.Log.Exception(exception);
 		}
+
+        /// <summary>
+        /// Loggt die übergebene Exception
+        /// </summary>
+        /// <param name="exception">Exception</param>
+        private static void LogException(JMApplicationException exception)
+        {
+            // ToDo: Das ganze Konstrukt ist noch wackelig :)
+            if (!exception.IsLogged)
+            {
+                JMEventSourceBase.Log.Exception(exception);
+            }
+        }
 
 		#endregion
 	}

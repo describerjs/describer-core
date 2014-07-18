@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using JM.ReferenceApplication.Models;
+using JM.ReferenceApplication.Common.Monitoring;
 
 namespace JM.ReferenceApplication.Controllers
 {
@@ -61,6 +62,7 @@ namespace JM.ReferenceApplication.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    ApplicationEvents.Log.UserSignedIn(model.Email);
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -437,6 +439,7 @@ namespace JM.ReferenceApplication.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            ApplicationEvents.Log.UserSignedOut(AuthenticationManager.User.Identity.GetUserName());
             return RedirectToAction("Index", "Home");
         }
 

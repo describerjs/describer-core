@@ -25,5 +25,15 @@ namespace JM.ReferenceApplication.Common.Monitoring
         {
             base.WriteEvent(2, message, details, parameters);
         }
+
+        [Event(3, Level = EventLevel.Error)]
+        protected override void BusinessException(
+            string message,
+            string details,
+            string context,
+            string parameters)
+        {
+            base.WriteEvent(3, message, details, parameters);
+        }
     }
 }

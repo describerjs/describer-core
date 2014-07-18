@@ -1,13 +1,16 @@
-﻿using JM.Business.Configuration;
+﻿using Autofac.Extras.DynamicProxy2;
+using JM.Business.Configuration;
 using JM.Business.Data;
 using JM.Foundation;
 using JM.Foundation.Configuration;
+using JM.Foundation.ErrorHandling;
 using System;
 using System.Collections.Generic;
 
 namespace JM.Business.Manager
 {
     [SystemBoundary("Verkauf", BusinesImpact.High)]
+    [Intercept(typeof(ErrorInterceptor))]
 	public interface IImportantManager
 	{
 	    List<string> GetCompleteData();

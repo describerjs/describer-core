@@ -13,6 +13,9 @@ namespace JM.Foundation
 		public bool HasUserMessage  { get { return !String.IsNullOrEmpty(UserMessage); }}
 		public bool HasRedirectUrl { get { return !String.IsNullOrEmpty(RedirectUrl); } }
 
+        public bool IsLogged
+        { get; set; }
+
         public JMApplicationException()
         {
 
