@@ -1,4 +1,4 @@
-﻿using JM.Foundation.Logging;
+﻿//using JM.Foundation.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace JM.Foundation.ErrorHandling
     {
         public void Handle(Exception ex, ExceptionPolicy policy, string context)
         {
-            CommonTraceEvents.Log.OnCriticalError(ex.ToString(), context);
+            //CommonTraceEvents.Log.OnCriticalError(ex.ToString(), context);
 
             if (policy == ExceptionPolicy.LogAndReplace)
             {

@@ -18,7 +18,8 @@ using JM.Foundation.ErrorHandling;
 using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Formatters;
 using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks;
 using Microsoft.Practices.EnterpriseLibrary.SemanticLogging;
-using JM.Foundation.Logging;
+using JM.ReferenceApplication.Common.Monitoring;
+//using JM.Foundation.Logging;
 
 namespace JM.ReferenceApplication
 {
@@ -26,6 +27,7 @@ namespace JM.ReferenceApplication
     {
         protected void Application_Start()
         {
+            ApplicationEvents.Log.ApplicationStartup();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -53,7 +55,7 @@ namespace JM.ReferenceApplication
             //DefaultConsoleColorMapper colorMapper = new DefaultConsoleColorMapper();
             //ConsoleSink sink = new ConsoleSink(formatter, colorMapper);
             var listener = Microsoft.Practices.EnterpriseLibrary.SemanticLogging.ConsoleLog.CreateListener();
-            listener.EnableEvents(CommonTraceEvents.Log, System.Diagnostics.Tracing.EventLevel.LogAlways);
+            //listener.EnableEvents(CommonTraceEvents.Log, System.Diagnostics.Tracing.EventLevel.LogAlways);
         }
     }
 
