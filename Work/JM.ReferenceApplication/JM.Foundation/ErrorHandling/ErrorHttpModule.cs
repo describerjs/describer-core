@@ -6,6 +6,10 @@ using System.Web.Routing;
 
 namespace JM.Foundation.ErrorHandling
 {
+	/// <summary>
+	/// HttpModul zum abfangen aller Exceptions aus der Webanwendung.
+	/// Stellt Logging bereit und bereitet die Darstellung von Fehlerseiten vor.
+	/// </summary>
 	public class ErrorHttpModule : IHttpModule
 	{
 		//////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +37,12 @@ namespace JM.Foundation.ErrorHandling
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Methods
 
+		/// <summary>
+		/// Diese Methode wird beim "Application_Error"-Event der global.asax aufgerufen,
+		/// loggt die Exception und zeigt dem Besucher der Seite dann eine qualifizierte Seite an.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private static void Application_Error(object sender, EventArgs e)
 		{
 			// Exception abhholen
@@ -43,13 +53,14 @@ namespace JM.Foundation.ErrorHandling
 
 			var httpException = exception as HttpException;
 
-			///////////////////////
-			// EXCEPTION LOGGING //
-			///////////////////////
+			// Exception loggen
+			logException(exception);
 
 			var httpStatusCode = httpException != null
 				? httpException.GetHttpCode()
 				: (int)HttpStatusCode.InternalServerError;
+
+			var exceptionMessage = exception.Message;
 
 			// Wenn der Fehler im Fehlercontroller passiert wollen wir natürlich keinen Loop
 			var p = HttpContext.Current.Request.Path;
@@ -58,6 +69,22 @@ namespace JM.Foundation.ErrorHandling
 				HandleErrorHandlingException(
 					"Fehler bei der Erzeugung der Fehlerseite.",
 					HttpContext.Current.Server.GetLastError());
+			}
+			
+			// Prüfen ob es sich um eine JMException handelt, in dem Fall auf Redirect und UserMessage prüfen
+			var jmException = exception as JMApplicationException;
+
+			if (jmException != null)
+			{
+				if(jmException.HasRedirectUrl)
+				{
+					HttpContext.Current.Server.ClearError();
+					HttpContext.Current.Response.Redirect(jmException.RedirectUrl);
+					return;
+				}
+
+				if (jmException.HasUserMessage)
+					exceptionMessage = jmException.UserMessage;
 			}
 
 			// Fehlerseite anzeigen, falls das fehlschlägt minimale Fehlerseite anzeigen
@@ -68,7 +95,7 @@ namespace JM.Foundation.ErrorHandling
 				routeData.Values.Add("controller", _errorControllerRouteName);
 				routeData.Values.Add("action", _errorControllerAction);
 				routeData.Values.Add("statusCode", httpStatusCode);
-				routeData.Values.Add("message", !String.IsNullOrEmpty(exception.Message) ? exception.Message : "No exception message");
+				routeData.Values.Add("message", exceptionMessage);
 
 				var requestContext = new RequestContext(new HttpContextWrapper(HttpContext.Current), routeData);
 				var controllerFactory = ControllerBuilder.Current.GetControllerFactory();
@@ -84,10 +111,14 @@ namespace JM.Foundation.ErrorHandling
 			}
 		}
 
+		/// <summary>
+		/// Wenn bei der Anzeige der Fehlerseite etwas schiefgegangen ist wird hier eine reduzierte Fehlerseite direkt in den Responsestream geschrieben.
+		/// </summary>
+		/// <param name="message">Nachricht für den Besucher der Seite</param>
+		/// <param name="handledException">Ursprüngliche behandelte Exception</param>
+		/// <param name="exception">Exception beim Erzeugen der Fehlerseite</param>
 		private static void HandleErrorHandlingException(string message, Exception handledException, Exception exception = null)
 		{
-			// Hier direkt in die Response schreiben, alternativ einen Redirect zu einer statischen Seite
-
 			var response = HttpContext.Current.Response;
 
 			response.ClearHeaders();
@@ -112,6 +143,15 @@ namespace JM.Foundation.ErrorHandling
 			}
 
 			HttpContext.Current.ApplicationInstance.CompleteRequest();
+		}
+
+		/// <summary>
+		/// Loggt die übergebene Exception
+		/// </summary>
+		/// <param name="exception">Exception</param>
+		private static void logException(Exception exception)
+		{
+			// TODO Exceptionlogging anschliessen
 		}
 
 		#endregion

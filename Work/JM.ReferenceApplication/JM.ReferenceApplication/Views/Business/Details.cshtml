@@ -7,8 +7,8 @@
 	<h1>"@Model.String" <small>mit der ID &laquo;@Model.ID&raquo;</small></h1>
 	<p class="lead">Diesen String und viele mehr gibt es in unserer Businessanwendung!</p>
 	<p>
-		<a href="/Business/ImportantDetails/@(Model.ID - 1)" class="btn btn-primary btn-lg">Letzer String</a>
-		<a href="/Business/ImportantDetails/@(Model.ID + 1)" class="btn btn-primary btn-lg">Nächster String</a>
+		<a href="/Business/@(Model.Manager.ToLower().Contains("lame") ? "Lame" : "Important")Details/@(Model.ID - 1)" class="btn btn-primary btn-lg">Letzer String</a>
+		<a href="/Business/@(Model.Manager.ToLower().Contains("lame") ? "Lame" : "Important")Details/@(Model.ID + 1)" class="btn btn-primary btn-lg">Nächster String</a>
 	</p>
 </div>
 
