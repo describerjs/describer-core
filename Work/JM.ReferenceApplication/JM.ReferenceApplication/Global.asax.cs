@@ -15,9 +15,6 @@ using Castle.DynamicProxy;
 using System.Diagnostics;
 using JM.Foundation;
 using JM.Foundation.ErrorHandling;
-using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Formatters;
-using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks;
-using Microsoft.Practices.EnterpriseLibrary.SemanticLogging;
 using JM.ReferenceApplication.Common.Monitoring;
 
 namespace JM.ReferenceApplication
