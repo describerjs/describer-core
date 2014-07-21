@@ -11,13 +11,13 @@ namespace JM.Foundation.ErrorHandling
 {
     public abstract class JMEventSourceBase : EventSource
     {
-        protected static JMEventSourceBase instance;
+        protected static JMEventSourceBase baseInstance = null;
 
         public static JMEventSourceBase Log
         {
             get
             {
-                return JMEventSourceBase.instance;
+                return JMEventSourceBase.baseInstance;
             }
         }
 
@@ -33,6 +33,14 @@ namespace JM.Foundation.ErrorHandling
             string message = string.Format("Fehler in {'0'}", callContext.Name);
             
             var parameters = arguments.Select(a => a !=null ? a.ToString() : "'null'");
+            var joinedParameters = string.Join(", ", parameters);
+            GenericException(ex.Message, ex.ToString(), joinedParameters);
+        }
+
+        [NonEvent]
+        public void Exception(Exception ex, object[] arguments)
+        {
+            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
             var joinedParameters = string.Join(", ", parameters);
             GenericException(ex.Message, ex.ToString(), joinedParameters);
         }
@@ -69,5 +77,27 @@ namespace JM.Foundation.ErrorHandling
             string details,
             string context,
             string parameters);
+    }
+
+    public abstract class JMEventSourceBase<T> : JMEventSourceBase where T : JMEventSourceBase<T>, new()
+    {
+        protected static T instance;
+
+        public void Initialize()
+        {
+            JMEventSourceBase.baseInstance = JMEventSourceBase<T>.Log;
+        }
+
+        public static new T Log
+        {
+            get
+            {
+                LazyInitializer.EnsureInitialized<T>(
+                    ref JMEventSourceBase<T>.instance,
+                    () => new T());
+
+                return JMEventSourceBase<T>.instance;
+            }
+        }
     }
 }

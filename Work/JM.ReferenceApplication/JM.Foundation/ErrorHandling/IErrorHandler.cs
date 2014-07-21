@@ -30,30 +30,17 @@ namespace JM.Foundation.ErrorHandling
 
     public class ErrorHandler : IErrorHandler
     {
-        public void Handle(Exception ex, ExceptionPolicy policy, ContextAttribute context)
-        {
-            //LogException(ex, context as dynamic);
-
-            ////CommonTraceEvents.Log.OnCriticalError(ex.ToString(), context);
-
-            //if (policy == ExceptionPolicy.LogAndReplace)
-            //{
-            //    // Testcode only
-            //    throw new JMApplicationException("Fehler bei: " + context);
-            //}
-        }
-
-        //private void LogException(Exception ex, ContextAttribute context)
-        //{
-        //    LogException
-        //}
-
         private void LogException(Exception ex, SystemBoundaryAttribute context, object[] arguments)
         {
             if(context.Impact == BusinesImpact.High)
             {
                 JMEventSourceBase.Log.FatalBusinessException(ex, context.BusinessContext, arguments);
             }
+        }
+
+        private void LogException(Exception ex, object[] arguments)
+        {
+            JMEventSourceBase.Log.Exception(ex, arguments);
         }
 
         public void Handle(Exception ex, ExceptionPolicy policy, string context)
@@ -97,9 +84,8 @@ namespace JM.Foundation.ErrorHandling
             }
             else
             {
-                // ToDo:
+                LogException(ex, invocation);
             }
         }
     }
-
 }

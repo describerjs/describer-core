@@ -50,9 +50,9 @@
   <ItemGroup>
     <Compile Include="Monitoring\ApplicationEvents._Events.cs" />
     <Compile Include="Monitoring\ApplicationEvents.Category.cs" />
-    <Compile Include="Monitoring\ApplicationEvents.Events.cs" />
+    <Compile Include="Monitoring\ApplicationEvents.GenerelEvents.cs" />
     <Compile Include="Monitoring\ApplicationEvents.ErrorLog.cs" />
-    <Compile Include="Monitoring\ApplicationEvents.Instance.cs" />
+    <Compile Include="Monitoring\ApplicationEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
