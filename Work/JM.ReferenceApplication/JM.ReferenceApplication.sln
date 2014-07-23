@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.ReferenceApplication", "JM.ReferenceApplication\JM.ReferenceApplication.csproj", "{D2F14C47-2896-40BF-81B2-54DA23685B91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Foundation", "JM.Foundation\JM.Foundation.csproj", "{9B6DFFED-983F-45F8-AE93-4E8C3DABBD59}"
@@ -10,6 +8,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Business", "JM.Business\JM.Business.csproj", "{34639888-0FE7-417C-82AF-72A9A3D215B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.ReferenceApplication.Common", "JM.ReferenceApplication.Common\JM.ReferenceApplication.Common.csproj", "{957D0A78-5008-4AE5-A8D4-4C53B750AC6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Business.Kontakt", "JM.Business.Kontakt\JM.Business.Kontakt.csproj", "{01360C66-2965-407E-86AD-F82A194DDEA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Business.Kontakt.Contracts", "JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.csproj", "{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,14 @@ Global
 		{957D0A78-5008-4AE5-A8D4-4C53B750AC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{957D0A78-5008-4AE5-A8D4-4C53B750AC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{957D0A78-5008-4AE5-A8D4-4C53B750AC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01360C66-2965-407E-86AD-F82A194DDEA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01360C66-2965-407E-86AD-F82A194DDEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01360C66-2965-407E-86AD-F82A194DDEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01360C66-2965-407E-86AD-F82A194DDEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

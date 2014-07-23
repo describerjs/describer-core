@@ -1,0 +1,38 @@
+﻿@model JM.Business.Kontakt.Contracts.Model.IContactModel
+
+<h1>Kontakt</h1>
+<p>Hier wird anhand eines kleinen Businessmoduls für Kundenkontakt die Gestaltung und der Aufbau einer Business-DLL für die JM-Basesolution gezeigt.</p>
+
+
+@Html.ValidationSummary()
+<form action="/Contact" method="post">
+	<div class="form-horizontal">
+	@Html.LabelFor(m => m.Salutation)
+	@Html.RadioButtonFor(m => m.Salutation, "Herr") Herr
+	@Html.RadioButtonFor(m => m.Salutation, "Frau") Frau
+	@Html.ValidationMessageFor(m => m.Salutation)
+	<hr/>
+	@Html.LabelFor(m => m.FirstName)
+	@Html.TextBoxFor(m=> m.FirstName, new { @class = "form-control"})
+	@Html.ValidationMessageFor(m => m.FirstName)
+	<hr/>
+	@Html.LabelFor(m => m.LastName)
+	@Html.TextBoxFor(m=> m.LastName, new { @class = "form-control"})
+	@Html.ValidationMessageFor(m => m.LastName)
+	<hr/>
+	@Html.LabelFor(m => m.Email)
+	@Html.TextBoxFor(m=> m.Email, new { @class = "form-control"})
+	@Html.ValidationMessageFor(m => m.Email)
+	<hr/>
+	@Html.LabelFor(m => m.Subject)
+	@Html.TextBoxFor(m=> m.Subject, new { @class = "form-control"})
+	@Html.ValidationMessageFor(m => m.Subject)
+	<hr/>
+	@Html.LabelFor(m => m.Message)
+	@Html.TextAreaFor(m=> m.Message, new { @class = "form-control", cols=10, rows=10})
+	@Html.ValidationMessageFor(m => m.Message)
+	<hr/>
+	<button type="submit" class="btn btn-primary">absenden</button>
+		</div>
+</form>
+
