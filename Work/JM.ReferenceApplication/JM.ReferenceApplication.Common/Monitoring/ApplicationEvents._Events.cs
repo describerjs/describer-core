@@ -1,10 +1,4 @@
-﻿using JM.Foundation.ErrorHandling;
-using Microsoft.Diagnostics.Tracing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Diagnostics.Tracing;
 
 namespace JM.ReferenceApplication.Common.Monitoring
 {
@@ -21,5 +15,17 @@ namespace JM.ReferenceApplication.Common.Monitoring
         {
             base.WriteEvent(101, userName);
         }
+
+		/// <summary>
+		/// MonitoringTask für Absenden des Kontaltformulars in JM.Business.Kontakt
+		/// </summary>
+		/// <param name="email">Emailadresse</param>
+		/// <param name="firstname">Vorname</param>
+		/// <param name="lastname">Nachname</param>
+		[Event(103, Level = EventLevel.Informational)]
+		public void ContactFormSent(string email, string firstname, string lastname)
+		{
+			base.WriteEvent(103, email, firstname, lastname);
+		}
     }
 }
