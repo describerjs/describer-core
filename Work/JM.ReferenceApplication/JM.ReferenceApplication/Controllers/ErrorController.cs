@@ -17,5 +17,13 @@ namespace JM.ReferenceApplication.Controllers
 	        Response.StatusCode = statusCode;
             return View();
         }
-	}
+
+	    public ActionResult DisplayErrorAlternative(int statusCode, string message)
+	    {
+			ViewBag.Code = statusCode;
+			ViewBag.Message = message;
+			Response.StatusCode = statusCode;
+			return View();
+	    }
+    }
 }

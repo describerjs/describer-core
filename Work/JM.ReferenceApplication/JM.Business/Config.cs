@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace JM.Business.Configuration
+namespace JM.Business
 {
 	public class Config : ConfigurationSection
 	{

@@ -3,6 +3,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using JM.Foundation.Configuration;
 
 namespace JM.Foundation.ErrorHandling
 {
@@ -15,9 +16,9 @@ namespace JM.Foundation.ErrorHandling
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
 
-		private static string _errorControllerRouteName = "Error";
-		private static string _errorControllerAction = "DisplayError";
-		private static bool _showErrorDetaíls = true;
+		private static string _errorControllerRouteName;
+		private static string _errorControllerAction;
+		private static bool _showErrorDetails;
 
 		#endregion
 
@@ -26,7 +27,14 @@ namespace JM.Foundation.ErrorHandling
 
 		public void Init(HttpApplication context)
 		{
-			context.Error += Application_Error;
+			var config = ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");
+
+			if(config.ErrorHttpModule.Enabled)
+				context.Error += Application_Error;
+
+			_errorControllerRouteName = config.ErrorHttpModule.ErrorPageController;
+			_errorControllerAction = config.ErrorHttpModule.ErrorPageAction;
+			_showErrorDetails = config.ErrorHttpModule.ShowErrorDetails;
 		}
 
 		public void Dispose()
@@ -127,14 +135,14 @@ namespace JM.Foundation.ErrorHandling
 			HttpContext.Current.Server.ClearError();
 			response.Write("<html><h1>FEHLER</h1><p>Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.</p>");
 
-			if (handledException != null && _showErrorDetaíls)
+			if (handledException != null && _showErrorDetails)
 			{
 				response.Write("<h2>Behandelter Fehler</h2>");
 				response.Write(String.Format("<p>{0}</p>", handledException.Message));
 				response.Write(String.Format("<pre>{0}</pre>", handledException.StackTrace));
 			}
 
-			if (exception != null && _showErrorDetaíls)
+			if (exception != null && _showErrorDetails)
 			{
 				response.Write("<h2>Fehler im ErrorHandling</h2>");
 				response.Write(String.Format("<p>{0}</p>", message));

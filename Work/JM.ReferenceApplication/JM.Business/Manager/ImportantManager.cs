@@ -1,5 +1,4 @@
 ﻿using Autofac.Extras.DynamicProxy2;
-using JM.Business.Configuration;
 using JM.Business.Data;
 using JM.Foundation;
 using JM.Foundation.Configuration;
