@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 main {
-	@extend %clearfix;
+	@include clearfix;
 	overflow: hidden;
 }
 

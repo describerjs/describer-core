@@ -2,8 +2,96 @@
     $VARIABLES
 \*------------------------------------*/
 /**
- * 
+ * COLORS..............................Diverse Farbwerte
+ * THEME...............................Direkte Farbzuweisung an Elemente
+ * TYPO................................Typo/Webfonts/etc.
+ * BREAKPOINTS.........................Breakpoints Definitionen
+ * LAYOUT..............................Layout-Spezifische Angaben
+ * SPACING.............................Abstände definieren
 **/
+
+
+
+
+
+/*------------------------------------*\
+    $COLORS
+\*------------------------------------*/
+
+$black:	#000;
+$white: #fff;
+
+
+
+
+
+/*------------------------------------*\
+    $THEME
+\*------------------------------------*/
+
+$theme-body:			$white;
+$theme-text:			$black;
+$theme-selection-bg:	$black;
+$theme-selection-color:	$white;
+
+
+
+
+
+/*------------------------------------*\
+    $TYPO
+\*------------------------------------*/
+
+$font: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+
+
+
+
+
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+
+$bp-med:	48em;
+$bp-large:	60em;
+
+
+
+
+
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+
+$layout-maxwidth:	80em;
+
+
+
+
+
+/*------------------------------------*\
+    $SPACING
+\*------------------------------------*/
+
+$space:				rhythm(1, 16px);
+$space-and-half:	rhythm(1.5, 16px);
+$space-double:		rhythm(2, 16px);
+$space-triple:		rhythm(3, 16px);
+$space-quad:		rhythm(4, 16px);
+$space-half:		rhythm(.5, 16px);
+$space-quarter:		rhythm(.25, 16px);
+
+$pad:				1rem;
+$pad-and-half:		$pad*1.5;
+$pad-double:		$pad*2;
+$pad-triple:		$pad*3;
+$pad-quad:			$pad*4;
+$pad-half:			$pad/2;
+$pad-quarter:		$pad/4;
+
+
+
+
 
 /*------------------------------------*\
 	

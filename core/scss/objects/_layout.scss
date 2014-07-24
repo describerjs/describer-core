@@ -44,7 +44,6 @@
 	.col {
 		@media all and (min-width: $bp-med) {
 			@include column(12);
-			margin-bottom: $space-3quarter;
 		}
 
 		@media all and (min-width: $bp-large) {

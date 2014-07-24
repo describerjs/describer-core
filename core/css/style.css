@@ -1,0 +1,720 @@
+/*------------------------------------*\
+	$CONTENTS
+\*------------------------------------*/
+/**
+ * ADD-ONS.............................3rd Party Core expansions
+ * .....Semantic Grid Sytem Semantic.gs
+ * .....Sassaparilla - Typeset/Baselinegrid
+ * VARIABLES...........................Declarations of Sass variables
+ * .....Colors
+ * .....Typography
+ * .....Layout
+ * .....Defaults
+ * .....Breakpoints
+ * MIXINS..............................Sass mixins
+ * PLACEHOLDER:........................Sass placeholder
+ * RESET...............................Set reset defaults
+ * 3RD PARTY...........................3rd Party Includes
+ * GLOBAL ELEMENTS.....................Establish global styles
+ * .....Main
+ * .....Headings
+ * .....Text-related elements (p, blockquote, lists)
+ * .....Defaults
+ * .....Breakpoints
+ * GLOBAL CLASSES......................Set reset defaults
+ * LAYOUT..............................Grid & Column Designs
+ * STRUCTURE...........................Page-Structure
+ * COMPONENTS/MODULES..................Build the Elements / Modules
+**/
+/*------------------------------------*\
+    $ADD-ONS
+\*------------------------------------*/
+/*.is-typeset {
+	.headline	{ @extend %as-heading__headline; 	@extend %as-heading__headline--typeset; } 
+	h1			{ @extend %as-heading__largest; 	@extend %as-heading__largest--typeset; } 	
+	h2 			{ @extend %as-heading__large; 		@extend %as-heading__large--typeset; } 	
+	h3			{ @extend %as-heading__medium; 		@extend %as-heading__medium--typeset; } 	
+	h4 			{ @extend %as-heading__normal; 		@extend %as-heading__normal--typeset; }  	
+	h5			{ @extend %as-heading__small; 		@extend %as-heading__small--typeset; } 	
+	h6			{ @extend %as-heading__smallest; 	@extend %as-heading__smallest--typeset; }  	
+	p 			{ @extend %as-para--typeset; }
+	ol			{ @extend %as-ordered-list--typeset; }
+	ul 			{ @extend %as-unordered-list--typeset; }
+	li 			{ @extend %as-list--typeset; }
+	blockquote 	{ @extend %as-blockquote--typeset; }
+}*/
+/*------------------------------------*\
+    $GENERIC ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/**
+ * COLORS..............................Diverse Farbwerte
+ * THEME...............................Direkte Farbzuweisung an Elemente
+ * TYPO................................Typo/Webfonts/etc.
+ * BREAKPOINTS.........................Breakpoints Definitionen
+ * LAYOUT..............................Layout-Spezifische Angaben
+ * SPACING.............................Abstände definieren
+**/
+/*------------------------------------*\
+    $COLORS
+\*------------------------------------*/
+/*------------------------------------*\
+    $THEME
+\*------------------------------------*/
+/*------------------------------------*\
+    $TYPO
+\*------------------------------------*/
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/*------------------------------------*\
+    $SPACING
+\*------------------------------------*/
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
+	$MIXINS
+\*------------------------------------*/
+/**
+ * CLEARFIX............................clearfix
+ * PSEUDO-ELEMENTS.....................Pseudo-Elements :after/:before
+ * .....pdeuso-element-default (provides default setup for most :after/:before pseudo elements)
+ * .....pdeuso-element-stretch (fits pseudo-element to parent size)
+ * ELEMENT-STRETCH.....................Stretch element to parent size
+ * RWD.................................Hide/Show something on Mobile/Tablet/Desktop
+ * .....hide-on-desktop
+ * .....hide-on-tablet
+ * .....hide-on-mobile
+ * .....show-on-mobile
+ * BACKFACE-VISIBILITY.................Set the backface-visibility (default: hidden)
+ * HEX-TO-RGB..........................RGBA Fallback -> http://codepen.io/sturobson/pen/hdKyv
+ * ALIGNING............................Alignment of elements
+ * .....vertical-align (Align things vertically (http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/))
+ * .....centered (Absolute center position)
+ * BORDER-RADIUS.......................For compatibility with Android devices
+ * RETINA-IMAGES.......................Image-2x
+**/
+/*------------------------------------*\
+	$CLEARFIX
+\*------------------------------------*/
+/* line 46, ../scss/generic/_mixins.scss */
+.clearfix {
+  *zoom: 1;
+}
+/* line 36, ../scss/generic/_mixins.scss */
+.clearfix:after, .clearfix:before {
+  content: "\0020";
+  display: table;
+}
+/* line 41, ../scss/generic/_mixins.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/*------------------------------------*\
+	$PSEUDO-ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+	$ELEMENT-STRETCH
+\*------------------------------------*/
+/*------------------------------------*\
+	$RWD
+\*------------------------------------*/
+/*------------------------------------*\
+	$BACKFACE-VISIBILITY
+\*------------------------------------*/
+/*------------------------------------*\
+	$HEX-TO-RGB
+\*------------------------------------*/
+/*------------------------------------*\
+	$ALIGNING
+\*------------------------------------*/
+/*------------------------------------*\
+	$BORDER-RADIUS
+\*------------------------------------*/
+/*------------------------------------*\
+	$RETINA-IMAGES
+\*------------------------------------*/
+/**
+ * Send path, image name, and width and height.
+ * Name retina images [name]2x.
+ * On retina, use image that's scaled by 2
+**/
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
+    $PLACEHOLDER
+\*------------------------------------*/
+/**
+ * 
+**/
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
+    $RESET
+\*------------------------------------*/
+/* Border-Box http:/paulirish.com/2012/box-sizing-border-box-ftw/ */
+/* line 8, ../scss/generic/_reset.scss */
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 14, ../scss/generic/_reset.scss */
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, form, legend, label, table, header, footer, nav, section, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 19, ../scss/generic/_reset.scss */
+header, footer, nav, section, article, hgroup, figure {
+  display: block;
+}
+
+/* line 23, ../scss/generic/_reset.scss */
+picture {
+  display: block;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+/* line 30, ../scss/generic/_reset.scss */
+img {
+  border: 0;
+}
+
+/*------------------------------------*\
+    $GLOBAL ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+    $FONTS
+\*------------------------------------*/
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $FORMS
+\*------------------------------------*/
+/* line 5, ../scss/base/_forms.scss */
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 11, ../scss/base/_forms.scss */
+label {
+  display: block;
+}
+
+/* line 15, ../scss/base/_forms.scss */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+
+/* line 21, ../scss/base/_forms.scss */
+input, select, textarea {
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+}
+
+/* line 27, ../scss/base/_forms.scss */
+input[type=text], input[type=search], input[type=url], input[type=number], textarea {
+  -webkit-appearance: none;
+}
+
+/* line 31, ../scss/base/_forms.scss */
+button, input[type="submit"] {
+  cursor: pointer;
+}
+
+/* line 36, ../scss/base/_forms.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: 0.3em;
+}
+
+/* line 41, ../scss/base/_forms.scss */
+input[type="search"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/* line 47, ../scss/base/_forms.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+/* line 5, ../scss/base/_headings.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+/* line 9, ../scss/base/_headings.scss */
+h1, .h1 {
+  font-size: 2rem;
+  line-height: 1.125rem;
+  margin: 0 0 2.25rem 0;
+}
+
+/* line 14, ../scss/base/_headings.scss */
+h2, .h2 {
+  font-size: 1.75rem;
+  line-height: 1.28571rem;
+  margin: 0 0 2.57143rem 0;
+}
+
+/* line 19, ../scss/base/_headings.scss */
+h3, .h3 {
+  font-size: 1.625rem;
+  line-height: 1.38462rem;
+  margin: 0 0 2.76923rem 0;
+}
+
+/* line 24, ../scss/base/_headings.scss */
+h4, .h4 {
+  font-size: 1.5rem;
+  line-height: 1rem;
+  margin: 0 0 3rem 0;
+}
+
+/* line 29, ../scss/base/_headings.scss */
+h5, .h5 {
+  font-size: 1.25rem;
+  line-height: 1.2rem;
+  margin: 0 0 3.6rem 0;
+}
+
+/* line 34, ../scss/base/_headings.scss */
+h6, .h6 {
+  font-size: 1.125rem;
+  line-height: 1.33333rem;
+  margin: 0 0 4rem 0;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $LINKS
+\*------------------------------------*/
+/* line 5, ../scss/base/_links.scss */
+a {
+  cursor: pointer;
+  outline: 0;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $LISTS
+\*------------------------------------*/
+/* line 5, ../scss/base/_lists.scss */
+ol, ul {
+  list-style: none;
+  list-style-position: outside;
+}
+
+/*------------------------------------*\
+    $ORDERED_LIST
+\*------------------------------------*/
+/*------------------------------------*\
+    $UNORDERED_LIST
+\*------------------------------------*/
+/*------------------------------------*\
+    $DEFINITION_LIST
+\*------------------------------------*/
+/* line 30, ../scss/base/_lists.scss */
+dl {
+  overflow: hidden;
+}
+
+/* line 34, ../scss/base/_lists.scss */
+dt {
+  font-weight: bold;
+}
+
+/* line 38, ../scss/base/_lists.scss */
+dd {
+  margin-left: 0;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+/**
+ * Text Selection......................Background & Text color of selected Text
+ * HTML................................The <html> Element
+ * BODY................................The <body> Element
+ * Body-Wrapper........................Content Wrapper
+**/
+/*------------------------------------*\
+    $TEXT_SELECTION
+\*------------------------------------*/
+/* line 19, ../scss/base/_main.scss */
+::-moz-selection {
+  background: black;
+  color: white;
+  text-shadow: none;
+}
+
+/* line 25, ../scss/base/_main.scss */
+::selection {
+  background: black;
+  color: white;
+  text-shadow: none;
+}
+
+/*------------------------------------*\
+    $HTML
+\*------------------------------------*/
+/* line 35, ../scss/base/_main.scss */
+html {
+  background-color: white;
+  color: black;
+  font: 100% "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+  font-weight: 100;
+  line-height: 1.5em;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/*------------------------------------*\
+    $BODY
+\*------------------------------------*/
+/* line 49, ../scss/base/_main.scss */
+body {
+  position: relative;
+  width: 100%;
+}
+
+@media print {
+  /* line 55, ../scss/base/_main.scss */
+  body {
+    line-height: 3rem;
+    font-size: 62.5%;
+  }
+}
+/*------------------------------------*\
+    $BODY_WRAPPER
+\*------------------------------------*/
+/* line 65, ../scss/base/_main.scss */
+.body {
+  margin: 0 auto;
+  max-width: 80em;
+  overflow: hidden;
+  width: 100%;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $MEDIA ELEMENTS
+\*------------------------------------*/
+/**
+ * Flexible Media.......................Fluid Media Elements
+**/
+/*------------------------------------*\
+    $FLEXIBLE_MEDIA
+\*------------------------------------*/
+/* line 12, ../scss/base/_media.scss */
+img, video, object {
+  height: auto;
+  max-width: 100%;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $TEXT_ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $GLOBAL CLASSES
+\*------------------------------------*/
+/*------------------------------------*\
+    $JS/NOJS
+\*------------------------------------*/
+/* line 10, ../scss/base/_global-classes.scss */
+.js-element {
+  /**/
+}
+
+/* line 15, ../scss/base/_global-classes.scss */
+.nojs-element {
+  display: none;
+}
+
+/*------------------------------------*\
+    $VISIBILITY/DISPLAY
+\*------------------------------------*/
+/* line 24, ../scss/base/_global-classes.scss */
+.is-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+/* line 30, ../scss/base/_global-classes.scss */
+.is-visible {
+  display: block;
+  visibility: visible;
+}
+
+/* line 36, ../scss/base/_global-classes.scss */
+.is-vishidden {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/**
+ * Grid-Column..........................Grid-System Column
+ * Grid-Row.............................Grid-System Row
+ * Grid-System..........................Using the Grid-System
+**/
+/*------------------------------------*\
+    $GRID_COLUMN
+\*------------------------------------*/
+/* line 15, ../scss/objects/_layout.scss */
+.demo .col {
+  border: 1px dashed grey;
+}
+
+/*------------------------------------*\
+    $GRID_ROW
+\*------------------------------------*/
+/* line 24, ../scss/objects/_layout.scss */
+.row, .row2, .row3, .row4, .row5, .row6 {
+  display: block;
+  width: 102.08333%;
+  margin: 0 0%;
+  *zoom: 1;
+}
+/* line 36, ../scss/generic/_mixins.scss */
+.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .row:before, .row2:before, .row3:before, .row4:before, .row5:before, .row6:before {
+  content: "\0020";
+  display: table;
+}
+/* line 41, ../scss/generic/_mixins.scss */
+.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after {
+  clear: both;
+}
+/* line 27, ../scss/objects/_layout.scss */
+.row .col, .row2 .col, .row3 .col, .row4 .col, .row5 .col, .row6 .col {
+  display: inline;
+  float: left;
+  width: 97.91667%;
+  margin: 0 0%;
+}
+
+/*------------------------------------*\
+    $GRID_SYSTEM
+\*------------------------------------*/
+@media all and (min-width: 48em) {
+  /* line 44, ../scss/objects/_layout.scss */
+  .row2 .col {
+    display: inline;
+    float: left;
+    width: 97.91667%;
+    margin: 0 0%;
+  }
+}
+@media all and (min-width: 60em) {
+  /* line 44, ../scss/objects/_layout.scss */
+  .row2 .col {
+    display: inline;
+    float: left;
+    width: 47.91667%;
+    margin: 0 0%;
+  }
+}
+
+@media all and (min-width: 48em) {
+  /* line 59, ../scss/objects/_layout.scss */
+  .row3 .col {
+    display: inline;
+    float: left;
+    width: 97.91667%;
+    margin: 0 0%;
+  }
+}
+@media all and (min-width: 60em) {
+  /* line 59, ../scss/objects/_layout.scss */
+  .row3 .col {
+    display: inline;
+    float: left;
+    width: 31.25%;
+    margin: 0 0%;
+  }
+}
+
+@media all and (min-width: 48em) {
+  /* line 74, ../scss/objects/_layout.scss */
+  .row4 .col {
+    display: inline;
+    float: left;
+    width: 47.91667%;
+    margin: 0 0%;
+  }
+}
+@media all and (min-width: 60em) {
+  /* line 74, ../scss/objects/_layout.scss */
+  .row4 .col {
+    display: inline;
+    float: left;
+    width: 22.91667%;
+    margin: 0 0%;
+  }
+}
+
+@media all and (min-width: 48em) {
+  /* line 89, ../scss/objects/_layout.scss */
+  .row5 .col {
+    display: inline;
+    float: left;
+    width: 31.25%;
+    margin: 0 0%;
+  }
+}
+@media all and (min-width: 60em) {
+  /* line 89, ../scss/objects/_layout.scss */
+  .row5 .col {
+    display: inline;
+    float: left;
+    width: 14.58333%;
+    margin: 0 0%;
+  }
+}
+
+@media all and (min-width: 48em) {
+  /* line 104, ../scss/objects/_layout.scss */
+  .row6 .col {
+    display: inline;
+    float: left;
+    width: 31.25%;
+    margin: 0 0%;
+  }
+}
+@media all and (min-width: 60em) {
+  /* line 104, ../scss/objects/_layout.scss */
+  .row6 .col {
+    display: inline;
+    float: left;
+    width: 14.58333%;
+    margin: 0 0%;
+  }
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $STRUCTURE
+\*------------------------------------*/
+/*------------------------------------*\
+    $HEADER_SECTION
+\*------------------------------------*/
+/* line 5, ../scss/objects/_header.scss */
+header {
+  /**/
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $NAVIGATION
+\*------------------------------------*/
+/* line 5, ../scss/objects/_nav.scss */
+.nav {
+  /**/
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $MAIN_CONTENT_AREA
+\*------------------------------------*/
+/* line 5, ../scss/objects/_main.scss */
+main {
+  *zoom: 1;
+  overflow: hidden;
+}
+/* line 36, ../scss/generic/_mixins.scss */
+main:after, main:before {
+  content: "\0020";
+  display: table;
+}
+/* line 41, ../scss/generic/_mixins.scss */
+main:after {
+  clear: both;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $FOOTER_SECTION
+\*------------------------------------*/
+/* line 5, ../scss/objects/_footer.scss */
+footer {
+  /**/
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $COMPONENTS/$MODULES
+\*------------------------------------*/
+/*@import "objects/modules/togglebox";*/
+/*------------------------------------*\
+    
+\*------------------------------------*/

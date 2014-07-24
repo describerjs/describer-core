@@ -8,18 +8,22 @@
  * Body-Wrapper........................Content Wrapper
 **/
 
+
+
+
+
 /*------------------------------------*\
     $TEXT_SELECTION
 \*------------------------------------*/
 
 ::-moz-selection {
-    background: $theme-selection-background;
+    background: $theme-selection-bg;
     color: $theme-selection-color;
     text-shadow: none;
 }
 
 ::selection {
-    background: $theme-selection-background;
+    background: $theme-selection-bg;
     color: $theme-selection-color;
     text-shadow: none;
 }
@@ -29,11 +33,11 @@
 \*------------------------------------*/
 
 html {
-	/*background-color: $theme-body;*/
-	/*color: $theme-text;*/
-	/*font: 100% $font;*/
+	background-color: $theme-body;
+	color: $theme-text;
+	font: 100% $font;
 	font-weight: 100;
-	/*line-height: em-font($base-line-height);*/
+	line-height: em-font($base-line-height);
 	-ms-text-size-adjust:		100%;
 	-webkit-text-size-adjust:	100%;
 }
@@ -61,7 +65,7 @@ body {
 .body {
 	@include baseline-grid;
 	margin: 0 auto;
-	/*max-width: $layout-maxwidth;*/
+	max-width: $layout-maxwidth;
 	overflow: hidden;
 	width: 100%;
 }
