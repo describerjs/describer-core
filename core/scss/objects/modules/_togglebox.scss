@@ -1,0 +1,53 @@
+/*------------------------------------*\
+    $TOGGLEBOX
+\*------------------------------------*/
+
+/**
+ *
+	<div class="togglebox">
+		<a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+		<div class="tb-content">
+			$togglecontent$
+		</div>
+	</div>
+ *
+ * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
+ * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
+ *
+ * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+ * Beschreibt den Titel der Togglebox bzw. den Link.
+ * data-jmname="togglebox" weist das javascript an, das <div class="togglebox"> um die Klasse "show" zu erweitern
+ * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
+ *
+ * <div class="tb-content">
+ * Alles was zum Content der Togglebox gehört wird hier eingefügt.
+ *
+**/
+
+
+// Ein-/Auf-/Zuklapp Element
+.togglebox {
+	// Der verantwortliche Link zum öffnen des Toggles "tb-content".
+	.tb-subject {
+		/**/
+	}
+
+	// Der eigentliche Content.
+	.tb-content {
+		display: none;
+	}
+
+	// "togglebox" wird mit "show" erweitert und interagiert entsprechend.
+	&.show {
+		.tb-content {
+			display: block;
+		}
+	}
+
+	// NOJS - Kein Javascript, dann alle Toggleboxen geöffnet.
+	.no-js & {
+		.tb-content {
+			display: block;
+		}
+	}
+}

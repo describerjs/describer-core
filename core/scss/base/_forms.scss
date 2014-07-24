@@ -18,7 +18,9 @@ button, input, select, textarea {
     margin: 0;
 }
 
-input, textarea {
+input, select, textarea {
+    max-width: 100%;
+    min-width: 100%;
 	width: 100%;
 }
 
