@@ -17,13 +17,16 @@
 <link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-57x57-precomposed.png" />
 <meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
 <meta name="msapplication-TileColor" content="#222222" />
+<!-- SERVERABFRAGE
 @if (Config.Instance.IsDevServer)
 {
+-->
 <script>
     window.UseLocalStorage = false;
     window.loadUnminifyVersion = true;
     window.IsDevServer = true;
 </script>
+<!-- SERVERABFRAGE
 }
 else
 {
@@ -46,23 +49,11 @@ else
     checkDebugging();
 </script>
 }
+-->
 <script>
     if(window.UseLocalStorage && window.loadUnminifyVersion){
         console.warn('-------------!!!!!-----localStorage wird nicht gelöscht!------!!!!!-----');
     }
-    /*['log', 'warn'].forEach(function(method) {
-        var old = console[method];
-        console[method] = function() {
-            var stack = (new Error()).stack.split(/\n/);
-            // Chrome includes a single "Error" line, FF doesn't.
-            if (stack[0].indexOf('Error') === 0) {
-                stack = stack.slice(1);
-            }
-            var args = [].slice.apply(arguments).concat([stack[1].trim()]);
-            return old.apply(console, args);
-        };
-    });*/
-    //window.FBID = 1386529601605132;
 
     // Das Objekt dient zum vorhalten von Funktionen, die unmittelbar nach dem ready-Event von jQuery ausgeführt werden sollen
     window.domReadyObject = {
@@ -258,14 +249,18 @@ else
     }
 </script>
 <noscript>
+<!-- SERVERABFRAGE
     @if (Config.Instance.IsDevServer)
     {
+-->
     <link rel="stylesheet" href="/css/style.css" />
+<!-- SERVERABFRAGE
     }
     else
     {
     <link rel="stylesheet" href="/css/min/style.458d37.css" />
     }
+-->
     <link rel="stylesheet" href="/css/noscript.css" />
 </noscript>
 </head>
