@@ -1,4 +1,4 @@
-define(['_config', 'jquery', 'helpers', 'scrolltotop'], function(_config){
+define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
 
 	// Object.create support test, and fallback for browsers without it

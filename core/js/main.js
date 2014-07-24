@@ -6,6 +6,8 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 }
 require.config({
 	paths      : {
+
+		// externals
 		'jquery'                                           : pathToJQuery,
 		'scrolltotop'                                      : 'externals/customized/scrolltotop',
 		'jquery_autocomplete'                              : 'externals/customized/jquery.autocomplete',
@@ -18,12 +20,15 @@ require.config({
 		'overwritings.jquery_validate'                     : 'externals/customized/overwritings/jquery.validate',
 		'overwritings.owl_carousel'                        : 'externals/customized/overwritings/owl.carousel',
 		'video'                                            : 'externals/customized/video',
-		'masonry_pkgd'                                     : 'externals/originalReferenceSource/masonry.pkgd',
 		'md5'                                              : 'externals/originalReferenceSource/md5',
 		'rAF'                                              : 'externals/originalReferenceSource/rAF',
 		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
 		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
 		'fastclick'                                        : 'externals/vendor/fastclick',
+
+
+
+		// mylibs
 		'_config'                                          : 'mylibs/_config',
 		'_super'                                           : 'mylibs/_super',
 		'actions.add'                                      : 'mylibs/actions/add',
@@ -35,28 +40,24 @@ require.config({
 		'actions.sticky'                                   : 'mylibs/actions/sticky',
 		'actions.toggle'                                   : 'mylibs/actions/toggle',
 		'actions.trigger'                                  : 'mylibs/actions/trigger',
+
 		'add-ons.formvalidate'                             : 'mylibs/add-ons/formvalidate',
-		'ayyildiz.addOnSelectionPriceUpdate'               : 'mylibs/ayyildiz/addOnSelectionPriceUpdate',
-		'ayyildiz.configurationStatusDisplay'              : 'mylibs/ayyildiz/configurationStatusDisplay',
-		'ayyildiz.configurationStatusDisplayAystar'        : 'mylibs/ayyildiz/configurationStatusDisplayAystar',
-		'ayyildiz.syncConfigurationStatusDisplay'          : 'mylibs/ayyildiz/syncConfigurationStatusDisplay',
-		'jmtools.datencacheAktualisieren'                  : 'mylibs/jmtools/datencacheAktualisieren',
+
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
 		'modules.countdown'                                : 'mylibs/modules/countdown',
 		'modules.dependentSelectionGroup'                  : 'mylibs/modules/dependentSelectionGroup',
 		'modules.equalheights'                             : 'mylibs/modules/equalheights',
-		'modules.flipcard'                                 : 'mylibs/modules/flipcard',
-		'modules.formcomponents.autocomplete'              : 'mylibs/modules/formcomponents/autocomplete',
-		'modules.formcomponents.formvalidate'              : 'mylibs/modules/formcomponents/formvalidate',
-		'modules.formcomponents.selectOptionExtractInGroup': 'mylibs/modules/formcomponents/selectOptionExtractInGroup',
-		'modules.formcomponents.submitbutton'              : 'mylibs/modules/formcomponents/submitbutton',
-		'modules.imagecrop'                                : 'mylibs/modules/imagecrop',
-		'modules.masonry'                                  : 'mylibs/modules/masonry',
+		'modules.form.autocomplete'                        : 'mylibs/modules/form/autocomplete',
+		'modules.form.formvalidate'                        : 'mylibs/modules/form/formvalidate',
+		'modules.form.selectOptionExtractInGroup'          : 'mylibs/modules/form/selectOptionExtractInGroup',
+		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
 		'modules.modal'                                    : 'mylibs/modules/modal',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',
-		'helpers'                                          : 'mylibs/utils/helpers',
-		'jquery.helpers'                                   : 'mylibs/utils/jquery.helpers',
+
+		'utils.helpers'                                    : 'mylibs/utils/helpers',
+		'utils.jquery.helpers'                             : 'mylibs/utils/jquery.helpers',
+
 		'require-css.video'                                : 'require-css/video'
 	},
 	shim: {
@@ -87,7 +88,7 @@ require.config({
 
 require(['jquery', '_config'], function($, _config){
 	// need jquery
-	require([ 'jquery.helpers', 'helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
+	require([ 'utils.jquery.helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
 		// 'jmHelperFunction', 'stickem'
 		// DomReady
 		$(function(){

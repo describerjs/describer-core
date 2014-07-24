@@ -1,4 +1,4 @@
-define(['jquery', '_config', 'jquery.helpers', 'helpers'], function ($, _config) {
+define(['jquery', '_config', 'utils.jquery.helpers', 'utils.helpers'], function ($, _config) {
     'use strict';
 	return {
         config : function(){
