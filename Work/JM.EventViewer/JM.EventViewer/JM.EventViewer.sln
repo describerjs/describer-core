@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.EventViewer", "JM.EventViewer\JM.EventViewer.csproj", "{E6510819-8C03-4DA7-9C78-621338C58CEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4B336CFB-1695-43B9-B450-61FFAADFA17A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "MTan", "MTan\MTan.modelproj", "{49233103-6A59-4D54-A7FF-F69E54F1CEB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6510819-8C03-4DA7-9C78-621338C58CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6510819-8C03-4DA7-9C78-621338C58CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6510819-8C03-4DA7-9C78-621338C58CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6510819-8C03-4DA7-9C78-621338C58CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49233103-6A59-4D54-A7FF-F69E54F1CEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49233103-6A59-4D54-A7FF-F69E54F1CEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49233103-6A59-4D54-A7FF-F69E54F1CEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49233103-6A59-4D54-A7FF-F69E54F1CEB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
