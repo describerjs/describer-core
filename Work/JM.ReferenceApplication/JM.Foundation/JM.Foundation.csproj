@@ -84,6 +84,7 @@
     <Compile Include="ErrorHandling\JMEventSourceBase.cs" />
     <Compile Include="Extensions\RouteExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Mvc\Filter\JMBasicAuthFilterAttribute.cs" />
     <Compile Include="Mvc\Routing\HyphenatedRouteHandler.cs" />
     <Compile Include="Mvc\Routing\RegexConstraint.cs" />
     <Compile Include="Mvc\Validation\RegexValidationAttribute.cs" />

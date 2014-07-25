@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace JM.Foundation
 {
-	public class Config : ConfigurationSection
+	internal class Config : ConfigurationSection
 	{
 		[ConfigurationProperty("ErrorHttpModule")]
 		public ErrorHttpModule ErrorHttpModule
@@ -13,12 +13,21 @@ namespace JM.Foundation
 				return (ErrorHttpModule)this["ErrorHttpModule"];
 			}
 		}
+
+		[ConfigurationProperty("JMBasicAuthenticationFilter")]
+		public JMBasicAuthenticationFilter JMBasicAuthenticationFilter
+		{
+			get
+			{
+				return (JMBasicAuthenticationFilter)this["JMBasicAuthenticationFilter"];
+			}
+		}
 	}
 
-	/// <summary>
-	/// Configuration für das ErrorHttpModule 
-	/// </summary>
-	public class ErrorHttpModule : ConfigurationElement
+	//////////////////////////////////////////////////////////////////////////////////////
+	#region Configuration für das ErrorHttpModule 
+	
+	internal class ErrorHttpModule : ConfigurationElement
 	{
 		[ConfigurationProperty("enabled", DefaultValue = true, IsRequired = false)]
 		public Boolean Enabled
@@ -44,4 +53,32 @@ namespace JM.Foundation
 			get { return (bool)this["showErrorDetails"]; }
 		}
 	}
+
+	#endregion
+
+	//////////////////////////////////////////////////////////////////////////////////////
+	#region Configuration das JMBasicAuthFilterAttribute zur BASIC-Authentication von Actions
+
+	internal class JMBasicAuthenticationFilter : ConfigurationElement
+	{
+		[ConfigurationProperty("areaname", DefaultValue = "Geschützer Bereich", IsRequired = false)]
+		public String AreaName
+		{
+			get { return this["areaname"] as string; }
+		}
+
+		[ConfigurationProperty("username", IsRequired = true)]
+		public String Username
+		{
+			get { return this["username"] as string; }
+		}
+
+		[ConfigurationProperty("password", IsRequired = true)]
+		public String Password
+		{
+			get { return this["password"] as string; }
+		}
+	}
+
+	#endregion
 }

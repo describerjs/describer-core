@@ -181,6 +181,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -211,6 +213,10 @@
     <Content Include="App_Data\autofac.config" />
     <Content Include="App_Data\Config\dev\JM.Business.Kontakt.config" />
     <Content Include="App_Data\Config\dev\JM.Foundation.config" />
+    <Content Include="Areas\JMTools\Views\web.config" />
+    <Content Include="Areas\JMTools\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\JMTools\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\JMTools\Views\Administration\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -270,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
+    <Folder Include="Areas\JMTools\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

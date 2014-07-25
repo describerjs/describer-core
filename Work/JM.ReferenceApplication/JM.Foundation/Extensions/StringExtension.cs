@@ -18,7 +18,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.HtmlEncode(s);
+				return Encoder.HtmlEncode(s);
 			}
 			return String.Empty;
 		}
@@ -37,7 +37,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.HtmlAttributeEncode(s);
+				return Encoder.HtmlAttributeEncode(s);
 			}
 			return String.Empty;
 		}
@@ -56,7 +56,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.JavaScriptEncode(s);
+				return Encoder.JavaScriptEncode(s);
 			}
 			return String.Empty;
 		}
@@ -75,7 +75,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.UrlEncode(s);
+				return Encoder.UrlEncode(s);
 			}
 			return String.Empty;
 		}
@@ -94,7 +94,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.VisualBasicScriptEncode(s);
+				return Encoder.VisualBasicScriptEncode(s);
 			}
 			return String.Empty;
 		}
@@ -113,7 +113,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.XmlEncode(s);
+				return Encoder.XmlEncode(s);
 			}
 			return String.Empty;
 		}
@@ -132,7 +132,7 @@ namespace JM.Foundation.Extensions
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
-				return AntiXss.XmlAttributeEncode(s);
+				return Encoder.XmlAttributeEncode(s);
 			}
 			return String.Empty;
 		}

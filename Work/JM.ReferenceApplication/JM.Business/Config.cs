@@ -2,7 +2,7 @@
 
 namespace JM.Business
 {
-	public class Config : ConfigurationSection
+	internal class Config : ConfigurationSection
 	{
 		[ConfigurationProperty("moduleName", IsRequired = true)]
 		public string ModuleName
@@ -23,7 +23,7 @@ namespace JM.Business
 		}
 	}
 
-	public class DeviceIdElement : ConfigurationElement
+	internal class DeviceIdElement : ConfigurationElement
 	{
 		[ConfigurationProperty("id", IsRequired = true)]
 		public string Id
@@ -44,7 +44,7 @@ namespace JM.Business
 		}
 	}
 
-	public class DeviceIdCollection : ConfigurationElementCollection
+	internal class DeviceIdCollection : ConfigurationElementCollection
 	{
 		public DeviceIdElement this[int index]
 		{
