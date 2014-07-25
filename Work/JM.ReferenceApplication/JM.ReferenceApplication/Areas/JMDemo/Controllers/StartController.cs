@@ -1,15 +1,14 @@
-﻿using JM.Foundation.Mvc.Filter;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using JM.Foundation.Mvc.Filter;
 
-namespace JM.ReferenceApplication.Areas.JMTools.Controllers
+namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
 	/// <summary>
 	/// 25.07.2014 - Sebastian van Elten
-	/// AdministrationController für den JMTools-Bereich
-	/// Zugang ist mit BASIC-Authentication geschützt
+	/// StartController
 	/// </summary>
 	[JMBasicAuthFilter]
-	public class AdministrationController : Controller
+	public class StartController : Controller
 	{
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
@@ -21,7 +20,7 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
-		public AdministrationController()
+		public StartController()
 		{
 
 		}

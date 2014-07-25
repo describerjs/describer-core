@@ -1,7 +1,7 @@
 ﻿using JM.Business.Kontakt.Contracts.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace JM.ReferenceApplication.Models.JM.Kontakt.Business
+namespace JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business._Kontakt
 {
 	public class ContactModel : IContactModel
 	{

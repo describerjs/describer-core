@@ -1,15 +1,11 @@
-﻿using JM.Foundation.Mvc.Filter;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace JM.ReferenceApplication.Areas.JMTools.Controllers
+namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
 	/// <summary>
-	/// 25.07.2014 - Sebastian van Elten
-	/// AdministrationController für den JMTools-Bereich
-	/// Zugang ist mit BASIC-Authentication geschützt
+	/// Controller für die Startseite der Demos einzelner Module inkl kurzer Beschreibung
 	/// </summary>
-	[JMBasicAuthFilter]
-	public class AdministrationController : Controller
+	public class ModuleController : Controller
 	{
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
@@ -21,7 +17,7 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
-		public AdministrationController()
+		public ModuleController()
 		{
 
 		}
@@ -32,12 +28,22 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 		#region Views
 
 		/// <summary>
-		/// Index
+		/// Index gibt es hier nicht, redirect zur Startseite
 		/// </summary>
-		/// <returns>View</returns>
+		/// <returns>Redirect</returns>
 		public ActionResult Index()
 		{
+			return RedirectToActionPermanent("Index", "Start");
+		}
+
+		/// <summary>
+		/// Startseite für JM.Business.Kontakt
+		/// </summary>
+		/// <returns>View</returns>
+		public ActionResult JM_Business_Kontakt()
+		{
 			return View();
+			
 		}
 
 		#endregion

@@ -1,0 +1,78 @@
+﻿<div class="row">
+	<div class="col-lg-12">
+		<h1>JM.Business.Kontakt <small style="color: #d2691e"><span class="glyphicon glyphicon-tag"></span>DEMO</small></h1>
+		<p>BESCHREIBUNG: Demo-Modul für einen Kontaktmanager mit Email-Funktion</p>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Demo</h2>
+		<p>Hier können die Funktionen des Moduls demonstriert werden</p>
+		<a href="@Url.Action("Index", "JM-Business-Kontakt")">Kontaktformular ausprobieren</a>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Settings</h2>
+		<p>Dieses Modul einige Einstellungsmöglichkeiten, die in der Web.config in der Customsection <em>JM.Business.Kontakt.config</em> gepflegt werden.</p>
+		<pre><code>&lt;JM.Business.Kontakt moduleName="JM.Business.Kontakt" moduleVersion="0.1"&gt;
+	&lt;SmtpServer server="exchange.joinmedia.local"/&gt;
+	&lt;Mailing recipientAdress="sve@joinmedia.de" defaultSubject="Ein Testsubjekt" subjectPrefix="DEV " sendAsHighPriorityMail="false"/&gt;
+&lt;/&lt;JM.Business.Kontakt&gt;</code></pre>
+		<h3>Settings Variablenbeschreibung</h3>
+		<table class="table-striped table">
+			<tr>
+				<th>Key</th>
+				<th>Type</th>
+				<th>Description</th>
+				<th>Pflichtfeld</th>
+				<th>Default</th>
+			</tr>
+			<tr>
+				<td>SmtpServer</td>
+				<td>String</td>
+				<td>Adresse des Servers über den die Mails verschickt werden</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>...</td>
+				<td>...</td>
+				<td>...</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Einrichtung / Checkliste</h2>
+		<p>Hier wird beschrieben wie dieses Modul eingebunden und genutzt werden kann</p>
+		<ol>
+			<li>Datenbank einrichten mit <a href="#" onclick="alert('eine datei läg hier')">vorbereitetm slq</a></li>
+			<li>...</li>
+			<li>Profit</li>
+		</ol>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Changelog</h2>
+		<p>Hier werden Änderungen an dem Modul dokumentiert.</p>
+		<table class="table-striped table">
+			<tr>
+				<th>Datum</th>
+				<th>Version</th>
+				<th>Entwickler</th>
+				<th>Changes</th>
+			</tr>
+			<tr>
+				<td>21.11.2015</td>
+				<td>0.11</td>
+				<td>sve</td>
+				<td>Neue Features X, Y und Z<br />
+					Keine Abhängigkeit von Foo.Bar mehr<br />
+					Kann jetzt auch Blorgons</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
