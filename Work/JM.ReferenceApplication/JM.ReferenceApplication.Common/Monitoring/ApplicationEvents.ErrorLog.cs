@@ -17,7 +17,7 @@ namespace JM.ReferenceApplication.Common.Monitoring
             string context, 
             string parameters)
         {
-            base.WriteEvent(1, context, message, details, parameters);
+            if(this.IsEnabled()) base.WriteEvent(1, context, message, details, parameters);
         }
 
         [Event(2, Level = EventLevel.Error)]
