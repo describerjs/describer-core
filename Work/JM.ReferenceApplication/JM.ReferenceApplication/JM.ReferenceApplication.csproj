@@ -181,13 +181,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\JM_Business_KontaktController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
+    <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs" />
+    <Compile Include="Areas\JMDemo\Models\JM.Business._Kontakt\ContactModel.cs" />
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,7 +199,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\JM.Kontakt.Business\ContactModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -217,6 +220,13 @@
     <Content Include="Areas\JMTools\Views\_ViewStart.cshtml" />
     <Content Include="Areas\JMTools\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\JMTools\Views\Administration\Index.cshtml" />
+    <Content Include="Areas\JMDemo\Views\web.config" />
+    <Content Include="Areas\JMDemo\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Start\Index.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Module\JM_Business_Kontakt.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Index.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Danke.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,7 +250,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Errors.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -270,8 +279,6 @@
     <Content Include="Views\Business\ImportantConfiguredDeviceInfo.cshtml" />
     <Content Include="Views\Validation\Index.cshtml" />
     <Content Include="Views\Validation\IndexDanke.cshtml" />
-    <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Contact\Danke.cshtml" />
     <Content Include="Views\Error\DisplayErrorAlternative.cshtml" />
   </ItemGroup>
   <ItemGroup>
