@@ -1,29 +1,41 @@
 ﻿using JM.Business.Manager;
 using System.Web.Mvc;
 
-namespace JM.ReferenceApplication.Controllers
+namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
-    public class BusinessController : Controller
-    {
-		private ILameManager _lameManager;
-		private IImportantManager _importantManager;
+	/// <summary>
+	/// 25.07.2014 - Sebastian van Elten
+	/// JM_BusinessController
+	/// </summary>
+	public class JM_BusinessController : Controller
+	{
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region private Member
 
-		public BusinessController(IImportantManager importantManager, ILameManager lameManager)
+		private IImportantManager _importantManager;
+		private ILameManager _lameManager;
+
+		#endregion
+
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region Constructor
+
+		public JM_BusinessController(IImportantManager importantManager, ILameManager lameManager)
 		{
 			_lameManager = lameManager;
 			_importantManager = importantManager;
 		}
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		#endregion
 
-	    public ActionResult Important()
-	    {
-		    var model = _importantManager.GetCompleteData();
-		    return View(model);
-	    }
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region Views
+
+		public ActionResult Important()
+		{
+			var model = _importantManager.GetCompleteData();
+			return View(model);
+		}
 
 		public ActionResult ImportantDetails(int id)
 		{
@@ -36,10 +48,10 @@ namespace JM.ReferenceApplication.Controllers
 			return View("Details", model);
 		}
 
-	    public ActionResult ImportantModuleInfo()
-	    {
-		    return View("ImportantModuleInfo", "", _importantManager.GetModuleInfo());
-	    }
+		public ActionResult ImportantModuleInfo()
+		{
+			return View("ImportantModuleInfo", "", _importantManager.GetModuleInfo());
+		}
 
 		public ActionResult ImportantConfiguredDeviceInfo(int index = 0)
 		{
@@ -63,6 +75,15 @@ namespace JM.ReferenceApplication.Controllers
 			};
 			return View("Details", model);
 		}
+
+		#endregion
+
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region PartialViews
+
+		//
+
+		#endregion
 	}
 
 	public class StringManagerModel

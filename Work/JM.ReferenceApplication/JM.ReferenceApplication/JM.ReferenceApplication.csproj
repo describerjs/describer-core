@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\JMDemo\Controllers\JM_Business_KontaktController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\JM_Business_Controller.cs" />
     <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
     <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs" />
@@ -189,10 +190,8 @@
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,6 +226,7 @@
     <Content Include="Areas\JMDemo\Views\Module\JM_Business_Kontakt.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Index.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Danke.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Module\JM_Business.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -271,14 +271,12 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Error\DisplayError.cshtml" />
-    <Content Include="Views\Business\Index.cshtml" />
-    <Content Include="Views\Business\Important.cshtml" />
-    <Content Include="Views\Business\Lame.cshtml" />
-    <Content Include="Views\Business\Details.cshtml" />
-    <Content Include="Views\Business\ImportantModuleInfo.cshtml" />
-    <Content Include="Views\Business\ImportantConfiguredDeviceInfo.cshtml" />
-    <Content Include="Views\Validation\Index.cshtml" />
-    <Content Include="Views\Validation\IndexDanke.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business\Index.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business\Important.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business\Lame.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business\Details.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business\ImportantModuleInfo.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business\ImportantConfiguredDeviceInfo.cshtml" />
     <Content Include="Views\Error\DisplayErrorAlternative.cshtml" />
   </ItemGroup>
   <ItemGroup>
