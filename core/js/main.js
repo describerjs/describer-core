@@ -6,6 +6,8 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 }
 require.config({
 	paths      : {
+
+		// externals
 		'jquery'                                           : pathToJQuery,
 		'scrolltotop'                                      : 'externals/customized/scrolltotop',
 		'jquery_autocomplete'                              : 'externals/customized/jquery.autocomplete',
@@ -18,12 +20,15 @@ require.config({
 		'overwritings.jquery_validate'                     : 'externals/customized/overwritings/jquery.validate',
 		'overwritings.owl_carousel'                        : 'externals/customized/overwritings/owl.carousel',
 		'video'                                            : 'externals/customized/video',
-		'masonry_pkgd'                                     : 'externals/originalReferenceSource/masonry.pkgd',
 		'md5'                                              : 'externals/originalReferenceSource/md5',
 		'rAF'                                              : 'externals/originalReferenceSource/rAF',
 		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
 		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
 		'fastclick'                                        : 'externals/vendor/fastclick',
+
+
+
+		// mylibs
 		'_config'                                          : 'mylibs/_config',
 		'_super'                                           : 'mylibs/_super',
 		'actions.add'                                      : 'mylibs/actions/add',
@@ -35,28 +40,24 @@ require.config({
 		'actions.sticky'                                   : 'mylibs/actions/sticky',
 		'actions.toggle'                                   : 'mylibs/actions/toggle',
 		'actions.trigger'                                  : 'mylibs/actions/trigger',
+
 		'add-ons.formvalidate'                             : 'mylibs/add-ons/formvalidate',
-		'ayyildiz.addOnSelectionPriceUpdate'               : 'mylibs/ayyildiz/addOnSelectionPriceUpdate',
-		'ayyildiz.configurationStatusDisplay'              : 'mylibs/ayyildiz/configurationStatusDisplay',
-		'ayyildiz.configurationStatusDisplayAystar'        : 'mylibs/ayyildiz/configurationStatusDisplayAystar',
-		'ayyildiz.syncConfigurationStatusDisplay'          : 'mylibs/ayyildiz/syncConfigurationStatusDisplay',
-		'jmtools.datencacheAktualisieren'                  : 'mylibs/jmtools/datencacheAktualisieren',
+
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
 		'modules.countdown'                                : 'mylibs/modules/countdown',
 		'modules.dependentSelectionGroup'                  : 'mylibs/modules/dependentSelectionGroup',
 		'modules.equalheights'                             : 'mylibs/modules/equalheights',
-		'modules.flipcard'                                 : 'mylibs/modules/flipcard',
-		'modules.formcomponents.autocomplete'              : 'mylibs/modules/formcomponents/autocomplete',
-		'modules.formcomponents.formvalidate'              : 'mylibs/modules/formcomponents/formvalidate',
-		'modules.formcomponents.selectOptionExtractInGroup': 'mylibs/modules/formcomponents/selectOptionExtractInGroup',
-		'modules.formcomponents.submitbutton'              : 'mylibs/modules/formcomponents/submitbutton',
-		'modules.imagecrop'                                : 'mylibs/modules/imagecrop',
-		'modules.masonry'                                  : 'mylibs/modules/masonry',
+		'modules.form.autocomplete'                        : 'mylibs/modules/form/autocomplete',
+		'modules.form.formvalidate'                        : 'mylibs/modules/form/formvalidate',
+		'modules.form.selectOptionExtractInGroup'          : 'mylibs/modules/form/selectOptionExtractInGroup',
+		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
 		'modules.modal'                                    : 'mylibs/modules/modal',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',
-		'helpers'                                          : 'mylibs/utils/helpers',
-		'jquery.helpers'                                   : 'mylibs/utils/jquery.helpers',
+
+		'utils.helpers'                                    : 'mylibs/utils/helpers',
+		'utils.jquery.helpers'                             : 'mylibs/utils/jquery.helpers',
+
 		'require-css.video'                                : 'require-css/video'
 	},
 	shim: {
@@ -87,7 +88,7 @@ require.config({
 
 require(['jquery', '_config'], function($, _config){
 	// need jquery
-	require([ 'jquery.helpers', 'helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
+	require([ 'utils.jquery.helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
 		// 'jmHelperFunction', 'stickem'
 		// DomReady
 		$(function(){
@@ -106,8 +107,7 @@ require(['jquery', '_config'], function($, _config){
 				}
 			});
 
-			//TODO Andreas Check auf Elemente da hier jetzt nicht mehr a-Tag verwendet wird
-			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie a, h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
+			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
 			$body.on('click', 'h3[data-jmname], input[type="submit"][data-jmname], input[type="button"][data-jmname], button[type="submit"][data-jmname], input[type="text"][data-jmname], input[type="checkbox"][data-jmname], button[type="submit"][data-jmname]', function(e){
 				var $target = $(e.target);
 				var _jmname = $target.attr('data-jmname').split('|');
@@ -121,9 +121,6 @@ require(['jquery', '_config'], function($, _config){
 			// Click-Listener für Kontainer-Tags mit Attribut [data-jmelement] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
 			$body.on('click', 'div[data-jmname], a[data-jmname], label[data-jmname], tr[data-jmname], li[data-jmname], ul[data-jmname], select[data-jmname]', function(e){
 				var $this = $(this);
-				/*if($.type($this.attr('data-jmpreventdefault')) !== 'undefined'){
-					e.preventDefault();
-				}*/
 				if(this.tagName.toLowerCase() === 'a'){
 					e.preventDefault();
 				}
@@ -171,11 +168,6 @@ require(['jquery', '_config'], function($, _config){
 				for(var i = 0, leni = _jmname.length; i < leni; i++){
 					jmHF.bindPlugin({ '$element': $target, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
 				}
-				/*if($.type($target.attr('data-jmelement')) !== 'undefined'){
-					jmHF.bindPlugin({ '$element': $target, 'plugin': $target.attr('data-jmelement'), 'e': e });
-				}else{
-					jmHF.bindPlugin({ '$element': $target, 'plugin': jmHF.getJmElementByJmName(_config, $target.attr('data-jmname')), 'e': e });
-				}*/
 			});
 
 
@@ -199,7 +191,7 @@ require(['jquery', '_config'], function($, _config){
 			// Touchstart -> Klick
 			//FastClick.attach(document.body);
 
-			// Führt die im DomReadyObject hinterlegten Functionen aus
+			// Führt die im DomReadyObject hinterlegten Funktionen aus
 			execDomReadyObject();
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
@@ -231,20 +223,13 @@ require(['jquery', '_config'], function($, _config){
 			
 			//////////////////////////////////// ie8 FIX for CSS Design ////////////////////////////////////////////////////////////////
 			if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
-				$body.find('input[type="radio"], input[type="checkbox"]').on('change', function (e) {
-	                setTimeout(function() { checkDOMElements(); }, 200);
-	            })
-	            function checkDOMElements() {
-	                $('input[type="radio"], input[type="checkbox"]').each(function (e) {
-	                    if ($('#' + this.id).is(':checked')) {
-	                        $('#' + this.id).addClass('option-checked');
-	                    } else {
-	                        $('#' + this.id).removeClass('option-checked');
-	                    }
-	                });
-	            }
-	            checkDOMElements();
-        	}
+				(function () {
+					$body.on('change', 'input[type="radio"], input[type="checkbox"]', function (e) {
+						var that = this;
+						$(that).ie8BugfixForRadioAndCheckbox();
+					})
+				})()
+			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			// (function (i, s, o, g, r, a, m) {
 			//     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
