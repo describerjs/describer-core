@@ -1,8 +1,8 @@
 var pathToJQuery;
 if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
-	pathToJQuery = 'externals/vendor/jquery-2.1.0';
+	pathToJQuery = 'externals/originalReferenceSource/jquery-2.1.0';
 }else{
-	pathToJQuery = 'externals/vendor/jquery-1.11.0';
+	pathToJQuery = 'externals/originalReferenceSource/jquery-1.11.0';
 }
 require.config({
 	paths      : {
@@ -22,9 +22,10 @@ require.config({
 		'video'                                            : 'externals/customized/video',
 		'md5'                                              : 'externals/originalReferenceSource/md5',
 		'rAF'                                              : 'externals/originalReferenceSource/rAF',
+		'fastclick'                                        : 'externals/originalReferenceSource/fastclick',
 		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
 		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
-		'fastclick'                                        : 'externals/vendor/fastclick',
+
 
 
 
@@ -56,7 +57,7 @@ require.config({
 		'modules.video'                                    : 'mylibs/modules/video',
 
 		'utils.helpers'                                    : 'mylibs/utils/helpers',
-		'utils.jquery.helpers'                             : 'mylibs/utils/jquery.helpers',
+		'utils.jquery_helpers'                             : 'mylibs/utils/jquery.helpers',
 
 		'require-css.video'                                : 'require-css/video'
 	},
@@ -88,7 +89,7 @@ require.config({
 
 require(['jquery', '_config'], function($, _config){
 	// need jquery
-	require([ 'utils.jquery.helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
+	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
 		// 'jmHelperFunction', 'stickem'
 		// DomReady
 		$(function(){

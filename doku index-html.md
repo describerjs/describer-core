@@ -48,60 +48,60 @@ iOS ermöglicht das speichern eines Favoriten auf dem Homescreen. Dazu lässt si
 Analog iOS bzw. apple-touch, allerdings für Windows 8. Hier lässt sich zusätzlich noch ein Farbwert für den Tile angeben.
 
 ## Inline JS ##
-Für das performange Laden von CSS und JS aus dem local Storage bzw. zuvor via Requrest ist diese Ladefunktionalität inline in die html-Seite zu integrieren, damit kein unstyled Content kurzzeitig auf der Seite dargestellt wird.
+Für das performante Laden von CSS und JS aus dem local Storage bzw. zuvor via Requrest ist diese Ladefunktionalität inline in die html-Seite zu integrieren, damit kein unstyled Content kurzzeitig auf der Seite dargestellt wird.
 
 ### globalen JS-Vaiablen für den DEV/LIVE-Betrieb ###
 
-Als erstes werden die globalen JS-Vaiablen für den DEV/LIVE-Betrieb festgelegt.
-Diese konfigurieren das Lade- und Speicherverhalten der CSS- und JS-Dateine, sodass im DEV-Betrieb die nicht minifizierten Datein geladen werde und der local Storage nicht verwendet wird (ein Debugging der Datein ist so möglich). Zum anderen werden im LIVE-Betrieb die minifizierten Datein geladen (entweder via Request oder aus dem local Storage) und im local Storage als key/value-Paar hinterlegt, wenn dieser supportet wird.
+Als erstes werden die globalen JS-Variablen für den DEV/LIVE-Betrieb festgelegt.
+Diese konfigurieren das Lade- und Speicherverhalten der CSS- und JS-Dateien, sodass im DEV-Betrieb die nicht minifizierten Dateien geladen werden und der local Storage nicht verwendet wird (ein Debugging der Datein ist so möglich). Zum anderen werden im LIVE-Betrieb die minifizierten Dateien geladen (entweder via Request oder aus dem local Storage) und im local Storage als key/value-Paar hinterlegt, wenn dieser supported wird.
 
 
 
-	// Hier muss eine Servervariable eingefügt werden, welche den Zustand wiedergibt,
-	// ob der Server ein Entwicklungs- oder LIVE-Server ist.
-	@if (Config.Instance.IsDevServer)
+    // Hier muss eine Servervariable eingefügt werden, welche den Zustand wiedergibt,
+    // ob der Server ein Entwicklungs- oder LIVE-Server ist.
+    @if (Config.Instance.IsDevServer)
     {
-    	// DEV
-	    <script>
-		    window.UseLocalStorage = false;
-		    window.loadUnminifyVersion = true;
-		    window.IsDevServer = true;
-	    </script>
+        // DEV
+        <script>
+            window.UseLocalStorage = false;
+            window.loadUnminifyVersion = true;
+            window.IsDevServer = true;
+        </script>
     
     }
     else
     {
-		// LIVE
-	    <script>
-		    window.IsDevServer = false;
-		    var checkDebugging = function(){
-		        try{
-		            if(localStorage.getItem('debugging') !== null){
-						// kein Verwendung vom local Storage
-		                window.UseLocalStorage = false;
-		                window.loadUnminifyVersion = true;
-		            }else{
-						// Verwendung vom local Storage
-		                window.UseLocalStorage = true;
-		                window.loadUnminifyVersion = false;
-		            }
-		        }catch(e){
-					// kein Verwendung vom local Storage
-		            window.UseLocalStorage = true;
-		            window.loadUnminifyVersion = false;
-		        }
-		    };
-		    checkDebugging();
-	    </script>
+        // LIVE
+        <script>
+            window.IsDevServer = false;
+            var checkDebugging = function(){
+                try{
+                    if(localStorage.getItem('debugging') !== null){
+                        // kein Verwendung vom local Storage
+                        window.UseLocalStorage = false;
+                        window.loadUnminifyVersion = true;
+                    }else{
+                        // Verwendung vom local Storage
+                        window.UseLocalStorage = true;
+                        window.loadUnminifyVersion = false;
+                    }
+                }catch(e){
+                    // kein Verwendung vom local Storage
+                    window.UseLocalStorage = true;
+                    window.loadUnminifyVersion = false;
+                }
+            };
+            checkDebugging();
+        </script>
     }
 
 ### LIVE Debugging ###
 Um das Debugging auch LIVE zu ermöglichen, kann ein manueller (in der Browser-Konsole) Eintrag im local-Storage hinterlegt werden, der dessen Verwendung unterbindet. 
 
-	window.localStorage.setItem('debugging', 'true');
+    window.localStorage.setItem('debugging', 'true');
 
 Hier wird eine Warnung ausgegeben, dass es nicht erlaubt ist den local Storage mit nicht versionierten Dateien zu verwenden.
-		
+        
     if(window.UseLocalStorage && window.loadUnminifyVersion){
         console.warn('-------------!!!!!-----localStorage wird mit nicht versionierten Dateine befüllt!------!!!!!-----');
     }
@@ -109,28 +109,28 @@ Hier wird eine Warnung ausgegeben, dass es nicht erlaubt ist den local Storage m
 ### Definition von globalen Hilfsfunktionen ###
 Diese Hilfsfunktionen werde unmittelbar vor der Ladefunktionalität der CSS- und JS-Datein benötigt.
 
-- **window.domReadyObject** -> Das Objekt dient zum vorhalten von Funktionen, die unmittelbar nach dem ready-Event von jQuery ausgeführt werden sollen
+- **window.domReadyObject** -> Das Objekt dient zum Vorhalten von Funktionen, die unmittelbar nach dem ready-Event von jQuery ausgeführt werden sollen
 - **window.onDomOrAjaxReady** -> Die übergebenen Funktion wird entweder unmittelbar ausgeführt, wenn jQuery geladen und das 'ready'-Event geschmissen wurde, oder im domReadyObject vorgehalten.
 - **window.execDomReadyObject** -> Hier werden alle vorgehaltenen Funktionen im domReadyObject ausgeführt
 - **window.testLocalStorage** ->  Modernizr-Test auf localStorage
-- **window.clearLocalStorageForKey** -> Die Funktion prüft, ob es im localStorage schon einen identischen key (jeweils ohne versionierungsnummer) gibt und löscht diese incl. value im localStorage.
+- **window.clearLocalStorageForKey** -> Die Funktion prüft, ob es im localStorage schon einen identischen key (jeweils ohne Versionierungsnummer) gibt und löscht diese incl. value im localStorage.
 - **window.addCSSToDOM** -> Fügt das CSS zum DOM entweder als link-Element oder aus dem localStorage
 - **window.addJSToDOM** -> Fügt das JS zum DOM entweder als link-Element oder aus dem localStorage
-- **window.checkLocalStorageByTimestamp** -> mit dieser Funktion wird entweder ein Zeitstempel erstellt (falls dieser noch nicht vorhande) oder wenn der Zeitstempel im local Storage kleiner ist als der Referenz-Zeitstempel wird der local Storge gelöscht.
+- **window.checkLocalStorageByTimestamp** -> mit dieser Funktion wird entweder ein Zeitstempel erstellt (falls dieser noch nicht vorhanden) oder wenn der Zeitstempel im local Storage kleiner ist als der Referenz-Zeitstempel wird der local Storge gelöscht.
 
 Quellcode
    
-	window.domReadyObject = {
-	    countProperties: function(){
-	        var count = 0;
-	        for(var property in this){
-	            if(this.hasOwnProperty(property)){
-	                count += 1;
-	            }
-	        }
-	        return count;
-	    }
-	};
+    window.domReadyObject = {
+        countProperties: function(){
+            var count = 0;
+            for(var property in this){
+                if(this.hasOwnProperty(property)){
+                    count += 1;
+                }
+            }
+            return count;
+        }
+    };
 
     window.onDomOrAjaxReady = function(p_function){
         if(typeof jQuery !== 'undefined'){
@@ -281,13 +281,13 @@ Quellcode
             }
         }
     };
-	
+    
 Bevor die initial verwendeten CSS- und JS-Datein geladen werde wird der local Storage auf einen Zeitstempel überprüft. Diese Funktionalität bietet dem Entwickler die Möglichkeit, den local Storage auf allen dem Client-Rechner manuell zu löschen. (Die Anpassung des Referenz-Zeitstempels in dieser Funktion ist nur im Notfall anzupassen)
 
-	checkLocalStorageByTimestamp();
+    checkLocalStorageByTimestamp();
 
 ### Auflistung der initial verwendeten CSS- und JS-Datein
-- modernizr.custom.js ->  wir für Featur-Detection verwendet
+- modernizr.custom.js ->  wir für Feature-Detektion verwendet
 - matchmedia.js -> für die JS-Abfrage auf MediaQuerys
 - picturefill.js -> Polyfill für Responsive Images
 - style.css -> globale CSS
@@ -306,7 +306,7 @@ Quellcode
         addJSToDOM('/js/build/externals/vendor/matchmedia.05942b.js');
         addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
         addJSToDOM('/js/build/externals/customized/require.2.1.11.fce06e.js', 'data-main', '/js/build/main.35bb76.js');
-		// TODO Hier muss noch nach eine Verbesserung gesucht werden
+        // TODO Hier muss noch nach eine Verbesserung gesucht werden
         if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
             var linkElem = document.createElement('link');
             linkElem.setAttribute('rel', 'stylesheet');
@@ -319,21 +319,21 @@ Quellcode
 
 Hier ist noch die Angabe, welches CSS bei noscript verwendet werden soll und die Verlinkung der noscript.css
 
-	<noscript>
-		@if (Config.Instance.IsDevServer)
-		{
-	    	<link rel="stylesheet" href="/css/style.css" />
-		}
-		else
-		{
-		    <link rel="stylesheet" href="/css/min/style.458d37.css" />
-		}
-		
-		<link rel="stylesheet" href="/css/noscript.css" />
-	</noscript> 
+    <noscript>
+        @if (Config.Instance.IsDevServer)
+        {
+            <link rel="stylesheet" href="/css/style.css" />
+        }
+        else
+        {
+            <link rel="stylesheet" href="/css/min/style.458d37.css" />
+        }
+        
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript> 
 
 ### <noscript>
-Eine *<noscript>* Sektion kann beliebig oft sowohl im *<head>* als auch im *<body>* verwendet werden. In diesem Fall dient sie als Fallback zur "gewöhnlichen" Einbinding der Stylesheets, da diese gewöhnlich per Javascript geladen werden.
+Eine *<noscript>* Sektion kann beliebig oft sowohl im *<head>* als auch im *<body>* verwendet werden. In diesem Fall dient sie als Fallback zur "gewöhnlichen" Einbindung der Stylesheets, da diese gewöhnlich per Javascript geladen werden.
 return shell_exec("echo $input | $Markdown_script");
 ## <body>
 
