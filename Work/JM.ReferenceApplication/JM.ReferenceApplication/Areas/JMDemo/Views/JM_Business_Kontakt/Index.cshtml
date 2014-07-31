@@ -1,37 +1,76 @@
-﻿@model JM.Business.Kontakt.Contracts.Model.IContactModel
+﻿@model JM.Business.Kontakt.Contracts.Model.IStartModel
 
-<h1>Kontakt</h1>
-<p>Hier wird anhand eines kleinen Businessmoduls für Kundenkontakt die Gestaltung und der Aufbau einer Business-DLL für die JM-Basesolution gezeigt.</p>
-
-
-@Html.ValidationSummary()
-<form action="@Url.Action("Index", "JM-Business-Kontakt")" method="post">
-	<div class="form-horizontal">
-		@Html.LabelFor(m => m.Salutation)
-		@Html.RadioButtonFor(m => m.Salutation, "Herr") Herr
-	@Html.RadioButtonFor(m => m.Salutation, "Frau") Frau
-	@Html.ValidationMessageFor(m => m.Salutation)
-		<hr />
-		@Html.LabelFor(m => m.FirstName)
-		@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.FirstName)
-		<hr />
-		@Html.LabelFor(m => m.LastName)
-		@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.LastName)
-		<hr />
-		@Html.LabelFor(m => m.Email)
-		@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Email)
-		<hr />
-		@Html.LabelFor(m => m.Subject)
-		@Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Subject)
-		<hr />
-		@Html.LabelFor(m => m.Message)
-		@Html.TextAreaFor(m => m.Message, new { @class = "form-control", cols = 10, rows = 10 })
-		@Html.ValidationMessageFor(m => m.Message)
-		<hr />
-		<button type="submit" class="btn btn-primary">absenden</button>
+<div class="row">
+	<div class="col-lg-12">
+		<h1>Kontakt</h1>
+		<p>Hier wird anhand eines kleinen Businessmoduls für Kundenkontakt die Gestaltung und der Aufbau einer Business-DLL für die JM-Basesolution gezeigt.</p>
+		<a href="@Url.Action("JM_Business_Kontakt", "Module")">Zurück zur Modulübersicht</a>
 	</div>
-</form>
+
+	@if (User.Identity == null || !User.Identity.IsAuthenticated)
+	{
+		<div class="col-lg-12">
+			<h2>Hallo!</h2>
+			<p>Um unser Kontakt-Angebot bestmöglichst aufzubauen müssen wir wissen, wer Sie sind und was Sie wirklich brauchen. Daher bitten wir Sie sich <a href="@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })">anzumelden</a>.</p>
+			<p>Sollten Sie noch keinen Account haben können Sie sich natürlich schnell und einfach <a href="@Url.Action("Register", "Account", new { area = "", returnUrl = Request.RawUrl })">registrieren</a>.</p>
+		</div>
+	}
+	else
+	{
+		<div class="col-lg-12">
+			<h2>Hallo @User.Identity.Name</h2>
+			<p>Wie können wir Ihnen heute weiterhelfen?</p>
+		</div>
+		<div class="col-lg-4">
+			<h4>Ihre Daten</h4>
+			@if (Model.PersonalData != null)
+			{
+				<div class="well well-sm">
+					@Model.PersonalData.Salutation @Model.PersonalData.FirstName @Model.PersonalData.LastName<br />
+					Gespeichert am @Model.PersonalData.CreatedAt.ToShortDateString() um @Model.PersonalData.CreatedAt.ToShortTimeString()<br />
+					@if (Model.PersonalData.LastEditAt != null)
+					{
+						<text>Letzte Änderung am @Model.PersonalData.CreatedAt.ToShortDateString() um @Model.PersonalData.CreatedAt.ToShortTimeString()<br /></text>
+					}
+					Stadt/PLZ: @Model.PersonalData.PostCode<br />
+					Telefon: @Model.PersonalData.Mobile<br />
+					Email: @Model.PersonalData.Email<br />
+				</div>
+				<div>
+					<a class="btn btn-primary btn-sm" href="@Url.Action("StoreData")">Daten ändern</a>
+				</div>
+			}
+			else
+			{
+				<p>
+					Speichern Sie jetzt Ihre persönlichen Daten!<br />
+				</p>
+				<div>
+					<a class="btn btn-primary btn-sm" href="@Url.Action("StoreData")">Daten hinterlegen</a>
+				</div>
+			}
+		</div>
+		<div class="col-lg-8">
+			<h4>Ihre Anfragen</h4>
+			<p>Bisher haben wir @Model.ContactRequests.Count Anfragen von Ihnen gespeichert.</p>
+			<table class="table table-responsive table-striped">
+				<tr>
+					<th>Datum</th>
+					<th>Betreff</th>
+					<th>Text</th>
+				</tr>
+				@foreach (var r in Model.ContactRequests)
+				{
+					<tr>
+						<td>@r.CreatedAt.ToShortDateString() @r.CreatedAt.ToShortTimeString()</td>
+						<td>@r.Subject</td>
+						<td>@r.Message</td>
+					</tr>
+				}
+			</table>
+			<p>
+				Stellen Sie jetzt eine neue Kontaktanfrage!<br />
+			</p><div><a class="btn btn-primary btn-sm" href="@Url.Action("CreateRequest")">Anfrage stellen</a></div>
+		</div>
+	}
+</div>

@@ -58,11 +58,11 @@ namespace JM.ReferenceApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.Email, model.Password);
+                var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    ApplicationEvents.Log.UserSignedIn(model.Email);
+                    ApplicationEvents.Log.UserSignedIn(model.UserName);
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -92,7 +92,7 @@ namespace JM.ReferenceApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

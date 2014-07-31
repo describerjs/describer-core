@@ -1,10 +1,12 @@
 ﻿using JM.Business.Kontakt.Contracts.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business._Kontakt
+namespace JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt
 {
 	public class ContactModel : IContactModel
 	{
+		public string UserID { get; set; }
+
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Bitte geben Sie eine Anrede an")]
 		[RegularExpression(@"^(Herr|Frau)$", ErrorMessage = "Bitte wählen Sie zwischen 'Herr' und 'Frau'")]
 		public string Salutation { get; set; }

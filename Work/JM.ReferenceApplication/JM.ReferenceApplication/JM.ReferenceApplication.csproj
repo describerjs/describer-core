@@ -75,6 +75,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -186,7 +189,8 @@
     <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
     <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs" />
-    <Compile Include="Areas\JMDemo\Models\JM.Business._Kontakt\ContactModel.cs" />
+    <Compile Include="Areas\JMDemo\Models\JM.Business.Kontakt\ContactModel.cs" />
+    <Compile Include="Areas\JMDemo\Models\JM.Business.Kontakt\PersonalData.cs" />
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -225,8 +229,11 @@
     <Content Include="Areas\JMDemo\Views\Start\Index.cshtml" />
     <Content Include="Areas\JMDemo\Views\Module\JM_Business_Kontakt.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Index.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Danke.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\CreateRequest_Danke.cshtml" />
     <Content Include="Areas\JMDemo\Views\Module\JM_Business.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreData.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreData_Danke.cshtml" />
+    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\CreateRequest.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -297,6 +304,10 @@
       <Project>{626a7bed-0264-4bb5-be59-bfb1ffc36fb2}</Project>
       <Name>JM.Business.Kontakt.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JM.Business.Kontakt\JM.Business.Kontakt.csproj">
+      <Project>{01360c66-2965-407e-86ad-f82a194ddea7}</Project>
+      <Name>JM.Business.Kontakt</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JM.Business\JM.Business.csproj">
       <Project>{34639888-0fe7-417c-82af-72a9a3d215b3}</Project>
       <Name>JM.Business</Name>
@@ -324,15 +335,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>21994</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:21994/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://jmbs.de</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

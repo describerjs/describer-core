@@ -38,9 +38,9 @@ namespace JM.ReferenceApplication.Models
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "E-Mail")]
-        public string Email { get; set; }
+		[Display(Name = "Benutzername")]
+		[StringLength(20, ErrorMessage = "\"{0}\" muss mindestens {2} Zeichen lang sein.", MinimumLength = 6)]
+		public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -53,6 +53,11 @@ namespace JM.ReferenceApplication.Models
 
     public class RegisterViewModel
     {
+		[Required]
+		[Display(Name = "Benutzername")]
+		[StringLength(20, ErrorMessage = "\"{0}\" muss mindestens {2} Zeichen lang sein.", MinimumLength = 6)]
+		public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "E-Mail")]

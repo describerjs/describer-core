@@ -4,6 +4,9 @@ namespace JM.Business.Kontakt.Contracts.Model
 {
 	public interface IContactModel
 	{
+		[Required]
+		string UserID { get; set; }
+
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Bitte geben Sie eine Anrede an")]
 		[RegularExpression(@"^(Herr|Frau)$", ErrorMessage = "Bitte wählen Sie zwischen 'Herr' und 'Frau'")]
 		string Salutation { get; set; }
