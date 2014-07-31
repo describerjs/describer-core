@@ -35,3 +35,16 @@ textarea {
 	background-color: #e51;
 	border-color: #d41;
 }
+
+
+ul.nav li ul { display: none;position: relative;list-style-type: none;margin: 0;padding: 0;width: 100%;}
+
+ul.nav li:hover ul { display: block;position: absolute; }
+
+ul.nav ul a { 
+	padding: 10px 15px;
+	line-height: 20px;
+	display: block;
+	background: #080808;
+	color: #fff;
+}

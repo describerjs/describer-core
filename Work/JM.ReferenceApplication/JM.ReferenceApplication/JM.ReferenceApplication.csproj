@@ -58,6 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.0.26.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,9 +69,21 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Piranha">
+      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\Piranha.dll</HintPath>
+    </Reference>
+    <Reference Include="Piranha.Mvc">
+      <HintPath>..\packages\PiranhaCMS.Mvc.2.2.2\lib\net45\Piranha.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc">
+      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -121,6 +136,9 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -193,9 +211,11 @@
     <Compile Include="Areas\JMDemo\Models\JM.Business.Kontakt\PersonalData.cs" />
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +226,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Cache\Content\index.html" />
+    <Content Include="App_Data\Cache\index.html" />
+    <Content Include="App_Data\Cache\Uploads\index.html" />
+    <Content Include="App_Data\Content\index.html" />
+    <Content Include="App_Data\Uploads\index.html" />
+    <Content Include="Areas\Manager\Content\Css\Editor.css" />
+    <Content Include="Areas\Manager\Views\Extensions\index.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\joinmedia.png" />
@@ -213,6 +240,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Config\dev\JM.Business.config" />
@@ -234,6 +262,8 @@
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreData.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreData_Danke.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\CreateRequest.cshtml" />
+    <Content Include="Areas\Manager\Views\Web.config" />
+    <Content Include="App_Data\Config\dev\piranha.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -262,20 +292,20 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Login\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Login\ConfirmEmail.cshtml" />
+    <Content Include="Views\Login\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Login\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Login\ForgotPassword.cshtml" />
+    <Content Include="Views\Login\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Manage.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Login\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Error\DisplayError.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business\Index.cshtml" />
@@ -285,6 +315,9 @@
     <Content Include="Areas\JMDemo\Views\JM_Business\ImportantModuleInfo.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business\ImportantConfiguredDeviceInfo.cshtml" />
     <Content Include="Views\Error\DisplayErrorAlternative.cshtml" />
+    <Content Include="Views\Shared\Sidebar.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Page\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
@@ -297,7 +330,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.csproj">

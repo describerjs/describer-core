@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using JM.ReferenceApplication.Common.Monitoring;
+using JM.ReferenceApplication.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Owin;
-using JM.ReferenceApplication.Models;
-using JM.ReferenceApplication.Common.Monitoring;
 
 namespace JM.ReferenceApplication.Controllers
 {
-    [Authorize]
-    public class AccountController : Controller
+    
+    public class LoginController : Controller
     {
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public LoginController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager)
+        public LoginController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
         }
@@ -101,7 +95,7 @@ namespace JM.ReferenceApplication.Controllers
                     // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                     // E-Mail-Nachricht mit diesem Link senden
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
 
                     return RedirectToAction("Index", "Home");
@@ -165,9 +159,9 @@ namespace JM.ReferenceApplication.Controllers
                 // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                 // E-Mail-Nachricht mit diesem Link senden
                 // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // var callbackUrl = Url.Action("ResetPassword", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
                 // await UserManager.SendEmailAsync(user.Id, "Kennwort zurücksetzen", "Bitte setzen Sie Ihr Kennwort zurück. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                // return RedirectToAction("ForgotPasswordConfirmation", "Login");
             }
 
             // Wurde dieser Punkt erreicht, ist ein Fehler aufgetreten; Formular erneut anzeigen.
@@ -212,7 +206,7 @@ namespace JM.ReferenceApplication.Controllers
                 IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    return RedirectToAction("ResetPasswordConfirmation", "Login");
                 }
                 else
                 {
@@ -330,7 +324,7 @@ namespace JM.ReferenceApplication.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Umleitung an den externen Anmeldeanbieter anfordern
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Login", new { ReturnUrl = returnUrl }));
         }
 
         //
@@ -367,7 +361,7 @@ namespace JM.ReferenceApplication.Controllers
         public ActionResult LinkLogin(string provider)
         {
             // Umleitung an den externen Anmeldeanbieter anfordern, um eine Anmeldung für den aktuellen Benutzer zu verknüpfen
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
+            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Login"), User.Identity.GetUserId());
         }
 
         //
@@ -419,7 +413,7 @@ namespace JM.ReferenceApplication.Controllers
                         // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                         // E-Mail-Nachricht mit diesem Link senden
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // SendEmail(user.Email, callbackUrl, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu");
                         
                         return RedirectToLocal(returnUrl);
