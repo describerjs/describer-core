@@ -1,4 +1,4 @@
-## Ordnerstrucktur ##
+## File- und Ordnerstrucktur ##
 Im Root-JS-Verzeichnis liegt die **main.js**. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
 
 ### main.js ###
@@ -65,3 +65,7 @@ Die Eventlistener, die auf dem body hören, werden entweder durch User-Interakti
 
 Hier werden die externen plugins abgelegt. Das Original-Plugin wird in **originalReferencesSource** hinterlegt, um bei Updates vergleichen zu können, welche Änderung ausschließlich der plugin-Entwickler vorgenommen hat.
 Im Ordner **customized** werden externe Plugins aus dem Ordner originalReferencesSource kopiert und angepasst. Ist es möglich, die original-Source im Nachhinein zu überschreiben, werden diese Überschreibungen in **overwritings** mit gleichnamige source gespeichert.
+
+
+### mylibs-Ordner ###
+
