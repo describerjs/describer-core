@@ -48,64 +48,35 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 				$(item).trigger('setelementwithjs');
 			});
 		});
+		// TODO modenizr-Weiche integrieren
+		/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
+			this.ie8BugfixForRadioAndCheckbox()
+		}*/
 		if ($.type(p_callback) !== 'undefined') {
 			p_callback.call(this);
 		}
 		return this;
 	};
 
-	/*$.fn.picturefill = function(){
-		this.each(function(){
-			var $elem = $(this);
-			// Loop the pictures
-			$elem.find('[data-picture]').addBack('[data-picture]').each(function(index, item){
-				var _$matchedEl;
-				var _matches = [];
-				var _picImg;
-				// See if which sources match
-				$(item).children('span').each(function(index, item1){
-					var media = $(item1).attr('data-media');
-					// if there's no media specified, OR w.matchMedia is supported
-					if(!media || ( window.matchMedia && window.matchMedia(media).matches )){
-						_matches.push($(item1));
-					}
+	// TODO modenizr-Weiche integrieren
+	/*if(navigator.appVersion.indexOf("MSIE 8.") != -1){
+		(function () {
+			$.fn.ie8BugfixForRadioAndCheckbox = function () {
+				this.each(function () {
+					var $elem = $(this);
+					$elem.find('input[type="radio"], input[type="checkbox"]').addBack('input[type="radio"], input[type="checkbox"]').each(function (e) {
+						if ($(this).is(':checked')) {
+							$(this).addClass('option-checked');
+						} else {
+							$(this).removeClass('option-checked');
+						}
+					});
 				});
-				// Find any existing img element in the picture element
-				_picImg = $(item).children('img')[0];
+			}
+		})()
+	}*/
 
-				if(_matches.length){
-					_$matchedEl = _matches.pop();
-					if(!_picImg || _picImg.parentNode.nodeName === "NOSCRIPT"){
-						_picImg = window.document.createElement("img");
-						_picImg.alt = $(item).attr('data-alt');
-					}else if(_$matchedEl === _picImg.parentNode){
-						// Skip further actions if the correct image is already in place
-						return;//continue;
-					}
-					if(!(!!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) && (_matchedEl.getAttribute("data-src").indexOf('.svg') !== -1)){
-						_picImg.src = _$matchedEl.attr("data-src").replace('.svg', '.png');
-					}else{
-						_picImg.src = _$matchedEl.attr("data-src");
-					}
-					if(_$matchedEl.attr("data-width") !== null){
-						_picImg.setAttribute('width', _$matchedEl.attr("data-width"));
-					}
-					if(_$matchedEl.attr("data-height") !== null){
-						_picImg.setAttribute('height', _$matchedEl.attr("data-height"));
-					}
 
-					_$matchedEl.append(_picImg);
-					//_picImg.removeAttribute("width");
-					//_picImg.removeAttribute("height");
-				}else if(_picImg){
-					_picImg.parentNode.removeChild(_picImg);
-				}
-			});
-		});
-		return this;
-	};*/
-	//https://dev2014.ayyildiz.de/Warenkorb/Add/?offerID=T518P2189V7138&options=
-	//https://dev2014.ayyildiz.de/Warenkorb/Add/?offerID=T759P2189V7138&options=
 	$.fn.picturefill = function(){
 		var _array = [];
 		this.each(function(){

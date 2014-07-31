@@ -107,8 +107,7 @@ require(['jquery', '_config'], function($, _config){
 				}
 			});
 
-			//TODO Andreas Check auf Elemente da hier jetzt nicht mehr a-Tag verwendet wird
-			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie a, h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
+			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
 			$body.on('click', 'h3[data-jmname], input[type="submit"][data-jmname], input[type="button"][data-jmname], button[type="submit"][data-jmname], input[type="text"][data-jmname], input[type="checkbox"][data-jmname], button[type="submit"][data-jmname]', function(e){
 				var $target = $(e.target);
 				var _jmname = $target.attr('data-jmname').split('|');
@@ -122,9 +121,6 @@ require(['jquery', '_config'], function($, _config){
 			// Click-Listener für Kontainer-Tags mit Attribut [data-jmelement] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
 			$body.on('click', 'div[data-jmname], a[data-jmname], label[data-jmname], tr[data-jmname], li[data-jmname], ul[data-jmname], select[data-jmname]', function(e){
 				var $this = $(this);
-				/*if($.type($this.attr('data-jmpreventdefault')) !== 'undefined'){
-					e.preventDefault();
-				}*/
 				if(this.tagName.toLowerCase() === 'a'){
 					e.preventDefault();
 				}
@@ -172,11 +168,6 @@ require(['jquery', '_config'], function($, _config){
 				for(var i = 0, leni = _jmname.length; i < leni; i++){
 					jmHF.bindPlugin({ '$element': $target, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
 				}
-				/*if($.type($target.attr('data-jmelement')) !== 'undefined'){
-					jmHF.bindPlugin({ '$element': $target, 'plugin': $target.attr('data-jmelement'), 'e': e });
-				}else{
-					jmHF.bindPlugin({ '$element': $target, 'plugin': jmHF.getJmElementByJmName(_config, $target.attr('data-jmname')), 'e': e });
-				}*/
 			});
 
 
@@ -200,7 +191,7 @@ require(['jquery', '_config'], function($, _config){
 			// Touchstart -> Klick
 			//FastClick.attach(document.body);
 
-			// Führt die im DomReadyObject hinterlegten Functionen aus
+			// Führt die im DomReadyObject hinterlegten Funktionen aus
 			execDomReadyObject();
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
@@ -232,20 +223,13 @@ require(['jquery', '_config'], function($, _config){
 			
 			//////////////////////////////////// ie8 FIX for CSS Design ////////////////////////////////////////////////////////////////
 			if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
-				$body.find('input[type="radio"], input[type="checkbox"]').on('change', function (e) {
-	                setTimeout(function() { checkDOMElements(); }, 200);
-	            })
-	            function checkDOMElements() {
-	                $('input[type="radio"], input[type="checkbox"]').each(function (e) {
-	                    if ($('#' + this.id).is(':checked')) {
-	                        $('#' + this.id).addClass('option-checked');
-	                    } else {
-	                        $('#' + this.id).removeClass('option-checked');
-	                    }
-	                });
-	            }
-	            checkDOMElements();
-        	}
+				(function () {
+					$body.on('change', 'input[type="radio"], input[type="checkbox"]', function (e) {
+						var that = this;
+						$(that).ie8BugfixForRadioAndCheckbox();
+					})
+				})()
+			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			// (function (i, s, o, g, r, a, m) {
 			//     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
