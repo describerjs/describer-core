@@ -3,6 +3,7 @@
 \*------------------------------------*/
 
 /**
+ * Ein-/Auf-/Zuklapp Element
  *
 	<div class="togglebox">
 		<a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
@@ -25,7 +26,9 @@
 **/
 
 
-// Ein-/Auf-/Zuklapp Element
+
+
+
 .togglebox {
 	// Der verantwortliche Link zum öffnen des Toggles "tb-content".
 	.tb-subject {
@@ -39,13 +42,6 @@
 
 	// "togglebox" wird mit "show" erweitert und interagiert entsprechend.
 	&.show {
-		.tb-content {
-			display: block;
-		}
-	}
-
-	// NOJS - Kein Javascript, dann alle Toggleboxen geöffnet.
-	.no-js & {
 		.tb-content {
 			display: block;
 		}

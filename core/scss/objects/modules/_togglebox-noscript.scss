@@ -1,0 +1,12 @@
+/*------------------------------------*\
+    $TOGGLEBOX-NOSCRIPT
+\*------------------------------------*/
+
+.togglebox {
+	// Kein Javascript, dann alle Toggleboxen geöffnet.
+	.no-js & {
+		.tb-content {
+			display: block;
+		}
+	}
+}

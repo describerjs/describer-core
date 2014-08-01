@@ -1,26 +1,11 @@
 /*------------------------------------*\
 	$CONTENTS
 \*------------------------------------*/
+
 /**
- * ADD-ONS.............................3rd Party Core expansions
- * .....Semantic Grid Sytem Semantic.gs
- * .....Sassaparilla - Typeset/Baselinegrid
- * VARIABLES...........................Declarations of Sass variables
- * .....Colors
- * .....Typography
- * .....Layout
- * .....Defaults
- * .....Breakpoints
- * MIXINS..............................Sass mixins
- * PLACEHOLDER:........................Sass placeholder
+ * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
  * RESET...............................Set reset defaults
- * 3RD PARTY...........................3rd Party Includes
  * GLOBAL ELEMENTS.....................Establish global styles
- * .....Main
- * .....Headings
- * .....Text-related elements (p, blockquote, lists)
- * .....Defaults
- * .....Breakpoints
  * GLOBAL CLASSES......................Set reset defaults
  * LAYOUT..............................Grid & Column Designs
  * STRUCTURE...........................Page-Structure
@@ -32,23 +17,10 @@
 
 
 /*------------------------------------*\
-    $ADD-ONS
-\*------------------------------------*/
-
-@import "generic/semantic-grid-system";
-@import "generic/sassaparilla-typeset";
-
-
-
-
-
-/*------------------------------------*\
     $GENERIC ELEMENTS
 \*------------------------------------*/
 
-@import "generic/variables";
-@import "generic/mixins";
-@import "generic/placeholder";
+@import "generic/generic-import";
 @import "generic/reset";
 
 
@@ -88,7 +60,6 @@
 \*------------------------------------*/
 
 @import "objects/header";
-@import "objects/nav";
 @import "objects/main";
 @import "objects/footer";
 
@@ -100,6 +71,7 @@
     $COMPONENTS/$MODULES
 \*------------------------------------*/
 
+@import "objects/nav";
 /*@import "objects/modules/togglebox";*/
 
 
