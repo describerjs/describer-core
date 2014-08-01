@@ -231,6 +231,7 @@
     <Content Include="App_Data\Cache\Uploads\index.html" />
     <Content Include="App_Data\Content\index.html" />
     <Content Include="App_Data\Uploads\index.html" />
+    <Content Include="Areas\JMDemo\img\JM.Business.Kontakt\DB-Schema.png" />
     <Content Include="Areas\Manager\Content\Css\Editor.css" />
     <Content Include="Areas\Manager\Views\Extensions\index.html" />
     <Content Include="Content\bootstrap.css" />
