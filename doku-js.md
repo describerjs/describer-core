@@ -1,4 +1,32 @@
-## File- und Ordnerstruktur ##
+1. Philosofie
+2. File- und Ordnerstruktur
+3. Deklaration von HTML-Module-Funktionen
+4. Erstellung von Plugins
+
+## 1. Philosophie ##
+Das JM-JS-Framework verfolgt 4 wesentlichen Aspekten.
+
+1. Verwendung von jQuery (man kann auf eine horrende Anzahl schon existierender Plugins zurückgreifen)
+2. Es verfolgt das AMD-Prinzip (asynchronous module definition) (loading on demand)
+3. Initialisierung der Module über Event-Delegation
+4. Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten durch Kombination aus bestehenden Plugins
+
+### die Wahl zur Verwendung von jQuery ###
+
+Funktionalitäten im Web können mittels JavaScirpt durch verschieden Art und Weisen realisiert werden.
+Bei nur sehr geringen Funktionalitäten könne Websites mit reinen JavaScirpt umgesetzt werden (Vanila JS).
+Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Vereinheitlichung der Browser-APIs und entsprechende Funktionswrapper, welche eine schnellere und einfachere Programmierung erlaubt, zu verwenden. Die sogenannten DOM-Manipulations-Frameworks wie z.B. mootools oder insbesondere jQuery haben zudem den Vorteil, dass eine Vielzahl von Programmiere ihre Plugins auf Basis dessen aufsetzen und somit eine Wiederverwendung im eigenen Projekt ermöglicht.
+
+### AMD ###
+
+Eine weitere Komponente des Frameworks ist die Netzwerk- und Browser-Performance sowie dessen Wartbarkeit und Skalierbarkeit. Dies wurde mit dem AMD-Prinzip (asynchronous module definition) durch RequireJS umgesetzt. Es bietet den Vorteil, dass jedes Plugin in einer eigenen Datei geschrieben ist und auch nur diese bei Bedarf geladen wird. Ein Overhead, an nicht verwendeten Code, der nicht nur geladen werden muss sondern auch geparst wird, wird so vermieden.
+
+### Initialisierung der Module über Event-Delegation ###
+die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener hören auf dem body und werden dann entsprechend getriggert, wenn eine Aktion auf einem Element  
+
+
+
+## 2. File- und Ordnerstruktur ##
 Im Root-JS-Verzeichnis liegt die **main.js**. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
 
 ### main.js ###
@@ -116,3 +144,5 @@ Hier wie z.B. video.css, die das komplette Styling des Video-Players beinhalten.
 
 Die css.js ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  
 
+## 3. Deklaration von HTML-Module-Funktionen ##
+## 4. Erstellung von Plugins ##
