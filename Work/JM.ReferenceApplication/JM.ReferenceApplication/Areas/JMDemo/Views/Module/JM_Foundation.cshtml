@@ -1,0 +1,131 @@
+﻿<div class="row">
+	<div class="col-lg-12">
+		<h1>JM.Foundation<small style="color: #87cefa"><span class="glyphicon glyphicon-asterisk"></span></small></h1>
+		<p>Sammlung der Webapplikations-Basisfunktionalitäten</p>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Demo</h2>
+		<p>TBD</p>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Settings</h2>
+		<p>Dieses Modul einige Einstellungsmöglichkeiten, die in der Web.config in der Customsection <em>JM.Foundation.config</em> gepflegt werden.</p>
+		<pre><code>&lt;JM.Foundation&gt;
+	&lt;!-- Konfiguration für den ExceptionHandler und die Darstellung der Fehlerseiten --&gt;
+	&lt;ErrorHttpModule 
+		enabled="true"
+		errorPageController="Error"
+		errorPageAction="DisplayErrorAlternative"
+		showErrorDetails="false"/&gt;
+	&lt;!-- Configuration das JMBasicAuthFilterAttribute zur BASIC-Authentication von Actions --&gt;
+	&lt;JMBasicAuthenticationFilter
+		areaname="JM - geschützer Bereich"
+		username="Joinmedia"
+		password="Join#media960" /&gt;
+&lt;/JM.Foundation&gt;</code></pre>
+		<h3>Settings Variablenbeschreibung</h3>
+		<table class="table-striped table">
+			<tr>
+				<th>Key</th>
+				<th>Type</th>
+				<th>Description</th>
+				<th>Pflichtfeld</th>
+				<th>Default</th>
+			</tr>
+			<tr>
+				<td>ErrorHttpModule</td>
+				<td>ConfigurationElement</td>
+				<td>Konfiguration für die Anzeige von Fehlerseiten</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>ErrorHttpModule.enabled</td>
+				<td>Bool</td>
+				<td>Legt fest ob Fehlerseiten angezeigt werden oder einfach die ungefilterten Fehlermeldungen vom Server</td>
+				<td>Nein</td>
+				<td>True</td>
+			</tr>
+			<tr>
+				<td>ErrorHttpModule.errorPageController</td>
+				<td>String</td>
+				<td>Der Name des Controllers, über den Fehlerseiten erzeugt werden</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>ErrorHttpModule.errorPageAction</td>
+				<td>String</td>
+				<td>Die Action im ErrorPageController, über die Fehlerseiten erzeugt werden. Übergeben werden zwei Parameter, der Http-FehlerCode als (int)statusCode und eine Nachricht als (string)message.</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>ErrorHttpModule.showErrorDetails</td>
+				<td>Bool</td>
+				<td>Legt fest ob technische Fehlerdetails angezeigt werden sollen. Im Normalfall kann das im Error-View bestimmt werden. Kommt es bei der Erzeugung der Fehlerseite oder im ErrorController zu einem Fehler, wird die Fehlerseite über eine Fallbacklösung erzeugt. Bei dieser können die technischen Fehlerdetails über dieses Flag unterdrückt werden.</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>JMBasicAuthenticationFilter</td>
+				<td>ConfigurationElement</td>
+				<td>Konfiguration für einen BASIC-Authenticationfilter. Dieser wird als Attribut default für die /JMDemo und /JMTools-Areas genutzt und kann sonst beliebig auf schützenswerte Controller/Actions angewandt werden.</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>JMBasicAuthenticationFilter.areaname</td>
+				<td>String</td>
+				<td>Bei der Authentifizierung angezeigter Name des geschützen Bereichs</td>
+				<td>Nein</td>
+				<td>Geschützer Bereich</td>
+			</tr>
+			<tr>
+				<td>JMBasicAuthenticationFilter.username</td>
+				<td>String</td>
+				<td>Benutzername zur Authentifizierung</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>JMBasicAuthenticationFilter.password</td>
+				<td>String</td>
+				<td>Passwort zur Authentifizierung</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+		</table>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Einrichtung / Checkliste</h2>
+		<p>Foundation ist automatisch Teil jeder Solution und muss nicht extra eingerichtet werden. Die meisten Einstellungen sind auf praktikable Defaultwerte eingerichtet, sie sollten aber natürlich anwendungs/anforderungsspezifisch geprüft werden.</p>
+		<ol>
+			<li>N/A</li>
+		</ol>
+	</div>
+	<hr />
+	<div class="col-lg-12">
+		<h2>Changelog</h2>
+		<p>Start Doku</p>
+		<table class="table-striped table">
+			<tr>
+				<th>Datum</th>
+				<th>Version</th>
+				<th>Entwickler</th>
+				<th>Changes</th>
+			</tr>
+			<tr>
+				<td>04.08.2014</td>
+				<td>0.1</td>
+				<td>sve</td>
+				<td>Erste Version</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+

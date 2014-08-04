@@ -54,6 +54,15 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 			return View();
 		}
 
+		/// <summary>
+		/// Startseite für JM.Foundation
+		/// </summary>
+		/// <returns>View</returns>
+		public ActionResult JM_Foundation()
+		{
+			return View();
+		}
+
 		#endregion
 
 		//////////////////////////////////////////////////////////////////////////////////////

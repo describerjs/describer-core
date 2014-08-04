@@ -7,26 +7,28 @@ namespace JM.ReferenceApplication
         // Weitere Informationen zu Bundling finden Sie unter "http://go.microsoft.com/fwlink/?LinkId=301862"
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+			#region Bundles für /JMDemo & /JMTools
+			
+			bundles.Add(new ScriptBundle("~/jm/jquery").Include(
+                        "~/Areas/JMDemo/js/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+			bundles.Add(new ScriptBundle("~/jm/jqueryval").Include(
+						"~/Areas/JMDemo/js/jquery.validate*"));
 
-            // Verwenden Sie die Entwicklungsversion von Modernizr zum Entwickeln und Erweitern Ihrer Kenntnisse. Wenn Sie dann
-            // für die Produktion bereit sind, verwenden Sie das Buildtool unter "http://modernizr.com", um nur die benötigten Tests auszuwählen.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+			bundles.Add(new ScriptBundle("~/jm/modernizr").Include(
+						"~/Areas/JMDemo/js/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+			bundles.Add(new ScriptBundle("~/jm/bootstrap").Include(
+					  "~/Areas/JMDemo/js/bootstrap.js",
+					  "~/Areas/JMDemo/js/respond.js"));
 
-            bundles.Add(new StyleBundle("~/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+			bundles.Add(new StyleBundle("~/jm/css").Include(
+					  "~/Areas/JMDemo/css/bootstrap.css",
+					  "~/Areas/JMDemo/css/site.css"));
 
-            // Festlegen von "EnableOptimizations" auf "false" für Debugzwecke. Weitere Informationen
+			#endregion 
+
+			// Festlegen von "EnableOptimizations" auf "false" für Debugzwecke. Weitere Informationen
             // finden Sie unter "http://go.microsoft.com/fwlink/?LinkId=301862".
             BundleTable.EnableOptimizations = true;
         }
