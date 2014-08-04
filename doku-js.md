@@ -22,9 +22,47 @@ Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Verein
 Eine weitere Komponente des Frameworks ist die Netzwerk- und Browser-Performance sowie dessen Wartbarkeit und Skalierbarkeit. Dies wurde mit dem AMD-Prinzip (asynchronous module definition) durch RequireJS umgesetzt. Es bietet den Vorteil, dass jedes Plugin in einer eigenen Datei geschrieben ist und auch nur diese bei Bedarf geladen wird. Ein Overhead, an nicht verwendeten Code, der nicht nur geladen werden muss sondern auch geparst wird, wird so vermieden.
 
 ### Initialisierung der Module über Event-Delegation ###
-die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener hören auf dem body und werden dann entsprechend getriggert, wenn eine Aktion auf einem Element  
+die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur die benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener wie z.B. **click, change, dominit, jmtrigger ...** hören auf dem **body**, der wiederum nur bei den aufgelistente elementen im **Selektor** seine **Funktion** ausführt.
+
+	$body.on('change', 'select[data-jmname], input[type="radio"][data-jmname], etc.', function(e){ 
+
+	});
+
+	// $body 															-> $('body')
+	// 'change'															-> Event/s
+	// 'select[data-jmname], input[type="radio"][data-jmname], etc.' 	-> Selektor 
+    // function(e){ 													-> Funktion
+
+	   });
+
+Zum Einen werden so nur eine geringe Anzahl an Event-Listener benötigt (Hörne nur auf den Body und nicht auf jedes entsprechende Element) und zum Anderen ist immer gewärleistet, dass auch interaktionen (vom User oder via dominit) auf Elemente, die durch einnen Ajax-Aufruf nachträglich in das DOM integriert werden, registriert werden.
+
+### Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten ###
+
+Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen "actions" ableiten.
+Diese sogenanten "actions" können zu Plugin-Kombinationen (oder halt actions-Kombinationen) kombiniert werde um diese gewünschten Funktionalität zu erhalten.
+
+Die Deklaration geschieht in der _config.js. Hier ist zu jedem jmelement ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmelemente mit einem Referenz-Name versehen (data-jmname="..."). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (_config.js) vorgenommen.
+
+Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):
+
+	// Beispielhafte Initialisierung im HTML:
+	<a class="textlink" href="#anchor-optionen" data-jmname="anchor">Zusatzoptionen wählen</a>
+
+-
+
+	// Entsprechendes Config-JSON:
+	{
+	    jmname : 'anchor',                                  // wird im HTML referenziert
+	    jmelement: 'actions.scroll',                        // Plugin
+	    jmconfig : {                                        // Konfigurationsobjekt
+	        'event' : 'click',                              // die Aktion soll auf User-Klick gestartet werden
+	        'scrollTo' : '$(this.$elem.attr(\'href\'))'     // Angabe, wohin gescrollt werden soll
+	    }
+	 }
 
 
+Den größten Vorteil diese Herrangehenswiese ist neben der **sehr vereinheitlichten Deklaration** die **große Wiederverwendbarkeit** der Module. Folglich werden Request gespart und die Funktionalität der Plugins ist **robuster** (weniger Fehleranfällig) durch ihre hohe Verwendung.
 
 ## 2. File- und Ordnerstruktur ##
 Im Root-JS-Verzeichnis liegt die **main.js**. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
@@ -145,4 +183,143 @@ Hier wie z.B. video.css, die das komplette Styling des Video-Players beinhalten.
 Die css.js ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  
 
 ## 3. Deklaration von HTML-Module-Funktionen ##
+
+Die Deklaration geschieht in der _config.js. Hier ist zu jedem jmelement ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmelemente mit einem Referenz-Name versehen (data-jmname="..."). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (_config.js) vorgenommen.
+
+### Allgemeine Deklaration ###
+
+#### Bsp. 1: Deklaration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname): ####
+
+	// Beispielhafte Initialisierung im HTML:
+	<a class="textlink" href="#anchor-optionen" data-jmname="anchor">Zusatzoptionen wählen</a>
+_
+
+	// Entsprechendes Config-JSON:
+	{
+	    jmname : 'anchor',                                  // wird im HTML referenziert
+	    jmelement: 'actions.scroll',                        // Plugin
+	    jmconfig : {                                        // Konfigurationsobjekt
+	        'event' : 'click',                              // die Aktion soll auf User-Klick gestartet werden
+	        'scrollTo' : '$(this.$elem.attr(\'href\'))'     // Angabe, wohin gescrollt werden soll
+	    }
+	 }
+
+
+#### Bsp. 2: Konfiguration mit zwei Plugins und Bindung an das HTML mit einer Referenz (data-jmname): ####
+
+	// Beispielhafte Initialisierung im HTML:
+	<select class="select" data-jmname="select-email-einstellung">.....</select>
+
+_
+
+	//Entsprechendes Config-JSON:
+	{
+	    jmname : 'select-email-einstellung',                // wird im HTML referenziert
+	    jmelement: 'actions.remove|actions.add',            // Plugin: wenn mehrere Plugins kombiniet werde sollen, sind diese mit einem | zu trennen.
+	    // Werden gleichnamige Plugins mehrfach verwendet, sind diese im jmelement mit vorangehenden_ durchzunummerieren. Bsp.: jmelement: 'actions.remove_1|actions.add_1|actions.remove_2|actions.add_2'
+	    // für jedes Plugin muss ein config-Objekt hinterlegt sein. Da hier zwei Plugins kombiniert werde, sind die config-Objekte in einem Array hinterlegt und mit einem Komma getrennt.
+	    // Die Reihenfolge einspricht der Reihenfolge der Plugins im jmelement.
+	    jmconfig :[                                        
+	        {                                                  
+	            'event' : 'change',                             // die Aktions soll bei einem change-Event des Elements stattfinden.
+	            'datatype' : 'class',                           // es soll eine Klasse weggenommen werden.
+	            'data' : 'show',                                // der Name lautet show.
+	            // die Aktion soll auf diesem/n Element/en durchgeführt werden. (Hier wird mittels $.makeArray eine jQuery-Selection in ein Array mit HTML-Elementen umgewandelt,
+	            // da diese im Plugin immer mit einem $() gewrappt werden (und somit nicht nochmal mit jQuery-Funktionalitäten versehen werden sollen.).
+	            // Bei 'relatedTo' könnten z.B. auch '.classe' oder '#id' oder '[attr="..."]' angegeben werden. )
+	            'relatedTo': '$.makeArray(this.$elem.closest(\'.filter-panel\').siblings(\'table\').find(\'tr\'))'
+	        },
+	        {
+	            'event' : 'change',                             // die Aktions soll bei einem change-Event des Elements stattfinden.
+	            'datatype' : 'class',                           // es soll eine Klasse hinzugefügt werden.
+	            'data' : 'show',                                // der Name lautet show.
+	            // die Aktion soll auf diesem/n Element/en durchgeführt werden.
+	            'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.val()+\'"]\'))'
+	        }
+	    ]
+	 }
+
+#### Bsp. 3: Kombinieren von mehreren data-jmname: ####
+
+	// Beispielhafte Initialisierung im HTML:
+	// <input class="input-autocomplete" data-jmdominit="true" data-jmname="autofillInput|sync-val" data-rule-jmbankname="Bitte geben Sie eine gültigen Banknamen ein." data-rule-jmrequired="Bitte ausfüllen" id="Bank" maxlength="50" name="Payment.BankName" type="text" value="Wird automatisch ausgefüllt" disabled="disabled" tabindex="-1">
+
+### Deklaration - Event ###
+
+die HTML-Module-Funktionen kann durch unterschietliche Events getriggert werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren.
+
+#### click ####
+
+h3[data-jmname],
+input[type="submit"][data-jmname],
+input[type="button"][data-jmname],
+button[type="submit"][data-jmname],
+input[type="text"][data-jmname],
+input[type="checkbox"][data-jmname],
+button[type="submit"][data-jmname],
+div[data-jmname],
+a[data-jmname],
+label[data-jmname],
+tr[data-jmname],
+li[data-jmname],
+ul[data-jmname],
+select[data-jmname]
+
+#### change ####
+
+select[data-jmname],
+input[type="radio"][data-jmname],
+input[type="checkbox"][data-jmname],
+input[type="text"][data-jmname],
+input[type="email"][data-jmname]
+
+#### focus change blur checkValidation ####
+NUR AUF FORM-TAGS MIT DEM ATTRIBUT data-jmname="form"
+
+
+Einige Events benötigen jedoch aufgrund ihrer Bestimmtheit das Attribut data-jmdominit="true"
+
+	// Beispielhafte Initialisierung im HTML:
+	<input data-jmname="sync-val" data-jmdominit="true" type="text" name="vorname" />
+
+Bei den hier folgenden Events ist dieses Attribut von nöten.
+
+#### dominit ####
+die Aktion wird auf domready oder wenn das HTML-Element via ajax in das DOM injektet wird ausgeführt.
+
+#### raf ####
+Die Aktion wird auf jedem requestAnimationFrame durchgeführt (bei jedem neuzeichnen des Bildes)
+
+#### interval (angegeben in z.B. interval-5000) ####
+Die Aktion wird alle 5000 ms durchgeführt
+
+#### blur ####
+Die Aktion wird auf blur durchgeführt
+
+#### hover ####
+Die Aktion wird auf hover durchgeführt
+
+#### keyup (abgegeben in z.B. keyup-dotimeout-500)  #### 
+Die Aktion wird auf keyup mit einem delay von 500 ms durchgeführt (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)
+
+#### jmchange ####
+Die Aktion wird durchgeführt, wenn jmchange auf diesem Element getriggert wird
+
+Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js
+
+	{
+	    jmname : 'sync-val',                                // wird im HTML referenziert
+	    jmelement: 'actions.add',                           // Plugin
+	    jmconfig :{                                         // Konfigurationsobjekt
+	        // das action wird bei domready, change und bei keyup mit einem delay von 500 ms (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)
+	        'event' : 'dominit|change|keyup-dotimeout-500', 
+	        'datatype' : 'text',                            // es soll text hinzugefügt werden
+	        // die Aktion soll auf diesem/n Element/en durchgeführt werden.
+	        'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))', 
+	        'data':'jmHF.escapeHtml(this.$elem.val())'      // der Text aus dem input-field soll hinzugefügt werden.
+	    }
+	 }
+
+
+
 ## 4. Erstellung von Plugins ##
