@@ -22,38 +22,32 @@ namespace JM.EventViewer.Desktop
         private CompositeDisposable eventSubscriptions = new CompositeDisposable();
         private IDisposable monitoredEventSubscription = null;
 
-        private TraceEventSession userSession;
+        private TraceEventSession userSession = null;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        public Form1(IObservable<Microsoft.Diagnostics.Tracing.TraceEvent> eventStream) : this()
-        {
-            // TODO: Complete member initialization
-            this.eventStream = eventStream;
-        }
-
         public Form1(TraceEventSession userSession) : this()
         {
             // TODO: Complete member initialization
             this.userSession = userSession;
-            this.eventStream = userSession.Source.Dynamic.Observe(null);
         }
 
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            
-                //eventStream
-                //    .Subscribe(e => Debug.WriteLine(e.ToString()));
+
+            this.eventStream = userSession.Source.Dynamic.Observe(null);
 
             this.eventSubscriptions.Add(
                 this
                     .eventStream
                     .ObserveOn(this)
                     .Subscribe(te => this.listBox1.Items.Add(te.ToString())));
+
+            Task.Run(() => this.userSession.Source.Process());
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -94,8 +88,45 @@ namespace JM.EventViewer.Desktop
                 .ObserveOn(this)
                 .Subscribe(c =>
                     MessageBox.Show(
-                        string.Format("Mehr als '{0}' von '{1}' pro 10 Sekunden", c.ToString(), textBox1.Text)));
-                
+                        string
+                        .Format(
+                            "Mehr als '{0}' von '{1}' pro 10 Sekunden", 
+                            c.ToString(), 
+                            textBox1.Text)));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var name = this.txtEventSourceName.Text;
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                var result = userSession.EnableProvider(name, TraceEventLevel.Always);
+                TraceEventProviders.GetEventSourceGuidFromName(name);
+            }
+            //userSession.Source
+            //userSession.DisableProvider()  
+        }
+    }
+
+    class ProviderHandler : IDisposable
+    {
+        string providerName;
+        private IObservable<Microsoft.Diagnostics.Tracing.TraceEvent> eventStream;
+
+        public ProviderHandler(string providerName)
+        {
+            this.providerName = providerName;
+        }
+
+        public IObservable<Microsoft.Diagnostics.Tracing.TraceEvent> BeginListen()
+        {
+
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

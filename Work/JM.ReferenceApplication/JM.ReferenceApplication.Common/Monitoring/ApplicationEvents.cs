@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JM.ReferenceApplication.Common.Monitoring
 {
-    [EventSource(Name = "JM-ReferenceApplication")]
+    [EventSource(Name = "JM-Foundation-ReferenceApplication")]
     public sealed partial class ApplicationEvents : JMEventSourceBase<ApplicationEvents>
     {
 
