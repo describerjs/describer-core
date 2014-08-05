@@ -1,4 +1,4 @@
-﻿# Doku CSS/SCSS
+# Doku CSS/SCSS
 
 ## Grundlegendes
 Der Grundgedanke bei der Erstellung und Pflege der Stylesheets ist *Konsistenz*. Daraus resultiert eine einheitliche Datei- und Codegestaltung.
@@ -36,3 +36,56 @@ Jedes UI-Modul bringt eine *-noscript*-Datei mit, in der die Regeln für No-JS S
 
 
 ## Modulerstellung
+Jegliche Erweiterung an modularen Elementen sind im Verzeichnis *objects* zu hinterlegen. Sämtliche UI-Module finden sich im Unterordner *modules* wieder. 
+Jede Datei steht für ein eigenes Modul und ist im Aufbau des Quellcodes immer gleich:
+
+### Kommentarblock mit dem Namen des Moduls
+	/*------------------------------------*\
+	    $TOGGLEBOX
+	\*------------------------------------*/
+
+### Kommentarblock mit Dokumentation zur Funktionsweise des Moduls
+	/**
+	 * Ein-/Auf-/Zuklapp Element
+	 *
+		<div class="togglebox">
+			<a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+			<div class="tb-content">
+				$togglecontent$
+			</div>
+		</div>
+	 *
+	 * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
+	 * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
+	 *
+	 * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+	 * Beschreibt den Titel der Togglebox bzw. den Link.
+	 * data-jmname="togglebox" weist das javascript an, das <div class="togglebox"> um die Klasse "show" zu erweitern
+	 * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
+	 *
+	 * <div class="tb-content">
+	 * Alles was zum Content der Togglebox gehört wird hier eingefügt.
+	 *
+	**/
+
+### CSS zum Modul
+	.togglebox {
+		// Der verantwortliche Link zum öffnen des Toggles "tb-content".
+		.tb-subject {
+			/**/
+		}
+
+		// Der eigentliche Content.
+		.tb-content {
+			display: none;
+		}
+
+		// "togglebox" wird mit "show" erweitert und interagiert entsprechend.
+		&.show {
+			.tb-content {
+				display: block;
+			}
+		}
+	}
+
+Jede Regel erhält einen Kommentar zur Bedeutung und Anwendung.
