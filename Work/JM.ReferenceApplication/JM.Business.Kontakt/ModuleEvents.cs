@@ -6,7 +6,7 @@ namespace JM.Business.Kontakt
 	/// <summary>
 	/// Bietet Funktionen zum Loggen/Erfassen aller definierten Events in diesem Modul
 	/// </summary>
-	public class ModuleEvents : JMEventSourceBase
+	public sealed class ModuleEvents : JMEventSourceBase
 	{
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region Implementation der abstrakten Klasse JMEventSourceBase
@@ -48,10 +48,10 @@ namespace JM.Business.Kontakt
 
 		#endregion
 
-		[Event(3, Level = EventLevel.Informational)]
+		[Event(104, Level = EventLevel.Informational)]
 		public void ContactFormSent(string email, string firstname, string lastname)
 		{
-			base.WriteEvent(103, email, firstname, lastname);
+			base.WriteEvent(104, email, firstname, lastname);
 		}
 
 
