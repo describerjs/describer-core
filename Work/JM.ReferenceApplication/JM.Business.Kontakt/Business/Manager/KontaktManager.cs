@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Autofac.Extras.DynamicProxy2;
+﻿using Autofac.Extras.DynamicProxy2;
 using JM.Business.Kontakt.Business.Model;
 using JM.Business.Kontakt.Contracts.Manager;
 using JM.Business.Kontakt.Contracts.Model;
@@ -8,7 +7,6 @@ using JM.Business.Kontakt.DataModel;
 using JM.Foundation;
 using JM.Foundation.Configuration;
 using JM.Foundation.ErrorHandling;
-using JM.ReferenceApplication.Common.Monitoring;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -61,7 +59,7 @@ namespace JM.Business.Kontakt.Business.Manager
 				mail.Priority = MailPriority.High;
 
 			// Loggen des Aufrufs
-			ApplicationEvents.Log.ContactFormSent(model.Email, model.FirstName, model.LastName);
+			new ModuleEvents().ContactFormSent(model.Email, model.FirstName, model.LastName);
 
 			var sender = new SmtpClient(_config.SmtpServer.Server);
 			sender.Send(mail);
