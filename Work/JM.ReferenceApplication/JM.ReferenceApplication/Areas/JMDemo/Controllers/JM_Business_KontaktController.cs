@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using JM.Business.Kontakt.Contracts.Manager;
 using JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt;
 using Microsoft.AspNet.Identity;
+using JM.Business.Kontakt.Contracts.Model;
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
@@ -22,7 +23,8 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
-		public JM_Business_KontaktController(IKontaktManager kontaktManager)
+		public JM_Business_KontaktController(
+            IKontaktManager kontaktManager)
 		{
 			_kontaktManager = kontaktManager;
 		}
@@ -41,10 +43,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	    [HttpPost]
 	    public ActionResult Index(ContactModel model)
 	    {
-			//if (!ModelState.IsValid)
-			//	return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
-			//_kontaktManager.SendContactMail(model);
+			_kontaktManager.SendContactMail(model);
 
 		    return View("Danke", model);
 	    }
@@ -75,14 +77,14 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		public ActionResult CreateRequest()
 		{
 			var userData = _kontaktManager.GetPersonalData(User.Identity.GetUserId());
-			var model = new ContactModel
-			{
-				UserID = userData.UserID,
-				Email = userData.Email,
-				Salutation = userData.Salutation,
-				FirstName = userData.FirstName,
-				LastName = userData.LastName
-			};
+
+            var model = DependencyResolver.Current.GetService<ContactModel>();
+
+            model.UserID = userData.UserID;
+            model.Email = userData.Email;
+            model.Salutation = userData.Salutation;
+            model.FirstName = userData.FirstName;
+            model.LastName = userData.LastName;
 			
 			return View("CreateRequest", model);
 		}

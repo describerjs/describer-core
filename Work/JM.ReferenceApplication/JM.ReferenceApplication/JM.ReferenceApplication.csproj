@@ -208,6 +208,7 @@
     <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
     <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs" />
     <Compile Include="Areas\JMDemo\Models\JM.Business.Kontakt\ContactModel.cs" />
+    <Compile Include="Areas\JMDemo\Models\JM.Business.Kontakt\IContactModelValidator.cs" />
     <Compile Include="Areas\JMDemo\Models\JM.Business.Kontakt\PersonalData.cs" />
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
@@ -369,15 +370,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>21994</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:21994/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://jmbs.de</CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

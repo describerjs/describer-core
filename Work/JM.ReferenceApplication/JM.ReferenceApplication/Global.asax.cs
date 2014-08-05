@@ -10,6 +10,9 @@ using JM.ReferenceApplication.Common.Monitoring;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt;
+using JM.Business.Kontakt.Contracts.Model;
+using JM.Foundation.DependencyInjection;
 
 namespace JM.ReferenceApplication
 {
@@ -79,12 +82,23 @@ namespace JM.ReferenceApplication
 			// ErrorHandler definieren
 			autofacBuilder.RegisterInstance<IErrorHandler>(new ErrorHandler());
 
+            autofacBuilder
+                .RegisterType<ContactModel>()
+                //.As<IContactModel>()
+                .As<ContactModel>();
+
+            autofacBuilder
+                .RegisterType<ContactModelValidator>()
+                .As<IContactModelValidator>();
+
 			// Abschliessend wird der Container erzeugt und dem DependencyResolver von MVC zugewiesen, über
 			// diesen erfolgt dann das eigentliche Auflösen der Abhängigkeiten
 			var container = autofacBuilder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
 			#endregion
+
+            ModelBinders.Binders.DefaultBinder = new AbstractModelBinder(DependencyResolver.Current);
 		}
 
 		/// <summary>
