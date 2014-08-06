@@ -11,5 +11,6 @@ namespace JM.Business.Kontakt.Contracts.Manager
 		IPersonalData GetPersonalData(string userID);
 		List<IContactRequest> GetContactRequests(string userID);
 		bool SavePersonalData(IPersonalData model);
+		IFamilyModel GetFamilyModel(string userID);
 	}
 }

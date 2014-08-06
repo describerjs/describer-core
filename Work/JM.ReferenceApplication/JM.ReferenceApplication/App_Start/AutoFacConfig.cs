@@ -73,16 +73,6 @@ namespace JM.ReferenceApplication.App_Start
 
 			#endregion
 
-            // Nur zu Testzwecken. Gehört in modulkonfig
-            autofacBuilder
-                .RegisterType<JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt.ContactModel>()
-                            //.As<IContactModel>()
-                .As<JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt.ContactModel>();
-
-                        autofacBuilder
-                            .RegisterType<JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt.ContactModelValidator>()
-                            .As<JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt.IContactModelValidator>();
-			
             // Abschliessend wird der Container erzeugt und dem DependencyResolver von MVC zugewiesen, über
 			// diesen erfolgt dann das eigentliche Auflösen der Abhängigkeiten
 			var container = autofacBuilder.Build();

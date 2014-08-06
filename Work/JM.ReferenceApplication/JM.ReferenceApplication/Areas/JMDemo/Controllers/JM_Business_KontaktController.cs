@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using JM.Business.Kontakt.Contracts.Manager;
-using JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt;
 using Microsoft.AspNet.Identity;
 using JM.Business.Kontakt.Contracts.Model;
 
@@ -40,16 +39,22 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
             return View(model);
         }
 
-	    [HttpPost]
-	    public ActionResult Index(ContactModel model)
-	    {
-            if (!ModelState.IsValid)
-                return View(model);
+		[HttpGet]
+		public ActionResult StoreFamilyData()
+		{
+			var model = _kontaktManager.GetFamilyModel(User.Identity.GetUserId());
+			return View(model);
+		}
 
-			_kontaktManager.SendContactMail(model);
+		[HttpPost]
+		public ActionResult StoreFamilyData(IFamilyModel model)
+		{
+			if (!ModelState.IsValid)
+				return View(model);
 
-		    return View("Danke", model);
-	    }
+
+			return View("StoreFamilyData_Danke", model);
+		}
 
 		[HttpGet]
 		public ActionResult StoreData()
@@ -59,7 +64,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult StoreData(PersonalData model)
+		public ActionResult StoreData(IPersonalData model)
 		{
 			if(!ModelState.IsValid)
 				return View(model);
@@ -77,8 +82,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		public ActionResult CreateRequest()
 		{
 			var userData = _kontaktManager.GetPersonalData(User.Identity.GetUserId());
-
-            var model = DependencyResolver.Current.GetService<ContactModel>();
+			var model = _kontaktManager.GetContactModel();
 
             model.UserID = userData.UserID;
             model.Email = userData.Email;
@@ -90,7 +94,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult CreateRequest(ContactModel model)
+		public ActionResult CreateRequest(IContactModel model)
 		{
 			if (!ModelState.IsValid)
 				return View(model);
