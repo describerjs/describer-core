@@ -2,74 +2,65 @@
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
-	/// <summary>
-	/// Controller für die Startseite der Demos einzelner Module inkl kurzer Beschreibung
-	/// </summary>
-	public class ModuleController : Controller
-	{
-		//////////////////////////////////////////////////////////////////////////////////////
-		#region private Member
+    /// <summary>
+    /// Controller für die Startseite der Demos einzelner Module inkl kurzer Beschreibung
+    /// </summary>
+    public class ModuleController : Controller
+    {
+        #region private Member
 
-		//
+        #endregion
 
-		#endregion
+        #region Constructor
 
-		//////////////////////////////////////////////////////////////////////////////////////
-		#region Constructor
+        public ModuleController()
+        { 
+        }
 
-		public ModuleController()
-		{
+        #endregion
 
-		}
+        #region Views
 
-		#endregion
+        /// <summary>
+        /// Index gibt es hier nicht, redirect zur Startseite
+        /// </summary>
+        /// <returns>Redirect</returns>
+        public ActionResult Index()
+        {
+            return RedirectToActionPermanent("Index", "Start");
+        }
 
-		//////////////////////////////////////////////////////////////////////////////////////
-		#region Views
+        /// <summary>
+        /// Startseite für JM.Business.Kontakt
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult JM_Business_Kontakt()
+        {
+            return View();	
+        }
 
-		/// <summary>
-		/// Index gibt es hier nicht, redirect zur Startseite
-		/// </summary>
-		/// <returns>Redirect</returns>
-		public ActionResult Index()
-		{
-			return RedirectToActionPermanent("Index", "Start");
-		}
+        /// <summary>
+        /// Startseite für JM.Business
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult JM_Business()
+        {
+            return View();
+        }
 
-		/// <summary>
-		/// Startseite für JM.Business.Kontakt
-		/// </summary>
-		/// <returns>View</returns>
-		public ActionResult JM_Business_Kontakt()
-		{
-			return View();	
-		}
+        /// <summary>
+        /// Startseite für JM.Foundation
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult JM_Foundation()
+        {
+            return View();
+        }
 
-		/// <summary>
-		/// Startseite für JM.Business
-		/// </summary>
-		/// <returns>View</returns>
-		public ActionResult JM_Business()
-		{
-			return View();
-		}
+        #endregion
 
-		/// <summary>
-		/// Startseite für JM.Foundation
-		/// </summary>
-		/// <returns>View</returns>
-		public ActionResult JM_Foundation()
-		{
-			return View();
-		}
+        #region PartialViews
 
-		#endregion
-
-		//////////////////////////////////////////////////////////////////////////////////////
-		#region PartialViews
-
-		//
-
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -18,9 +18,9 @@ namespace JM.ReferenceApplication.Areas.JMDemo
             var JMDemo_default = context.MapRoute(
                 "JMDemo_default",
                 "JMDemo/{controller}/{action}/{id}",
-                new { controller = "Start", action = "Index", id = UrlParameter.Optional }
-            );
-			JMDemo_default.RouteHandler = new HyphenatedRouteHandler();
+                new { controller = "Start", action = "Index", id = UrlParameter.Optional });
+            
+            JMDemo_default.RouteHandler = new HyphenatedRouteHandler();
         }
     }
 }

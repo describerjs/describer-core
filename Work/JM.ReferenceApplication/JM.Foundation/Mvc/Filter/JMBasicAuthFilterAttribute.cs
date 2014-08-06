@@ -1,6 +1,6 @@
-﻿using System;
+﻿using JM.Foundation.Configuration;
+using System;
 using System.Web.Mvc;
-using JM.Foundation.Configuration;
 
 namespace JM.Foundation.Mvc.Filter
 {

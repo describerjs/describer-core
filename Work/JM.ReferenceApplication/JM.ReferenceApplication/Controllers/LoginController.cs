@@ -1,15 +1,14 @@
-﻿using JM.ReferenceApplication.Common.Monitoring;
+﻿using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using JM.ReferenceApplication.Common.Monitoring;
 using JM.ReferenceApplication.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.Controllers
-{
-    
+{   
     public class LoginController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -23,18 +22,19 @@ namespace JM.ReferenceApplication.Controllers
             UserManager = userManager;
         }
 
-        public ApplicationUserManager UserManager {
+        public ApplicationUserManager UserManager
+        {
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
             }
         }
 
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -43,7 +43,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -61,7 +60,7 @@ namespace JM.ReferenceApplication.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Ungültiger Benutzername oder ungültiges Kennwort.");
+                    ModelState.AddModelError(string.Empty, "Ungültiger Benutzername oder ungültiges Kennwort.");
                 }
             }
 
@@ -69,7 +68,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -77,7 +75,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -97,7 +94,6 @@ namespace JM.ReferenceApplication.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
-
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -110,7 +106,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -132,7 +127,6 @@ namespace JM.ReferenceApplication.Controllers
             }
         }
 
-        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -140,7 +134,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -152,7 +145,7 @@ namespace JM.ReferenceApplication.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    ModelState.AddModelError("", "Der Benutzer ist nicht vorhanden oder wurde nicht bestätigt.");
+                    ModelState.AddModelError(string.Empty, "Der Benutzer ist nicht vorhanden oder wurde nicht bestätigt.");
                     return View();
                 }
 
@@ -168,15 +161,13 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
-	
-        //
+    
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
@@ -185,10 +176,10 @@ namespace JM.ReferenceApplication.Controllers
             {
                 return View("Error");
             }
+
             return View();
         }
 
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -198,12 +189,15 @@ namespace JM.ReferenceApplication.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
+                
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Es wurde kein Benutzer gefunden.");
+                    ModelState.AddModelError(string.Empty, "Es wurde kein Benutzer gefunden.");
                     return View();
                 }
+
                 IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+                
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ResetPasswordConfirmation", "Login");
@@ -219,7 +213,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -227,7 +220,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Disassociate
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -245,10 +237,10 @@ namespace JM.ReferenceApplication.Controllers
             {
                 message = ManageMessageId.Error;
             }
+
             return RedirectToAction("Manage", new { Message = message });
         }
 
-        //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
@@ -257,13 +249,12 @@ namespace JM.ReferenceApplication.Controllers
                 : message == ManageMessageId.SetPasswordSuccess ? "Ihr Kennwort wurde festgelegt."
                 : message == ManageMessageId.RemoveLoginSuccess ? "Die externe Anmeldung wurde entfernt."
                 : message == ManageMessageId.Error ? "Fehler"
-                : "";
+                : string.Empty;
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
         }
 
-        //
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -316,7 +307,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -327,7 +317,6 @@ namespace JM.ReferenceApplication.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Login", new { ReturnUrl = returnUrl }));
         }
 
-        //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -354,7 +343,6 @@ namespace JM.ReferenceApplication.Controllers
             }
         }
 
-        //
         // POST: /Account/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -364,24 +352,26 @@ namespace JM.ReferenceApplication.Controllers
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Login"), User.Identity.GetUserId());
         }
 
-        //
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+
             if (loginInfo == null)
             {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
+
             IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+
             if (result.Succeeded)
             {
                 return RedirectToAction("Manage");
             }
+
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
 
-        //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
@@ -397,15 +387,19 @@ namespace JM.ReferenceApplication.Controllers
             {
                 // Informationen zum Benutzer aus dem externen Anmeldeanbieter abrufen
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
                 }
+
                 var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user);
+                
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
@@ -414,11 +408,11 @@ namespace JM.ReferenceApplication.Controllers
                         // E-Mail-Nachricht mit diesem Link senden
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // SendEmail(user.Email, callbackUrl, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu");
-                        
+                        // SendEmail(user.Email, callbackUrl, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu");                     
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -426,7 +420,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -437,7 +430,6 @@ namespace JM.ReferenceApplication.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
@@ -460,6 +452,7 @@ namespace JM.ReferenceApplication.Controllers
                 UserManager.Dispose();
                 UserManager = null;
             }
+
             base.Dispose(disposing);
         }
 
@@ -485,17 +478,19 @@ namespace JM.ReferenceApplication.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
         }
 
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
+
             if (user != null)
             {
                 return user.PasswordHash != null;
             }
+
             return false;
         }
 
@@ -537,17 +532,33 @@ namespace JM.ReferenceApplication.Controllers
                 UserId = userId;
             }
 
-            public string LoginProvider { get; set; }
-            public string RedirectUri { get; set; }
-            public string UserId { get; set; }
+            public string LoginProvider
+            {
+                get;
+                set;
+            }
+
+            public string RedirectUri
+            {
+                get;
+                set;
+            }
+
+            public string UserId
+            {
+                get;
+                set;
+            }
 
             public override void ExecuteResult(ControllerContext context)
             {
                 var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;
                 }
+
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }

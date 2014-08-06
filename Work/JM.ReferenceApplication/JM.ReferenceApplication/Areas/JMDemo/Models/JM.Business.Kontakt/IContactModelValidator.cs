@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt
 {
-    public interface  IContactModelValidator
+    public interface IContactModelValidator
     {
         void Validate();
     }
