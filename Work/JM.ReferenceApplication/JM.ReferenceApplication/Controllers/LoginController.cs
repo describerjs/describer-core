@@ -1,11 +1,11 @@
-﻿using JM.ReferenceApplication.Common.Monitoring;
+﻿using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using JM.ReferenceApplication.Common.Monitoring;
 using JM.ReferenceApplication.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.Controllers
 {

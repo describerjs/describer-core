@@ -207,7 +207,9 @@
     <Compile Include="Areas\JMDemo\Controllers\JM_Business_Controller.cs" />
     <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
-    <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs" />
+    <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />

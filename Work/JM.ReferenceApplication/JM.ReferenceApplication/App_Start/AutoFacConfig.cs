@@ -1,11 +1,11 @@
-﻿using Autofac;
+﻿using System.Web.Mvc;
+using Autofac;
 using Autofac.Configuration;
 using Autofac.Extras.DynamicProxy2;
 using Autofac.Integration.Mvc;
 using JM.Business.Data;
 using JM.Business.Manager;
 using JM.Foundation.ErrorHandling;
-using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.App_Start
 {

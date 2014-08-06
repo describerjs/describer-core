@@ -11,7 +11,7 @@ namespace JM.Foundation.Mvc.Routing
 	/// </summary>
 	public class RegexConstraint : IRouteConstraint, IEquatable<RegexConstraint>
 	{
-		Regex regex;
+		private Regex regex;
 
 		public RegexConstraint(string pattern, RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.IgnoreCase)
 		{

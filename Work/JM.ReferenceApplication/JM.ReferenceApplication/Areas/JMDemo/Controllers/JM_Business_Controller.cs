@@ -1,5 +1,5 @@
-﻿using JM.Business.Manager;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using JM.Business.Manager;
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {

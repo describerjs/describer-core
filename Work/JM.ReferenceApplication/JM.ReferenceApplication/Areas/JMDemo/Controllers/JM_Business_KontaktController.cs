@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using JM.Business.Kontakt.Contracts.Manager;
-using Microsoft.AspNet.Identity;
 using JM.Business.Kontakt.Contracts.Model;
+using Microsoft.AspNet.Identity;
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {

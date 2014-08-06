@@ -6,35 +6,35 @@ using System.Web.Mvc;
 
 namespace JM.Foundation.Mvc.Validation
 {
-	[AttributeUsage(AttributeTargets.Property, AllowMultiple=true)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple=true)]
     public class RegexValidationAttribute : ValidationAttribute, IClientValidatable
     {
-        string _regex = "";
-        bool _allowEmptyString = false;
+        private string _regex = "";
+        private bool _allowEmptyString = false;
  
         public RegexValidationAttribute(string regex, bool allowEmptyString, string errorMessage)
             : base(errorMessage)
         {
-	        _regex = regex;
-	        _allowEmptyString = allowEmptyString;
+            _regex = regex;
+            _allowEmptyString = allowEmptyString;
         }
  
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             try
             {
-	            if (value == null || String.IsNullOrEmpty(value.ToString()))
-	            {
-					if(_allowEmptyString)
-						return ValidationResult.Success;
-						
-					return new ValidationResult(ErrorMessageString);
-	            }
-				
-				var val = value.ToString();
+                if (value == null || String.IsNullOrEmpty(value.ToString()))
+                {
+                    if(_allowEmptyString)
+                        return ValidationResult.Success;
+                        
+                    return new ValidationResult(ErrorMessageString);
+                }
+                
+                var val = value.ToString();
 
-				if(!Regex.IsMatch(val, _regex))
-					return new ValidationResult(ErrorMessageString);
+                if(!Regex.IsMatch(val, _regex))
+                    return new ValidationResult(ErrorMessageString);
             }
             catch (Exception ex)
             {
@@ -46,18 +46,18 @@ namespace JM.Foundation.Mvc.Validation
             return ValidationResult.Success;;
         }
     
-		public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-		{
-			string errorMessage = ErrorMessageString;
+        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+        {
+            string errorMessage = ErrorMessageString;
 
-			var regexRule = new ModelClientValidationRule();
-			regexRule.ErrorMessage = errorMessage;
-			regexRule.ValidationType = "jmval"; // This is the name the jQuery adapter will use
-			regexRule.ValidationParameters.Add("pattern", _regex);
-			if(_allowEmptyString)
-				regexRule.ValidationParameters.Add("allowempty", _allowEmptyString);
+            var regexRule = new ModelClientValidationRule();
+            regexRule.ErrorMessage = errorMessage;
+            regexRule.ValidationType = "jmval"; // This is the name the jQuery adapter will use
+            regexRule.ValidationParameters.Add("pattern", _regex);
+            if(_allowEmptyString)
+                regexRule.ValidationParameters.Add("allowempty", _allowEmptyString);
 
-			yield return regexRule;
-		}
-	}
+            yield return regexRule;
+        }
+    }
 }

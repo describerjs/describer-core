@@ -9,7 +9,7 @@ namespace JM.Foundation.ErrorHandling
 {
     public class ErrorInterceptor : IInterceptor
     {
-        IErrorHandler handler;
+        private IErrorHandler handler;
 
         public ErrorInterceptor(IErrorHandler handler)
         {
