@@ -66,7 +66,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		[HttpPost]
 		public ActionResult StoreData(IPersonalData model)
 		{
-			if(!ModelState.IsValid)
+			if (!ModelState.IsValid)
 				return View(model);
 
 			model.LastEditAt = DateTime.Now;
