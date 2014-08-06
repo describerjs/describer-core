@@ -67,6 +67,11 @@ namespace JM.Business.Kontakt.Business.Manager
 			saveContactRequest(model);
 		}
 
+		public IFamilyModel GetFamilyModel(string userID)
+		{
+			return new FamilyModel { UserID = userID, Father = new Model.PersonalData(), Mother = new Model.PersonalData() };
+		}
+
 		private void saveContactRequest(IContactModel model)
 		{
 			var entry = new ContactRequest
@@ -93,7 +98,7 @@ namespace JM.Business.Kontakt.Business.Manager
 				data = db.CustomerData.FirstOrDefault(u => u.UserID == userID);
 			}
 
-			return data ?? (data = new PersonalData {UserID = userID});
+			return data ?? (data = new Model.PersonalData { UserID = userID });
 		}
 
 		public List<IContactRequest> GetContactRequests(string userID)
@@ -110,7 +115,7 @@ namespace JM.Business.Kontakt.Business.Manager
 
 		public bool SavePersonalData(IPersonalData model)
 		{
-			var data = new PersonalData
+			var data = new JM.Business.Kontakt.DataModel.PersonalData
 			{
 				CreatedAt = model.CreatedAt,
 				Email=model.Email,

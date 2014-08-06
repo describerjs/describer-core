@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Business\Manager\KontaktManager.cs" />
     <Compile Include="Business\Model\ContactModel.cs" />
+    <Compile Include="Business\Model\FamilyModel.cs" />
+    <Compile Include="Business\Model\PersonalData.cs" />
     <Compile Include="Business\Model\StartModel.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DataAccess\Data.cs" />

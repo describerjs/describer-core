@@ -1,7 +1,10 @@
 ﻿using Autofac;
 using JM.Business.Kontakt.Business.Manager;
+using JM.Business.Kontakt.Business.Model;
 using JM.Business.Kontakt.Contracts.Manager;
 using Autofac.Extras.DynamicProxy2;
+using JM.Business.Kontakt.Contracts.Model;
+using JM.Business.Kontakt.DataModel;
 
 namespace JM.Business.Kontakt
 {
@@ -30,6 +33,21 @@ namespace JM.Business.Kontakt
 				.As<IKontaktManager>()
 				.EnableInterfaceInterceptors()
 				.SingleInstance();
+			
+			// Model für Kontaktanfrage
+			builder
+				.RegisterType<ContactModel>()
+				.As<IContactModel>();
+
+			// Model für FamilyModel
+			builder
+				.RegisterType<FamilyModel>()
+				.As<IFamilyModel>();
+
+			// Model für gespeicherte Personendaten
+			builder
+				.RegisterType<Business.Model.PersonalData>()
+				.As<IPersonalData>();
 
 			base.Load(builder);
 		}

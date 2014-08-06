@@ -1,12 +1,10 @@
-﻿using JM.ReferenceApplication.App_Start;
+﻿using JM.Foundation.DependencyInjection;
+using JM.ReferenceApplication.App_Start;
 using JM.ReferenceApplication.Common.Monitoring;
 using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt;
-using JM.Business.Kontakt.Contracts.Model;
-using JM.Foundation.DependencyInjection;
 
 namespace JM.ReferenceApplication
 {
@@ -42,6 +40,10 @@ namespace JM.ReferenceApplication
 
 			#endregion
 
+			// Um für Post-Actions keine Model in der Web.dll definieren zu müssen,
+			// wird ein eigener Modelbinder eingesetzt. Dieser erkennt über die AutoFac-Dependencyinjection
+			// welche Klasse instanziiert werden muss und führt das aus. Somit können in PostActions 
+			// Interfaces als Actions übergeben werden.
             ModelBinders.Binders.DefaultBinder = new AbstractModelBinder(DependencyResolver.Current);
 		}
 

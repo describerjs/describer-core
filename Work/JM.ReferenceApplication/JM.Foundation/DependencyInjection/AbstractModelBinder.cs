@@ -1,44 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace JM.Foundation.DependencyInjection
 {
     public class AbstractModelBinder : DefaultModelBinder
     {
-        IDependencyResolver resolver;
+	    private readonly IDependencyResolver _resolver;
 
         public AbstractModelBinder(IDependencyResolver resolver)
         {
             if (resolver == null)
-            {
-                throw new ArgumentNullException("resolver");
-            }
-
-            this.resolver = resolver;
+				throw new ArgumentNullException("resolver");
+				
+            _resolver = resolver;
         }
 
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-            if (MustResolve(bindingContext.ModelType))
-            {
-                var resolvedObject = 
-                    this.resolver.GetService(bindingContext.ModelType);
+	        if (!MustResolve(bindingContext.ModelType))
+		        return base.CreateModel(controllerContext, bindingContext, modelType);
 
-                if (resolvedObject != null)
-                {
-                    return resolvedObject;
-                }
-                else
-                {
-                    throw TypeNotResolvable(bindingContext);
-                }
-            }
+	        var resolvedObject = 
+		        _resolver.GetService(bindingContext.ModelType);
 
-            return base.CreateModel(controllerContext, bindingContext, modelType);
+	        if (resolvedObject != null)
+				return resolvedObject;
+
+	        throw TypeNotResolvable(bindingContext);
         }
 
         private static Exception TypeNotResolvable(ModelBindingContext bindingContext)
