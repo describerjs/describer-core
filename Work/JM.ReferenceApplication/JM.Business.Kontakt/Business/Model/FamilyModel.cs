@@ -11,7 +11,7 @@ namespace JM.Business.Kontakt.Business.Model
 
 		[DisplayName("Familienname")]
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Bitte geben Sie einen Familiennamen an")]
-		[RegularExpression(@"^[a-zA-Z]{5,20}$")]
+		[RegularExpression(@"^[a-zA-Z]{10,20}$")]
 		public string FamilyName { get; set; }
 
 		[Required(ErrorMessage = "Bitte geben Sie alle Daten für Ihren Vater an")]
