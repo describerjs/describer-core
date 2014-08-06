@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+
 using Piranha.Mvc;
 
 namespace JM.ReferenceApplication.Controllers
@@ -13,10 +18,10 @@ namespace JM.ReferenceApplication.Controllers
 		/// Gets a standard page.
 		/// </summary>
 		/// <returns>The view result</returns>
-        public ActionResult Index() 
-        {
-			var model = GetModel();
-            return View(model.GetView(), model);
+        public ActionResult Index() {
+			var model = GetModel() ;
+
+            return View(model.GetView(), model) ;
         }
     }
 }

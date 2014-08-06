@@ -1,7 +1,7 @@
-﻿using JM.Business.Kontakt.Contracts.Model;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using JM.Business.Kontakt.Contracts.Model;
 
 namespace JM.Business.Kontakt.DataModel
 {

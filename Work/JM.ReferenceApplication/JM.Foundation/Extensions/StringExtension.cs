@@ -1,6 +1,6 @@
-﻿using Microsoft.Security.Application;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
+using Microsoft.Security.Application;
 
 namespace JM.Foundation.Extensions
 {

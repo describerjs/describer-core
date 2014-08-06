@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using JM.Foundation;
 
@@ -42,7 +45,7 @@ namespace JM.ReferenceApplication.Controllers
 
 	    public ActionResult CustomErrorWithUserMessage()
 	    {
-		    var ex = new JMApplicationException("Hm ich hab wohl ein Semicolon vergessen");
+		    var ex= new JMApplicationException("Hm ich hab wohl ein Semicolon vergessen");
 		    ex.UserMessage = "Leider ist das ziemlich schief gegangen";
 
 		    throw ex;

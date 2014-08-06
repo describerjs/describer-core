@@ -17,7 +17,8 @@ namespace JM.ReferenceApplication.Areas.JMTools
             context.MapRoute(
                 "JMTools_default",
                 "JMTools/{controller}/{action}/{id}",
-                new { controller = "Administration", action = "Index", id = UrlParameter.Optional });
+                new { controller="Administration", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

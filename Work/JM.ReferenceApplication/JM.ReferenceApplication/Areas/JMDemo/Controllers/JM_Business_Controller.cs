@@ -1,83 +1,95 @@
-﻿using System.Web.Mvc;
-using JM.Business.Manager;
+﻿using JM.Business.Manager;
+using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
-    /// <summary>
-    /// 25.07.2014 - Sebastian van Elten
-    /// JM_BusinessController
-    /// </summary>
-    public class JM_BusinessController : Controller
-    {
-        #region private Member
+	/// <summary>
+	/// 25.07.2014 - Sebastian van Elten
+	/// JM_BusinessController
+	/// </summary>
+	public class JM_BusinessController : Controller
+	{
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region private Member
 
-        private IImportantManager _importantManager;
-        private ILameManager _lameManager;
+		private IImportantManager _importantManager;
+		private ILameManager _lameManager;
 
-        #endregion
+		#endregion
 
-        #region Constructor
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region Constructor
 
-        public JM_BusinessController(IImportantManager importantManager, ILameManager lameManager)
-        {
-            _lameManager = lameManager;
-            _importantManager = importantManager;
-        }
+		public JM_BusinessController(IImportantManager importantManager, ILameManager lameManager)
+		{
+			_lameManager = lameManager;
+			_importantManager = importantManager;
+		}
 
-        #endregion
+		#endregion
 
-        #region Views
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region Views
 
-        public ActionResult Important()
-        {
-            var model = _importantManager.GetCompleteData();
-            return View(model);
-        }
+		public ActionResult Important()
+		{
+			var model = _importantManager.GetCompleteData();
+			return View(model);
+		}
 
-        public ActionResult ImportantDetails(int id)
-        {
-            var model = new StringManagerModel
-            {
-                String = _importantManager.GetDataByIndex(id),
-                ID = id,
-                Manager = "ImportantManager"
-            };
-            return View("Details", model);
-        }
+		public ActionResult ImportantDetails(int id)
+		{
+			var model = new StringManagerModel
+			{
+				String = _importantManager.GetDataByIndex(id),
+				ID = id,
+				Manager = "ImportantManager"
+			};
+			return View("Details", model);
+		}
 
-        public ActionResult ImportantModuleInfo()
-        {
-            return View("ImportantModuleInfo", string.Empty, _importantManager.GetModuleInfo());
-        }
+		public ActionResult ImportantModuleInfo()
+		{
+			return View("ImportantModuleInfo", "", _importantManager.GetModuleInfo());
+		}
 
-        public ActionResult ImportantConfiguredDeviceInfo(int index = 0)
-        {
-            ViewBag.Index = index;
-            return View("ImportantConfiguredDeviceInfo", string.Empty, _importantManager.GetDeviceFromConfig(index));
-        }
+		public ActionResult ImportantConfiguredDeviceInfo(int index = 0)
+		{
+			ViewBag.Index = index;
+			return View("ImportantConfiguredDeviceInfo", "", _importantManager.GetDeviceFromConfig(index));
+		}
 
-        public ActionResult Lame()
-        {
-            var model = _lameManager.GetCompleteData();
-            return View(model);
-        }
+		public ActionResult Lame()
+		{
+			var model = _lameManager.GetCompleteData();
+			return View(model);
+		}
 
-        public ActionResult LameDetails(int id)
-        {
-            var model = new StringManagerModel
-            {
-                String = _lameManager.GetDataByIndex(id),
-                ID = id,
-                Manager = "LameManager"
-            };
-            return View("Details", model);
-        }
+		public ActionResult LameDetails(int id)
+		{
+			var model = new StringManagerModel
+			{
+				String = _lameManager.GetDataByIndex(id),
+				ID = id,
+				Manager = "LameManager"
+			};
+			return View("Details", model);
+		}
 
-        #endregion
+		#endregion
 
-        #region PartialViews
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region PartialViews
 
+		//
 
-        #endregion
-    }
+		#endregion
+	}
+
+	public class StringManagerModel
+	{
+		public int ID { get; set; }
+		public string String { get; set; }
+		public string Manager { get; set; }
+	}
 }

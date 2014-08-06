@@ -1,57 +1,64 @@
-﻿using System;
+﻿using JM.ReferenceApplication.App_Start;
+using JM.ReferenceApplication.Common.Monitoring;
+using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt;
+using JM.Business.Kontakt.Contracts.Model;
 using JM.Foundation.DependencyInjection;
-using JM.ReferenceApplication.App_Start;
-using JM.ReferenceApplication.Common.Monitoring;
 
 namespace JM.ReferenceApplication
 {
-    public class MvcApplication : System.Web.HttpApplication
-    {
-        /// <summary>
-        /// Wird beim Start der Application ausgeführt
-        /// </summary>
-        protected void Application_Start()
-        {
-            // MVC Bootstrapping
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutoFacConfig.RegisterDependencyResolver();
+	public class MvcApplication : System.Web.HttpApplication
+	{
+		/// <summary>
+		/// Wird beim Start der Application ausgeführt
+		/// </summary>
+		protected void Application_Start()
+		{
+			//////////////////////////////////////////////////////////////////////////////////////
+			#region MVC Bootstrapping
 
-            // Information Disclosure: MVC-Header entfernen
-            MvcHandler.DisableMvcResponseHeader = true;
+			AreaRegistration.RegisterAllAreas();
+			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
+			BundleConfig.RegisterBundles(BundleTable.Bundles);
+			AutoFacConfig.RegisterDependencyResolver();
 
-            // Eventlogging            
-            // Startet das Event-Handling über EventSource
-            ApplicationEvents.Log.Initialize();
+			// Information Disclosure: MVC-Header entfernen
+			MvcHandler.DisableMvcResponseHeader = true;
 
-            // Logaufruf: Start der Application
-            ApplicationEvents.Log.ApplicationStartup();
+			#endregion
+
+			//////////////////////////////////////////////////////////////////////////////////////
+			#region Eventlogging
+			
+			// Startet das Event-Handling über EventSource
+			ApplicationEvents.Log.Initialize();
+
+			// Logaufruf: Start der Application
+			ApplicationEvents.Log.ApplicationStartup();
+
+			#endregion
 
             ModelBinders.Binders.DefaultBinder = new AbstractModelBinder(DependencyResolver.Current);
-        }
+		}
 
-        /// <summary>
-        /// Wird vor dem Senden der Response ausgeführt
-        /// Löscht den "Server"-Header, Security/Obfuscation
-        /// </summary>
-        /// <param name="sender">object Sender</param>
-        /// <param name="e">EventArgs e</param>
-        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
-        {
-            var app = sender as MvcApplication;
+		/// <summary>
+		/// Wird vor dem Senden der Response ausgeführt
+		/// Löscht den "Server"-Header, Security/Obfuscation
+		/// </summary>
+		/// <param name="sender">object Sender</param>
+		/// <param name="e">EventArgs e</param>
+		protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+		{
+			var app = sender as MvcApplication;
+			if (app == null || app.Context == null)
+				return;
 
-            if (app == null || app.Context == null) 
-            { 
-                return; 
-            }
-
-            var headers = app.Context.Response.Headers;
-            headers.Remove("Server");
-        }
-    }
+			var headers = app.Context.Response.Headers;
+			headers.Remove("Server");
+		}
+	}
 }

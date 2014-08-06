@@ -12,7 +12,6 @@ namespace JM.ReferenceApplication.Models
         {
             // Beachten Sie, dass der "authenticationType" mit dem in "CookieAuthenticationOptions.AuthenticationType" definierten Typ übereinstimmen muss.
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-
             // Benutzerdefinierte Benutzeransprüche hier hinzufügen
             return userIdentity;
         }

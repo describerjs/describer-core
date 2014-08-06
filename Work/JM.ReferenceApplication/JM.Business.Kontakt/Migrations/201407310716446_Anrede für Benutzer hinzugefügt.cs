@@ -1,5 +1,6 @@
 namespace JM.Business.Kontakt.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
     public partial class AnredefürBenutzerhinzugefügt : DbMigration

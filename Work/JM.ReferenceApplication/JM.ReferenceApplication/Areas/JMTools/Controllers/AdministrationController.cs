@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using JM.Foundation.Mvc.Filter;
+﻿using JM.Foundation.Mvc.Filter;
+using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 {
@@ -11,22 +11,28 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 	[JMBasicAuthFilter]
 	public class AdministrationController : Controller
 	{
+		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
+
+		//
 
 		#endregion
 
+		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public AdministrationController()
 		{
+
 		}
 
 		#endregion
 
+		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		/// <summary>
-		/// Index liefern.
+		/// Index
 		/// </summary>
 		/// <returns>View</returns>
 		public ActionResult Index()
@@ -36,7 +42,10 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 
 		#endregion
 
+		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
+
+		//
 
 		#endregion
 	}

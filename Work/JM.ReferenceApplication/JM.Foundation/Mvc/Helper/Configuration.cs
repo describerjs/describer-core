@@ -1,5 +1,5 @@
-﻿using JM.Foundation.Configuration;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using JM.Foundation.Configuration;
 
 namespace JM.Foundation.Mvc.Helper
 {
