@@ -2,23 +2,28 @@
 
 namespace JM.ReferenceApplication.Areas.JMTools
 {
-    public class JMToolsAreaRegistration : AreaRegistration 
+    public class JMToolsAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "JMTools";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
-            context.MapRoute(
-                "JMTools_default",
-                "JMTools/{controller}/{action}/{id}",
-                new { controller="Administration", action = "Index", id = UrlParameter.Optional }
-            );
+            context
+                .MapRoute(
+                    "JMTools_default",
+                    "JMTools/{controller}/{action}/{id}",
+                    new 
+                    { 
+                        controller = "Administration", 
+                        action = "Index", 
+                        id = UrlParameter.Optional 
+                    });
         }
     }
 }

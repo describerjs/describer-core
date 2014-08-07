@@ -10,10 +10,11 @@ namespace JM.Foundation.Extensions
 	{
 		public static string GetRouteValue(this Route route, string key)
 		{
-			if (route == null)
-			{
-				return null;
-			}
+            if (route == null)
+            {
+                return null;
+            }
+
 			return route.DataTokens.GetRouteValue(key);
 		}
 
@@ -23,6 +24,7 @@ namespace JM.Foundation.Extensions
 			{
 				return null;
 			}
+
 			return routeData.DataTokens.GetRouteValue(key);
 		}
 
@@ -32,6 +34,7 @@ namespace JM.Foundation.Extensions
 			{
 				return null;
 			}
+
 			object routeName = null;
 			routeValues.TryGetValue(key, out routeName);
 			return routeName as string;
@@ -43,10 +46,12 @@ namespace JM.Foundation.Extensions
 			{
 				throw new ArgumentNullException("route");
 			}
+
 			if (route.DataTokens == null)
 			{
 				route.DataTokens = new RouteValueDictionary();
 			}
+
 			route.DataTokens[key] = routeName;
 			return route;
 		}

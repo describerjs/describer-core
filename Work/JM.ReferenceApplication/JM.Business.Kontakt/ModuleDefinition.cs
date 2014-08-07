@@ -23,10 +23,10 @@ namespace JM.Business.Kontakt
 		protected override void Load(ContainerBuilder builder)
 		{
 			// Basis-Syntax:
-			//builder
-			//	.RegisterType<ExampleImplementation>()
-			//	.As<ExampleInterface>()
-			//	.LifeTimeSetting;
+			// builder
+			// .RegisterType<ExampleImplementation>()
+			// .As<ExampleInterface>()
+			// .LifeTimeSetting;
 
 			builder
 				.RegisterType<KontaktManager>()

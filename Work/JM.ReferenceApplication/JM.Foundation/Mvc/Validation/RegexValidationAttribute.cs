@@ -6,35 +6,40 @@ using System.Web.Mvc;
 
 namespace JM.Foundation.Mvc.Validation
 {
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple=true)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class RegexValidationAttribute : ValidationAttribute, IClientValidatable
     {
         private string _regex = "";
+
         private bool _allowEmptyString = false;
- 
+
         public RegexValidationAttribute(string regex, bool allowEmptyString, string errorMessage)
             : base(errorMessage)
         {
             _regex = regex;
             _allowEmptyString = allowEmptyString;
         }
- 
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             try
             {
                 if (value == null || String.IsNullOrEmpty(value.ToString()))
                 {
-                    if(_allowEmptyString)
+                    if (_allowEmptyString)
+                    {
                         return ValidationResult.Success;
-                        
+                    }
+
                     return new ValidationResult(ErrorMessageString);
                 }
                 
                 var val = value.ToString();
 
-                if(!Regex.IsMatch(val, _regex))
+                if (!Regex.IsMatch(val, _regex))
+                {
                     return new ValidationResult(ErrorMessageString);
+                }
             }
             catch (Exception ex)
             {
@@ -43,9 +48,9 @@ namespace JM.Foundation.Mvc.Validation
                 throw ex;
             }
  
-            return ValidationResult.Success;;
+            return ValidationResult.Success;
         }
-    
+
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             string errorMessage = ErrorMessageString;
@@ -54,7 +59,8 @@ namespace JM.Foundation.Mvc.Validation
             regexRule.ErrorMessage = errorMessage;
             regexRule.ValidationType = "jmval"; // This is the name the jQuery adapter will use
             regexRule.ValidationParameters.Add("pattern", _regex);
-            if(_allowEmptyString)
+            
+            if (_allowEmptyString)
                 regexRule.ValidationParameters.Add("allowempty", _allowEmptyString);
 
             yield return regexRule;

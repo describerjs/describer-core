@@ -17,7 +17,7 @@ namespace JM.ReferenceApplication.Models
 							 this HtmlHelper<TModel> html,
 							 Expression<Func<TModel, TValue>> expression, object htmlAttributes = null, string errorMessage = null)
 		{
-			//var x = ModelMetadata.FromLambdaExpression<TModel, TValue>(expression, html.ViewData);
+            ////var x = ModelMetadata.FromLambdaExpression<TModel, TValue>(expression, html.ViewData);
 
 			var attributes = new RouteValueDictionary(htmlAttributes);
 			if (attributes.ContainsKey("class"))
@@ -32,9 +32,11 @@ namespace JM.ReferenceApplication.Models
 							 this HtmlHelper<TModel> htmlHelper,
 							 Expression<Func<TModel, TValue>> expression, object htmlAttributes = null)
 		{
-			if(htmlAttributes == null)
-				htmlAttributes = new Dictionary<string, object>();
-			
+            if (htmlAttributes == null)
+            {
+                htmlAttributes = new Dictionary<string, object>();
+            }
+
 			var content = htmlHelper.TextBoxFor(expression, htmlAttributes);
 
 			return MvcHtmlString.Create(content.ToString().Replace("data-val", "data"));

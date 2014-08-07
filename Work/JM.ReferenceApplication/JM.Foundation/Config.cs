@@ -46,9 +46,8 @@ namespace JM.Foundation
 		}
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////
-	#region Configuration für das ErrorHttpModule 
-	
+	#region Configuration für das ErrorHttpModule
+
 	internal class ErrorHttpModule : ConfigurationElement
 	{
 		[ConfigurationProperty("enabled", DefaultValue = true, IsRequired = false)]
@@ -78,7 +77,6 @@ namespace JM.Foundation
 
 	#endregion
 
-	//////////////////////////////////////////////////////////////////////////////////////
 	#region Configuration das JMBasicAuthFilterAttribute zur BASIC-Authentication von Actions
 
 	internal class JMBasicAuthenticationFilter : ConfigurationElement
@@ -103,8 +101,7 @@ namespace JM.Foundation
 	}
 
 	#endregion
-	
-	//////////////////////////////////////////////////////////////////////////////////////
+
 	#region Configuration von Performance und Features
 
 	internal class Features : ConfigurationElement

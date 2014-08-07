@@ -72,7 +72,7 @@ namespace JM.Business.Kontakt
 			get { return this["defaultSubject"] as string; }
 		}
 
-		[ConfigurationProperty("subjectPrefix" , IsRequired = false)]
+		[ConfigurationProperty("subjectPrefix", IsRequired = false)]
 		public String SubjectPrefix
 		{
 			get { return this["subjectPrefix"] as string; }

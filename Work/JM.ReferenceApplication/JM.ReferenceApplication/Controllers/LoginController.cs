@@ -9,7 +9,6 @@ using Microsoft.Owin.Security;
 
 namespace JM.ReferenceApplication.Controllers
 {
-    
     public class LoginController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -110,7 +109,7 @@ namespace JM.ReferenceApplication.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null) 
+            if (userId == null || code == null)
             {
                 return View("Error");
             }
@@ -152,7 +151,7 @@ namespace JM.ReferenceApplication.Controllers
                 // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                 // E-Mail-Nachricht mit diesem Link senden
                 // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // var callbackUrl = Url.Action("ResetPassword", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 // await UserManager.SendEmailAsync(user.Id, "Kennwort zurücksetzen", "Bitte setzen Sie Ihr Kennwort zurück. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Login");
             }
@@ -167,15 +166,16 @@ namespace JM.ReferenceApplication.Controllers
         {
             return View();
         }
-	
+
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            if (code == null) 
+            if (code == null)
             {
                 return View("Error");
             }
+
             return View();
         }
 
@@ -188,12 +188,15 @@ namespace JM.ReferenceApplication.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
+                
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Es wurde kein Benutzer gefunden.");
                     return View();
                 }
+
                 IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+                
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ResetPasswordConfirmation", "Login");
@@ -223,6 +226,7 @@ namespace JM.ReferenceApplication.Controllers
         {
             ManageMessageId? message = null;
             IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -233,6 +237,7 @@ namespace JM.ReferenceApplication.Controllers
             {
                 message = ManageMessageId.Error;
             }
+
             return RedirectToAction("Manage", new { Message = message });
         }
 
@@ -351,15 +356,19 @@ namespace JM.ReferenceApplication.Controllers
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+
             if (loginInfo == null)
             {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
+
             IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+
             if (result.Succeeded)
             {
                 return RedirectToAction("Manage");
             }
+
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
 
@@ -378,28 +387,32 @@ namespace JM.ReferenceApplication.Controllers
             {
                 // Informationen zum Benutzer aus dem externen Anmeldeanbieter abrufen
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
                 }
+
                 var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user);
+                
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
-                        
+
                         // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                         // E-Mail-Nachricht mit diesem Link senden
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // SendEmail(user.Email, callbackUrl, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu");
-                        
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -439,6 +452,7 @@ namespace JM.ReferenceApplication.Controllers
                 UserManager.Dispose();
                 UserManager = null;
             }
+
             base.Dispose(disposing);
         }
 
@@ -471,10 +485,12 @@ namespace JM.ReferenceApplication.Controllers
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
+
             if (user != null)
             {
                 return user.PasswordHash != null;
             }
+
             return false;
         }
 
@@ -516,17 +532,34 @@ namespace JM.ReferenceApplication.Controllers
                 UserId = userId;
             }
 
-            public string LoginProvider { get; set; }
-            public string RedirectUri { get; set; }
-            public string UserId { get; set; }
+            public string LoginProvider
+            {
+                get;
+                set;
+            }
+
+            public string RedirectUri
+            {
+                get;
+                set;
+            }
+
+            public string UserId
+            {
+                get;
+                set;
+            }
+
 
             public override void ExecuteResult(ControllerContext context)
             {
                 var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;
                 }
+
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }

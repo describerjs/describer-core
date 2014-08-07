@@ -7,7 +7,7 @@ using System.Web;
 namespace JM.Foundation.Utils
 {
 	/// <summary>
-	/// Kapselt das verifizieren von POST / GET Parametern ab und 
+	/// Kapselt das verifizieren von POST / GET Parametern ab und
 	/// spart so ein bischen Hackerei und Unübersichtlichkeit
 	/// </summary>
 	public class RequestParameter
@@ -94,7 +94,11 @@ namespace JM.Foundation.Utils
 		/// <returns></returns>
 		public static string ReadGet(string parameterName, bool alphaNumericOnly, bool unfiltered)
 		{
-			var result = (HttpContext.Current.Request.QueryString[parameterName] != null && !String.IsNullOrEmpty(HttpContext.Current.Request.QueryString[parameterName].ToString())) ? HttpContext.Current.Request.QueryString[parameterName].ToString() : string.Empty;
+			var result =
+                (HttpContext.Current.Request.QueryString[parameterName] != null &&
+                !String.IsNullOrEmpty(HttpContext.Current.Request.QueryString[parameterName].ToString())) ?
+                    HttpContext.Current.Request.QueryString[parameterName].ToString() :
+                    string.Empty;
 
 			if (alphaNumericOnly && !String.IsNullOrEmpty(result))
 				return result.AlphanumericOnly();
@@ -122,7 +126,8 @@ namespace JM.Foundation.Utils
 				url = url.Split('?').Last();
 
 			var parameters = url.Split('&');
-			foreach (var parameter in parameters)
+			
+            foreach (var parameter in parameters)
 			{
 				var parr = parameter.Split('=');
 				if (parr[0] != null && parr[0].ToLower() == paramName.ToLower() && parr[1] != null)
@@ -130,6 +135,7 @@ namespace JM.Foundation.Utils
 					return parr[1];
 				}
 			}
+
 			return String.Empty;
 		}
 	}

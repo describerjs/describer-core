@@ -1,5 +1,4 @@
 ﻿using Castle.DynamicProxy;
-//using JM.Foundation.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace JM.Foundation.ErrorHandling
     public interface IErrorHandler
     {
         void Handle(
-            Exception ex, 
+            Exception ex,
             ExceptionPolicy policy,
             string context);
 
@@ -32,7 +31,7 @@ namespace JM.Foundation.ErrorHandling
     {
         private void LogException(Exception ex, SystemBoundaryAttribute context, object[] arguments)
         {
-            if(context.Impact == BusinesImpact.High)
+            if (context.Impact == BusinesImpact.High)
             {
                 JMEventSourceBase.Log.FatalBusinessException(ex, context.BusinessContext, arguments);
             }

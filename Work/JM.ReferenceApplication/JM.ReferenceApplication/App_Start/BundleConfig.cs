@@ -8,7 +8,7 @@ namespace JM.ReferenceApplication
         public static void RegisterBundles(BundleCollection bundles)
         {
 			#region Bundles für /JMDemo & /JMTools
-			
+
 			bundles.Add(new ScriptBundle("~/jm/jquery").Include(
                         "~/Areas/JMDemo/js/jquery-{version}.js"));
 
@@ -26,7 +26,7 @@ namespace JM.ReferenceApplication
 					  "~/Areas/JMDemo/css/bootstrap.css",
 					  "~/Areas/JMDemo/css/site.css"));
 
-			#endregion 
+			#endregion
 
 			// Festlegen von "EnableOptimizations" auf "false" für Debugzwecke. Weitere Informationen
             // finden Sie unter "http://go.microsoft.com/fwlink/?LinkId=301862".

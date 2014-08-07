@@ -12,12 +12,12 @@ namespace JM.ReferenceApplication.Common.Monitoring
     {
         [Event(1, Level = EventLevel.Error, Task = Tasks.CriticalBusinessTask)]
         protected override void FatalBusinessException(
-            string message, 
+            string message,
             string details, 
             string context, 
             string parameters)
         {
-            if(this.IsEnabled()) base.WriteEvent(1, context, message, details, parameters);
+            if (this.IsEnabled()) base.WriteEvent(1, context, message, details, parameters);
         }
 
         [Event(2, Level = EventLevel.Error)]

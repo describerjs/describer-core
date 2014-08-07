@@ -31,8 +31,8 @@ namespace JM.Foundation.ErrorHandling
         public void Exception(Exception ex, MethodInfo callContext, object[] arguments)
         {
             string message = string.Format("Fehler in {'0'}", callContext.Name);
-            
-            var parameters = arguments.Select(a => a !=null ? a.ToString() : "'null'");
+
+            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
             var joinedParameters = string.Join(", ", parameters);
             GenericException(ex.Message, ex.ToString(), joinedParameters);
         }
@@ -62,8 +62,8 @@ namespace JM.Foundation.ErrorHandling
         }
 
         protected abstract void GenericException(
-            string message, 
-            string details, 
+            string message,
+            string details,
             string parameters);
 
         protected abstract void FatalBusinessException(

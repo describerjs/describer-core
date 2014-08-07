@@ -37,7 +37,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		/// <returns>View</returns>
 		public ActionResult JM_Business_Kontakt()
 		{
-			return View();	
+			return View();
 		}
 
 		/// <summary>

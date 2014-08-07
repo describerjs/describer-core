@@ -11,7 +11,7 @@ namespace JM.Foundation.DependencyInjection
         {
             if (resolver == null)
 				throw new ArgumentNullException("resolver");
-				
+
             _resolver = resolver;
         }
 
@@ -20,7 +20,7 @@ namespace JM.Foundation.DependencyInjection
 	        if (!MustResolve(bindingContext.ModelType))
 		        return base.CreateModel(controllerContext, bindingContext, modelType);
 
-	        var resolvedObject = 
+	        var resolvedObject =
 		        _resolver.GetService(bindingContext.ModelType);
 
 	        if (resolvedObject != null)
@@ -50,7 +50,7 @@ namespace JM.Foundation.DependencyInjection
 
         private static bool HasNoParameterlessConstructor(Type type)
         {
-            return 
+            return
                 type.GetConstructor(Type.EmptyTypes) == null;
         }
     }

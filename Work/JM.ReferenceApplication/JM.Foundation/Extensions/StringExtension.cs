@@ -20,6 +20,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.HtmlEncode(s);
 			}
+
 			return String.Empty;
 		}
 
@@ -39,6 +40,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.HtmlAttributeEncode(s);
 			}
+
 			return String.Empty;
 		}
 
@@ -58,6 +60,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.JavaScriptEncode(s);
 			}
+
 			return String.Empty;
 		}
 
@@ -77,6 +80,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.UrlEncode(s);
 			}
+
 			return String.Empty;
 		}
 
@@ -96,6 +100,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.VisualBasicScriptEncode(s);
 			}
+
 			return String.Empty;
 		}
 
@@ -115,6 +120,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.XmlEncode(s);
 			}
+
 			return String.Empty;
 		}
 
@@ -134,6 +140,7 @@ namespace JM.Foundation.Extensions
 			{
 				return Encoder.XmlAttributeEncode(s);
 			}
+
 			return String.Empty;
 		}
 

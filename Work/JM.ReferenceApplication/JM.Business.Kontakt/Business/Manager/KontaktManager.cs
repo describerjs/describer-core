@@ -118,7 +118,7 @@ namespace JM.Business.Kontakt.Business.Manager
 			var data = new JM.Business.Kontakt.DataModel.PersonalData
 			{
 				CreatedAt = model.CreatedAt,
-				Email=model.Email,
+				Email = model.Email,
 				UserID = model.UserID,
 				Salutation = model.Salutation,
 				FirstName = model.FirstName,
@@ -135,6 +135,7 @@ namespace JM.Business.Kontakt.Business.Manager
 				{
 					data.CreatedAt = DateTime.Now;
 				}
+
 				db.CustomerData.AddOrUpdate(data);
 				db.SaveChanges();
 			}

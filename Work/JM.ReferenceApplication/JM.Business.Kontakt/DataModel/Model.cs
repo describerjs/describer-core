@@ -6,7 +6,9 @@ using JM.Business.Kontakt.Contracts.Model;
 namespace JM.Business.Kontakt.DataModel
 {
 	/// <summary>
-	/// Das Datenmodel für diese Anwendung verfolgt den Code First Ansatz von EF. Hier werden die Tables als Klassen beschrieben, die Verknüpfung untereinander erfolgt über Fluid Syntax im DataContext.
+	/// Das Datenmodel für diese Anwendung verfolgt den Code First Ansatz von EF. 
+    /// Hier werden die Tables als Klassen beschrieben, 
+    /// die Verknüpfung untereinander erfolgt über Fluid Syntax im DataContext.
 	/// </summary>
 	[Table("PersonalData")]
 	public class PersonalData : IPersonalData

@@ -89,7 +89,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
             model.Salutation = userData.Salutation;
             model.FirstName = userData.FirstName;
             model.LastName = userData.LastName;
-			
+
 			return View("CreateRequest", model);
 		}
 

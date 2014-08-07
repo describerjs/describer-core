@@ -57,7 +57,7 @@ namespace JM.Foundation.Configuration
         {
             configSection = null;
 			T section = null;
-            
+
 			// In web.config sichen
 			section = ConfigurationManager.GetSection(sectionName) as T;
 			if (section != null)
@@ -65,21 +65,21 @@ namespace JM.Foundation.Configuration
 				configSection = section;
 				return true;
 			}
-			
-			//// In app.config suchen
-			//var appConfig = getConfigurationFromAppConfig();
 
-			//if (appConfig != null)
-			//{
-			//	section = appConfig.GetSection(sectionName) as T;
+            ////// In app.config suchen
+            ////var appConfig = getConfigurationFromAppConfig();
 
-			//	if (section != null)
-			//	{
-			//		configSection = section;
-			//		return true;
-			//	}
-			//}
-            
+            ////if (appConfig != null)
+            ////{
+            ////	section = appConfig.GetSection(sectionName) as T;
+
+            ////	if (section != null)
+            ////	{
+            ////		configSection = section;
+            ////		return true;
+            ////	}
+            ////}
+
             return false;
         }
 
