@@ -47,13 +47,13 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		public ActionResult ImportantModuleInfo()
 		{
-			return View("ImportantModuleInfo", "", _importantManager.GetModuleInfo());
+			return View("ImportantModuleInfo", string.Empty, _importantManager.GetModuleInfo());
 		}
 
 		public ActionResult ImportantConfiguredDeviceInfo(int index = 0)
 		{
 			ViewBag.Index = index;
-			return View("ImportantConfiguredDeviceInfo", "", _importantManager.GetDeviceFromConfig(index));
+			return View("ImportantConfiguredDeviceInfo", string.Empty, _importantManager.GetDeviceFromConfig(index));
 		}
 
 		public ActionResult Lame()
@@ -79,5 +79,4 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 	}
-
 }

@@ -19,7 +19,6 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 
 		public AdministrationController()
 		{
-
 		}
 
 		#endregion

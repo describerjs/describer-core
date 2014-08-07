@@ -49,9 +49,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		[HttpPost]
 		public ActionResult StoreFamilyData(IFamilyModel model)
 		{
-			if (!ModelState.IsValid)
-				return View(model);
-
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 			return View("StoreFamilyData_Danke", model);
 		}
@@ -66,8 +67,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		[HttpPost]
 		public ActionResult StoreData(IPersonalData model)
 		{
-			if (!ModelState.IsValid)
-				return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 			model.LastEditAt = DateTime.Now;
 			_kontaktManager.SavePersonalData(model);
@@ -96,11 +99,12 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		[HttpPost]
 		public ActionResult CreateRequest(IContactModel model)
 		{
-			if (!ModelState.IsValid)
-				return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 			_kontaktManager.SendContactMail(model);
-
 			return View("CreateRequest_Danke", model);
 		}
 

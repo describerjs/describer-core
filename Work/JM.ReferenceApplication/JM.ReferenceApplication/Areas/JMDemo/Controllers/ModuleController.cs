@@ -15,7 +15,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		public ModuleController()
 		{
-
 		}
 
 		#endregion

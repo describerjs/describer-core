@@ -8,6 +8,18 @@ namespace JM.Foundation
 {
     public class JMApplicationException : Exception
     {
+        public JMApplicationException()
+        {
+        }
+
+        public JMApplicationException(string message) : base(message)
+        {
+        }
+
+        public JMApplicationException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
         public string UserMessage
         {
             get;
@@ -24,7 +36,7 @@ namespace JM.Foundation
         { 
             get 
             { 
-                return !String.IsNullOrEmpty(UserMessage); 
+                return !string.IsNullOrEmpty(UserMessage); 
             }
         }
 
@@ -32,7 +44,7 @@ namespace JM.Foundation
         { 
             get 
             { 
-                return !String.IsNullOrEmpty(RedirectUrl); 
+                return !string.IsNullOrEmpty(RedirectUrl); 
             } 
         }
 
@@ -40,18 +52,6 @@ namespace JM.Foundation
         { 
             get; 
             set; 
-        }
-
-        public JMApplicationException()
-        {
-        }
-
-        public JMApplicationException(string message) : base(message)
-        {
-        }
-
-        public JMApplicationException(string message, Exception innerException) : base(message, innerException)
-        {
         }
     }
 }

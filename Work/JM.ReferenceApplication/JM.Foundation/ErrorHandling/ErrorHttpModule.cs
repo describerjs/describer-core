@@ -60,7 +60,9 @@ namespace JM.Foundation.ErrorHandling
             var exception = HttpContext.Current.Server.GetLastError();
 
             if (exception is HttpUnhandledException)
+            {
                 exception = exception.InnerException ?? exception;
+            }
 
             var httpException = exception as HttpException;
 
@@ -144,16 +146,16 @@ namespace JM.Foundation.ErrorHandling
             if (handledException != null && s_showErrorDetails)
             {
                 response.Write("<h2>Behandelter Fehler</h2>");
-                response.Write(String.Format("<p>{0}</p>", handledException.Message));
-                response.Write(String.Format("<pre>{0}</pre>", handledException.StackTrace));
+                response.Write(string.Format("<p>{0}</p>", handledException.Message));
+                response.Write(string.Format("<pre>{0}</pre>", handledException.StackTrace));
             }
 
             if (exception != null && s_showErrorDetails)
             {
                 response.Write("<h2>Fehler im ErrorHandling</h2>");
-                response.Write(String.Format("<p>{0}</p>", message));
-                response.Write(String.Format("<p>{0}</p>", exception.Message));
-                response.Write(String.Format("<pre>{0}</pre>", exception.StackTrace));
+                response.Write(string.Format("<p>{0}</p>", message));
+                response.Write(string.Format("<p>{0}</p>", exception.Message));
+                response.Write(string.Format("<pre>{0}</pre>", exception.StackTrace));
             }
 
             HttpContext.Current.ApplicationInstance.CompleteRequest();

@@ -5,10 +5,10 @@ using System.Web.Routing;
 
 namespace JM.Foundation.Mvc.Routing
 {
-	// http://samsaffron.com/archive/2011/10/13/optimising-asp-net-mvc3-routing
 	/// <summary>
 	/// Angepasster Constraint für das begrenzen von Routen mittels regex.
 	/// </summary>
+    /// <remarks>http://samsaffron.com/archive/2011/10/13/optimising-asp-net-mvc3-routing</remarks>
 	public class RegexConstraint : IRouteConstraint, IEquatable<RegexConstraint>
 	{
 		private Regex _regex;

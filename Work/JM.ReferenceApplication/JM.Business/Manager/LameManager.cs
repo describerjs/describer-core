@@ -8,7 +8,8 @@ namespace JM.Business.Manager
 	public interface ILameManager
 	{
 		List<string> GetCompleteData();
-		string GetDataByIndex(int index);
+
+        string GetDataByIndex(int index);
 	}
 
 	public class LameManager : ILameManager

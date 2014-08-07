@@ -68,8 +68,11 @@
     <Compile Include="Business\Model\PersonalData.cs" />
     <Compile Include="Business\Model\StartModel.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ConnectionString.cs" />
     <Compile Include="DataAccess\Data.cs" />
+    <Compile Include="DataModel\ContactRequest.cs" />
     <Compile Include="DataModel\Model.cs" />
+    <Compile Include="MailingElement.cs" />
     <Compile Include="Migrations\201407291110061_First Init.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -98,6 +101,7 @@
     <Compile Include="ModuleDefinition.cs" />
     <Compile Include="ModuleEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmtpServerElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

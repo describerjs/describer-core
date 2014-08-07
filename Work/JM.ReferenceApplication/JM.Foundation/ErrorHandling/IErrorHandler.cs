@@ -29,19 +29,6 @@ namespace JM.Foundation.ErrorHandling
 
     public class ErrorHandler : IErrorHandler
     {
-        private void LogException(Exception ex, SystemBoundaryAttribute context, object[] arguments)
-        {
-            if (context.Impact == BusinesImpact.High)
-            {
-                JMEventSourceBase.Log.FatalBusinessException(ex, context.BusinessContext, arguments);
-            }
-        }
-
-        private void LogException(Exception ex, object[] arguments)
-        {
-            JMEventSourceBase.Log.Exception(ex, arguments);
-        }
-
         public void Handle(Exception ex, ExceptionPolicy policy, string context)
         {
             throw new NotImplementedException();
@@ -85,6 +72,19 @@ namespace JM.Foundation.ErrorHandling
             {
                 LogException(ex, invocation);
             }
+        }
+
+        private void LogException(Exception ex, SystemBoundaryAttribute context, object[] arguments)
+        {
+            if (context.Impact == BusinesImpact.High)
+            {
+                JMEventSourceBase.Log.FatalBusinessException(ex, context.BusinessContext, arguments);
+            }
+        }
+
+        private void LogException(Exception ex, object[] arguments)
+        {
+            JMEventSourceBase.Log.Exception(ex, arguments);
         }
     }
 }

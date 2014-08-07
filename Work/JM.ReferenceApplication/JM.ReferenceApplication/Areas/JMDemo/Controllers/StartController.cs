@@ -18,7 +18,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		public StartController()
 		{
-
 		}
 
 		#endregion

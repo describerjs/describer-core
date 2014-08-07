@@ -15,9 +15,7 @@ namespace JM.ReferenceApplication
 		/// </summary>
 		protected void Application_Start()
 		{
-			//////////////////////////////////////////////////////////////////////////////////////
-			#region MVC Bootstrapping
-
+			// MVC Bootstrapping
 			AreaRegistration.RegisterAllAreas();
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -27,18 +25,13 @@ namespace JM.ReferenceApplication
 			// Information Disclosure: MVC-Header entfernen
 			MvcHandler.DisableMvcResponseHeader = true;
 
-			#endregion
-
-			//////////////////////////////////////////////////////////////////////////////////////
-			#region Eventlogging
+			// Eventlogging
 
 			// Startet das Event-Handling über EventSource
 			ApplicationEvents.Log.Initialize();
 
 			// Logaufruf: Start der Application
 			ApplicationEvents.Log.ApplicationStartup();
-
-			#endregion
 
 			// Um für Post-Actions keine Model in der Web.dll definieren zu müssen,
 			// wird ein eigener Modelbinder eingesetzt. Dieser erkennt über die AutoFac-Dependencyinjection
@@ -56,8 +49,11 @@ namespace JM.ReferenceApplication
 		protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
 		{
 			var app = sender as MvcApplication;
-			if (app == null || app.Context == null)
-				return;
+
+            if (app == null || app.Context == null)
+            {
+                return;
+            }
 
 			var headers = app.Context.Response.Headers;
 			headers.Remove("Server");

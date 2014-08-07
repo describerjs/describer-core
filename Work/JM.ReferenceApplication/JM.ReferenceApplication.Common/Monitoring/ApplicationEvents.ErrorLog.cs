@@ -17,13 +17,19 @@ namespace JM.ReferenceApplication.Common.Monitoring
             string context, 
             string parameters)
         {
-            if (this.IsEnabled()) base.WriteEvent(1, context, message, details, parameters);
+            if (this.IsEnabled())
+            {
+                WriteEvent(1, context, message, details, parameters);
+            }
         }
 
         [Event(2, Level = EventLevel.Error)]
         protected override void GenericException(string message, string details, string parameters)
         {
-            base.WriteEvent(2, message, details, parameters);
+            if (IsEnabled())
+            {
+                WriteEvent(2, message, details, parameters);
+            }
         }
 
         [Event(3, Level = EventLevel.Error)]
@@ -33,7 +39,10 @@ namespace JM.ReferenceApplication.Common.Monitoring
             string context,
             string parameters)
         {
-            base.WriteEvent(3, message, details, parameters);
+            if (IsEnabled())
+            {
+                WriteEvent(3, message, details, parameters);
+            }
         }
     }
 }

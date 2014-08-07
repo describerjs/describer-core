@@ -11,8 +11,10 @@ namespace JM.ReferenceApplication.Controllers
 {
     public class LoginController : Controller
     {
+        // Wird für XSRF-Schutz beim Hinzufügen externer Anmeldungen verwendet
+        private const string c_xsrfKey = "XsrfId";
         private ApplicationUserManager _userManager;
-
+        
         public LoginController()
         {
         }
@@ -22,15 +24,32 @@ namespace JM.ReferenceApplication.Controllers
             UserManager = userManager;
         }
 
-        public ApplicationUserManager UserManager 
+        public enum ManageMessageId
+        {
+            ChangePasswordSuccess,
+            SetPasswordSuccess,
+            RemoveLoginSuccess,
+            Error
+        }
+
+        public ApplicationUserManager UserManager
         {
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
             }
         }
 
@@ -59,7 +78,7 @@ namespace JM.ReferenceApplication.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Ungültiger Benutzername oder ungültiges Kennwort.");
+                    ModelState.AddModelError(string.Empty, "Ungültiger Benutzername oder ungültiges Kennwort.");
                 }
             }
 
@@ -93,7 +112,6 @@ namespace JM.ReferenceApplication.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
-
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -145,7 +163,7 @@ namespace JM.ReferenceApplication.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    ModelState.AddModelError("", "Der Benutzer ist nicht vorhanden oder wurde nicht bestätigt.");
+                    ModelState.AddModelError(string.Empty, "Der Benutzer ist nicht vorhanden oder wurde nicht bestätigt.");
                     return View();
                 }
 
@@ -192,7 +210,7 @@ namespace JM.ReferenceApplication.Controllers
                 
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Es wurde kein Benutzer gefunden.");
+                    ModelState.AddModelError(string.Empty, "Es wurde kein Benutzer gefunden.");
                     return View();
                 }
 
@@ -250,7 +268,7 @@ namespace JM.ReferenceApplication.Controllers
                 : message == ManageMessageId.SetPasswordSuccess ? "Ihr Kennwort wurde festgelegt."
                 : message == ManageMessageId.RemoveLoginSuccess ? "Die externe Anmeldung wurde entfernt."
                 : message == ManageMessageId.Error ? "Fehler"
-                : "";
+                : string.Empty;
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
@@ -459,17 +477,6 @@ namespace JM.ReferenceApplication.Controllers
 
         #region Hilfsprogramme
 
-        // Wird für XSRF-Schutz beim Hinzufügen externer Anmeldungen verwendet
-        private const string c_xsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
-
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
@@ -480,7 +487,7 @@ namespace JM.ReferenceApplication.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
         }
 
@@ -499,14 +506,6 @@ namespace JM.ReferenceApplication.Controllers
         private void SendEmail(string email, string callbackUrl, string subject, string message)
         {
             // Weitere Informationen zum Senden von E-Mail finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
-        }
-
-        public enum ManageMessageId
-        {
-            ChangePasswordSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
-            Error
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
@@ -551,7 +550,6 @@ namespace JM.ReferenceApplication.Controllers
                 get;
                 set;
             }
-
 
             public override void ExecuteResult(ControllerContext context)
             {

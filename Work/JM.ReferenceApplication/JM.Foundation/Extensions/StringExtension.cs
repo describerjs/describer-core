@@ -6,7 +6,7 @@ namespace JM.Foundation.Extensions
 {
 	public static class StringExtension
 	{
-		#region public static string HtmlEncode(this String s)
+		#region public static string HtmlEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in HTML-Code
@@ -14,19 +14,19 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string HtmlEncode(this String s)
+		public static string HtmlEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.HtmlEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
 
-		#region public static string HtmlAttributeEncode(this String s)
+		#region public static string HtmlAttributeEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in einem HTML-Attribut
@@ -34,19 +34,19 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string HtmlAttributeEncode(this String s)
+		public static string HtmlAttributeEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.HtmlAttributeEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
 
-		#region public static string JavaScriptEncode(this String s)
+		#region public static string JavaScriptEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in einem JavaScript
@@ -54,19 +54,19 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string JavaScriptEncode(this String s)
+		public static string JavaScriptEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.JavaScriptEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
 
-		#region public static string UrlEncode(this String s)
+		#region public static string UrlEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in einer URL
@@ -74,19 +74,19 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string UrlEncode(this String s)
+		public static string UrlEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.UrlEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
 
-		#region public static string VisualBasicScriptEncode(this String s)
+		#region public static string VisualBasicScriptEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in VisualBasic Script-Code
@@ -94,19 +94,19 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string VisualBasicScriptEncode(this String s)
+		public static string VisualBasicScriptEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.VisualBasicScriptEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
 
-		#region public static string XmlEncode(this String s)
+		#region public static string XmlEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in XML-Tags
@@ -114,19 +114,19 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string XmlEncode(this String s)
+		public static string XmlEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.XmlEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
 
-		#region public static string XmlAttributeEncode(this String s)
+		#region public static string XmlAttributeEncode(this string s)
 
 		/// <summary>
 		/// Encodiert den String XSS-Sicher für die Verwendung in XML-Attributen
@@ -134,14 +134,14 @@ namespace JM.Foundation.Extensions
 		/// </summary>
 		/// <param name="s">this</param>
 		/// <returns>XSS-Sicheren encodierten String</returns>
-		public static string XmlAttributeEncode(this String s)
+		public static string XmlAttributeEncode(this string s)
 		{
-			if (!String.IsNullOrEmpty(s))
+			if (!string.IsNullOrEmpty(s))
 			{
 				return Encoder.XmlAttributeEncode(s);
 			}
 
-			return String.Empty;
+			return string.Empty;
 		}
 
 		#endregion
@@ -155,7 +155,7 @@ namespace JM.Foundation.Extensions
 		public static string AlphanumericOnly(this string str)
 		{
 			var rgx = new Regex("[^a-zA-Z0-9 _-]");
-			return rgx.Replace(str, "");
+			return rgx.Replace(str, string.Empty);
 		}
 
 		/// <summary>
@@ -166,7 +166,7 @@ namespace JM.Foundation.Extensions
 		public static string NumericOnly(this string str)
 		{
 			var rgx = new Regex("[^\\d]");
-			return rgx.Replace(str, "");
+			return rgx.Replace(str, string.Empty);
 		}
 	}
 }

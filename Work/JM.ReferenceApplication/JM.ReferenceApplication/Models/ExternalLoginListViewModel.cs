@@ -1,4 +1,3 @@
-
 namespace JM.ReferenceApplication.Models
 {
     public class ExternalLoginListViewModel

@@ -20,7 +20,7 @@ namespace JM.Foundation.Configuration
         {
             var configurationValue = ConfigurationManager.AppSettings[configurationKey];
 
-	        return String.IsNullOrEmpty(configurationValue) ? defaultValue : configurationValue;
+	        return string.IsNullOrEmpty(configurationValue) ? defaultValue : configurationValue;
         }
 
 		/// <summary>
@@ -38,7 +38,10 @@ namespace JM.Foundation.Configuration
             if (string.IsNullOrEmpty(configurationValue))
             {
                 if (defaultValue == null)
+                {
                     throw new InvalidOperationException("required appSetting " + configurationKey + " is missing");
+                }
+                    
                 return defaultValue.Value;
             }
 
@@ -94,8 +97,10 @@ namespace JM.Foundation.Configuration
 		{
 			var configSection = ConfigurationManager.GetSection(sectionName) as T;
 
-			if (configSection != null)
-				return configSection;
+            if (configSection != null)
+            {
+                return configSection;
+            }
 
 			throw
 				new JMApplicationException(

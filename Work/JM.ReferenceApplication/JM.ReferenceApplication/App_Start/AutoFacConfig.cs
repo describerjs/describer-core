@@ -28,9 +28,7 @@ namespace JM.ReferenceApplication.App_Start
 			// Alle Controller registrieren damit das Referenzen im Controller-Constructor automatisch aufgelöst weden können
 			autofacBuilder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-			//////////////////////////////////////////////////////////////////////////////////////
-			#region Registrierung von Typen per FluentApi
-
+			// Registrierung von Typen per FluentApi
 			// Ein Typ wird registriert, indem Implementation und Interface bekannt gemacht werden:
 			// autofacBuilder.RegisterType<ExampleImplementation>().As<IExampleInterface>();
 			// Dazu muss die Ursprungs-DLL aber in der Web.dll bekannt sein. Um diese Bindung zu umgehen
@@ -48,20 +46,12 @@ namespace JM.ReferenceApplication.App_Start
 
 			// --> Hier weitere Typen hinzufügen soweit notwendig <--
 
-			#endregion
-
-			//////////////////////////////////////////////////////////////////////////////////////
-			#region Registrierung von Modulen per Config
-
+			// Registrierung von Modulen per Config
 			// AutoFac Modul-Konfiguration einlesen. In dieser Config sind DLLs referenziert,
 			// in denen über eine spezielle Klasse (geerbt von AutoFac.Module) alle für DI zu nutzenden Klassen und deren Scope definiert sind.
 			autofacBuilder.RegisterModule(new XmlFileReader("App_Data/autofac.config"));
 
-			#endregion
-
-			//////////////////////////////////////////////////////////////////////////////////////
-			#region ErrorInterceptor und ErrorHandler registrieren
-
+			// ErrorInterceptor und ErrorHandler registrieren
 			// Interceptor anbinden
 			// Alle Aufrufe in Businessklassen werden über den Interceptor abgefangen und ausgeführt, damit
 			// dabei entstehende Exceptions besser behandelt werden können.
@@ -70,8 +60,6 @@ namespace JM.ReferenceApplication.App_Start
 
 			// ErrorHandler definieren
 			autofacBuilder.RegisterInstance<IErrorHandler>(new ErrorHandler());
-
-			#endregion
 
             // Abschliessend wird der Container erzeugt und dem DependencyResolver von MVC zugewiesen, über
 			// diesen erfolgt dann das eigentliche Auflösen der Abhängigkeiten

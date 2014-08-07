@@ -56,6 +56,8 @@
     <Compile Include="Config.cs" />
     <Compile Include="Data\ExampleDataRepository.cs" />
     <Compile Include="Data\IExampleDataRepository.cs" />
+    <Compile Include="DeviceIdCollection.cs" />
+    <Compile Include="DeviceIdElement.cs" />
     <Compile Include="Manager\ImportantManager.cs" />
     <Compile Include="Manager\LameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

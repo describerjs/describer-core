@@ -48,49 +48,4 @@ namespace JM.Business.Kontakt
 			}
 		}
 	}
-
-	internal class ConnectionString : ConfigurationElement
-	{
-		[ConfigurationProperty("value", IsRequired = true)]
-		public String Value
-		{
-			get { return this["value"] as string; }
-		}
-	}
-
-	internal class MailingElement : ConfigurationElement
-	{
-		[ConfigurationProperty("recipientAdress", DefaultValue = "sve@joinmedia.de", IsRequired = true)]
-		public String RecipientAdress
-		{
-			get { return this["recipientAdress"] as string; }
-		}
-
-		[ConfigurationProperty("defaultSubject", DefaultValue = "Kontakt Mail", IsRequired = true)]
-		public String DefaultSubject
-		{
-			get { return this["defaultSubject"] as string; }
-		}
-
-		[ConfigurationProperty("subjectPrefix", IsRequired = false)]
-		public String SubjectPrefix
-		{
-			get { return this["subjectPrefix"] as string; }
-		}
-
-		[ConfigurationProperty("sendAsHighPriorityMail", IsRequired = false)]
-		public bool SendAsHighPriorityMail
-		{
-			get { return (bool)this["sendAsHighPriorityMail"]; }
-		}
-	}
-
-	internal class SmtpServerElement : ConfigurationElement
-	{
-		[ConfigurationProperty("server", IsRequired = true)]
-		public String Server
-		{
-			get { return this["server"] as string; }
-		}
-	}
 }
