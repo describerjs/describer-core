@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -24,6 +25,8 @@ namespace JM.Foundation
 
         public JMApplicationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
+            Contract.Requires(info != null);
+
             this.IsLogged = info.GetBoolean("IsLogged");
             this.UserMessage = info.GetString("UserMessage");
             this.RedirectUrl = info.GetString("RedirectUrl");

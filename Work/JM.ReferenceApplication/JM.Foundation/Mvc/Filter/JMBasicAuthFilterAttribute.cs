@@ -6,7 +6,7 @@ namespace JM.Foundation.Mvc.Filter
 {
 	public class JMBasicAuthFilterAttribute : ActionFilterAttribute
     {
-		private Config _config = ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");
+		private readonly Config _config = ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

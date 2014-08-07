@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics.Contracts;
 
 namespace JM.Foundation.Configuration
 {
@@ -23,30 +24,31 @@ namespace JM.Foundation.Configuration
 	        return string.IsNullOrEmpty(configurationValue) ? defaultValue : configurationValue;
         }
 
-		/// <summary>
-		/// Versucht einen Wert aus der Konfigurationsdatei zu lesen und diesen als den übergebenen EnumType zu casten
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="configurationKey"></param>
-		/// <param name="defaultValue"></param>
-		/// <returns>Enum</returns>
-        public static T GetEnum<T>(string configurationKey, T? defaultValue = null)
-            where T : struct
-        {
-            var configurationValue = ConfigurationManager.AppSettings[configurationKey];
+        // ToDo: Korrektheit prüfen
+        /////// <summary>
+        /////// Versucht einen Wert aus der Konfigurationsdatei zu lesen und diesen als den übergebenen EnumType zu casten
+        /////// </summary>
+        /////// <typeparam name="T"></typeparam>
+        /////// <param name="configurationKey"></param>
+        /////// <param name="defaultValue"></param>
+        /////// <returns>Enum</returns>
+        ////public static T GetEnum<T>(string configurationKey, T? defaultValue = null)
+        ////    where T : struct
+        ////{
+        ////    var configurationValue = ConfigurationManager.AppSettings[configurationKey];
 
-            if (string.IsNullOrEmpty(configurationValue))
-            {
-                if (defaultValue == null)
-                {
-                    throw new InvalidOperationException("required appSetting " + configurationKey + " is missing");
-                }
+        ////    if (string.IsNullOrEmpty(configurationValue))
+        ////    {
+        ////        if (defaultValue == null)
+        ////        {
+        ////            throw new InvalidOperationException("required appSetting " + configurationKey + " is missing");
+        ////        }
                     
-                return defaultValue.Value;
-            }
+        ////        return defaultValue.Value;
+        ////    }
 
-            return (T)Enum.Parse(typeof(T), configurationKey, false);
-        }
+        ////    return (T)Enum.Parse(typeof(T), configurationKey, false);
+        ////}
 
         /// <summary>
         /// Versucht eine <see cref="ConfigurationSection"/> aus der Konfigurationsdatei zu lesen.
@@ -95,6 +97,8 @@ namespace JM.Foundation.Configuration
 		public static T GetConfigSection<T>(string sectionName)
 			where T : ConfigurationSection
 		{
+            Contract.Ensures(Contract.Result<T>() != null);
+
 			var configSection = ConfigurationManager.GetSection(sectionName) as T;
 
             if (configSection != null)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Diagnostics.Tracing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -24,15 +25,23 @@ namespace JM.Foundation.ErrorHandling
         [NonEvent]
         public void Exception(Exception ex)
         {
+            Contract.Requires(ex != null);
+
             GenericException(ex.Message, ex.ToString(), string.Empty);
         }
 
         [NonEvent]
         public void Exception(Exception ex, MethodInfo callContext, object[] arguments)
         {
+            Contract.Requires(callContext != null);
+            Contract.Requires(ex != null);
+
             string message = string.Format("Fehler in '{0}'", callContext.Name);
 
-            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
+            var parameters =
+                (arguments ?? new object[] { })
+                .Select(a => a != null ? a.ToString() : "'null'");
+
             var joinedParameters = string.Join(", ", parameters);
             GenericException(ex.Message, ex.ToString(), joinedParameters);
         }
@@ -40,7 +49,12 @@ namespace JM.Foundation.ErrorHandling
         [NonEvent]
         public void Exception(Exception ex, object[] arguments)
         {
-            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
+            Contract.Requires(ex != null);
+
+            var parameters =
+                (arguments ?? new object[] { })
+                .Select(a => a != null ? a.ToString() : "'null'");
+
             var joinedParameters = string.Join(", ", parameters);
             GenericException(ex.Message, ex.ToString(), joinedParameters);
         }
@@ -48,7 +62,12 @@ namespace JM.Foundation.ErrorHandling
         [NonEvent]
         public void FatalBusinessException(Exception ex, string businessContext, object[] arguments)
         {
-            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
+            Contract.Requires(ex != null);
+
+            var parameters = 
+                (arguments ?? new object[] { })
+                .Select(a => a != null ? a.ToString() : "'null'");
+
             var joinedParameters = string.Join(", ", parameters);
             FatalBusinessException(ex.Message, ex.ToString(), businessContext, joinedParameters);
         }
@@ -56,7 +75,12 @@ namespace JM.Foundation.ErrorHandling
         [NonEvent]
         public void BusinessException(Exception ex, string businessContext, object[] arguments)
         {
-            var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
+            Contract.Requires(ex != null);
+
+            var parameters =
+                (arguments ?? new object[] { })
+                .Select(a => a != null ? a.ToString() : "'null'");
+
             var joinedParameters = string.Join(", ", parameters);
             FatalBusinessException(ex.Message, ex.ToString(), businessContext, joinedParameters);
         }

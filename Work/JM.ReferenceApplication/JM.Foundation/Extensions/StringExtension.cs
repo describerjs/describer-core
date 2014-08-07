@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.Security.Application;
+using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
-using Microsoft.Security.Application;
 
 namespace JM.Foundation.Extensions
 {
@@ -154,6 +154,8 @@ namespace JM.Foundation.Extensions
 		/// <returns>Sanitized string</returns>
 		public static string AlphanumericOnly(this string str)
 		{
+            Contract.Requires(str != null);
+
 			var rgx = new Regex("[^a-zA-Z0-9 _-]");
 			return rgx.Replace(str, string.Empty);
 		}
@@ -165,6 +167,8 @@ namespace JM.Foundation.Extensions
 		/// <returns>Sanitized string</returns>
 		public static string NumericOnly(this string str)
 		{
+            Contract.Requires(str != null);
+
 			var rgx = new Regex("[^\\d]");
 			return rgx.Replace(str, string.Empty);
 		}

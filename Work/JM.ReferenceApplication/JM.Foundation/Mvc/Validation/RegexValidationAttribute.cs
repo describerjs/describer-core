@@ -9,7 +9,7 @@ namespace JM.Foundation.Mvc.Validation
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class RegexValidationAttribute : ValidationAttribute, IClientValidatable
     {
-        private string _regex = string.Empty;
+        private readonly string _regex = string.Empty;
 
         private bool _allowEmptyString = false;
 

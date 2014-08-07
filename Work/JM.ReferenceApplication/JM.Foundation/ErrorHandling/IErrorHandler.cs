@@ -1,6 +1,7 @@
 ﻿using Castle.DynamicProxy;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -36,6 +37,10 @@ namespace JM.Foundation.ErrorHandling
 
         public void Handle(Exception ex, IInvocation invocation)
         {
+            // ToDo: Contract
+            //Contract.Requires(ex != null);
+            //Contract.Requires(invocation != null);
+
             LogException(ex, invocation);
 
             throw new JM.Foundation.JMApplicationException(string.Empty, ex)
@@ -54,7 +59,8 @@ namespace JM.Foundation.ErrorHandling
                 .GetCustomAttributes(typeof(SystemBoundaryAttribute), true)
                 .FirstOrDefault();
 
-            if (methodAttribute == null)
+            if (methodAttribute == null &&
+                invocation.Method.DeclaringType != null)
             {
                 attribute =
                     (SystemBoundaryAttribute)invocation
