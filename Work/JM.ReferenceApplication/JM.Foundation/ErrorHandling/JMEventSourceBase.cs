@@ -30,7 +30,7 @@ namespace JM.Foundation.ErrorHandling
         [NonEvent]
         public void Exception(Exception ex, MethodInfo callContext, object[] arguments)
         {
-            string message = string.Format("Fehler in {'0'}", callContext.Name);
+            string message = string.Format("Fehler in '{0}'", callContext.Name);
 
             var parameters = arguments.Select(a => a != null ? a.ToString() : "'null'");
             var joinedParameters = string.Join(", ", parameters);

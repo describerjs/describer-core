@@ -58,11 +58,11 @@ namespace JM.Foundation.Mvc.Validation
                     return new ValidationResult(ErrorMessageString);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Do stuff, i.e. log the exception
                 // Let it go through the upper levels, something bad happened
-                throw ex;
+                throw;
             }
  
             return ValidationResult.Success;

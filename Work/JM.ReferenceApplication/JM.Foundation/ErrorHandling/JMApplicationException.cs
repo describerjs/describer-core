@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JM.Foundation
 {
+    [Serializable]
     public class JMApplicationException : Exception
     {
         public JMApplicationException()
@@ -18,6 +20,13 @@ namespace JM.Foundation
 
         public JMApplicationException(string message, Exception innerException) : base(message, innerException)
         {
+        }
+
+        public JMApplicationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+            this.IsLogged = info.GetBoolean("IsLogged");
+            this.UserMessage = info.GetString("UserMessage");
+            this.RedirectUrl = info.GetString("RedirectUrl");
         }
 
         public string UserMessage
@@ -52,6 +61,14 @@ namespace JM.Foundation
         { 
             get; 
             set; 
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("IsLogged", this.IsLogged);
+            info.AddValue("UserMessage", this.UserMessage);
+            info.AddValue("RedirectUrl", this.RedirectUrl);
         }
     }
 }

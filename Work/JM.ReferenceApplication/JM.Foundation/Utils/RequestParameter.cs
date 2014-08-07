@@ -1,5 +1,6 @@
 ﻿using JM.Foundation.Extensions;
 using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -10,7 +11,7 @@ namespace JM.Foundation.Utils
 	/// Kapselt das verifizieren von POST / GET Parametern ab und
 	/// spart so ein bischen Hackerei und Unübersichtlichkeit
 	/// </summary>
-	public class RequestParameter
+	public static class RequestParameter
 	{
 		/// <summary>
 		/// Liest den angegebenden POST-Parameter und gibt den Wert oder string.Empty zurück
@@ -122,30 +123,29 @@ namespace JM.Foundation.Utils
 		/// <returns></returns>
 		public static string GetValueFromUrl(string url, string paramName)
 		{
-            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(paramName))
+            if (string.IsNullOrWhiteSpace(url) || string.IsNullOrWhiteSpace(paramName))
             {
                 return string.Empty;
             }
 
-			// uns interressiert nur alles nach dem letzten ?
-            if (url.Contains("?"))
+            Uri uri = null;
+
+            if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out uri))
             {
-                url = url.Split('?').Last();
+                var query =
+                    uri.IsAbsoluteUri ?
+                    uri.Query :
+                    uri.OriginalString;
+
+                return
+                    HttpUtility
+                    .ParseQueryString(query)
+                    .Get(paramName) ?? string.Empty;
             }
-
-			var parameters = url.Split('&');
-			
-            foreach (var parameter in parameters)
-			{
-				var parr = parameter.Split('=');
-			
-                if (parr[0] != null && parr[0].ToLower() == paramName.ToLower() && parr[1] != null)
-				{
-					return parr[1];
-				}
-			}
-
-			return string.Empty;
+            else
+            {
+                return string.Empty;
+            }
 		}
 	}
 }
