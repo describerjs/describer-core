@@ -10,14 +10,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	[JMBasicAuthFilter]
 	public class StartController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
-
-		//
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public StartController()
@@ -27,7 +23,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		/// <summary>
@@ -41,10 +36,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

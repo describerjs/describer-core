@@ -7,14 +7,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	/// </summary>
 	public class ModuleController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
-
-		//
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public ModuleController()
@@ -24,7 +20,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		/// <summary>
@@ -65,10 +60,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

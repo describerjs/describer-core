@@ -106,10 +106,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

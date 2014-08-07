@@ -9,7 +9,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	/// </summary>
 	public class JM_BusinessController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
 
 		private IImportantManager _importantManager;
@@ -17,7 +16,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public JM_BusinessController(IImportantManager importantManager, ILameManager lameManager)
@@ -28,7 +26,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		public ActionResult Important()
@@ -78,10 +75,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

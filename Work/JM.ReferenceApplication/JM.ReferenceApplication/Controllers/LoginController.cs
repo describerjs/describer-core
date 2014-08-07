@@ -34,7 +34,6 @@ namespace JM.ReferenceApplication.Controllers
             }
         }
 
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -43,7 +42,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -69,7 +67,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -77,7 +74,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -110,7 +106,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -132,7 +127,6 @@ namespace JM.ReferenceApplication.Controllers
             }
         }
 
-        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -140,7 +134,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -168,7 +161,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
@@ -176,7 +168,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 	
-        //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
@@ -188,7 +179,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -219,7 +209,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -227,7 +216,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Disassociate
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -248,7 +236,6 @@ namespace JM.ReferenceApplication.Controllers
             return RedirectToAction("Manage", new { Message = message });
         }
 
-        //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
@@ -263,7 +250,6 @@ namespace JM.ReferenceApplication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -316,7 +302,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -327,7 +312,6 @@ namespace JM.ReferenceApplication.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Login", new { ReturnUrl = returnUrl }));
         }
 
-        //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -354,7 +338,6 @@ namespace JM.ReferenceApplication.Controllers
             }
         }
 
-        //
         // POST: /Account/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -364,7 +347,6 @@ namespace JM.ReferenceApplication.Controllers
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Login"), User.Identity.GetUserId());
         }
 
-        //
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
@@ -381,7 +363,6 @@ namespace JM.ReferenceApplication.Controllers
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
 
-        //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
@@ -426,7 +407,6 @@ namespace JM.ReferenceApplication.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -437,7 +417,6 @@ namespace JM.ReferenceApplication.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
