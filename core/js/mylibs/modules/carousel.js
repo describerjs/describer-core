@@ -1,4 +1,4 @@
-define(['jquery', '_super'], function ($, _super){
+define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 	'use strict';
 	var carousel = $.extend({}, _super, {
 		init: function (options, elem) {
@@ -23,31 +23,33 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(){
 			var that = this;
-			var param1 = '';
-			var param2 = 'asdf';
 			require(['owl_carousel', 'overwritings.owl_carousel'], function(param1, param2){
 				that.indexCount = 0;
-				that.$elem.owlCarousel({
-
-					navigation     : true, // Show next and prev buttons
-					slideSpeed     : 300,
-					paginationSpeed: 500,
-					rewindSpeed     : 1000,
-					singleItem     : true,
-					autoPlay       : true,
-					stopOnHover    : true,
-					jmDelayTime    : (that.is('delay') !== '') ? parseInt(that.is('delay'), 10) : 2000,
-					afterInit: function(){
-						that._setAllTeaserToVisible();
-						that._setCommentToPaginierung();
-					},
-					afterMove: function(){
-						var $plugin = that.$elem.data('owlCarousel');
-						$plugin.$owlItems.children().removeClass('visible').removeClass('leaving');
-						$plugin.$owlItems.children().eq($plugin.currentItem).addClass('visible');
-					}
-				});
+				that.$elem.owlCarousel(that.getConfig());
 			});
+		},
+
+		getConfig: function(){
+			var that = this;
+			return {
+				navigation     : true, // Show next and prev buttons
+				slideSpeed     : 300,
+				paginationSpeed: 500,
+				rewindSpeed    : 1000,
+				singleItem     : true,
+				autoPlay       : true,
+				stopOnHover    : true,
+				jmDelayTime    : (that.is('delay') !== '') ? parseInt(that.is('delay'), 10) : 2000,
+				afterInit: function(){
+					that._setAllTeaserToVisible();
+					that._setCommentToPaginierung();
+				},
+				afterMove: function(){
+					var $plugin = that.$elem.data('owlCarousel');
+					$plugin.$owlItems.children().removeClass('visible').removeClass('leaving');
+					$plugin.$owlItems.children().eq($plugin.currentItem).addClass('visible');
+				}
+			}
 		},
 
 		_setAllTeaserToVisible: function(){
@@ -73,7 +75,7 @@ define(['jquery', '_super'], function ($, _super){
 				}
 			}
 		}
-	});
+	}, ts);
 
 	$.plugin('modules.carousel', carousel);
 	return carousel;

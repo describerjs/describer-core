@@ -1485,8 +1485,8 @@ define(['jquery'], function ($){
         jsonSuccess : false,
 
         dragBeforeAnimFinish : true,
-        mouseDrag : true,
-        touchDrag : true,
+        mouseDrag : false,
+        touchDrag : false,
 
         addClassActive : false,
         transitionStyle : false,

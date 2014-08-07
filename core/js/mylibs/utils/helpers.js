@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define(['jquery', '_config'], function($, _config){
 	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
 	// Globales Objekt
 	window.jmHF = window.jmHF || {};
@@ -7,6 +7,18 @@ define(['jquery'], function($){
 	jmHF.log = function(p_data){
 		if(window.IsDevServer){
 			window.console.log(p_data);
+		}
+	};
+
+	jmHF.error = function(p_data){
+		if(window.IsDevServer){
+			window.console.error(p_data);
+		}
+	};
+
+	jmHF.warn = function(p_data){
+		if(window.IsDevServer){
+			window.console.warn(p_data);
 		}
 	};
 
@@ -34,6 +46,36 @@ define(['jquery'], function($){
 		return p_plugin;
 	};
 
+	jmHF.eventDelegationTrigger = function(e){
+		var $this = $(this);
+		jmHF.eventDelegationHepler($this, e);
+	};
+
+	jmHF.eventDelegationTriggerForATags = function(e){
+		var $this = $(this);
+		e.preventDefault();
+		jmHF.eventDelegationHepler($this, e);
+	};
+
+	jmHF.eventDelegationTriggerForLabels = function(e){
+		var $this = $(this);
+		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
+		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
+		// Wenn das e.target kein label mit verschachteltem radio oder checkbox ist, ist die Bedingung true              if ( ! ( 'label' && ( 'label'>'radio || 'label'>'checkbox' ) ) ) )
+		if(!($(e.target).find('input[type="radio"]').doesExist() || $(e.target).find('input[type="checkbox"]').doesExist())){
+			// jmHF.triggerChangeEventForAllRadiosInGroup wird aufgerufen, damit jeder Radio-Butten das Change-Event feuert, wenn sich in der Gruppe die Selection ändert.
+			jmHF.triggerChangeEventForAllOtherRadiosInGroup(e);
+			jmHF.eventDelegationHepler($this, e);
+		}
+	};
+
+	jmHF.eventDelegationHepler = function($this, e){
+		var _jmname = $this.attr('data-jmname').split('|');
+		for(var i = 0, leni = _jmname.length; i < leni; i++){
+			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
+		}
+	};
+
 
 	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten (das Modul/Plugin wird auf das Element angewendet.), und ruft optional eine eigene Methode
 	// auf wie z.B. click, change oder auch domInit
@@ -52,7 +94,7 @@ define(['jquery'], function($){
 		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
 		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
 		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
-				console.warn('Bei der mehrfachen Anwendung vom selben-Plugin im jmelement-String sind diese mit ..._1|..._2 usw. zu benennen.');
+				jmHF.warn('Bei der mehrfachen Anwendung vom selben-Plugin im jmelement-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
 		}
@@ -108,6 +150,10 @@ define(['jquery'], function($){
 	jmHF.helperForRequirementsForJmElements = function(_config, jmname){
 		var _requirePlugin;
 		var jmelementString = jmHF.getJmElementByJmName(_config, jmname);
+		if($.type(jmelementString) === 'undefined'){
+			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
+			return;
+		}
 		if(jmelementString.split('|').length > 1){
 			$.each(jmelementString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
@@ -121,13 +167,13 @@ define(['jquery'], function($){
 
 
 	// Jeder Radio-Butten feuert das Change-Event, wenn sich in der Gruppe die Selection ändert.
-	jmHF.triggerChangeEventForAllRadiosInGroup = function(e){
+	jmHF.triggerChangeEventForAllOtherRadiosInGroup = function(e){
 		var radiogroup, $that;
 		if(e.target.tagName.toLowerCase() === 'input'){
 			if($(e.target).attr('type') === 'radio'){
 				$that = $(e.target);
 				radiogroup = $('[name="' + $(e.target).attr('name') + '"]').filter(function(){
-					return $(this) !== $that;
+					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
 					$(item).trigger('change');

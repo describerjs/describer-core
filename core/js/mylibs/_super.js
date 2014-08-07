@@ -1,4 +1,4 @@
-define(['jquery', '_config', 'utils.jquery.helpers', 'utils.helpers'], function ($, _config) {
+define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function ($, _config) {
     'use strict';
 	return {
         config : function(){
@@ -210,7 +210,7 @@ define(['jquery', '_config', 'utils.jquery.helpers', 'utils.helpers'], function 
 				return this.staticObjFromDom = jmconfigJsonParse[this.myJmNamePos];
 			}else{
 				if(jmconfigJsonParse.length < this.myJmNamePos + 1){
-					console.log('die Anzahl ('+jmconfigJsonParse.length+') der data-jmconfig-Arrays sind nicht identisch mit der Anzahl der im data-jmname (data-jmname="'+this.$elem.data("jmname")+'") angegebenen jmnamen. Die könnte zu problemen führen.');
+					jmHF.warn('die Anzahl ('+jmconfigJsonParse.length+') der data-jmconfig-Arrays sind nicht identisch mit der Anzahl der im data-jmname (data-jmname="'+this.$elem.data("jmname")+'") angegebenen jmnamen. Die könnte zu problemen führen.');
 					return this.staticObjFromDom = undefined;
 				}
 				return this.staticObjFromDom = jmconfigJsonParse[this.myJmNamePos][this.myPos];

@@ -45,6 +45,8 @@ require.config({
 		'add-ons.formvalidate'                             : 'mylibs/add-ons/formvalidate',
 
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
+		'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
+		/*'modules.carousel-ts'                              : 'empty',*/
 		'modules.countdown'                                : 'mylibs/modules/countdown',
 		'modules.dependentSelectionGroup'                  : 'mylibs/modules/dependentSelectionGroup',
 		'modules.equalheights'                             : 'mylibs/modules/equalheights',
@@ -90,7 +92,6 @@ require.config({
 require(['jquery', '_config'], function($, _config){
 	// need jquery
 	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
-		// 'jmHelperFunction', 'stickem'
 		// DomReady
 		$(function(){
 
@@ -99,58 +100,49 @@ require(['jquery', '_config'], function($, _config){
 			// -----------------------------------------------------
 
 			var $body = $('body');
+
+
+			//----------------- Listener for focus, change, blur, checkValidation -------------------------------------
+
+
 			// Jedes Input(ausgenommen type="submit"), texarea und select feuert ein Event "checkValidation" wenn focus, change oder blur getriggert wird.
-			$body.on('focus change blur checkValidation', 'form[data-jmname="form"]', function(e){
-				var $this = $(this);
-				var _jmname = $this.attr('data-jmname').split('|');
-				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
-				}
-			});
-
-			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
-			$body.on('click', 'h3[data-jmname], input[type="submit"][data-jmname], input[type="button"][data-jmname], button[type="submit"][data-jmname], input[type="text"][data-jmname], input[type="checkbox"][data-jmname], button[type="submit"][data-jmname]', function(e){
-				var $target = $(e.target);
-				var _jmname = $target.attr('data-jmname').split('|');
-				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.bindPlugin({ '$element': $target, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
-				}
-			});
-			// ********************************************************************************************
-
-
-			// Click-Listener für Kontainer-Tags mit Attribut [data-jmelement] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
-			$body.on('click', 'div[data-jmname], a[data-jmname], label[data-jmname], tr[data-jmname], li[data-jmname], ul[data-jmname], select[data-jmname]', function(e){
-				var $this = $(this);
-				if(this.tagName.toLowerCase() === 'a'){
-					e.preventDefault();
-				}
-				var _jmname = $this.attr('data-jmname').split('|');
-				// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht. Hier wird zuerste der Event von Lable gefeuert und dann noch vom radio.
-				if(!((e.target.nodeName.toLowerCase() === 'label') && ($(e.target).find('input[type="radio"]').doesExist() || $(e.target).find('input[type="checkbox"]').doesExist()))){
-					// jmHF.triggerChangeEventForAllRadiosInGroup wird aufgerufen, damit jeder Radio-Butten das Change-Event feuert, wenn sich in der Gruppe die Selection ändert.
-					jmHF.triggerChangeEventForAllRadiosInGroup(e);
-					for(var i = 0, leni = _jmname.length; i < leni; i++){
-						jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
-					}
-				}
-			});
-			// ********************************************************************************************
-
-
-
-			// ********************************************************************************************
-
+			$body.on(   'blur ' +
+						'change ' +
+						'focus ' +
+						'checkValidation', 'form[data-jmname="form"]', jmHF.eventDelegationTrigger);
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
-			$body.on('change', 'select[data-jmname], input[type="radio"][data-jmname], input[type="checkbox"][data-jmname], input[type="text"][data-jmname], input[type="email"][data-jmname]', function(e){
-				var $this = $(this);
-				//jmHF.triggerChangeEventForAllRadiosInGroup(e);
-				var _jmname = $this.attr('data-jmname').split('|');
-				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
-				}
-			});
-			// ********************************************************************************************
+			$body.on('change',  'select[data-jmname], ' +
+								'input[type="radio"][data-jmname], ' +
+								'input[type="checkbox"][data-jmname], ' +
+								'input[type="text"][data-jmname], ' +
+								'input[type="email"][data-jmname]', jmHF.eventDelegationTrigger);
+
+
+
+			//---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+			//----------------------------- Listener for click --------------------------------------------------------
+
+			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
+			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
+			// Click-Listener für Kontainer-Tags mit Attribut [data-jmelement] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
+			$body.on('click',   'button[type="submit"][data-jmname], ' +
+								'div[data-jmname],' +
+								'h3[data-jmname], ' +
+								'input[type="submit"][data-jmname], ' +
+								'input[type="button"][data-jmname], ' +
+								'input[type="text"][data-jmname], ' +
+								'input[type="checkbox"][data-jmname], ' +
+								'li[data-jmname], ' +
+								'select[data-jmname]' +
+								'tr[data-jmname], ' +
+								'ul[data-jmname]', jmHF.eventDelegationTrigger);
+
+			$body.on('click', 'label[data-jmname]', jmHF.eventDelegationTriggerForLabels);
 
 
 			// Browser-Back-Button -> somit wird ein Spinner auf der Seite zuvor (Klick auf Link oder Submit-Button) gelöscht. Der Spinner dient zu besseren UX
@@ -158,18 +150,32 @@ require(['jquery', '_config'], function($, _config){
 				$('#linkspinner').remove();
 			});*/
 
+
+
+
+
+
+
+
+
+
 			// -----------------------------------------------------
 			// --------------- generische Events -------------------
 			// -----------------------------------------------------
 
 
-			$body.on('dominit', function(e){
-				var $target = $(e.target);
-				var _jmname = $target.attr('data-jmname').split('|');
-				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.bindPlugin({ '$element': $target, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
-				}
-			});
+
+			$body.on('dominit', '[data-jmname]', jmHF.eventDelegationTrigger);
+
+			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
+			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);
+
+
+
+
+
+
+
 
 
 			// -----------------------------------------------------
@@ -198,7 +204,7 @@ require(['jquery', '_config'], function($, _config){
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
 			picturefill();
 
-			jmHF.replaceSVGForOldBrowser();
+			//jmHF.replaceSVGForOldBrowser();
 
 
 			/*$(window).on('resize', function(){
@@ -216,21 +222,21 @@ require(['jquery', '_config'], function($, _config){
 			//     fjs.parentNode.insertBefore(js, fjs);
 			// }(document, 'script', 'facebook-jssdk'));
 
-			(function () {
+			/*(function () {
 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 				ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
+			})();*/
 			
 			//////////////////////////////////// ie8 FIX for CSS Design ////////////////////////////////////////////////////////////////
-			if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
+			/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
 				(function () {
 					$body.on('change', 'input[type="radio"], input[type="checkbox"]', function (e) {
 						var that = this;
 						$(that).ie8BugfixForRadioAndCheckbox();
 					})
 				})()
-			}
+			}*/
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			// (function (i, s, o, g, r, a, m) {
 			//     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -248,13 +254,16 @@ require(['jquery', '_config'], function($, _config){
 			// Hier korrektur für:
 			// SHOW ToggleBox >> Input Felder Enable, auch mit Seiten Aktualieseirung
 			// HIDE ToggleBox >> Input Felder disable, auch mit Seiten Aktualieseirung
-			if($('#LieferadresseBlock').css('display') !== undefined){
+
+			//////////////////////////////////// ie8 FIX for CSS Design ////////////////////////////////////////////////////////////////
+			/*if($('#LieferadresseBlock').css('display') !== undefined){
 				if($('#LieferadresseBlock').css('display') === 'none'){
 					$('.tb-content :input').prop('disabled', false);
 				}else{
 					$('.tb-content :input').prop('disabled', true);
 				}
-			}
+			}*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		});
 	});
 });

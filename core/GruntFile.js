@@ -20,7 +20,11 @@ module.exports = function(grunt){
 						_filename = str;
 					}
 				}
-				return "\'"+ path + _filename +"\'";
+				if(_filename === ''){
+					return "\'empty\'";
+				}else{
+					return "\'"+ path + _filename +"\'";
+				}
 			}
 		};
 	};
@@ -29,20 +33,21 @@ module.exports = function(grunt){
 	grunt.file.preserveBOM = true;
 
 	// These plugins provide necessary tasks.
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-asset-revisions');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-text-replace');
-	grunt.loadNpmTasks("grunt-remove-logging");
+	/*	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks('grunt-contrib-watch');*/
+	/*grunt.loadNpmTasks("grunt-remove-logging");
 	grunt.loadNpmTasks('grunt-dalek');
 	grunt.loadNpmTasks('grunt-imageoptim');
-	grunt.loadNpmTasks('grunt-webp');
+	grunt.loadNpmTasks('grunt-webp');*/
 
 	grunt.registerTask('task_step1', function(){
 		grunt.initConfig({
@@ -92,14 +97,13 @@ module.exports = function(grunt){
 						getObjFor('externals/customized/', 'js/build/'),
 						getObjFor('externals/customized/overwritings/', 'js/build/'),
 						getObjFor('externals/originalReferenceSource/', 'js/build/'),
-						getObjFor('externals/vendor/', 'js/build/'),
 						getObjFor('mylibs/', 'js/build/'),
 						getObjFor('mylibs/actions/', 'js/build/'),
-						getObjFor('mylibs/add-ons/', 'js/build/'),
-						getObjFor('mylibs/ayyildiz/', 'js/build/'),
-						getObjFor('mylibs/jmtools/', 'js/build/'),
+						/*getObjFor('mylibs/add-ons/', 'js/build/'),*/
+						getObjFor('mylibs/custom/', 'js/build/'),
+						/*getObjFor('mylibs/jmtools/', 'js/build/'),*/
 						getObjFor('mylibs/modules/', 'js/build/'),
-						getObjFor('mylibs/modules/formcomponents/', 'js/build/'),
+						getObjFor('mylibs/modules/form/', 'js/build/'),
 						getObjFor('mylibs/utils/', 'js/build/'),
 						getObjFor('require-css/', 'js/build/')
 					]
@@ -129,8 +133,8 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			replace: {
 				example: {
-					src: ['Views/Shared/_Layout.cshtml'],             // source files array (supports minimatch)
-					dest: 'Views/Shared/_Layout.cshtml',             // destination directory or file
+					src: ['module.html'],             // source files array (supports minimatch)
+					dest: 'module.html',             // destination directory or file
 					replacements: [{
 						from: /css\/min\/(.*?)\.css/g,                   // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
@@ -204,13 +208,13 @@ module.exports = function(grunt){
 						}
 					},
 					{
-						from: /js\/build\/externals\/originalReferenceSource\/picturefill2(.*?)\.js/g,                   // string replacement
+						from: /js\/build\/externals\/originalReferenceSource\/picturefill(.*?)\.js/g,                   // string replacement
 						to: function (matchedWord, index, fullText, regexMatches) {
 							var _filename = '';
 							grunt.file.recurse('js/build/externals/originalReferenceSource', callback);
 							function callback(abspath, rootdir, subdir, filename) {
 								var str = filename;
-								var patt = new RegExp(/^picturefill2.(.*)/g);
+								var patt = new RegExp(/^picturefill.(.*)/g);
 								var res = patt.test(str);
 								if (res) {
 									//grunt.log.write('res: '+_filename);
