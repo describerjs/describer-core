@@ -11,11 +11,11 @@ namespace JM.Foundation.Mvc.Routing
 	/// </summary>
 	public class RegexConstraint : IRouteConstraint, IEquatable<RegexConstraint>
 	{
-		private Regex regex;
+		private Regex _regex;
 
 		public RegexConstraint(string pattern, RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.IgnoreCase)
 		{
-			regex = new Regex(pattern, options);
+			_regex = new Regex(pattern, options);
 		}
 
 		public bool Match(System.Web.HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
@@ -23,7 +23,7 @@ namespace JM.Foundation.Mvc.Routing
 			object val;
 			values.TryGetValue(parameterName, out val);
 			string input = Convert.ToString(val, CultureInfo.InvariantCulture);
-			return regex.IsMatch(input);
+			return _regex.IsMatch(input);
 		}
 
 		#region Implementation of IEquatable<RegexConstraint>

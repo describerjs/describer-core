@@ -106,7 +106,7 @@ namespace JM.Foundation.Configuration
 
 		#region private methods
 
-		private System.Configuration.Configuration getConfigurationFromAppConfig()
+		private System.Configuration.Configuration GetConfigurationFromAppConfig()
 		{
 			return ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 		}

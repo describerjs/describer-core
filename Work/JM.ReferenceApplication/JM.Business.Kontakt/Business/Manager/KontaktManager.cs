@@ -64,7 +64,7 @@ namespace JM.Business.Kontakt.Business.Manager
 			var sender = new SmtpClient(_config.SmtpServer.Server);
 			sender.Send(mail);
 
-			saveContactRequest(model);
+			SaveContactRequest(model);
 		}
 
 		public IFamilyModel GetFamilyModel(string userID)
@@ -72,7 +72,7 @@ namespace JM.Business.Kontakt.Business.Manager
 			return new FamilyModel { UserID = userID, Father = new Model.PersonalData(), Mother = new Model.PersonalData() };
 		}
 
-		private void saveContactRequest(IContactModel model)
+		private void SaveContactRequest(IContactModel model)
 		{
 			var entry = new ContactRequest
 			{

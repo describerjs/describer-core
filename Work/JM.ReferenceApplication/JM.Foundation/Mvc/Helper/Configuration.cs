@@ -11,14 +11,14 @@ namespace JM.Foundation.Mvc.Helper
 	{
 		public static bool LocalStorageEnabled(this HtmlHelper helper, string type = "")
 		{
-			return _getConfig().Features.Javascript.EnableLocalStorage;
+			return GetConfig().Features.Javascript.EnableLocalStorage;
 		}
 
 		/// <summary>
 		/// Liest die Configurationsection für JM.Foundation und gibt das entsprechende Config-Objekt zurück
 		/// </summary>
 		/// <returns>Config</returns>
-		private static Config _getConfig()
+		private static Config GetConfig()
 		{
 			return ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");
 		}

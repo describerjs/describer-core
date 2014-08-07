@@ -15,7 +15,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            var JMDemo_default = 
+            var jmDemoDefault = 
                 context
                 .MapRoute(
                     "JMDemo_default",
@@ -27,7 +27,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo
                         id = UrlParameter.Optional 
                     });
 
-			JMDemo_default.RouteHandler = new HyphenatedRouteHandler();
+			jmDemoDefault.RouteHandler = new HyphenatedRouteHandler();
         }
     }
 }

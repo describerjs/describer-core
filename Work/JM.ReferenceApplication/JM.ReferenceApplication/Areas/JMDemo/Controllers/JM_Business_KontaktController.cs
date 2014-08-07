@@ -10,7 +10,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	/// 25.07.2014 - Sebastian van Elten
 	/// JM_Business_KontaktController
 	/// </summary>
-	public class JM_Business_KontaktController : Controller
+	public class BusinessKontaktController : Controller
 	{
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
@@ -22,7 +22,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
-		public JM_Business_KontaktController(
+		public BusinessKontaktController(
             IKontaktManager kontaktManager)
 		{
 			_kontaktManager = kontaktManager;

@@ -70,19 +70,27 @@
     <Compile Include="Config.cs" />
     <Compile Include="DataAccess\Data.cs" />
     <Compile Include="DataModel\Model.cs" />
-    <Compile Include="Migrations\201407291110061_First Init.cs" />
+    <Compile Include="Migrations\201407291110061_First Init.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407291110061_First Init.Designer.cs">
       <DependentUpon>201407291110061_First Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407291508443_USerID-Change to String.cs" />
+    <Compile Include="Migrations\201407291508443_USerID-Change to String.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407291508443_USerID-Change to String.Designer.cs">
       <DependentUpon>201407291508443_USerID-Change to String.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.cs" />
+    <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.Designer.cs">
       <DependentUpon>201407300941171_LastEdit-Date als nullable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.cs" />
+    <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.Designer.cs">
       <DependentUpon>201407310716446_Anrede für Benutzer hinzugefügt.cs</DependentUpon>
     </Compile>

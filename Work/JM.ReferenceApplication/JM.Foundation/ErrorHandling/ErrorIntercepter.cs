@@ -9,11 +9,11 @@ namespace JM.Foundation.ErrorHandling
 {
     public class ErrorInterceptor : IInterceptor
     {
-        private IErrorHandler handler;
+        private IErrorHandler _handler;
 
         public ErrorInterceptor(IErrorHandler handler)
         {
-            this.handler = handler;
+            this._handler = handler;
         }
 
         public void Intercept(IInvocation invocation)
@@ -30,7 +30,7 @@ namespace JM.Foundation.ErrorHandling
 
         private void HandleInternal(Exception ex, IInvocation invocation)
         {
-            this.handler.Handle(ex, invocation);
+            this._handler.Handle(ex, invocation);
         }
     }
 }

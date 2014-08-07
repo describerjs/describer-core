@@ -11,13 +11,13 @@ namespace JM.Foundation.ErrorHandling
 {
     public abstract class JMEventSourceBase : EventSource
     {
-        protected static JMEventSourceBase baseInstance = null;
+        protected static JMEventSourceBase s_baseInstance = null;
 
         public static JMEventSourceBase Log
         {
             get
             {
-                return JMEventSourceBase.baseInstance;
+                return JMEventSourceBase.s_baseInstance;
             }
         }
 
@@ -81,11 +81,11 @@ namespace JM.Foundation.ErrorHandling
 
     public abstract class JMEventSourceBase<T> : JMEventSourceBase where T : JMEventSourceBase<T>, new()
     {
-        protected static T instance;
+        protected static T s_instance;
 
         public void Initialize()
         {
-            JMEventSourceBase.baseInstance = JMEventSourceBase<T>.Log;
+            JMEventSourceBase.s_baseInstance = JMEventSourceBase<T>.Log;
         }
 
         public static new T Log
@@ -93,10 +93,10 @@ namespace JM.Foundation.ErrorHandling
             get
             {
                 LazyInitializer.EnsureInitialized<T>(
-                    ref JMEventSourceBase<T>.instance,
+                    ref JMEventSourceBase<T>.s_instance,
                     () => new T());
 
-                return JMEventSourceBase<T>.instance;
+                return JMEventSourceBase<T>.s_instance;
             }
         }
     }

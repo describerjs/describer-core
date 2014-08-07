@@ -16,9 +16,9 @@ namespace JM.Foundation.ErrorHandling
         //////////////////////////////////////////////////////////////////////////////////////
         #region private Member
 
-        private static string _errorControllerRouteName;
-        private static string _errorControllerAction;
-        private static bool _showErrorDetails;
+        private static string s_errorControllerRouteName;
+        private static string s_errorControllerAction;
+        private static bool s_showErrorDetails;
 
         #endregion
 
@@ -34,9 +34,9 @@ namespace JM.Foundation.ErrorHandling
                 context.Error += Application_Error;
             }
 
-            _errorControllerRouteName = config.ErrorHttpModule.ErrorPageController;
-            _errorControllerAction = config.ErrorHttpModule.ErrorPageAction;
-            _showErrorDetails = config.ErrorHttpModule.ShowErrorDetails;
+            s_errorControllerRouteName = config.ErrorHttpModule.ErrorPageController;
+            s_errorControllerAction = config.ErrorHttpModule.ErrorPageAction;
+            s_showErrorDetails = config.ErrorHttpModule.ShowErrorDetails;
         }
 
         public void Dispose()
@@ -76,7 +76,7 @@ namespace JM.Foundation.ErrorHandling
             // Wenn der Fehler im Fehlercontroller passiert wollen wir natürlich keinen Loop
             var p = HttpContext.Current.Request.Path;
             
-            if (HttpContext.Current.Request.Path.ToLower().StartsWith("/" + _errorControllerRouteName.ToLower() + "/"))
+            if (HttpContext.Current.Request.Path.ToLower().StartsWith("/" + s_errorControllerRouteName.ToLower() + "/"))
             {
                 HandleErrorHandlingException(
                     "Fehler bei der Erzeugung der Fehlerseite.",
@@ -106,14 +106,14 @@ namespace JM.Foundation.ErrorHandling
             {
                 var routeData = new RouteData();
 
-                routeData.Values.Add("controller", _errorControllerRouteName);
-                routeData.Values.Add("action", _errorControllerAction);
+                routeData.Values.Add("controller", s_errorControllerRouteName);
+                routeData.Values.Add("action", s_errorControllerAction);
                 routeData.Values.Add("statusCode", httpStatusCode);
                 routeData.Values.Add("message", exceptionMessage);
 
                 var requestContext = new RequestContext(new HttpContextWrapper(HttpContext.Current), routeData);
                 var controllerFactory = ControllerBuilder.Current.GetControllerFactory();
-                var controller = controllerFactory.CreateController(requestContext, _errorControllerRouteName);
+                var controller = controllerFactory.CreateController(requestContext, s_errorControllerRouteName);
 
                 controller.Execute(requestContext);
 
@@ -141,14 +141,14 @@ namespace JM.Foundation.ErrorHandling
             HttpContext.Current.Server.ClearError();
             response.Write("<html><h1>FEHLER</h1><p>Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.</p>");
 
-            if (handledException != null && _showErrorDetails)
+            if (handledException != null && s_showErrorDetails)
             {
                 response.Write("<h2>Behandelter Fehler</h2>");
                 response.Write(String.Format("<p>{0}</p>", handledException.Message));
                 response.Write(String.Format("<pre>{0}</pre>", handledException.StackTrace));
             }
 
-            if (exception != null && _showErrorDetails)
+            if (exception != null && s_showErrorDetails)
             {
                 response.Write("<h2>Fehler im ErrorHandling</h2>");
                 response.Write(String.Format("<p>{0}</p>", message));

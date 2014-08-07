@@ -22,7 +22,8 @@ namespace JM.ReferenceApplication.Controllers
             UserManager = userManager;
         }
 
-        public ApplicationUserManager UserManager {
+        public ApplicationUserManager UserManager 
+        {
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -355,7 +356,7 @@ namespace JM.ReferenceApplication.Controllers
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(c_xsrfKey, User.Identity.GetUserId());
 
             if (loginInfo == null)
             {
@@ -457,8 +458,9 @@ namespace JM.ReferenceApplication.Controllers
         }
 
         #region Hilfsprogramme
+
         // Wird für XSRF-Schutz beim Hinzufügen externer Anmeldungen verwendet
-        private const string XsrfKey = "XsrfId";
+        private const string c_xsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -557,7 +559,7 @@ namespace JM.ReferenceApplication.Controllers
 
                 if (UserId != null)
                 {
-                    properties.Dictionary[XsrfKey] = UserId;
+                    properties.Dictionary[c_xsrfKey] = UserId;
                 }
 
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
