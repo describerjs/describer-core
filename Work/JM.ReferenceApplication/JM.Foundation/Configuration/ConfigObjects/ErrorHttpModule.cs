@@ -6,19 +6,19 @@ namespace JM.Foundation.Configuration
 	internal class ErrorHttpModule : ConfigurationElement
 	{
 		[ConfigurationProperty("enabled", DefaultValue = true, IsRequired = false)]
-		public Boolean Enabled
+		public bool Enabled
 		{
 			get { return (bool)this["enabled"]; }
 		}
 
 		[ConfigurationProperty("errorPageController", IsRequired = true)]
-		public String ErrorPageController
+		public string ErrorPageController
 		{
 			get { return this["errorPageController"] as string; }
 		}
 
 		[ConfigurationProperty("errorPageAction", IsRequired = true)]
-		public String ErrorPageAction
+		public string ErrorPageAction
 		{
 			get { return this["errorPageAction"] as string; }
 		}

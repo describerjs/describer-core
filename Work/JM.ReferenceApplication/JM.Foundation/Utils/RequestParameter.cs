@@ -1,7 +1,5 @@
 ﻿using JM.Foundation.Extensions;
 using System;
-using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -32,6 +30,7 @@ namespace JM.Foundation.Utils
 		/// Liest den angegebenden POST-Parameter und gibt den Wert oder den angegebenen Defaultwert zurück
 		/// </summary>
 		/// <param name="parameterName">Name des POST-Parameters</param>
+		/// <param name="fallback">Defaultvalue</param>
 		/// <returns>string Wert</returns>
 		/// /// <returns>string Defaultwert</returns>
 		public static string ReadPost(string parameterName, string fallback)
@@ -44,6 +43,7 @@ namespace JM.Foundation.Utils
 		/// Liest den angegebenden POST-Parameter und beschränkt den Returnwert auf den Regex "[^a-zA-Z0-9 _-]"
 		/// </summary>
 		/// <param name="parameterName">Name des POST-Parameters</param>
+		/// <param name="alphaNumericOnly">nur alphanumerische Zeichen zurückgeben</param>
 		/// <returns>string Wert</returns>
 		public static string ReadPost(string parameterName, bool alphaNumericOnly)
 		{
@@ -71,6 +71,7 @@ namespace JM.Foundation.Utils
 		/// Liest den angegebenden GET-Parameter und gibt den Wert oder den angegebenen Defaultwert zurück
 		/// </summary>
 		/// <param name="parameterName">Name des GET-Parameters</param>
+		/// <param name="fallback">Defaultvalue</param>
 		/// <returns>string Defaultwert</returns>
 		public static string ReadGet(string parameterName, string fallback)
 		{
@@ -94,6 +95,7 @@ namespace JM.Foundation.Utils
 		/// </summary>
 		/// <param name="parameterName">Name des GET-Parameters</param>
 		/// <param name="alphaNumericOnly">Allow only latin characters, numbers, space, underscore and a minus character</param>
+		/// <param name="unfiltered">Nicht filtern</param>
 		/// <returns></returns>
 		public static string ReadGet(string parameterName, bool alphaNumericOnly, bool unfiltered)
 		{

@@ -267,7 +267,9 @@
     <Content Include="App_Data\Config\dev\JM.Business.config" />
     <Content Include="App_Data\autofac.config" />
     <Content Include="App_Data\Config\dev\JM.Business.Kontakt.config" />
-    <Content Include="App_Data\Config\dev\JM.Foundation.config" />
+    <Content Include="App_Data\Config\dev\JM.Foundation.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\JMTools\Views\web.config" />
     <Content Include="Areas\JMTools\Views\_ViewStart.cshtml" />
     <Content Include="Areas\JMTools\Views\Shared\_Layout.cshtml" />
@@ -299,8 +301,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Errors.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />

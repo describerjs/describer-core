@@ -255,6 +255,37 @@
 		</div>
 	</div>
 	<div class="container body-content">
+		
+		<div>
+			<h4>JS Features:</h4>
+			@JSFeatures.AssetsConditionalLoading: @Html.FeatureEnabled(JSFeatures.AssetsConditionalLoading)<br/>
+			@JSFeatures.AssetsOptimisation: @Html.FeatureEnabled(JSFeatures.AssetsOptimisation)<br/>
+			@JSFeatures.BrowserPerformance: @Html.FeatureEnabled(JSFeatures.BrowserPerformance)<br/>
+			@JSFeatures.CDN: @Html.FeatureEnabled(JSFeatures.CDN)<br/>
+			@JSFeatures.ExpireHeaders: @Html.FeatureEnabled(JSFeatures.ExpireHeaders)<br/>
+			@JSFeatures.ImageFormats: @Html.FeatureEnabled(JSFeatures.ImageFormats)<br/>
+			@JSFeatures.ImageResponsive: @Html.FeatureEnabled(JSFeatures.ImageResponsive)<br/>
+			@JSFeatures.LocalStorage: @Html.FeatureEnabled(JSFeatures.LocalStorage)<br/>
+			@JSFeatures.NoJS: @Html.FeatureEnabled(JSFeatures.NoJS)<br/>
+			@JSFeatures.ProgressiveEnhancement: @Html.FeatureEnabled(JSFeatures.ProgressiveEnhancement)<br/>
+			@JSFeatures.RequireJS: @Html.FeatureEnabled(JSFeatures.RequireJS)<br/>
+			@JSFeatures.TouchSupport: @Html.FeatureEnabled(JSFeatures.TouchSupport)<br/>
+			
+			
+			<h4>Css Features:</h4>
+			@CssFeatures.Aria: @Html.FeatureEnabled(CssFeatures.Aria)<br/>
+			@CssFeatures.CSS3_Animations: @Html.FeatureEnabled(CssFeatures.CSS3_Animations)<br/>
+			@CssFeatures.FlexibleGrids: @Html.FeatureEnabled(CssFeatures.FlexibleGrids)<br/>
+			@CssFeatures.FlexibleImages: @Html.FeatureEnabled(CssFeatures.FlexibleImages)<br/>
+			@CssFeatures.HTML5_Apis: @Html.FeatureEnabled(CssFeatures.HTML5_Apis)<br/>
+			@CssFeatures.HTML5_Semantics: @Html.FeatureEnabled(CssFeatures.HTML5_Semantics)<br/>
+			@CssFeatures.MicroData: @Html.FeatureEnabled(CssFeatures.MicroData)<br/>
+			@CssFeatures.MicroFormats: @Html.FeatureEnabled(CssFeatures.MicroFormats)<br/>
+			@CssFeatures.Prefetching: @Html.FeatureEnabled(CssFeatures.Prefetching)<br/>
+			@CssFeatures.UIBehaviour: @Html.FeatureEnabled(CssFeatures.UIBehaviour)<br/>
+			@CssFeatures.WebFonts: @Html.FeatureEnabled(CssFeatures.WebFonts)
+		</div>
+
 		@RenderBody()
 		<hr />
 		<footer>

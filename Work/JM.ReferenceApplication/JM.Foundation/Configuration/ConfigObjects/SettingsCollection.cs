@@ -1,8 +1,9 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 
 namespace JM.Foundation.Configuration
 {
-	internal class SettingsCollection : ConfigurationElementCollection
+	internal class SettingsCollection : ConfigurationElementCollection, IEnumerable<Setting>
 	{
 		public Setting this[int index]
 		{
@@ -25,6 +26,15 @@ namespace JM.Foundation.Configuration
 		protected override ConfigurationElement CreateNewElement()
 		{
 			return new Setting();
+		}
+
+		public new IEnumerator<Setting> GetEnumerator()
+		{
+			int count = base.Count;
+			for (int i = 0; i < count; i++)
+			{
+				yield return base.BaseGet(i) as Setting;
+			}
 		}
 	}
 }
