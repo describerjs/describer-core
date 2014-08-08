@@ -10,7 +10,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	/// 25.07.2014 - Sebastian van Elten
 	/// JM_Business_KontaktController
 	/// </summary>
-	public class JM_Business_KontaktController : Controller
+	public class BusinessKontaktController : Controller
 	{
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
@@ -22,7 +22,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
-		public JM_Business_KontaktController(
+		public BusinessKontaktController(
             IKontaktManager kontaktManager)
 		{
 			_kontaktManager = kontaktManager;
@@ -49,9 +49,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		[HttpPost]
 		public ActionResult StoreFamilyData(IFamilyModel model)
 		{
-			if (!ModelState.IsValid)
-				return View(model);
-
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 			return View("StoreFamilyData_Danke", model);
 		}
@@ -66,8 +67,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		[HttpPost]
 		public ActionResult StoreData(IPersonalData model)
 		{
-			if (!ModelState.IsValid)
-				return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 			model.LastEditAt = DateTime.Now;
 			_kontaktManager.SavePersonalData(model);
@@ -89,27 +92,25 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
             model.Salutation = userData.Salutation;
             model.FirstName = userData.FirstName;
             model.LastName = userData.LastName;
-			
+
 			return View("CreateRequest", model);
 		}
 
 		[HttpPost]
 		public ActionResult CreateRequest(IContactModel model)
 		{
-			if (!ModelState.IsValid)
-				return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 			_kontaktManager.SendContactMail(model);
-
 			return View("CreateRequest_Danke", model);
 		}
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

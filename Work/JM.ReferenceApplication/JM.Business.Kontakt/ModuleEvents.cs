@@ -8,8 +8,13 @@ namespace JM.Business.Kontakt
 	/// </summary>
 	public sealed class ModuleEvents : JMEventSourceBase
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
-		#region Implementation der abstrakten Klasse JMEventSourceBase
+		[Event(104, Level = EventLevel.Informational)]
+		public void ContactFormSent(string email, string firstname, string lastname)
+		{
+			WriteEvent(104, email, firstname, lastname);
+		}
+
+        #region Implementation der abstrakten Klasse JMEventSourceBase
 
 		/// <summary>
 		/// Loggt eine schwere Ausnahme in einer Busines-Logik
@@ -21,7 +26,10 @@ namespace JM.Business.Kontakt
 			string context,
 			string parameters)
 		{
-			if (this.IsEnabled()) base.WriteEvent(1, context, message, details, parameters);
+            if (this.IsEnabled())
+            {
+                WriteEvent(1, context, message, details, parameters);
+            }
 		}
 
 		/// <summary>
@@ -30,7 +38,7 @@ namespace JM.Business.Kontakt
 		[Event(2, Level = EventLevel.Error)]
 		protected override void GenericException(string message, string details, string parameters)
 		{
-			base.WriteEvent(2, message, details, parameters);
+			WriteEvent(2, message, details, parameters);
 		}
 		
 		/// <summary>
@@ -43,26 +51,19 @@ namespace JM.Business.Kontakt
 			string context,
 			string parameters)
 		{
-			base.WriteEvent(3, message, details, parameters);
+			WriteEvent(3, message, details, parameters);
 		}
 
 		#endregion
 
-		[Event(104, Level = EventLevel.Informational)]
-		public void ContactFormSent(string email, string firstname, string lastname)
-		{
-			base.WriteEvent(104, email, firstname, lastname);
-		}
-
-
-		/// <summary>
-		/// Definierte Tasks für dieses Modul
-		/// </summary>
-		public class Tasks
-		{
-			public const EventTask CriticalBusinessTask = (EventTask)1;
-			public const EventTask BusinessTask = (EventTask)2;
-			public const EventTask GenericTask = (EventTask)3;
-		}
+        /// <summary>
+        /// Definierte Tasks für dieses Modul
+        /// </summary>
+        public class Tasks
+        {
+            public const EventTask CriticalBusinessTask = (EventTask)1;
+            public const EventTask BusinessTask = (EventTask)2;
+            public const EventTask GenericTask = (EventTask)3;
+        }
 	}
 }

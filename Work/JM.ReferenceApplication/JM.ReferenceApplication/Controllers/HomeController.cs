@@ -31,7 +31,7 @@ namespace JM.ReferenceApplication.Controllers
 			var ex = new HttpException(404, "Die Seite 'CustomError404' wurde nicht gefunden");
 			throw ex;
 		}
-		
+
 		public ActionResult CustomErrorNoView()
 		{
 			return View();
@@ -45,7 +45,7 @@ namespace JM.ReferenceApplication.Controllers
 
 	    public ActionResult CustomErrorWithUserMessage()
 	    {
-		    var ex= new JMApplicationException("Hm ich hab wohl ein Semicolon vergessen");
+		    var ex = new JMApplicationException("Hm ich hab wohl ein Semicolon vergessen");
 		    ex.UserMessage = "Leider ist das ziemlich schief gegangen";
 
 		    throw ex;

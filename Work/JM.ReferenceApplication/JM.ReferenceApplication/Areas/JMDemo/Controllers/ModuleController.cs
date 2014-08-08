@@ -7,24 +7,18 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	/// </summary>
 	public class ModuleController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
-
-		//
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public ModuleController()
 		{
-
 		}
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		/// <summary>
@@ -42,7 +36,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		/// <returns>View</returns>
 		public ActionResult JM_Business_Kontakt()
 		{
-			return View();	
+			return View();
 		}
 
 		/// <summary>
@@ -65,10 +59,7 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

@@ -7,13 +7,19 @@ namespace JM.ReferenceApplication.Common.Monitoring
         [Event(100, Level = EventLevel.Informational)]
         public void UserSignedIn(string userName)
         {
-            base.WriteEvent(100, userName);
+            if (IsEnabled())
+            {
+                WriteEvent(100, userName);
+            }
         }
 
         [Event(101, Level = EventLevel.Informational)]
         public void UserSignedOut(string userName)
         {
-            base.WriteEvent(101, userName);
+            if (IsEnabled())
+            {
+                WriteEvent(101, userName);
+            }
         }
     }
 }

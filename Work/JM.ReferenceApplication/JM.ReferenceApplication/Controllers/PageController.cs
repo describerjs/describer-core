@@ -18,10 +18,10 @@ namespace JM.ReferenceApplication.Controllers
 		/// Gets a standard page.
 		/// </summary>
 		/// <returns>The view result</returns>
-        public ActionResult Index() 
-        {			
+        public ActionResult Index()
+        {
             var model = GetModel();
-            return View(model.GetView(), model) ;
+            return View(model.GetView(), model);
         }
     }
 }

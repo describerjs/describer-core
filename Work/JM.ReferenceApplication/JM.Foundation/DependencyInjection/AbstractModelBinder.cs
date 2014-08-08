@@ -10,21 +10,27 @@ namespace JM.Foundation.DependencyInjection
         public AbstractModelBinder(IDependencyResolver resolver)
         {
             if (resolver == null)
-				throw new ArgumentNullException("resolver");
-				
+            {
+                throw new ArgumentNullException("resolver");
+            }
+
             _resolver = resolver;
         }
 
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-	        if (!MustResolve(bindingContext.ModelType))
-		        return base.CreateModel(controllerContext, bindingContext, modelType);
+            if (!MustResolve(bindingContext.ModelType))
+            {
+                return base.CreateModel(controllerContext, bindingContext, modelType);
+            }
 
-	        var resolvedObject = 
+	        var resolvedObject =
 		        _resolver.GetService(bindingContext.ModelType);
 
-	        if (resolvedObject != null)
-				return resolvedObject;
+            if (resolvedObject != null)
+            {
+                return resolvedObject;
+            }
 
 	        throw TypeNotResolvable(bindingContext);
         }
@@ -50,7 +56,7 @@ namespace JM.Foundation.DependencyInjection
 
         private static bool HasNoParameterlessConstructor(Type type)
         {
-            return 
+            return
                 type.GetConstructor(Type.EmptyTypes) == null;
         }
     }

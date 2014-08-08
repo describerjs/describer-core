@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using JM.Business.Manager;
+using JM.ReferenceApplication.Areas.JMDemo.Models;
 
 namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 {
@@ -9,7 +10,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 	/// </summary>
 	public class JM_BusinessController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
 
 		private IImportantManager _importantManager;
@@ -17,7 +17,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public JM_BusinessController(IImportantManager importantManager, ILameManager lameManager)
@@ -28,7 +27,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		public ActionResult Important()
@@ -50,13 +48,13 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		public ActionResult ImportantModuleInfo()
 		{
-			return View("ImportantModuleInfo", "", _importantManager.GetModuleInfo());
+			return View("ImportantModuleInfo", string.Empty, _importantManager.GetModuleInfo());
 		}
 
 		public ActionResult ImportantConfiguredDeviceInfo(int index = 0)
 		{
 			ViewBag.Index = index;
-			return View("ImportantConfiguredDeviceInfo", "", _importantManager.GetDeviceFromConfig(index));
+			return View("ImportantConfiguredDeviceInfo", string.Empty, _importantManager.GetDeviceFromConfig(index));
 		}
 
 		public ActionResult Lame()
@@ -78,18 +76,8 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
 
-		//
-
 		#endregion
-	}
-
-	public class StringManagerModel
-	{
-		public int ID { get; set; }
-		public string String { get; set; }
-		public string Manager { get; set; }
 	}
 }

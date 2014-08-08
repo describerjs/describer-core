@@ -207,6 +207,7 @@
     <Compile Include="Areas\JMDemo\Controllers\JM_Business_Controller.cs" />
     <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\Models\StringManagerModel.cs" />
     <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -220,9 +221,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Models\AccountViewModels.cs" />
     <Compile Include="Infrastructure\Models\Extensions.cs" />
+    <Compile Include="Infrastructure\Models\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Infrastructure\Models\ExternalLoginListViewModel.cs" />
+    <Compile Include="Infrastructure\Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Infrastructure\Models\IdentityModels.cs" />
+    <Compile Include="Infrastructure\Models\LoginViewModel.cs" />
+    <Compile Include="Infrastructure\Models\ManageUserViewModel.cs" />
+    <Compile Include="Infrastructure\Models\RegisterViewModel.cs" />
+    <Compile Include="Infrastructure\Models\ResetPasswordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

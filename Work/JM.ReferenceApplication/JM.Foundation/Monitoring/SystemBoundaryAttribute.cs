@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace JM.Foundation
 {
-    public abstract class ContextAttribute : Attribute
-    {
-
-    }
-
-    public class SystemBoundaryAttribute : ContextAttribute
+    public class SystemBoundaryAttribute : Attribute
     {
         public SystemBoundaryAttribute(string businessContext, BusinesImpact impact)
         {
@@ -30,11 +25,5 @@ namespace JM.Foundation
             get;
             private set;
         }
-    }
-
-    public enum BusinesImpact
-    {
-        Low = 0,
-        High = 1
     }
 }

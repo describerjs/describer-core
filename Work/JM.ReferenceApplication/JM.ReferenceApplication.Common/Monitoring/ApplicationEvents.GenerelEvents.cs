@@ -7,7 +7,10 @@ namespace JM.ReferenceApplication.Common.Monitoring
         [Event(10, Level = EventLevel.Informational)]
         public void ApplicationStartup()
         {
-            base.WriteEvent(10);
+            if (IsEnabled())
+            {
+                WriteEvent(10);
+            }
         }
     }
 }
