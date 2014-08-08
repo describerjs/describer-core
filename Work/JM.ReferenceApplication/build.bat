@@ -2,7 +2,7 @@
 
 ECHO.Start Build Basis-Solution
 
-build\nuget.exe restore "JM.ReferenceApplication.sln"
+batch\nuget.exe restore "JM.ReferenceApplication.sln"
 
 set exefile=%WinDir%\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe
 %exefile% "JM.ReferenceApplication.sln"
