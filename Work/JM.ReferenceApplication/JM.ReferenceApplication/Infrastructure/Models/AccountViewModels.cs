@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JM.ReferenceApplication.Models
+namespace JM.ReferenceApplication.Infrastructure.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

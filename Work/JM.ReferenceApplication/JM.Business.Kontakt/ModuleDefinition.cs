@@ -1,10 +1,9 @@
 ﻿using Autofac;
+using Autofac.Extras.DynamicProxy2;
 using JM.Business.Kontakt.Business.Manager;
 using JM.Business.Kontakt.Business.Model;
 using JM.Business.Kontakt.Contracts.Manager;
-using Autofac.Extras.DynamicProxy2;
 using JM.Business.Kontakt.Contracts.Model;
-using JM.Business.Kontakt.DataModel;
 
 namespace JM.Business.Kontakt
 {
