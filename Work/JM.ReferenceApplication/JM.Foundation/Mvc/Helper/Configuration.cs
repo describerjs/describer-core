@@ -20,22 +20,13 @@ namespace JM.Foundation.Mvc.Helper
 		/// <param name="helper">HtmlHelper</param>
 		/// <param name="feature">Enum-Wert Feature</param>
 		/// <returns>bool</returns>
-		public static bool FeatureEnabled(this HtmlHelper helper, CssFeatures feature)
+		public static bool FeatureEnabled(this HtmlHelper helper, PerformanceFeature feature)
 		{
-			return _getSettingValue((int)feature);
-		}
+			var setting = _getSetting((int)feature);
 
-		/// <summary>
-		/// Prüft ob das übergebene JS-Feature aktiviert ist
-		/// </summary>
-		/// <param name="helper">HtmlHelper</param>
-		/// <param name="feature">Enum-Wert Feature</param>
-		/// <returns>bool</returns>
-		public static bool FeatureEnabled(this HtmlHelper helper, JSFeatures feature)
-		{
-			return _getSettingValue((int)feature);
+			return setting != null && setting.Value;
 		}
-
+		
 		#endregion
 
 		//////////////////////////////////////////////////////////////////////////////////////
@@ -51,18 +42,6 @@ namespace JM.Foundation.Mvc.Helper
 		}
 
 		/// <summary>
-		/// Holt den Wert eines bestimmten Settings anhand der SettingID
-		/// </summary>
-		/// <param name="id">SettingID</param>
-		/// <returns>bool</returns>
-		private static bool _getSettingValue(int id)
-		{
-			var setting = _getSetting(id);
-			
-			return setting != null && setting.Value;
-		}
-
-		/// <summary>
 		/// Holt ein bestimmtes Setting anhand der ID
 		/// </summary>
 		/// <param name="id">Id des Settings</param>
@@ -70,18 +49,7 @@ namespace JM.Foundation.Mvc.Helper
 		private static Setting _getSetting(int id)
 		{
 			var config = _getConfig();
-			var settings = new List<Setting>();
-
-			settings.AddRange(config.Features.Css.Accessibility.ToList());
-			settings.AddRange(config.Features.Css.Performance.ToList());
-			settings.AddRange(config.Features.Css.Responsive.ToList());
-			settings.AddRange(config.Features.Css.UX.ToList());
-
-			settings.AddRange(config.Features.Javascript.Accessibility.ToList());
-			settings.AddRange(config.Features.Javascript.Performance.ToList());
-			settings.AddRange(config.Features.Javascript.Responsive.ToList());
-			settings.AddRange(config.Features.Javascript.UX.ToList());
-
+			var settings = config.Features.ToList();
 
 			return settings.FirstOrDefault(d => d.ID == id.ToString());
 		}

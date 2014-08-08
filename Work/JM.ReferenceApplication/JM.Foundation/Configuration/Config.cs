@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace JM.Foundation.Configuration
 {
@@ -36,13 +35,10 @@ namespace JM.Foundation.Configuration
 		/// <summary>
 		/// Konfiguration für die verschiedenen optionalen Features und Performancesettings
 		/// </summary>
-		[ConfigurationProperty("Features")]
-		public Features Features
+		[ConfigurationProperty("Features", IsRequired = true)]
+		public SettingsCollection Features
 		{
-			get
-			{
-				return (Features)this["Features"];
-			}
+			get { return this["Features"] as SettingsCollection; }
 		}
 	}
 }

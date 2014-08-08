@@ -118,9 +118,7 @@
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
-    <Compile Include="Configuration\Features\CssFeatures.cs" />
-    <Compile Include="Configuration\Features\JSFeatures.cs" />
-    <Compile Include="Configuration\ConfigObjects\Css.cs" />
+    <Compile Include="Configuration\Features\PerformanceFeature.cs" />
     <Compile Include="DependencyInjection\AbstractModelBinder.cs" />
     <Compile Include="ErrorHandling\ErrorHttpModule.cs" />
     <Compile Include="ErrorHandling\ErrorIntercepter.cs" />
@@ -131,8 +129,6 @@
     <Compile Include="Configuration\ConfigObjects\ErrorHttpModule.cs" />
     <Compile Include="Extensions\RouteExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
-    <Compile Include="Configuration\ConfigObjects\Features.cs" />
-    <Compile Include="Configuration\ConfigObjects\Javascript.cs" />
     <Compile Include="Configuration\ConfigObjects\JMBasicAuthenticationFilter.cs" />
     <Compile Include="Monitoring\BusinesImpact.cs" />
     <Compile Include="Mvc\Filter\JMBasicAuthFilterAttribute.cs" />
