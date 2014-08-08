@@ -38,6 +38,24 @@ namespace JM.Business.Kontakt
 				return (MailingElement)this["Mailing"];
 			}
 		}
+
+		[ConfigurationProperty("ConnectionString")]
+		public ConnectionString ConnectionString
+		{
+			get
+			{
+				return (ConnectionString)this["ConnectionString"];
+			}
+		}
+	}
+
+	internal class ConnectionString : ConfigurationElement
+	{
+		[ConfigurationProperty("value", IsRequired = true)]
+		public String Value
+		{
+			get { return this["value"] as string; }
+		}
 	}
 
 	internal class MailingElement : ConfigurationElement

@@ -42,8 +42,25 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		/// <returns>View</returns>
 		public ActionResult JM_Business_Kontakt()
 		{
+			return View();	
+		}
+
+		/// <summary>
+		/// Startseite für JM.Business
+		/// </summary>
+		/// <returns>View</returns>
+		public ActionResult JM_Business()
+		{
 			return View();
-			
+		}
+
+		/// <summary>
+		/// Startseite für JM.Foundation
+		/// </summary>
+		/// <returns>View</returns>
+		public ActionResult JM_Foundation()
+		{
+			return View();
 		}
 
 		#endregion

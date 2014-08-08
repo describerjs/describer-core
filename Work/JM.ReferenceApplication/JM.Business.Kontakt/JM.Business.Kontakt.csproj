@@ -40,6 +40,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.0.26.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
@@ -57,7 +63,27 @@
   <ItemGroup>
     <Compile Include="Business\Manager\KontaktManager.cs" />
     <Compile Include="Business\Model\ContactModel.cs" />
+    <Compile Include="Business\Model\StartModel.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="DataAccess\Data.cs" />
+    <Compile Include="DataModel\Model.cs" />
+    <Compile Include="Migrations\201407291110061_First Init.cs" />
+    <Compile Include="Migrations\201407291110061_First Init.Designer.cs">
+      <DependentUpon>201407291110061_First Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407291508443_USerID-Change to String.cs" />
+    <Compile Include="Migrations\201407291508443_USerID-Change to String.Designer.cs">
+      <DependentUpon>201407291508443_USerID-Change to String.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.cs" />
+    <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.Designer.cs">
+      <DependentUpon>201407300941171_LastEdit-Date als nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.cs" />
+    <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.Designer.cs">
+      <DependentUpon>201407310716446_Anrede für Benutzer hinzugefügt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,8 +94,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\" />
-    <Folder Include="DataModel\" />
+    <EmbeddedResource Include="Migrations\201407291110061_First Init.resx">
+      <DependentUpon>201407291110061_First Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407291508443_USerID-Change to String.resx">
+      <DependentUpon>201407291508443_USerID-Change to String.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407300941171_LastEdit-Date als nullable.resx">
+      <DependentUpon>201407300941171_LastEdit-Date als nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.resx">
+      <DependentUpon>201407310716446_Anrede für Benutzer hinzugefügt.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.csproj">
@@ -87,10 +123,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\JM.ReferenceApplication\bin\$(TargetName).dll"
-copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)\JM.ReferenceApplication\bin\$(TargetName).pdb"
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,0 +1,50 @@
+﻿body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 280px;
+}
+
+#brand-jm {
+	width: 35%;
+	background-color: #d41;
+	border-radius: 2px;
+	padding: 5px;
+}
+
+
+.btn-primary {
+	color: #fff;
+	background-color: #d41;
+	border-color: #e51;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #e51;
+	border-color: #d41;
+}
+
+
+ul.nav li ul { display: none;position: relative;list-style-type: none;margin: 0;padding: 0;width: 100%;}
+
+ul.nav li:hover ul { display: block;position: absolute; }
+
+ul.nav ul a { 
+	padding: 10px 15px;
+	line-height: 20px;
+	display: block;
+	background: #080808;
+	color: #fff;
+}

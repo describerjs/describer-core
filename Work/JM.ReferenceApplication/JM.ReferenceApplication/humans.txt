@@ -1,0 +1,18 @@
+/* TEAM */
+
+Your title: Dein Name.
+Site: Email, Link zum Kontaktformular, etc.
+Twitter: Dein Twitter Name.
+Location: Stadt, Land.
+							
+/* THANKS */
+
+Name: Name oder URL
+                            
+/* SITE */
+                            
+Last update: 2014/08/4 
+                            
+Standards: HTML5, CSS3
+Components: Modernizr, jQuery
+Software: Visual Studio 2012, Sublime IDE

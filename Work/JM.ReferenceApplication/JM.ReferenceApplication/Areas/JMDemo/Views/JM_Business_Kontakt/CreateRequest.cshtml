@@ -1,0 +1,90 @@
+﻿@using Microsoft.AspNet.Identity
+@model JM.ReferenceApplication.Areas.JMDemo.Models.JM.Business.Kontakt.ContactModel
+
+@{
+	ViewBag.Title = "CreateRequest";
+}
+
+<div class="row">
+	@if (User.Identity == null || !User.Identity.IsAuthenticated)
+	{
+		<div class="col-lg-12">
+			<h2>Hallo!</h2>
+			<p>Bitte <a href="@Url.Action("Login", "Login", new { area = "", returnUrl = Request.RawUrl })">loggen Sie sich zuerst ein</a>.</p>
+		</div>
+	}
+	else
+	{
+		<div class="col-lg-12">
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
+    
+				<div class="form-horizontal">
+					<h2>Ihre Kontaktanfrage</h2>
+					<p>Hallo @User.Identity.Name, hier können Sie Ihre Kontaktanfrage stellen</p>
+					<a href="@Url.Action("Index")">Zurück</a>
+					<hr />
+					@Html.ValidationSummary(true)
+
+					@Html.HiddenFor(m => m.UserID, User.Identity.GetUserId())
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Salutation, new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.TextBoxFor(model => model.Salutation, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.Salutation)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.FirstName)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.LastName)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.Email)
+						</div>
+					</div>
+					<hr/>
+					<div class="form-group">
+						@Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.Subject)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.TextAreaFor(model => model.Message, new { @class = "form-control", cols="10", rows="10" })
+							@Html.ValidationMessageFor(model => model.Message)
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<input type="submit" value="Create" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+			}
+
+		</div>
+	}
+</div>

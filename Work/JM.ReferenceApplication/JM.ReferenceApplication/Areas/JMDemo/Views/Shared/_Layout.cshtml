@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JM Demo</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/jm/css")
+    @Scripts.Render("~/jm/modernizr")
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	<link type="image/x-icon" href="/favicon.ico" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,11 +19,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/JMDemo"><img id="brand-jm" src="/Content/img/joinmedia.png" alt="join.media" /></a>
+                <a class="navbar-brand" href="/"><img id="brand-jm" src="/Content/img/joinmedia.png" alt="join.media" /></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+	            <ul class="nav navbar-nav">
+		            <li>@Html.ActionLink("JMDemo Start", "Index", "Start")</li>
+	            </ul>
             </div>
         </div>
     </div>
@@ -33,8 +37,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/jm/jquery")
+    @Scripts.Render("~/jm/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

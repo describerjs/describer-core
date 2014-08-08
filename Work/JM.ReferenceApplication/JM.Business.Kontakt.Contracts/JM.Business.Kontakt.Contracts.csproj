@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="Manager\IKontaktManager.cs" />
     <Compile Include="Model\IContactModel.cs" />
+    <Compile Include="Model\IContactRequest.cs" />
+    <Compile Include="Model\IPersonalData.cs" />
+    <Compile Include="Model\IStartModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
