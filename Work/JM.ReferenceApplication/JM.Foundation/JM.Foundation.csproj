@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JM.Foundation</RootNamespace>
     <AssemblyName>JM.Foundation</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>4e8b6856</NuGetPackageImportStamp>
     <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
