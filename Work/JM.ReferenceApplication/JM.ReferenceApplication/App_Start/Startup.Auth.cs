@@ -1,10 +1,10 @@
-﻿using System;
-using JM.ReferenceApplication.Models;
+﻿using JM.ReferenceApplication.Infrastructure.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using System;
 
 namespace JM.ReferenceApplication
 {

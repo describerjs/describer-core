@@ -11,7 +11,7 @@ namespace JM.Foundation.Mvc.Helper
 	{
 		public static bool LocalStorageEnabled(this HtmlHelper helper, string type = "")
 		{
-			return _getConfig().Features.Javascript.EnableLocalStorage;
+			return false; //var settings = _getConfig().Features.Javascript.Accessibility;
 		}
 
 		/// <summary>

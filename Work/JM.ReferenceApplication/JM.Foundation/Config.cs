@@ -103,48 +103,141 @@ namespace JM.Foundation
 	}
 
 	#endregion
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////
 	#region Configuration von Performance und Features
 
 	internal class Features : ConfigurationElement
 	{
-		[ConfigurationProperty("Css")]
+		[ConfigurationProperty("css")]
 		public Css Css
 		{
 			get
 			{
-				return (Css)this["Css"];
+				return (Css)this["css"];
 			}
 		}
 
-		[ConfigurationProperty("Javascript")]
+		[ConfigurationProperty("javascript")]
 		public Javascript Javascript
 		{
 			get
 			{
-				return (Javascript)this["Javascript"];
+				return (Javascript)this["javascript"];
 			}
 		}
 	}
 
 	internal class Javascript : ConfigurationElement
 	{
-		[ConfigurationProperty("enableLocalStorage", IsRequired = true, DefaultValue = false)]
-		public bool EnableLocalStorage
+		[ConfigurationProperty("responsive", IsRequired = true)]
+		public SettingsCollection Responsive
 		{
-			get { return (bool)this["enableLocalStorage"]; }
+			get { return this["responsive"] as SettingsCollection; }
+		}
+
+		[ConfigurationProperty("performance", IsRequired = true)]
+		public SettingsCollection Performance
+		{
+			get { return this["performance"] as SettingsCollection; }
+		}
+
+		[ConfigurationProperty("accessibility", IsRequired = true)]
+		public SettingsCollection Accessibility
+		{
+			get { return this["accessibility"] as SettingsCollection; }
+		}
+
+		[ConfigurationProperty("ux", IsRequired = true)]
+		public SettingsCollection UX
+		{
+			get { return this["ux"] as SettingsCollection; }
 		}
 	}
 
 	internal class Css : ConfigurationElement
 	{
-		[ConfigurationProperty("enableThis", IsRequired = true, DefaultValue = false)]
-		public bool enableThis
+		[ConfigurationProperty("responsive", IsRequired = true)]
+		public SettingsCollection Responsive
 		{
-			get { return (bool)this["enableThis"]; }
+			get { return this["responsive"] as SettingsCollection; }
+		}
+
+		[ConfigurationProperty("performance", IsRequired = true)]
+		public SettingsCollection Performance
+		{
+			get { return this["performance"] as SettingsCollection; }
+		}
+
+		[ConfigurationProperty("accessibility", IsRequired = true)]
+		public SettingsCollection Accessibility
+		{
+			get { return this["accessibility"] as SettingsCollection; }
+		}
+
+		[ConfigurationProperty("ux", IsRequired = true)]
+		public SettingsCollection UX
+		{
+			get { return this["ux"] as SettingsCollection; }
 		}
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////////
+	#region Deklaration Collection und CollectionElement
+
+	internal class SettingsCollection : ConfigurationElementCollection
+	{
+		public Setting this[int index]
+		{
+			get { return BaseGet(index) as Setting; }
+			set
+			{
+				if (BaseGet(index) != null)
+				{
+					BaseRemoveAt(index);
+				}
+				BaseAdd(index, value);
+			}
+		}
+
+		protected override object GetElementKey(ConfigurationElement element)
+		{
+			return ((Setting)element).ID;
+		}
+
+		protected override ConfigurationElement CreateNewElement()
+		{
+			return new Setting();
+		}
+	}
+
+	internal class Setting : ConfigurationElement
+	{
+		[ConfigurationProperty("id", IsRequired = true)]
+		public string ID
+		{
+			get { return this["id"] as string; }
+		}
+
+		[ConfigurationProperty("name", IsRequired = true)]
+		public string Name
+		{
+			get { return this["name"] as string; }
+		}
+
+		[ConfigurationProperty("value", IsRequired = true)]
+		public bool Value
+		{
+			get { return (bool)this["value"]; }
+		}
+
+		[ConfigurationProperty("description", IsRequired = true)]
+		public string Description
+		{
+			get { return this["description"] as string; }
+		}
+	}
+	#endregion
 
 	#endregion
 }

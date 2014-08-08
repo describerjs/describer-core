@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using JM.ReferenceApplication.Models;
+using JM.ReferenceApplication.Infrastructure.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

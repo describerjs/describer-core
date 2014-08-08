@@ -77,6 +77,8 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\CssFeatures.cs" />
+    <Compile Include="Configuration\JSFeatures.cs" />
     <Compile Include="DependencyInjection\AbstractModelBinder.cs" />
     <Compile Include="ErrorHandling\ErrorHttpModule.cs" />
     <Compile Include="ErrorHandling\ErrorIntercepter.cs" />
