@@ -1,7 +1,7 @@
 ﻿using Castle.DynamicProxy;
-//using JM.Foundation.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,7 +19,7 @@ namespace JM.Foundation.ErrorHandling
     public interface IErrorHandler
     {
         void Handle(
-            Exception ex, 
+            Exception ex,
             ExceptionPolicy policy,
             string context);
 
@@ -30,19 +30,6 @@ namespace JM.Foundation.ErrorHandling
 
     public class ErrorHandler : IErrorHandler
     {
-        private void LogException(Exception ex, SystemBoundaryAttribute context, object[] arguments)
-        {
-            if(context.Impact == BusinesImpact.High)
-            {
-                JMEventSourceBase.Log.FatalBusinessException(ex, context.BusinessContext, arguments);
-            }
-        }
-
-        private void LogException(Exception ex, object[] arguments)
-        {
-            JMEventSourceBase.Log.Exception(ex, arguments);
-        }
-
         public void Handle(Exception ex, ExceptionPolicy policy, string context)
         {
             throw new NotImplementedException();
@@ -50,6 +37,10 @@ namespace JM.Foundation.ErrorHandling
 
         public void Handle(Exception ex, IInvocation invocation)
         {
+            // ToDo: Contract
+            //Contract.Requires(ex != null);
+            //Contract.Requires(invocation != null);
+
             LogException(ex, invocation);
 
             throw new JM.Foundation.JMApplicationException(string.Empty, ex)
@@ -68,7 +59,8 @@ namespace JM.Foundation.ErrorHandling
                 .GetCustomAttributes(typeof(SystemBoundaryAttribute), true)
                 .FirstOrDefault();
 
-            if (methodAttribute == null)
+            if (methodAttribute == null &&
+                invocation.Method.DeclaringType != null)
             {
                 attribute =
                     (SystemBoundaryAttribute)invocation
@@ -86,6 +78,19 @@ namespace JM.Foundation.ErrorHandling
             {
                 LogException(ex, invocation);
             }
+        }
+
+        private void LogException(Exception ex, SystemBoundaryAttribute context, object[] arguments)
+        {
+            if (context.Impact == BusinesImpact.High)
+            {
+                JMEventSourceBase.Log.FatalBusinessException(ex, context.BusinessContext, arguments);
+            }
+        }
+
+        private void LogException(Exception ex, object[] arguments)
+        {
+            JMEventSourceBase.Log.Exception(ex, arguments);
         }
     }
 }

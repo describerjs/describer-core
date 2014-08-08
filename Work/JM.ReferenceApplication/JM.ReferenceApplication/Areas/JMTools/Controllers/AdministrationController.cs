@@ -1,5 +1,5 @@
-﻿using JM.Foundation.Mvc.Filter;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using JM.Foundation.Mvc.Filter;
 
 namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 {
@@ -11,24 +11,18 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 	[JMBasicAuthFilter]
 	public class AdministrationController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
-
-		//
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public AdministrationController()
 		{
-
 		}
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		/// <summary>
@@ -42,10 +36,7 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
-		//
 
 		#endregion
 	}

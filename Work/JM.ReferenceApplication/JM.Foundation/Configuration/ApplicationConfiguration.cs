@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics.Contracts;
 
 namespace JM.Foundation.Configuration
 {
@@ -20,30 +21,34 @@ namespace JM.Foundation.Configuration
         {
             var configurationValue = ConfigurationManager.AppSettings[configurationKey];
 
-	        return String.IsNullOrEmpty(configurationValue) ? defaultValue : configurationValue;
+	        return string.IsNullOrEmpty(configurationValue) ? defaultValue : configurationValue;
         }
 
-		/// <summary>
-		/// Versucht einen Wert aus der Konfigurationsdatei zu lesen und diesen als den übergebenen EnumType zu casten
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="configurationKey"></param>
-		/// <param name="defaultValue"></param>
-		/// <returns>Enum</returns>
-        public static T GetEnum<T>(string configurationKey, T? defaultValue = null)
-            where T : struct
-        {
-            var configurationValue = ConfigurationManager.AppSettings[configurationKey];
+        // ToDo: Korrektheit prüfen
+        /////// <summary>
+        /////// Versucht einen Wert aus der Konfigurationsdatei zu lesen und diesen als den übergebenen EnumType zu casten
+        /////// </summary>
+        /////// <typeparam name="T"></typeparam>
+        /////// <param name="configurationKey"></param>
+        /////// <param name="defaultValue"></param>
+        /////// <returns>Enum</returns>
+        ////public static T GetEnum<T>(string configurationKey, T? defaultValue = null)
+        ////    where T : struct
+        ////{
+        ////    var configurationValue = ConfigurationManager.AppSettings[configurationKey];
 
-            if (string.IsNullOrEmpty(configurationValue))
-            {
-                if (defaultValue == null)
-                    throw new InvalidOperationException("required appSetting " + configurationKey + " is missing");
-                return defaultValue.Value;
-            }
+        ////    if (string.IsNullOrEmpty(configurationValue))
+        ////    {
+        ////        if (defaultValue == null)
+        ////        {
+        ////            throw new InvalidOperationException("required appSetting " + configurationKey + " is missing");
+        ////        }
+                    
+        ////        return defaultValue.Value;
+        ////    }
 
-            return (T)Enum.Parse(typeof(T), configurationKey, false);
-        }
+        ////    return (T)Enum.Parse(typeof(T), configurationKey, false);
+        ////}
 
         /// <summary>
         /// Versucht eine <see cref="ConfigurationSection"/> aus der Konfigurationsdatei zu lesen.
@@ -57,7 +62,7 @@ namespace JM.Foundation.Configuration
         {
             configSection = null;
 			T section = null;
-            
+
 			// In web.config sichen
 			section = ConfigurationManager.GetSection(sectionName) as T;
 			if (section != null)
@@ -65,21 +70,21 @@ namespace JM.Foundation.Configuration
 				configSection = section;
 				return true;
 			}
-			
-			//// In app.config suchen
-			//var appConfig = getConfigurationFromAppConfig();
 
-			//if (appConfig != null)
-			//{
-			//	section = appConfig.GetSection(sectionName) as T;
+            ////// In app.config suchen
+            ////var appConfig = getConfigurationFromAppConfig();
 
-			//	if (section != null)
-			//	{
-			//		configSection = section;
-			//		return true;
-			//	}
-			//}
-            
+            ////if (appConfig != null)
+            ////{
+            ////	section = appConfig.GetSection(sectionName) as T;
+
+            ////	if (section != null)
+            ////	{
+            ////		configSection = section;
+            ////		return true;
+            ////	}
+            ////}
+
             return false;
         }
 
@@ -92,10 +97,14 @@ namespace JM.Foundation.Configuration
 		public static T GetConfigSection<T>(string sectionName)
 			where T : ConfigurationSection
 		{
+            Contract.Ensures(Contract.Result<T>() != null);
+
 			var configSection = ConfigurationManager.GetSection(sectionName) as T;
 
-			if (configSection != null)
-				return configSection;
+            if (configSection != null)
+            {
+                return configSection;
+            }
 
 			throw
 				new JMApplicationException(
@@ -106,7 +115,7 @@ namespace JM.Foundation.Configuration
 
 		#region private methods
 
-		private System.Configuration.Configuration getConfigurationFromAppConfig()
+		private System.Configuration.Configuration GetConfigurationFromAppConfig()
 		{
 			return ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 		}

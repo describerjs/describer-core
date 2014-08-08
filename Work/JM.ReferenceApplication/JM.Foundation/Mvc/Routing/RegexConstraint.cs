@@ -1,29 +1,39 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Routing;
 
 namespace JM.Foundation.Mvc.Routing
 {
-	// http://samsaffron.com/archive/2011/10/13/optimising-asp-net-mvc3-routing
 	/// <summary>
 	/// Angepasster Constraint für das begrenzen von Routen mittels regex.
 	/// </summary>
+    /// <remarks>http://samsaffron.com/archive/2011/10/13/optimising-asp-net-mvc3-routing</remarks>
 	public class RegexConstraint : IRouteConstraint, IEquatable<RegexConstraint>
 	{
-		Regex regex;
+		private readonly Regex _regex;
 
-		public RegexConstraint(string pattern, RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.IgnoreCase)
+		public RegexConstraint(
+            string pattern, 
+            RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.IgnoreCase)
 		{
-			regex = new Regex(pattern, options);
+            Contract.Requires(!string.IsNullOrWhiteSpace(pattern));
+			_regex = new Regex(pattern, options);
 		}
 
-		public bool Match(System.Web.HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+		public bool Match(
+            HttpContextBase httpContext, 
+            Route route, 
+            string parameterName, 
+            RouteValueDictionary values, 
+            RouteDirection routeDirection)
 		{
 			object val;
 			values.TryGetValue(parameterName, out val);
 			string input = Convert.ToString(val, CultureInfo.InvariantCulture);
-			return regex.IsMatch(input);
+			return _regex.IsMatch(input);
 		}
 
 		#region Implementation of IEquatable<RegexConstraint>
@@ -37,9 +47,19 @@ namespace JM.Foundation.Mvc.Routing
 		/// <param name="other">Ein Objekt, das mit diesem Objekt verglichen werden soll.</param>
 		public bool Equals(RegexConstraint other)
 		{
-			throw new NotImplementedException();
+            return 
+                string.Equals(
+                    _regex.ToString(), 
+                    other._regex.ToString(), 
+                    StringComparison.Ordinal);
 		}
 
 		#endregion
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(_regex != null);
+        }
 	}
 }

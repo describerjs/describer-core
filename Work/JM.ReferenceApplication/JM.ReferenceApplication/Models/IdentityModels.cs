@@ -5,7 +5,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace JM.ReferenceApplication.Models
 {
-    // Sie können Profildaten für den Benutzer durch Hinzufügen weiterer Eigenschaften zur ApplicationUser-Klasse hinzufügen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=317594".
+    // Sie können Profildaten für den Benutzer durch Hinzufügen weiterer Eigenschaften zur 
+    // ApplicationUser-Klasse hinzufügen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=317594".
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

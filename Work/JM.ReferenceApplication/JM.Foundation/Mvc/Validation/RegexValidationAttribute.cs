@@ -6,58 +6,66 @@ using System.Web.Mvc;
 
 namespace JM.Foundation.Mvc.Validation
 {
-	[AttributeUsage(AttributeTargets.Property, AllowMultiple=true)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class RegexValidationAttribute : ValidationAttribute, IClientValidatable
     {
-        string _regex = "";
-        bool _allowEmptyString = false;
- 
+        private readonly string _regex = string.Empty;
+
+        private bool _allowEmptyString = false;
+
         public RegexValidationAttribute(string regex, bool allowEmptyString, string errorMessage)
             : base(errorMessage)
         {
-	        _regex = regex;
-	        _allowEmptyString = allowEmptyString;
+            _regex = regex;
+            _allowEmptyString = allowEmptyString;
         }
- 
+        
+        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+        {
+            string errorMessage = ErrorMessageString;
+
+            var regexRule = new ModelClientValidationRule();
+            regexRule.ErrorMessage = errorMessage;
+            regexRule.ValidationType = "jmval"; // This is the name the jQuery adapter will use
+            regexRule.ValidationParameters.Add("pattern", _regex);
+
+            if (_allowEmptyString)
+            {
+                regexRule.ValidationParameters.Add("allowempty", _allowEmptyString);
+            }
+
+            yield return regexRule;
+        }
+        
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             try
             {
-	            if (value == null || String.IsNullOrEmpty(value.ToString()))
-	            {
-					if(_allowEmptyString)
-						return ValidationResult.Success;
-						
-					return new ValidationResult(ErrorMessageString);
-	            }
-				
-				var val = value.ToString();
+                if (value == null || string.IsNullOrEmpty(value.ToString()))
+                {
+                    if (_allowEmptyString)
+                    {
+                        return ValidationResult.Success;
+                    }
 
-				if(!Regex.IsMatch(val, _regex))
-					return new ValidationResult(ErrorMessageString);
+                    return new ValidationResult(ErrorMessageString);
+                }
+                
+                var val = value.ToString();
+
+                if (!Regex.IsMatch(val, _regex))
+                {
+                    return new ValidationResult(ErrorMessageString);
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Do stuff, i.e. log the exception
                 // Let it go through the upper levels, something bad happened
-                throw ex;
+                throw;
             }
  
-            return ValidationResult.Success;;
+            return ValidationResult.Success;
         }
-    
-		public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-		{
-			string errorMessage = ErrorMessageString;
-
-			var regexRule = new ModelClientValidationRule();
-			regexRule.ErrorMessage = errorMessage;
-			regexRule.ValidationType = "jmval"; // This is the name the jQuery adapter will use
-			regexRule.ValidationParameters.Add("pattern", _regex);
-			if(_allowEmptyString)
-				regexRule.ValidationParameters.Add("allowempty", _allowEmptyString);
-
-			yield return regexRule;
-		}
-	}
+    }
 }

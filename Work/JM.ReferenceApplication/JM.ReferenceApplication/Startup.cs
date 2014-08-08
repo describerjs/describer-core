@@ -2,6 +2,7 @@
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(JM.ReferenceApplication.Startup))]
+
 namespace JM.ReferenceApplication
 {
     public partial class Startup

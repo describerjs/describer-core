@@ -11,6 +11,7 @@
     <AssemblyName>JM.Business.Kontakt</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>d3f53d31</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,29 +64,44 @@
   <ItemGroup>
     <Compile Include="Business\Manager\KontaktManager.cs" />
     <Compile Include="Business\Model\ContactModel.cs" />
+    <Compile Include="Business\Model\FamilyModel.cs" />
+    <Compile Include="Business\Model\PersonalData.cs" />
     <Compile Include="Business\Model\StartModel.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ConnectionString.cs" />
     <Compile Include="DataAccess\Data.cs" />
+    <Compile Include="DataModel\ContactRequest.cs" />
     <Compile Include="DataModel\Model.cs" />
-    <Compile Include="Migrations\201407291110061_First Init.cs" />
+    <Compile Include="MailingElement.cs" />
+    <Compile Include="Migrations\201407291110061_First Init.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407291110061_First Init.Designer.cs">
       <DependentUpon>201407291110061_First Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407291508443_USerID-Change to String.cs" />
+    <Compile Include="Migrations\201407291508443_USerID-Change to String.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407291508443_USerID-Change to String.Designer.cs">
       <DependentUpon>201407291508443_USerID-Change to String.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.cs" />
+    <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407300941171_LastEdit-Date als nullable.Designer.cs">
       <DependentUpon>201407300941171_LastEdit-Date als nullable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.cs" />
+    <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201407310716446_Anrede für Benutzer hinzugefügt.Designer.cs">
       <DependentUpon>201407310716446_Anrede für Benutzer hinzugefügt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModuleDefinition.cs" />
+    <Compile Include="ModuleEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmtpServerElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -116,10 +132,6 @@
       <Project>{9b6dffed-983f-45f8-ae93-4e8c3dabbd59}</Project>
       <Name>JM.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JM.ReferenceApplication.Common\JM.ReferenceApplication.Common.csproj">
-      <Project>{957d0a78-5008-4ae5-a8d4-4c53b750ac6d}</Project>
-      <Name>JM.ReferenceApplication.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -132,7 +144,9 @@
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Aktivieren Sie die Wiederherstellung von NuGet-Paketen, um die fehlende Datei herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets'))" />
+    <Error Condition="!Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets'))" />
   </Target>
+  <Import Project="..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
