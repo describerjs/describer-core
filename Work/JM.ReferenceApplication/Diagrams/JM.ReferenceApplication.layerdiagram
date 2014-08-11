@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="d5cdcd13-2a11-4cb6-991a-bc0663f528b4" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="f468ba1d-d0fd-481e-9b43-0ad3627b97c3" name="JM.Foundation">
+      <references>
+        <reference Id="6abb9ef9-d7c5-427f-b5d2-ee6a5af48ed0" name="JM.Foundation">
+          <ArtifactNode Label="JM.Foundation" Category="CodeSchema_Project" Id="(Assembly=../JM.Foundation/JM.Foundation.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=JM.Foundation)" Label="JM.Foundation.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="229a51ef-f79d-426f-ad2f-ce4367b642d2" name="JM.ReferenceApplication.Common">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="6c9ace2c-6c6a-4548-8a10-7ab5d2532a27" direction="Forward">
+          <layerMoniker Id="f468ba1d-d0fd-481e-9b43-0ad3627b97c3" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="a1c38463-5756-4fec-ad31-b7e83d7af7b4" name="JM.ReferenceApplication.Common">
+          <ArtifactNode Label="JM.ReferenceApplication.Common" Category="CodeSchema_Project" Id="(Assembly=../JM.ReferenceApplication.Common/JM.ReferenceApplication.Common.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=JM.ReferenceApplication.Common)" Label="JM.ReferenceApplication.Common.dll" Category="CodeSchema_Assembly">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="b08eac88-2334-4b34-8d45-5c9c3297edf6" name="JM.ReferenceApplication">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="6e80d310-00f2-4a94-80fc-3356a20af9b2" direction="Forward">
+          <layerMoniker Id="229a51ef-f79d-426f-ad2f-ce4367b642d2" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="55ebf3eb-255c-4b6d-b14d-42bdedf12163" direction="Forward">
+          <layerMoniker Id="f468ba1d-d0fd-481e-9b43-0ad3627b97c3" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="0e9e10be-70a3-47c4-8eb3-a89f142039e0" direction="Forward">
+          <layerMoniker Id="dc85c3b9-ae1a-4b4f-acc0-1f89ba9f4a1b" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="fe380b4e-c8fe-42fe-976f-d1fce3fbb776" direction="Forward">
+          <layerMoniker Id="939f609b-44fb-4c2d-929c-2c3ca49e9030" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="a1931ca4-d4de-4026-bc81-d7eb6b790f91" name="JM.ReferenceApplication">
+          <ArtifactNode Label="JM.ReferenceApplication" Category="CodeSchema_Project" Id="(Assembly=../JM.ReferenceApplication/JM.ReferenceApplication.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=JM.ReferenceApplication)" Label="JM.ReferenceApplication.dll" Category="CodeSchema_Assembly">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="939f609b-44fb-4c2d-929c-2c3ca49e9030" name="JM.Business">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="13a466e0-4c25-4d87-9a04-cf60f08f058d" direction="Forward">
+          <layerMoniker Id="f468ba1d-d0fd-481e-9b43-0ad3627b97c3" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="cc993046-f959-4274-a415-97aba2c24610" name="JM.Business">
+          <ArtifactNode Label="JM.Business" Category="CodeSchema_Project" Id="(Assembly=../JM.Business/JM.Business.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=JM.Business)" Label="JM.Business.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="91adcd8a-390a-4469-9a0c-bbc747107091" name="JM.Business.Kontakt">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="7989c3a6-187e-434b-b995-78e2081d9b67" direction="Forward">
+          <layerMoniker Id="dc85c3b9-ae1a-4b4f-acc0-1f89ba9f4a1b" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="bba41c8d-0933-4721-8550-ddf81fea1743" direction="Forward">
+          <layerMoniker Id="f468ba1d-d0fd-481e-9b43-0ad3627b97c3" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="f3a0b3c5-2f73-4e28-b54d-0de32fe3cb62" name="JM.Business.Kontakt">
+          <ArtifactNode Label="JM.Business.Kontakt" Category="CodeSchema_Project" Id="(Assembly=../JM.Business.Kontakt/JM.Business.Kontakt.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=JM.Business.Kontakt)" Label="JM.Business.Kontakt.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="dc85c3b9-ae1a-4b4f-acc0-1f89ba9f4a1b" name="JM.Business.Kontakt.Contracts">
+      <references>
+        <reference Id="21fbff38-dbc2-4aee-a75c-e12a949505a5" name="JM.Business.Kontakt.Contracts">
+          <ArtifactNode Label="JM.Business.Kontakt.Contracts" Category="CodeSchema_Project" Id="(Assembly=../JM.Business.Kontakt.Contracts/JM.Business.Kontakt.Contracts.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=JM.Business.Kontakt.Contracts)" Label="JM.Business.Kontakt.Contracts.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>
