@@ -4,6 +4,7 @@ using JM.Foundation.Configuration;
 
 namespace JM.Foundation.Mvc.Filter
 {
+    [System.Diagnostics.Contracts.ContractVerification(false)]
 	public class JMBasicAuthFilterAttribute : ActionFilterAttribute
     {
 		private readonly Config _config = ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");

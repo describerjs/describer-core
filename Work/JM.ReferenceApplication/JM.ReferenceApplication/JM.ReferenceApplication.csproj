@@ -219,9 +219,11 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoFacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\JMDemo\Controllers\JM_Business_KontaktController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\JM_Business_Controller.cs" />
@@ -241,6 +243,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Models\ApplicationDbContext.cs" />
     <Compile Include="Infrastructure\Models\Extensions.cs" />
     <Compile Include="Infrastructure\Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Infrastructure\Models\ExternalLoginListViewModel.cs" />

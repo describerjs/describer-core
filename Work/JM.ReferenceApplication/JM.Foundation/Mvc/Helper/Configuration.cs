@@ -49,9 +49,10 @@ namespace JM.Foundation.Mvc.Helper
 		private static Setting _getSetting(int id)
 		{
 			var config = _getConfig();
-			var settings = config.Features.ToList();
-
-			return settings.FirstOrDefault(d => d.ID == id.ToString());
+            
+            return 
+                (config.Features ?? Enumerable.Empty<Setting>())
+                .FirstOrDefault(d => d.ID == id.ToString());
 		}
 
 		#endregion

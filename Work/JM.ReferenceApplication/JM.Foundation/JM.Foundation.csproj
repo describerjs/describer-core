@@ -120,9 +120,12 @@
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Configuration\Features\PerformanceFeature.cs" />
     <Compile Include="DependencyInjection\AbstractModelBinder.cs" />
+    <Compile Include="ErrorHandling\ErrorHandler.cs" />
     <Compile Include="ErrorHandling\ErrorHttpModule.cs" />
     <Compile Include="ErrorHandling\ErrorIntercepter.cs" />
+    <Compile Include="ErrorHandling\ExceptionPolicy.cs" />
     <Compile Include="ErrorHandling\IErrorHandler.cs" />
+    <Compile Include="ErrorHandling\IErrorHandlerContracts.cs" />
     <Compile Include="ErrorHandling\JMApplicationException.cs" />
     <Compile Include="ErrorHandling\JMEventSourceBase.cs" />
     <Compile Include="ErrorHandling\JMEventSourceBase_2.cs" />

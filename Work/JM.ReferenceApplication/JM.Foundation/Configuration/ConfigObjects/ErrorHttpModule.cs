@@ -6,6 +6,7 @@ namespace JM.Foundation.Configuration
 	internal class ErrorHttpModule : ConfigurationElement
 	{
 		[ConfigurationProperty("enabled", DefaultValue = true, IsRequired = false)]
+        [System.Diagnostics.Contracts.ContractVerification(false)]
 		public bool Enabled
 		{
 			get { return (bool)this["enabled"]; }
@@ -24,6 +25,7 @@ namespace JM.Foundation.Configuration
 		}
 
 		[ConfigurationProperty("showErrorDetails", IsRequired = true)]
+        [System.Diagnostics.Contracts.ContractVerification(false)]
 		public bool ShowErrorDetails
 		{
 			get { return (bool)this["showErrorDetails"]; }

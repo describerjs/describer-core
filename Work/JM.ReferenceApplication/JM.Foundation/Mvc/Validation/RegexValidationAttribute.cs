@@ -10,8 +10,7 @@ namespace JM.Foundation.Mvc.Validation
     public class RegexValidationAttribute : ValidationAttribute, IClientValidatable
     {
         private readonly string _regex = string.Empty;
-
-        private bool _allowEmptyString = false;
+        private readonly bool _allowEmptyString = false;
 
         public RegexValidationAttribute(string regex, bool allowEmptyString, string errorMessage)
             : base(errorMessage)

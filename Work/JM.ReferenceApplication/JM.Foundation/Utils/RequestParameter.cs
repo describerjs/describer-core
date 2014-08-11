@@ -18,6 +18,11 @@ namespace JM.Foundation.Utils
 		/// <returns>string Wert</returns>
 		public static string ReadPost(string parameterName)
 		{
+            if (HttpContext.Current == null)
+            {
+                return string.Empty;
+            }
+
             if (HttpContext.Current.Request.Form[parameterName] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Form[parameterName].ToString()))
             {
                 return HttpContext.Current.Request.Form[parameterName].ToString();
@@ -99,6 +104,11 @@ namespace JM.Foundation.Utils
 		/// <returns></returns>
 		public static string ReadGet(string parameterName, bool alphaNumericOnly, bool unfiltered)
 		{
+            if (HttpContext.Current == null)
+            {
+                return string.Empty;
+            }
+
 			var result =
                 (HttpContext.Current.Request.QueryString[parameterName] != null &&
                 !string.IsNullOrEmpty(HttpContext.Current.Request.QueryString[parameterName].ToString())) ?

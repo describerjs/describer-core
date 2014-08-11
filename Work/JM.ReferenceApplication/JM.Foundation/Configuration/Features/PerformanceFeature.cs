@@ -1,5 +1,4 @@
-﻿
-namespace JM.Foundation.Configuration
+﻿namespace JM.Foundation.Configuration
 {
 	public enum PerformanceFeature
 	{

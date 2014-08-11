@@ -11,6 +11,7 @@ namespace JM.Foundation.ErrorHandling
     /// HttpModul zum abfangen aller Exceptions aus der Webanwendung.
     /// Stellt Logging bereit und bereitet die Darstellung von Fehlerseiten vor.
     /// </summary>
+    [System.Diagnostics.Contracts.ContractVerification(false)]
     public class ErrorHttpModule : IHttpModule
     {
         //////////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +30,7 @@ namespace JM.Foundation.ErrorHandling
         {
             var config = ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");
 
-            if (config.ErrorHttpModule.Enabled)
+            if (config.ErrorHttpModule != null && config.ErrorHttpModule.Enabled)
             {
                 context.Error += Application_Error;
             }
@@ -158,7 +159,11 @@ namespace JM.Foundation.ErrorHandling
                 response.Write(string.Format("<pre>{0}</pre>", exception.StackTrace));
             }
 
-            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            // ToDo: Prüfen, ob HttpContext.Current.ApplicationInstance == null sein kann.
+            if (HttpContext.Current.ApplicationInstance != null)
+            {
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+            }
         }
 
         /// <summary>

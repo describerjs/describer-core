@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Web.Mvc;
 
 namespace JM.Foundation.DependencyInjection
@@ -9,11 +10,7 @@ namespace JM.Foundation.DependencyInjection
 
         public AbstractModelBinder(IDependencyResolver resolver)
         {
-            if (resolver == null)
-            {
-                throw new ArgumentNullException("resolver");
-            }
-
+            Contract.Requires(resolver != null);
             _resolver = resolver;
         }
 
@@ -58,6 +55,12 @@ namespace JM.Foundation.DependencyInjection
         {
             return
                 type.GetConstructor(Type.EmptyTypes) == null;
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(_resolver != null);
         }
     }
 }
