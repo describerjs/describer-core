@@ -24,6 +24,25 @@
 		areaname="JM - geschützer Bereich"
 		username="Joinmedia"
 		password="Join#media960" /&gt;
+	&lt;/JM.Foundation&gt;
+	&lt;!-- Configuration der CSS/JS FE Performance und Feature-addtings --&gt;
+	&lt;!-- Bitte beachten: Die FeatureIDs mappen auf ein Enum! --&gt;
+	&lt;Features&gt;
+		&lt;add id="1" value="false" name="Performance A" description="" /&gt;
+		&lt;add id="2" value="true" name="Performance B" description="" /&gt;
+		&lt;add id="3" value="true" name="Performance C" description="" /&gt;
+		&lt;add id="4" value="true" name="Prefetch" description="" /&gt;
+		&lt;add id="5" value="true" name="SpriteSheets" description="" /&gt;
+		&lt;add id="6" value="true" name="AriaRoles" description="" /&gt;
+		&lt;add id="7" value="true" name="MicroData" description="" /&gt;
+		&lt;add id="8" value="true" name="MicroFormats" description="" /&gt;
+		&lt;add id="9" value="true" name="NoJS" description="" /&gt;
+		&lt;add id="10" value="true" name="IE8" description="" /&gt;
+		&lt;add id="11" value="true" name="TouchSupport" description="" /&gt;
+		&lt;add id="12" value="true" name="ProgressiveEnhancement" description="" /&gt;
+		&lt;add id="13" value="true" name="Favicons" description="" /&gt;
+		&lt;add id="14" value="true" name="ResponsiveImages" description="" /&gt;
+	&lt;/Features&gt;
 &lt;/JM.Foundation&gt;</code></pre>
 		<h3>Settings Variablenbeschreibung</h3>
 		<table class="table-striped table">
@@ -94,6 +113,13 @@
 				<td>JMBasicAuthenticationFilter.password</td>
 				<td>String</td>
 				<td>Passwort zur Authentifizierung</td>
+				<td>Ja</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>Features</td>
+				<td>ConfigurationElement</td>
+				<td>Konfiguration der Performance- und Featuresettings für CSS und JS. Die IDs der einzelnen Features mappen auf ein Enum. Mit einem HtmlHelper in Frontend kann der Zustand einzelner Flagsg geprüft werden</td>
 				<td>Ja</td>
 				<td>-</td>
 			</tr>
