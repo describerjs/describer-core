@@ -6,6 +6,7 @@ namespace JM.ReferenceApplication.Controllers
 	/// <summary>
 	/// 13.08.2014 - Sebastian van Elten
 	/// NavigationController
+	/// Stellt Partialviews für Navigationselemente bereit.
 	/// </summary>
 	public class NavigationController : Controller
 	{
@@ -35,7 +36,13 @@ namespace JM.ReferenceApplication.Controllers
 
 		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
-
+		
+		/// <summary>
+		/// Generiert die Hauptnavigation aus der Piranha-Sitemap.
+		/// TODO: Outputcaching
+		/// </summary>
+		/// <returns>PartialViewResult Navigation</returns>
+		[ChildActionOnly]
 		public PartialViewResult _Navigation()
 		{
 			return PartialView(Sitemap.GetStructure());

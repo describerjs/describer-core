@@ -254,6 +254,7 @@
     <Compile Include="Infrastructure\Models\ManageUserViewModel.cs" />
     <Compile Include="Infrastructure\Models\RegisterViewModel.cs" />
     <Compile Include="Infrastructure\Models\ResetPasswordViewModel.cs" />
+    <Compile Include="Infrastructure\JMPiranhaHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -354,7 +355,7 @@
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData_Danke.cshtml" />
-    <Content Include="Views\Shared\Navigation\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
