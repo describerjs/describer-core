@@ -1,13 +1,26 @@
 ﻿<!DOCTYPE html>
-<html lang="de">
+<html class="no-js" lang="de">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Site.SiteTitle | @Page.Title</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link type="image/x-icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="$description$" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    @* CONFIG FAVICONS
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon-72x72.png" sizes="72x72" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon-114x114.png" sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-144x144-precomposed.png" sizes="144x144" />
+    <link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-114x114-precomposed.png" sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-72x72-precomposed.png" sizes="72x72" />
+    <link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-57x57-precomposed.png" />*@
+
+    <meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
+    <meta name="msapplication-TileColor" content="#222222" />
+
     <script>
         window.UseLocalStorage = false;
         window.loadUnminifyVersion = true;
@@ -213,14 +226,15 @@
             addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
-            addCSSToDOM('/css/ayyildiz.css');
+            //addCSSToDOM('/css/ayyildiz.css');
             addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/main.js');
         } else {
             addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
             addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
             addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
             addJSToDOM('/js/build/externals/customized/require.2.1.11.fce06e.js', 'data-main', '/js/build/main.82821d.js');
-            addCSSToDOM('/css/min/style.729c8a.css');
+            //addCSSToDOM('/css/min/style.729c8a.css');
+            addCSSToDOM('/css/style.css');
         }
     </script>
     <noscript>
@@ -231,57 +245,130 @@
 
         <link rel="stylesheet" href="/css/noscript.css" />
     </noscript>
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
     @UI.Head()
 	@RenderSection("head", required: false)
 </head>
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">
-					<img id="brand-jm" src="/Content/img/joinmedia.png" alt="join.media" /></a>
-			</div>
-			<div class="navbar-collapse collapse">
-					@UI.Menu(StopLevel: 3, CssClass:"nav navbar-nav")
-				@Html.Partial("_LoginPartial")
-			</div>
-		</div>
-	</div>
-	<div class="container body-content">
-		
-		<div>
-			<h4>Features:</h4>
-			@PerformanceFeature.AriaRoles: @Html.FeatureEnabled(PerformanceFeature.AriaRoles)<br/>
-			@PerformanceFeature.Favicons: @Html.FeatureEnabled(PerformanceFeature.Favicons)<br/>
-			@PerformanceFeature.IE8: @Html.FeatureEnabled(PerformanceFeature.IE8)<br/>
-			@PerformanceFeature.MicroData: @Html.FeatureEnabled(PerformanceFeature.MicroData)<br/>
-			@PerformanceFeature.MicroFormats: @Html.FeatureEnabled(PerformanceFeature.MicroFormats)<br/>
-			@PerformanceFeature.NoJS: @Html.FeatureEnabled(PerformanceFeature.NoJS)<br/>
-			@PerformanceFeature.PerformanceA: @Html.FeatureEnabled(PerformanceFeature.PerformanceA)<br/>
-			@PerformanceFeature.PerformanceB: @Html.FeatureEnabled(PerformanceFeature.PerformanceB)<br/>
-			@PerformanceFeature.PerformanceC: @Html.FeatureEnabled(PerformanceFeature.PerformanceC)<br/>
-			@PerformanceFeature.Prefetch: @Html.FeatureEnabled(PerformanceFeature.Prefetch)<br/>
-			@PerformanceFeature.ProgressiveEnhancement: @Html.FeatureEnabled(PerformanceFeature.ProgressiveEnhancement)<br/>
-			@PerformanceFeature.ResponsiveImages : @Html.FeatureEnabled(PerformanceFeature.ResponsiveImages)<br/>
-			@PerformanceFeature.SpriteSheets: @Html.FeatureEnabled(PerformanceFeature.SpriteSheets)<br/>
-			@PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br/>
-		</div>
 
-		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
-		</footer>
-	</div>
-	@Scripts.Render("~/jm/jquery")
-	@Scripts.Render("~/jm/bootstrap")
-	@RenderSection("scripts", required: false)
+<body>
+    <div class="page">
+        <header class="page-header" role="banner">
+            <nav class="nav" id="nav" role="navigation">
+                <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+                <ul class="nav-items">
+                    <li class="nav-item menu-item">
+                        <a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
+                        <div class="flyout">
+                            <div class="menu-close-btn" data-jmname="menu-close"></div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
+                                <ul class="flyout-items">
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-1">Subsubitem 1</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-2">Subsubitem 2</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-3">Subsubitem 3</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-4">Subsubitem 4</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-5">Subsubitem 5</a></li>
+                                </ul>
+                            </div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-2">Subitem 2</a></div>
+                                <ul class="flyout-items">
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-5">Subsubitem 5</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item menu-item">
+                        <a href="#/Item-2" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 2</a>
+                        <div class="flyout">
+                            <div class="menu-close-btn" data-jmname="menu-close"></div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-1">Subitem 1</a></div>
+                            </div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-2">Subitem 2</a></div>
+                            </div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-3">Subitem 3</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item menu-item">
+                        <a href="#/Item-3" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 3</a>
+                        <div class="flyout">
+                            <div class="menu-close-btn" data-jmname="menu-close">Menu</div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-1">Subitem 1</a></div>
+                            </div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-2">Subitem 2</a></div>
+                                <ul class="flyout-items">
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
+                                </ul>
+                            </div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-3">Subitem 3</a></div>
+                                <ul class="flyout-items">
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-1">Subsubitem 1</a></li>
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-2">Subsubitem 2</a></li>
+                                </ul>
+                            </div>
+                            <div class="flyout-group">
+                                <div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-4">Subitem 4</a></div>
+                                <ul class="flyout-items">
+                                    <li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-4/Subsubitem-1">Subsubitem 1</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item menu-item"><a href="#/Item-4" class="nav-link">Item 4</a></li>
+                    <li class="nav-item menu-item"><a href="#/Item-5" class="nav-link" target="_blank">Item 5</a></li>
+                </ul>
+                @UI.Menu(StopLevel: 3, CssClass:"nav-items")
+            </nav>
+            @Html.Partial("_LoginPartial")
+        </header>
+        <main role="main">
+            <div class="togglebox">
+		        <a class="tb-subject" data-jmname="togglebox">Features</a>
+		        <div class="tb-content">
+			        @PerformanceFeature.AriaRoles: @Html.FeatureEnabled(PerformanceFeature.AriaRoles)<br />
+			        @PerformanceFeature.Favicons: @Html.FeatureEnabled(PerformanceFeature.Favicons)<br />
+			        @PerformanceFeature.IE8: @Html.FeatureEnabled(PerformanceFeature.IE8)<br />
+			        @PerformanceFeature.MicroData: @Html.FeatureEnabled(PerformanceFeature.MicroData)<br />
+			        @PerformanceFeature.MicroFormats: @Html.FeatureEnabled(PerformanceFeature.MicroFormats)<br />
+			        @PerformanceFeature.NoJS: @Html.FeatureEnabled(PerformanceFeature.NoJS)<br />
+			        @PerformanceFeature.PerformanceA: @Html.FeatureEnabled(PerformanceFeature.PerformanceA)<br />
+			        @PerformanceFeature.PerformanceB: @Html.FeatureEnabled(PerformanceFeature.PerformanceB)<br />
+			        @PerformanceFeature.PerformanceC: @Html.FeatureEnabled(PerformanceFeature.PerformanceC)<br />
+			        @PerformanceFeature.Prefetch: @Html.FeatureEnabled(PerformanceFeature.Prefetch)<br />
+			        @PerformanceFeature.ProgressiveEnhancement: @Html.FeatureEnabled(PerformanceFeature.ProgressiveEnhancement)<br />
+			        @PerformanceFeature.ResponsiveImages : @Html.FeatureEnabled(PerformanceFeature.ResponsiveImages)<br />
+			        @PerformanceFeature.SpriteSheets: @Html.FeatureEnabled(PerformanceFeature.SpriteSheets)<br />
+			        @PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br />
+		        </div>
+	        </div>
+            <div class="col">
+                <div class="col">
+    		        @RenderBody()
+                </div>
+            </div>
+        </main>
+	    <footer class="page-footer" role="contentinfo">
+		    <p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
+	    </footer>
+    </div>
+    @Scripts.Render("~/jm/jquery")
+    @Scripts.Render("~/jm/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
+
 </html>
