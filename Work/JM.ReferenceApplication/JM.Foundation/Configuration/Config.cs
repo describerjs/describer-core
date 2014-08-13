@@ -21,7 +21,7 @@ namespace JM.Foundation.Configuration
 		}
 
 		/// <summary>
-		/// Konfiguration für den BASIC-Auth Filter, mit dem per Default die /JM* Areas geschützt sind
+		/// Konfiguration für den BASIC-Auth Filter, mit dem per Default die /JM* Areas geschützt sind.
 		/// </summary>
 		[ConfigurationProperty("JMBasicAuthenticationFilter")]
 		public JMBasicAuthenticationFilter JMBasicAuthenticationFilter
