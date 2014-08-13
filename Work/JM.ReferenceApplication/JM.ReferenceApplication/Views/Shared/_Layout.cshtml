@@ -249,7 +249,7 @@
 					<img id="brand-jm" src="/Content/img/joinmedia.png" alt="join.media" /></a>
 			</div>
 			<div class="navbar-collapse collapse">
-					@UI.Menu(StopLevel: 3, CssClass:"nav navbar-nav")
+					@UI.Menu(StartLevel: 1, StopLevel: 3, CssClass:"nav navbar-nav")
 				@Html.Partial("_LoginPartial")
 			</div>
 		</div>
@@ -275,6 +275,9 @@
 		</div>
 
 		@RenderBody()
+		
+		@Html.RenderAction("_Navigation", "Navigation")
+
 		<hr />
 		<footer>
 			<p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>

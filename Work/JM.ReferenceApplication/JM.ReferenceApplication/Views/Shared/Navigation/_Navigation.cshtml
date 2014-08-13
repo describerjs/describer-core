@@ -1,0 +1,11 @@
+﻿@model  List<Piranha.Models.Sitemap>
+
+
+<div>
+	<ul>
+	@foreach (var map in Model)
+	{
+		<li>@map.NavigationTitle</li>
+	}
+		</ul>
+</div>
