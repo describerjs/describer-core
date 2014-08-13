@@ -118,7 +118,9 @@
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\ConfigObjects\Server.cs" />
     <Compile Include="Configuration\Features\PerformanceFeature.cs" />
+    <Compile Include="Configuration\SiteConfig.cs" />
     <Compile Include="DependencyInjection\AbstractModelBinder.cs" />
     <Compile Include="ErrorHandling\ErrorHandler.cs" />
     <Compile Include="ErrorHandling\ErrorHttpModule.cs" />

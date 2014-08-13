@@ -238,7 +238,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
@@ -270,6 +270,9 @@
     <Content Include="Areas\JMDemo\img\JM.Business.Kontakt\DB-Schema.png" />
     <Content Include="Areas\JMDemo\js\bootstrap.js" />
     <Content Include="Areas\JMDemo\js\bootstrap.min.js" />
+    <Content Include="App_Data\Config\dev\JM.SiteConfig.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Areas\JMDemo\js\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\JMDemo\js\jquery-1.10.2.js" />
     <Content Include="Areas\JMDemo\js\jquery-1.10.2.min.js" />
@@ -356,6 +359,7 @@
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData_Danke.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\MainJS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
