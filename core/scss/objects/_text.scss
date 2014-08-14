@@ -1,9 +1,9 @@
 /*------------------------------------*\
-    $MAIN_CONTENT_AREA
+    $TEXT
 \*------------------------------------*/
 
 /**
- * main................................HTML <main> Section
+ * TEXT-BLOCK..........................Section mit textlichem Inhalt
 **/
 
 
@@ -11,13 +11,14 @@
 
 
 /*------------------------------------*\
-    <main>
+    $TEXT-BLOCK
 \*------------------------------------*/
 
-main {
-	@extend %page-element-default;
-	overflow: hidden;
+.text-block {
+	@extend %element-default;
+	@extend %element-inner-default;
 }
+
 
 
 

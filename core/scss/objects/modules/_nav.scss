@@ -2,9 +2,292 @@
     $NAVIGATION
 \*------------------------------------*/
 
-.nav {
-	/**/
+/**
+ * GENERIC.............................Variables/Placeholder
+ * NAV.................................Navigation
+ * MENU................................Mobile Navigation
+ * FLYOUT..............................Flyout-/Sub-Navigation
+ *
+**/
+
+/**
+ * Navigation mit Menu-Button für mobile Darstellung
+ *
+	<nav class="nav" id="nav" role="navigation">
+        <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+        <ul class="nav-items">
+            <li class="nav-item">
+                <a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
+                <div class="flyout">
+                    <div class="menu-close-btn" data-jmname="menu-close"></div>
+                    <div class="flyout-group">
+                        <div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
+                        <ul class="flyout-items">
+                            <li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+ *
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+@import "compass/css3/box-shadow";
+
+// Die Links innerhalb "nav" & "flyout"
+%nav-link {
+	@extend %element-inner-default;
+	display: block;
+	font-family: $font-nav;
 }
+
+%flyout-link {
+	@extend %nav-link;
+	color: $theme-flyout-link-fg;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $NAV
+\*------------------------------------*/
+
+// Die Navigation
+.nav {
+	@extend %element-default;
+
+	// Der Container der einzelnen Elemente <ul>
+	.nav-items {
+		@include clearfix;
+		background-color: $theme-nav-items-bg;
+		clear: both;
+
+		@media screen and (min-width: $bp-large) {
+			background-color: inherit;
+		}
+	}
+
+	// Die einzelnen Elemente <li>
+	.nav-item {
+		@include transition(background-color 150ms linear);
+		background-color: $theme-nav-link-bg;
+		border-bottom: 1px solid $theme-nav-link-active-bg;
+
+		@media screen and (min-width: $bp-large) {
+			border: initial;
+			@include element-default-padding;
+			float: left;
+		}
+
+		&:hover {
+			background-color: $theme-nav-link-active-bg;
+
+			.nav-link {
+				color: $theme-nav-link-active-fg;
+
+			}
+			
+			@media screen and (min-width: $bp-large) {
+				.flyout {
+					@include visibility(visible);
+				}
+			}
+		}
+	}
+
+	.nav-link {
+		@extend %nav-link;
+		color: $theme-nav-link-fg;
+	}
+}
+
+/*------------------------------------*\
+    $MENU
+\*------------------------------------*/
+
+// Der Menuknopf für die mobile Darstellung mit Aufklappfunktion.
+.menu-btn {
+	@include hide-on-desktop;
+	background-color: $theme-menu-btn-bg;
+	color: $theme-menu-btn-fg;
+	display: block;
+	float: right;
+	height: 2.5rem;
+	line-height: 2.4rem;
+	position: relative;
+	text-indent: -2.5rem;
+	width: 2.5rem;
+	z-index: 1;
+
+	&:after {
+		@include box-shadow(0 0 0 2px $theme-menu-btn-fg, 0 8px 0 2px $theme-menu-btn-fg, 0 16px 0 2px $theme-menu-btn-fg);
+		@include pseudo-element-default;
+		@include centered(absolute);
+		height: 0;
+		width: 1rem;
+		top: 30%;
+	}
+
+	&:hover {
+		background-color: $theme-menu-btn-active-bg;
+		color: $theme-menu-btn-active-fg;
+	}
+}
+
+// Der aktive "menu-btn" wird erweitert, damit er als schließen Knopf kenntlich gemacht wird.
+.menu-close-btn {
+	@extend .menu-btn;
+}
+
+// Diese Links sind eine Erweiterung von "nav-link" und werden mobil aus- und mittels Aufklappfunktion eingeblendet.
+.menu-item {
+	@media screen and (max-width: $bp-large) {
+		@include move(1000em);
+
+		// Innerhalb des eines "menu-item" werden die "nav-item" getoggled.
+		.flyout-group {
+			.flyout-items {
+				@include visibility(hidden);
+			}
+
+			.show {
+				&+ .flyout-items {
+					@include visibility(visible);
+				}
+			}
+		}
+	}
+	
+	@media screen and (min-width: $bp-large) {
+		float: left;
+	}
+
+	// Innerhalb des "menu-item" wird die "flyout" getoggled.
+	@media screen and (max-width: $bp-large) {
+		.flyout {
+			position: inherit;
+		}
+
+		&.show {
+			.flyout {
+				@include visibility(visible);
+			}
+		}
+	}
+}
+
+// JS toggled diese Klasse zur "nav", wenn der "menu-btn" geklickt wird
+.show-menu {
+	.menu-item {
+		@include move(0);
+		background-color: $theme-menu-item-bg;
+		clear: left;
+		position: initial;
+		width: 100%;
+	}
+
+	.menu-btn {
+		@extend .menu-close-btn;
+	}
+}
+
+/*------------------------------------*\
+    $FLYOUT
+\*------------------------------------*/
+
+// "flyout" wird per Hover eingeblendet, mobil reagiert diese auf Klick
+.flyout {
+	@include position('', 0, '', 0);
+	@include transition(opacity .3s linear);
+	@include visibility(hidden);
+	background-color: $theme-flyout-bg;
+	z-index: 2;
+
+	@media screen and (min-width: $bp-large) {
+		padding: $default-spacing 0;
+	}
+
+	// Gruppierung der flyoutblöcke
+	.flyout-groups {
+		@include clearfix;
+	}
+
+	// Eine Gruppierung
+	.flyout-group {
+		@media screen and (min-width: $bp-large) {
+			@include column(4);
+		}
+
+		&> .flyout-item {
+			text-transform: uppercase;
+		}
+	}
+
+	.flyout-group-title {
+		@extend %flyout-link;
+
+		@media screen and (min-width: $bp-large) {
+			@include transition(background-color 150ms linear);
+			background-color: $theme-flyout-group-bg;
+			color: $theme-flyout-group-fg;
+
+			&:hover {
+				background-color: $theme-flyout-group-active-bg;
+				color: $theme-flyout-group-active-fg;
+			}
+		}
+	}
+
+	// Der Container der einzelnen Elemente <ul>
+	.flyout-items {
+		&> .flyout-item {
+			/*padding-left: 1em;*/
+		}
+	}
+
+	// Die einzelnen Elemente <li>
+	.flyout-item {
+		@media screen and (min-width: $bp-large) {
+			@include transition(background-color 150ms linear);
+		}
+
+		/*&:hover {
+			@media screen and (min-width: $bp-large) {
+				background-color: $theme-flyout-link-active-bg;
+			}
+		}*/
+	}
+
+	// Die eigentlichen Links
+	.flyout-link {
+		@extend %flyout-link;
+	}
+
+	// Hiermit kann die Flyout mobil wieder ausgeblendet werden
+	.menu-close-btn {
+		@include position(-2.5em, 0, '', '');
+	}
+
+	// Mobil wird bei "Klick" diese Klasse getoggled, damit auch hier die Anzeige funktioniert, weil sonst auf hover reagiert wird.
+	&.show {
+		@include visibility(visible);
+	}
+}
+
+
+
+
 
 /*------------------------------------*\
     

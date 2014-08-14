@@ -26,20 +26,30 @@ $total-width: 100%;
 //////////
 
 @mixin row($columns:$columns) {
+	@include clearfix;
 	display: block;
 	width: $total-width*(($gutter-width + gridsystem-width($columns))/gridsystem-width($columns));
-	margin: 0 $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1);
+	margin: {
+		left: $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1);
+		right: $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1);
+	};
 	// *width: $total-width*(($gutter-width + gridsystem-width($columns))/gridsystem-width($columns))-$correction;
 	// *margin: 0 $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1)-$correction;
-	@include clearfix();
 }
 @mixin column($x,$columns:$columns) {
-	display: inline;
-	float: left;
+	// display: inline;
 	width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns));
-	margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+	margin: {
+		left: $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+		right: $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+	};
 	// *width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns))-$correction;
 	// *margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns))-$correction;
+	@if $x == $columns {
+		clear: both;
+	} @else {
+		float: left;
+	}
 }
 @mixin push($offset:1) {
 	margin-left: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));

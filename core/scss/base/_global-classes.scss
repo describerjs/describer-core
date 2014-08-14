@@ -2,6 +2,20 @@
     $GLOBAL CLASSES
 \*------------------------------------*/
 
+/**
+ * JS/NOJS.............................JS/NOJS Elements
+ * .....js-element
+ * .....nojs-element
+ * VISIBILITY/DISPLAY..................Visibility/Display Stats of Elements
+ * .....is-hidden
+ * .....is-visible
+ * .....is-vishidden
+**/
+
+
+
+
+
 /*------------------------------------*\
     $JS/NOJS
 \*------------------------------------*/
@@ -15,6 +29,10 @@
 .nojs-element {
     display: none;
 }
+
+
+
+
 
 /*------------------------------------*\
     $VISIBILITY/DISPLAY
@@ -42,6 +60,10 @@
     position: absolute !important;
     width: 1px;
 }
+
+
+
+
 
 /*------------------------------------*\
     

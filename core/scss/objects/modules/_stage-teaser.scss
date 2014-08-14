@@ -1,0 +1,136 @@
+/*------------------------------------*\
+    $STAGE-TEASER
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * STAGE-TEASER........................Stage-Teaser Element
+**/
+
+/**
+ * Der "stage-teaser" findet sich als einleitendes Element einer Seite.
+ * Innerhalb "stage-teaser" gibt es drei Elemente: "stage-teaser-img", "stage-teaser-head" und "stage-teaser-content".
+ * "stage-teaser-img" ist das Keyvisual.
+ * "stage-teaser-head" ist die Headline.
+ * "stage-teaser-content" umfasst den restlichen Inhalt.
+ *
+ * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-Höhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
+ *
+	<div class="stage-teaser">
+    </div>
+ *
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+// Höhe des Teaserbildes fix setzen
+$stage-teaser-img-height:	200px;	// img-Höhe-S
+$stage-teaser-img-height-m:	300px;	// img-Höhe-M
+$stage-teaser-img-height-l:	400px;	// img-Höhe-L
+
+// Die Elemente "st-header", "st-content", "st-footer" teilen sich die gleichen Eigenschaften.
+%stage-teaser-element-default{
+	@include column(12);
+	@extend %element-nested-default;
+	position: relative;
+
+	@media screen and (min-width: $bp-med) {
+		@include column(8);
+	}
+
+	@media screen and (min-width: $bp-large) {
+		@include column(6);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $STAGE-TEASER
+\*------------------------------------*/
+
+.stage-teaser {
+	@extend %element-default;
+	min-height: $stage-teaser-img-height;
+
+	@media screen and (min-width: $bp-med) {
+		min-height: $stage-teaser-img-height-m;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		min-height: $stage-teaser-img-height-l;
+	}
+
+	// Umfasst den textlichen Inhalt
+	.st-content {
+		@extend %stage-teaser-element-default;
+	}
+
+	// Footerbereich <footer>
+	.st-footer {
+		@extend %stage-teaser-element-default;
+		
+		@media screen and (min-width: $bp-med) {
+			@include position('', '', $default-spacing, 0);
+		}
+	}
+
+	// Headerbereich <header>
+	.st-header {
+		@extend %stage-teaser-element-default;
+	}
+
+	// Die einleitende Headline
+	.st-head {
+		/**/
+	}
+
+	// Das Keyvisual
+	.st-img {
+		position: relative;
+
+		// Below we limit the minimun height on mobile and crop to the left
+		// @media screen and (max-width: $bp-med) {
+			img {
+				float: right;
+				max-width: $bp-med;
+				min-height: $stage-teaser-img-height;
+			}
+		// }
+
+		@media screen and (min-width: $bp-med) {
+			img {
+				float: left;
+				max-width: $bp-large;
+				min-height: $stage-teaser-img-height-m;
+			}
+		}
+
+		@media screen and (min-width: $bp-large) {
+			img {
+				float: left;
+				min-width: $layout-maxwidth;
+				max-width: 100%;
+				min-height: $stage-teaser-img-height-m;
+			}
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

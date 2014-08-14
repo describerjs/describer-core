@@ -2,10 +2,58 @@
     $LISTS
 \*------------------------------------*/
 
+/**
+ * GENERIC.............................Variables/Placeholder
+ * LIST_ITEM...........................List Item <li>
+ * UNORDERED_LIST......................Unordered List <ul>
+ * ORDERED_LIST........................Ordered List <ol>
+ * DEFINITION_LIST.....................Definition List <dl>
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+// Default List-Styling - <ul>|<ol>
 %list {
+	@extend %as-list;
+	@extend %as-list--typeset;
 	list-style: none;
 	list-style-position: outside;
 }
+
+
+
+
+
+/*------------------------------------*\
+    $LIST_ITEM
+\*------------------------------------*/
+
+li {
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+
+
+/*------------------------------------*\
+    $UNORDERED_LIST
+\*------------------------------------*/
+
+ul {
+	@extend %list;
+}
+
+
+
+
 
 /*------------------------------------*\
     $ORDERED_LIST
@@ -15,13 +63,9 @@ ol {
 	@extend %list;
 }
 
-/*------------------------------------*\
-    $UNORDERED_LIST
-\*------------------------------------*/
 
-ul {
-	@extend %list;
-}
+
+
 
 /*------------------------------------*\
     $DEFINITION_LIST
@@ -38,6 +82,10 @@ dt {
 dd {
 	margin-left: 0;
 }
+
+
+
+
 
 /*------------------------------------*\
     

@@ -1,13 +1,28 @@
 /*------------------------------------*\
-    $TOGGLEBOX-NOSCRIPT
+    $SEARCH
 \*------------------------------------*/
 
-.togglebox {
-	// Kein Javascript, dann alle Toggleboxen geöffnet.
-	.tb-content {
-		display: block;
-	}
+/**
+ * Suchfeld
+ *
+	<form class="search">
+		<input type="search" name="search" />
+	</form>
+ *
+**/
+
+
+
+
+
+
+.search {
+	/**/
 }
+
+
+
+
 
 /*------------------------------------*\
 	

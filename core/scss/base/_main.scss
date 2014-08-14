@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 /**
- * Text Selection......................Background & Text color of selected Text
+ * TEXT_SELECTION......................Background & Text color of selected Text
  * HTML................................The <html> Element
  * BODY................................The <body> Element
- * Body-Wrapper........................Content Wrapper
+ * PAGE_WRAPPER........................Content Wrapper
 **/
 
 
@@ -19,29 +19,37 @@
 
 ::-moz-selection {
     background: $theme-selection-bg;
-    color: $theme-selection-color;
+    color: $theme-selection-fg;
     text-shadow: none;
 }
 
 ::selection {
     background: $theme-selection-bg;
-    color: $theme-selection-color;
+    color: $theme-selection-fg;
     text-shadow: none;
 }
+
+
+
+
 
 /*------------------------------------*\
     $HTML
 \*------------------------------------*/
 
 html {
-	background-color: $theme-body;
-	color: $theme-text;
+	background-color: $theme-body-bg;
+	color: $theme-body-fg;
 	font: 100% $font;
 	font-weight: 100;
 	line-height: em-font($base-line-height);
 	-ms-text-size-adjust:		100%;
 	-webkit-text-size-adjust:	100%;
 }
+
+
+
+
 
 /*------------------------------------*\
     $BODY
@@ -50,26 +58,34 @@ html {
 body {
 	position: relative;
 	width: 100%;
-}
 
-@media print {
-	body {
+	@media print {
 		@include adjust-leading-to(2);
 		font-size: percentage(10 / 16);
 	}
 }
 
+
+
+
+
 /*------------------------------------*\
-    $BODY_WRAPPER
+    $PAGE_WRAPPER
 \*------------------------------------*/
 
-.body {
+.page {
 	@include baseline-grid;
+	background-color: $theme-page-bg;
+	color: $theme-page-fg;
 	margin: 0 auto;
 	max-width: $layout-maxwidth;
 	overflow: hidden;
 	width: 100%;
 }
+
+
+
+
 
 /*------------------------------------*\
     

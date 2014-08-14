@@ -157,6 +157,7 @@ $round-to-nearest-half-line         : true;
 %as-heading__smallest			{ @include as-heading__smallest; } 	
 
 %as-blockquote                  { @include as-blockquote; }
+%as-list                        { @include as-para; }
 %as-para                        { @include as-para; }
 
 // ------------------------------------------------------------
@@ -164,18 +165,18 @@ $round-to-nearest-half-line         : true;
 // ------------------------------------------------------------
 
 // Set rhythm for headers
-@mixin as-heading__headline--typeset          { margin: 0 0 rhythm(3, $alpha) 0;    } 
-@mixin as-heading__largest--typeset           { margin: 0 0 rhythm(3, $beta) 0; }   
-@mixin as-heading__large--typeset             { margin: 0 0 rhythm(3, $gamma) 0; }  
-@mixin as-heading__medium--typeset            { margin: 0 0 rhythm(3, $delta) 0; }  
-@mixin as-heading__normal--typeset            { margin: 0 0 rhythm(3, $epsilon) 0; }    
-@mixin as-heading__small--typeset             { margin: 0 0 rhythm(3, $zeta) 0; }   
-@mixin as-heading__smallest--typeset          { margin: 0 0 rhythm(3, $eta) 0; }  
+@mixin as-heading__headline--typeset          { margin: 0 0 rhythm(2, $alpha) 0;    } 
+@mixin as-heading__largest--typeset           { margin: 0 0 rhythm(2, $beta) 0; }   
+@mixin as-heading__large--typeset             { margin: 0 0 rhythm(2, $gamma) 0; }  
+@mixin as-heading__medium--typeset            { margin: 0 0 rhythm(2, $delta) 0; }  
+@mixin as-heading__normal--typeset            { margin: 0 0 rhythm(2, $epsilon) 0; }    
+@mixin as-heading__small--typeset             { margin: 0 0 rhythm(2, $zeta) 0; }   
+@mixin as-heading__smallest--typeset          { margin: 0 0 rhythm(2, $eta) 0; }  
     
     
 // Set rhythm for paragraphs and lists
-@mixin as-para--typeset                       { margin: 0 0 rhythm(2, $para) 0; }
-@mixin as-list--typeset                       { margin: 0 0 rhythm(2, $para) 0; }
+@mixin as-para--typeset                       { margin: 0 0 rhythm(1, $para) 0; }
+@mixin as-list--typeset                       { margin: 0 0 rhythm(1, $para) 0; }
 
 @mixin as-unordered-list--typeset             { @include as-list--typeset; }
 @mixin as-ordered-list--typeset               { @include as-unordered-list--typeset; }

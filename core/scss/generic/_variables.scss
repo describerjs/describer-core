@@ -5,6 +5,8 @@
 /**
  * COLORS..............................Diverse Farbwerte
  * THEME...............................Direkte Farbzuweisung an Elemente
+ * ......-bg = background
+ * ......-fg = foreground
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
@@ -22,6 +24,20 @@
 $black:	#000;
 $white: #fff;
 
+$theme-color-alpha:		#fff;
+$theme-color-beta:		#000;
+$theme-color-gamma:		#ddd;
+$theme-color-delta:		#aaa;
+$theme-color-epsilon:	#999;
+$theme-color-zeta:		#666;
+$theme-color-eta:		#333;
+/*
+$theme-color-theta:		#000;
+$theme-color-iota:		#000;
+$theme-color-kappa:		#000;
+$theme-color-lambda:	#000;
+*/
+
 
 
 
@@ -30,10 +46,47 @@ $white: #fff;
     $THEME
 \*------------------------------------*/
 
-$theme-body:			$white;
-$theme-text:			$black;
-$theme-selection-bg:	$black;
-$theme-selection-color:	$white;
+// Main
+$theme-body-bg:					$theme-color-alpha;
+$theme-body-fg:					$theme-color-beta;
+$theme-page-bg:					$theme-color-alpha;
+$theme-page-fg:					$theme-color-beta;
+$theme-selection-bg:			$theme-color-beta;
+$theme-selection-fg:			$theme-color-alpha;
+
+// Navigation
+$theme-nav-items-bg:			$theme-color-alpha;
+$theme-nav-items-fg:			$theme-color-beta;
+$theme-nav-link-bg:				$theme-color-alpha;
+$theme-nav-link-fg:				$theme-color-beta;
+$theme-nav-link-active-bg:		$theme-color-gamma;
+$theme-nav-link-active-fg:		$theme-nav-items-fg;
+$theme-flyout-bg:				$theme-nav-link-active-bg;
+$theme-flyout-link-fg:			$theme-nav-link-fg;
+$theme-flyout-link-active-bg:	$theme-color-delta;
+
+$theme-flyout-group-bg:			$theme-color-epsilon;
+$theme-flyout-group-fg:			$theme-color-zeta;
+$theme-flyout-group-active-bg:	$theme-color-zeta;
+$theme-flyout-group-active-fg:	$theme-color-eta;
+
+$theme-menu-btn-bg:				$theme-color-alpha;
+$theme-menu-btn-fg:				$theme-color-beta;
+$theme-menu-btn-active-bg:		$theme-color-alpha;
+$theme-menu-btn-active-fg:		$theme-color-beta;
+$theme-menu-item-bg:			$theme-color-gamma;
+
+// Accordion
+$theme-accordion-bg:			$theme-color-gamma;
+$theme-accordion-fg:			$theme-color-delta;
+$theme-accordion-handle-bg:		$theme-color-epsilon;
+$theme-accordion-handle-fg:		$theme-color-alpha;
+$theme-accordion-active-bg:		$theme-color-gamma;
+$theme-accordion-active-fg:		$theme-color-alpha;
+
+// Togglebox
+$theme-togglebox-bg:			$theme-color-gamma;
+$theme-togglebox-fg:			$theme-color-beta;
 
 
 
@@ -43,7 +96,9 @@ $theme-selection-color:	$white;
     $TYPO
 \*------------------------------------*/
 
-$font: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+$font:		"HelveticaNeue", "Helvetica", "Arial", sans-serif;
+$font-btn:	$font;
+$font-nav:	$font;
 
 
 
@@ -74,21 +129,30 @@ $layout-maxwidth:	80em;
     $SPACING
 \*------------------------------------*/
 
-$space:				rhythm(1, 16px);
-$space-and-half:	rhythm(1.5, 16px);
-$space-double:		rhythm(2, 16px);
-$space-triple:		rhythm(3, 16px);
-$space-quad:		rhythm(4, 16px);
-$space-half:		rhythm(.5, 16px);
-$space-quarter:		rhythm(.25, 16px);
+// Margins - Preferably Top & Bottom
+$space:					rhythm(1, 16px);
+$space-and-half:		rhythm(1.5, 16px);
+$space-double:			rhythm(2, 16px);
+$space-triple:			rhythm(3, 16px);
+$space-quad:			rhythm(4, 16px);
+$space-half:			rhythm(.5, 16px);
+$space-quarter:			rhythm(.25, 16px);
+$space-three-quarter:	($space-half + $space-quarter);
 
-$pad:				1rem;
-$pad-and-half:		$pad*1.5;
-$pad-double:		$pad*2;
-$pad-triple:		$pad*3;
-$pad-quad:			$pad*4;
-$pad-half:			$pad/2;
-$pad-quarter:		$pad/4;
+// Paddings - Preferably Left & Right
+$pad:					1rem;
+$pad-and-half:			$pad*1.5;
+$pad-double:			$pad*2;
+$pad-triple:			$pad*3;
+$pad-quad:				$pad*4;
+$pad-half:				$pad/2;
+$pad-quarter:			$pad/4;
+$pad-three-quarter:		($pad-half + $pad-quarter);
+
+$default-spacing:		$space-half;
+$default-padding:		$pad-half;
+
+$dist:					$total-width*(($gutter-width*.5)/gridsystem-width($columns));
 
 
 

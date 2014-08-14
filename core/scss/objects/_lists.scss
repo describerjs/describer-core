@@ -1,9 +1,9 @@
 /*------------------------------------*\
-    $MAIN_CONTENT_AREA
+    $LISTS
 \*------------------------------------*/
 
 /**
- * main................................HTML <main> Section
+ * BULLET-LIST.........................List w/Bullets
 **/
 
 
@@ -11,13 +11,20 @@
 
 
 /*------------------------------------*\
-    <main>
+    $BULLET-LIST
 \*------------------------------------*/
 
-main {
-	@extend %page-element-default;
-	overflow: hidden;
+.bullet-list {
+	padding-left: ($pad + $pad-quarter);
+
+	.list-item {
+		list-style-type: disc;
+		margin: {
+			bottom: $space-quarter;
+		};
+	}
 }
+
 
 
 

@@ -3,12 +3,79 @@
 \*------------------------------------*/
 
 /**
- * 
+ * ELEMENT_DEFAULTS....................Elements default properties
+ * .....page-element-default
+ * .....element-default
+ * .....element-inner-default
+ * TOGGLE_ELEMENT......................Toggle properties
+ * .....toggle-subject
+ * .....toggle-content
+ * .....toggle-content-subject
 **/
 
 
 
 
+
+/*------------------------------------*\
+	$ELEMENT_DEFAULTS
+\*------------------------------------*/
+
+%page-element-default {
+	@include row;
+	clear: both;
+}
+
+%element-default {
+	@include clearfix;
+	@include column(12);
+	@include element-default-spacing;
+	position: relative;
+}
+
+%element-inner-default {
+	@include element-default-padding;
+}
+
+%element-nested-default {
+	@include element-default-padding;
+	
+	margin: {
+		left: 0 !important;
+		right: 0 !important;
+	};
+}
+
+
+
+
+
+/*------------------------------------*\
+	TOGGLE_ELEMENT
+\*------------------------------------*/
+
+%toggle-subject {
+	@extend %element-inner-default;
+	@include user-select;
+	display: block;
+	position: relative;
+}
+
+%toggle-content {
+	@include transitions(height .3s ease, opacity .3s ease);
+	/*display: none;*/
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+}
+
+%toggle-content-visible {
+	@extend %element-inner-default;
+	/*display: block;*/
+	height: auto;
+	min-height: $default-padding;
+	opacity: 1;
+}
 
 /*------------------------------------*\
 	

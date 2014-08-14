@@ -30,20 +30,54 @@
 
 
 .togglebox {
+	@extend %element-default;
+
 	// Der verantwortliche Link zum öffnen des Toggles "tb-content".
 	.tb-subject {
-		/**/
+		@extend %toggle-subject;
+		background-color: $theme-togglebox-bg;
+		color: $theme-togglebox-fg;
+
+		&:after {
+			@include pseudo-element-default;
+			@include vertical-align(absolute);
+			border: $pad-half solid transparent;
+			border-left-color: rgba(0, 0, 0, .4);
+			height: 0;
+			right: $dist;
+			width: 0;
+			@include transform-transition(.3s ease);
+		}
 	}
 
 	// Der eigentliche Content.
 	.tb-content {
-		display: none;
+		@extend %toggle-content;
+		background-color: $theme-page-bg;
 	}
 
 	// "togglebox" wird mit "show" erweitert und interagiert entsprechend.
 	&.show {
-		.tb-content {
-			display: block;
+		&> .tb-content {
+			@extend %toggle-content-visible;
+		}
+
+		&> .tb-subject {
+			&:after {
+				@include transform(rotate(90deg));
+				/*border-left-color: transparent;
+				border-top-color: rgba(0, 0, 0, .4);*/
+				/*right: $pad-three-quarter;
+				top: 60%;*/
+			}
 		}
 	}
 }
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/
