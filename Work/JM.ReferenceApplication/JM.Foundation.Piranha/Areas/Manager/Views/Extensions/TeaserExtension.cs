@@ -7,18 +7,13 @@ using Piranha.Extend;
 [ExportMetadata("Name", "Teaser")]
 [ExportMetadata("Type", ExtensionType.Region)]
 [Serializable]
-public class TeaserExtension : Piranha.Extend.Regions.HtmlRegion
+public class TeaserExtension : Piranha.Extend.Extension
 {
 	/// <summary>
     /// Default constructor.
 	/// </summary>
 	public TeaserExtension() : base() { }
 
-	/// <summary>
-    /// Creates a new category description from the given string.
-	/// </summary>
-	/// <param name="val"></param>
-	public TeaserExtension(string val) : base(val) { }
 
 	public string Title { get; set; }
 	public string Body { get; set; }
