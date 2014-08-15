@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Diagnostics.Contracts;
 
 namespace JM.Foundation.Configuration
@@ -9,6 +8,14 @@ namespace JM.Foundation.Configuration
 	/// </summary>
 	public class ApplicationConfiguration
 	{
+		/// <summary>
+		/// Liefert das SiteConfig-Objekt mit allen allgemeingültigen, nicht modul-spezifischen Einstellungen
+		/// </summary>
+		public static SiteConfig SiteConfig
+		{
+			get { return GetConfigSection<SiteConfig>("JM.SiteConfig"); }
+		}
+
 		#region public methods
 
 		/// <summary>

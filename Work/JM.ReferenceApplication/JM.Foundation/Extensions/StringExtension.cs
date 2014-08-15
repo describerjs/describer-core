@@ -1,4 +1,6 @@
-﻿using Microsoft.Security.Application;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Security.Application;
 using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 
@@ -171,6 +173,17 @@ namespace JM.Foundation.Extensions
 
 			var rgx = new Regex("[^\\d]");
 			return rgx.Replace(str, string.Empty);
+		}
+
+		/// <summary>
+		/// Creates an Ienumerable from a string by splitting it by a separator
+		/// </summary>
+		/// <param name="str">The string</param>
+		/// <param name="delimiter">Char, default ","</param>
+		/// <returns></returns>
+		public static IEnumerable<string> ToList(this string str, char delimiter = ',')
+		{
+			return str.Contains(delimiter) ? str.Split(delimiter).ToList() : new List<string> {str};
 		}
 	}
 }

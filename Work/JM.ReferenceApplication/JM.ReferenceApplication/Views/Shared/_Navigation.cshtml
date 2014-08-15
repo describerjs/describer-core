@@ -1,0 +1,35 @@
+﻿@model  List<Piranha.Models.Sitemap>
+
+<nav class="nav" id="nav" role="navigation">
+    <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+	<ul class="nav-items">
+		@foreach (var map in Model)
+		{
+			<li class="nav-item menu-item">
+				<a href="@JMPiranhaHelper.GenerateUrl(map)" class="nav-link" data-jmname="nav-link" data-jmdominit="true">@(String.IsNullOrEmpty(map.NavigationTitle) ? map.Title : map.NavigationTitle)</a>
+				@if (map.Pages != null && map.Pages.Any())
+				{
+					<div class="flyout">
+						<div class="menu-close-btn" data-jmname="menu-close"></div>
+									
+						@foreach (var sub in map.Pages)
+						{
+							<div class="flyout-group">
+								<div class="flyout-item"><a class="flyout-group-title" href="@JMPiranhaHelper.GenerateUrl(sub)">@(String.IsNullOrEmpty(sub.NavigationTitle) ? sub.Title : sub.NavigationTitle)</a></div>
+								@if (sub.Pages != null && sub.Pages.Any())
+								{
+									<ul class="flyout-items">
+										@foreach (var subSub in sub.Pages)
+										{
+											<li class="flyout-item"><a class="flyout-link" href="@JMPiranhaHelper.GenerateUrl(subSub)">@(String.IsNullOrEmpty(subSub.NavigationTitle) ? subSub.Title : subSub.NavigationTitle)</a></li>
+										}
+									</ul>
+								}
+							</div>
+						}
+					</div>
+				}
+			</li>
+		}
+	</ul>
+</nav>
