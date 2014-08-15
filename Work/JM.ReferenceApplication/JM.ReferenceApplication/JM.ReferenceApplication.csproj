@@ -359,6 +359,7 @@
     <Content Include="Areas\Manager\Views\Extensions\FaqRegion.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\MainJS.cshtml" />
+    <Content Include="Views\Shared\Regions\StageTeaser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
