@@ -66,10 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.0.0.0.1\lib\JM.Foundation.dll</HintPath>
-    </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -235,6 +231,7 @@
     </Compile>
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Views\Extensions\FaqRegion.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -353,6 +350,8 @@
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData_Danke.cshtml" />
+    <Content Include="Areas\Manager\Views\Extensions\TeaserExtension.cshtml" />
+    <Content Include="Areas\Manager\Views\Extensions\FaqRegion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
@@ -378,6 +377,14 @@
     <ProjectReference Include="..\JM.Business\JM.Business.csproj">
       <Project>{34639888-0fe7-417c-82af-72a9a3d215b3}</Project>
       <Name>JM.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JM.Foundation.Piranha\JM.Foundation.Piranha.csproj">
+      <Project>{2aa7fc41-7d66-4967-afa2-9193a6d1b6fa}</Project>
+      <Name>JM.Foundation.Piranha</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JM.Foundation\JM.Foundation.csproj">
+      <Project>{9b6dffed-983f-45f8-ae93-4e8c3dabbd59}</Project>
+      <Name>JM.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\JM.ReferenceApplication.Common\JM.ReferenceApplication.Common.csproj">
       <Project>{957d0a78-5008-4ae5-a8d4-4c53b750ac6d}</Project>
@@ -406,7 +413,8 @@
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" />
   <PropertyGroup>
-    <PreBuildEvent>XCOPY /R /Y $(ProjectDir)Settings.StyleCop $(ProjectDir)..\</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

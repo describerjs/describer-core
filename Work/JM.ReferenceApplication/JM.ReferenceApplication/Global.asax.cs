@@ -5,6 +5,8 @@ using System.Web.Routing;
 using JM.Foundation.DependencyInjection;
 using JM.ReferenceApplication.App_Start;
 using JM.ReferenceApplication.Common.Monitoring;
+using System.Web.Hosting;
+using JM.Foundation.Utils;
 
 namespace JM.ReferenceApplication
 {
@@ -38,6 +40,9 @@ namespace JM.ReferenceApplication
 			// welche Klasse instanziiert werden muss und führt das aus. Somit können in PostActions
 			// Interfaces als Actions übergeben werden.
             ModelBinders.Binders.DefaultBinder = new AbstractModelBinder(DependencyResolver.Current);
+            
+            HostingEnvironment
+                .RegisterVirtualPathProvider(new EmbeddedViewPathProvider(typeof(FaqRegion).Assembly));
 		}
 
 		/// <summary>

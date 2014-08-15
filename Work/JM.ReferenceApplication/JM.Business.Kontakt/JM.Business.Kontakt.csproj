@@ -53,9 +53,6 @@
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation">
-      <HintPath>..\packages\JM.Foundation.0.0.0.1\lib\JM.Foundation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.0.26.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
@@ -145,6 +142,10 @@
     <ProjectReference Include="..\JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.csproj">
       <Project>{626a7bed-0264-4bb5-be59-bfb1ffc36fb2}</Project>
       <Name>JM.Business.Kontakt.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JM.Foundation\JM.Foundation.csproj">
+      <Project>{9b6dffed-983f-45f8-ae93-4e8c3dabbd59}</Project>
+      <Name>JM.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

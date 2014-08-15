@@ -1,0 +1,26 @@
+﻿@model FaqRegion
+
+@{
+    var i = 0;
+}
+
+<form method="post">
+    <ul class="form">
+        @foreach (var item in Model.QaAs)
+        {
+            <li>
+                <label>Frage @i</label>
+                <div class="input">
+                    <input name="QaAs[@i].Key" value="@item.Key" />
+                </div>
+                <label>Antwort</label>
+                <div class="input">
+                    <textarea name="QaAs[@i].Value">@item.Value</textarea>
+                </div>
+            </li>
+            i++;
+        }
+        <li><a class="btn" href="#add" data-last-id="@i" onclick="alert('tbd');">Neue Frage hinzufügen</a></li>
+    </ul>
+
+</form>

@@ -1,0 +1,24 @@
+﻿@model TeaserExtension
+
+<ul class="form">
+	<li>
+		@Html.LabelFor(m => m.Title)
+		<div class="input">@Html.TextBoxFor(m => m.Title)</div>
+	</li>
+	<li>
+		@Html.LabelFor(m => m.Body)
+		<div class="input">@Html.TextAreaFor(m => m.Body)</div>
+	</li>
+	<li>
+		@Html.LabelFor(m => m.LinkText)
+		<div class="input">@Html.TextBoxFor(m => m.LinkText)</div>
+	</li>
+	<li>
+		@Html.LabelFor(m => m.LinkUrl)
+		<div class="input">@Html.TextBoxFor(m => m.LinkUrl)</div>
+	</li>
+	<li>
+		@Html.LabelFor(m => m.ImageUrl)
+		<div class="input">@Html.TextBoxFor(m => m.ImageUrl)</div>
+	</li>
+</ul>
