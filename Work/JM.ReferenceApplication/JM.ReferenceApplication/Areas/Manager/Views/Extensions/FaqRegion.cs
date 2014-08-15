@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 [Serializable]
 public class FaqRegion : Extension
 {
-    IDictionary<string, string> qaAs;
+    private IDictionary<string, string> qaAs;
 
     [UIHint("Stringdictionary")]
     public IDictionary<string, string> QaAs

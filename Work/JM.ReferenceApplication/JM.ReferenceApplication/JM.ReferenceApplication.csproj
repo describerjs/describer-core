@@ -251,7 +251,6 @@
     <Compile Include="Infrastructure\Models\ManageUserViewModel.cs" />
     <Compile Include="Infrastructure\Models\RegisterViewModel.cs" />
     <Compile Include="Infrastructure\Models\ResetPasswordViewModel.cs" />
-    <Compile Include="Infrastructure\JMPiranhaHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -388,10 +387,6 @@
     <ProjectReference Include="..\JM.Business\JM.Business.csproj">
       <Project>{34639888-0fe7-417c-82af-72a9a3d215b3}</Project>
       <Name>JM.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JM.Foundation.Piranha\JM.Foundation.Piranha.csproj">
-      <Project>{2aa7fc41-7d66-4967-afa2-9193a6d1b6fa}</Project>
-      <Name>JM.Foundation.Piranha</Name>
     </ProjectReference>
     <ProjectReference Include="..\JM.Foundation\JM.Foundation.csproj">
       <Project>{9b6dffed-983f-45f8-ae93-4e8c3dabbd59}</Project>

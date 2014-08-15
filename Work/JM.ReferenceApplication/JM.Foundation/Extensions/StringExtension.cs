@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Security.Application;
+﻿using Microsoft.Security.Application;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace JM.Foundation.Extensions
@@ -183,7 +183,8 @@ namespace JM.Foundation.Extensions
 		/// <returns></returns>
 		public static IEnumerable<string> ToList(this string str, char delimiter = ',')
 		{
-			return str.Contains(delimiter) ? str.Split(delimiter).ToList() : new List<string> {str};
+            Contract.Requires(str != null);
+			return str.Contains(delimiter) ? str.Split(delimiter).ToList() : new List<string> { str };
 		}
 	}
 }

@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stylecop", "Stylecop", "{C1
 		Settings.StyleCop = Settings.StyleCop
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Foundation.Piranha", "JM.Foundation.Piranha\JM.Foundation.Piranha.csproj", "{2B76847E-9232-4736-A170-A985658C2F4C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,10 +59,6 @@ Global
 		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B76847E-9232-4736-A170-A985658C2F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B76847E-9232-4736-A170-A985658C2F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B76847E-9232-4736-A170-A985658C2F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B76847E-9232-4736-A170-A985658C2F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

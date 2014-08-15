@@ -14,7 +14,6 @@ public class TeaserExtension : Piranha.Extend.Extension
 	/// </summary>
 	public TeaserExtension() : base() { }
 
-
 	public string Title { get; set; }
 	public string Body { get; set; }
 	public string LinkText { get; set; }

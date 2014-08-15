@@ -4,30 +4,22 @@ using Piranha.Models;
 namespace JM.ReferenceApplication.Controllers
 {
 	/// <summary>
-	/// 13.08.2014 - Sebastian van Elten
-	/// ContentController
 	/// Stellt Partialviews für verschiedene technische Partialviews bereit.
 	/// </summary>
 	public class ContentController : Controller
 	{
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region private Member
-
-		//
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Constructor
 
 		public ContentController()
 		{
-
 		}
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region Views
 
 		/// <summary>
@@ -47,7 +39,6 @@ namespace JM.ReferenceApplication.Controllers
 
 		#endregion
 
-		//////////////////////////////////////////////////////////////////////////////////////
 		#region PartialViews
 		
 		/// <summary>

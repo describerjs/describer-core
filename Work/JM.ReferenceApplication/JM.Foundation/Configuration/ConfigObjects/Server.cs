@@ -1,36 +1,12 @@
 using JM.Foundation.Extensions;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.Contracts;
 
 namespace JM.Foundation.Configuration
 {
     public class Server : ConfigurationElement
-	{
-		#region private vars
-	
-		/// <summary>
-		/// private Version der Domains-Eigenschaft
-		/// </summary>
-		[ConfigurationProperty("domains", IsRequired = true)]
-		private string _domains
-		{
-			get
-			{
-				return this["domains"] as string;
-			}
-		}
-
-		#endregion
-
-		/// <summary>
-		/// Servertype: DEV, ANSICHT, LIVE
-		/// </summary>
-        [ConfigurationProperty("serverTyp", IsRequired = true)]
-        public string ServerTyp
-        {
-            get { return this["serverTyp"] as string; }
-        }
-		
+	{	
 		/// <summary>
 		/// Interner Host
 		/// </summary>
@@ -69,28 +45,21 @@ namespace JM.Foundation.Configuration
 			}
 		}
 
-		/// <summary>
-		/// Prüft ob der Server ein DEV-Server ist
-		/// </summary>
-	    public bool IsDevServer
-	    {
-		    get { return ServerTyp.ToLower() == "dev"; }
-	    }
+        #region private vars
 
-		/// <summary>
-		/// Prüft ob der Server ein Ansichts-Server ist
-		/// </summary>
-		public bool IsAnsichtServer
-		{
-			get { return ServerTyp.ToLower() == "ansicht"; }
-		}
+        /// <summary>
+        /// private Version der Domains-Eigenschaft
+        /// </summary>
+        [ConfigurationProperty("domains", IsRequired = true)]
+        private string _domains
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<string>() != null);
+                return (this["domains"] as string) ?? string.Empty;
+            }
+        }
 
-		/// <summary>
-		/// Prüft ob der Server ein LIVE-Server ist
-		/// </summary>
-		public bool IsLiveServer
-		{
-			get { return ServerTyp.ToLower() == "live"; }
-		}
+        #endregion
     }
 }
