@@ -360,6 +360,9 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\MainJS.cshtml" />
     <Content Include="Views\Shared\Regions\StageTeaser.cshtml" />
+    <Content Include="Views\Page\Level0.cshtml" />
+    <Content Include="Views\Page\Level1.cshtml" />
+    <Content Include="Views\Page\Level2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
