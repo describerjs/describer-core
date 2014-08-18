@@ -8,5 +8,5 @@
     <source srcset="@String.Format("/media/{0}-{1}-{2}.jpg", Model.ImageName, Model.WidthTablet, Model.HeightTablet)" media="(min-width: 48em)">
     <source srcset="@String.Format("/media/{0}-{1}-{2}.jpg, /img/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.WidthMobile, Model.HeightMobile)">
     <!--[if IE 9]></video><![endif]-->
-    <img srcset="@String.Format("/media/{0}-{1}-{2}.jpg, /img/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.WidthMobile, Model.HeightMobile)" src="@String.Format("/media/{0}-{1}-{2}.jpg", Model.ImageName, Model.WidthMobile, Model.HeightMobile)" alt="@Model.Alt">
+    <img srcset="@String.Format("/media/{0}-{1}-{2}.jpg, /img/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.Width, Model.Height)" src="@String.Format("/media/{0}-{1}-{2}.jpg", Model.ImageName, Model.Width, Model.Height)" alt="@Model.Alt">
 </picture>
