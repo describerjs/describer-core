@@ -21,7 +21,7 @@ namespace JM.Foundation.Mvc.Helper
         /// <returns>bool</returns>
         public static bool FeatureEnabled(this HtmlHelper helper, PerformanceFeature feature)
         {
-            var setting = _getSetting((int)feature);
+            var setting = GetSetting((int)feature);
 
             return setting != null && setting.Value;
         }
@@ -46,7 +46,7 @@ namespace JM.Foundation.Mvc.Helper
         /// Liest die Configurationsection für JM.Foundation und gibt das entsprechende Config-Objekt zurück
         /// </summary>
         /// <returns>Config</returns>
-        private static Config _getConfig()
+        private static Config GetConfig()
         {
             return ApplicationConfiguration.GetConfigSection<Config>("JM.Foundation");
         }
@@ -56,9 +56,9 @@ namespace JM.Foundation.Mvc.Helper
         /// </summary>
         /// <param name="id">Id des Settings</param>
         /// <returns>Setting</returns>
-        private static Setting _getSetting(int id)
+        private static Setting GetSetting(int id)
         {
-            var config = _getConfig();
+            var config = GetConfig();
             
             return 
                 (config.Features ?? Enumerable.Empty<Setting>())

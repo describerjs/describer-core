@@ -398,6 +398,7 @@
         <StringProperty Name="AdvancedNaming_MethodGeneral">$(AaBb):JM$(AaBb):JM_$(AaBb):JM_$(AaBb)_$(AaBb):$(AaBb)_$(AaBb):$(AaBb)_$(AaBb)_$(AaBb)</StringProperty>
         <StringProperty Name="AdvancedNaming_Namespace">$(AaBb):JM:JM$(AaBb):App_Start</StringProperty>
         <StringProperty Name="AdvancedNaming_Property">$(AaBb):JM$(AaBb)</StringProperty>
+        <StringProperty Name="AdvancedNaming_EnumItem">$(AaBb):$(AaBb)JS:IE8</StringProperty>
       </AnalyzerSettings>
     </Analyzer>
   </Analyzers>

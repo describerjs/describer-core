@@ -5,7 +5,7 @@ using System.Diagnostics.Contracts;
 namespace JM.Foundation.ErrorHandling
 {
     [ContractClassFor(typeof(IErrorHandler))]
-    internal abstract class IErrorHandlerContracts : IErrorHandler
+    internal abstract class ErrorHandlerContracts : IErrorHandler
     {
         public void Handle(Exception ex, ExceptionPolicy policy, string context)
         {

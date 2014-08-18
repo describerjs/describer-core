@@ -235,7 +235,9 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ContentController.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">

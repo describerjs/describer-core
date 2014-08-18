@@ -27,6 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stylecop", "Stylecop", "{C1
 	ProjectSection(SolutionItems) = preProject
 		EditStyleCopSettings.cmd = EditStyleCopSettings.cmd
 		Settings.StyleCop = Settings.StyleCop
+		packages\StyleCop.MSBuild.4.7.49.0\tools\StyleCopPlus.dll = packages\StyleCop.MSBuild.4.7.49.0\tools\StyleCopPlus.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local Build Scripts", "Local Build Scripts", "{0C7EDCB1-7A98-4123-A77C-8010D19FFE3D}"
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		BuildRelease.bat = BuildRelease.bat
 	EndProjectSection
 EndProject
 Global
@@ -65,5 +72,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C1C31E75-FCC8-448E-A1C1-722C837B3340} = {78CF8610-4D84-4ACF-AC21-560376FAD538}
+		{0C7EDCB1-7A98-4123-A77C-8010D19FFE3D} = {78CF8610-4D84-4ACF-AC21-560376FAD538}
 	EndGlobalSection
 EndGlobal

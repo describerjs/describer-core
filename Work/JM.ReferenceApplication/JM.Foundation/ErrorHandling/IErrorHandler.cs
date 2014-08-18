@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JM.Foundation.ErrorHandling
 {
-    [ContractClass(typeof(IErrorHandlerContracts))]
+    [ContractClass(typeof(ErrorHandlerContracts))]
     public interface IErrorHandler
     {
         void Handle(

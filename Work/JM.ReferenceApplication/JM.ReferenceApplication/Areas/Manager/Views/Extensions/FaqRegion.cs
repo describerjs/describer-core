@@ -11,25 +11,25 @@ using System.ComponentModel.DataAnnotations;
 [Serializable]
 public class FaqRegion : Extension
 {
-    private IDictionary<string, string> qaAs;
+    private IDictionary<string, string> _qaAs;
 
     [UIHint("Stringdictionary")]
     public IDictionary<string, string> QaAs
     {
         get
         {
-            if (this.qaAs == null)
+            if (_qaAs == null)
             {
-                this.qaAs = new Dictionary<string, string>();
-                this.qaAs.Add("Test", "Value");
-                this.qaAs.Add("Frage 2", "Value2");
+                _qaAs = new Dictionary<string, string>();
+                _qaAs.Add("Test", "Value");
+                _qaAs.Add("Frage 2", "Value2");
             }
 
-            return this.qaAs;
+            return _qaAs;
         }
         set
         {
-            this.qaAs = value;
+            _qaAs = value;
         }
     }
 }
