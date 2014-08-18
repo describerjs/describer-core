@@ -1,12 +1,12 @@
-﻿using System;
+﻿using JM.Foundation.DependencyInjection;
+using JM.Foundation.Utils;
+using JM.ReferenceApplication.App_Start;
+using JM.ReferenceApplication.Common.Monitoring;
+using System;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using JM.Foundation.DependencyInjection;
-using JM.ReferenceApplication.App_Start;
-using JM.ReferenceApplication.Common.Monitoring;
-using System.Web.Hosting;
-using JM.Foundation.Utils;
 
 namespace JM.ReferenceApplication
 {
