@@ -76,14 +76,10 @@
 			        @PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br />
 		        </div>
 	        </div>
-	        <div class="col">
-		        <div class="col">
-			        @RenderBody()
-		        </div>
-	        </div>
+            @RenderBody()
         </main>
 	    <footer class="page-footer" role="contentinfo">
-		    <p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
+		    <p class="copyright">&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
 	    </footer>
     </div>
     @Scripts.Render("~/jm/jquery")
