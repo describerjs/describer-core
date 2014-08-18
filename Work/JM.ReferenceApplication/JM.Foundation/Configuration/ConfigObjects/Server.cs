@@ -37,29 +37,16 @@ namespace JM.Foundation.Configuration
 		/// <summary>
 		/// Liste der gültigen Domains für den Server
 		/// </summary>
+        [ConfigurationProperty("domains", IsRequired = true)]
 		public IEnumerable<string> Domains
 		{
 			get
 			{
-				return _domains.ToList(',');
+                Contract.Ensures(Contract.Result<IEnumerable<string>>() != null);
+				
+                return
+                    (this["domains"] as string ?? string.Empty).ToList(',');
 			}
 		}
-
-        #region private vars
-
-        /// <summary>
-        /// private Version der Domains-Eigenschaft
-        /// </summary>
-        [ConfigurationProperty("domains", IsRequired = true)]
-        private string _domains
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<string>() != null);
-                return (this["domains"] as string) ?? string.Empty;
-            }
-        }
-
-        #endregion
     }
 }

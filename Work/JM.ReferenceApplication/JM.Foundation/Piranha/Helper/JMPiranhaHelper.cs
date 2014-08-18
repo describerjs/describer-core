@@ -35,6 +35,7 @@ namespace JM.Foundation.Piranha.Helper
 					    global::Piranha.Application.Current.Handlers.GetUrlPrefix("PERMALINK").ToLower() + "/" :
                         string.Empty) + page.Permalink.ToLower());
 			}
+
 			return string.Empty;
 		}
 

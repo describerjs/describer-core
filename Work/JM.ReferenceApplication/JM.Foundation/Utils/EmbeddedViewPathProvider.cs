@@ -11,18 +11,11 @@ namespace JM.Foundation.Utils
 {
     public class EmbeddedViewPathProvider : VirtualPathProvider
     {
-        private readonly Assembly assembly;
+        private readonly Assembly _assembly;
 
         public EmbeddedViewPathProvider(Assembly assembly)
         {
-            this.assembly = assembly;
-        }
-
-        private bool ResourceFileExists(string virtualPath)
-        {
-            var resourcename = EmbeddedVirtualFile.GetResourceName(virtualPath);
-            var result = resourcename != null && assembly.GetManifestResourceNames().Contains(resourcename);
-            return result;
+            this._assembly = assembly;
         }
 
         public override bool FileExists(string virtualPath)
@@ -34,7 +27,7 @@ namespace JM.Foundation.Utils
         {
             if (!base.FileExists(virtualPath))
             {
-                return new EmbeddedVirtualFile(virtualPath, assembly);
+                return new EmbeddedVirtualFile(virtualPath, _assembly);
             }
             else
             {
@@ -42,14 +35,27 @@ namespace JM.Foundation.Utils
             }
         }
 
+        private bool ResourceFileExists(string virtualPath)
+        {
+            var resourcename = EmbeddedVirtualFile.GetResourceName(virtualPath);
+            var result = resourcename != null && _assembly.GetManifestResourceNames().Contains(resourcename);
+            return result;
+        }
+
         private class EmbeddedVirtualFile : VirtualFile
         {
-            private readonly Assembly assembly;
+            private readonly Assembly _assembly;
 
             public EmbeddedVirtualFile(string virtualPath, Assembly assembly)
                 : base(virtualPath)
             {
-                this.assembly = assembly;
+                this._assembly = assembly;
+            }
+
+            public override Stream Open()
+            {
+                var resourcename = GetResourceName(this.VirtualPath);
+                return _assembly.GetManifestResourceStream(resourcename);
             }
 
             internal static string GetResourceName(string virtualPath)
@@ -63,12 +69,6 @@ namespace JM.Foundation.Utils
                     "JM.Foundation.Piranha.Areas.Manager.Views.Extensions." + virtualPath.Split('/').Last();
 
                 return resourcename;
-            }
-
-            public override Stream Open()
-            {
-                var resourcename = GetResourceName(this.VirtualPath);
-                return assembly.GetManifestResourceStream(resourcename);
             }
         }
     }
