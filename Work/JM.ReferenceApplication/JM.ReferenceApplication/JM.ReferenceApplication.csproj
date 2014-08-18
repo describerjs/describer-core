@@ -422,6 +422,10 @@
     <Content Include="Views\Page\Level1.cshtml" />
     <Content Include="Views\Page\Level2.cshtml" />
     <Content Include="Views\Shared\_PictureFill.cshtml" />
+    <Content Include="Views\Shared\Regions\Teaser.cshtml" />
+    <Content Include="Views\Shared\Regions\Togglebox.cshtml" />
+    <Content Include="Views\Shared\Regions\Accordion.cshtml" />
+    <Content Include="Views\Shared\Regions\TextBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
