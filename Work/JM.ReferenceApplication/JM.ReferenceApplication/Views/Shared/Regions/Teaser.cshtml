@@ -1,0 +1,31 @@
+﻿<a class="teaser" href="$teaser-link$">
+    <div class="t-img">
+        @Html.Partial(
+            "_PictureFill", 
+            new JM.Foundation.SharedViews.PictureFillModel 
+            { 
+                ImageName = "teaser", 
+                Width = 400, 
+                Height = 119, 
+                WidthTablet = 320, 
+                HeightTablet = 119, 
+                WidthMobile = 800, 
+                HeightMobile = 119, 
+                Alt = "Teaser-ALT", 
+                Attributes = new { } 
+            })
+    </div>
+    <header class="t-header">
+        <h3 class="t-head">$teaser-head$</h3>
+    </header>
+    <div class="t-content">
+        <ul class="bullet-list">
+            <li class="list-item">$list-item$</li>
+            <li class="list-item">$list-item$</li>
+            <li class="list-item">$list-item$</li>
+        </ul>
+    </div>
+    <footer class="t-footer">
+	    <span class="btn">$btn$</span>
+    </footer>
+</a>

@@ -1,6 +1,7 @@
 ﻿using Piranha;
 using Piranha.Models;
 using System;
+using System.Diagnostics.Contracts;
 using System.Web;
 
 namespace JM.Foundation.Piranha.Helper
@@ -29,15 +30,18 @@ namespace JM.Foundation.Piranha.Helper
                 }
 
 				return 
-                    Url("~/" + (!Config.PrefixlessPermalinks ?
-					global::Piranha.Application.Current.Handlers.GetUrlPrefix("PERMALINK").ToLower() + "/" :
-                    string.Empty) + page.Permalink.ToLower());
+                    Url("~/" + 
+                        (!Config.PrefixlessPermalinks ?
+					    global::Piranha.Application.Current.Handlers.GetUrlPrefix("PERMALINK").ToLower() + "/" :
+                        string.Empty) + page.Permalink.ToLower());
 			}
 			return string.Empty;
 		}
 
 		private static string Url(string virtualpath)
 		{
+            Contract.Assume(HttpContext.Current != null);
+
 			var request = HttpContext.Current.Request;
 			return virtualpath.Replace("~/", request.ApplicationPath + (request.ApplicationPath != "/" ? "/" : string.Empty));
 		}

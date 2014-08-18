@@ -11,7 +11,6 @@ namespace JM.Foundation.Piranha.Provider
     {
         public FileStorageProvider() : base(@"c:\temp\PiranhaMedia\Content", @"c:\temp\PiranhaMedia\Uploads")
         {
-
         }
     }
 }

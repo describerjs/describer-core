@@ -11,6 +11,37 @@ namespace JM.Foundation.Utils
 {
     public class EmbeddedViewPathProvider : VirtualPathProvider
     {
+        private readonly Assembly assembly;
+
+        public EmbeddedViewPathProvider(Assembly assembly)
+        {
+            this.assembly = assembly;
+        }
+
+        private bool ResourceFileExists(string virtualPath)
+        {
+            var resourcename = EmbeddedVirtualFile.GetResourceName(virtualPath);
+            var result = resourcename != null && assembly.GetManifestResourceNames().Contains(resourcename);
+            return result;
+        }
+
+        public override bool FileExists(string virtualPath)
+        {
+            return base.FileExists(virtualPath) || ResourceFileExists(virtualPath);
+        }
+
+        public override VirtualFile GetFile(string virtualPath)
+        {
+            if (!base.FileExists(virtualPath))
+            {
+                return new EmbeddedVirtualFile(virtualPath, assembly);
+            }
+            else
+            {
+                return base.GetFile(virtualPath);
+            }
+        }
+
         private class EmbeddedVirtualFile : VirtualFile
         {
             private readonly Assembly assembly;
@@ -38,38 +69,6 @@ namespace JM.Foundation.Utils
             {
                 var resourcename = GetResourceName(this.VirtualPath);
                 return assembly.GetManifestResourceStream(resourcename);
-            }
-        }
-
-        private readonly Assembly assembly;
-
-        public EmbeddedViewPathProvider(Assembly assembly)
-        {
-            this.assembly = assembly;
-        }
-
-        private bool ResourceFileExists(string virtualPath)
-        {
-            var resourcename = EmbeddedVirtualFile.GetResourceName(virtualPath);
-            var result = resourcename != null && assembly.GetManifestResourceNames().Contains(resourcename);
-            return result;
-        }
-
-        public override bool FileExists(string virtualPath)
-        {
-            return base.FileExists(virtualPath) || ResourceFileExists(virtualPath);
-        }
-
-
-        public override VirtualFile GetFile(string virtualPath)
-        {
-            if (!base.FileExists(virtualPath))
-            {
-                return new EmbeddedVirtualFile(virtualPath, assembly);
-            }
-            else
-            {
-                return base.GetFile(virtualPath);
             }
         }
     }
