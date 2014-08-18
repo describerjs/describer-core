@@ -203,7 +203,7 @@ define(function(){
 				{
 					'wait':'raf',
 					'event'    : 'change',
-					'data'     : 'jmchange',
+					'data'     : 'jmtrigger',
 					'relatedTo': 'this.$elem.closest(\'form\').find(\'[data-jmdomselector*="OptionInternetFlatUpgrade"]\').not(this.$elem)[0]',
 					'condition': 'this.$elem.prop(\'checked\') && this.$elem.closest(\'form\').find(\'[data-jmdomselector*="OptionInternetFlatUpgrade"]\').not(this.$elem).prop(\'checked\')'
 				}
