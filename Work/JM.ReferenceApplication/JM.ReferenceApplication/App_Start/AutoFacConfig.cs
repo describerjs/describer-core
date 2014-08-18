@@ -65,7 +65,6 @@ namespace JM.ReferenceApplication.App_Start
             // diesen erfolgt dann das eigentliche Auflösen der Abhängigkeiten
             var container = autofacBuilder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            var regions = Piranha.Extend.ExtensionManager.Current.GetByType(Piranha.Extend.ExtensionType.Region);
         }
     }
 }

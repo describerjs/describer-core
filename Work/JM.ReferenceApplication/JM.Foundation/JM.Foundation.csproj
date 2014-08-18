@@ -190,6 +190,7 @@
     <Compile Include="Mvc\Routing\RegexConstraint.cs" />
     <Compile Include="Mvc\Validation\RegexValidationAttribute.cs" />
     <Compile Include="Piranha\Helper\JMPiranhaHelper.cs" />
+    <Compile Include="Piranha\Provider\FileStorageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Monitoring\SystemBoundaryAttribute.cs" />
     <Compile Include="Configuration\ConfigObjects\Setting.cs" />
