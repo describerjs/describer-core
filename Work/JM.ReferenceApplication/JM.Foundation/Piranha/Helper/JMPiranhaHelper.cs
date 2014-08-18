@@ -12,8 +12,6 @@ namespace JM.Foundation.Piranha.Helper
 		{
 			if (page != null)
 			{
-                Contract.Assume(page.Redirect != null);
-
 				if (!string.IsNullOrEmpty(page.Redirect))
 				{
                     if (page.Redirect.Contains("://"))

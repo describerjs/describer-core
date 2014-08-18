@@ -29,16 +29,13 @@ namespace JM.Foundation.Mvc.Helper
         /// <summary>
         /// Liefert, ob im DEBUG-Mode
         /// </summary>
-        public static bool IsDebug
+        public static bool IsDebug(this HtmlHelper helper)
         {
-            get
-            {
 #if DEBUG
-                return true;
+            return true;
 #else
-                return false;
+            return false;
 #endif
-            }
         }
         
         #endregion
