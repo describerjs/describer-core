@@ -1,7 +1,20 @@
 ﻿@model TeaserExtension
 <div class="stage-teaser">
     <div class="st-img">
-        @*@Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "stage-teaser/stage-teaser", Width = 1240, Height = 468, WidthTablet = 960, HeightTablet = 468, WidthMobile = 768, HeightMobile = 197, Alt="Stage-Teaser-ALT", Attributes = new {}})*@
+        @Html.Partial(
+            "_PictureFill", 
+            new JM.Foundation.SharedViews.PictureFillModel 
+            { 
+                ImageName = "stage-teaser.jpg", 
+                Width = 1283, 
+                Height = 391, 
+                WidthTablet = 960, 
+                HeightTablet = 468, 
+                WidthMobile = 768, 
+                HeightMobile = 197, 
+                Alt = "Stage-Teaser-ALT", 
+                Attributes = new { } 
+            })
     </div>
     <header class="st-header">
         <h2 class="st-head">@Model.Title</h2>
