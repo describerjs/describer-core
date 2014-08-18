@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stylecop", "Stylecop", "{C1
 	ProjectSection(SolutionItems) = preProject
 		EditStyleCopSettings.cmd = EditStyleCopSettings.cmd
 		Settings.StyleCop = Settings.StyleCop
+		packages\StyleCop.MSBuild.4.7.49.0\tools\StyleCopPlus.dll = packages\StyleCop.MSBuild.4.7.49.0\tools\StyleCopPlus.dll
 	EndProjectSection
 EndProject
 Global
