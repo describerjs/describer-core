@@ -10,59 +10,49 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 	        this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
         },
 
+		// wird vom Body-Listener für 'click' aufgerufen
 		click: function(){
-			if(this.includes('event', 'click') && this.is('condition')){
-				this._exec();
-			}
+			if(this.includes('event', 'click') && this.is('condition')) this._exec();
 		},
 
+		// wird vom Body-Listener für 'change' aufgerufen
 		change: function(){
-			if(this.includes('event', 'change') && this.is('condition')){
-				this._exec();
-			}
+			if(this.includes('event', 'change') && this.is('condition')) this._exec();
 		},
 
-		submit: function(){
-			if(this.includes('event', 'submit') && this.is('condition')){
-				this._exec();
-			}
+		// wird vom Body-Listener für 'jmtrigger' aufgerufen
+		jmtrigger: function(){
+			if(this.includes('event', 'jmtrigger') && this.is('condition')) this._exec();
 		},
 
+		// wird vom Body-Listener für 'dominit' aufgerufen
 		dominit: function(){
-			var that = this;
-			if(this.includes('event', 'dominit') && this.is('condition')){
-				this._exec();
-			}
-			if(this.includes('event', 'raf')){
-				this.conditionSource = this.is('condition', 'source');
-				this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
-			}
-			if(this.partOf('event', 'interval')){
-				setInterval(function(){
-					if(that.is('condition')){
-						that._exec();
-					}
-				}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
-			}
-			this._initListeners();
+			if(this.includes('event', 'dominit') && this.is('condition')) this._exec();
+
+			//
+			if(this.includes('event', 'raf')) this._raf();
+			if(this.partOf('event', 'interval')) this._interval();
+
+			// init Event-Listener auf this.$elem
+			if(this.includes('event', 'blur')) this.$elem.on('blur', this._blur.bind(this));
+			if(this.includes('event', 'focus')) this.$elem.on('focus', this._focus.bind(this));
+			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._hover.bind(this));
+			if(this.partOf('event', 'keyup')) this.$elem.on('keyup', this._keyup.bind(this));
 		},
 
-		_initListeners: function(){
-			if(this.includes('event', 'blur')){
-				this.$elem.on('blur', this._blur.bind(this));
-			}
-			if(this.includes('event', 'focus')){
-				this.$elem.on('focus', this._focus.bind(this));
-			}
-			if(this.includes('event', 'hover')){
-				this.$elem.on('mouseover', this._hover.bind(this));
-			}
-			if(this.partOf('event', 'keyup')){
-				this.$elem.on('keyup', this._keyup.bind(this));
-			}
-			if(this.includes('event', 'jmchange')){
-				this.$elem.on('jmchange', this._jmchange.bind(this));
-			}
+		_raf: function(){
+			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
+			this.conditionSource = this.is('condition', 'source');
+			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
+			this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
+		},
+
+		_interval : function(){
+			var that = this;
+			setInterval(function(){
+				if(that.is('condition')) that._exec();
+				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
+			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -101,7 +91,6 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
                 }
             }
 
-	        //($.type(p_dataAttr) === 'relatedTo') ? return eval(_return): true;
 	        return _return;
         },
 
@@ -184,7 +173,6 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			}
 			// die daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
 			if($.type(this.$elem.data('jmconfig')) !== 'string'){
-
 				// !!!!!!!!!!!!!!!!!!!!!! ************************** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				//
 				//    MVC
@@ -217,19 +205,10 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			}
 		},
 
-		_reverse: function(str) {
-			var arr = [];
-			for (var i = 0, len = str.length; i <= len; i++) {
-				arr.push(str.charAt(len - i));
-			}
-			return arr.join('');
-		},
-
 		// gibt für das jmelement-Plugin das entsprechende Objekt aus der _config.js zurück.
 		_getStaticConfigObj: function(){
-			var _name = this.myJmName;
 			for(var i = 0, leni = _config.length; i < leni; i++){
-				if(_config[i].jmname === _name){
+				if(_config[i].jmname === this.myJmName){
 					// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
 					if($.type(_config[i].jmconfig) !== 'array'){
 						this.staticObj = _config[i].jmconfig;
@@ -242,18 +221,6 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 				}
 			}
 			return this.staticObj;
-		},
-
-		_wait: function(){
-			return function(){
-				return;
-			};
-		},
-
-		_jmchange: function(){
-			if(this.is('condition')){
-				this._exec();
-			}
 		},
 
 		_hover: function(){

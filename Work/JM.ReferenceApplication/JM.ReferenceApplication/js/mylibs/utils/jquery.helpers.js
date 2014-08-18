@@ -48,7 +48,7 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 				$(item).trigger('setelementwithjs');
 			});
 		});
-		// TODO modenizr-Weiche integrieren
+		// TODO Andreas modenizr-Weiche integrieren
 		/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
 			this.ie8BugfixForRadioAndCheckbox()
 		}*/
@@ -58,7 +58,7 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 		return this;
 	};
 
-	// TODO modenizr-Weiche integrieren
+	// TODO Andreas modenizr-Weiche integrieren
 	/*if(navigator.appVersion.indexOf("MSIE 8.") != -1){
 		(function () {
 			$.fn.ie8BugfixForRadioAndCheckbox = function () {
@@ -83,6 +83,7 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 			var $elem = $(this);
 			_array = $.merge(_array, $elem.find('picture').addBack('picture').toArray());
 		});
+		// TODO Andreas entweder muss hier auf if _array.length > 0 gefragt werden oder ein try catch verwendet werden, da das Plugin nicht immer geladen ist.
 		picturefill( {
 			elements:_array
 		} );

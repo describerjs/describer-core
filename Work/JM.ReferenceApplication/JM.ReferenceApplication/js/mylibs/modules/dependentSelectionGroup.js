@@ -24,7 +24,7 @@ define(['jquery', '_super'], function ($, _super){
 			this.$opposition = $(this.is('opposition'));
 			for(var i = 0, leni = this.$opposition.length; i < leni; i++){
 			    if(this.$opposition.eq(i).prop('checked')){
-				    this.$opposition.eq(i).prop('checked', false).trigger('jmchange');
+				    this.$opposition.eq(i).prop('checked', false).trigger('jmtrigger');
 			    }
 			}
 		}

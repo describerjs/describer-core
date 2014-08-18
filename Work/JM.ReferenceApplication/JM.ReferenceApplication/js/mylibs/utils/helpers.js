@@ -32,7 +32,7 @@ define(['jquery', '_config'], function($, _config){
 		if($.type($dataRuleGeb) !== 'undefined' && $.type($dataRuleGeb.eq(0).attr('disabled')) !== 'undefined'){
 			jmGO.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
 		}
-		// TODO hier noch die Anpassungen/Optimierungen von jmgeburtsdatumsservice übernehmen
+		// TODO Andreas hier noch die Anpassungen/Optimierungen von jmgeburtsdatumsservice übernehmen
 		if($.type($dataRuleKartenGueltigkeit) !== 'undefined' && $.type($dataRuleKartenGueltigkeit.eq(0).attr('disabled')) !== 'undefined'){
 			jmGO.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
 		}

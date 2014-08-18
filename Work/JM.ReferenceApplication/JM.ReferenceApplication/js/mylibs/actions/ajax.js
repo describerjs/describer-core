@@ -57,13 +57,13 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 
         },
 
-        _render: function(){
+        render: function(){
 		    // !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
 		    if(eval(this.conditionSource)){
 			    window.cancelAnimationFrame(this.rAFRender);
 			    this._exec();
 		    }else{
-			    this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			    this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
 		    }
 	    },
 
@@ -117,7 +117,6 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	        if(this.is('additionalloadertarget') !== ''){
 		        $(this.is('additionalloadertarget')).append(this.$additionalloader);
 	        }
-	        this._wait();
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
 	        this.injection = this.subObj_injection || this.is('inject');
             $.ajax({
@@ -133,9 +132,6 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
             }).always(function () {
 
             }).fail(function () {
-	            if($.type(this.$elem.data('jmtest')) !== 'undefined'){
-					return;
-	            }
 	            that.$ani.remove();
 	            if(that.is('additionalloadertarget') !== ''){
 		            that.$additionalloader.remove();

@@ -28,14 +28,14 @@ define(['jquery', '_super', 'fixedsticky'], function ($, _super){
 			this.$elem.fixedsticky();
 		}
 
-		/*_render: function(){
+		/*render: function(){
 			// !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
 			if(eval(this.conditionSource)){
 				this._addClass();
 			}else{
 				this._removeClass();
 			}
-			this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
 		},
 
 		_getMeasurePos: function(){
