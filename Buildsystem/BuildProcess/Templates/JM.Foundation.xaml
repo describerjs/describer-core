@@ -125,9 +125,13 @@
       <TryCatch DisplayName="Try" sap2010:WorkflowViewState.IdRef="TryCatch_1" mtbwt:BuildTrackingParticipant.Importance="Low">
         <TryCatch.Try>
           <Sequence DisplayName="Kompilieren, testen und veröffentlichen" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="DropLocation" />
+            </Sequence.Variables>
             <mtba:RunScript Arguments="[AdvancedBuildSettings.GetValue(Of String)(&quot;PreActionScriptArguments&quot;, String.Empty)]" DisplayName="Optionales Skript vor MSBuild ausführen" Enabled="True" FilePath="[AdvancedBuildSettings.GetValue(Of String)(&quot;PreActionScriptPath&quot;, String.Empty)]" sap2010:WorkflowViewState.IdRef="RunScript_1" />
             <mtba:RunMSBuild CleanBuild="[CleanBuild]" CommandLineArguments="[String.Format(&quot;/p:SkipInvalidConfigurations=true {0}&quot;, AdvancedBuildSettings.GetValue(Of String)(&quot;MSBuildArguments&quot;, String.Empty))]" ConfigurationsToBuild="[ConfigurationsToBuild]" DisplayName="MSBuild ausführen" Enabled="True" sap2010:WorkflowViewState.IdRef="RunMSBuild_1" MSBuildMultiProc="True" OutputLocation="[OutputLocation]" ProjectsToBuild="[ProjectsToBuild]" RestoreNuGetPackages="True" RunCodeAnalysis="[AdvancedBuildSettings.GetValue(Of String)(&quot;RunCodeAnalysis&quot;, &quot;AsConfigured&quot;)]" ToolPlatform="[AdvancedBuildSettings.GetValue(Of String)(&quot;MSBuildPlatform&quot;, &quot;Auto&quot;)]" Verbosity="Normal" />
-            <mtba:RunScript Arguments="[WellKnownEnvironmentVariables.DropLocation]" DisplayName="Run Grunt" Enabled="True" FilePath="[GruntCommandLine]" sap2010:WorkflowViewState.IdRef="RunScript_5" />
+            <mtbac:GetEnvironmentVariable x:TypeArguments="x:String" Name="[WellKnownEnvironmentVariables.DropLocation]" Result="[DropLocation]" sap2010:WorkflowViewState.IdRef="GetEnvironmentVariable`1_1" />
+            <mtba:RunScript Arguments="[DropLocation]" DisplayName="Run Grunt" Enabled="True" FilePath="[GruntCommandLine]" sap2010:WorkflowViewState.IdRef="RunScript_5" />
             <mtba:RunScript Arguments="[AdvancedBuildSettings.GetValue(Of String)(&quot;PostActionScriptArguments&quot;, String.Empty)]" DisplayName="Optionales Skript nach MSBuild ausführen" Enabled="True" FilePath="[AdvancedBuildSettings.GetValue(Of String)(&quot;PostActionScriptPath&quot;, String.Empty)]" sap2010:WorkflowViewState.IdRef="RunScript_2" />
             <mtba:RunScript Arguments="[AdvancedTestSettings.GetValue(Of String)(&quot;PreActionScriptArguments&quot;, String.Empty)]" DisplayName="Optionales Skript vor Test Runner ausführen" Enabled="True" FilePath="[AdvancedTestSettings.GetValue(Of String)(&quot;PreActionScriptPath&quot;, String.Empty)]" sap2010:WorkflowViewState.IdRef="RunScript_3" />
             <mtba:RunAgileTestRunner ConfigurationsToTest="[ConfigurationsToBuild]" DisplayName="VS Test Runner ausführen" Enabled="[Not AdvancedTestSettings.GetValue(Of Boolean)(&quot;DisableTests&quot;, false)]" sap2010:WorkflowViewState.IdRef="RunAgileTestRunner_1" TestSpecs="[AutomatedTests]" />
@@ -156,7 +160,7 @@
         </TryCatch.Finally>
       </TryCatch>
     </mtbwa:AgentScope>
-    <sads:DebugSymbol.Symbol>d0tDOlxEZXZcSk0uRm91bmRhdGlvbjRcQnVpbGRzeXN0ZW1cQnVpbGRQcm9jZXNzXFRlbXBsYXRlc1xKTS5Gb3VuZGF0aW9uLnhhbWxOAY8MAd4QAQwBwgcB5AoBCwHjCwHqCwEKAfsUAYIVAQkBYgGeBwEIAcIUAd0UAQcB+xABgxQBBgGrFQGyFQEFAZ0UAaQUAQQB4RYBhBgBAwGFCwHECwECdwOgAQ4CAQF4BXi4AQIBXXkFngEYAgECeEV4WgIBXnn4AXnUAgIBB3mKAXnrAQIBBXnlAnmTAwIBA3oHesYBAgFZewd7xAECAVN8B3z2AQIBT30HnQESAgEJeqYBeqsBAgFcejN6OAIBW3q+AXrDAQIBWnsmezkCAVd7QXtVAgFVe48Be5UBAgFUfNYBfPMBAgFRfIoBfJABAgFQfwuIARYCAROYAQubARYCAQ+QAQ+TARoCAQqAAQ2AAeQCAgFJgQENgQHlBQIBNoIBDYIBywECATGDAQ2DAecCAgErhAENhAHmAgIBJYUBDYUBrQICAR6GAQ2GAekCAgEYhwENhwG2AQIBFJkBDZkBewIBEZoBDZoBTwIBEJEBEZEBtAECAQySARGSAYQBAgELgAHHAYABzQECAU6AASeAAYgBAgFMgAHXAYABswICAUqBAcEDgQHUAwIBR4EBiAOBAY4DAgFGgQHaBYEB4gUCAUWBAfMEgQHPBQIBQ4EBgQSBAeUEAgFBgQFNgQHoAQIBP4EB/wGBAZgCAgE9gQGeA4EBsAMCATuBAcECgQHHAgIBOoEBKYEBNwIBOIEB6gOBAfADAgE3ggF2ggF8AgE1ggEnggFVAgE0ggGGAYIBmgECATKDAckBgwHPAQIBMIMBJ4MBiQECAS6DAdkBgwG2AgIBLIQBygGEAdABAgEqhAEnhAGHAQIBKIQB2gGEAbUCAgEmhQGYAoUBqgICASOFAYQBhQHWAQIBIYUBO4UBVAIBH4YBzAGGAdIBAgEdhgEnhgGIAQIBG4YB3AGGAbgCAgEZhwGgAYcBswECARaHAVOHAVkCARWZAXKZAXgCARKRAWWRAXcCAQ0=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0tDOlxEZXZcSk0uRm91bmRhdGlvbjRcQnVpbGRzeXN0ZW1cQnVpbGRQcm9jZXNzXFRlbXBsYXRlc1xKTS5Gb3VuZGF0aW9uLnhhbWxRAY8MAd4QAQwBwgcB5AoBCwHjCwHqCwEKAfsUAYIVAQkBYgGeBwEIAcIUAd0UAQcB+xABgxQBBgGrFQGyFQEFAZ0UAaQUAQQB4RYBhBgBAwGFCwHECwECdwOkAQ4CAQF4BXi4AQIBYnkFogEYAgECeEV4WgIBY3n4AXnUAgIBB3mKAXnrAQIBBXnlAnmTAwIBA3oHesYBAgFeewd7xAECAVh8B3z2AQIBVH0HoQESAgEJeqYBeqsBAgFhejN6OAIBYHq+AXrDAQIBX3smezkCAVx7QXtVAgFae48Be5UBAgFZfNYBfPMBAgFWfIoBfJABAgFVfwuMARYCAROcAQufARYCAQ+UAQ+XARoCAQqDAQ2DAeQCAgFOhAENhAHlBQIBO4UBDYUB0QECATeGAQ2GAa0BAgExhwENhwHnAgIBK4gBDYgB5gICASWJAQ2JAa0CAgEeigENigHpAgIBGIsBDYsBtgECARSdAQ2dAXsCARGeAQ2eAU8CARCVARGVAbQBAgEMlgERlgGEAQIBC4MBxwGDAc0BAgFTgwEngwGIAQIBUYMB1wGDAbMCAgFPhAHBA4QB1AMCAUyEAYgDhAGOAwIBS4QB2gWEAeIFAgFKhAHzBIQBzwUCAUiEAYEEhAHlBAIBRoQBTYQB6AECAUSEAf8BhAGYAgIBQoQBngOEAbADAgFAhAHBAoQBxwICAT+EASmEATcCAT2EAeoDhAHwAwIBPIUBgQGFAZEBAgE5hQFLhQF5AgE4hgFYhgFeAgE2hgEnhgE3AgE0hgFohgF8AgEyhwHJAYcBzwECATCHASeHAYkBAgEuhwHZAYcBtgICASyIAcoBiAHQAQIBKogBJ4gBhwECASiIAdoBiAG1AgIBJokBmAKJAaoCAgEjiQGEAYkB1gECASGJATuJAVQCAR+KAcwBigHSAQIBHYoBJ4oBiAECARuKAdwBigG4AgIBGYsBoAGLAbMBAgEWiwFTiwFZAgEVnQFynQF4AgESlQFllQF3AgEN</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -166,13 +170,14 @@
       <sap2010:ViewStateData Id="AssociateChanges_1" sap:VirtualizedContainerService.HintSize="418,22" />
       <sap2010:ViewStateData Id="RunScript_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunMSBuild_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetEnvironmentVariable`1_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunScript_5" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunScript_2" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunScript_3" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunAgileTestRunner_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunScript_4" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="RunPublishSymbols_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,580">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,642">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -195,16 +200,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,807" />
-      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1117" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="462,1303">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,869" />
+      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1179" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="462,1365">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1383" />
+      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1445" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
