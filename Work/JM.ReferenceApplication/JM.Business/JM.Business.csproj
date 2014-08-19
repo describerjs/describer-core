@@ -49,6 +49,10 @@
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="JM.Foundation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\JM.Foundation.0.0.0.1\lib\JM.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
@@ -81,10 +85,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JM.Foundation\JM.Foundation.csproj">
-      <Project>{9b6dffed-983f-45f8-ae93-4e8c3dabbd59}</Project>
-      <Name>JM.Foundation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JM.ReferenceApplication.Common\JM.ReferenceApplication.Common.csproj">
       <Project>{957d0a78-5008-4ae5-a8d4-4c53b750ac6d}</Project>
       <Name>JM.ReferenceApplication.Common</Name>

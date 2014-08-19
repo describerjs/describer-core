@@ -66,6 +66,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="JM.Foundation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\JM.Foundation.0.0.0.1\lib\JM.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -453,10 +457,6 @@
     <ProjectReference Include="..\JM.Business\JM.Business.csproj">
       <Project>{34639888-0fe7-417c-82af-72a9a3d215b3}</Project>
       <Name>JM.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JM.Foundation\JM.Foundation.csproj">
-      <Project>{9b6dffed-983f-45f8-ae93-4e8c3dabbd59}</Project>
-      <Name>JM.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\JM.ReferenceApplication.Common\JM.ReferenceApplication.Common.csproj">
       <Project>{957d0a78-5008-4ae5-a8d4-4c53b750ac6d}</Project>
