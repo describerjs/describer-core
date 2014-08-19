@@ -428,6 +428,9 @@
     <Content Include="Views\Shared\Regions\Togglebox.cshtml" />
     <Content Include="Views\Shared\Regions\Accordion.cshtml" />
     <Content Include="Views\Shared\Regions\TextBlock.cshtml" />
+    <Content Include="Views\Shared\_LocalStorageJS.cshtml" />
+    <Content Include="Views\Shared\_RequireConfigVersion.cshtml" />
+    <Content Include="Views\Shared\_RequireConfig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />

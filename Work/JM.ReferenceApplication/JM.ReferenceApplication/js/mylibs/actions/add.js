@@ -24,6 +24,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(){
 			var that = this;
+			alert('asdf');
 			// wait - section
 			// 1. this.waited = false -> geht in setTimeout
 			// 2. this.waited = true && Aufruf der Funktion _exec

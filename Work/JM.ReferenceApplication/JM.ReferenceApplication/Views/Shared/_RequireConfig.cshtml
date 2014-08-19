@@ -1,0 +1,91 @@
+﻿var pathToJQuery;
+var buildPath = (window.loadUnminifyVersion) ? '' : 'build/';
+if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
+	pathToJQuery = buildPath+'externals/originalReferenceSource/jquery-2.1.0.min';
+}else{
+	pathToJQuery = buildPath+'externals/originalReferenceSource/jquery-1.11.0.min';
+}
+require.config({
+	baseUrl: '/js',
+	paths      : {
+
+		// externals
+		'jquery'                                           : pathToJQuery,
+		'scrolltotop'                                      : buildPath+'externals/customized/scrolltotop',
+		'jquery_autocomplete'                              : buildPath+'externals/customized/jquery.autocomplete',
+		'jquery_ba-dotimeout'                              : buildPath+'externals/customized/jquery.ba-dotimeout',
+		'jquery_countdown'                                 : buildPath+'externals/customized/jquery.countdown',
+		'jquery_countdown-de'                              : buildPath+'externals/customized/jquery.countdown-de',
+		'jquery_plugin'                                    : buildPath+'externals/customized/jquery.plugin',
+		'jquery_validate'                                  : buildPath+'externals/customized/jquery.validate',
+		'owl_carousel'                                     : buildPath+'externals/customized/owl.carousel',
+		'overwritings.jquery_validate'                     : buildPath+'externals/customized/overwritings/jquery.validate',
+		'overwritings.owl_carousel'                        : buildPath+'externals/customized/overwritings/owl.carousel',
+		'video'                                            : buildPath+'externals/customized/video',
+		'md5'                                              : buildPath+'externals/originalReferenceSource/md5',
+		'rAF'                                              : buildPath+'externals/originalReferenceSource/rAF',
+		'fastclick'                                        : buildPath+'externals/originalReferenceSource/fastclick',
+		'fixedfixed'                                       : buildPath+'externals/originalReferenceSource/fixedfixed',
+		'fixedsticky'                                      : buildPath+'externals/originalReferenceSource/fixedsticky',
+
+
+
+
+		// mylibs
+		'_config'                                          : buildPath+'mylibs/_config',
+		'_super'                                           : buildPath+'mylibs/_super',
+		'actions.add'                                      : buildPath+'mylibs/actions/add',
+		'actions.ajax'                                     : buildPath+'mylibs/actions/ajax',
+		'actions.link'                                     : buildPath+'mylibs/actions/link',
+		'actions.remove'                                   : buildPath+'mylibs/actions/remove',
+		'actions.scroll'                                   : buildPath+'mylibs/actions/scroll',
+		'actions.set'                                      : buildPath+'mylibs/actions/set',
+		'actions.sticky'                                   : buildPath+'mylibs/actions/sticky',
+		'actions.toggle'                                   : buildPath+'mylibs/actions/toggle',
+		'actions.trigger'                                  : buildPath+'mylibs/actions/trigger',
+
+		'add-ons.formvalidate'                             : buildPath+'mylibs/add-ons/formvalidate',
+
+		'modules.carousel'                                 : buildPath+'mylibs/modules/carousel',
+		'modules.carousel-ts'                              : buildPath+'mylibs/modules/carousel-ts',
+		/*'modules.carousel-ts'                              : 'empty',*/
+		'modules.countdown'                                : buildPath+'mylibs/modules/countdown',
+		'modules.dependentSelectionGroup'                  : buildPath+'mylibs/modules/dependentSelectionGroup',
+		'modules.equalheights'                             : buildPath+'mylibs/modules/equalheights',
+		'modules.form.autocomplete'                        : buildPath+'mylibs/modules/form/autocomplete',
+		'modules.form.formvalidate'                        : buildPath+'mylibs/modules/form/formvalidate',
+		'modules.form.selectOptionExtractInGroup'          : buildPath+'mylibs/modules/form/selectOptionExtractInGroup',
+		'modules.form.submitbutton'                        : buildPath+'mylibs/modules/form/submitbutton',
+		'modules.modal'                                    : buildPath+'mylibs/modules/modal',
+		'modules.tablesort'                                : buildPath+'mylibs/modules/tablesort',
+		'modules.video'                                    : buildPath+'mylibs/modules/video',
+
+		'utils.helpers'                                    : buildPath+'mylibs/utils/helpers',
+		'utils.jquery_helpers'                             : buildPath+'mylibs/utils/jquery.helpers',
+
+		'require-css.video'                                : buildPath+'require-css/video'
+	},
+	shim: {
+		'fastclick': {
+			//These script dependencies should be loaded before loading
+			//backbone.js
+			//deps   : ['underscore', 'jquery'],
+			//Once loaded, use the global 'Backbone' as the
+			//module value.
+			//exports: 'rAF'
+		},
+
+		'video': {
+			exports: '_VideoJS'
+		},
+		'fixedsticky': {
+			deps: ['fixedfixed']
+		}
+	},
+	map: {
+		'*': {
+			'css': 'require-css/css.0c3213' // or whatever the path to require-css is
+		}
+	},
+	waitSeconds: 500
+});

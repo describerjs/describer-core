@@ -26,24 +26,48 @@
 	<meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
     <meta name="msapplication-TileColor" content="#222222" />
 	
-	@*////////////////////////////////////////////////////////////
-	// Link zu Generierung der MainJS
-	// Der letzte Teil der URL ist die Versionsnummer
-	////////////////////////////////////////////////////////////*@
-	<script src="/Content/MainJS/asdfaassdfsdf"></script>
-    <link rel="stylesheet" href="/css/style.css" />
 
-	<noscript>
-		<link rel="stylesheet" href="/css/style.css" />
-		<!--<link rel="stylesheet" href="/css/min/style.729c8a.css" />-->
-		<link rel="stylesheet" href="/css/noscript.css" />
-	</noscript>
-	
-	@*////////////////////////////////////////////////////////////
-	// Bindet das modernizer-JS ein
-	////////////////////////////////////////////////////////////*@
-	@Scripts.Render("~/jm/modernizr")
-	
+    @Html.Partial("_localStorageJS")
+
+    @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || Html.IsDebug())
+    {
+    <script src="/js/externals/customized/modernizr.custom.js"></script>
+    <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
+    <script src="/js/externals/originalReferenceSource/picturefill.js"></script>
+    <script src="/js/externals/customized/require.2.1.11.js" data-main="/Content/MainJS/asdfaassdfsdf"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    }
+    else
+    {
+    <script>
+        if (window.loadUnminifyVersion) {
+            addJSToDOM('/js/externals/customized/modernizr.custom.js');
+            addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
+            addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
+            addCSSToDOM('/css/style.css');
+            //addCSSToDOM('/css/ayyildiz.css');
+            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/asdfaassdfsdf');
+        } else {
+            addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
+            addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
+            addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
+            addJSToDOM('/js/build/externals/customized/require.2.1.11.fce06e.js', 'data-main', '/Content/MainJS/asdfaassdfsdf');
+            //addCSSToDOM('/css/min/style.956d7a.css');
+            addCSSToDOM('/css/style.css');
+        }
+    </script>
+    <link rel="stylesheet" href="/css/min/style.956d7a.css" />
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    }
+
+
+
+
 	@*////////////////////////////////////////////////////////////
 	// Section für das hinzufügen von HEAD-Elementen aus Views
 	////////////////////////////////////////////////////////////*@
@@ -82,9 +106,6 @@
 		    <p class="copyright">&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
 	    </footer>
     </div>
-    @Scripts.Render("~/jm/jquery")
-    @Scripts.Render("~/jm/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 
 </html>
