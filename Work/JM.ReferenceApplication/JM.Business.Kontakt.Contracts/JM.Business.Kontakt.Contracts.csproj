@@ -48,10 +48,6 @@
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.0.0.0.1\lib\JM.Foundation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.0.26.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
@@ -86,7 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="_EventRegisterUsersGuide.docx" />
     <None Include="_EventSourceUsersGuide.docx" />
   </ItemGroup>
