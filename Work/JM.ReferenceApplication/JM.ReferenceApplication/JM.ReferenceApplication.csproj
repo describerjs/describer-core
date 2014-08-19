@@ -291,7 +291,6 @@
     <Content Include="Areas\Manager\Views\Extensions\index.html" />
     <Content Include="Content\img\joinmedia.png" />
     <Content Include="css\ayyildiz.css" />
-    <Content Include="css\min\style.729c8a.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -440,6 +439,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
     <Folder Include="Areas\JMTools\Models\" />
+    <Folder Include="css\min\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
