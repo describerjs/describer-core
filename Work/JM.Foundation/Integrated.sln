@@ -26,6 +26,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.ReferenceApplication.Common", "..\JM.ReferenceApplication\JM.ReferenceApplication.Common\JM.ReferenceApplication.Common.csproj", "{957D0A78-5008-4AE5-A8D4-4C53B750AC6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Business.Kontakt", "..\JM.ReferenceApplication\JM.Business.Kontakt\JM.Business.Kontakt.csproj", "{01360C66-2965-407E-86AD-F82A194DDEA7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B6DFFED-983F-45F8-AE93-4E8C3DABBD59} = {9B6DFFED-983F-45F8-AE93-4E8C3DABBD59}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Business.Kontakt.Contracts", "..\JM.ReferenceApplication\JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.csproj", "{626A7BED-0264-4BB5-BE59-BFB1FFC36FB2}"
 EndProject
