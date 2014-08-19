@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceApplication", "Ref
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package Creation", "Package Creation", "{46FF2A4E-9C82-4739-9BDA-F3D6FF661848}"
 	ProjectSection(SolutionItems) = preProject
-		..\JM.Foundation.1.0.0.nuspec = ..\JM.Foundation.1.0.0.nuspec
+		JM.Foundation.1.0.0.nuspec = JM.Foundation.1.0.0.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Foundation", "JM.Foundation\JM.Foundation.csproj", "{9B6DFFED-983F-45F8-AE93-4E8C3DABBD59}"
