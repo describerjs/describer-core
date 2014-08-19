@@ -1,3 +1,3 @@
-Path %Path%;C:\Users\Administrator\AppData\Roaming\npm
 CD "%1"
-"c:\Program Files\nodejs\node.exe" grunt
+Path %Path";C:\Users\Administrator\AppData\Roaming\npm
+"C:\Program Files\nodejs\node.exe" c:\npm\node_modules\grunt-cli\bin\grunt
