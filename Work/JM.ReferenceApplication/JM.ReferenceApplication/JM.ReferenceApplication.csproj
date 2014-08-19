@@ -435,6 +435,7 @@
     <Content Include="Views\Shared\_LocalStorageJS.cshtml" />
     <Content Include="Views\Shared\_RequireConfigVersion.cshtml" />
     <Content Include="Views\Shared\_RequireConfig.cshtml" />
+    <Content Include="Views\Shared\Regions\Tabs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
