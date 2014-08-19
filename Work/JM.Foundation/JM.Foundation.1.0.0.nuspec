@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>JM.Foundation</id>
+        <version>1.0.0</version>
+        <title>JM.Foundation</title>
+        <authors>tjuderjahn</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>My package description.</description>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="AntiXSS" version="4.3.0" />
+                <dependency id="Autofac" version="3.5.0" />
+                <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.4" />
+                <dependency id="Castle.Core" version="3.3.0" />
+                <dependency id="EnterpriseLibrary.SemanticLogging" version="2.0.1406.1" />
+                <dependency id="EnterpriseLibrary.SemanticLogging.TextFile" version="2.0.1406.1" />
+                <dependency id="EntityFramework" version="6.1.0" />
+                <dependency id="MarkdownSharp" version="1.13.0.0" />
+                <dependency id="Microsoft.AspNet.Mvc" version="5.1.2" />
+                <dependency id="Microsoft.AspNet.Razor" version="3.1.2" />
+                <dependency id="Microsoft.AspNet.WebPages" version="3.1.2" />
+                <dependency id="Microsoft.Diagnostics.Tracing.EventRegister" version="1.0.26" />
+                <dependency id="Microsoft.Diagnostics.Tracing.EventSource" version="1.0.26" />
+                <dependency id="Microsoft.Diagnostics.Tracing.EventSource.Redist" version="1.0.26" />
+                <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+                <dependency id="Newtonsoft.Json" version="5.0.8" />
+                <dependency id="WebActivatorEx" version="2.0.5" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="JM.Foundation\bin\Release\JM.Foundation.dll" target="lib\JM.Foundation.dll" />
+        <file src="JM.Foundation\bin\Release\Piranha.dll" target="lib\Piranha.dll" />
+    </files>
+</package>
