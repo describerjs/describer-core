@@ -164,3 +164,6 @@ packages/
 
 # Webstorm
 .idea
+
+# Grunt Build Outputs
+css/min/
