@@ -22,6 +22,7 @@
  * .....Semantic Grid Sytem Semantic.gs
  * .....Sassaparilla - Typeset/Baselinegrid
  * VARIABLES...........................Declarations of Sass variables (Colors, Typo, Layout, Breakpoints, etc.)
+ * FUNCTIONS...........................Sass functions
  * MIXINS..............................Sass mixins
  * PLACEHOLDER:........................Sass placeholder
 **/
@@ -95,6 +96,19 @@ $theme-color-lambda:	#000;
 	
 \*------------------------------------*/
 /*------------------------------------*\
+	$FUNCTIONS
+\*------------------------------------*/
+/**
+ * 
+**/
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/**/
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
 	$MIXINS
 \*------------------------------------*/
 /**
@@ -122,6 +136,8 @@ $theme-color-lambda:	#000;
  * MOVE/CHANGE-3D-POSITION.............Transform Elements position
  * USER-SELECT.........................Disable User Text Selection
  * ELEMENT-DEFAULTS....................Default Element properties
+ * APPEARANCE..........................Platform-Native Styling
+ * FLEXBOX.............................Flex-Box default properties
 **/
 /*------------------------------------*\
 	$CLEARFIX
@@ -188,6 +204,12 @@ $theme-color-lambda:	#000;
 	$ELEMENT-DEFAULTS
 \*------------------------------------*/
 /*------------------------------------*\
+	$APPEARANCE
+\*------------------------------------*/
+/*------------------------------------*\
+	$FLEXBOX
+\*------------------------------------*/
+/*------------------------------------*\
 	
 \*------------------------------------*/
 /*------------------------------------*\
@@ -222,7 +244,7 @@ $theme-color-lambda:	#000;
   clear: both;
 }
 
-.text-block, .accordion, .nav, .stage-teaser, .togglebox {
+hr, .copyright, .text-block, .accordion, .nav, .stage-teaser, .tabs, .teaser, .togglebox {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -231,40 +253,45 @@ $theme-color-lambda:	#000;
   margin-bottom: 0.75rem;
   position: relative;
 }
-.text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .togglebox:after, .text-block:before, .accordion:before, .nav:before, .stage-teaser:before, .togglebox:before {
+hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .togglebox:after, hr:before, .copyright:before, .text-block:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
-.text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .togglebox:after {
+hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .togglebox:after {
   clear: both;
 }
 
-.accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+.accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
   padding: 0.375rem 4.04167%;
 }
 @media screen and (min-width: 48em) {
-  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
     padding: 0.375rem 2.04167%;
   }
 }
 @media screen and (min-width: 60em) {
-  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
     padding: 0.375rem 1.04167%;
   }
 }
 
-.stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header {
+.stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
+  width: 97.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  clear: both;
   padding: 0.375rem 4.04167%;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  position: relative;
 }
 @media screen and (min-width: 48em) {
-  .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header {
+  .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
     padding: 0.375rem 2.04167%;
   }
 }
 @media screen and (min-width: 60em) {
-  .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header {
+  .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
     padding: 0.375rem 1.04167%;
   }
 }
@@ -295,10 +322,13 @@ $theme-color-lambda:	#000;
 .accordion .show > .acc-panel, .togglebox.show > .tb-content {
   /*display: block;*/
   height: auto;
-  min-height: 0.5rem;
+  min-height: 1rem;
   opacity: 1;
 }
 
+/*------------------------------------*\
+	
+\*------------------------------------*/
 /*------------------------------------*\
 	
 \*------------------------------------*/
@@ -343,56 +373,64 @@ picture {
 /*------------------------------------*\
     $FORMS
 \*------------------------------------*/
-fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-
+/**
+ * LABEL...............................<label>
+**/
+/*------------------------------------*\
+    $LABEL
+\*------------------------------------*/
 label {
+  cursor: pointer;
   display: block;
 }
 
+/*
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
 button, input, select, textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
 }
 
 input, select, textarea {
-  max-width: 100%;
-  min-width: 100%;
-  width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	width: 100%;
 }
 
 textarea {
-  resize: none;
+	resize: none;
 }
 
 input[type=text], input[type=search], input[type=url], input[type=number], textarea {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 
 button, input[type="submit"] {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
-  width: auto;
-  margin-right: 0.3em;
+	width: auto;
+	margin-right: 0.3em;
 }
 
 input[type="search"] {
-  -webkit-appearance: none;
-  border-radius: 0;
+	-webkit-appearance: none;
+	border-radius: 0;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
-
+*/
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -693,6 +731,63 @@ img, video, object {
 /*------------------------------------*\
     $GRID_SYSTEM
 \*------------------------------------*/
+@media screen and (min-width: 48em) {
+  .col-2 {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+    clear: none;
+  }
+}
+@media screen and (min-width: 60em) {
+  .col-2 {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  .col-3 {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+    clear: none;
+  }
+}
+@media screen and (min-width: 60em) {
+  .col-3 {
+    width: 31.25%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  .col-4 {
+    width: 31.25%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+    clear: none;
+  }
+}
+@media screen and (min-width: 60em) {
+  .col-4 {
+    width: 22.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+  }
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
 @media all and (min-width: 48em) {
   .row2 .col {
     width: 97.91667%;
@@ -817,15 +912,97 @@ main {
 \*------------------------------------*/
 /**
  * .page-footer........................HTML <footer> Section
+ * .copyright..........................Copyright Information
 **/
 /*------------------------------------*\
     <footer>
+\*------------------------------------*/
+/*------------------------------------*\
+    COPYRIGHT
 \*------------------------------------*/
 /*------------------------------------*\
     
 \*------------------------------------*/
 /*------------------------------------*\
     $COMPONENTS/$MODULES
+\*------------------------------------*/
+/*------------------------------------*\
+	$BUTTONS
+\*------------------------------------*/
+/**
+* GENERIC.............................Variables/Placeholder
+* BTN.................................Simple Button
+* BTN-DISABLED........................Disabled Button
+* CTA.................................Call-To-Action
+**/
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+.btn, .btn-disabled, .cta {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.3s ease-out;
+  -ms-transition: background-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out;
+  -webkit-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  display: block;
+  /*font-family: $font-button;*/
+  overflow: hidden;
+  padding: 0.375rem 1rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media screen and (min-width: 48em) {
+  .btn, .btn-disabled, .cta {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+/*------------------------------------*\
+	$BTN
+\*------------------------------------*/
+.btn {
+  background-color: #999999;
+  color: #666666;
+}
+.btn:active, .btn:hover {
+  background-color: #dddddd;
+  color: #aaaaaa;
+}
+
+/*------------------------------------*\
+	$BTN-DISABLED
+\*------------------------------------*/
+.btn-disabled {
+  background-color: #666666;
+  color: #333333;
+  cursor: default;
+  pointer-events: none;
+}
+
+/*------------------------------------*\
+	$CTA
+\*------------------------------------*/
+.cta {
+  background-color: black;
+  color: white;
+}
+.cta:active, .cta:hover {
+  background-color: #666666;
+  color: white;
+}
+
+/*------------------------------------*\
+
 \*------------------------------------*/
 /*------------------------------------*\
     $LISTS
@@ -837,7 +1014,7 @@ main {
     $BULLET-LIST
 \*------------------------------------*/
 .bullet-list {
-  padding-left: 1.25rem;
+  padding-left: 1.125rem;
 }
 .bullet-list .list-item {
   list-style-type: disc;
@@ -936,22 +1113,22 @@ main {
  * Navigation mit Menu-Button für mobile Darstellung
  *
 	<nav class="nav" id="nav" role="navigation">
-        <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
-        <ul class="nav-items">
-            <li class="nav-item">
-                <a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
-                <div class="flyout">
-                    <div class="menu-close-btn" data-jmname="menu-close"></div>
-                    <div class="flyout-group">
-                        <div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
-                        <ul class="flyout-items">
-                            <li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
+		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+		<ul class="nav-items">
+			<li class="nav-item">
+				<a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
+				<div class="flyout">
+					<div class="menu-close-btn" data-jmname="menu-close"></div>
+					<div class="flyout-group">
+						<div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
+						<ul class="flyout-items">
+							<li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
  *
 **/
 /*------------------------------------*\
@@ -1286,6 +1463,7 @@ main {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
@@ -1878,13 +2056,6 @@ main {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
-.stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header {
-  width: 97.91667%;
-  margin-left: 1.04167%;
-  margin-right: 1.04167%;
-  clear: both;
-  position: relative;
-}
 @media screen and (min-width: 48em) {
   .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header {
     width: 64.58333%;
@@ -1906,7 +2077,7 @@ main {
     $STAGE-TEASER
 \*------------------------------------*/
 .stage-teaser {
-  min-height: 200px;
+  min-height: 250px;
 }
 @media screen and (min-width: 48em) {
   .stage-teaser {
@@ -1929,27 +2100,200 @@ main {
   /**/
 }
 .stage-teaser .st-img {
-  position: relative;
+  opacity: .5;
+  position: absolute;
 }
 .stage-teaser .st-img img {
-  float: right;
   max-width: 48em;
-  min-height: 200px;
+  min-height: 250px;
 }
 @media screen and (min-width: 48em) {
   .stage-teaser .st-img img {
-    float: left;
     max-width: 60em;
     min-height: 300px;
   }
 }
 @media screen and (min-width: 60em) {
   .stage-teaser .st-img img {
-    float: left;
-    min-width: 80em;
     max-width: 100%;
     min-height: 300px;
+    min-width: 80em;
   }
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+	$TABS
+\*------------------------------------*/
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....%tab-active
+ * .....%tab-control-checked
+ * .....@for... (%tab-control-checked)
+ * TABS................................Tab-Navigation
+**/
+/**
+ * Registerkarten-Navigation
+ *
+	<div class="tabs">
+		<input type="radio" id="tab1" name="tab" class="tab-control" checked />
+		<label for="tab1" class="tab">$tab-label$</label>
+		<input type="radio" id="tab2" name="tab" class="tab-control" />
+		<label for="tab2" class="tab">$tab-label</label>
+		<div class="tab-content">
+			$tab-content$
+		</div>
+		<div class="tab-content">
+			$tab-content$
+		</div>
+	</div>
+ *
+**/
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+.tabs .tab:hover, .tabs .tab-control:checked + .tab {
+  margin-bottom: -0.375rem;
+  padding-bottom: 0.75rem;
+  top: -0.375rem;
+}
+
+.tab-control:nth-of-type(1):checked ~ .tab-content:nth-of-type(1), .tab-control:nth-of-type(2):checked ~ .tab-content:nth-of-type(2), .tab-control:nth-of-type(3):checked ~ .tab-content:nth-of-type(3), .tab-control:nth-of-type(4):checked ~ .tab-content:nth-of-type(4), .tab-control:nth-of-type(5):checked ~ .tab-content:nth-of-type(5) {
+  display: block;
+}
+
+/*------------------------------------*\
+	$TABS
+\*------------------------------------*/
+.tabs {
+  background-color: #666666;
+  padding-top: 0.75rem;
+}
+.tabs .tab {
+  -webkit-transition: top 0.3s ease-out;
+  -moz-transition: top 0.3s ease-out;
+  -o-transition: top 0.3s ease-out;
+  transition: top 0.3s ease-out;
+  background-color: #999999;
+  color: white;
+  position: relative;
+  text-align: center;
+  top: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(2), .tabs .tab:nth-of-type(2):nth-last-of-type(1) {
+  width: 22.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(3), .tabs .tab:nth-of-type(2):nth-last-of-type(2), .tabs .tab:nth-of-type(3):nth-last-of-type(1) {
+  width: 22.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(4), .tabs .tab:nth-of-type(2):nth-last-of-type(3), .tabs .tab:nth-of-type(3):nth-last-of-type(2), .tabs .tab:nth-of-type(4):nth-last-of-type(1) {
+  width: 22.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(5), .tabs .tab:nth-of-type(2):nth-last-of-type(4), .tabs .tab:nth-of-type(3):nth-last-of-type(3), .tabs .tab:nth-of-type(4):nth-last-of-type(2), .tabs .tab:nth-of-type(5):nth-last-of-type(1) {
+  width: 14.58333%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(6), .tabs .tab:nth-of-type(2):nth-last-of-type(5), .tabs .tab:nth-of-type(3):nth-last-of-type(4), .tabs .tab:nth-of-type(4):nth-last-of-type(3), .tabs .tab:nth-of-type(5):nth-last-of-type(2), .tabs .tab:nth-of-type(6):nth-last-of-type(1) {
+  width: 14.58333%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:hover {
+  background-color: #dddddd;
+  color: black;
+}
+.tabs .tab:first-of-type {
+  margin-left: 1.04167% !important;
+}
+.tabs .tab-content {
+  background-color: #dddddd;
+  clear: both;
+  color: black;
+  display: none;
+}
+.tabs .tab-control {
+  display: none;
+}
+.tabs .tab-control:checked + .tab {
+  background-color: white;
+  color: black;
+}
+
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
+    $TEASER
+\*------------------------------------*/
+/**
+ * GENERIC.............................Variables/Placeholder
+ * TEASER..............................Teaser Element
+**/
+/**
+ * 
+**/
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+/*------------------------------------*\
+    $TEASER
+\*------------------------------------*/
+.teaser {
+  background-color: #dfe0e0;
+  color: inherit;
+  display: block;
+}
+@media screen and (min-width: 48em) {
+  .teaser {
+    padding: 0.375rem 4.04167%;
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+    clear: none;
+  }
+}
+@media screen and (min-width: 48em) and (min-width: 48em) {
+  .teaser {
+    padding: 0.375rem 2.04167%;
+  }
+}
+@media screen and (min-width: 48em) and (min-width: 60em) {
+  .teaser {
+    padding: 0.375rem 1.04167%;
+  }
+}
+@media screen and (min-width: 60em) {
+  .teaser {
+    /**/
+  }
+}
+.teaser .t-head {
+  /**/
 }
 
 /*------------------------------------*\

@@ -15,7 +15,7 @@
 \*------------------------------------*/
 
 .bullet-list {
-	padding-left: ($pad + $pad-quarter);
+	padding-left: ($pad + ($pad-quarter / 2));
 
 	.list-item {
 		list-style-type: disc;
