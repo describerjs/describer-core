@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using JM.Foundation.SharedViews;
 using Piranha.Extend;
 
 [Export(typeof(IExtension))]
@@ -7,40 +9,27 @@ using Piranha.Extend;
 [ExportMetadata("Name", "Teaser")]
 [ExportMetadata("Type", ExtensionType.Region)]
 [Serializable]
-public class TeaserExtension : Piranha.Extend.Extension
+public class TeaserExtension : Extension
 {
-	/// <summary>
-    /// Default constructor.
-	/// </summary>
-	public TeaserExtension() : base() { }
-
-    public string Title
+    public string Header
+    {
+        get;
+        set;
+    }
+    
+    public string FooterText
     {
         get;
         set;
     }
 
-    public string Body
+    public string FooterLink
     {
         get;
         set;
     }
 
-    public string LinkText
-    {
-        get;
-        set;
-    }
+    public IList<string> BulletPoints { get; set; }
 
-    public string LinkUrl
-    {
-        get;
-        set;
-    }
-
-    public string ImageUrl
-    {
-        get;
-        set;
-    }
+    public PictureFillModel Image { get; set; }
 }

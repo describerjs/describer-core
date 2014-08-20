@@ -1,24 +1,73 @@
-﻿@model TeaserExtension
+﻿@using JM.Foundation.SharedViews
+@model TeaserExtension
+
+@{
+    if(Model.BulletPoints == null)
+    {
+        Model.BulletPoints = new List<string>{"","","","",""};
+    }
+    if(Model.Image == null)
+    {
+        Model.Image = new PictureFillModel();
+    }
+}
 
 <ul class="form">
 	<li>
-		@Html.LabelFor(m => m.Title)
-		<div class="input">@Html.TextBoxFor(m => m.Title)</div>
+		@Html.LabelFor(m => m.Header)
+		<div class="input">@Html.TextBoxFor(m => m.Header)</div>
 	</li>
-	<li>
-		@Html.LabelFor(m => m.Body)
-		<div class="input">@Html.TextAreaFor(m => m.Body)</div>
+    <li>
+        @Html.LabelFor(m => m.Image.Alt)
+        <div class="input">@Html.TextAreaFor(m => m.Image.Alt)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.ImageName)
+        <div class="input">@Html.TextAreaFor(m => m.Image.ImageName)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.Height)
+        <div class="input">@Html.TextAreaFor(m => m.Image.Height)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.Width)
+        <div class="input">@Html.TextAreaFor(m => m.Image.Width)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.HeightTablet)
+        <div class="input">@Html.TextAreaFor(m => m.Image.HeightTablet)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.WidthTablet)
+        <div class="input">@Html.TextAreaFor(m => m.Image.WidthTablet)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.HeightMobile)
+        <div class="input">@Html.TextAreaFor(m => m.Image.HeightMobile)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.WidthMobile)
+        <div class="input">@Html.TextAreaFor(m => m.Image.WidthMobile)</div>
+    </li>
+    <li>
+        @Html.LabelFor(m => m.Image.Attributes)
+        <div class="input">@Html.TextAreaFor(m => m.Image.Attributes)</div>
+    </li>
+    <li>
+		@Html.LabelFor(m => m.FooterText)
+		<div class="input">@Html.TextBoxFor(m => m.FooterText)</div>
 	</li>
-	<li>
-		@Html.LabelFor(m => m.LinkText)
-		<div class="input">@Html.TextBoxFor(m => m.LinkText)</div>
-	</li>
-	<li>
-		@Html.LabelFor(m => m.LinkUrl)
-		<div class="input">@Html.TextBoxFor(m => m.LinkUrl)</div>
-	</li>
-	<li>
-		@Html.LabelFor(m => m.ImageUrl)
-		<div class="input">@Html.TextBoxFor(m => m.ImageUrl)</div>
-	</li>
+    <li>
+        @Html.LabelFor(m => m.FooterLink)
+        <div class="input">@Html.TextBoxFor(m => m.FooterLink)</div>
+    </li>
+    @for(var i = 0; i < Model.BulletPoints.Count; i++)
+    {
+        <li>
+            <label>Bulletpoint @i:</label> 
+            <div class="input">
+                <input type="text" value="@Model.BulletPoints[@i]" name="Regions[0].Body.BulletPoints[@i]" id="bp_@i">
+            </div>
+        </li>
+    }
 </ul>

@@ -1,12 +1,13 @@
 ﻿@model JM.Foundation.SharedViews.PictureFillModel
-<picture>
-    <!--[if IE 9]><video style="display: none;"><![endif]-->
-    @*<source srcset="@String.Format("/img/{0}-{1}-{2}.webp", Model.ImageName, Model.Width, Model.Height)" media="(min-width: 60em)" type="image/webp">
+
+    <picture>
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+        @*<source srcset="@String.Format("/img/{0}-{1}-{2}.webp", Model.ImageName, Model.Width, Model.Height)" media="(min-width: 60em)" type="image/webp">
     <source srcset="@String.Format("/media/{0}-{1}-{2}.webp", Model.ImageName, Model.WidthTablet, Model.HeightTablet)" media="(min-width: 48em)" type="image/webp">
     <source srcset="@String.Format("/media/{0}-{1}-{2}.webp, /img/{0}-{1}-{2}-X2.webp 2x", Model.ImageName, Model.WidthMobile, Model.HeightMobile)" type="image/webp">*@
-    <source srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg", Model.ImageName, Model.Width, Model.Height)" media="(min-width: 60em)">
-    <source srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg", Model.ImageName, Model.WidthTablet, Model.HeightTablet)" media="(min-width: 48em)">
-    <source srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg, /media.ashx/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.WidthMobile, Model.HeightMobile)">
-    <!--[if IE 9]></video><![endif]-->
-    <img srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg, /media.ashx/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.Width, Model.Height)" src="@String.Format("/media.ashx/{0}-{1}-{2}.jpg", Model.ImageName, Model.Width, Model.Height)" alt="@Model.Alt">
-</picture>
+        <source srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg", Model.ImageName, Model.Width, Model.Height)" media="(min-width: 60em)">
+        <source srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg", Model.ImageName, Model.WidthTablet, Model.HeightTablet)" media="(min-width: 48em)">
+        <source srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg, /media.ashx/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.WidthMobile, Model.HeightMobile)">
+        <!--[if IE 9]></video><![endif]-->
+        <img srcset="@String.Format("/media.ashx/{0}-{1}-{2}.jpg, /media.ashx/{0}-{1}-{2}-X2.jpg 2x", Model.ImageName, Model.Width, Model.Height)" src="@String.Format("/media.ashx/{0}-{1}-{2}.jpg", Model.ImageName, Model.Width, Model.Height)" alt="@Model.Alt">
+    </picture>
