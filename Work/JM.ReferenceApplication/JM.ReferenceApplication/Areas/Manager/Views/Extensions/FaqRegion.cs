@@ -15,6 +15,5 @@ using Extension = Piranha.Extend.Extension;
     [Serializable]
     public class FaqRegion : Extension
     {
-
         public IList<TextRegion> Faqs { get; set; }
     }
