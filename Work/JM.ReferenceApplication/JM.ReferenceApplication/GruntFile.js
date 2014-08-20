@@ -76,7 +76,7 @@ module.exports = function(grunt){
 	grunt.registerTask('task_step1', function(){
 		grunt.initConfig({
 			clean: {
-				clean: ["css/min/", "js/build/"]
+			    clean: ["css/build/", "js/build/"]
 			},
 			uglify: {
 				build : {
@@ -89,7 +89,8 @@ module.exports = function(grunt){
 			cssmin: {
 				compress: {
 					files: {
-						'css/min/style.css': ['css/style.css'],
+					    'css/build/style.css': ['css/style.css'],
+						'css/build/noscript.css': ['css/noscript.css'],
 						'js/build/require-css/video.css': ['js/require-css/video.css']
 					}
 				}
@@ -122,7 +123,7 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			revisions: {
 				rename: {
-					src: ['js/build/**', 'css/min/**', '!js/build/empty.js'],
+				    src: ['js/build/**', 'css/build/**', '!js/build/empty.js'],
 					dest: ''
 				}
 			}
@@ -178,21 +179,39 @@ module.exports = function(grunt){
 					src: ['Views/Shared/_Layout.cshtml'],             // source files array (supports minimatch)
 					dest: 'Views/Shared/_Layout.cshtml',             // destination directory or file
 					replacements: [{
-						from: /css\/min\/(.*?)\.css/g,                   // string replacement
+						from: /css\/build\/style(.*?)\.css/g,          // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
 							var _filename = '';
-							grunt.file.recurse('css/min', callback);
+							grunt.file.recurse('css/build', callback);
 							function callback(abspath, rootdir, subdir, filename) {
 								var str = filename;
 								var patt = new RegExp(/^style.(.*)/g);
 								var res = patt.test(str);
 								if(res){
-									//grunt.log.write('res: '+_filename);
+									grunt.log.write('res: '+_filename);
 									_filename = str;
 								}
 
 							}
-							return "css/min/"+ _filename;
+							return "css/build/" + _filename;
+						}
+					},
+					{
+						from: /css\/build\/noscript(.*?)\.css/g,          // string replacement
+						to: function(matchedWord, index, fullText, regexMatches){
+							var _filename = '';
+							grunt.file.recurse('css/build', callback);
+							function callback(abspath, rootdir, subdir, filename) {
+								var str = filename;
+								var patt = new RegExp(/^noscript.(.*)/g);
+								var res = patt.test(str);
+								if(res){
+									grunt.log.write('res: '+_filename);
+									_filename = str;
+								}
+
+							}
+							return "css/build/" + _filename;
 						}
 					},
 					{
