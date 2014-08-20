@@ -2764,6 +2764,8 @@
     <Content Include="node_modules\xml2js\package.json" />
     <Content Include="node_modules\xml2js\README.md" />
     <Content Include="node_modules\xml2js\text.coffee" />
+    <Content Include="Views\Page\FaqPage.cshtml" />
+    <Content Include="Views\Shared\Regions\Faq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
