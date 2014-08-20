@@ -9,7 +9,8 @@ namespace JM.Foundation.Piranha.Provider
 {
     public class FileStorageProvider : global::Piranha.IO.LocalMediaProvider
     {
-        public FileStorageProvider() : base(@"c:\temp\PiranhaMedia\Content", @"c:\temp\PiranhaMedia\Uploads")
+        public FileStorageProvider()
+            : base(@"\\REX\PiranhaMedia\Content", @"\\REX\PiranhaMedia\Uploads")
         {
         }
     }
