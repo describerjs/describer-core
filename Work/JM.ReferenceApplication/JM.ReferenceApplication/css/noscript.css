@@ -1,0 +1,250 @@
+﻿@charset "CP850";
+/*------------------------------------*\
+	$CONTENTS
+\*------------------------------------*/
+/**
+ * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
+ * COMPONENTS/MODULES..................Build the Elements / Modules
+**/
+/*------------------------------------*\
+    $GENERIC ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+	$CONTENTS
+\*------------------------------------*/
+/**
+ * ADD-ONS.............................3rd Party Core expansions
+ * .....Semantic Grid Sytem Semantic.gs
+ * .....Sassaparilla - Typeset/Baselinegrid
+ * VARIABLES...........................Declarations of Sass variables (Colors, Typo, Layout, Breakpoints, etc.)
+ * MIXINS..............................Sass mixins
+ * PLACEHOLDER:........................Sass placeholder
+**/
+/*------------------------------------*\
+    $ADD-ONS
+\*------------------------------------*/
+/*.is-typeset {
+	.headline	{ @extend %as-heading__headline; 	@extend %as-heading__headline--typeset; }
+	h1			{ @extend %as-heading__largest; 	@extend %as-heading__largest--typeset; }
+	h2 			{ @extend %as-heading__large; 		@extend %as-heading__large--typeset; }
+	h3			{ @extend %as-heading__medium; 		@extend %as-heading__medium--typeset; }
+	h4 			{ @extend %as-heading__normal; 		@extend %as-heading__normal--typeset; }
+	h5			{ @extend %as-heading__small; 		@extend %as-heading__small--typeset; }
+	h6			{ @extend %as-heading__smallest; 	@extend %as-heading__smallest--typeset; }
+	p 			{ @extend %as-para--typeset; }
+	ol			{ @extend %as-ordered-list--typeset; }
+	ul 			{ @extend %as-unordered-list--typeset; }
+	li 			{ @extend %as-list--typeset; }
+	blockquote 	{ @extend %as-blockquote--typeset; }
+}*/
+/*------------------------------------*\
+    $GENERIC ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/**
+ * COLORS..............................Diverse Farbwerte
+ * THEME...............................Direkte Farbzuweisung an Elemente
+ * ......-bg = background
+ * ......-fg = foreground
+ * TYPO................................Typo/Webfonts/etc.
+ * BREAKPOINTS.........................Breakpoints Definitionen
+ * LAYOUT..............................Layout-Spezifische Angaben
+ * SPACING.............................Abstände definieren
+**/
+/*------------------------------------*\
+    $COLORS
+\*------------------------------------*/
+/*
+$theme-color-theta:		#000;
+$theme-color-iota:		#000;
+$theme-color-kappa:		#000;
+$theme-color-lambda:	#000;
+*/
+/*------------------------------------*\
+    $THEME
+\*------------------------------------*/
+/*------------------------------------*\
+    $TYPO
+\*------------------------------------*/
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/*------------------------------------*\
+    $SPACING
+\*------------------------------------*/
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+	$MIXINS
+\*------------------------------------*/
+/**
+ * CLEARFIX............................clearfix
+ * PSEUDO-ELEMENTS.....................Pseudo-Elements :after/:before
+ * .....pdeuso-element-default (provides default setup for most :after/:before pseudo elements)
+ * .....pdeuso-element-stretch (fits pseudo-element to parent size)
+ * ELEMENT-STRETCH.....................Stretch element to parent size
+ * RWD.................................Hide/Show something on Mobile/Tablet/Desktop
+ * .....hide-on-desktop
+ * .....hide-on-tablet
+ * .....hide-on-mobile
+ * .....show-on-mobile
+ * BACKFACE-VISIBILITY.................Set the backface-visibility (default: hidden)
+ * HEX-TO-RGB..........................RGBA Fallback -> http://codepen.io/sturobson/pen/hdKyv
+ * ALIGNING............................Alignment of elements
+ * .....vertical-align (Align things vertically (http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/))
+ * .....centered (Absolute center position)
+ * BORDER-RADIUS.......................For compatibility with Android devices
+ * RETINA-IMAGES.......................Image-2x
+ * TRANSFORM...........................Set Transform Prefixes
+ * TRANSITIONS.........................Set Transition Prefixes
+ * VISIBILTY...........................Element is visible or hidden
+ * ABSOLUTE-POSITION...................Elements absolute position
+ * MOVE/CHANGE-3D-POSITION.............Transform Elements position
+ * USER-SELECT.........................Disable User Text Selection
+ * ELEMENT-DEFAULTS....................Default Element properties
+**/
+/*------------------------------------*\
+	$CLEARFIX
+\*------------------------------------*/
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:after, .clearfix:before {
+    content: "\0020";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+
+/*------------------------------------*\
+	$PSEUDO-ELEMENTS
+\*------------------------------------*/
+/*------------------------------------*\
+	$ELEMENT-STRETCH
+\*------------------------------------*/
+/*------------------------------------*\
+	$RWD
+\*------------------------------------*/
+/*------------------------------------*\
+	$BACKFACE-VISIBILITY
+\*------------------------------------*/
+/*------------------------------------*\
+	$HEX-TO-RGB
+\*------------------------------------*/
+/*------------------------------------*\
+	$ALIGNING
+\*------------------------------------*/
+/*------------------------------------*\
+	$BORDER-RADIUS
+\*------------------------------------*/
+/*------------------------------------*\
+	$RETINA-IMAGES
+\*------------------------------------*/
+/**
+ * Send path, image name, and width and height.
+ * Name retina images [name]2x.
+ * On retina, use image that's scaled by 2
+**/
+/*------------------------------------*\
+	$TRANSFORMS
+\*------------------------------------*/
+/*------------------------------------*\
+	$TRANSITIONS
+\*------------------------------------*/
+/*------------------------------------*\
+    $VISIBILITY
+\*------------------------------------*/
+/*------------------------------------*\
+	$ABSOLUTE-POSITION
+\*------------------------------------*/
+/*------------------------------------*\
+	$MOVE/CHANGE-3D-POSITION
+\*------------------------------------*/
+/*------------------------------------*\
+	$USER-SELECT
+\*------------------------------------*/
+/*------------------------------------*\
+	$ELEMENT-DEFAULTS
+\*------------------------------------*/
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+    $PLACEHOLDER
+\*------------------------------------*/
+/**
+ * ELEMENT_DEFAULTS....................Elements default properties
+ * .....page-element-default
+ * .....element-default
+ * .....element-inner-default
+ * TOGGLE_ELEMENT......................Toggle properties
+ * .....toggle-subject
+ * .....toggle-content
+ * .....toggle-content-subject
+**/
+/*------------------------------------*\
+	$ELEMENT_DEFAULTS
+\*------------------------------------*/
+/*------------------------------------*\
+	TOGGLE_ELEMENT
+\*------------------------------------*/
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+    $COMPONENTS/$MODULES
+\*------------------------------------*/
+/*------------------------------------*\
+    $ACCORDION
+\*------------------------------------*/
+.accordion {
+    /**/
+}
+
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+    $NAVIGATION
+\*------------------------------------*/
+.nav {
+    /**/
+}
+
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+    $OWL-CAROUSEL v1.3.2 - http://owlgraphic.com/owlcarousel/
+\*------------------------------------*/
+.hide-large {
+    display: block;
+}
+
+.hide-med {
+    display: block;
+}
+
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+    $TOGGLEBOX-NOSCRIPT
+\*------------------------------------*/
+.togglebox .tb-content {
+    display: block;
+}
+
+/*------------------------------------*\
+
+\*------------------------------------*/
+/*------------------------------------*\
+
+\*------------------------------------*/

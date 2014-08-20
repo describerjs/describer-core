@@ -137,6 +137,7 @@ $theme-color-lambda:	#000;
  * USER-SELECT.........................Disable User Text Selection
  * ELEMENT-DEFAULTS....................Default Element properties
  * APPEARANCE..........................Platform-Native Styling
+ * FLEXBOX.............................Flex-Box default properties
 **/
 /*------------------------------------*\
 	$CLEARFIX
@@ -203,7 +204,10 @@ $theme-color-lambda:	#000;
 	$ELEMENT-DEFAULTS
 \*------------------------------------*/
 /*------------------------------------*\
-	APPEARANCE
+	$APPEARANCE
+\*------------------------------------*/
+/*------------------------------------*\
+	$FLEXBOX
 \*------------------------------------*/
 /*------------------------------------*\
 	
@@ -240,7 +244,7 @@ $theme-color-lambda:	#000;
   clear: both;
 }
 
-hr, .copyright, .text-block, .accordion, .nav, .stage-teaser, .teaser, .togglebox {
+hr, .copyright, .text-block, .accordion, .nav, .stage-teaser, .tabs, .teaser, .togglebox {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -249,24 +253,24 @@ hr, .copyright, .text-block, .accordion, .nav, .stage-teaser, .teaser, .togglebo
   margin-bottom: 0.75rem;
   position: relative;
 }
-hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .teaser:after, .togglebox:after, hr:before, .copyright:before, .text-block:before, .accordion:before, .nav:before, .stage-teaser:before, .teaser:before, .togglebox:before {
+hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .togglebox:after, hr:before, .copyright:before, .text-block:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
-hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .teaser:after, .togglebox:after {
+hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .togglebox:after {
   clear: both;
 }
 
-.accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+.accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
   padding: 0.375rem 4.04167%;
 }
 @media screen and (min-width: 48em) {
-  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
     padding: 0.375rem 2.04167%;
   }
 }
 @media screen and (min-width: 60em) {
-  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
     padding: 0.375rem 1.04167%;
   }
 }
@@ -280,7 +284,6 @@ hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .st
   margin-left: 0 !important;
   margin-right: 0 !important;
   position: relative;
-  width: 100% !important;
 }
 @media screen and (min-width: 48em) {
   .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
@@ -370,56 +373,64 @@ picture {
 /*------------------------------------*\
     $FORMS
 \*------------------------------------*/
-fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-
+/**
+ * LABEL...............................<label>
+**/
+/*------------------------------------*\
+    $LABEL
+\*------------------------------------*/
 label {
+  cursor: pointer;
   display: block;
 }
 
+/*
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
 button, input, select, textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
 }
 
 input, select, textarea {
-  max-width: 100%;
-  min-width: 100%;
-  width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	width: 100%;
 }
 
 textarea {
-  resize: none;
+	resize: none;
 }
 
 input[type=text], input[type=search], input[type=url], input[type=number], textarea {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 
 button, input[type="submit"] {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
-  width: auto;
-  margin-right: 0.3em;
+	width: auto;
+	margin-right: 0.3em;
 }
 
 input[type="search"] {
-  -webkit-appearance: none;
-  border-radius: 0;
+	-webkit-appearance: none;
+	border-radius: 0;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
-
+*/
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -2112,6 +2123,128 @@ main {
 
 /*------------------------------------*\
     
+\*------------------------------------*/
+/*------------------------------------*\
+	$TABS
+\*------------------------------------*/
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....%tab-active
+ * .....%tab-control-checked
+ * .....@for... (%tab-control-checked)
+ * TABS................................Tab-Navigation
+**/
+/**
+ * Registerkarten-Navigation
+ *
+	<div class="tabs">
+		<input type="radio" id="tab1" name="tab" class="tab-control" checked />
+		<label for="tab1" class="tab">$tab-label$</label>
+		<input type="radio" id="tab2" name="tab" class="tab-control" />
+		<label for="tab2" class="tab">$tab-label</label>
+		<div class="tab-content">
+			$tab-content$
+		</div>
+		<div class="tab-content">
+			$tab-content$
+		</div>
+	</div>
+ *
+**/
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+.tabs .tab:hover, .tabs .tab-control:checked + .tab {
+  margin-bottom: -0.375rem;
+  padding-bottom: 0.75rem;
+  top: -0.375rem;
+}
+
+.tab-control:nth-of-type(1):checked ~ .tab-content:nth-of-type(1), .tab-control:nth-of-type(2):checked ~ .tab-content:nth-of-type(2), .tab-control:nth-of-type(3):checked ~ .tab-content:nth-of-type(3), .tab-control:nth-of-type(4):checked ~ .tab-content:nth-of-type(4), .tab-control:nth-of-type(5):checked ~ .tab-content:nth-of-type(5) {
+  display: block;
+}
+
+/*------------------------------------*\
+	$TABS
+\*------------------------------------*/
+.tabs {
+  background-color: #666666;
+  padding-top: 0.75rem;
+}
+.tabs .tab {
+  -webkit-transition: top 0.3s ease-out;
+  -moz-transition: top 0.3s ease-out;
+  -o-transition: top 0.3s ease-out;
+  transition: top 0.3s ease-out;
+  background-color: #999999;
+  color: white;
+  position: relative;
+  text-align: center;
+  top: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(2), .tabs .tab:nth-of-type(2):nth-last-of-type(1) {
+  width: 22.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(3), .tabs .tab:nth-of-type(2):nth-last-of-type(2), .tabs .tab:nth-of-type(3):nth-last-of-type(1) {
+  width: 22.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(4), .tabs .tab:nth-of-type(2):nth-last-of-type(3), .tabs .tab:nth-of-type(3):nth-last-of-type(2), .tabs .tab:nth-of-type(4):nth-last-of-type(1) {
+  width: 22.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(5), .tabs .tab:nth-of-type(2):nth-last-of-type(4), .tabs .tab:nth-of-type(3):nth-last-of-type(3), .tabs .tab:nth-of-type(4):nth-last-of-type(2), .tabs .tab:nth-of-type(5):nth-last-of-type(1) {
+  width: 14.58333%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:nth-of-type(1):nth-last-of-type(6), .tabs .tab:nth-of-type(2):nth-last-of-type(5), .tabs .tab:nth-of-type(3):nth-last-of-type(4), .tabs .tab:nth-of-type(4):nth-last-of-type(3), .tabs .tab:nth-of-type(5):nth-last-of-type(2), .tabs .tab:nth-of-type(6):nth-last-of-type(1) {
+  width: 14.58333%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  margin-left: 1px;
+  margin-right: 0;
+}
+.tabs .tab:hover {
+  background-color: #dddddd;
+  color: black;
+}
+.tabs .tab:first-of-type {
+  margin-left: 1.04167% !important;
+}
+.tabs .tab-content {
+  background-color: #dddddd;
+  clear: both;
+  color: black;
+  display: none;
+}
+.tabs .tab-control {
+  display: none;
+}
+.tabs .tab-control:checked + .tab {
+  background-color: white;
+  color: black;
+}
+
+/*------------------------------------*\
+	
 \*------------------------------------*/
 /*------------------------------------*\
     $TEASER
