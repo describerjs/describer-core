@@ -27,6 +27,8 @@
  * MOVE/CHANGE-3D-POSITION.............Transform Elements position
  * USER-SELECT.........................Disable User Text Selection
  * ELEMENT-DEFAULTS....................Default Element properties
+ * APPEARANCE..........................Platform-Native Styling
+ * FLEXBOX.............................Flex-Box default properties
 **/
 
 
@@ -137,6 +139,7 @@
 	-moz-backface-visibility:		$visibility;
 	-ms-backface-visibility:		$visibility;
 	-webkit-backface-visibility:	$visibility;
+	backface-visibility:			$visibility;
 }
 
 
@@ -370,6 +373,60 @@
 
 @mixin element-default-padding-l {
 	padding: $space-quarter $dist;
+}
+
+
+@mixin element-inner-default {
+	@include element-default-padding;
+}
+
+@mixin element-nested-default {
+	@include column(12);
+	@include element-default-padding;
+	margin: {
+		left: 0 !important;
+		right: 0 !important;
+	};
+	position: relative;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$APPEARANCE
+\*------------------------------------*/
+
+@mixin appearance($value: none) {
+	-moz-appearance:	$value;
+	-webkit-appearance:	$value;
+	appearance:			$value;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$FLEXBOX
+\*------------------------------------*/
+
+@mixin flexbox($flow: row wrap) {
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: $flow;
+}
+
+@mixin flexitem($grow: 1) {
+	flex-grow: $grow;
+}
+
+@mixin flexcontent($flex: 1 100%) {
+	flex: $flex;
 }
 
 

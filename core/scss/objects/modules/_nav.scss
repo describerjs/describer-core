@@ -14,22 +14,22 @@
  * Navigation mit Menu-Button für mobile Darstellung
  *
 	<nav class="nav" id="nav" role="navigation">
-        <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
-        <ul class="nav-items">
-            <li class="nav-item">
-                <a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
-                <div class="flyout">
-                    <div class="menu-close-btn" data-jmname="menu-close"></div>
-                    <div class="flyout-group">
-                        <div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
-                        <ul class="flyout-items">
-                            <li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
+		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+		<ul class="nav-items">
+			<li class="nav-item">
+				<a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
+				<div class="flyout">
+					<div class="menu-close-btn" data-jmname="menu-close"></div>
+					<div class="flyout-group">
+						<div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
+						<ul class="flyout-items">
+							<li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
  *
 **/
 

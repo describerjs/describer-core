@@ -4,6 +4,7 @@
 
 /**
  * .page-footer........................HTML <footer> Section
+ * .copyright..........................Copyright Information
 **/
 
 
@@ -16,6 +17,19 @@
 
 .page-footer {
 	@extend %page-element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    COPYRIGHT
+\*------------------------------------*/
+
+.copyright {
+	@extend %element-default;
+	@extend %element-inner-default;
 }
 
 

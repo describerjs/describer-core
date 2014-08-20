@@ -44,6 +44,46 @@
     $GRID_SYSTEM
 \*------------------------------------*/
 
+.col-2 {
+	@media screen and (min-width: $bp-med) {
+		@include column(6);
+		clear: none;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		@include column(6);
+	}
+}
+
+.col-3 {
+	@media screen and (min-width: $bp-med) {
+		@include column(6);
+		clear: none;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		@include column(4);
+	}
+}
+
+.col-4 {
+	@media screen and (min-width: $bp-med) {
+		@include column(4);
+		clear: none;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		@include column(3);
+	}
+}
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+
 .row {
 	@extend %row;
 }

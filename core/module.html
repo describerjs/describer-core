@@ -340,7 +340,65 @@
             <h1>module.html</h1>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         </section>
-        <div class="stage-teaser visible">
+
+        <hr />
+
+		<div class="tabs">
+			<input type="radio" id="tab1" name="tab" class="tab-control" checked />
+			<label for="tab1" class="tab">$tab-label$</label>
+			<input type="radio" id="tab2" name="tab" class="tab-control" />
+			<label for="tab2" class="tab">$tab-label</label>
+			<input type="radio" id="tab3" name="tab" class="tab-control" />
+			<label for="tab3" class="tab">$tab-label</label>
+			<div class="tab-content">
+				$tab-content1$
+			</div>
+			<div class="tab-content">
+				$tab-content2$
+			</div>
+			<div class="tab-content">
+				$tab-content3$
+			</div>
+		</div>
+
+        <hr />
+
+		<a class="teaser" href="$teaser-link$">
+			<!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "teaser/teaser", Width = 400, Height = 119, WidthTablet = 320, HeightTablet = 119, WidthMobile = 800, HeightMobile = 119, Alt="", Attributes = new {}}) -->
+			<header class="t-header">
+				<h3 class="t-head">$teaser-head$</h3>
+			</header>
+			<div class="t-content">
+				<ul class="bullet-list">
+					<li class="list-item">$list-item$</li>
+					<li class="list-item">$list-item$</li>
+					<li class="list-item">$list-item$</li>
+				</ul>
+			</div>
+			<footer class="t-footer">
+				<span class="btn">$btn$</span>
+			</footer>
+        </a>
+        <a class="teaser" href="$teaser-link$">
+			<!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "teaser/teaser", Width = 400, Height = 119, WidthTablet = 320, HeightTablet = 119, WidthMobile = 800, HeightMobile = 119, Alt="", Attributes = new {}}) -->
+			<header class="t-header">
+				<h3 class="t-head">$teaser-head$</h3>
+			</header>
+			<div class="t-content">
+				<ul class="bullet-list">
+					<li class="list-item">$list-item$</li>
+					<li class="list-item">$list-item$</li>
+					<li class="list-item">$list-item$</li>
+				</ul>
+			</div>
+			<footer class="t-footer">
+				<span class="btn">$btn$</span>
+			</footer>
+        </a>
+
+        <hr />
+
+        <div class="stage-teaser">
             <div class="st-img">
                 <!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "stage-teaser/stage-teaser", Width = 1240, Height = 468, WidthTablet = 960, HeightTablet = 468, WidthMobile = 768, HeightMobile = 197, Alt="Stage-Teaser-ALT", Attributes = new {}}) -->
             </div>
@@ -457,9 +515,9 @@
 
         <hr />
 
-
 	</main>
 	<footer class="page-footer" role="contentinfo">
+		<p class="copyright">&copy;</p>
 	</footer>
 </div>
 </body>

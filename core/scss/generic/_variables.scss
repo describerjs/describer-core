@@ -64,17 +64,29 @@ $theme-nav-link-active-fg:		$theme-nav-items-fg;
 $theme-flyout-bg:				$theme-nav-link-active-bg;
 $theme-flyout-link-fg:			$theme-nav-link-fg;
 $theme-flyout-link-active-bg:	$theme-color-delta;
-
 $theme-flyout-group-bg:			$theme-color-epsilon;
 $theme-flyout-group-fg:			$theme-color-zeta;
 $theme-flyout-group-active-bg:	$theme-color-zeta;
 $theme-flyout-group-active-fg:	$theme-color-eta;
-
 $theme-menu-btn-bg:				$theme-color-alpha;
 $theme-menu-btn-fg:				$theme-color-beta;
 $theme-menu-btn-active-bg:		$theme-color-alpha;
 $theme-menu-btn-active-fg:		$theme-color-beta;
 $theme-menu-item-bg:			$theme-color-gamma;
+
+// Buttons
+$theme-btn-bg:					$theme-color-epsilon;
+$theme-btn-fg:					$theme-color-zeta;
+$theme-btn-active-bg:			$theme-color-gamma;
+$theme-btn-active-fg:			$theme-color-delta;
+$theme-btn-disabled-bg:			$theme-color-zeta;
+$theme-btn-disabled-fg:			$theme-color-eta;
+$theme-btn-disabled-active-bg:	$theme-color-delta;
+$theme-btn-disabled-active-fg:	$theme-color-epsilon;
+$theme-cta-bg:					$theme-color-beta;
+$theme-cta-fg:					$theme-color-alpha;
+$theme-cta-active-bg:			$theme-color-zeta;
+$theme-cta-active-fg:			$theme-color-alpha;
 
 // Accordion
 $theme-accordion-bg:			$theme-color-gamma;
@@ -83,6 +95,17 @@ $theme-accordion-handle-bg:		$theme-color-epsilon;
 $theme-accordion-handle-fg:		$theme-color-alpha;
 $theme-accordion-active-bg:		$theme-color-gamma;
 $theme-accordion-active-fg:		$theme-color-alpha;
+
+// Tabs
+$theme-tabs-bg:					$theme-color-zeta;
+$theme-tab-bg:					$theme-color-epsilon;
+$theme-tab-fg:					$theme-color-alpha;
+$theme-tab-active-bg:			$theme-color-alpha;
+$theme-tab-active-fg:			$theme-color-beta;
+$theme-tab-hover-bg:			$theme-color-gamma;
+$theme-tab-hover-fg:			$theme-color-beta;
+$theme-tab-content-bg:			$theme-color-gamma;
+$theme-tab-content-fg:			$theme-color-beta;
 
 // Togglebox
 $theme-togglebox-bg:			$theme-color-gamma;
@@ -150,7 +173,7 @@ $pad-quarter:			$pad/4;
 $pad-three-quarter:		($pad-half + $pad-quarter);
 
 $default-spacing:		$space-half;
-$default-padding:		$pad-half;
+$default-padding:		$pad;
 
 $dist:					$total-width*(($gutter-width*.5)/gridsystem-width($columns));
 

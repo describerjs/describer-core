@@ -7,6 +7,7 @@
  * .....Semantic Grid Sytem Semantic.gs
  * .....Sassaparilla - Typeset/Baselinegrid
  * VARIABLES...........................Declarations of Sass variables (Colors, Typo, Layout, Breakpoints, etc.)
+ * FUNCTIONS...........................Sass functions
  * MIXINS..............................Sass mixins
  * PLACEHOLDER:........................Sass placeholder
 **/
@@ -31,5 +32,14 @@
 \*------------------------------------*/
 
 @import "generic/variables";
+@import "generic/functions";
 @import "generic/mixins";
 @import "generic/placeholder";
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

@@ -1,0 +1,72 @@
+/*------------------------------------*\
+    $TEASER
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * TEASER..............................Teaser Element
+**/
+
+/**
+ * 
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+// Die Elemente "t-header", "t-content", "t-footer" teilen sich die gleichen Eigenschaften.
+%teaser-element-default {
+	@extend %element-nested-default;
+}
+
+
+
+/*------------------------------------*\
+    $TEASER
+\*------------------------------------*/
+
+.teaser {
+	background-color: #dfe0e0;
+	@extend %element-default;
+	color: inherit;
+	display: block;
+
+	@media screen and (min-width: $bp-med) {
+		@include element-inner-default;
+		@include column(6);
+		clear: none;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		/**/
+	}
+
+	.t-content {
+		@extend %teaser-element-default;
+	}
+
+	.t-footer {
+		@extend %teaser-element-default;
+	}
+
+	.t-header {
+		@extend %teaser-element-default;
+	}
+
+	.t-head {
+		/**/
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

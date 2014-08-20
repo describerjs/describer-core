@@ -21,11 +21,13 @@
 	$ELEMENT_DEFAULTS
 \*------------------------------------*/
 
+// Layout Default Elements (<header>, <main>, <footer>)
 %page-element-default {
 	@include row;
 	clear: both;
 }
 
+// Modules Defaults
 %element-default {
 	@include clearfix;
 	@include column(12);
@@ -33,17 +35,14 @@
 	position: relative;
 }
 
+// Modules Inner-Elements
 %element-inner-default {
-	@include element-default-padding;
+	@include element-inner-default;
 }
 
+// Nested Elements w/Grid
 %element-nested-default {
-	@include element-default-padding;
-	
-	margin: {
-		left: 0 !important;
-		right: 0 !important;
-	};
+	@include element-nested-default;
 }
 
 
@@ -76,6 +75,10 @@
 	min-height: $default-padding;
 	opacity: 1;
 }
+
+
+
+
 
 /*------------------------------------*\
 	
