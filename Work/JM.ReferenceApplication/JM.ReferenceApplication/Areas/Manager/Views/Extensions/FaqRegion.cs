@@ -1,35 +1,20 @@
-﻿using Piranha.Extend;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Script.Serialization;
+using Piranha.Extend;
+using Piranha.Extend.Regions;
+using Extension = Piranha.Extend.Extension;
 
-[Export(typeof(IExtension))]
-[ExportMetadata("InternalId", "FaqRegion")]
-[ExportMetadata("Name", "Faq")]
-[ExportMetadata("Type", ExtensionType.Region)]
-[Serializable]
-public class FaqRegion : Extension
-{
-    private IDictionary<string, string> _qaAs;
-
-    [UIHint("Stringdictionary")]
-    public IDictionary<string, string> QaAs
+    [Export(typeof(IExtension))]
+    [ExportMetadata("InternalId", "FaqRegion")]
+    [ExportMetadata("Name", "FaqRegionName")]
+    [ExportMetadata("Type", ExtensionType.Region)]
+    [Serializable]
+    public class FaqRegion : Extension
     {
-        get
-        {
-            if (_qaAs == null)
-            {
-                _qaAs = new Dictionary<string, string>();
-                _qaAs.Add("Test", "Value");
-                _qaAs.Add("Frage 2", "Value2");
-            }
 
-            return _qaAs;
-        }
-        set
-        {
-            _qaAs = value;
-        }
+        public IList<TextRegion> Faqs { get; set; }
     }
-}
