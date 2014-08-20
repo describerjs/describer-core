@@ -6,7 +6,6 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 }
 require.config({
 	paths      : {
-
 		// externals
 		'jquery'                                           : pathToJQuery,
 		'scrolltotop'                                      : 'externals/customized/scrolltotop',
@@ -46,6 +45,7 @@ require.config({
 
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
 		'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
+
 		/*'modules.carousel-ts'                              : 'empty',*/
 		'modules.countdown'                                : 'mylibs/modules/countdown',
 		'modules.dependentSelectionGroup'                  : 'mylibs/modules/dependentSelectionGroup',

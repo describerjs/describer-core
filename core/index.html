@@ -232,12 +232,12 @@ else
         addJSToDOM('/js/externals/vendor/matchmedia.js');
         addJSToDOM('/js/externals/originalReferenceSource/picturefill2.js');
         addCSSToDOM('/css/style.css');
-        addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/main.js');
+        addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/require-main.js');
     } else {
         addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
         addJSToDOM('/js/build/externals/vendor/matchmedia.05942b.js');
         addJSToDOM('/js/build/externals/originalReferenceSource/picturefill2.40a9ae.js');
-        addJSToDOM('/js/build/externals/customized/require.2.1.11.fce06e.js', 'data-main', '/js/build/main.35bb76.js');
+        addJSToDOM('/js/build/externals/customized/require.2.1.11.fce06e.js', 'data-main', '/js/build/require-main.35bb76.js');
         if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
             var linkElem = document.createElement('link');
             linkElem.setAttribute('rel', 'stylesheet');
