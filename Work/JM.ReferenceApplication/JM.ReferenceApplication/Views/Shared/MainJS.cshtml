@@ -76,7 +76,7 @@ window.mainjs_features = [];
 
 @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || Html.IsDebug())
 {
-	@Html.Partial("_requireConfigVersion")
+	@Html.Partial("_requireConfig")
 }
 else
 {

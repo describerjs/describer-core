@@ -324,7 +324,6 @@
     <Content Include="js\externals\originalReferenceSource\rAF.js" />
     <Content Include="js\externals\originalReferenceSource\require.2.1.11.js" />
     <Content Include="js\externals\originalReferenceSource\uuid.core.js" />
-    <Content Include="js\main.js" />
     <Content Include="js\mylibs\actions\add.js" />
     <Content Include="js\mylibs\actions\ajax.js" />
     <Content Include="js\mylibs\actions\link.js" />
