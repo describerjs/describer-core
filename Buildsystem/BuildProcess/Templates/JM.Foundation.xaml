@@ -144,14 +144,6 @@
                   <InArgument x:TypeArguments="x:String">[BuildDetail.DropLocation]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[DropLocation2]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[BuildDetail.]</InArgument>
-                </Assign.Value>
-              </Assign>
               <mtbac:GetEnvironmentVariable x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="GetEnvironmentVariable`1_1" Name="[WellKnownEnvironmentVariables.BinariesDirectory]" Result="[DropLocation2]" />
             </Sequence>
             <mtba:RunScript Arguments="c:\b\bin\_PublishedWebsites\JM.ReferenceApplication" DisplayName="Run Grunt" Enabled="True" FilePath="[GruntCommandLine]" sap2010:WorkflowViewState.IdRef="RunScript_5" />
@@ -183,7 +175,7 @@
         </TryCatch.Finally>
       </TryCatch>
     </mtbwa:AgentScope>
-    <sads:DebugSymbol.Symbol>d0tDOlxEZXZcSk0uRm91bmRhdGlvbjRcQnVpbGRzeXN0ZW1cQnVpbGRQcm9jZXNzXFRlbXBsYXRlc1xKTS5Gb3VuZGF0aW9uLnhhbWxaAY8MAd4QAQwBwgcB5AoBCwHjCwHqCwEKAfsUAYIVAQkBYgGeBwEIAcIUAd0UAQcB+xABgxQBBgGrFQGyFQEFAZ0UAaQUAQQB4RYBhBgBAwGFCwHECwECdwO7AQ4CAQF4BXi4AQIBbnkFuQEYAgECeEV4WgIBb3n4AXnUAgIBB3mKAXnrAQIBBXnlAnmTAwIBA3oHesYBAgFqewd7xAECAWR8B3z2AQIBYH0HuAESAgEJeqYBeqsBAgFtejN6OAIBbHq+AXrDAQIBa3smezkCAWh7QXtVAgFme48Be5UBAgFlfNYBfPMBAgFifIoBfJABAgFhfwujARYCAROzAQu2ARYCAQ+rAQ+uARoCAQqDAQ2DAeQCAgFahAENhAHlBQIBR4UBDZwBGAIBNp0BDZ0B0gECATGeAQ2eAecCAgErnwENnwHmAgIBJaABDaABrQICAR6hAQ2hAekCAgEYogENogG2AQIBFLQBDbQBewIBEbUBDbUBTwIBEKwBEawBtAECAQytARGtAYQBAgELgwHHAYMBzQECAV+DASeDAYgBAgFdgwHXAYMBswICAVuEAcEDhAHUAwIBWIQBiAOEAY4DAgFXhAHaBYQB4gUCAVaEAfMEhAHPBQIBVIQBgQSEAeUEAgFShAFNhAHoAQIBUIQB/wGEAZgCAgFOhAGeA4QBsAMCAUyEAcEChAHHAgIBS4QBKYQBNwIBSYQB6gOEAfADAgFIigEPigFxAgFEiwEPkgEYAgE/kwEPmgEYAgE7mwEPmwHZAQIBN50BfZ0BgwECATWdASedAVwCATSdAY0BnQGhAQIBMp4ByQGeAc8BAgEwngEnngGJAQIBLp4B2QGeAbYCAgEsnwHKAZ8B0AECASqfASefAYcBAgEonwHaAZ8BtQICASagAZgCoAGqAgIBI6ABhAGgAdYBAgEhoAE7oAFUAgEfoQHMAaEB0gECAR2hASehAYgBAgEboQHcAaEBuAICARmiAaABogGzAQIBFqIBU6IBWQIBFbQBcrQBeAIBEqwBZawBdwIBDYoBX4oBbgIBRZABOpABVAIBQo0BO40BSQIBQJgBOpgBSAIBPpUBO5UBSgIBPJsBxQGbAdYBAgE5mwGKAZsBvQECATg=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0tDOlxEZXZcSk0uRm91bmRhdGlvbjRcQnVpbGRzeXN0ZW1cQnVpbGRQcm9jZXNzXFRlbXBsYXRlc1xKTS5Gb3VuZGF0aW9uLnhhbWxXAY8MAd4QAQwBwgcB5AoBCwHjCwHqCwEKAfsUAYIVAQkBYgGeBwEIAcIUAd0UAQcB+xABgxQBBgGrFQGyFQEFAZ0UAaQUAQQB4RYBhBgBAwGFCwHECwECdwOzAQ4CAQF4BXi4AQIBankFsQEYAgECeEV4WgIBa3n4AXnUAgIBB3mKAXnrAQIBBXnlAnmTAwIBA3oHesYBAgFmewd7xAECAWB8B3z2AQIBXH0HsAESAgEJeqYBeqsBAgFpejN6OAIBaHq+AXrDAQIBZ3smezkCAWR7QXtVAgFie48Be5UBAgFhfNYBfPMBAgFefIoBfJABAgFdfwubARYCAROrAQuuARYCAQ+jAQ+mARoCAQqDAQ2DAeQCAgFWhAENhAHlBQIBQ4UBDZQBGAIBNpUBDZUB0gECATGWAQ2WAecCAgErlwENlwHmAgIBJZgBDZgBrQICAR6ZAQ2ZAekCAgEYmgENmgG2AQIBFKwBDawBewIBEa0BDa0BTwIBEKQBEaQBtAECAQylARGlAYQBAgELgwHHAYMBzQECAVuDASeDAYgBAgFZgwHXAYMBswICAVeEAcEDhAHUAwIBVIQBiAOEAY4DAgFThAHaBYQB4gUCAVKEAfMEhAHPBQIBUIQBgQSEAeUEAgFOhAFNhAHoAQIBTIQB/wGEAZgCAgFKhAGeA4QBsAMCAUiEAcEChAHHAgIBR4QBKYQBNwIBRYQB6gOEAfADAgFEigEPigFxAgFAiwEPkgEYAgE7kwEPkwHZAQIBN5UBfZUBgwECATWVASeVAVwCATSVAY0BlQGhAQIBMpYByQGWAc8BAgEwlgEnlgGJAQIBLpYB2QGWAbYCAgEslwHKAZcB0AECASqXASeXAYcBAgEolwHaAZcBtQICASaYAZgCmAGqAgIBI5gBhAGYAdYBAgEhmAE7mAFUAgEfmQHMAZkB0gECAR2ZASeZAYgBAgEbmQHcAZkBuAICARmaAaABmgGzAQIBFpoBU5oBWQIBFawBcqwBeAIBEqQBZaQBdwIBDYoBX4oBbgIBQZABOpABVAIBPo0BO40BSQIBPJMBxQGTAdYBAgE5kwGKAZMBvQECATg=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -195,9 +187,8 @@
       <sap2010:ViewStateData Id="RunMSBuild_1" sap:VirtualizedContainerService.HintSize="222,22" />
       <sap2010:ViewStateData Id="GetBuildDetail_1" sap:VirtualizedContainerService.HintSize="242,22" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="GetEnvironmentVariable`1_1" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="264,408">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="264,308">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
