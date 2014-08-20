@@ -28,6 +28,30 @@ module.exports = function(grunt){
 			}
 		};
 	};
+
+	var parseString = require('xml2js').parseString;
+	var xml = grunt.file.read('App_Data/Config/dev/JM.Foundation.config');
+	var jsonXML;
+	parseString(xml, function (err, result) {
+		jsonXML = result;
+	});
+	var xmlAddArray = jsonXML['JM.Foundation']['Features'][0].add;
+	//grunt.log.writeln([jsonXML['JM.Foundation']['Features']]);
+	//grunt.log.writeln([JSON.stringify(jsonXML['JM.Foundation']['Features'][0].add[0]['$'].name)]);
+	var getXMLValue = function(name){
+		var val = false;
+		//grunt.log.writeln([xmlAddArray[0].length]);
+		for(var i = 0, leni = xmlAddArray.length; i < leni; i++){
+			if((xmlAddArray[i]['$'].name === name) && (xmlAddArray[i]['$'].value === 'true')){
+				val = true;
+			}
+		}
+		return val;
+	};
+
+	var touchSupport = getXMLValue('TouchSupport');
+	var progressiveEnhancement = getXMLValue('ProgressiveEnhancement');
+
 	// here we want to preserver the BOM of the layout file, otherwise all of the umlauts will die
 	grunt.file.defaultEncoding = 'utf8';
 	grunt.file.preserveBOM = true;
@@ -62,14 +86,6 @@ module.exports = function(grunt){
 					expand  : true
 				}
 			},
-			copy: {
-				main: {
-					src: ['**/*.js', '!*.min.js'],
-					cwd: 'js/',
-					dest: 'js/build/',
-					expand  : true
-				}
-			},
 			cssmin: {
 				compress: {
 					files: {
@@ -77,10 +93,36 @@ module.exports = function(grunt){
 						'js/build/require-css/video.css': ['js/require-css/video.css']
 					}
 				}
-			},
+			}
+		});
+	});
+
+	grunt.registerTask('task_remove_not_supported_files', function(){
+		grunt.initConfig({
+			clean: {
+				foo: {
+					src: ['js/build/**/*'],
+					filter: function(f){
+						var pattern = /nomachtesbyJS/;
+						if(!touchSupport && !progressiveEnhancement){
+							pattern = /(.*)-ts.js|(.*)-pe.js/;
+						}else if (!touchSupport){
+							pattern = /(.*)-ts.js/;
+						}else if(!progressiveEnhancement){
+							pattern = /(.*)-pe.js/;
+						}
+						return pattern.test(f);
+					}
+				}
+			}
+		});
+	});
+
+	grunt.registerTask('task_md5hash_on_files', function(){
+		grunt.initConfig({
 			revisions: {
 				rename: {
-					src: ['js/build/**', 'css/min/**'],
+					src: ['js/build/**', 'css/min/**', '!js/build/empty.js'],
 					dest: ''
 				}
 			}
@@ -310,7 +352,9 @@ module.exports = function(grunt){
 
 
 
-	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'cssmin', 'revisions' ]);
+	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'cssmin' ]);
+	grunt.registerTask('remove_not_supported_files', ['task_remove_not_supported_files', 'clean']);
+	grunt.registerTask('md5hash_on_files', ['task_md5hash_on_files', 'revisions' ]);
 	grunt.registerTask('default2', ['task_step2', 'replace' ]);
 	grunt.registerTask('default3', ['task_step3', 'uglify', 'revisions' ]);
 	grunt.registerTask('default4', ['task_step4', 'replace' ]);
@@ -318,5 +362,6 @@ module.exports = function(grunt){
 	grunt.registerTask('default6', ['task_step6', 'webp' ]);
 
 	//grunt.registerTask('ErstelleMainJSMitVersioniertenJSVerweisen', ['createMainJS', 'replace']);
-	grunt.registerTask('default', ['default1', 'default2', 'default4']);
+	grunt.registerTask('default', ['default1', 'remove_not_supported_files', 'md5hash_on_files', 'default2', 'default4']);
+	//grunt.registerTask('default', ['remove_not_supported_folder']);
 };

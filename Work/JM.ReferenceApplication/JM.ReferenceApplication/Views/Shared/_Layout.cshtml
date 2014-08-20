@@ -34,7 +34,7 @@
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>
-    <script src="/js/externals/customized/require.2.1.11.js" data-main="/Content/MainJS/asdfaassdfsdf"></script>
+    <script src="/js/externals/originalReferenceSource/require.2.1.11.js" data-main="/Content/MainJS/require-main.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css" />
@@ -49,12 +49,12 @@
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
             //addCSSToDOM('/css/ayyildiz.css');
-            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/asdfaassdfsdf');
+            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-asdfaassdfsdf');
         } else {
-            addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
+            addJSToDOM('/js/build/externals/customized/');
             addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
-            addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
-            addJSToDOM('/js/build/externals/customized/require.2.1.11.fce06e.js', 'data-main', '/Content/MainJS/asdfaassdfsdf');
+            addJSToDOM('/js/build/externals/originalReferenceSource/');
+            addJSToDOM('/js/build/externals/customized/', 'data-main', '/Content/MainJS/require-main-asdfaassdfsdf');
             //addCSSToDOM('/css/min/style.956d7a.css');
             addCSSToDOM('/css/style.css');
         }

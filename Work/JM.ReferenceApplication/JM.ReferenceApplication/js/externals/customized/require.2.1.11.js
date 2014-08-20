@@ -1884,7 +1884,7 @@ var requirejs, require, define;
                 node.addEventListener('load', context.onScriptLoad, false);
                 node.addEventListener('error', context.onScriptError, false);
             }
-			if (window.UseLocalStorage && (moduleName !== 'main') && window.testLocalStorage() && (localStorage[url] !== undefined)) {
+            if (window.UseLocalStorage && (!(new RegExp(/^require-main(.*)/).test(moduleName))) && window.testLocalStorage() && (localStorage[url] !== undefined)) {
 				// window.localStorage is available!
 
 				scriptElem = document.createElement('script');
