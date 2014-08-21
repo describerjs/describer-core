@@ -368,16 +368,57 @@ module.exports = function(grunt){
 		});
 
 	});
-	grunt.registerTask('task_webp', function(){
+	grunt.registerTask('task_webp_jpg', function(){
 		grunt.initConfig({
 			// WebP configuration
 			webp: {
 				files: {
 					expand: true,
 					//cwd: 'path/to/source/images',
-					src: ['**/*.jpg', '**/*.png', '!**/productimages/*.png'] ,
-					cwd: 'img/',
-					dest: 'img/'
+					src: ['**/*.jpg'],
+					//src: ['**/*.jpg', '**/*.png'],
+					cwd: 'img/jpg/',
+					dest: 'img/webp-from-jpg/'
+				},
+				options: {
+					binpath: require('webp-bin').path,
+					preset: 'photo',
+					verbose: true,
+					quality: 80,
+					alphaQuality: 80,
+					compressionMethod: 6,
+					segments: 4,
+					psnr: 50,
+					sns: 50,
+					filterStrength: 40,
+					filterSharpness: 3,
+					simpleFilter: true,
+					partitionLimit: 50,
+					analysisPass: 6,
+					multiThreading: true,
+					lowMemory: false,
+					alphaMethod: 0,
+					alphaFilter: 'best',
+					alphaCleanup: true,
+					noAlpha: false,
+					lossless: false
+				}
+			}
+
+		});
+
+	});
+	grunt.registerTask('task_webp_png', function(){
+		grunt.initConfig({
+			// WebP configuration
+			webp: {
+				files: {
+					expand: true,
+					//cwd: 'path/to/source/images',
+					src: ['**/*.png'],
+					//src: ['**/*.jpg', '**/*.png'],
+					cwd: 'img/png/',
+					dest: 'img/webp-from-png/'
 				},
 				options: {
 					binpath: require('webp-bin').path,
@@ -421,7 +462,8 @@ module.exports = function(grunt){
 	grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
 	grunt.registerTask('default6', ['task_step6', 'webp' ]);
 
-	grunt.registerTask('default_webp', ['task_webp', 'webp' ]);
+	grunt.registerTask('default_webp_jpg', ['task_webp_jpg', 'webp' ]);
+	grunt.registerTask('default_webp_png', ['task_webp_png', 'webp' ]);
 
 	//grunt.registerTask('ErstelleMainJSMitVersioniertenJSVerweisen', ['createMainJS', 'replace']);
 	grunt.registerTask('default', ['default1', 'remove_not_supported_files', 'md5hash_on_files', 'default2', 'default4']);
