@@ -327,6 +327,47 @@ module.exports = function(grunt){
 		});
 	});
 
+	
+
+	grunt.registerTask('task_imageoptimcopy', function(){
+		grunt.initConfig({
+			copy: {
+  				main: {
+    				files: [
+					    // includes files within path and its sub-directories
+					    {expand: true, src: ['img/**'], dest: 'imageoptim/'},
+    				]
+  				}
+			}
+		});
+	});
+
+	grunt.registerTask('task_imageoptim', function(){
+		grunt.initConfig({
+			imageoptim: {
+			  	options: {
+			    	quitAfter: true
+			  	},
+			  	allPngs: {
+			    	options: {
+			    		imageAlpha: true,
+			    		jpegMini: false
+			    	},
+			    	src: ['imageoptim/img/png']
+			  	},
+			  	allJpgs: {
+			    	options: {
+			      		imageAlpha: false,
+			      		jpegMini: true
+			    	},
+			    	src: ['imageoptim/img/jpg']
+			  	}	
+			}
+		});
+	});
+
+	
+
 	grunt.registerTask('task_step6', function(){
 		grunt.initConfig({
 			// WebP configuration
@@ -462,6 +503,14 @@ module.exports = function(grunt){
 	grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
 	grunt.registerTask('default6', ['task_step6', 'webp' ]);
 
+
+	grunt.registerTask('default_imageoptimcopy', ['task_imageoptimcopy', 'copy' ]);
+	grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
+	
+
+	grunt.registerTask('default_img_optim', ['default_imageoptimcopy', 'default_imageoptim' ]);
+
+	
 	grunt.registerTask('default_webp_jpg', ['task_webp_jpg', 'webp' ]);
 	grunt.registerTask('default_webp_png', ['task_webp_png', 'webp' ]);
 
