@@ -1,13 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
-    <metadata>
-        <id>JM.Foundation</id>
-        <version>1.0.1</version>
-        <title>JM.Foundation</title>
-        <authors>tjuderjahn</authors>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>My package description.</description>
-        <dependencies>
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Minor Changes</releaseNotes>
+    <copyright>Copyright 2014 join.media</copyright>
+    <tags></tags>
+	        <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="AntiXSS" version="4.3.0" />
                 <dependency id="Autofac" version="3.5.0" />
@@ -28,9 +32,9 @@
                 <dependency id="WebActivatorEx" version="2.0.5" />
             </group>
         </dependencies>
-    </metadata>
-    <files>
-        <file src="JM.Foundation\bin\Release\JM.Foundation.dll" target="lib\JM.Foundation.dll" />
-        <file src="JM.Foundation\bin\Release\Piranha.dll" target="lib\Piranha.dll" />
+  </metadata>
+      <files>
+        <file src="bin\Release\JM.Foundation.dll" target="lib\JM.Foundation.dll" />
+        <!--<file src="JM.Foundation\bin\Release\Piranha.dll" target="lib\Piranha.dll" />-->
     </files>
 </package>

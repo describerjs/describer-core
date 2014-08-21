@@ -66,7 +66,7 @@ namespace JM.Foundation.Utils
                 }
 
                 var resourcename =
-                    "JM.Foundation.Piranha.Areas.Manager.Views.Extensions." + virtualPath.Split('/').Last();
+                    "JM.Foundation.Piranha.Extensions." + virtualPath.Split('/').Last();
 
                 return resourcename;
             }
