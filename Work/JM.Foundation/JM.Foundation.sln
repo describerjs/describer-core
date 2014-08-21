@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Foundation", "JM.Foundat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JM.Foundation.Tests", "JM.Foundation.Tests\JM.Foundation.Tests.csproj", "{98CC8802-700F-4E39-89CB-3A9A37D21F6D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedBins", "SharedBins", "{9BDD50D3-63BB-4680-8579-D2638FFE25F2}"
+	ProjectSection(SolutionItems) = preProject
+		JM.Foundation\SharedBin\Piranha.dll = JM.Foundation\SharedBin\Piranha.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

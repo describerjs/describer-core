@@ -66,8 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation">
-      <HintPath>..\packages\JM.Foundation.1.0.0.4\lib\net45\JM.Foundation.dll</HintPath>
+    <Reference Include="JM.Foundation, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\JM.Foundation.1.0.0.5\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -89,7 +90,7 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Piranha">
-      <HintPath>..\packages\JM.Foundation.1.0.1\lib\Piranha.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.5\lib\Piranha.dll</HintPath>
     </Reference>
     <Reference Include="Piranha.Mvc">
       <HintPath>..\packages\PiranhaCMS.Mvc.2.2.2\lib\net45\Piranha.Mvc.dll</HintPath>

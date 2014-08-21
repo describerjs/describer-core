@@ -35,6 +35,6 @@
   </metadata>
       <files>
         <file src="bin\Release\JM.Foundation.dll" target="lib\JM.Foundation.dll" />
-        <!--<file src="JM.Foundation\bin\Release\Piranha.dll" target="lib\Piranha.dll" />-->
+        <file src="SharedBin\Piranha.dll" target="lib\Piranha.dll" />
     </files>
 </package>

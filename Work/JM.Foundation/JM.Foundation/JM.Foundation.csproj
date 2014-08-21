@@ -115,11 +115,9 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Piranha">
-      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\Piranha.dll</HintPath>
-    </Reference>
-    <Reference Include="RazorGenerator.Mvc">
-      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\RazorGenerator.Mvc.dll</HintPath>
+    <Reference Include="Piranha, Version=2.2.5281.40282, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>SharedBin\Piranha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -201,7 +199,6 @@
     <Compile Include="Utils\RequestParameter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Manager\Views\Extensions\" />
     <Folder Include="Contracts\" />
   </ItemGroup>
   <ItemGroup>
