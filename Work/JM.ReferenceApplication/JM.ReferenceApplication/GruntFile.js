@@ -66,6 +66,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-text-replace');
+	grunt.loadNpmTasks('grunt-imageoptim');
 	/*	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-watch');*/
 	/*grunt.loadNpmTasks("grunt-remove-logging");
@@ -319,7 +320,7 @@ module.exports = function(grunt){
 						imageAlpha: true,
 						quitAfter: true
 					},
-					src: ['img/charge-credit-opening']
+					src: ['img']
 				}
 			}
 		});
