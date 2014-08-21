@@ -205,10 +205,9 @@
     <Folder Include="Contracts\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Piranha\Extensions\index.html" />
     <None Include="packages.config" />
-    <Content Include="Piranha\Extensions\FaqRegion.cshtml" />
-    <Content Include="Piranha\Extensions\TeaserExtension.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\FaqRegion.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\TeaserExtension.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />
@@ -216,7 +215,7 @@
   <!--<Import Project="$(SolutionDir)\.nuget\nuget.targets" Condition="Exists('$(SolutionDir)\.nuget\nuget.targets')"/>-->
   <!--<Import Project="$(ProjectDir)\JM.Foundation\.nuget\nuget.targets" Condition="Exists('$(ProjectDir)\JM.Foundation\.nuget\nuget.targets')"/>-->
   <!--<Import Project="$(ProjectDir)\.nuget\nuget.targets" Condition="Exists('$(ProjectDir)\.nuget\nuget.targets')"/>-->
-  <Import Project="$(ProjectDir)\.nuget\nuget.targets"/>
+  <Import Project="$(ProjectDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
