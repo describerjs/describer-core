@@ -1,21 +1,18 @@
 ﻿@model FaqRegion
-<div class="stage-teaser">
-    <header class="st-header">
-        <h2 class="st-head">Faqs header</h2>
-    </header>  
-    <div class="st-content">
-        @if(Model.Faqs != null && Model.Faqs.Any(f => !string.IsNullOrEmpty(f.Body) && !string.IsNullOrEmpty(f.Title)))
-        {
-            <ul class="bullet-list">
-                @foreach(var faq in Model.Faqs)
-                {   
-                    <li class="list-item">@faq.Title</li>
-                    <li class="list-item">@faq.Body</li>
-                }
-            </ul>
-        }
+
+@if(Model.Faqs != null && Model.Faqs.Any(f => !string.IsNullOrEmpty(f.Body) && !string.IsNullOrEmpty(f.Title)))
+{
+    <div class="accordion">
+        <ul class="acc-group">
+            @foreach(var faq in Model.Faqs)
+            {
+                <li class="acc-item">
+                    <a data-jmname="accordionbox" href="#" class="acc-handle">@faq.Title</a>
+                    <div class="acc-panel">
+                        <p>@faq.Body</p>
+                    </div>
+                </li>
+            }
+        </ul>
     </div>
-    <footer class="st-footer">
-        <a class="cta" href="$cta-link$">faqs footer</a>
-    </footer>
-</div>
+}

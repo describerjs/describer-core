@@ -2,5 +2,9 @@
 @{
     ViewBag.Title = Model.Page.Title ;
 }
-@Model.Page.Title - Level 1
-@Model.Regions.Content
+
+<h1>@Model.Page.Title - Level 1</h1>
+@Html.Partial("Regions/StageTeaser", teaserModel)
+@Html.Partial("Regions/Teaser", teaserModel)
+@Html.Partial("Regions/Teaser", teaserModel)
+@Html.Partial("Regions/Teaser", teaserModel)

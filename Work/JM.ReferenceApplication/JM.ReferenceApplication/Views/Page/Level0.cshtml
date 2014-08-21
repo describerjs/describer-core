@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = Model.Page.Title ;
 }
-<div class="text-block">
-    <h1>@Model.Page.Title - Level 0</h1>
-</div>
+
+<h1>@Model.Page.Title - Level 0</h1>
 @{
     @*In Piranha wurde für den PageType "Level0" eine Region names "Teaser" definiert.*@
     var teaserModel = Model.Region<TeaserExtension>("Teaser");
 }
-@Html.Partial("Regions/StageTeaser", teaserModel);
+@Html.Partial("Regions/StageTeaser", teaserModel)
+@Html.Partial("Regions/Teaser")
+@Html.Partial("Regions/Teaser")

@@ -2,12 +2,5 @@
 @{
     ViewBag.Title = Model.Page.Title ;
 }
-<div class="row">
-	<div class="col-lg-9">
-		 <h1>@Model.Page.Title</h1>
-		@Model.Regions.Content
-	</div>
-	<div class="col-lg-3">
-        @Html.Partial("Sidebar")
-    </div>
-</div>
+<h1>index.cshtml - @Model.Page.Title</h1>
+@*@Model.Regions.Content*@
