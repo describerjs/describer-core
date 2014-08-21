@@ -33,8 +33,8 @@
             </group>
         </dependencies>
   </metadata>
-      <files>
+<!--       <files>
         <file src="bin\Release\JM.Foundation.dll" target="lib\JM.Foundation.dll" />
         <file src="SharedBin\Piranha.dll" target="lib\Piranha.dll" />
-    </files>
+    </files> -->
 </package>
