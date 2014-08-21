@@ -234,7 +234,6 @@
     </Compile>
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
-    <Compile Include="Areas\Manager\Views\Extensions\FaqRegion.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -288,7 +287,6 @@
     <Content Include="Areas\JMDemo\js\respond.min.js" />
     <Content Include="Areas\JMDemo\js\_references.js" />
     <Content Include="Areas\Manager\Content\Css\Editor.css" />
-    <Content Include="Areas\Manager\Views\Extensions\index.html" />
     <Content Include="Content\img\joinmedia.png" />
     <Content Include="css\ayyildiz.css" />
     <Content Include="css\style.css" />
@@ -2010,8 +2008,6 @@
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData_Danke.cshtml" />
-    <Content Include="Areas\Manager\Views\Extensions\TeaserExtension.cshtml" />
-    <Content Include="Areas\Manager\Views\Extensions\FaqRegion.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\MainJS.cshtml" />
     <Content Include="Views\Shared\Regions\StageTeaser.cshtml" />
@@ -2770,6 +2766,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
     <Folder Include="Areas\JMTools\Models\" />
+    <Folder Include="Areas\Manager\Views\Extensions\" />
     <Folder Include="css\min\" />
   </ItemGroup>
   <ItemGroup>
