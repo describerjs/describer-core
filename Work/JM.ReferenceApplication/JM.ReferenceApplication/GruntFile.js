@@ -67,6 +67,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-text-replace');
 	grunt.loadNpmTasks('grunt-imageoptim');
+	grunt.loadNpmTasks('grunt-webp');
 	/*	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-watch');*/
 	/*grunt.loadNpmTasks("grunt-remove-logging");
@@ -367,6 +368,45 @@ module.exports = function(grunt){
 		});
 
 	});
+	grunt.registerTask('task_webp', function(){
+		grunt.initConfig({
+			// WebP configuration
+			webp: {
+				files: {
+					expand: true,
+					//cwd: 'path/to/source/images',
+					src: ['**/*.jpg', '**/*.png', '!**/productimages/*.png'] ,
+					cwd: 'img/',
+					dest: 'img/'
+				},
+				options: {
+					binpath: require('webp-bin').path,
+					preset: 'photo',
+					verbose: true,
+					quality: 80,
+					alphaQuality: 80,
+					compressionMethod: 6,
+					segments: 4,
+					psnr: 50,
+					sns: 50,
+					filterStrength: 40,
+					filterSharpness: 3,
+					simpleFilter: true,
+					partitionLimit: 50,
+					analysisPass: 6,
+					multiThreading: true,
+					lowMemory: false,
+					alphaMethod: 0,
+					alphaFilter: 'best',
+					alphaCleanup: true,
+					noAlpha: false,
+					lossless: false
+				}
+			}
+
+		});
+
+	});
 
 
 
@@ -380,6 +420,8 @@ module.exports = function(grunt){
 	grunt.registerTask('default4', ['task_step4', 'replace' ]);
 	grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
 	grunt.registerTask('default6', ['task_step6', 'webp' ]);
+
+	grunt.registerTask('default_webp', ['task_webp', 'webp' ]);
 
 	//grunt.registerTask('ErstelleMainJSMitVersioniertenJSVerweisen', ['createMainJS', 'replace']);
 	grunt.registerTask('default', ['default1', 'remove_not_supported_files', 'md5hash_on_files', 'default2', 'default4']);
