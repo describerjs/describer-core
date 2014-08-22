@@ -39,7 +39,7 @@ namespace JM.Foundation.Utils
         {
             if (ResourceFileExists(virtualPath))
             {
-                return new System.Web.Caching.CacheDependency(EmbeddedVirtualFile.GetResourceName(virtualPath));
+                return null;
             }
             else
             {
