@@ -35,6 +35,18 @@ namespace JM.Foundation.Utils
             }
         }
 
+        public override System.Web.Caching.CacheDependency GetCacheDependency(string virtualPath, System.Collections.IEnumerable virtualPathDependencies, DateTime utcStart)
+        {
+            if (ResourceFileExists(virtualPath))
+            {
+                return new System.Web.Caching.CacheDependency(EmbeddedVirtualFile.GetResourceName(virtualPath));
+            }
+            else
+            {
+                return Previous.GetCacheDependency(virtualPath, virtualPathDependencies, utcStart);
+            }
+        }
+
         private bool ResourceFileExists(string virtualPath)
         {
             var resourcename = EmbeddedVirtualFile.GetResourceName(virtualPath);
