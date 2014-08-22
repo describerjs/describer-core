@@ -353,14 +353,14 @@ module.exports = function(grunt){
 			    		imageAlpha: true,
 			    		jpegMini: false
 			    	},
-			    	src: ['imageoptim/img/png']
+			    	src: ['img/png']
 			  	},
 			  	allJpgs: {
 			    	options: {
 			      		imageAlpha: false,
 			      		jpegMini: true
 			    	},
-			    	src: ['imageoptim/img/jpg']
+			    	src: ['img/jpg']
 			  	}	
 			}
 		});
