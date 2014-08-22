@@ -152,30 +152,35 @@ $layout-maxwidth:	80em;
     $SPACING
 \*------------------------------------*/
 
+// Distance calculated by Grid
+$dist:						$total-width * (($gutter-width * .5) / gridsystem-width($columns));
+
 // Margins - Preferably Top & Bottom
-$space:					rhythm(1, 16px);
-$space-and-half:		rhythm(1.5, 16px);
-$space-double:			rhythm(2, 16px);
-$space-triple:			rhythm(3, 16px);
-$space-quad:			rhythm(4, 16px);
-$space-half:			rhythm(.5, 16px);
-$space-quarter:			rhythm(.25, 16px);
-$space-three-quarter:	($space-half + $space-quarter);
+$space:						rhythm(1, $browser-default-font-size);
+$space-and-half:			rhythm(1.5, $browser-default-font-size);
+$space-double:				rhythm(2, $browser-default-font-size);
+$space-triple:				rhythm(3, $browser-default-font-size);
+$space-quad:				rhythm(4, $browser-default-font-size);
+$space-half:				rhythm(.5, $browser-default-font-size);
+$space-quarter:				rhythm(.25, $browser-default-font-size);
+$space-three-quarter:		$space-half + $space-quarter;
 
 // Paddings - Preferably Left & Right
-$pad:					1rem;
-$pad-and-half:			$pad*1.5;
-$pad-double:			$pad*2;
-$pad-triple:			$pad*3;
-$pad-quad:				$pad*4;
-$pad-half:				$pad/2;
-$pad-quarter:			$pad/4;
-$pad-three-quarter:		($pad-half + $pad-quarter);
+$pad:						1rem;
+$pad-and-half:				$pad * 1.5;
+$pad-double:				$pad * 2;
+$pad-triple:				$pad * 3;
+$pad-quad:					$pad * 4;
+$pad-half:					$pad / 2;
+$pad-quarter:				$pad / 4;
+$pad-three-quarter:			$pad-half + $pad-quarter;
 
-$default-spacing:		$space-half;
-$default-padding:		$pad;
-
-$dist:					$total-width*(($gutter-width*.5)/gridsystem-width($columns));
+// Defaults
+$default-spacing:			$space;
+$default-padding:			$pad;
+$default-padding-s:			$dist + 3;
+$default-padding-m:			$dist + 1;
+$default-padding-l:			$dist;
 
 
 

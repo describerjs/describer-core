@@ -2,9 +2,47 @@
     $TEXT_ELEMENTS
 \*------------------------------------*/
 
+/**
+ * HORIZONTAL_RULE.....................<hr />
+ * PARAGRAPH...........................<p>
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $HORIZONTAL_RULE
+\*------------------------------------*/
+
 hr {
 	@extend %element-default;
+	display: none;
 }
+
+
+
+
+
+/*------------------------------------*\
+    $PARAGRAPH
+\*------------------------------------*/
+
+p {
+	@include as-para;
+	@include as-para--typeset;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	main > & {
+		@extend %element-text-default;
+	}
+}
+
+
+
 
 
 /*------------------------------------*\

@@ -63,6 +63,12 @@
     $NAV
 \*------------------------------------*/
 
+.page-header {
+	.nav {
+		clear: none;
+	}
+}
+
 // Die Navigation
 .nav {
 	@extend %element-default;
@@ -148,6 +154,14 @@
 // Der aktive "menu-btn" wird erweitert, damit er als schließen Knopf kenntlich gemacht wird.
 .menu-close-btn {
 	@extend .menu-btn;
+
+	&:after {
+		border: 1px solid;
+		@include box-shadow(none);
+		content: "\274c";
+		font-size: $base-font-size;
+		height: auto;
+	}
 }
 
 // Diese Links sind eine Erweiterung von "nav-link" und werden mobil aus- und mittels Aufklappfunktion eingeblendet.

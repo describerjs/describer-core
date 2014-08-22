@@ -3,8 +3,22 @@
 \*------------------------------------*/
 
 /**
+ * GENERIC.............................Variables/Placeholder
  * BULLET-LIST.........................List w/Bullets
 **/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+%list {
+	@extend %as-list;
+	@extend %as-list--typeset;
+}
 
 
 
@@ -15,16 +29,14 @@
 \*------------------------------------*/
 
 .bullet-list {
+	@extend %list;
 	padding-left: ($pad + ($pad-quarter / 2));
 
 	.list-item {
 		list-style-type: disc;
-		margin: {
-			bottom: $space-quarter;
-		};
+		margin-bottom: $space-quarter;
 	}
 }
-
 
 
 

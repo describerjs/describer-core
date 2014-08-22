@@ -45,6 +45,12 @@
 	@include element-nested-default;
 }
 
+// Textmodule Defaults
+%element-text-default {
+	@include column(12);
+	@include unfolded-padding;
+}
+
 
 
 

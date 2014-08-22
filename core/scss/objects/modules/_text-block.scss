@@ -1,24 +1,21 @@
 /*------------------------------------*\
-    $TEXT
-\*------------------------------------*/
-
-/**
- * TEXT-BLOCK..........................Section mit textlichem Inhalt
-**/
-
-
-
-
-
-/*------------------------------------*\
     $TEXT-BLOCK
 \*------------------------------------*/
 
 .text-block {
 	@extend %element-default;
 	@extend %element-inner-default;
-}
 
+	@media screen and (min-width: $bp-med) {
+		@include element-inner-default;
+		@include column(6);
+		clear: none;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		/**/
+	}
+}
 
 
 

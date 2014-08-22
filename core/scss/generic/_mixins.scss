@@ -334,9 +334,11 @@
 \*------------------------------------*/
 
 @mixin user-select {
+	-khtml-user-select:		none;
 	-moz-user-select:		none;
 	-ms-user-select:		none;
 	-webkit-user-select:	none;
+	user-select:			none;
 }
 
 
@@ -347,10 +349,12 @@
 	$ELEMENT-DEFAULTS
 \*------------------------------------*/
 
+// Default Spacing
 @mixin element-default-spacing {
 	margin-bottom: $default-spacing;
 }
 
+// Default Padding
 @mixin element-default-padding {
 	@include element-default-padding-s;
 	
@@ -363,23 +367,27 @@
 	}
 }
 
+// Default Padding Small
 @mixin element-default-padding-s {
-	padding: $space-quarter ($dist + 3);
+	padding: $space-quarter $default-padding-s;
 }
 
+// Default Padding Medium
 @mixin element-default-padding-m {
-	padding: $space-quarter ($dist + 1);
+	padding: $space-quarter $default-padding-m;
 }
 
+// Default Padding Large
 @mixin element-default-padding-l {
-	padding: $space-quarter $dist;
+	padding: $space-quarter $default-padding-l;
 }
 
-
+// Wrapped Elements Default
 @mixin element-inner-default {
 	@include element-default-padding;
 }
 
+// Nested Elements Default
 @mixin element-nested-default {
 	@include column(12);
 	@include element-default-padding;
@@ -390,6 +398,42 @@
 	position: relative;
 }
 
+// Unfolded Padding
+@mixin unfolded-padding {
+	@include unfolded-padding-s;
+	
+	@media screen and (min-width: $bp-med) {
+		@include unfolded-padding-m;
+	}
+
+	@media screen and (min-width: $bp-large) {
+		@include unfolded-padding-l;
+	}
+}
+
+// Unfolded Padding S
+@mixin unfolded-padding-s {
+	padding: {
+		left: $default-padding-s;
+		right: $default-padding-s;
+	}
+}
+
+// Unfolded Padding M
+@mixin unfolded-padding-m {
+	padding: {
+		left: $default-padding-m;
+		right: $default-padding-m;
+	}
+}
+
+// Unfolded Padding L
+@mixin unfolded-padding-l {
+	padding: {
+		left: $default-padding-l;
+		right: $default-padding-l;
+	}
+}
 
 
 

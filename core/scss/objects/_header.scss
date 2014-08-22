@@ -4,6 +4,7 @@
 
 /**
  * .page-header........................HTML <header> Section
+ * .logo...............................Site-Logo
 **/
 
 
@@ -16,6 +17,24 @@
 
 .page-header {
 	@extend %page-element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    LOGO
+\*------------------------------------*/
+
+.logo {
+	@extend %element-nested-default;
+	@include column(8);
+	display: block;
+
+	@media screen and (min-width: $bp-large) {
+		@include column(2);
+	}
 }
 
 
