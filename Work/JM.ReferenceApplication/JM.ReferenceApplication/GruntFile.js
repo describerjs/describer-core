@@ -418,15 +418,17 @@ module.exports = function(grunt){
 					//cwd: 'path/to/source/images',
 					src: ['**/*.jpg'],
 					//src: ['**/*.jpg', '**/*.png'],
+					//cwd: 'img/jpg/',
+					//dest: 'img/webp-from-jpg/'
 					cwd: 'img/jpg/',
-					dest: 'img/webp-from-jpg/'
+					dest: 'img/webp/'
 				},
 				options: {
 					binpath: require('webp-bin').path,
 					preset: 'photo',
 					verbose: true,
 					quality: 80,
-					alphaQuality: 80,
+					alphaQuality: 0,
 					compressionMethod: 6,
 					segments: 4,
 					psnr: 50,
@@ -439,9 +441,9 @@ module.exports = function(grunt){
 					multiThreading: true,
 					lowMemory: false,
 					alphaMethod: 0,
-					alphaFilter: 'best',
-					alphaCleanup: true,
-					noAlpha: false,
+					alphaFilter: 'none',
+					alphaCleanup: false,
+					noAlpha: true,
 					lossless: false
 				}
 			}
@@ -458,8 +460,10 @@ module.exports = function(grunt){
 					//cwd: 'path/to/source/images',
 					src: ['**/*.png'],
 					//src: ['**/*.jpg', '**/*.png'],
+					//cwd: 'img/png/',
 					cwd: 'img/png/',
-					dest: 'img/webp-from-png/'
+					//dest: 'img/webp-from-png/'
+					dest: 'img/webp/'
 				},
 				options: {
 					binpath: require('webp-bin').path,
@@ -500,21 +504,21 @@ module.exports = function(grunt){
 	grunt.registerTask('default2', ['task_step2', 'replace' ]);
 	grunt.registerTask('default3', ['task_step3', 'uglify', 'revisions' ]);
 	grunt.registerTask('default4', ['task_step4', 'replace' ]);
-	grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
-	grunt.registerTask('default6', ['task_step6', 'webp' ]);
+	//grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
+	//grunt.registerTask('default6', ['task_step6', 'webp' ]);
 
 
-	grunt.registerTask('default_imageoptimcopy', ['task_imageoptimcopy', 'copy' ]);
+	//grunt.registerTask('default_imageoptimcopy', ['task_imageoptimcopy', 'copy' ]);
 	grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
 	
 
-	grunt.registerTask('default_img_optim', ['default_imageoptimcopy', 'default_imageoptim' ]);
+	//grunt.registerTask('default_img_optim', ['default_imageoptimcopy', 'default_imageoptim' ]);
 
 	
 	grunt.registerTask('default_webp_jpg', ['task_webp_jpg', 'webp' ]);
 	grunt.registerTask('default_webp_png', ['task_webp_png', 'webp' ]);
 
 	//grunt.registerTask('ErstelleMainJSMitVersioniertenJSVerweisen', ['createMainJS', 'replace']);
-	grunt.registerTask('default', ['default1', 'remove_not_supported_files', 'md5hash_on_files', 'default2', 'default4']);
+	grunt.registerTask('default', ['default1', 'remove_not_supported_files', 'md5hash_on_files', 'default2', 'default4', 'default_webp_jpg', 'default_webp_png']);
 	//grunt.registerTask('default', ['remove_not_supported_folder']);
 };
