@@ -157,7 +157,7 @@ module.exports = function(grunt){
 		});
 	});
 	// Project configuration.
-	grunt.registerTask('task_step3', function(){
+	/*grunt.registerTask('task_step3', function(){
 		grunt.initConfig({
 			uglify: {
 				build : {
@@ -172,7 +172,7 @@ module.exports = function(grunt){
 				}
 			}
 		});
-	});
+	});*/
 
 	grunt.registerTask('task_step4', function(){
 		grunt.initConfig({
@@ -311,23 +311,8 @@ module.exports = function(grunt){
 		});
 	});
 
-	// Project configuration.
-	grunt.registerTask('task_step5', function(){
-		grunt.initConfig({
-			imageoptim: {
-				imgcomp: {
-					options: {
-						jpegMini: true,
-						imageAlpha: true,
-						quitAfter: true
-					},
-					src: ['img']
-				}
-			}
-		});
-	});
 
-	
+/*
 
 	grunt.registerTask('task_imageoptimcopy', function(){
 		grunt.initConfig({
@@ -335,12 +320,12 @@ module.exports = function(grunt){
   				main: {
     				files: [
 					    // includes files within path and its sub-directories
-					    {expand: true, src: ['img/**'], dest: 'imageoptim/'},
+					    {expand: true, src: ['img*//**'], dest: 'imageoptim/'},
     				]
   				}
 			}
 		});
-	});
+	});*/
 
 	grunt.registerTask('task_imageoptim', function(){
 		grunt.initConfig({
@@ -353,62 +338,20 @@ module.exports = function(grunt){
 			    		imageAlpha: true,
 			    		jpegMini: false
 			    	},
-			    	src: ['imageoptim/img/png']
+			    	src: ['img/png']
 			  	},
 			  	allJpgs: {
 			    	options: {
 			      		imageAlpha: false,
 			      		jpegMini: true
 			    	},
-			    	src: ['imageoptim/img/jpg']
+			    	src: ['img/jpg']
 			  	}	
 			}
 		});
 	});
 
-	
 
-	grunt.registerTask('task_step6', function(){
-		grunt.initConfig({
-			// WebP configuration
-			webp: {
-				files: {
-					expand: true,
-					//cwd: 'path/to/source/images',
-/*					src: ['img/add-on-steps/add-on-steps-1.png'],
-					dest: '/'*/
-					src: ['**/*.jpg', '**/*.png', '!**/productimages/*.png'] ,
-					cwd: 'img/',
-					dest: 'img/'
-				},
-				options: {
-					binpath: require('webp-bin').path,
-					preset: 'photo',
-					verbose: true,
-					quality: 80,
-					alphaQuality: 80,
-					compressionMethod: 6,
-					segments: 4,
-					psnr: 50,
-					sns: 50,
-					filterStrength: 40,
-					filterSharpness: 3,
-					simpleFilter: true,
-					partitionLimit: 50,
-					analysisPass: 6,
-					multiThreading: true,
-					lowMemory: false,
-					alphaMethod: 0,
-					alphaFilter: 'best',
-					alphaCleanup: true,
-					noAlpha: false,
-					lossless: false
-				}
-			}
-
-		});
-
-	});
 	grunt.registerTask('task_webp_jpg', function(){
 		grunt.initConfig({
 			// WebP configuration
@@ -418,15 +361,17 @@ module.exports = function(grunt){
 					//cwd: 'path/to/source/images',
 					src: ['**/*.jpg'],
 					//src: ['**/*.jpg', '**/*.png'],
+					//cwd: 'img/jpg/',
+					//dest: 'img/webp-from-jpg/'
 					cwd: 'img/jpg/',
-					dest: 'img/webp-from-jpg/'
+					dest: 'img/webp/'
 				},
 				options: {
 					binpath: require('webp-bin').path,
 					preset: 'photo',
 					verbose: true,
 					quality: 80,
-					alphaQuality: 80,
+					alphaQuality: 0,
 					compressionMethod: 6,
 					segments: 4,
 					psnr: 50,
@@ -439,9 +384,9 @@ module.exports = function(grunt){
 					multiThreading: true,
 					lowMemory: false,
 					alphaMethod: 0,
-					alphaFilter: 'best',
-					alphaCleanup: true,
-					noAlpha: false,
+					alphaFilter: 'none',
+					alphaCleanup: false,
+					noAlpha: true,
 					lossless: false
 				}
 			}
@@ -458,8 +403,10 @@ module.exports = function(grunt){
 					//cwd: 'path/to/source/images',
 					src: ['**/*.png'],
 					//src: ['**/*.jpg', '**/*.png'],
+					//cwd: 'img/png/',
 					cwd: 'img/png/',
-					dest: 'img/webp-from-png/'
+					//dest: 'img/webp-from-png/'
+					dest: 'img/webp/'
 				},
 				options: {
 					binpath: require('webp-bin').path,
@@ -494,27 +441,33 @@ module.exports = function(grunt){
 
 
 
-	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'cssmin' ]);
+	grunt.registerTask('clear_uglify_cssminn', ['task_step1', 'clean', 'uglify', 'cssmin' ]);
 	grunt.registerTask('remove_not_supported_files', ['task_remove_not_supported_files', 'clean']);
 	grunt.registerTask('md5hash_on_files', ['task_md5hash_on_files', 'revisions' ]);
-	grunt.registerTask('default2', ['task_step2', 'replace' ]);
-	grunt.registerTask('default3', ['task_step3', 'uglify', 'revisions' ]);
-	grunt.registerTask('default4', ['task_step4', 'replace' ]);
-	grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
-	grunt.registerTask('default6', ['task_step6', 'webp' ]);
+	grunt.registerTask('stringreplaceMainJS', ['task_step2', 'replace' ]);
+	//grunt.registerTask('default3', ['task_step3', 'uglify', 'revisions' ]);
+	grunt.registerTask('stringreplaceLayout', ['task_step4', 'replace' ]);
+	//grunt.registerTask('default5', ['task_step5', 'imageoptim' ]);
+	//grunt.registerTask('default6', ['task_step6', 'webp' ]);
 
 
-	grunt.registerTask('default_imageoptimcopy', ['task_imageoptimcopy', 'copy' ]);
+	//grunt.registerTask('default_imageoptimcopy', ['task_imageoptimcopy', 'copy' ]);
 	grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
 	
 
-	grunt.registerTask('default_img_optim', ['default_imageoptimcopy', 'default_imageoptim' ]);
+	//grunt.registerTask('default_img_optim', ['default_imageoptimcopy', 'default_imageoptim' ]);
 
 	
 	grunt.registerTask('default_webp_jpg', ['task_webp_jpg', 'webp' ]);
 	grunt.registerTask('default_webp_png', ['task_webp_png', 'webp' ]);
 
 	//grunt.registerTask('ErstelleMainJSMitVersioniertenJSVerweisen', ['createMainJS', 'replace']);
-	grunt.registerTask('default', ['default1', 'remove_not_supported_files', 'md5hash_on_files', 'default2', 'default4']);
-	//grunt.registerTask('default', ['remove_not_supported_folder']);
+
+
+	//// ******************* grunt - Task ***********************************
+	grunt.registerTask('default', ['clear_uglify_cssminn', 'remove_not_supported_files', 'md5hash_on_files', 'stringreplaceMainJS', 'stringreplaceLayout', 'default_webp_jpg', 'default_webp_png']);
+
+	//// ******************* mac Task for Image-Optim ***********************
+
+	grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
 };
