@@ -1,4 +1,4 @@
-﻿@charset "CP850";
+@charset "UTF-8";
 /*------------------------------------*\
 	$CONTENTS
 \*------------------------------------*/
@@ -17,6 +17,7 @@
  * .....Semantic Grid Sytem Semantic.gs
  * .....Sassaparilla - Typeset/Baselinegrid
  * VARIABLES...........................Declarations of Sass variables (Colors, Typo, Layout, Breakpoints, etc.)
+ * FUNCTIONS...........................Sass functions
  * MIXINS..............................Sass mixins
  * PLACEHOLDER:........................Sass placeholder
 **/
@@ -24,13 +25,13 @@
     $ADD-ONS
 \*------------------------------------*/
 /*.is-typeset {
-	.headline	{ @extend %as-heading__headline; 	@extend %as-heading__headline--typeset; }
-	h1			{ @extend %as-heading__largest; 	@extend %as-heading__largest--typeset; }
-	h2 			{ @extend %as-heading__large; 		@extend %as-heading__large--typeset; }
-	h3			{ @extend %as-heading__medium; 		@extend %as-heading__medium--typeset; }
-	h4 			{ @extend %as-heading__normal; 		@extend %as-heading__normal--typeset; }
-	h5			{ @extend %as-heading__small; 		@extend %as-heading__small--typeset; }
-	h6			{ @extend %as-heading__smallest; 	@extend %as-heading__smallest--typeset; }
+	.headline	{ @extend %as-heading__headline; 	@extend %as-heading__headline--typeset; } 
+	h1			{ @extend %as-heading__largest; 	@extend %as-heading__largest--typeset; } 	
+	h2 			{ @extend %as-heading__large; 		@extend %as-heading__large--typeset; } 	
+	h3			{ @extend %as-heading__medium; 		@extend %as-heading__medium--typeset; } 	
+	h4 			{ @extend %as-heading__normal; 		@extend %as-heading__normal--typeset; }  	
+	h5			{ @extend %as-heading__small; 		@extend %as-heading__small--typeset; } 	
+	h6			{ @extend %as-heading__smallest; 	@extend %as-heading__smallest--typeset; }  	
 	p 			{ @extend %as-para--typeset; }
 	ol			{ @extend %as-ordered-list--typeset; }
 	ul 			{ @extend %as-unordered-list--typeset; }
@@ -51,7 +52,7 @@
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
- * SPACING.............................Abstände definieren
+ * SPACING.............................Abst├ñnde definieren
 **/
 /*------------------------------------*\
     $COLORS
@@ -78,7 +79,20 @@ $theme-color-lambda:	#000;
     $SPACING
 \*------------------------------------*/
 /*------------------------------------*\
-
+	
+\*------------------------------------*/
+/*------------------------------------*\
+	$FUNCTIONS
+\*------------------------------------*/
+/**
+ * 
+**/
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/**/
+/*------------------------------------*\
+	
 \*------------------------------------*/
 /*------------------------------------*\
 	$MIXINS
@@ -108,19 +122,21 @@ $theme-color-lambda:	#000;
  * MOVE/CHANGE-3D-POSITION.............Transform Elements position
  * USER-SELECT.........................Disable User Text Selection
  * ELEMENT-DEFAULTS....................Default Element properties
+ * APPEARANCE..........................Platform-Native Styling
+ * FLEXBOX.............................Flex-Box default properties
 **/
 /*------------------------------------*\
 	$CLEARFIX
 \*------------------------------------*/
 .clearfix {
-    *zoom: 1;
+  *zoom: 1;
 }
 .clearfix:after, .clearfix:before {
-    content: "\0020";
-    display: table;
+  content: "\0020";
+  display: table;
 }
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 /*------------------------------------*\
@@ -174,7 +190,13 @@ $theme-color-lambda:	#000;
 	$ELEMENT-DEFAULTS
 \*------------------------------------*/
 /*------------------------------------*\
-
+	$APPEARANCE
+\*------------------------------------*/
+/*------------------------------------*\
+	$FLEXBOX
+\*------------------------------------*/
+/*------------------------------------*\
+	
 \*------------------------------------*/
 /*------------------------------------*\
     $PLACEHOLDER
@@ -192,11 +214,35 @@ $theme-color-lambda:	#000;
 /*------------------------------------*\
 	$ELEMENT_DEFAULTS
 \*------------------------------------*/
+.togglebox .tb-content {
+  padding: 0.375rem 4.04167%;
+}
+@media screen and (min-width: 48em) {
+  .togglebox .tb-content {
+    padding: 0.375rem 2.04167%;
+  }
+}
+@media screen and (min-width: 60em) {
+  .togglebox .tb-content {
+    padding: 0.375rem 1.04167%;
+  }
+}
+
 /*------------------------------------*\
 	TOGGLE_ELEMENT
 \*------------------------------------*/
-/*------------------------------------*\
+.togglebox .tb-content {
+  /*display: block;*/
+  height: auto;
+  min-height: 1rem;
+  opacity: 1;
+}
 
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
+	
 \*------------------------------------*/
 /*------------------------------------*\
     $COMPONENTS/$MODULES
@@ -205,46 +251,82 @@ $theme-color-lambda:	#000;
     $ACCORDION
 \*------------------------------------*/
 .accordion {
-    /**/
+  /**/
 }
 
 /*------------------------------------*\
-
+    
 \*------------------------------------*/
 /*------------------------------------*\
     $NAVIGATION
 \*------------------------------------*/
 .nav {
-    /**/
+  /**/
 }
 
 /*------------------------------------*\
-
+    
 \*------------------------------------*/
 /*------------------------------------*\
     $OWL-CAROUSEL v1.3.2 - http://owlgraphic.com/owlcarousel/
 \*------------------------------------*/
 .hide-large {
-    display: block;
+  display: block;
 }
 
 .hide-med {
-    display: block;
+  display: block;
 }
 
 /*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $STAGE-TEASER
+\*------------------------------------*/
+.stage-teaser {
+  /**/
+}
 
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+	$TABS
+\*------------------------------------*/
+.tabs {
+  /**/
+}
+
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
+    $TEASER
+\*------------------------------------*/
+.teaser {
+  /**/
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $TEXT-BLOCK
+\*------------------------------------*/
+.text-block {
+  /**/
+}
+
+/*------------------------------------*\
+    
 \*------------------------------------*/
 /*------------------------------------*\
     $TOGGLEBOX-NOSCRIPT
 \*------------------------------------*/
-.togglebox .tb-content {
-    display: block;
-}
-
 /*------------------------------------*\
-
+	
 \*------------------------------------*/
 /*------------------------------------*\
-
+    
 \*------------------------------------*/

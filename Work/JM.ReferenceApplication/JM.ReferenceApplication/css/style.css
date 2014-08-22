@@ -1,10 +1,10 @@
-@charset "CP850";
+@charset "UTF-8";
 /*------------------------------------*\
 	$CONTENTS
 \*------------------------------------*/
 /**
- * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
  * RESET...............................Set reset defaults
+ * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
  * GLOBAL ELEMENTS.....................Establish global styles
  * GLOBAL CLASSES......................Set reset defaults
  * LAYOUT..............................Grid & Column Designs
@@ -14,6 +14,35 @@
 /*------------------------------------*\
     $GENERIC ELEMENTS
 \*------------------------------------*/
+/*------------------------------------*\
+    $RESET
+\*------------------------------------*/
+/* Border-Box http:/paulirish.com/2012/box-sizing-border-box-ftw/ */
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, form, legend, label, table, header, footer, nav, section, figure, picture {
+  margin: 0;
+  padding: 0;
+}
+
+header, footer, main, nav, section, article, hgroup, figure, picture {
+  display: block;
+}
+
+img, table {
+  border: 0;
+}
+
+picture {
+  line-height: 0;
+}
+
 /*------------------------------------*\
 	$CONTENTS
 \*------------------------------------*/
@@ -29,13 +58,95 @@
 /*------------------------------------*\
     $ADD-ONS
 \*------------------------------------*/
-ul, ol {
-  font-size: 1.125rem;
-  line-height: 1.33333rem;
+h1, .h1 {
+  font-size: 36px;
+  font-size: 2.25rem;
+  line-height: 48px;
+  line-height: 3rem;
+  line-height: 24px;
+  line-height: 1.5rem;
 }
 
-ul, ol {
-  margin: 0 0 1.33333rem 0;
+h2, .h2 {
+  font-size: 32px;
+  font-size: 2rem;
+  line-height: 36px;
+  line-height: 2.25rem;
+  line-height: 26px;
+  line-height: 1.65rem;
+}
+
+h3, .h3 {
+  font-size: 28px;
+  font-size: 1.75rem;
+  line-height: 36px;
+  line-height: 2.25rem;
+  line-height: 29px;
+  line-height: 1.8rem;
+}
+
+h4, .h4 {
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 36px;
+  line-height: 2.25rem;
+  line-height: 30px;
+  line-height: 1.875rem;
+}
+
+h5, .h5 {
+  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  line-height: 31px;
+  line-height: 1.95rem;
+}
+
+h6, .h6 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  line-height: 34px;
+  line-height: 2.1rem;
+}
+
+.bullet-list {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+}
+
+h1, .h1 {
+  margin-bottom: 1.875rem;
+}
+
+h2, .h2 {
+  margin-bottom: 1.5rem;
+}
+
+h3, .h3 {
+  margin-bottom: 1.125rem;
+}
+
+h4, .h4 {
+  margin-bottom: 0.75rem;
+}
+
+h5, .h5 {
+  margin-bottom: 0.375rem;
+}
+
+h6, .h6 {
+  /*margin-bottom: rhythm(0, $eta);*/
+}
+
+.bullet-list {
+  margin-bottom: 3rem;
 }
 
 /*.is-typeset {
@@ -66,7 +177,7 @@ ul, ol {
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
- * SPACING.............................Abstände definieren
+ * SPACING.............................Abst├ñnde definieren
 **/
 /*------------------------------------*\
     $COLORS
@@ -244,38 +355,38 @@ $theme-color-lambda:	#000;
   clear: both;
 }
 
-hr, .copyright, .text-block, .accordion, .nav, .stage-teaser, .tabs, .teaser, .togglebox {
+hr, .copyright, .accordion, .nav, .stage-teaser, .tabs, .teaser, .text-block, .togglebox {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   clear: both;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
   position: relative;
 }
-hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .togglebox:after, hr:before, .copyright:before, .text-block:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .togglebox:before {
+hr:after, .copyright:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after, hr:before, .copyright:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .text-block:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
-hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .togglebox:after {
+hr:after, .copyright:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after {
   clear: both;
 }
 
-.accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
+.accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content, .text-block {
   padding: 0.375rem 4.04167%;
 }
 @media screen and (min-width: 48em) {
-  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
+  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content, .text-block {
     padding: 0.375rem 2.04167%;
   }
 }
 @media screen and (min-width: 60em) {
-  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .text-block, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content {
+  .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .copyright, .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link, .tabs .tab, .tabs .tab-content, .text-block {
     padding: 0.375rem 1.04167%;
   }
 }
 
-.stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
+.logo, .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
   width: 97.91667%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
@@ -286,13 +397,34 @@ hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .st
   position: relative;
 }
 @media screen and (min-width: 48em) {
-  .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
+  .logo, .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
     padding: 0.375rem 2.04167%;
   }
 }
 @media screen and (min-width: 60em) {
-  .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
+  .logo, .stage-teaser .st-content, .stage-teaser .st-footer, .stage-teaser .st-header, .teaser .t-content, .teaser .t-footer, .teaser .t-header {
     padding: 0.375rem 1.04167%;
+  }
+}
+
+main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > p {
+  width: 97.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  clear: both;
+  padding-left: 4.04167%;
+  padding-right: 4.04167%;
+}
+@media screen and (min-width: 48em) {
+  main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > p {
+    padding-left: 2.04167%;
+    padding-right: 2.04167%;
+  }
+}
+@media screen and (min-width: 60em) {
+  main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > p {
+    padding-left: 1.04167%;
+    padding-right: 1.04167%;
   }
 }
 
@@ -300,9 +432,11 @@ hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .st
 	TOGGLE_ELEMENT
 \*------------------------------------*/
 .accordion .acc-handle, .togglebox .tb-subject {
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   display: block;
   position: relative;
 }
@@ -332,35 +466,6 @@ hr:after, .copyright:after, .text-block:after, .accordion:after, .nav:after, .st
 /*------------------------------------*\
 	
 \*------------------------------------*/
-/*------------------------------------*\
-    $RESET
-\*------------------------------------*/
-/* Border-Box http:/paulirish.com/2012/box-sizing-border-box-ftw/ */
-*,
-*:after,
-*:before {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, form, legend, label, table, header, footer, nav, section, figure, picture {
-  margin: 0;
-  padding: 0;
-}
-
-header, footer, main, nav, section, article, hgroup, figure, picture {
-  display: block;
-}
-
-img, table {
-  border: 0;
-}
-
-picture {
-  line-height: 0;
-}
-
 /*------------------------------------*\
     $GLOBAL ELEMENTS
 \*------------------------------------*/
@@ -437,46 +542,20 @@ input[type="search"]::-webkit-search-decoration {
 /*------------------------------------*\
     $HEADINGS
 \*------------------------------------*/
-h1, h2, h3, h4, h5, h6 {
+/**
+ * GENERIC.............................Variables/Placeholder
+ * HEADINGS............................<h1>-<h6>
+**/
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: normal;
 }
 
-h1, .h1 {
-  font-size: 2rem;
-  line-height: 1.125rem;
-  margin: 0 0 1.5rem 0;
-}
-
-h2, .h2 {
-  font-size: 1.75rem;
-  line-height: 1.28571rem;
-  margin: 0 0 1.71429rem 0;
-}
-
-h3, .h3 {
-  font-size: 1.625rem;
-  line-height: 1.38462rem;
-  margin: 0 0 1.84615rem 0;
-}
-
-h4, .h4 {
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  margin: 0 0 2rem 0;
-}
-
-h5, .h5 {
-  font-size: 1.25rem;
-  line-height: 1.2rem;
-  margin: 0 0 2.4rem 0;
-}
-
-h6, .h6 {
-  font-size: 1.125rem;
-  line-height: 1.33333rem;
-  margin: 0 0 2.66667rem 0;
-}
-
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -487,7 +566,7 @@ a {
   cursor: pointer;
   outline: 0;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 /*------------------------------------*\
@@ -555,14 +634,14 @@ dd {
     $TEXT_SELECTION
 \*------------------------------------*/
 ::-moz-selection {
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   text-shadow: none;
 }
 
 ::selection {
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   text-shadow: none;
 }
 
@@ -570,8 +649,8 @@ dd {
     $HTML
 \*------------------------------------*/
 html {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
   font: 100% "HelveticaNeue", "Helvetica", "Arial", sans-serif;
   font-weight: 100;
   line-height: 1.5em;
@@ -588,6 +667,7 @@ body {
 }
 @media print {
   body {
+    line-height: 48px;
     line-height: 3rem;
     font-size: 62.5%;
   }
@@ -597,8 +677,8 @@ body {
     $PAGE_WRAPPER
 \*------------------------------------*/
 .page {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
   margin: 0 auto;
   max-width: 80em;
   overflow: hidden;
@@ -631,6 +711,33 @@ img, video, object {
 /*------------------------------------*\
     $TEXT_ELEMENTS
 \*------------------------------------*/
+/**
+ * HORIZONTAL_RULE.....................<hr />
+ * PARAGRAPH...........................<p>
+**/
+/*------------------------------------*\
+    $HORIZONTAL_RULE
+\*------------------------------------*/
+hr {
+  display: none;
+}
+
+/*------------------------------------*\
+    $PARAGRAPH
+\*------------------------------------*/
+p {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  margin-bottom: 3rem;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -884,10 +991,30 @@ img, video, object {
 \*------------------------------------*/
 /**
  * .page-header........................HTML <header> Section
+ * .logo...............................Site-Logo
 **/
 /*------------------------------------*\
     <header>
 \*------------------------------------*/
+/*------------------------------------*\
+    LOGO
+\*------------------------------------*/
+.logo {
+  width: 64.58333%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  float: left;
+  display: block;
+}
+@media screen and (min-width: 60em) {
+  .logo {
+    width: 14.58333%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+  }
+}
+
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -947,9 +1074,11 @@ main {
   -o-transition: background-color 0.3s ease-out;
   -webkit-transition: background-color 0.3s ease-out;
   transition: background-color 0.3s ease-out;
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   cursor: pointer;
   display: block;
   /*font-family: $font-button;*/
@@ -971,20 +1100,20 @@ main {
 	$BTN
 \*------------------------------------*/
 .btn {
-  background-color: #999999;
-  color: #666666;
+  background-color: #999;
+  color: #666;
 }
 .btn:active, .btn:hover {
-  background-color: #dddddd;
-  color: #aaaaaa;
+  background-color: #ddd;
+  color: #aaa;
 }
 
 /*------------------------------------*\
 	$BTN-DISABLED
 \*------------------------------------*/
 .btn-disabled {
-  background-color: #666666;
-  color: #333333;
+  background-color: #666;
+  color: #333;
   cursor: default;
   pointer-events: none;
 }
@@ -993,12 +1122,12 @@ main {
 	$CTA
 \*------------------------------------*/
 .cta {
-  background-color: black;
-  color: white;
+  background-color: #000;
+  color: #fff;
 }
 .cta:active, .cta:hover {
-  background-color: #666666;
-  color: white;
+  background-color: #666;
+  color: #fff;
 }
 
 /*------------------------------------*\
@@ -1008,8 +1137,12 @@ main {
     $LISTS
 \*------------------------------------*/
 /**
+ * GENERIC.............................Variables/Placeholder
  * BULLET-LIST.........................List w/Bullets
 **/
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
 /*------------------------------------*\
     $BULLET-LIST
 \*------------------------------------*/
@@ -1021,18 +1154,6 @@ main {
   margin-bottom: 0.375rem;
 }
 
-/*------------------------------------*\
-    
-\*------------------------------------*/
-/*------------------------------------*\
-    $TEXT
-\*------------------------------------*/
-/**
- * TEXT-BLOCK..........................Section mit textlichem Inhalt
-**/
-/*------------------------------------*\
-    $TEXT-BLOCK
-\*------------------------------------*/
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -1067,33 +1188,35 @@ main {
  *
 **/
 .accordion {
-  background-color: #dddddd;
-  color: #aaaaaa;
+  background-color: #ddd;
+  color: #aaa;
 }
 .accordion .acc-group {
   /**/
 }
 .accordion .acc-handle {
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
-  background-color: #999999;
-  color: white;
+  user-select: none;
+  background-color: #999;
+  color: #fff;
   display: block;
   font-family: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
   margin-bottom: 3px;
   position: relative;
 }
 .accordion .acc-handle:hover {
-  background-color: #dddddd;
-  color: white;
+  background-color: #ddd;
+  color: #fff;
 }
 .accordion .acc-item {
   /**/
 }
 .accordion .show > .acc-handle {
-  background-color: #dddddd;
-  color: white;
+  background-color: #ddd;
+  color: #fff;
 }
 
 /*------------------------------------*\
@@ -1110,7 +1233,7 @@ main {
  *
 **/
 /**
- * Navigation mit Menu-Button für mobile Darstellung
+ * Navigation mit Menu-Button f├╝r mobile Darstellung
  *
 	<nav class="nav" id="nav" role="navigation">
 		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
@@ -1140,15 +1263,19 @@ main {
 }
 
 .flyout .flyout-group-title, .flyout .flyout-link {
-  color: black;
+  color: #000;
 }
 
 /*------------------------------------*\
     $NAV
 \*------------------------------------*/
+.page-header .nav {
+  clear: none;
+}
+
 .nav .nav-items {
   *zoom: 1;
-  background-color: white;
+  background-color: #fff;
   clear: both;
 }
 .nav .nav-items:after, .nav .nav-items:before {
@@ -1169,8 +1296,8 @@ main {
   -o-transition: background-color 150ms linear;
   -webkit-transition: background-color 150ms linear;
   transition: background-color 150ms linear;
-  background-color: white;
-  border-bottom: 1px solid #dddddd;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }
 @media screen and (min-width: 60em) {
   .nav .nav-item {
@@ -1189,11 +1316,12 @@ main {
     padding: 0.375rem 1.04167%;
   }
 }
+
 .nav .nav-item:hover {
-  background-color: #dddddd;
+  background-color: #ddd;
 }
 .nav .nav-item:hover .nav-link {
-  color: black;
+  color: #000;
 }
 @media screen and (min-width: 60em) {
   .nav .nav-item:hover .flyout {
@@ -1203,15 +1331,15 @@ main {
   }
 }
 .nav .nav-link {
-  color: black;
+  color: #000;
 }
 
 /*------------------------------------*\
     $MENU
 \*------------------------------------*/
 .menu-btn, .menu-close-btn, .show-menu .menu-btn {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
   display: block;
   float: right;
   height: 2.5rem;
@@ -1227,9 +1355,9 @@ main {
   }
 }
 .menu-btn:after, .menu-close-btn:after, .show-menu .menu-btn:after {
-  -webkit-box-shadow: 0 0 0 2px black, 0 8px 0 2px black, 0 16px 0 2px black;
-  -moz-box-shadow: 0 0 0 2px black, 0 8px 0 2px black, 0 16px 0 2px black;
-  box-shadow: 0 0 0 2px black, 0 8px 0 2px black, 0 16px 0 2px black;
+  -moz-box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
+  -webkit-box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
+  box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
   content: "";
   display: block;
   position: absolute;
@@ -1246,8 +1374,18 @@ main {
   top: 30%;
 }
 .menu-btn:hover, .menu-close-btn:hover {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
+}
+
+.menu-close-btn:after, .show-menu .menu-btn:after, .show-menu .menu-close-btn:after {
+  border: 1px solid;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  content: "\274c";
+  font-size: 16px;
+  height: auto;
 }
 
 @media screen and (max-width: 60em) {
@@ -1293,7 +1431,7 @@ main {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   position: absolute;
-  background-color: #dddddd;
+  background-color: #ddd;
   clear: left;
   position: initial;
   width: 100%;
@@ -1314,12 +1452,12 @@ main {
   height: 0;
   opacity: 0;
   visibility: hidden;
-  background-color: #dddddd;
+  background-color: #ddd;
   z-index: 2;
 }
 @media screen and (min-width: 60em) {
   .flyout {
-    padding: 0.75rem 0;
+    padding: 1.5rem 0;
   }
 }
 .flyout .flyout-groups {
@@ -1350,12 +1488,12 @@ main {
     -o-transition: background-color 150ms linear;
     -webkit-transition: background-color 150ms linear;
     transition: background-color 150ms linear;
-    background-color: #999999;
-    color: #666666;
+    background-color: #999;
+    color: #666;
   }
   .flyout .flyout-group-title:hover {
-    background-color: #666666;
-    color: #333333;
+    background-color: #666;
+    color: #333;
   }
 }
 .flyout .flyout-items > .flyout-item {
@@ -1475,12 +1613,14 @@ main {
   cursor: pointer;
 }
 .owl-carousel .owl-controls {
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   height: 50px;
   position: relative;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .owl-carousel .owl-controls .owl-buttons {
   position: absolute;
@@ -1695,302 +1835,257 @@ main {
     opacity: 1;
   }
 }
-
 @-moz-keyframes empty {
   0% {
     opacity: 1;
   }
 }
-
 @keyframes empty {
   0% {
     opacity: 1;
   }
 }
-
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
 }
-
 @-moz-keyframes fadeIn {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
 }
-
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
 }
-
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
 }
-
 @-moz-keyframes fadeOut {
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
 }
-
 @keyframes fadeOut {
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
 }
-
 @-webkit-keyframes backSlideOut {
   25% {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
-
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
   }
-
   100% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
   }
 }
-
 @-moz-keyframes backSlideOut {
   25% {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
-
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
   }
-
   100% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
   }
 }
-
 @keyframes backSlideOut {
   25% {
     opacity: .5;
     transform: translateZ(-500px);
   }
-
   75% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
   }
-
   100% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
   }
 }
-
 @-webkit-keyframes backSlideIn {
   0%, 25% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(200%);
   }
-
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
-
   100% {
     opacity: 1;
     -webkit-transform: translateZ(0) translateX(0);
   }
 }
-
 @-moz-keyframes backSlideIn {
   0%, 25% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(200%);
   }
-
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
-
   100% {
     opacity: 1;
     -moz-transform: translateZ(0) translateX(0);
   }
 }
-
 @keyframes backSlideIn {
   0%, 25% {
     opacity: .5;
     transform: translateZ(-500px) translateX(200%);
   }
-
   75% {
     opacity: .5;
     transform: translateZ(-500px);
   }
-
   100% {
     opacity: 1;
     transform: translateZ(0) translateX(0);
   }
 }
-
 @-webkit-keyframes scaleToFade {
   to {
     opacity: 0;
     -webkit-transform: scale(0.8);
   }
 }
-
 @-moz-keyframes scaleToFade {
   to {
     opacity: 0;
     -moz-transform: scale(0.8);
   }
 }
-
 @keyframes scaleToFade {
   to {
     opacity: 0;
     transform: scale(0.8);
   }
 }
-
 @-webkit-keyframes goDown {
   from {
     -webkit-transform: translateY(-100%);
   }
 }
-
 @-moz-keyframes goDown {
   from {
     -moz-transform: translateY(-100%);
   }
 }
-
 @keyframes goDown {
   from {
     transform: translateY(-100%);
   }
 }
-
 @-webkit-keyframes scaleUpFrom {
   from {
     opacity: 0;
     -webkit-transform: scale(1.5);
   }
 }
-
 @-moz-keyframes scaleUpFrom {
   from {
     opacity: 0;
     -moz-transform: scale(1.5);
   }
 }
-
 @keyframes scaleUpFrom {
   from {
     opacity: 0;
     transform: scale(1.5);
   }
 }
-
 @-webkit-keyframes scaleUpTo {
   to {
     opacity: 0;
     -webkit-transform: scale(1.5);
   }
 }
-
 @-moz-keyframes scaleUpTo {
   to {
     opacity: 0;
     -moz-transform: scale(1.5);
   }
 }
-
 @keyframes scaleUpTo {
   to {
     opacity: 0;
     transform: scale(1.5);
   }
 }
-
 /*------------------------------------*\
     $OWL_CUSTOM
 \*------------------------------------*/
 .owl-carousel .stage-teaser .st-content,
 .owl-carousel .stage-teaser .st-header {
-  -webkit-transition-delay: 0.3s;
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
+  -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
-  -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  -webkit-transition-property: left, opacity;
   -moz-transition-property: left, opacity;
   -o-transition-property: left, opacity;
+  -webkit-transition-property: left, opacity;
   transition-property: left, opacity;
-  -webkit-transition-timing-function: cubic-bezier;
   -moz-transition-timing-function: cubic-bezier;
   -o-transition-timing-function: cubic-bezier;
+  -webkit-transition-timing-function: cubic-bezier;
   transition-timing-function: cubic-bezier;
   left: -100%;
   opacity: 0;
 }
 .owl-carousel .stage-teaser .st-img:before {
-  -webkit-transition-delay: 0.2s;
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
-  -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  -webkit-transition-property: right, opacity;
   -moz-transition-property: right, opacity;
   -o-transition-property: right, opacity;
+  -webkit-transition-property: right, opacity;
   transition-property: right, opacity;
-  -webkit-transition-timing-function: cubic-bezier;
   -moz-transition-timing-function: cubic-bezier;
   -o-transition-timing-function: cubic-bezier;
+  -webkit-transition-timing-function: cubic-bezier;
   transition-timing-function: cubic-bezier;
   opacity: 0;
   right: 100%;
@@ -2006,9 +2101,9 @@ main {
 }
 .owl-carousel .stage-teaser.leaving .st-content,
 .owl-carousel .stage-teaser.leaving .st-header {
-  -webkit-transition-delay: 0;
   -moz-transition-delay: 0;
   -o-transition-delay: 0;
+  -webkit-transition-delay: 0;
   transition-delay: 0;
   left: -100%;
   opacity: 0;
@@ -2045,9 +2140,9 @@ main {
  * "stage-teaser-head" ist die Headline.
  * "stage-teaser-content" umfasst den restlichen Inhalt.
  *
- * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
- * $stage-teaser-img-height:	195px;	// img-Höhe-S
- * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
+ * Die img-H├Âhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-H├Âhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-H├Âhe-M
  *
 	<div class="stage-teaser">
     </div>
@@ -2092,7 +2187,7 @@ main {
 @media screen and (min-width: 48em) {
   .stage-teaser .st-footer {
     position: absolute;
-    bottom: 0.75rem;
+    bottom: 1.5rem;
     left: 0;
   }
 }
@@ -2155,9 +2250,9 @@ main {
 	$GENERIC
 \*------------------------------------*/
 .tabs .tab:hover, .tabs .tab-control:checked + .tab {
-  margin-bottom: -0.375rem;
-  padding-bottom: 0.75rem;
-  top: -0.375rem;
+  margin-bottom: -0.75rem;
+  padding-bottom: 1.5rem;
+  top: -0.75rem;
 }
 
 .tab-control:nth-of-type(1):checked ~ .tab-content:nth-of-type(1), .tab-control:nth-of-type(2):checked ~ .tab-content:nth-of-type(2), .tab-control:nth-of-type(3):checked ~ .tab-content:nth-of-type(3), .tab-control:nth-of-type(4):checked ~ .tab-content:nth-of-type(4), .tab-control:nth-of-type(5):checked ~ .tab-content:nth-of-type(5) {
@@ -2168,16 +2263,16 @@ main {
 	$TABS
 \*------------------------------------*/
 .tabs {
-  background-color: #666666;
-  padding-top: 0.75rem;
+  background-color: #666;
+  padding-top: 1.5rem;
 }
 .tabs .tab {
-  -webkit-transition: top 0.3s ease-out;
   -moz-transition: top 0.3s ease-out;
   -o-transition: top 0.3s ease-out;
+  -webkit-transition: top 0.3s ease-out;
   transition: top 0.3s ease-out;
-  background-color: #999999;
-  color: white;
+  background-color: #999;
+  color: #fff;
   position: relative;
   text-align: center;
   top: 0;
@@ -2223,24 +2318,24 @@ main {
   margin-right: 0;
 }
 .tabs .tab:hover {
-  background-color: #dddddd;
-  color: black;
+  background-color: #ddd;
+  color: #000;
 }
 .tabs .tab:first-of-type {
   margin-left: 1.04167% !important;
 }
 .tabs .tab-content {
-  background-color: #dddddd;
+  background-color: #ddd;
   clear: both;
-  color: black;
+  color: #000;
   display: none;
 }
 .tabs .tab-control {
   display: none;
 }
 .tabs .tab-control:checked + .tab {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
 }
 
 /*------------------------------------*\
@@ -2287,6 +2382,7 @@ main {
     padding: 0.375rem 1.04167%;
   }
 }
+
 @media screen and (min-width: 60em) {
   .teaser {
     /**/
@@ -2294,6 +2390,39 @@ main {
 }
 .teaser .t-head {
   /**/
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $TEXT-BLOCK
+\*------------------------------------*/
+@media screen and (min-width: 48em) {
+  .text-block {
+    padding: 0.375rem 4.04167%;
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    float: left;
+    clear: none;
+  }
+}
+@media screen and (min-width: 48em) and (min-width: 48em) {
+  .text-block {
+    padding: 0.375rem 2.04167%;
+  }
+}
+@media screen and (min-width: 48em) and (min-width: 60em) {
+  .text-block {
+    padding: 0.375rem 1.04167%;
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .text-block {
+    /**/
+  }
 }
 
 /*------------------------------------*\
@@ -2312,7 +2441,7 @@ main {
 		</div>
 	</div>
  *
- * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
+ * Die Togglebox wird mit einem umschlie├ƒenden <div class="togglebox"> eingeleitet.
  * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
  *
  * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
@@ -2321,12 +2450,12 @@ main {
  * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
  *
  * <div class="tb-content">
- * Alles was zum Content der Togglebox gehört wird hier eingefügt.
+ * Alles was zum Content der Togglebox geh├Ârt wird hier eingef├╝gt.
  *
 **/
 .togglebox .tb-subject {
-  background-color: #dddddd;
-  color: black;
+  background-color: #ddd;
+  color: #000;
 }
 .togglebox .tb-subject:after {
   content: "";
@@ -2351,7 +2480,7 @@ main {
   transition: transform 0.3s ease;
 }
 .togglebox .tb-content {
-  background-color: white;
+  background-color: #fff;
 }
 .togglebox.show > .tb-subject:after {
   -moz-transform: rotate(90deg);
