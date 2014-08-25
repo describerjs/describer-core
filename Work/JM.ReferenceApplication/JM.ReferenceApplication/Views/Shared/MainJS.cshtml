@@ -74,7 +74,7 @@ window.mainjs_features = [];
 	<text>window.mainjs_features.push("@PerformanceFeature.TouchSupport")</text>
 }
 
-@if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || Html.IsDebug())
+@if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
 {
 	@Html.Partial("_requireConfig")
 }
@@ -194,7 +194,7 @@ require(['jquery', '_config'], function($, _config){
 
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
 
-			@if (Html.FeatureEnabled(PerformanceFeature.PerformanceA) &&  !Html.IsDebug())
+			@if (Html.FeatureEnabled(PerformanceFeature.PerformanceA) && HttpContext.Current.IsDebuggingEnabled)
 			{
 				<text>execDomReadyObject();</text>
 			}
