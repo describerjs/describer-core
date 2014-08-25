@@ -1,0 +1,5 @@
+@IF EXIST "%~dp0\/bin/osascript.exe" (
+  "%~dp0\/bin/osascript.exe"  "%~dp0\..\imageoptim-cli\bin\imageOptimAppleScriptLib" %*
+) ELSE (
+  /bin/osascript  "%~dp0\..\imageoptim-cli\bin\imageOptimAppleScriptLib" %*
+)
