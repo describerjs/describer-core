@@ -327,7 +327,7 @@ module.exports = function(grunt){
 		});
 	});*/
 
-	grunt.registerTask('task_imageoptim', function(){
+	/*grunt.registerTask('task_imageoptim', function(){
 		grunt.initConfig({
 			imageoptim: {
 			  	options: {
@@ -349,7 +349,7 @@ module.exports = function(grunt){
 			  	}	
 			}
 		});
-	});
+	});*/
 
 
 	grunt.registerTask('task_webp_jpg', function(){
@@ -452,7 +452,7 @@ module.exports = function(grunt){
 
 
 	//grunt.registerTask('default_imageoptimcopy', ['task_imageoptimcopy', 'copy' ]);
-	grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
+	//grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
 	
 
 	//grunt.registerTask('default_img_optim', ['default_imageoptimcopy', 'default_imageoptim' ]);
@@ -469,5 +469,5 @@ module.exports = function(grunt){
 
 	//// ******************* mac Task for Image-Optim ***********************
 
-	grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
+	//grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
 };
