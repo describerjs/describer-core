@@ -717,7 +717,6 @@
     <Content Include="node_modules\grunt-contrib-jshint\node_modules\jshint\src\vars.js" />
     <Content Include="node_modules\grunt-contrib-jshint\tasks\jshint.js" />
     <Content Include="node_modules\grunt-contrib-jshint\tasks\lib\jshint.js" />
-    <Content Include="node_modules\grunt-contrib-nodeunit\tasks\nodeunit.js" />
     <Content Include="node_modules\grunt-contrib-uglify\node_modules\chalk\index.js" />
     <Content Include="node_modules\grunt-contrib-uglify\node_modules\chalk\node_modules\ansi-styles\index.js" />
     <Content Include="node_modules\grunt-contrib-uglify\node_modules\chalk\node_modules\escape-string-regexp\index.js" />
@@ -3659,9 +3658,6 @@
     <Content Include="node_modules\webp-bin\vendor\linux\cwebp" />
     <Content Include="node_modules\webp-bin\vendor\osx\cwebp" />
     <Content Include="Views\Shared\_BasisJS.cshtml" />
-    <Content Include="node_modules\grunt-contrib-nodeunit\LICENSE-MIT" />
-    <Content Include="node_modules\grunt-contrib-nodeunit\package.json" />
-    <Content Include="node_modules\grunt-contrib-nodeunit\README.md" />
     <Content Include="node_modules\hooker\LICENSE-MIT" />
     <Content Include="node_modules\hooker\package.json" />
     <Content Include="node_modules\hooker\README.md" />
