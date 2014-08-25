@@ -31,6 +31,11 @@
 
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || Html.IsDebug())
     {
+    <script>
+        window.UseLocalStorage = false;
+        window.loadUnminifyVersion = true;
+        window.IsDevServer = true;
+    </script>
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>

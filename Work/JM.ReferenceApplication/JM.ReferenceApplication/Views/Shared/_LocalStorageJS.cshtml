@@ -1,33 +1,22 @@
-﻿@if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || Html.IsDebug())
-{
-<script>
-    window.UseLocalStorage = false;
-    window.loadUnminifyVersion = true;
-    window.IsDevServer = true;
-</script>
-}
-else
-{
-<script>
+﻿<script>
     window.IsDevServer = false;
-    var checkDebugging = function(){
-        try{
-            if(localStorage.getItem('debugging') !== null){
+    var checkDebugging = function () {
+        try {
+            if (localStorage.getItem('debugging') !== null) {
                 window.UseLocalStorage = false;
                 window.loadUnminifyVersion = true;
-            }else{
+            } else {
                 window.UseLocalStorage = true;
                 window.loadUnminifyVersion = false;
             }
-        }catch(e){
+        } catch (e) {
             window.UseLocalStorage = true;
             window.loadUnminifyVersion = false;
         }
     };
     checkDebugging();
-</script>
-}
-<script>
+
+
     if (window.UseLocalStorage && window.loadUnminifyVersion) {
         console.warn('-------------!!!!!-----localStorage wird nicht gelöscht!------!!!!!-----');
     }
