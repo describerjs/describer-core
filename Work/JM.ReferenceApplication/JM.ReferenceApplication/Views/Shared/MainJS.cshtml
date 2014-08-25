@@ -193,7 +193,12 @@ require(['jquery', '_config'], function($, _config){
 			//FastClick.attach(document.body);
 
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
-			execDomReadyObject();
+
+			@if (Html.FeatureEnabled(PerformanceFeature.PerformanceA) &&  !Html.IsDebug())
+			{
+				<text>execDomReadyObject();</text>
+			}
+
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
 			picturefill();
