@@ -29,7 +29,7 @@
 
     @Html.Partial("_localStorageJS")
 
-    @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || Html.IsDebug())
+    @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
