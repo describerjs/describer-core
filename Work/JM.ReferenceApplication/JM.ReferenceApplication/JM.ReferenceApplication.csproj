@@ -3258,6 +3258,7 @@
     <Content Include="node_modules\webp-bin\readme.md" />
     <Content Include="node_modules\webp-bin\vendor\linux\cwebp" />
     <Content Include="node_modules\webp-bin\vendor\osx\cwebp" />
+    <Content Include="Views\Shared\_BasisJS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Config\live\" />
