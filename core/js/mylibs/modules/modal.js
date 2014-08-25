@@ -1,3 +1,14 @@
+/*!
+ * modules.modal v0.9
+ *
+ * http://joinmedia.de/
+ *
+ * Copyright (c) 2014 join.media GmbH & Co. KG
+ *
+ * Created by aotten77 on 22.08.2014.
+ *
+ * Released under the MIT license
+ */
 define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 	'use strict';
 	var modal = $.extend({}, extendOjb, {

@@ -1,3 +1,14 @@
+/*!
+ * _super v0.9
+ *
+ * http://joinmedia.de/
+ *
+ * Copyright (c) 2014 join.media GmbH & Co. KG
+ *
+ * Created by aotten77 on 22.08.2014.
+ *
+ * Released under the MIT license
+ */
 define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function ($, _config) {
     'use strict';
 	return {
@@ -72,25 +83,20 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
                 }else{
 	                // gibt die value zurück, die für den key hinterlegt ist. Ist der Key nicht definiert wird ein lehrstring zurückgegeben.
 	                _return = ($.type(this.configObj[p_dataAttr]) !== 'undefined') ? this.configObj[p_dataAttr] : '';
-                    // wenn eine condition hinterlegt ist wird diese in den javascirpt-Kontext überführt andernfalls wird true zurückgegeben.
-	                if(p_dataAttr === 'condition'){
-	                    _return = (_return !== '') ? eval(_return) : true;
-                    }
-	                if((p_dataAttr === 'relatedTo') && (_return !== '')){
-		                _return = (this.configObj['relatedTo'].indexOf('this.') !== -1) ? eval(_return) : _return;
-	                }
-	                if((p_dataAttr === 'scrollTo') && (_return !== '')){
-		                _return = (this.configObj['scrollTo'].indexOf('this.') !== -1) ? eval(_return) : _return;
-	                }
-	                if((p_dataAttr === 'data') && (_return !== '')){
-		                _return = (this.configObj['data'].indexOf('this.') !== -1) ? eval(_return) : _return;
-	                }
-	                if((p_dataAttr === 'additionalloadertarget') && (_return !== '')){
-		                _return = (this.configObj['additionalloadertarget'].indexOf('this.') !== -1) ? eval(_return) : _return;
+	                switch(p_dataAttr){
+		                case p_dataAttr === 'condition':
+			                // wenn eine condition hinterlegt ist wird diese in den javascirpt-Kontext überführt andernfalls wird true zurückgegeben.
+			                _return = (_return !== '') ? eval(_return) : true;
+		                case p_dataAttr === 'relatedTo':
+		                case p_dataAttr === 'scrollTo':
+		                case p_dataAttr === 'data':
+		                case p_dataAttr === 'additionalloadertarget':
+			                return (this.configObj[p_dataAttr].indexOf('this.') !== -1) ? eval(_return) : _return;
+		                default:
+
 	                }
                 }
             }
-
 	        return _return;
         },
 
