@@ -27,10 +27,15 @@
     <meta name="msapplication-TileColor" content="#222222" />
 	
 
-    @Html.Partial("_localStorageJS")
+    @Html.Partial("_basisJS")
 
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
+    <script>
+        window.UseLocalStorage = false;
+        window.loadUnminifyVersion = true;
+        window.IsDevServer = true;
+    </script>
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>
@@ -42,6 +47,7 @@
     }
     else
     {
+    @Html.Partial("_localStorageJS")
     <script>
         if (window.loadUnminifyVersion) {
             addJSToDOM('/js/externals/customized/modernizr.custom.js');
@@ -49,13 +55,13 @@
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
             //addCSSToDOM('/css/ayyildiz.css');
-            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-asdfaassdfsdf');
+            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-asdfaassdfsdf.js');
         } else {
             addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
             addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
             addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
             addCSSToDOM('/css/build/style.0d508e.css');
-            addJSToDOM('/js/build/externals/customized/require.2.1.11.17e342.js', 'data-main', '/Content/MainJS/require-main-asdfaassdfsdf');
+            addJSToDOM('/js/build/externals/customized/require.2.1.11.17e342.js', 'data-main', '/Content/MainJS/require-main-asdfaassdfsdf.js');
         }
     </script>
 
