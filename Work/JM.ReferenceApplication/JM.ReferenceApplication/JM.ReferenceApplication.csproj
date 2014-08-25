@@ -1380,13 +1380,6 @@
     <Content Include="node_modules\grunt\node_modules\underscore.string\test\test_underscore\vendor\qunit.js" />
     <Content Include="node_modules\grunt\node_modules\underscore.string\test\underscore.js" />
     <Content Include="node_modules\grunt\node_modules\which\which.js" />
-    <Content Include="node_modules\hooker\child.js" />
-    <Content Include="node_modules\hooker\dist\ba-hooker.js" />
-    <Content Include="node_modules\hooker\dist\ba-hooker.min.js" />
-    <Content Include="node_modules\hooker\grunt.js" />
-    <Content Include="node_modules\hooker\lib\hooker.js" />
-    <Content Include="node_modules\hooker\parent.js" />
-    <Content Include="node_modules\hooker\test\hooker_test.js" />
     <Content Include="node_modules\imageoptim-cli\Icon.png" />
     <Content Include="node_modules\nodeunit\deps\async.js" />
     <Content Include="node_modules\nodeunit\deps\console.log.js" />
@@ -3385,9 +3378,6 @@
     <Content Include="node_modules\webp-bin\vendor\linux\cwebp" />
     <Content Include="node_modules\webp-bin\vendor\osx\cwebp" />
     <Content Include="Views\Shared\_BasisJS.cshtml" />
-    <Content Include="node_modules\hooker\LICENSE-MIT" />
-    <Content Include="node_modules\hooker\package.json" />
-    <Content Include="node_modules\hooker\README.md" />
     <Content Include="node_modules\imageoptim-cli\.npmignore" />
     <Content Include="node_modules\imageoptim-cli\CHANGELOG.md" />
     <Content Include="node_modules\imageoptim-cli\CONTRIBUTING.md" />
