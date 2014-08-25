@@ -66,7 +66,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-text-replace');
-	grunt.loadNpmTasks('grunt-imageoptim');
+	/*grunt.loadNpmTasks('grunt-imageoptim');*/
 	grunt.loadNpmTasks('grunt-webp');
 	/*	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-watch');*/
