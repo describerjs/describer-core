@@ -32,6 +32,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local Build Scripts", "Loca
 		BuildRelease.bat = BuildRelease.bat
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Environments", "Environments", "{2674DE16-3C4B-45EB-A753-73A2585C6448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ansicht", "Ansicht", "{C19500A5-229A-46F0-85AF-55E79F8DEAA2}"
+	ProjectSection(SolutionItems) = preProject
+		Environments\Ansicht\Web.Ansicht.config = Environments\Ansicht\Web.Ansicht.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dev", "Dev", "{967FC991-39C3-4B13-A34D-1A622B42E1DC}"
+	ProjectSection(SolutionItems) = preProject
+		Environments\Dev\Web.Dev.config = Environments\Dev\Web.Dev.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,5 +73,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C1C31E75-FCC8-448E-A1C1-722C837B3340} = {78CF8610-4D84-4ACF-AC21-560376FAD538}
 		{0C7EDCB1-7A98-4123-A77C-8010D19FFE3D} = {78CF8610-4D84-4ACF-AC21-560376FAD538}
+		{2674DE16-3C4B-45EB-A753-73A2585C6448} = {78CF8610-4D84-4ACF-AC21-560376FAD538}
+		{C19500A5-229A-46F0-85AF-55E79F8DEAA2} = {2674DE16-3C4B-45EB-A753-73A2585C6448}
+		{967FC991-39C3-4B13-A34D-1A622B42E1DC} = {2674DE16-3C4B-45EB-A753-73A2585C6448}
 	EndGlobalSection
 EndGlobal
