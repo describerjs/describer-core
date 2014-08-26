@@ -6,13 +6,13 @@
 	@extend %element-default;
 	@extend %element-inner-default;
 
-	@media screen and (min-width: $bp-med) {
+	@include bp-m {
 		@include element-inner-default;
 		@include column(6);
 		clear: none;
 	}
 
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		/**/
 	}
 }

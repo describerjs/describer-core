@@ -135,17 +135,6 @@ $theme-color-lambda:	#000;
 /*------------------------------------*\
 	$CLEARFIX
 \*------------------------------------*/
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:after, .clearfix:before {
-  content: "\0020";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-
 /*------------------------------------*\
 	$PSEUDO-ELEMENTS
 \*------------------------------------*/

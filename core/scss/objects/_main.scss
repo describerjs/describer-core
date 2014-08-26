@@ -3,7 +3,8 @@
 \*------------------------------------*/
 
 /**
- * main................................HTML <main> Section
+ * MAIN................................HTML <main> Section
+ * SECTION.............................Content-Container/Column-Wrapper
 **/
 
 
@@ -11,12 +12,25 @@
 
 
 /*------------------------------------*\
-    <main>
+    $MAIN
 \*------------------------------------*/
 
 main {
 	@extend %page-element-default;
 	overflow: hidden;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SECTION
+\*------------------------------------*/
+
+.section {
+	@include clearfix;
+	clear: both;
 }
 
 

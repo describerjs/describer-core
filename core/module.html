@@ -248,10 +248,11 @@
 <body>
 <div class="page">
 	<header class="page-header" role="banner">
+        <a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=LOGO" alt="LOGO" /></a>
 		<!-- <form class="search" role="search" style="display:none">
 			<input type="search" name="search" />
 		</form> -->
-        <div data-jmname="show-html-comment-only-desktop" data-jmdominit="true" style="display:none">
+        <div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
             <!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
         </div>
 
@@ -261,7 +262,6 @@
                 <li class="nav-item menu-item">
                     <a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
                     <div class="flyout">
-                        <div class="menu-close-btn" data-jmname="menu-close"></div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
                             <ul class="flyout-items">
@@ -287,7 +287,6 @@
                 <li class="nav-item menu-item">
                     <a href="#/Item-2" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 2</a>
                     <div class="flyout">
-                        <div class="menu-close-btn" data-jmname="menu-close"></div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-1">Subitem 1</a></div>
                         </div>
@@ -302,7 +301,6 @@
                 <li class="nav-item menu-item">
                     <a href="#/Item-3" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 3</a>
                     <div class="flyout">
-                        <div class="menu-close-btn" data-jmname="menu-close">Menu</div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-1">Subitem 1</a></div>
                         </div>
@@ -341,14 +339,16 @@
 
         <hr />
 
-        <section class="text-block">
-            <h2>module.html</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        </section>
-        <section class="text-block">
-            <h3>module.html</h3>
-            <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        </section>
+        <div class="section">
+            <section class="text-block">
+                <h2>module.html</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </section>
+            <section class="text-block">
+                <h6>module.html</h6>
+                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </section>
+        </div>
 
         <hr />
 
@@ -372,38 +372,40 @@
 
         <hr />
 
-		<a class="teaser" href="$teaser-link$">
-			<!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "teaser/teaser", Width = 400, Height = 119, WidthTablet = 320, HeightTablet = 119, WidthMobile = 800, HeightMobile = 119, Alt="", Attributes = new {}}) -->
-			<header class="t-header">
-				<h3 class="t-head">$teaser-head$</h3>
-			</header>
-			<div class="t-content">
-				<ul class="bullet-list">
-					<li class="list-item">$list-item$</li>
-					<li class="list-item">$list-item$</li>
-					<li class="list-item">$list-item$</li>
-				</ul>
-			</div>
-			<footer class="t-footer">
-				<span class="btn">$btn$</span>
-			</footer>
-        </a>
-        <a class="teaser" href="$teaser-link$">
-			<!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "teaser/teaser", Width = 400, Height = 119, WidthTablet = 320, HeightTablet = 119, WidthMobile = 800, HeightMobile = 119, Alt="", Attributes = new {}}) -->
-			<header class="t-header">
-				<h3 class="t-head">$teaser-head$</h3>
-			</header>
-			<div class="t-content">
-				<ul class="bullet-list">
-					<li class="list-item">$list-item$</li>
-					<li class="list-item">$list-item$</li>
-					<li class="list-item">$list-item$</li>
-				</ul>
-			</div>
-			<footer class="t-footer">
-				<span class="btn">$btn$</span>
-			</footer>
-        </a>
+		<div class="section">
+            <a class="teaser" href="$teaser-link$">
+    			<!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "teaser/teaser", Width = 400, Height = 119, WidthTablet = 320, HeightTablet = 119, WidthMobile = 800, HeightMobile = 119, Alt="", Attributes = new {}}) -->
+    			<header class="t-header">
+    				<h3 class="t-head">$teaser-head$</h3>
+    			</header>
+    			<div class="t-content">
+    				<ul class="bullet-list">
+    					<li class="list-item">$list-item$</li>
+    					<li class="list-item">$list-item$</li>
+    					<li class="list-item">$list-item$</li>
+    				</ul>
+    			</div>
+    			<footer class="t-footer">
+    				<span class="btn">$btn$</span>
+    			</footer>
+            </a>
+            <a class="teaser" href="$teaser-link$">
+    			<!-- @Html.Partial("_PictureFill", new PictureFillModel{ ImageName = "teaser/teaser", Width = 400, Height = 119, WidthTablet = 320, HeightTablet = 119, WidthMobile = 800, HeightMobile = 119, Alt="", Attributes = new {}}) -->
+    			<header class="t-header">
+    				<h3 class="t-head">$teaser-head$</h3>
+    			</header>
+    			<div class="t-content">
+    				<ul class="bullet-list">
+    					<li class="list-item">$list-item$</li>
+    					<li class="list-item">$list-item$</li>
+    					<li class="list-item">$list-item$</li>
+    				</ul>
+    			</div>
+    			<footer class="t-footer">
+    				<span class="btn">$btn$</span>
+    			</footer>
+            </a>
+        </div>
 
         <hr />
 
@@ -502,31 +504,49 @@
         <div class="accordion">
             <ul class="acc-group">
                 <li class="acc-item">
-                    <a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
+                    <a class="acc-handle" data-jmname="accordionbox" href="#">$accordion-item$</a>
                     <div class="acc-panel">
                         <p>$accordion-content$</p>
                     </div>
                 </li>
                 <li class="acc-item">
-                    <a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
+                    <a class="acc-handle" data-jmname="accordionbox" href="#">$accordion-item$</a>
                     <div class="acc-panel">
                         <p>$accordion-content$</p>
                     </div>
                 </li>
                 <li class="acc-item">
-                    <a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
+                    <a class="acc-handle" data-jmname="accordionbox" href="#">$accordion-item$</a>
                     <div class="acc-panel">
                         <p>$accordion-content$</p>
                     </div>
                 </li>
             </ul>
         </div>
-
-        <hr />
-
 	</main>
 	<footer class="page-footer" role="contentinfo">
-		<p class="copyright">&copy;</p>
+        <section class="h-card">
+            <div class="hc-section">
+                <a class="u-url p-organization-name" href="/">Beispiel-AG</a>
+            </div>
+            <address class="hc-section">
+                <span class="p-street-address">Beispiel Str. 111a</span>
+                <span class="p-locality">11111 Beispiel-Location</span>
+                <span class="p-country-name">Beispielland</span>
+            </address>
+            <div class="hc-section">
+                <a class="p-tel" href="tel:+4921155572484">Fon: +49 2 11 55 57 24 84</a>
+                <span class="p-tel-fax">Fax: +49 2 11 55 57 24 84</span>
+            </div>
+            <div class="hc-section">
+                <a class="u-email" href="mailto:info@beispiel-ag.de">info@beispiel-ag.de</a>
+                <a class="u-url" href="http://www.beispiel-ag.de">www.beispiel-ag.de</a>
+            </div>
+        </section>
+        <div class="legal">
+            <a class="imprint" href="$impressum$">Impressum</a>
+            <p class="copyright">&copy; Copyright 2014</p>
+        </div>
 	</footer>
 </div>
 </body>

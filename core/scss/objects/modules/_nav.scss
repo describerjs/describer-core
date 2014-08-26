@@ -43,6 +43,12 @@
 
 @import "compass/css3/box-shadow";
 
+%nav-item {
+	@include bp-l {
+		@include element-default-padding;
+	}
+}
+
 // Die Links innerhalb "nav" & "flyout"
 %nav-link {
 	@extend %element-inner-default;
@@ -93,14 +99,29 @@
 
 	// Die einzelnen Elemente <li>
 	.nav-item {
+		@extend %nav-item;
 		@include transition(background-color 150ms linear);
 		background-color: $theme-nav-link-bg;
 		border-bottom: 1px solid $theme-nav-link-active-bg;
+		z-index: 1;
 
 		@include bp-l {
-			@include element-default-padding;
-			border: initial;
+			border-bottom: initial;
 			float: left;
+
+			&:before {
+				@include pseudo-element-default;
+				border-left: 1px solid $theme-nav-link-active-bg;
+				top: $space-half;
+				bottom: $space-half;
+				margin-left: -$dist;
+			}
+
+			&:first-child {
+				&:before {
+					border-left: initial;
+				}
+			}
 		}
 
 		&:hover {
@@ -108,12 +129,17 @@
 
 			.nav-link {
 				color: $theme-nav-link-active-fg;
-
 			}
 			
 			@include bp-l {
 				.flyout {
 					@include visibility(visible);
+				}
+
+				&+ .nav-item {
+					&:before {
+						border-left: initial;
+					}
 				}
 			}
 		}
@@ -137,7 +163,6 @@
 .menu-btn {
 	@include hide-on-desktop;
 	@include position($pad-half, $dist, '', '');
-	background-color: $theme-menu-btn-bg;
 	color: $theme-menu-btn-fg;
 	display: block;
 	height: 2.5rem;
@@ -286,19 +311,20 @@
 
 	// Die einzelnen Elemente <li>
 	.flyout-item {
+		@extend %nav-item;
+
 		@include bp-l {
 			@include transition(background-color 150ms linear);
+			padding: {
+				bottom: 0;
+				top: 0;
+			}
 		}
 	}
 
 	// Die eigentlichen Links
 	.flyout-link {
 		@extend %flyout-link;
-	}
-
-	// Hiermit kann die Flyout mobil wieder ausgeblendet werden
-	.menu-close-btn {
-		@include position(-2.5em, 0, '', '');
 	}
 
 	// Mobil wird bei "Klick" diese Klasse getoggled, damit auch hier die Anzeige funktioniert, weil sonst auf hover reagiert wird.

@@ -10,6 +10,7 @@
  * LAYOUT..............................Grid & Column Designs
  * STRUCTURE...........................Page-Structure
  * COMPONENTS/MODULES..................Build the Elements / Modules
+ * DEBUG...............................Debug Information
 **/
 
 
@@ -82,6 +83,16 @@
 @import "objects/modules/teaser";
 @import "objects/modules/text-block";
 @import "objects/modules/togglebox";
+
+
+
+
+
+/*------------------------------------*\
+    $DEBUG
+\*------------------------------------*/
+
+/*@import "generic/debug";*/
 
 
 

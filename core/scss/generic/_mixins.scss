@@ -60,10 +60,6 @@
 	}
 }
 
-.clearfix {
-	@include clearfix;
-}
-
 
 
 
@@ -456,6 +452,7 @@
 		right: 0 !important;
 	};
 	position: relative;
+	width: 100%;
 }
 
 // Unfolded Padding
@@ -494,6 +491,7 @@
 		right: $default-padding-l;
 	}
 }
+
 
 
 
