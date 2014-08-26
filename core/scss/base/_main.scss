@@ -63,6 +63,46 @@ body {
 		@include adjust-leading-to(2);
 		font-size: percentage(10 / 16);
 	}
+
+	// DEBUG BREAKPOINT INFO "variables" -> $bp-debug
+	@if $bp-debug == true {
+		&:before {
+			@include element-default-padding;
+			@include as-heading__medium;
+			@include position(0, 0, '', 0);
+			background-color: rgba(0,0,0, .75);
+			border-bottom: 1px solid $white;
+			color: $white;
+			content: "0";
+			position: fixed;
+			text-align: center;
+			z-index: 100000000000;
+
+			@include bp-xs {
+				content: "XS";
+			}
+
+			@include bp-s {
+				content: "S";
+			}
+
+			@include bp-m {
+				content: "M";
+			}
+
+			@include bp-l {
+				content: "L";
+			}
+
+			@include bp-xl {
+				content: "XL";
+			}
+
+			@include bp-xxl {
+				content: "XXL";
+			}
+		}
+	}
 }
 
 

@@ -52,7 +52,13 @@
 
 %flyout-link {
 	@extend %nav-link;
+	background-color: $theme-flyout-link-bg;
 	color: $theme-flyout-link-fg;
+
+	&:hover {
+		background-color: $theme-flyout-link-active-bg;
+		color: $theme-flyout-link-active-fg;
+	}
 }
 
 
@@ -63,15 +69,16 @@
     $NAV
 \*------------------------------------*/
 
-.page-header {
-	.nav {
-		clear: none;
-	}
-}
-
 // Die Navigation
 .nav {
-	@extend %element-default;
+	position: relative;
+
+	@include bp-l {
+		@include element-default;
+		background-color: $theme-nav-bg;
+		color: $theme-nav-fg;
+
+	}
 
 	// Der Container der einzelnen Elemente <ul>
 	.nav-items {
@@ -79,7 +86,7 @@
 		background-color: $theme-nav-items-bg;
 		clear: both;
 
-		@media screen and (min-width: $bp-large) {
+		@include bp-l {
 			background-color: inherit;
 		}
 	}
@@ -90,9 +97,9 @@
 		background-color: $theme-nav-link-bg;
 		border-bottom: 1px solid $theme-nav-link-active-bg;
 
-		@media screen and (min-width: $bp-large) {
-			border: initial;
+		@include bp-l {
 			@include element-default-padding;
+			border: initial;
 			float: left;
 		}
 
@@ -104,7 +111,7 @@
 
 			}
 			
-			@media screen and (min-width: $bp-large) {
+			@include bp-l {
 				.flyout {
 					@include visibility(visible);
 				}
@@ -118,6 +125,10 @@
 	}
 }
 
+
+
+
+
 /*------------------------------------*\
     $MENU
 \*------------------------------------*/
@@ -125,18 +136,17 @@
 // Der Menuknopf für die mobile Darstellung mit Aufklappfunktion.
 .menu-btn {
 	@include hide-on-desktop;
+	@include position($pad-half, $dist, '', '');
 	background-color: $theme-menu-btn-bg;
 	color: $theme-menu-btn-fg;
 	display: block;
-	float: right;
 	height: 2.5rem;
 	line-height: 2.4rem;
-	position: relative;
 	text-indent: -2.5rem;
 	width: 2.5rem;
 	z-index: 1;
 
-	&:after {
+	&:before {
 		@include box-shadow(0 0 0 2px $theme-menu-btn-fg, 0 8px 0 2px $theme-menu-btn-fg, 0 16px 0 2px $theme-menu-btn-fg);
 		@include pseudo-element-default;
 		@include centered(absolute);
@@ -144,29 +154,36 @@
 		width: 1rem;
 		top: 30%;
 	}
-
-	&:hover {
-		background-color: $theme-menu-btn-active-bg;
-		color: $theme-menu-btn-active-fg;
-	}
 }
 
 // Der aktive "menu-btn" wird erweitert, damit er als schließen Knopf kenntlich gemacht wird.
 .menu-close-btn {
 	@extend .menu-btn;
 
-	&:after {
-		border: 1px solid;
+	&:after,
+	&:before {
 		@include box-shadow(none);
-		content: "\274c";
-		font-size: $base-font-size;
-		height: auto;
+		@include pseudo-element-default;
+		background-color: $theme-menu-btn-fg;
+		height: 3px;
+		left: .5rem;
+		right: .5rem;
+		top: 45%;
+		width: 60%;
+	}
+
+	&:after {
+		@include transform(rotate(-45deg));
+	}
+
+	&:before {
+		@include transform(rotate(45deg));
 	}
 }
 
 // Diese Links sind eine Erweiterung von "nav-link" und werden mobil aus- und mittels Aufklappfunktion eingeblendet.
 .menu-item {
-	@media screen and (max-width: $bp-large) {
+	@media screen and (max-width: $bp-l) {
 		@include move(1000em);
 
 		// Innerhalb des eines "menu-item" werden die "nav-item" getoggled.
@@ -183,12 +200,12 @@
 		}
 	}
 	
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		float: left;
 	}
 
 	// Innerhalb des "menu-item" wird die "flyout" getoggled.
-	@media screen and (max-width: $bp-large) {
+	@media screen and (max-width: $bp-l) {
 		.flyout {
 			position: inherit;
 		}
@@ -216,6 +233,10 @@
 	}
 }
 
+
+
+
+
 /*------------------------------------*\
     $FLYOUT
 \*------------------------------------*/
@@ -228,7 +249,7 @@
 	background-color: $theme-flyout-bg;
 	z-index: 2;
 
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		padding: $default-spacing 0;
 	}
 
@@ -239,7 +260,7 @@
 
 	// Eine Gruppierung
 	.flyout-group {
-		@media screen and (min-width: $bp-large) {
+		@include bp-l {
 			@include column(4);
 		}
 
@@ -250,11 +271,11 @@
 
 	.flyout-group-title {
 		@extend %flyout-link;
+		background-color: $theme-flyout-group-bg;
+		color: $theme-flyout-group-fg;
 
-		@media screen and (min-width: $bp-large) {
+		@include bp-l {
 			@include transition(background-color 150ms linear);
-			background-color: $theme-flyout-group-bg;
-			color: $theme-flyout-group-fg;
 
 			&:hover {
 				background-color: $theme-flyout-group-active-bg;
@@ -263,24 +284,11 @@
 		}
 	}
 
-	// Der Container der einzelnen Elemente <ul>
-	.flyout-items {
-		&> .flyout-item {
-			/*padding-left: 1em;*/
-		}
-	}
-
 	// Die einzelnen Elemente <li>
 	.flyout-item {
-		@media screen and (min-width: $bp-large) {
+		@include bp-l {
 			@include transition(background-color 150ms linear);
 		}
-
-		/*&:hover {
-			@media screen and (min-width: $bp-large) {
-				background-color: $theme-flyout-link-active-bg;
-			}
-		}*/
 	}
 
 	// Die eigentlichen Links

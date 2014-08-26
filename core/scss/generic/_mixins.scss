@@ -8,6 +8,13 @@
  * .....pdeuso-element-default (provides default setup for most :after/:before pseudo elements)
  * .....pdeuso-element-stretch (fits pseudo-element to parent size)
  * ELEMENT-STRETCH.....................Stretch element to parent size
+ * BREAKPOINTS.........................Different Breakpoints
+ * .....bp-xs
+ * .....bp-s
+ * .....bp-m
+ * .....bp-l
+ * .....bp-xl
+ * .....bp-xxl
  * RWD.................................Hide/Show something on Mobile/Tablet/Desktop
  * .....hide-on-desktop
  * .....hide-on-tablet
@@ -100,29 +107,73 @@
 
 
 /*------------------------------------*\
+	$BREAKPOINTS
+\*------------------------------------*/
+
+@mixin bp-xs {
+	@media only screen and (min-width: $bp-xs) {
+		@content;
+	}
+}
+
+@mixin bp-s {
+	@media only screen and (min-width: $bp-s) {
+		@content;
+	}
+}
+
+@mixin bp-m {
+	@media only screen and (min-width: $bp-m) {
+		@content;
+	}
+}
+
+@mixin bp-l {
+	@media only screen and (min-width: $bp-l) {
+		@content;
+	}
+}
+
+@mixin bp-xl {
+	@media only screen and (min-width: $bp-xl) {
+		@content;
+	}
+}
+
+@mixin bp-xxl {
+	@media only screen and (min-width: $bp-xxl) {
+		@content;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
 	$RWD
 \*------------------------------------*/
 
 @mixin hide-on-desktop {
-	@media screen and (min-width: $bp-large) {
+	@media screen and (min-width: $bp-l) {
 		display: none;
 	}
 }
 
 @mixin hide-on-tablet {
-	@media screen and (max-width: $bp-large) {
+	@media screen and (max-width: $bp-l) {
 		display: none;
 	}
 }
 
 @mixin hide-on-mobile {
-	@media screen and (max-width: $bp-med) {
+	@media screen and (max-width: $bp-m) {
 		display: none;
 	}
 }
 
 @mixin show-on-mobile {
-	@media screen and (min-width: $bp-med) {
+	@media screen and (min-width: $bp-m) {
 		display: none;
 	}
 }
@@ -380,6 +431,15 @@
 // Default Padding Large
 @mixin element-default-padding-l {
 	padding: $space-quarter $default-padding-l;
+}
+
+
+// Elements Default
+@mixin element-default {
+	@include clearfix;
+	@include column(12);
+	@include element-default-spacing;
+	position: relative;
 }
 
 // Wrapped Elements Default

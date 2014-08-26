@@ -28,12 +28,26 @@
 \*------------------------------------*/
 
 .logo {
-	@extend %element-nested-default;
+	@extend %element-inner-default;
 	@include column(8);
 	display: block;
+	position: relative;
+	z-index: 1;
 
-	@media screen and (min-width: $bp-large) {
-		@include column(2);
+	@include bp-xs {
+		@include column(6);
+	}
+
+	@include bp-s {
+		@include column(5);
+	}
+
+	@include bp-m {
+		@include column(4);
+	}
+
+	@include bp-l {
+		@include column(3);
 	}
 }
 
