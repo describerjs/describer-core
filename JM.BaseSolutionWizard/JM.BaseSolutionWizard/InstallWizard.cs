@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TemplateWizard;
 using EnvDTE;
+using EnvDTE80;
 using System.IO;
 using WindowsFormsApplication1;
 using System.Linq;
@@ -10,36 +12,40 @@ namespace JM.BaseSolutionWizard
 {
     public class InstallWizard : IWizard
     {
-        public void BeforeOpeningFile(EnvDTE.ProjectItem projectItem)
+        private IEnumerable<string> _transformationFiles;
+        _DTE _dte;
+        private Dictionary<string, string> _replacementsDictionary;
+        private const string SOLUTIONNAME = "";
+        private const string SOLUTIONPATH = "";
+
+        public void BeforeOpeningFile(ProjectItem projectItem)
         {
             //throw new NotImplementedException();
         }
 
-        public void ProjectFinishedGenerating(EnvDTE.Project project)
+        public void ProjectFinishedGenerating(Project project)
         {
             //throw new NotImplementedException();
         }
 
-        public void ProjectItemFinishedGenerating(EnvDTE.ProjectItem projectItem)
+        public void ProjectItemFinishedGenerating(ProjectItem projectItem)
         {
             //throw new NotImplementedException();
         }
 
         public void RunFinished()
         {
-            //var c = new EnvDTE.DTEClass;
-            //c.Solution.
+            _transformationFiles.ToList().ForEach(f => AddFileToSolutionFolder(f));
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            FrmWizard frmWizard = new FrmWizard(GetSolutionRootPath());
-            frmWizard.ShowDialog();
-            var transformationFiles = frmWizard.RenderedFiles;
+            _dte = automationObject as _DTE;
+            _replacementsDictionary = replacementsDictionary;
 
-            transformationFiles
-                .ToList()
-                .ForEach(f => AddFileToSolutionFolder(f));
+            var frmWizard = new FrmWizard(GetSolutionRootPath());
+            frmWizard.ShowDialog();
+            _transformationFiles = frmWizard.RenderedFiles;
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -53,7 +59,7 @@ namespace JM.BaseSolutionWizard
         /// <returns></returns>
         private string GetSolutionRootPath()
         {
-            throw new NotImplementedException();
+            return _replacementsDictionary[SOLUTIONPATH];
         }
 
         /// <summary>
@@ -63,7 +69,12 @@ namespace JM.BaseSolutionWizard
         /// <remarks>Erstellt den Solution Folder falls nicht vorhanden. Auch rekursiv. </remarks>
         private void AddFileToSolutionFolder(string filePath)
         {
-
+            if (File.Exists(filePath))
+            {
+                var solutionPath = GetSolutionRootPath();
+                var virtualPath = filePath.Replace(solutionPath, "");
+                var directories = virtualPath.Split('/');
+            }
         }
 
         /// <summary>
