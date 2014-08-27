@@ -33,7 +33,7 @@ namespace JM.BaseSolutionWizard
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            FrmWizard frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
+            FrmWizard frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath(), GetFilestreamFromTemplate("Web.config.MTemplate"));
             frmWizard.ShowDialog();
         }
 

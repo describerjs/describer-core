@@ -22,16 +22,21 @@ namespace WindowsFormsApplication1
 
         string projectName;
         string solutionRootPath;
+        FileStream transformationFileTemplate;
 
         public FrmWizard()
         {
             InitializeComponent();
         }
 
-        public FrmWizard(string projectName, string solutionRootPath) : this()
+        public FrmWizard(
+            string projectName, 
+            string solutionRootPath,
+            FileStream transformationFileTemplate) : this()
         {
             this.projectName = projectName;
             this.solutionRootPath = solutionRootPath;
+            this.transformationFileTemplate = transformationFileTemplate;
 
             System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
             builder.DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE";
@@ -76,7 +81,13 @@ namespace WindowsFormsApplication1
 
         private void btnSaveEnvironemtns_Click(object sender, EventArgs e)
         {
-            var format = File.ReadAllText("Web.Debug.config.MTemplate");
+            var format = string.Empty;
+
+            using(StreamReader reader = new StreamReader(this.transformationFileTemplate))
+            {
+                format = reader.ReadToEnd();
+            }
+
             var environments = this.environments;
 
             FileRenderer renderer = new FileRenderer();

@@ -51,7 +51,7 @@ namespace JM.BaseSolutionWizard
         public void SetData(IEnumerable<EnvironmentViewModel> models)
         {
             foreach (var item in models)
-	        {
+            {
                 this.environmentViewModelBindingSource.List.Add(item);
             }
         }
