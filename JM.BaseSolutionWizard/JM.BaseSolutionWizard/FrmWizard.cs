@@ -19,10 +19,35 @@ namespace WindowsFormsApplication1
     public partial class FrmWizard : Form
     {
         IEnumerable<EnvironmentViewModel> environments = Enumerable.Empty<EnvironmentViewModel>();
+        string projectName;
 
         public FrmWizard()
         {
             InitializeComponent();
+        }
+
+        public FrmWizard(string projectName) : this()
+        {
+            this.projectName = projectName;
+
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
+            builder.DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE";
+            builder.InitialCatalog = projectName;
+            builder.UserID = "sa";
+            builder.Password = "Join#media960";
+            builder.MultipleActiveResultSets = true;
+
+            this.environments =
+                new List<EnvironmentViewModel>
+                {
+                    new EnvironmentViewModel
+                    {
+                        AdminConnectionString = builder.ConnectionString,
+                        EnvironmentName = "Dev",
+                        IsLocal = true,
+                        StandardConnectionString = builder.ConnectionString
+                    }
+                };
         }
 
         protected override void OnLoad(EventArgs e)

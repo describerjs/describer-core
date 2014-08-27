@@ -108,6 +108,34 @@
     <Compile Include="Mustache-sharp\VariableFoundEventArgs.cs" />
     <Compile Include="Mustache-sharp\WithTagDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\SR1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="XmlTransform\IXmlOriginalDocumentService.cs" />
+    <Compile Include="XmlTransform\IXmlTransformationLogger.cs" />
+    <Compile Include="XmlTransform\NamedTypeFactory.cs" />
+    <Compile Include="XmlTransform\PositionTrackingTextReaders.cs" />
+    <Compile Include="Properties\SR.Designer.cs" />
+    <Compile Include="XmlTransform\XmlArgumentUtility.cs" />
+    <Compile Include="XmlTransform\XmlAttributePreservationDict.cs" />
+    <Compile Include="XmlTransform\XmlAttributePreservationProvider.cs" />
+    <Compile Include="XmlTransform\XmlAttributePreservingWriter.cs" />
+    <Compile Include="XmlTransform\XmlAttributeTransform.cs" />
+    <Compile Include="XmlTransform\XmlElementContext.cs" />
+    <Compile Include="XmlTransform\XmlFileInfoDocument.cs" />
+    <Compile Include="XmlTransform\XmlFormatter.cs" />
+    <Compile Include="XmlTransform\XmlLocator.cs" />
+    <Compile Include="XmlTransform\XmlLocators.cs" />
+    <Compile Include="XmlTransform\XmlNodeContext.cs" />
+    <Compile Include="XmlTransform\XmlNodeException.cs" />
+    <Compile Include="XmlTransform\XmlTransform.cs" />
+    <Compile Include="XmlTransform\XmlTransformableDocument.cs" />
+    <Compile Include="XmlTransform\XmlTransformation.cs" />
+    <Compile Include="XmlTransform\XmlTransformationException.cs" />
+    <Compile Include="XmlTransform\XmlTransformationLogger.cs" />
+    <Compile Include="XmlTransform\XmlTransforms.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmWizard.resx">
@@ -117,12 +145,19 @@
       <DependentUpon>FrmJMBaseWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mustache-sharp\Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\SR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SR1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="SolutionWizardStrongNameKey.snk" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XmlTransform\Microsoft.Web.XmlTransform.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

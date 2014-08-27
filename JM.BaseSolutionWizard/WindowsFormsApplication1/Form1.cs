@@ -25,6 +25,29 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        public Form1(string projectName) : this()
+        {
+
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
+            builder.DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE";
+            builder.InitialCatalog = projectName;
+            builder.UserID = "sa";
+            builder.Password = "Join#media960";
+            builder.MultipleActiveResultSets = true;
+
+            this.environments =
+                new List<EnvironmentViewModel>
+                {
+                    new EnvironmentViewModel
+                    {
+                        AdminConnectionString = builder.ConnectionString,
+                        EnvironmentName = "Dev",
+                        IsLocal = true,
+                        StandardConnectionString = builder.ConnectionString
+                    }
+                };
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -54,6 +77,25 @@ namespace WindowsFormsApplication1
 
             FileRenderer renderer = new FileRenderer();
             renderer.RenderFiles(format, folderRoot, environments);
+
+            var env = environments.First(en => en.IsLocal);
+
+            var fileName = env.EnvironmentName + ".config";
+            var folderName = Path.Combine(folderRoot, env.EnvironmentName);
+            var path = Path.Combine(folderName, fileName);
+
+            using(var doc = new Microsoft.Web.XmlTransform.XmlTransformableDocument())
+            {
+                doc.Load(@"..\..\Web.config");
+
+                using (var transform = new Microsoft.Web.XmlTransform.XmlTransformation(path))
+                {
+                    if (transform.Apply(doc))
+                    {
+                        doc.Save(@"..\..\transformed.config");
+                    }
+                }
+            }
         }
     }
 }
