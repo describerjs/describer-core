@@ -25,7 +25,10 @@
 	
 	<meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
     <meta name="msapplication-TileColor" content="#222222" />
-	
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script type="text/javascript" src="//d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" data-token="f0d48ad2c3b34824bebe43fa8851188d"></script>
+    }
 
     @Html.Partial("_basisJS")
 
