@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TemplateWizard;
 using EnvDTE;
 using System.IO;
+using WindowsFormsApplication1;
 
 namespace JM.BaseSolutionWizard
 {
@@ -32,7 +33,8 @@ namespace JM.BaseSolutionWizard
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
             //throw new NotImplementedException();
-            System.Windows.Forms.MessageBox.Show("Test");
+            FrmWizard frmWizard = new FrmWizard();
+            frmWizard.ShowDialog();
         }
 
         public bool ShouldAddProjectItem(string filePath)
