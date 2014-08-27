@@ -83,6 +83,10 @@
 <body>
     <div class="page">
         <header class="page-header" role="banner">
+            <a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=LOGO" alt="" /></a>
+            @*<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
+                <!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
+            </div>*@
 			@{ Html.RenderAction("_Navigation", "Content", new { area = "" }); }
             @*@Html.Partial("_LoginPartial")*@
         </header>
@@ -108,8 +112,29 @@
 	        </div>
             @RenderBody()
         </main>
-	    <footer class="page-footer" role="contentinfo">
-		    <p class="copyright">&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
+        <footer class="page-footer" role="contentinfo">
+            <section class="h-card">
+                <div class="hc-section">
+                    <a class="u-url p-organization-name" href="/">Beispiel-AG</a>
+                </div>
+                <address class="hc-section">
+                    <span class="p-street-address">Beispiel Str. 111a</span>
+                    <span class="p-locality">11111 Beispiel-Location</span>
+                    <span class="p-country-name">Beispielland</span>
+                </address>
+                <div class="hc-section">
+                    <a class="p-tel" href="tel:+4921155572484">Fon: +49 2 11 55 57 24 84</a>
+                    <span class="p-tel-fax">Fax: +49 2 11 55 57 24 84</span>
+                </div>
+                <div class="hc-section">
+                    <a class="u-email" href="mailto:info@beispiel-ag.de">info@beispiel-ag.de</a>
+                    <a class="u-url" href="http://www.beispiel-ag.de">www.beispiel-ag.de</a>
+                </div>
+            </section>
+            <div class="legal">
+                <a class="imprint" href="$impressum$">Impressum</a>
+                <p class="copyright">&copy; Copyright @DateTime.Now.Year</p>
+            </div>
 	    </footer>
     </div>
 </body>

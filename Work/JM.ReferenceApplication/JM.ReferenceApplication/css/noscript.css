@@ -103,6 +103,13 @@ $theme-color-lambda:	#000;
  * .....pdeuso-element-default (provides default setup for most :after/:before pseudo elements)
  * .....pdeuso-element-stretch (fits pseudo-element to parent size)
  * ELEMENT-STRETCH.....................Stretch element to parent size
+ * BREAKPOINTS.........................Different Breakpoints
+ * .....bp-xs
+ * .....bp-s
+ * .....bp-m
+ * .....bp-l
+ * .....bp-xl
+ * .....bp-xxl
  * RWD.................................Hide/Show something on Mobile/Tablet/Desktop
  * .....hide-on-desktop
  * .....hide-on-tablet
@@ -144,6 +151,9 @@ $theme-color-lambda:	#000;
 \*------------------------------------*/
 /*------------------------------------*\
 	$ELEMENT-STRETCH
+\*------------------------------------*/
+/*------------------------------------*\
+	$BREAKPOINTS
 \*------------------------------------*/
 /*------------------------------------*\
 	$RWD
