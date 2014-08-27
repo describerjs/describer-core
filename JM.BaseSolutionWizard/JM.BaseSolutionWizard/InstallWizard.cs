@@ -38,7 +38,7 @@ namespace JM.BaseSolutionWizard
 
         public void RunFinished()
         {
-            var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
+            var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath(), GetFilestreamFromTemplate("Web.config.MTemplate"));
             frmWizard.ShowDialog();
 
             var solutionFilesPath = Path.Combine(SOLUTIONDIRECTORY, SOLUTIONFILESFOLDER);
