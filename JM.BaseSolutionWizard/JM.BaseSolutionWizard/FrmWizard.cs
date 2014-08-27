@@ -19,7 +19,6 @@ namespace WindowsFormsApplication1
     public partial class FrmWizard : Form
     {
         IEnumerable<EnvironmentViewModel> environments = Enumerable.Empty<EnvironmentViewModel>();
-        IEnumerable<string> renderedFiles = null;
 
         string projectName;
         string solutionRootPath;
@@ -81,13 +80,42 @@ namespace WindowsFormsApplication1
             var environments = this.environments;
 
             FileRenderer renderer = new FileRenderer();
-            this.renderedFiles = renderer.RenderFiles(format, this.solutionRootPath, environments);
+            renderer.RenderFiles(format, this.solutionRootPath, environments);
+
+            var localEnvironment = this.environments.Single(env => env.IsLocal);
+            ApplyToWebconfig(localEnvironment);
         }
 
-        public IEnumerable<string> RenderedFiles
+        private void ApplyToWebconfig(EnvironmentViewModel localEnvironment)
         {
-            get { return renderedFiles ?? Enumerable.Empty<string>(); }
-            set { renderedFiles = value; }
+            var fileName = localEnvironment.EnvironmentName + ".config";
+            var transformationFile = Path.Combine(this.solutionRootPath, localEnvironment.EnvironmentName, fileName);
+            var targetFile = Path.Combine(this.solutionRootPath, this.projectName, "Web", this.projectName + ".Web", "web.config");
+            var tempFilename = Path.GetTempFileName();
+            ApplyTransform(transformationFile, tempFilename, targetFile);
+
+        }
+
+        private static void ApplyTransform(string transformationFile, string targetFileName, string transformationSource)
+        {
+            using (var doc = new Microsoft.Web.XmlTransform.XmlTransformableDocument())
+            {
+                doc.Load(transformationSource);
+
+                using (var transform = new Microsoft.Web.XmlTransform.XmlTransformation(transformationFile))
+                {
+                    if (transform.Apply(doc))
+                    {
+                        doc.Save(targetFileName);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<EnvironmentViewModel> Environments
+        {
+            get { return this.environments ?? Enumerable.Empty<EnvironmentViewModel>(); }
+            set { this.environments = value; }
         }
     }
 }

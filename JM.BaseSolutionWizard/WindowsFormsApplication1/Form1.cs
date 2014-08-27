@@ -82,17 +82,24 @@ namespace WindowsFormsApplication1
 
             var fileName = env.EnvironmentName + ".config";
             var folderName = Path.Combine(folderRoot, env.EnvironmentName);
-            var path = Path.Combine(folderName, fileName);
+            var transformationFile = Path.Combine(folderName, fileName);
+            var targetFileName = @"..\..\transformed.config";
+            var transformationSource = @"..\..\Web.config";
 
-            using(var doc = new Microsoft.Web.XmlTransform.XmlTransformableDocument())
+            ApplyTransform(transformationFile, targetFileName, transformationSource);
+        }
+
+        private static void ApplyTransform(string transformationFile, string targetFileName, string transformationSource)
+        {
+            using (var doc = new Microsoft.Web.XmlTransform.XmlTransformableDocument())
             {
-                doc.Load(@"..\..\Web.config");
+                doc.Load(transformationSource);
 
-                using (var transform = new Microsoft.Web.XmlTransform.XmlTransformation(path))
+                using (var transform = new Microsoft.Web.XmlTransform.XmlTransformation(transformationFile))
                 {
                     if (transform.Apply(doc))
                     {
-                        doc.Save(@"..\..\transformed.config");
+                        doc.Save(targetFileName);
                     }
                 }
             }

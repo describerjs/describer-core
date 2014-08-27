@@ -35,11 +35,6 @@ namespace JM.BaseSolutionWizard
         {
             FrmWizard frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
             frmWizard.ShowDialog();
-            var transformationFiles = frmWizard.RenderedFiles;
-
-            transformationFiles
-                .ToList()
-                .ForEach(f => AddFileToSolutionFolder(f));
         }
 
         public bool ShouldAddProjectItem(string filePath)

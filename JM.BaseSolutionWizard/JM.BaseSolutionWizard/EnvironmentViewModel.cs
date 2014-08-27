@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,10 @@ namespace JM.BaseSolutionWizard
 {
     public class EnvironmentViewModel : INotifyPropertyChanged
     {
-        private string adminConnectionString;
-        private string standardConnectionString;
-        private string environmentName;
-        private bool isLocal;
+        private string adminConnectionString = string.Empty;
+        private string standardConnectionString = string.Empty;
+        private string environmentName = string.Empty;
+        private bool isLocal = false;
 
         public bool IsLocal
         {
@@ -86,6 +87,14 @@ namespace JM.BaseSolutionWizard
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+
+        //public string RelativeConfigTranformFilePath
+        //{
+        //    get
+        //    {
+        //        return Path.Combine(EnvironmentName, )
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
