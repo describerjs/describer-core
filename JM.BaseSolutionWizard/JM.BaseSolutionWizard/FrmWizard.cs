@@ -22,15 +22,17 @@ namespace WindowsFormsApplication1
         IEnumerable<string> renderedFiles = null;
 
         string projectName;
+        string solutionRootPath;
 
         public FrmWizard()
         {
             InitializeComponent();
         }
 
-        public FrmWizard(string projectName) : this()
+        public FrmWizard(string projectName, string solutionRootPath) : this()
         {
             this.projectName = projectName;
+            this.solutionRootPath = solutionRootPath;
 
             System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
             builder.DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE";
@@ -76,11 +78,10 @@ namespace WindowsFormsApplication1
         private void btnSaveEnvironemtns_Click(object sender, EventArgs e)
         {
             var format = File.ReadAllText("Web.Debug.config.MTemplate");
-            var folderRoot = Directory.GetCurrentDirectory();
             var environments = this.environments;
 
             FileRenderer renderer = new FileRenderer();
-            this.renderedFiles = renderer.RenderFiles(format, folderRoot, environments);
+            this.renderedFiles = renderer.RenderFiles(format, this.solutionRootPath, environments);
         }
 
         public IEnumerable<string> RenderedFiles

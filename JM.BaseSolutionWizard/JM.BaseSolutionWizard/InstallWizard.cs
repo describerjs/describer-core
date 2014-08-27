@@ -33,7 +33,7 @@ namespace JM.BaseSolutionWizard
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            FrmWizard frmWizard = new FrmWizard(GetSolutionRootPath());
+            FrmWizard frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
             frmWizard.ShowDialog();
             var transformationFiles = frmWizard.RenderedFiles;
 
@@ -52,6 +52,15 @@ namespace JM.BaseSolutionWizard
         /// </summary>
         /// <returns></returns>
         private string GetSolutionRootPath()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Liefert den 
+        /// </summary>
+        /// <returns></returns>
+        private string GetSolutionName()
         {
             throw new NotImplementedException();
         }
