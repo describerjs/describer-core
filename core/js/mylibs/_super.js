@@ -199,7 +199,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 				$.each(jmconfigJsonParse, function(key, value){
 					if(key === that.myJmName){
 						if($.type(value) === 'object'){
-							if(window.IsDevServer){
+							if(window.debug){
 								for(var i = 0, leni = _config.length; i < leni; i++){
 									if(_config[i].jmname === that.myJmName){
 										if($.type(_config[i].jmconfig) !== 'array'){
@@ -226,7 +226,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 							return false;
 						}
 						if($.type(value) === 'array'){
-							if(window.IsDevServer && $.type(value[that.myPos]) === 'undefined'){
+							if(window.debug && $.type(value[that.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom2', 200, function(){
 									jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
 										'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben. \n\n ' +
@@ -244,7 +244,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 				});
 
 				if(_jmconfigJsonContainsObjectOnlyOnFirstLevel){
-					if(window.IsDevServer){
+					if(window.debug){
 						for(var i = 0, leni = _config.length; i < leni; i++){
 							if(_config[i].jmname === that.myJmName){
 								if($.type(_config[i].jmconfig) !== 'array'){
@@ -273,7 +273,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			}
 
 			if($.type(jmconfigJsonParse) === 'array'){
-				if(window.IsDevServer && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
+				if(window.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 					$.doTimeout('_getObjFromDom4', 200, function(){
 						jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
 							'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
