@@ -12,11 +12,14 @@ namespace JM.BaseSolutionWizard
 {
     public class InstallWizard : IWizard
     {
-        private IEnumerable<string> _transformationFiles;
-        _DTE _dte;
+        private _DTE _dte;
         private Dictionary<string, string> _replacementsDictionary;
-        private const string SOLUTIONNAME = "";
-        private const string SOLUTIONPATH = "";
+        private const string PROJECTNAME = "$projectname$";
+        private const string SOLUTIONDIRECTORY = "$solutiondirectory$";
+        /// <summary>
+        /// z.b. C:\Dev\NeueSolution\Solution Files\
+        /// </summary>
+        private const string SOLUTIONFILESFOLDER = "SolutionFiles";
 
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
@@ -35,7 +38,18 @@ namespace JM.BaseSolutionWizard
 
         public void RunFinished()
         {
-            _transformationFiles.ToList().ForEach(f => AddFileToSolutionFolder(f));
+            var solutionFilesPath = Path.Combine(SOLUTIONDIRECTORY, SOLUTIONFILESFOLDER);
+            if (Directory.Exists(solutionFilesPath))
+            {
+                var solution = (Solution2)_dte.Solution;
+                var pSolutionFiles = solution.AddSolutionFolder(SOLUTIONFILESFOLDER);
+
+                var files = Directory.GetFiles(solutionFilesPath);
+                AddFilesToSolutionFolder(pSolutionFiles, files);
+
+                var directories = Directory.GetDirectories(solutionFilesPath);
+                AddDirectoriesToSolutionFolder(pSolutionFiles, directories);
+            }
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -43,9 +57,9 @@ namespace JM.BaseSolutionWizard
             _dte = automationObject as _DTE;
             _replacementsDictionary = replacementsDictionary;
 
-            var frmWizard = new FrmWizard(GetSolutionRootPath());
+            var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
             frmWizard.ShowDialog();
-            _transformationFiles = frmWizard.RenderedFiles;
+            var transformationFiles = frmWizard.RenderedFiles;
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -59,21 +73,44 @@ namespace JM.BaseSolutionWizard
         /// <returns></returns>
         private string GetSolutionRootPath()
         {
-            return _replacementsDictionary[SOLUTIONPATH];
+            return _replacementsDictionary[SOLUTIONDIRECTORY];
         }
 
         /// <summary>
-        /// 
+        /// Liefert den 
         /// </summary>
-        /// <param name="filePath">Z.B. C:\Dev\NeueSolution\Solution Files\Environments\Dev\web.config</param>
-        /// <remarks>Erstellt den Solution Folder falls nicht vorhanden. Auch rekursiv. </remarks>
-        private void AddFileToSolutionFolder(string filePath)
+        /// <returns></returns>
+        private string GetSolutionName()
         {
-            if (File.Exists(filePath))
+            return _replacementsDictionary[PROJECTNAME];
+        }
+
+        private void AddDirectoriesToSolutionFolder(Project project, string[] directories)
+        {
+            if (directories != null && directories.Any())
             {
-                var solutionPath = GetSolutionRootPath();
-                var virtualPath = filePath.Replace(solutionPath, "");
-                var directories = virtualPath.Split('/');
+                var solutionFolder = (SolutionFolder) project.Object;
+                foreach (var directory in directories)
+                {
+                    var directoryName = directory.Replace(SOLUTIONDIRECTORY, string.Empty);
+                    var subProject = solutionFolder.AddSolutionFolder(directoryName);
+
+                    var files = Directory.GetFiles(directoryName);
+                    AddFilesToSolutionFolder(subProject, files);
+
+                    var subDirectories = Directory.GetDirectories(directoryName);
+                    AddDirectoriesToSolutionFolder(subProject, subDirectories);
+                }
+            }
+        }
+        private void AddFilesToSolutionFolder(Project project, string[] files)
+        {
+            if (files != null && files.Any())
+            {
+                foreach (var file in files)
+                {
+                    project.ProjectItems.AddFromFile(file);
+                }
             }
         }
 
