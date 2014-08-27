@@ -31,14 +31,25 @@
     }
 
     @Html.Partial("_basisJS")
-
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+    <script>
+        window.debug = true;
+    </script>
+    }
+    else
+    {
+    <script>
+        window.debug = false;
+    </script>
+    }
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
     <script>
         window.UseLocalStorage = false;
         window.loadUnminifyVersion = true;
-        window.IsDevServer = true;
     </script>
+
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>
