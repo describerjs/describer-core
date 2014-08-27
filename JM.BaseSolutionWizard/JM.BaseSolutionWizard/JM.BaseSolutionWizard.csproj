@@ -110,8 +110,10 @@
     <EmbeddedResource Include="Mustache-sharp\Properties\Resources.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\EnvironmentViewModel.datasource" />
     <None Include="SolutionWizardStrongNameKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
