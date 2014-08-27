@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
 
         string projectName;
         string solutionRootPath;
-        FileStream transformationFileTemplate;
+        Stream transformationFileTemplate;
 
         public FrmWizard()
         {
@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
         public FrmWizard(
             string projectName, 
             string solutionRootPath,
-            FileStream transformationFileTemplate) : this()
+           Stream transformationFileTemplate) : this()
         {
             this.projectName = projectName;
             this.solutionRootPath = solutionRootPath;
