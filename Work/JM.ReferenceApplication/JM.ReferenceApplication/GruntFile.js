@@ -30,7 +30,7 @@ module.exports = function(grunt){
 	};
 
 	var parseString = require('xml2js').parseString;
-	var xml = grunt.file.read('App_Data/Config/dev/JM.Foundation.config');
+	var xml = grunt.file.read('App_Data/Config/JM.Foundation.config');
 	var jsonXML;
 	parseString(xml, function (err, result) {
 		jsonXML = result;

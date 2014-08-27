@@ -3,18 +3,16 @@
     ViewBag.Title = Model.Page.Title ;
 }
 
-<h1>@Model.Page.Title</h1>
-
 @{
     var stageTeaserModel = Model.Region<TeaserExtension>("StageTeaser");
     var teaserModel1 = Model.Region<TeaserExtension>("Teaser1");
     var teaserModel2 = Model.Region<TeaserExtension>("Teaser2");
     var teaserModel3 = Model.Region<TeaserExtension>("Teaser3");
-    var teaserModel4 = Model.Region<TeaserExtension>("Teaser4");
 }
 
 @Html.Partial("Regions/StageTeaser", stageTeaserModel)
-@Html.Partial("Regions/Teaser", teaserModel1)
-@Html.Partial("Regions/Teaser", teaserModel2)
-@Html.Partial("Regions/Teaser", teaserModel3)
-@Html.Partial("Regions/Teaser", teaserModel4)
+<div class="section" data-jmname="equalheights-not-mobile" data-jmdominit="true">
+    @Html.Partial("Regions/Teaser", teaserModel1)
+    @Html.Partial("Regions/Teaser", teaserModel2)
+    @Html.Partial("Regions/Teaser", teaserModel3)
+</div>

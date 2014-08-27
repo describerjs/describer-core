@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C30BB12D-A19D-43CC-99D5-0347D49CFB25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JM.BaseSolutionWizard</RootNamespace>
+    <AssemblyName>JM.BaseSolutionWizard</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SolutionWizardStrongNameKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EnvironmentTemplateSource.cs" />
+    <Compile Include="FileRenderer.cs" />
+    <Compile Include="FrmWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizard.Designer.cs">
+      <DependentUpon>FrmWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstallWizard.cs" />
+    <Compile Include="EnvironmentViewModel.cs" />
+    <Compile Include="FrmJMBaseWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmJMBaseWizard.Designer.cs">
+      <DependentUpon>FrmJMBaseWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mustache-sharp\ArgumentCollection.cs" />
+    <Compile Include="Mustache-sharp\CompoundGenerator.cs" />
+    <Compile Include="Mustache-sharp\ConditionTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\ContentTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\Context.cs" />
+    <Compile Include="Mustache-sharp\ContextParameter.cs" />
+    <Compile Include="Mustache-sharp\EachTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\ElifTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\ElseTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\FormatCompiler.cs" />
+    <Compile Include="Mustache-sharp\Generator.cs" />
+    <Compile Include="Mustache-sharp\IArgument.cs" />
+    <Compile Include="Mustache-sharp\IfTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\IGenerator.cs" />
+    <Compile Include="Mustache-sharp\IndexTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\InlineGenerator.cs" />
+    <Compile Include="Mustache-sharp\InlineTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\KeyFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\KeyGenerator.cs" />
+    <Compile Include="Mustache-sharp\KeyNotFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\MasterTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\NestedContext.cs" />
+    <Compile Include="Mustache-sharp\NewlineTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\NumberArgument.cs" />
+    <Compile Include="Mustache-sharp\PlaceholderArgument.cs" />
+    <Compile Include="Mustache-sharp\PlaceholderFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\Properties\Resources.Designer.cs" />
+    <Compile Include="Mustache-sharp\PropertyDictionary.cs" />
+    <Compile Include="Mustache-sharp\RegexHelper.cs" />
+    <Compile Include="Mustache-sharp\Scope.cs" />
+    <Compile Include="Mustache-sharp\SetTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\StaticGenerator.cs" />
+    <Compile Include="Mustache-sharp\StringArgument.cs" />
+    <Compile Include="Mustache-sharp\TagDefinition.cs" />
+    <Compile Include="Mustache-sharp\TagParameter.cs" />
+    <Compile Include="Mustache-sharp\UpcastDictionary.cs" />
+    <Compile Include="Mustache-sharp\ValueRequestEventArgs.cs" />
+    <Compile Include="Mustache-sharp\VariableArgument.cs" />
+    <Compile Include="Mustache-sharp\VariableFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\WithTagDefinition.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\SR1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="XmlTransform\IXmlOriginalDocumentService.cs" />
+    <Compile Include="XmlTransform\IXmlTransformationLogger.cs" />
+    <Compile Include="XmlTransform\NamedTypeFactory.cs" />
+    <Compile Include="XmlTransform\PositionTrackingTextReaders.cs" />
+    <Compile Include="Properties\SR.Designer.cs" />
+    <Compile Include="XmlTransform\XmlArgumentUtility.cs" />
+    <Compile Include="XmlTransform\XmlAttributePreservationDict.cs" />
+    <Compile Include="XmlTransform\XmlAttributePreservationProvider.cs" />
+    <Compile Include="XmlTransform\XmlAttributePreservingWriter.cs" />
+    <Compile Include="XmlTransform\XmlAttributeTransform.cs" />
+    <Compile Include="XmlTransform\XmlElementContext.cs" />
+    <Compile Include="XmlTransform\XmlFileInfoDocument.cs" />
+    <Compile Include="XmlTransform\XmlFormatter.cs" />
+    <Compile Include="XmlTransform\XmlLocator.cs" />
+    <Compile Include="XmlTransform\XmlLocators.cs" />
+    <Compile Include="XmlTransform\XmlNodeContext.cs" />
+    <Compile Include="XmlTransform\XmlNodeException.cs" />
+    <Compile Include="XmlTransform\XmlTransform.cs" />
+    <Compile Include="XmlTransform\XmlTransformableDocument.cs" />
+    <Compile Include="XmlTransform\XmlTransformation.cs" />
+    <Compile Include="XmlTransform\XmlTransformationException.cs" />
+    <Compile Include="XmlTransform\XmlTransformationLogger.cs" />
+    <Compile Include="XmlTransform\XmlTransforms.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmWizard.resx">
+      <DependentUpon>FrmWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmJMBaseWizard.resx">
+      <DependentUpon>FrmJMBaseWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mustache-sharp\Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\SR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SR1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SolutionWizardStrongNameKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XmlTransform\Microsoft.Web.XmlTransform.csproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
