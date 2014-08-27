@@ -2991,6 +2991,7 @@
     <Content Include="node_modules\webp-bin\vendor\linux\cwebp" />
     <Content Include="node_modules\webp-bin\vendor\osx\cwebp" />
     <Content Include="Views\Shared\_BasisJS.cshtml" />
+    <Content Include="Views\Shared\Regions\Carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\JMTools\Models\" />

@@ -3,7 +3,6 @@
     ViewBag.Title = Model.Page.Title ;
 }
 
-<h1>@Model.Page.Title</h1>
 @{
     @*In Piranha wurde für den PageType "Level0" eine Region names "Teaser" definiert.*@
     var stageTeaserModel = Model.Region<TeaserExtension>("StageTeaser");
@@ -12,5 +11,8 @@
 }
 
 @Html.Partial("Regions/StageTeaser", stageTeaserModel)
-@Html.Partial("Regions/Teaser", teaserModel1)
-@Html.Partial("Regions/Teaser", teaserModel2)
+@*@Html.Partial("Regions/Carousel")*@
+<div class="section" data-jmname="equalheights-not-mobile" data-jmdominit="true">
+    @Html.Partial("Regions/Teaser", teaserModel1)
+    @Html.Partial("Regions/Teaser", teaserModel2)
+</div>
