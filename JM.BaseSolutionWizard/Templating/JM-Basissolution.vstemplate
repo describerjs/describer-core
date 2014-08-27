@@ -1,0 +1,44 @@
+<VSTemplate Version="3.0.0" Type="ProjectGroup"
+
+    xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+
+  <TemplateData>
+
+    <Name>JM.BaseSolution</Name>
+
+   <Description>DESCRIPTION</Description>
+
+    <ProjectType>CSharp</ProjectType>
+
+  </TemplateData>
+
+  <TemplateContent>
+
+    <ProjectCollection>
+
+      <SolutionFolder Name="Modules">
+
+        <ProjectTemplateLink ProjectName="JM.Business">JM.Business\JM.Business.vstemplate</ProjectTemplateLink>
+
+        <ProjectTemplateLink ProjectName="JM.Business.Kontakt">JM.Business.Kontakt\JM.Business.Kontakt.vstemplate</ProjectTemplateLink>
+
+        <ProjectTemplateLink ProjectName="JM.Business.Kontakt.Contracts">JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.vstemplate</ProjectTemplateLink>
+
+      </SolutionFolder>
+
+      <SolutionFolder Name="Web">
+
+        <ProjectTemplateLink ProjectName="$projectname$.Web">JM.Web\JM.Web.vstemplate</ProjectTemplateLink>
+
+      </SolutionFolder>
+
+    </ProjectCollection>
+
+  </TemplateContent>
+<WizardExtension>
+    <Assembly>
+      JM.BaseSolutionWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=79350b940fb8868c
+    </Assembly>
+    <FullClassName>JM.BaseSolutionWizard.InstallWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
