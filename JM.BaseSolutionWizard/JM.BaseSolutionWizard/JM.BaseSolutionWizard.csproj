@@ -53,6 +53,12 @@
   <ItemGroup>
     <Compile Include="EnvironmentTemplateSource.cs" />
     <Compile Include="FileRenderer.cs" />
+    <Compile Include="FrmWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizard.Designer.cs">
+      <DependentUpon>FrmWizard.cs</DependentUpon>
+    </Compile>
     <Compile Include="InstallWizard.cs" />
     <Compile Include="EnvironmentViewModel.cs" />
     <Compile Include="FrmJMBaseWizard.cs">
@@ -104,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FrmWizard.resx">
+      <DependentUpon>FrmWizard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmJMBaseWizard.resx">
       <DependentUpon>FrmJMBaseWizard.cs</DependentUpon>
     </EmbeddedResource>
