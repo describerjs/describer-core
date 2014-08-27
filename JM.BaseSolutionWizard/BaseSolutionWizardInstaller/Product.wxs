@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product 
+    Id="*" 
+    Name="BaseSolutionWizard" 
+    Language="1031" 
+    Version="1.0.0.1" 
+    Manufacturer="join.media" 
+    UpgradeCode="90fe149f-bc81-4501-ad83-bd72dbb15962">
+		<Package 
+      InstallerVersion="200" 
+      Compressed="yes" 
+      InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<!--<MediaTemplate />-->
+
+    <Media Id="1" Cabinet="InstallationWizard.cab" EmbedCab="yes" CompressionLevel="high" />
+
+    <Feature Id="ProductFeature" Title="BaseSolutionWizardInstaller" Level="1">
+      <ComponentGroupRef Id="TemplateFiles" />
+      <ComponentGroupRef Id="WizardAssembly" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="WINDOWSVOLUME" >
+			  <Directory Id="PersonalFolder">
+          <Directory Id="VisualStudio2012" Name = "Visual Studio 2012">
+            <Directory Id="Templates" Name = "Templates">
+              <Directory Id="ProjectTemplates" Name="ProjectTemplates">
+				        <Directory Id="INSTALLFOLDER" Name="BaseSolutionWizardInstaller" />
+              </Directory>
+            </Directory>
+          </Directory>
+			  </Directory>
+      </Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="TemplateFiles" Directory="INSTALLFOLDER">
+      <Component Id="VSTemplate" Guid="{5F8C334F-E6BB-44A3-BE13-045FD0390B12}">
+        <File Id="JM.BaseSolutionWizard2.dll" DiskId="1" Vital="yes" Source="$(var.SolutionDir)\JM.BaseSolutionWizard\packages.config"></File>
+        <RegistryKey Root="HKCU" Key="Software\join.media\BaseSolution\Template">
+          <RegistryValue Value="Copied" Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+    <ComponentGroup Id="WizardAssembly" Directory="INSTALLFOLDER">
+      <Component Id="BaseSolutionWizard" Guid="{605D90FB-EA73-44B0-9CA1-3CC4E498BD4B}">
+        <File Id="JM.BaseSolutionWizard.dll" DiskId="1" Vital="yes" KeyPath="yes" Source="$(var.SolutionDir)\JM.BaseSolutionWizard\bin\debug\JM.BaseSolutionWizard.dll" Assembly=".net"/>
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
