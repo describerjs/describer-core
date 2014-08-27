@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using EnvDTE;
 using System.IO;
 using WindowsFormsApplication1;
+using System.Linq;
 
 namespace JM.BaseSolutionWizard
 {
@@ -32,9 +33,13 @@ namespace JM.BaseSolutionWizard
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            //throw new NotImplementedException();
-            FrmWizard frmWizard = new FrmWizard();
+            FrmWizard frmWizard = new FrmWizard(GetSolutionRootPath());
             frmWizard.ShowDialog();
+            var transformationFiles = frmWizard.RenderedFiles;
+
+            transformationFiles
+                .ToList()
+                .ForEach(f => AddFileToSolutionFolder(f));
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -54,10 +59,9 @@ namespace JM.BaseSolutionWizard
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filePath">Z.B. C:\Dev\NeueSolution</param>
-        /// <param name="solutionFolder">Z.B. "Solution Files\Environments\Dev</param>
-        /// <remarks>Erstellt den Solution Folder falls nicht vorhanden. Auch rekursiv.</remarks>
-        private void AddFileToSolutionFolder(string filePath, string solutionFolder)
+        /// <param name="filePath">Z.B. C:\Dev\NeueSolution\Solution Files\Environments\Dev\web.config</param>
+        /// <remarks>Erstellt den Solution Folder falls nicht vorhanden. Auch rekursiv. </remarks>
+        private void AddFileToSolutionFolder(string filePath)
         {
 
         }

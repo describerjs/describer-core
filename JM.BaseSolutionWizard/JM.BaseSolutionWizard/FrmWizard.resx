@@ -125,6 +125,8 @@ Die ConnectionStrings werden auch genutzt, um die Datenbanken der jeweiligen Umg
   </data>
   <data name="richTextBox2.Text" xml:space="preserve">
     <value>Über diesen Befehl werden die Umgebungen eingerichtet. Derzeit werden nur die Datenbanken bestückt. Die IIS Websites müssen noch manuell eingerichtet werden.
-Du kannst die Umgebung wählen, für die das Datenbank-Script ausgeführt werden soll.</value>
+Du kannst die Umgebung wählen, für die das Datenbank-Script ausgeführt werden soll.
+
+Außerdem wird die web.config der Solution tranformiert. Die Quelle ist das Environment mit dem "IsLocal" flag. Für das Debugging auf dem Entwicklerrechner sollte dies die DEV Umgebung sein.</value>
   </data>
 </root>

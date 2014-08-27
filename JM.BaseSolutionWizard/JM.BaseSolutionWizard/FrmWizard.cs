@@ -19,6 +19,8 @@ namespace WindowsFormsApplication1
     public partial class FrmWizard : Form
     {
         IEnumerable<EnvironmentViewModel> environments = Enumerable.Empty<EnvironmentViewModel>();
+        IEnumerable<string> renderedFiles = null;
+
         string projectName;
 
         public FrmWizard()
@@ -78,7 +80,13 @@ namespace WindowsFormsApplication1
             var environments = this.environments;
 
             FileRenderer renderer = new FileRenderer();
-            renderer.RenderFiles(format, folderRoot, environments);
+            this.renderedFiles = renderer.RenderFiles(format, folderRoot, environments);
+        }
+
+        public IEnumerable<string> RenderedFiles
+        {
+            get { return renderedFiles ?? Enumerable.Empty<string>(); }
+            set { renderedFiles = value; }
         }
     }
 }
