@@ -51,50 +51,9 @@ namespace WindowsFormsApplication1
             var format = File.ReadAllText("Web.Debug.config.MTemplate");
             var folderRoot = Directory.GetCurrentDirectory();
             var environments = this.environments;
-            RenderFiles(format, folderRoot, environments);
-        }
 
-        private static void RenderFiles(
-            string format, 
-            string folderRoot, 
-            IEnumerable<EnvironmentViewModel> environments)
-        {
-            FormatCompiler compiler = new FormatCompiler();
-            Generator generator = compiler.Compile(format);
-
-            var fileSource =
-                environments
-                .Select(en =>
-                    new
-                    {
-                        FileName = en.EnvironmentName + ".config",
-                        FolderName = Path.Combine(folderRoot, en.EnvironmentName),
-                        TemplateSource = new EnvironmentTemplateSource
-                        {
-                            DefaultConnectionString = en.StandardConnectionString,
-                            PiranhaConnectionString = en.AdminConnectionString,
-                            IsDebug = en.IsLocal
-                        }
-                    })
-                .ToList();
-
-            var notExistingEnvironmentFolders =
-                fileSource
-                .Select(d => d.FolderName)
-                .Distinct()
-                .Where(folderName => !Directory.Exists(folderName))
-                .ToList();
-
-            notExistingEnvironmentFolders.ForEach(folderName =>
-                Directory.CreateDirectory(folderName));
-
-            fileSource.ForEach(
-                item =>
-                {
-                    string result = generator.Render(item.TemplateSource);
-                    var filePath = Path.Combine(item.FolderName, item.FileName);
-                    File.WriteAllText(filePath, result);
-                });
+            FileRenderer renderer = new FileRenderer();
+            renderer.RenderFiles(format, folderRoot, environments);
         }
     }
 }

@@ -18,7 +18,7 @@
     <Media Id="1" Cabinet="InstallationWizard.cab" EmbedCab="yes" CompressionLevel="high" />
 
     <Feature Id="ProductFeature" Title="BaseSolutionWizardInstaller" Level="1">
-      <ComponentGroupRef Id="TemplateFiles" />
+      <!--<ComponentGroupRef Id="TemplateFiles" />-->
       <ComponentGroupRef Id="WizardAssembly" />
 		</Feature>
 	</Product>
@@ -40,14 +40,14 @@
 	</Fragment>
 
 	<Fragment>
-		<ComponentGroup Id="TemplateFiles" Directory="INSTALLFOLDER">
+		<!--<ComponentGroup Id="TemplateFiles" Directory="INSTALLFOLDER">
       <Component Id="VSTemplate" Guid="{5F8C334F-E6BB-44A3-BE13-045FD0390B12}">
         <File Id="JM.BaseSolutionWizard2.dll" DiskId="1" Vital="yes" Source="$(var.SolutionDir)\JM.BaseSolutionWizard\packages.config"></File>
         <RegistryKey Root="HKCU" Key="Software\join.media\BaseSolution\Template">
           <RegistryValue Value="Copied" Type="string" KeyPath="yes" />
         </RegistryKey>
       </Component>
-    </ComponentGroup>
+    </ComponentGroup>-->
     <ComponentGroup Id="WizardAssembly" Directory="INSTALLFOLDER">
       <Component Id="BaseSolutionWizard" Guid="{605D90FB-EA73-44B0-9CA1-3CC4E498BD4B}">
         <File Id="JM.BaseSolutionWizard.dll" DiskId="1" Vital="yes" KeyPath="yes" Source="$(var.SolutionDir)\JM.BaseSolutionWizard\bin\debug\JM.BaseSolutionWizard.dll" Assembly=".net"/>

@@ -40,9 +40,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="mustache-sharp">
-      <HintPath>..\packages\mustache-sharp.0.2.8.1\lib\net40\mustache-sharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -54,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnvironmentTemplateSource.cs" />
+    <Compile Include="FileRenderer.cs" />
     <Compile Include="InstallWizard.cs" />
     <Compile Include="EnvironmentViewModel.cs" />
     <Compile Include="FrmJMBaseWizard.cs">
@@ -62,15 +61,55 @@
     <Compile Include="FrmJMBaseWizard.Designer.cs">
       <DependentUpon>FrmJMBaseWizard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mustache-sharp\ArgumentCollection.cs" />
+    <Compile Include="Mustache-sharp\CompoundGenerator.cs" />
+    <Compile Include="Mustache-sharp\ConditionTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\ContentTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\Context.cs" />
+    <Compile Include="Mustache-sharp\ContextParameter.cs" />
+    <Compile Include="Mustache-sharp\EachTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\ElifTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\ElseTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\FormatCompiler.cs" />
+    <Compile Include="Mustache-sharp\Generator.cs" />
+    <Compile Include="Mustache-sharp\IArgument.cs" />
+    <Compile Include="Mustache-sharp\IfTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\IGenerator.cs" />
+    <Compile Include="Mustache-sharp\IndexTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\InlineGenerator.cs" />
+    <Compile Include="Mustache-sharp\InlineTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\KeyFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\KeyGenerator.cs" />
+    <Compile Include="Mustache-sharp\KeyNotFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\MasterTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\NestedContext.cs" />
+    <Compile Include="Mustache-sharp\NewlineTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\NumberArgument.cs" />
+    <Compile Include="Mustache-sharp\PlaceholderArgument.cs" />
+    <Compile Include="Mustache-sharp\PlaceholderFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\Properties\Resources.Designer.cs" />
+    <Compile Include="Mustache-sharp\PropertyDictionary.cs" />
+    <Compile Include="Mustache-sharp\RegexHelper.cs" />
+    <Compile Include="Mustache-sharp\Scope.cs" />
+    <Compile Include="Mustache-sharp\SetTagDefinition.cs" />
+    <Compile Include="Mustache-sharp\StaticGenerator.cs" />
+    <Compile Include="Mustache-sharp\StringArgument.cs" />
+    <Compile Include="Mustache-sharp\TagDefinition.cs" />
+    <Compile Include="Mustache-sharp\TagParameter.cs" />
+    <Compile Include="Mustache-sharp\UpcastDictionary.cs" />
+    <Compile Include="Mustache-sharp\ValueRequestEventArgs.cs" />
+    <Compile Include="Mustache-sharp\VariableArgument.cs" />
+    <Compile Include="Mustache-sharp\VariableFoundEventArgs.cs" />
+    <Compile Include="Mustache-sharp\WithTagDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmJMBaseWizard.resx">
       <DependentUpon>FrmJMBaseWizard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mustache-sharp\Properties\Resources.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Properties\DataSources\EnvironmentViewModel.datasource" />
     <None Include="SolutionWizardStrongNameKey.snk" />
   </ItemGroup>
