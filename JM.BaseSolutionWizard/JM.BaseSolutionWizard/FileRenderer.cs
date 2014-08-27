@@ -11,7 +11,7 @@ namespace JM.BaseSolutionWizard
 {
     public class FileRenderer
     {
-        public IEnumerable<string> RenderFiles(
+        public void RenderFiles(
             string format,
             string folderRoot,
             IEnumerable<EnvironmentViewModel> environments)
@@ -52,8 +52,6 @@ namespace JM.BaseSolutionWizard
                     var filePath = Path.Combine(item.FolderName, item.FileName);
                     File.WriteAllText(filePath, result);
                 });
-
-            return fileSource.Select(item => Path.Combine(item.FolderName, item.FileName));
         }
     }
 }

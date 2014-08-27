@@ -49,7 +49,7 @@ namespace JM.BaseSolutionWizard
 
                 var directories = Directory.GetDirectories(solutionFilesPath);
                 AddDirectoriesToSolutionFolder(pSolutionFiles, directories);
-            }
+        }
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -59,7 +59,6 @@ namespace JM.BaseSolutionWizard
 
             var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
             frmWizard.ShowDialog();
-            var transformationFiles = frmWizard.RenderedFiles;
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -91,7 +90,7 @@ namespace JM.BaseSolutionWizard
             {
                 var solutionFolder = (SolutionFolder) project.Object;
                 foreach (var directory in directories)
-                {
+        {
                     var directoryName = directory.Replace(SOLUTIONDIRECTORY, string.Empty);
                     var subProject = solutionFolder.AddSolutionFolder(directoryName);
 

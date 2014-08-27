@@ -1,3 +1,14 @@
+/*!
+ * utils.jquery_helpers v0.9
+ *
+ * http://joinmedia.de/
+ *
+ * Copyright (c) 2014 join.media GmbH & Co. KG
+ *
+ * Created by aotten77 on 22.08.2014.
+ *
+ * Released under the MIT license
+ */
 define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
 

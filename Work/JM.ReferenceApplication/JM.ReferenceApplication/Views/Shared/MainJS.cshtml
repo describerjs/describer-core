@@ -194,14 +194,15 @@ require(['jquery', '_config'], function($, _config){
 
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
 
-			@if (Html.FeatureEnabled(PerformanceFeature.PerformanceA) && HttpContext.Current.IsDebuggingEnabled)
-			{
-				<text>execDomReadyObject();</text>
-			}
+			execDomReadyObject();
 
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
 			picturefill();
+
+			if(window.debug){
+				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
+			}
 
 			//jmHF.replaceSVGForOldBrowser();
 
