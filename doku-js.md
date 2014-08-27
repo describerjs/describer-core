@@ -244,6 +244,19 @@ _
 	// Beispielhafte Initialisierung im HTML:
 	// <input class="input-autocomplete" data-jmdominit="true" data-jmname="autofillInput|sync-val" data-rule-jmbankname="Bitte geben Sie eine gültigen Banknamen ein." data-rule-jmrequired="Bitte ausfüllen" id="Bank" maxlength="50" name="Payment.BankName" type="text" value="Wird automatisch ausgefüllt" disabled="disabled" tabindex="-1">
 
+
+
+#### my HTML-Beispiele ####
+        <!--<div data-jmname="test1|test2" style="border: 1px solid #000000" data-jmconfig="{ 'test1' : [{ 'data': 'neu11' }, { 'data': 'neu12 '},{ 'data': 'neu13' }, { 'data': 'neu14' }], 'test2' : [{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]}">click</div>-->
+        <!--<div data-jmname="test1|test2" style="border: 1px solid #000000" data-jmconfig="{ 'test1' : [{}, { 'data': 'neu12 '},{}, { 'data': 'neu14' }], 'test2' : [{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]}">click</div>-->
+        <!--<div data-jmname="test1|test2" style="border: 1px solid #000000" data-jmconfig="{'test2' : [{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]}">click</div>-->
+        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="{'test1' : { 'data': 'neu21' }}">click</div>-->
+        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="[{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]">click</div>-->
+        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="{ 'data': 'neu21' }">click</div>-->
+        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="[{ 'data': 'neu21' }]">click</div>-->
+        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="{ 'data': 'neu21' }">click</div>-->
+
+
 ### Deklaration - Event ###
 
 die HTML-Module-Funktionen kann durch unterschietliche Events getriggert werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren.

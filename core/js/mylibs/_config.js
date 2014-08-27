@@ -345,6 +345,76 @@ define(function(){
 				'data'     : 'show',
 				'relatedTo': 'this.$elem.parent()[0]'
 			}
+		},
+		{
+			jmname   : 'sync-val',
+			jmelement: 'actions.add',
+			jmconfig :{
+				'event'    : 'dominit|change|keyup-delay-500',
+				'datatype' : 'text',
+				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
+				'data':'jmHF.escapeHtml(this.$elem.val())'
+			}
+		},
+		{
+			jmname   : 'test1',
+			jmelement: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.d'
+				}
+			]
+		},
+		{
+			jmname   : 'test2',
+			jmelement: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.d'
+				}
+			]
 		}
 	];
 });

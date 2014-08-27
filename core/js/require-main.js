@@ -215,6 +215,9 @@ require(['jquery', '_config'], function($, _config){
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
 			picturefill();
 
+			if(window.IsDevServer){
+				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
+			}
 			//jmHF.replaceSVGForOldBrowser();
 
 
