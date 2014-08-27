@@ -25,17 +25,31 @@
 	
 	<meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
     <meta name="msapplication-TileColor" content="#222222" />
-	
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script type="text/javascript" src="//d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" data-token="f0d48ad2c3b34824bebe43fa8851188d"></script>
+    }
 
     @Html.Partial("_basisJS")
-
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+    <script>
+        window.debug = true;
+    </script>
+    }
+    else
+    {
+    <script>
+        window.debug = false;
+    </script>
+    }
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
     <script>
         window.UseLocalStorage = false;
         window.loadUnminifyVersion = true;
-        window.IsDevServer = true;
     </script>
+
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>

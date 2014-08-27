@@ -1,3 +1,14 @@
+/*!
+ * modules.form.submitbutton v0.9
+ *
+ * http://joinmedia.de/
+ *
+ * Copyright (c) 2014 join.media GmbH & Co. KG
+ *
+ * Created by aotten77 on 22.08.2014.
+ *
+ * Released under the MIT license
+ */
 define(['jquery', '_super', 'jquery_ba-dotimeout'], function ($, _super) {
 	// <input type="submit" value="Weiter" class="hero-l" data-jmname="submitbutton" />
 	'use strict';

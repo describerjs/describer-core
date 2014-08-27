@@ -1,24 +1,99 @@
+/*!
+ * utils.helpers v0.9
+ *
+ * http://joinmedia.de/
+ *
+ * Copyright (c) 2014 join.media GmbH & Co. KG
+ *
+ * Created by aotten77 on 22.08.2014.
+ *
+ * Released under the MIT license
+ */
 define(['jquery', '_config'], function($, _config){
 	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
 	// Globales Objekt
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
 
+	jmHF.alert = function(p_data){
+		if(window.debug){
+			alert(p_data);
+		}
+	};
+
 	jmHF.log = function(p_data){
-		if(window.IsDevServer){
+		if(window.debug){
 			window.console.log(p_data);
 		}
 	};
 
 	jmHF.error = function(p_data){
-		if(window.IsDevServer){
-			window.console.error(p_data);
+		if(window.debug){
+			window.console.trace('%cJM \n ->'+p_data+'', 'color: red; font-style: italic');
+			$.doTimeout('jmHF.error', 200, function(){
+				jmHF.alert('Fehler! siehe Console JM ->');
+			});
 		}
 	};
 
 	jmHF.warn = function(p_data){
-		if(window.IsDevServer){
-			window.console.warn(p_data);
+		if(window.debug){
+			window.console.trace('%cJM \n ->'+p_data+'', 'color: orange; font-style: italic');
+			$.doTimeout('jmHF.warn', 200, function(){
+				jmHF.alert('Warnung! siehe Console JM ->');
+			});
+		}
+	};
+
+	jmHF.checkJmNameElementenOnNecessaryDominitAttribut = function(){
+		var _dataJmnameElemente = $('[data-jmname]');
+		for(var i = 0, leni = _dataJmnameElemente.length; i < leni; i++){
+			// je DomElement
+			var _events = '';
+			var _jmnameElement = _dataJmnameElemente.eq(i).data('jmname').split('|');
+			var _eventsArray;
+			for(var j = 0, lenj = _jmnameElement.length; j < lenj; j++){
+				// je jmnameSplit
+				for(var k = 0, lenk = _config.length; k < lenk; k++){
+					// je _configOjb
+					if(_config[k].jmname === _jmnameElement[j]){
+						// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
+						if($.type(_config[k].jmconfig) !== 'array'){
+							_events += _config[k].jmconfig.event + '|';
+						}else{
+							for(var l = 0, lenl = _config[k].jmconfig.length; l < lenl; l++){
+								// je jmconfigObj in jmconfigArray
+								_events += _config[k].jmconfig[l].event + '|';
+							}
+						}
+					}
+				}
+			}
+			_eventsArray = _events.split('|');
+			for(var m = 0, lenm = _eventsArray.length; m < lenm; m++){
+				switch(_eventsArray[m]){
+					case 'dominit':
+					case 'raf':
+					case 'blur':
+					case 'focus':
+					case 'hover':
+						//alert('noregex');
+						break;
+					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
+					case ((_eventsArray[m].match(/interval(.*)/))? _eventsArray[m] : undefined):
+						if(_dataJmnameElemente.eq(i).attr('data-jmdominit') !== 'true'){
+							console.group();
+							console.log('%cJM -> Das Element ...', 'color: red; font-style: italic');
+							console.log(_dataJmnameElemente.eq(i)[0]);
+							console.log('%c ... benötigt ein data-jmdominit="true" Attribut!', 'color: red; font-style: italic');
+							console.groupEnd();
+							jmHF.alert('Fehler: siehe Console! JM ->')
+						}
+						break;
+					default:
+						break;
+				}
+			}
 		}
 	};
 
@@ -94,7 +169,7 @@ define(['jquery', '_config'], function($, _config){
 		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
 		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
 		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
-				jmHF.warn('Bei der mehrfachen Anwendung vom selben-Plugin im jmelement-String sind diese mit ..._1|..._2 usw. zu benennen.');
+				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmelement-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
 		}
