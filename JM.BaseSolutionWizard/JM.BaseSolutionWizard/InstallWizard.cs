@@ -38,6 +38,9 @@ namespace JM.BaseSolutionWizard
 
         public void RunFinished()
         {
+            var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
+            frmWizard.ShowDialog();
+
             var solutionFilesPath = Path.Combine(SOLUTIONDIRECTORY, SOLUTIONFILESFOLDER);
             if (Directory.Exists(solutionFilesPath))
             {
@@ -49,16 +52,13 @@ namespace JM.BaseSolutionWizard
 
                 var directories = Directory.GetDirectories(solutionFilesPath);
                 AddDirectoriesToSolutionFolder(pSolutionFiles, directories);
-        }
+            }
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
             _dte = automationObject as _DTE;
             _replacementsDictionary = replacementsDictionary;
-
-            var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath());
-            frmWizard.ShowDialog();
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -88,9 +88,9 @@ namespace JM.BaseSolutionWizard
         {
             if (directories != null && directories.Any())
             {
-                var solutionFolder = (SolutionFolder) project.Object;
+                var solutionFolder = (SolutionFolder)project.Object;
                 foreach (var directory in directories)
-        {
+                {
                     var directoryName = directory.Replace(SOLUTIONDIRECTORY, string.Empty);
                     var subProject = solutionFolder.AddSolutionFolder(directoryName);
 
