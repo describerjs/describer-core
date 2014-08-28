@@ -1,16 +1,17 @@
 ﻿using JM.BaseSolutionWizard;
 using Microsoft.CSharp.RuntimeBinder;
-using Mustache;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -71,23 +72,104 @@ namespace WindowsFormsApplication1
 
         private void btnSaveEnvironemtns_Click(object sender, EventArgs e)
         {
-            var format = File.ReadAllText("Web.Debug.config.MTemplate");
-            var folderRoot = Directory.GetCurrentDirectory();
-            var environments = this.environments;
+            //var format = File.ReadAllText("Web.Debug.config.MTemplate");
+            //var folderRoot = Directory.GetCurrentDirectory();
+            //var environments = this.environments;
 
-            FileRenderer renderer = new FileRenderer();
-            renderer.RenderFiles(format, folderRoot, environments);
+            //FileRenderer renderer = new FileRenderer();
+            //renderer.RenderFiles(format, folderRoot, environments);
 
-            var env = environments.First(en => en.IsLocal);
+            //var env = environments.First(en => en.IsLocal);
 
-            var fileName = env.EnvironmentName + ".config";
-            var folderName = Path.Combine(folderRoot, env.EnvironmentName);
-            var transformationFile = Path.Combine(folderName, fileName);
-            var targetFileName = @"..\..\transformed.config";
-            var transformationSource = @"..\..\Web.config";
+            //var fileName = env.EnvironmentName + ".config";
+            //var folderName = Path.Combine(folderRoot, env.EnvironmentName);
+            //var transformationFile = Path.Combine(folderName, fileName);
+            //var targetFileName = @"..\..\transformed.config";
+            //var transformationSource = @"..\..\Web.config";
 
-            ApplyTransform(transformationFile, targetFileName, transformationSource);
+            //ApplyTransform(transformationFile, targetFileName, transformationSource);
+
+            foreach (var item in environments)
+            {
+                var scriptFilePath = @"..\..\..\Templating\InitialData.sql";
+                var script = File.ReadAllText(scriptFilePath);
+
+                CreateDatabase(new SqlConnectionStringBuilder(item.AdminConnectionString));
+
+                using (SqlConnection conn = new SqlConnection(item.AdminConnectionString))
+                {
+                    conn.Open();
+
+                    IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
+                        RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                    foreach (var cstring in commandStrings.Where(c => !string.IsNullOrWhiteSpace(c)))
+                    {
+                        new SqlCommand(cstring, conn).ExecuteNonQuery();
+                    }
+                }
+            }
         }
+
+        private void CreateDatabase(SqlConnectionStringBuilder cnb)
+        {
+            SqlConnectionStringBuilder masterDBCs = new SqlConnectionStringBuilder();
+            masterDBCs.DataSource = cnb.DataSource;
+            masterDBCs.UserID = cnb.UserID;
+            masterDBCs.Password = cnb.Password;
+            masterDBCs.InitialCatalog = "MASTER";
+
+            using (SqlConnection conn = new SqlConnection(masterDBCs.ConnectionString))
+            {
+                conn.Open();
+
+                var sqlCreateDBQuery = " CREATE DATABASE " + cnb.InitialCatalog;
+
+                SqlCommand myCommand = new SqlCommand(sqlCreateDBQuery, conn);
+                myCommand.ExecuteNonQuery();
+            }
+        }
+
+        //private void CreateDatabase(DatabaseParam DBParam)
+        //{
+        //    System.Data.SqlClient.SqlConnection tmpConn;
+        //    string sqlCreateDBQuery;
+        //    tmpConn = new SqlConnection();
+        //    tmpConn.ConnectionString = "SERVER = " + DBParam.ServerName +
+        //                         "; DATABASE = master; User ID = sa; Pwd = sa";
+        //    sqlCreateDBQuery = " CREATE DATABASE "
+        //                       + DBParam.DatabaseName
+        //                       + " ON PRIMARY "
+        //                       + " (NAME = " + DBParam.DataFileName + ", "
+        //                       + " FILENAME = '" + DBParam.DataPathName + "', "
+        //                       + " SIZE = 2MB,"
+        //                       + " FILEGROWTH =" + DBParam.DataFileGrowth + ") "
+        //                       + " LOG ON (NAME =" + DBParam.LogFileName + ", "
+        //                       + " FILENAME = '" + DBParam.LogPathName + "', "
+        //                       + " SIZE = 1MB, "
+        //                       + " FILEGROWTH =" + DBParam.LogFileGrowth + ") ";
+        //    SqlCommand myCommand = new SqlCommand(sqlCreateDBQuery, tmpConn);
+        //    try
+        //    {
+        //        tmpConn.Open();
+        //        MessageBox.Show(sqlCreateDBQuery);
+        //        myCommand.ExecuteNonQuery();
+        //        MessageBox.Show("Database has been created successfully!",
+        //                          "Create Database", MessageBoxButtons.OK,
+        //                                      MessageBoxIcon.Information);
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString(), "Create Database",
+        //                                    MessageBoxButtons.OK,
+        //                             MessageBoxIcon.Information);
+        //    }
+        //    finally
+        //    {
+        //        tmpConn.Close();
+        //    }
+        //    return;
+        //}
 
         private static void ApplyTransform(string transformationFile, string targetFileName, string transformationSource)
         {

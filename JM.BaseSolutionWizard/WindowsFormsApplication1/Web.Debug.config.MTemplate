@@ -20,9 +20,9 @@
   </connectionStrings>
 
   <system.web>
-    {{^IsDebug}}
+    {{^IsLocal}}
     <compilation xdt:Transform="RemoveAttributes(debug)" />
-    {{/IsDebug}}
+    {{/IsLocal}}
     <!--
       Im folgenden Beispiel ersetzt die Transformation "Replace" den gesamten
       Abschnitt "<customErrors>" der Datei "web.config".
