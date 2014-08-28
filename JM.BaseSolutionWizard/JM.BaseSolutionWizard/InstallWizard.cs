@@ -37,10 +37,17 @@ namespace JM.BaseSolutionWizard
 
         public void RunFinished()
         {
-            var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath(), GetFilestreamFromTemplate("Web.config.MTemplate"));
+            var frmWizard = 
+                new FrmWizard(
+                    GetSolutionName(), 
+                    GetSolutionRootPath(), 
+                    GetFilestreamFromTemplate("Web.config.MTemplate"),
+                    GetFilestreamFromTemplate("Web.config.MTemplate")); // ToDo: Template
+
             frmWizard.ShowDialog();
 
             var solutionFilesPath = Path.Combine(GetSolutionRootPath(), SOLUTIONFILESFOLDER);
+
             if (Directory.Exists(solutionFilesPath))
             {
                 var solution = (Solution2)_dte.Solution;
@@ -54,7 +61,11 @@ namespace JM.BaseSolutionWizard
         }
         }
 
-        public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
+        public void RunStarted(
+            object automationObject, 
+            Dictionary<string, string> replacementsDictionary, 
+            WizardRunKind runKind, 
+            object[] customParams)
         {
             _dte = automationObject as _DTE;
             _replacementsDictionary = replacementsDictionary;
@@ -89,8 +100,9 @@ namespace JM.BaseSolutionWizard
             if (directories != null && directories.Any())
             {
                 var solutionFolder = (SolutionFolder)project.Object;
+
                 foreach (var directory in directories)
-        {
+                {
                     var directoryName = directory.Replace(SOLUTIONDIRECTORY, string.Empty);
                     var subProject = solutionFolder.AddSolutionFolder(directoryName);
 
@@ -124,10 +136,12 @@ namespace JM.BaseSolutionWizard
             var templateInfo = new FileInfo(_templatePath);
             var tempRoot = templateInfo.DirectoryName;
             var filePath = Path.Combine(tempRoot, filename);
+
             if (File.Exists(filePath))
             {
                 return new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
             }
+
             return null;
         }
     }

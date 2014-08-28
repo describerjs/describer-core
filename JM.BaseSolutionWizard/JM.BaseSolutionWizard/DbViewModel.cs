@@ -12,15 +12,21 @@ namespace JM.BaseSolutionWizard
     {
         //SqlConnectionStringBuilder builder;
 
-        //public DbViewModel(SqlConnectionStringBuilder builder)
-        //{
-        //    this.serverName = builder.DataSource;
-        //    this.dBName = builder.InitialCatalog;
-        //}
+        public DbViewModel(SqlConnectionStringBuilder builder)
+        {
+            this.serverName = builder.DataSource;
+            this.dBName = builder.InitialCatalog;
+        }
 
         public DbViewModel()
         {
 
+        }
+
+        public SqlConnectionStringBuilder Model
+        {
+            get;
+            set;
         }
 
         string serverName;

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Dynamic;
 using System.IO;
@@ -23,6 +24,7 @@ namespace WindowsFormsApplication1
         string projectName;
         string solutionRootPath;
         Stream transformationFileTemplate;
+        Stream dbCreationScriptTemplate;
 
         public FrmWizard()
         {
@@ -32,11 +34,14 @@ namespace WindowsFormsApplication1
         public FrmWizard(
             string projectName, 
             string solutionRootPath,
-           Stream transformationFileTemplate) : this()
+            Stream transformationFileTemplate,
+            Stream dbCreationScriptTemplate)
+            : this()
         {
             this.projectName = projectName;
             this.solutionRootPath = solutionRootPath;
             this.transformationFileTemplate = transformationFileTemplate;
+            this.dbCreationScriptTemplate = dbCreationScriptTemplate;
 
             System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
             builder.DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE";
@@ -91,7 +96,7 @@ namespace WindowsFormsApplication1
             var environments = this.environments;
 
             FileRenderer renderer = new FileRenderer();
-            renderer.RenderFiles(format, this.solutionRootPath, environments);
+            renderer.RenderFiles(format, Path.Combine(this.solutionRootPath, "Solution Files"), environments);
 
             var localEnvironment = this.environments.Single(env => env.IsLocal);
             ApplyToWebconfig(localEnvironment);
@@ -100,7 +105,7 @@ namespace WindowsFormsApplication1
         private void ApplyToWebconfig(EnvironmentViewModel localEnvironment)
         {
             var fileName = localEnvironment.EnvironmentName + ".config";
-            var transformationFile = Path.Combine(this.solutionRootPath, localEnvironment.EnvironmentName, fileName);
+            var transformationFile = Path.Combine(this.solutionRootPath, "Solution Files", "Environments", localEnvironment.EnvironmentName, fileName);
             var targetFile = Path.Combine(this.solutionRootPath, this.projectName, "Web", this.projectName + ".Web", "web.config");
             var tempFilename = Path.GetTempFileName();
             ApplyTransform(transformationFile, tempFilename, targetFile);
