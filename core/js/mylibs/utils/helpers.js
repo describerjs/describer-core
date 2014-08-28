@@ -17,7 +17,7 @@ define(['jquery', '_config'], function($, _config){
 
 	jmHF.alert = function(p_data){
 		if(window.debug){
-			alert(p_data);
+			window.alert(p_data);
 		}
 	};
 
@@ -42,6 +42,19 @@ define(['jquery', '_config'], function($, _config){
 			$.doTimeout('jmHF.warn', 200, function(){
 				jmHF.alert('Warnung! siehe Console JM ->');
 			});
+		}
+	};
+
+	jmHF.checkConfigJS = function(){
+		for(var i = 0, leni = _config.length; i < leni; i++){
+			var _jmelementLength = _config[i].jmelement.split('|').length;
+			var _jmconfigObjCount = ($.type(_config[i].jmconfig) === 'object') ? 1 : _config[i].jmconfig.length;
+			if(_jmelementLength !== _jmconfigObjCount){
+				window.console.trace('%cJM \n ->Die Anzahl der jmelemente "'+_config[i].jmelement+'" im Konfigurationsmodul jmname="'+_config[i].jmname+'"  und die Anzahl der zugehörigen jmconfig-Objekte stimmen nicht überein.', 'color: orange; font-style: italic');
+				$.doTimeout('jmHF.warn', 200, function(){
+					jmHF.alert('Error! in _config.js -> siehe Console JM');
+				});
+			}
 		}
 	};
 

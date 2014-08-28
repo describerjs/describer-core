@@ -216,6 +216,7 @@ require(['jquery', '_config'], function($, _config){
 			picturefill();
 
 			if(window.debug){
+				jmHF.checkConfigJS();
 				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
 			}
 			//jmHF.replaceSVGForOldBrowser();
