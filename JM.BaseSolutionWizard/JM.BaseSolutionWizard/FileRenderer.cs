@@ -25,7 +25,7 @@ namespace JM.BaseSolutionWizard
                     new
                     {
                         FileName = en.EnvironmentName + ".config",
-                        FolderName = Path.Combine(folderRoot, en.EnvironmentName),
+                        FolderName = Path.Combine(folderRoot, "Environments" ,en.EnvironmentName),
                         TemplateSource = new EnvironmentTemplateSource
                         {
                             DefaultConnectionString = en.StandardConnectionString,

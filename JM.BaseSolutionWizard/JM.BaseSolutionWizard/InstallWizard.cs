@@ -5,6 +5,7 @@ using EnvDTE80;
 using System.IO;
 using WindowsFormsApplication1;
 using System.Linq;
+
 namespace JM.BaseSolutionWizard
 {
     public class InstallWizard : IWizard
@@ -13,12 +14,13 @@ namespace JM.BaseSolutionWizard
         private Dictionary<string, string> _replacementsDictionary;
         private const string PROJECTNAME = "$projectname$";
         private const string SOLUTIONDIRECTORY = "$solutiondirectory$";
+        private const string DESTINATIONDIRECTORY = "$destinationdirectory$";
         private string _templatePath;
 
         /// <summary>
         /// z.b. C:\Dev\NeueSolution\Solution Files\
         /// </summary>
-        private const string SOLUTIONFILESFOLDER = "SolutionFiles";
+        private const string SOLUTIONFILESFOLDER = "Solution Files";
 
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
@@ -42,7 +44,7 @@ namespace JM.BaseSolutionWizard
                     GetSolutionName(), 
                     GetSolutionRootPath(), 
                     GetFilestreamFromTemplate("Web.config.MTemplate"),
-                    GetFilestreamFromTemplate("Web.config.MTemplate")); // ToDo: Template
+                    GetFilestreamFromTemplate("DbCreateScript.MTemplate")); // ToDo: Template
 
             frmWizard.ShowDialog();
 
@@ -53,12 +55,17 @@ namespace JM.BaseSolutionWizard
                 var solution = (Solution2)_dte.Solution;
                 var pSolutionFiles = solution.AddSolutionFolder(SOLUTIONFILESFOLDER);
 
-                var files = Directory.GetFiles(solutionFilesPath);
-                AddFilesToSolutionFolder(pSolutionFiles, files);
+                var directoryInfo = new DirectoryInfo(solutionFilesPath);
 
-                var directories = Directory.GetDirectories(solutionFilesPath);
-                AddDirectoriesToSolutionFolder(pSolutionFiles, directories);
-        }
+                AddFilesToSolutionFolder(pSolutionFiles, directoryInfo.GetFiles());
+                AddDirectoriesToSolutionFolder(pSolutionFiles, directoryInfo.GetDirectories());
+
+                foreach (Window window in _dte.Windows)
+                {
+                    if(window.Type == vsWindowType.vsWindowTypeDocument)
+                        window.Close();
+                }
+            }
         }
 
         public void RunStarted(
@@ -95,7 +102,7 @@ namespace JM.BaseSolutionWizard
             return _replacementsDictionary[PROJECTNAME];
         }
 
-        private void AddDirectoriesToSolutionFolder(Project project, string[] directories)
+        private void AddDirectoriesToSolutionFolder(Project project, IEnumerable<DirectoryInfo> directories)
         {
             if (directories != null && directories.Any())
             {
@@ -103,24 +110,20 @@ namespace JM.BaseSolutionWizard
 
                 foreach (var directory in directories)
                 {
-                    var directoryName = directory.Replace(SOLUTIONDIRECTORY, string.Empty);
-                    var subProject = solutionFolder.AddSolutionFolder(directoryName);
+                    var subProject = solutionFolder.AddSolutionFolder(directory.Name);
 
-                    var files = Directory.GetFiles(directoryName);
-                    AddFilesToSolutionFolder(subProject, files);
-
-                    var subDirectories = Directory.GetDirectories(directoryName);
-                    AddDirectoriesToSolutionFolder(subProject, subDirectories);
+                    AddFilesToSolutionFolder(subProject, directory.GetFiles());
+                    AddDirectoriesToSolutionFolder(subProject, directory.GetDirectories());
                 }
             }
         }
-        private void AddFilesToSolutionFolder(Project project, string[] files)
+        private void AddFilesToSolutionFolder(Project project, IEnumerable<FileInfo> files)
         {
             if (files != null && files.Any())
             {
                 foreach (var file in files)
                 {
-                    project.ProjectItems.AddFromFile(file);
+                    project.ProjectItems.AddFromFile(file.FullName);
                 }
             }
         }

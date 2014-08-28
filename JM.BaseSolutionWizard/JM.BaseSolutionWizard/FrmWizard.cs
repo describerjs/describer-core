@@ -1,18 +1,9 @@
 ﻿using JM.BaseSolutionWizard;
-using Microsoft.CSharp.RuntimeBinder;
-using Mustache;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -43,12 +34,14 @@ namespace WindowsFormsApplication1
             this.transformationFileTemplate = transformationFileTemplate;
             this.dbCreationScriptTemplate = dbCreationScriptTemplate;
 
-            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
-            builder.DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE";
-            builder.InitialCatalog = projectName;
-            builder.UserID = "sa";
-            builder.Password = "Join#media960";
-            builder.MultipleActiveResultSets = true;
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE",
+                InitialCatalog = projectName,
+                UserID = "sa",
+                Password = "Join#media960",
+                MultipleActiveResultSets = true
+            };
 
             this.environments =
                 new List<EnvironmentViewModel>
@@ -79,7 +72,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            JM.BaseSolutionWizard.FrmJMBaseWizard wizard = new JM.BaseSolutionWizard.FrmJMBaseWizard();
+           var wizard = new FrmJMBaseWizard();
             wizard.FormClosed += wizard_FormClosed;
             wizard.SetData(this.environments);
             wizard.ShowDialog();
@@ -89,8 +82,12 @@ namespace WindowsFormsApplication1
         {
             WriteEnvironments();
 
-            FrmPrepareEnvironments frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate);
-            frm.DataSource = this.environments;
+            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate)
+            {
+                DataSource =
+                    this.environments.Select(
+                        env => new DbViewModel(new SqlConnectionStringBuilder(env.AdminConnectionString))).ToList()
+            };
             frm.ShowDialog();
         }
 
@@ -98,14 +95,14 @@ namespace WindowsFormsApplication1
         {
             var format = string.Empty;
 
-            using (StreamReader reader = new StreamReader(this.transformationFileTemplate))
+            using (var reader = new StreamReader(this.transformationFileTemplate))
             {
                 format = reader.ReadToEnd();
             }
 
             var environments = this.environments;
 
-            FileRenderer renderer = new FileRenderer();
+            var renderer = new FileRenderer();
             renderer.RenderFiles(format, Path.Combine(this.solutionRootPath, "Solution Files"), environments);
 
             var localEnvironment = this.environments.Single(env => env.IsLocal);

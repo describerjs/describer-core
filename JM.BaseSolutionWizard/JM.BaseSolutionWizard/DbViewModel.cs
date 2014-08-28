@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JM.BaseSolutionWizard
 {
     public class DbViewModel : INotifyPropertyChanged
     {
-        //SqlConnectionStringBuilder builder;
-
         public DbViewModel(SqlConnectionStringBuilder builder)
         {
             this.serverName = builder.DataSource;
             this.dBName = builder.InitialCatalog;
+            this.model = builder;
         }
 
         public DbViewModel()
@@ -23,10 +17,15 @@ namespace JM.BaseSolutionWizard
 
         }
 
+        private SqlConnectionStringBuilder model;
         public SqlConnectionStringBuilder Model
         {
-            get;
-            set;
+            get
+            {
+                model.DataSource = ServerName;
+                model.InitialCatalog = DBName;
+                return model;
+            }
         }
 
         string serverName;

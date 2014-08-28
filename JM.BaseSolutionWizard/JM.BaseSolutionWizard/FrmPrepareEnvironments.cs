@@ -1,14 +1,6 @@
 ﻿using Mustache;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JM.BaseSolutionWizard
@@ -21,7 +13,7 @@ namespace JM.BaseSolutionWizard
         {
             InitializeComponent();
 
-            this.dbViewModelDataGridView.CellClick += dbViewModelDataGridView_CellClick;
+            this.dbViewModelDataGridView.CellDoubleClick += dbViewModelDataGridView_CellDoubleClick;
         }
 
         public FrmPrepareEnvironments(Stream dbCreationTemplate) : this()
@@ -29,37 +21,43 @@ namespace JM.BaseSolutionWizard
             this.dbCreationTemplate = dbCreationTemplate;
         }
 
-        void dbViewModelDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        void dbViewModelDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.ColumnIndex == this.CreateDBColumn.Index)
             {
-                CreateDatabase(((DbViewModel)this.dbViewModelDataGridView.Rows[e.RowIndex].DataBoundItem).Model);
+                var dbModel = this.dbViewModelDataGridView.Rows[e.RowIndex].DataBoundItem as DbViewModel;
+                if (dbModel != null && dbModel.Model != null)
+                {
+                    CreateDatabase(dbModel.Model);
+                }
             }
         }
 
         private void CreateDatabase(SqlConnectionStringBuilder cnb)
         {
-            SqlConnectionStringBuilder masterDBCs = new SqlConnectionStringBuilder();
-            masterDBCs.DataSource = cnb.DataSource;
-            masterDBCs.UserID = cnb.UserID;
-            masterDBCs.Password = cnb.Password;
-            masterDBCs.InitialCatalog = "MASTER";
+            var masterDBCs = new SqlConnectionStringBuilder
+            {
+                DataSource = cnb.DataSource,
+                UserID = cnb.UserID,
+                Password = cnb.Password,
+                InitialCatalog = "MASTER"
+            };
 
             var format = string.Empty;
 
-            using (StreamReader reader = new StreamReader(this.dbCreationTemplate))
+            using (var reader = new StreamReader(this.dbCreationTemplate))
             {
                 format = reader.ReadToEnd();
             }
 
-            FormatCompiler compiler = new FormatCompiler();
-            Generator generator = compiler.Compile(format);
+            var compiler = new FormatCompiler();
+            var generator = compiler.Compile(format);
             var sqlCreateDBQuery = generator.Render(cnb);
 
-            using (SqlConnection conn = new SqlConnection(masterDBCs.ConnectionString))
+            using (var conn = new SqlConnection(masterDBCs.ConnectionString))
             {
                 conn.Open();
-                SqlCommand myCommand = new SqlCommand(sqlCreateDBQuery, conn);
+                var myCommand = new SqlCommand(sqlCreateDBQuery, conn);
                 myCommand.ExecuteNonQuery();
             }
         }
