@@ -16,9 +16,12 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "BaseSolutionWizardInstaller
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateSource", "TemplateSource", "{719EB457-EFDA-45FB-B471-038414BF35FF}"
 	ProjectSection(SolutionItems) = preProject
+		Templating\DbCreateScript.MTemplate = Templating\DbCreateScript.MTemplate
+		Templating\InitialData.sql = Templating\InitialData.sql
 		Templating\JM-Basissolution.vstemplate = Templating\JM-Basissolution.vstemplate
 		Templating\JM-Basissolution.zip = Templating\JM-Basissolution.zip
 		Templating\NuGet.Config = Templating\NuGet.Config
+		Templating\Web.config.MTemplate = Templating\Web.config.MTemplate
 	EndProjectSection
 EndProject
 Global

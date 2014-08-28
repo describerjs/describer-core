@@ -42,7 +42,7 @@
 	<Fragment>
 		<ComponentGroup Id="TemplateFiles" Directory="INSTALLFOLDER">
       <Component Id="VSTemplate" Guid="{5F8C334F-E6BB-44A3-BE13-045FD0390B12}">
-        <File Id="JM.BaseSolutionWizard2.dll" DiskId="1" Vital="yes" Source="$(var.SolutionDir)\Templating\JM-Basissolution.zip"></File>
+        <File Id="JMBasissolutionTemplate" DiskId="1" Vital="yes" Source="$(var.SolutionDir)\Templating\JM-Basissolution.zip"></File>
         <RegistryKey Root="HKCU" Key="Software\join.media\BaseSolution\Template">
           <RegistryValue Value="Copied" Type="string" KeyPath="yes" />
         </RegistryKey>

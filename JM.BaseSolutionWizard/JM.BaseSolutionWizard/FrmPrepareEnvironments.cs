@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Mustache;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +15,18 @@ namespace JM.BaseSolutionWizard
 {
     public partial class FrmPrepareEnvironments : Form
     {
+        Stream dbCreationTemplate;
+
         public FrmPrepareEnvironments()
         {
             InitializeComponent();
 
             this.dbViewModelDataGridView.CellClick += dbViewModelDataGridView_CellClick;
+        }
+
+        public FrmPrepareEnvironments(Stream dbCreationTemplate) : this()
+        {
+            this.dbCreationTemplate = dbCreationTemplate;
         }
 
         void dbViewModelDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -36,12 +45,20 @@ namespace JM.BaseSolutionWizard
             masterDBCs.Password = cnb.Password;
             masterDBCs.InitialCatalog = "MASTER";
 
+            var format = string.Empty;
+
+            using (StreamReader reader = new StreamReader(this.dbCreationTemplate))
+            {
+                format = reader.ReadToEnd();
+            }
+
+            FormatCompiler compiler = new FormatCompiler();
+            Generator generator = compiler.Compile(format);
+            var sqlCreateDBQuery = generator.Render(cnb);
+
             using (SqlConnection conn = new SqlConnection(masterDBCs.ConnectionString))
             {
                 conn.Open();
-
-                var sqlCreateDBQuery = " CREATE DATABASE " + cnb.InitialCatalog;
-
                 SqlCommand myCommand = new SqlCommand(sqlCreateDBQuery, conn);
                 myCommand.ExecuteNonQuery();
             }

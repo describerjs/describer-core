@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
 {
     public partial class FrmWizard : Form
     {
-        IEnumerable<EnvironmentViewModel> environments = Enumerable.Empty<EnvironmentViewModel>();
+        IList<EnvironmentViewModel> environments = new List<EnvironmentViewModel>();
 
         string projectName;
         string solutionRootPath;
@@ -73,7 +73,8 @@ namespace WindowsFormsApplication1
             this.environments = 
                 ((FrmJMBaseWizard)sender)
                 .Environments
-                .Where(en => !string.IsNullOrWhiteSpace(en.EnvironmentName));
+                .Where(en => !string.IsNullOrWhiteSpace(en.EnvironmentName))
+                .ToList();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,9 +87,18 @@ namespace WindowsFormsApplication1
 
         private void btnSaveEnvironemtns_Click(object sender, EventArgs e)
         {
+            WriteEnvironments();
+
+            FrmPrepareEnvironments frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate);
+            frm.DataSource = this.environments;
+            frm.ShowDialog();
+        }
+
+        private void WriteEnvironments()
+        {
             var format = string.Empty;
 
-            using(StreamReader reader = new StreamReader(this.transformationFileTemplate))
+            using (StreamReader reader = new StreamReader(this.transformationFileTemplate))
             {
                 format = reader.ReadToEnd();
             }
@@ -131,7 +141,7 @@ namespace WindowsFormsApplication1
         public IEnumerable<EnvironmentViewModel> Environments
         {
             get { return this.environments ?? Enumerable.Empty<EnvironmentViewModel>(); }
-            set { this.environments = value; }
+            set { this.environments = value.ToList(); }
         }
     }
 }
