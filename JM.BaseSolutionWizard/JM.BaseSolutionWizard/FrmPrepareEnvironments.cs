@@ -1,13 +1,17 @@
 ﻿using Mustache;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace JM.BaseSolutionWizard
 {
     public partial class FrmPrepareEnvironments : Form
     {
         Stream dbCreationTemplate;
+        Stream dbContent;
 
         public FrmPrepareEnvironments()
         {
@@ -16,9 +20,12 @@ namespace JM.BaseSolutionWizard
             this.dbViewModelDataGridView.CellDoubleClick += dbViewModelDataGridView_CellDoubleClick;
         }
 
-        public FrmPrepareEnvironments(Stream dbCreationTemplate) : this()
+        public FrmPrepareEnvironments(
+            Stream dbCreationTemplate,
+            Stream dbContent) : this()
         {
             this.dbCreationTemplate = dbCreationTemplate;
+            this.dbContent = dbContent;
         }
 
         void dbViewModelDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -59,6 +66,20 @@ namespace JM.BaseSolutionWizard
                 conn.Open();
                 var myCommand = new SqlCommand(sqlCreateDBQuery, conn);
                 myCommand.ExecuteNonQuery();
+                string script;
+
+                using (StreamReader reader = new StreamReader(this.dbContent))
+                {
+                    script = reader.ReadToEnd();
+
+                    IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
+                        RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                    foreach (var cstring in commandStrings.Where(c => !string.IsNullOrWhiteSpace(c)))
+                    {
+                        new SqlCommand(cstring, conn).ExecuteNonQuery();
+                    }
+                }
             }
         }
 
