@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TemplateWizard;
 using EnvDTE;
 using EnvDTE80;
 using System.IO;
 using WindowsFormsApplication1;
 using System.Linq;
-
 namespace JM.BaseSolutionWizard
 {
     public class InstallWizard : IWizard
@@ -16,6 +13,8 @@ namespace JM.BaseSolutionWizard
         private Dictionary<string, string> _replacementsDictionary;
         private const string PROJECTNAME = "$projectname$";
         private const string SOLUTIONDIRECTORY = "$solutiondirectory$";
+        private string _templatePath;
+
         /// <summary>
         /// z.b. C:\Dev\NeueSolution\Solution Files\
         /// </summary>
@@ -41,7 +40,7 @@ namespace JM.BaseSolutionWizard
             var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath(), GetFilestreamFromTemplate("Web.config.MTemplate"));
             frmWizard.ShowDialog();
 
-            var solutionFilesPath = Path.Combine(SOLUTIONDIRECTORY, SOLUTIONFILESFOLDER);
+            var solutionFilesPath = Path.Combine(GetSolutionRootPath(), SOLUTIONFILESFOLDER);
             if (Directory.Exists(solutionFilesPath))
             {
                 var solution = (Solution2)_dte.Solution;
@@ -59,6 +58,7 @@ namespace JM.BaseSolutionWizard
         {
             _dte = automationObject as _DTE;
             _replacementsDictionary = replacementsDictionary;
+            _templatePath = customParams[0] as string;
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -119,9 +119,16 @@ namespace JM.BaseSolutionWizard
         /// <param name="filename"></param>
         /// <returns></returns>
         /// <remarks>Die Datei muss sich im Root-Verzeichnis des Templates befinden.</remarks>
-        private FileStream GetFilestreamFromTemplate(string filename)
+        private Stream GetFilestreamFromTemplate(string filename)
         {
-            throw new NotImplementedException();
+            var templateInfo = new FileInfo(_templatePath);
+            var tempRoot = templateInfo.DirectoryName;
+            var filePath = Path.Combine(tempRoot, filename);
+            if (File.Exists(filePath))
+            {
+                return new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
+            }
+            return null;
         }
     }
 }
