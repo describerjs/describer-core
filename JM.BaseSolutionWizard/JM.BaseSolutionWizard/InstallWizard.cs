@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TemplateWizard;
 using EnvDTE;
 using EnvDTE80;
 using System.IO;
 using WindowsFormsApplication1;
 using System.Linq;
-using System.IO.Compression;
 namespace JM.BaseSolutionWizard
 {
     public class InstallWizard : IWizard
@@ -43,7 +40,7 @@ namespace JM.BaseSolutionWizard
             var frmWizard = new FrmWizard(GetSolutionName(), GetSolutionRootPath(), GetFilestreamFromTemplate("Web.config.MTemplate"));
             frmWizard.ShowDialog();
 
-            var solutionFilesPath = Path.Combine(SOLUTIONDIRECTORY, SOLUTIONFILESFOLDER);
+            var solutionFilesPath = Path.Combine(GetSolutionRootPath(), SOLUTIONFILESFOLDER);
             if (Directory.Exists(solutionFilesPath))
             {
                 var solution = (Solution2)_dte.Solution;
@@ -124,15 +121,14 @@ namespace JM.BaseSolutionWizard
         /// <remarks>Die Datei muss sich im Root-Verzeichnis des Templates befinden.</remarks>
         private Stream GetFilestreamFromTemplate(string filename)
         {
-            var temp1 = _templatePath.Split('\\');
-            var zipPath = temp1[0];
-            for(var i = 1; i < temp1.Length - 1; i++)
+            var templateInfo = new FileInfo(_templatePath);
+            var tempRoot = templateInfo.DirectoryName;
+            var filePath = Path.Combine(tempRoot, filename);
+            if (File.Exists(filePath))
             {
-                zipPath += "\\" + temp1[i];
-            } 
-            var ll = ZipFile.Open(zipPath, ZipArchiveMode.Read);
-            var lll = ll.GetEntry(filename);
-            return lll.Open();
+                return new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
+            }
+            return null;
         }
     }
 }
