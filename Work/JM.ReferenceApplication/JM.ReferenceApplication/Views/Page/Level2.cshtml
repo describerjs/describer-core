@@ -4,5 +4,6 @@
 }
 
 @Html.Partial("Regions/TextBlock")
-@Html.Partial("Regions/Tabs")
 @Html.Partial("Regions/Togglebox")
+
+@Html.Partial("Regions/Tabs", Model.Region<TabsRegion>("Tabs"))
