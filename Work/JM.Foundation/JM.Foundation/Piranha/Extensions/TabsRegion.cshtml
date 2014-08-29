@@ -1,0 +1,90 @@
+﻿@using System.Web.Mvc.Html
+@using Piranha.Extend.Regions
+@model TabsRegion
+@{
+    //i wird für Arrayindex benutzt
+    var i = 0;
+    //j wird als Idenfifier benutzt
+    var j = 1;
+
+    if(Model.Tabs == null)
+    {
+        Model.Tabs = new List<TextRegion>();
+    }
+}
+<script>
+	var tabID = @Model.Tabs.Count;
+	var tabIndex = @Model.Tabs.Count;
+
+	function addTab() {
+		//hier lesen wir die nächte ID
+		var id = tabID + 1;
+		var index = tabIndex;
+		//alert("tabIndex:"+tabIndex);
+
+		//hier wird eine neue FAQ mit der nächten ID hinzugefügt
+		$("#addTab").before("<li class='tab_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions[0].Body.Tabs[" + index + "].Title' id='TabTitle_" + id + "'></div><li class='tab_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' name='Regions[0].Body.Tabs[" + index + "].Content' id='TabContent_" + id + "' cols='20'></textarea></div></li><li class='tab_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeTab(" + id + ")';'>Reiter entfernen</a></li>");
+        
+		tabID++;
+		tabIndex++;
+	}
+	function removeTab(id) {
+		//alert("id:"+id);
+		//alert("tabID:"+tabID);
+		$(".tab_" + id).remove();
+
+		var countIndex = 0;
+		for(var f = 0; f < tabID; f++){
+
+			var idtochange = f + 1;
+
+			//alert("idtochange:"+idtochange);
+
+			var inputID = "#TabTitle_" + idtochange;
+			var textAreaID = "#TabContent_" + idtochange;
+            
+			// alert("inputID:"+inputID);
+			//alert("textAreaID:" + textAreaID);
+
+			if($(inputID).length && $(textAreaID).length){
+
+				//alert("current name:"+$(inputID).attr("name"));
+
+				$(inputID).attr("name", "Regions[0].Body.Tabs[" + countIndex + "].Title");
+				$(inputID).attr("data-index", countIndex);
+
+				// alert("new name:"+$(inputID).attr("name"));
+
+				// alert("current name:"+$(textAreaID).attr("name"));
+
+				$(textAreaID).attr("name", "Regions[0].Body.Tabs[" + countIndex + "].Content");
+				$(textAreaID).attr("data-index", countIndex);
+
+				//alert("new name:"+$(textAreaID).attr("name"));
+				countIndex++;
+			}
+		}
+		tabIndex--;
+	}
+</script>
+<ul class="form">
+    @foreach(var tab in Model.Tabs)
+    {
+        <li class="tab_@j">
+            <label>Titel @j:</label> 
+            <div class="input">
+                <input type="text" value="@tab.Title" data-index="@i" name="Regions[0].Body.Tabs[@i].Title" id="TabTitle_@j">
+            </div>
+        </li>
+        <li class="tab_@j">
+            <label>Inhalt:</label> 
+            <div class="input">
+                <textarea rows="8" data-index="@i" name="Regions[0].Body.Tabs[@i].Body" id="TabContent_@j" cols="20">@tab.Body</textarea>
+            </div>
+        </li>
+        <li class="tab_@j"><a class="btn" onclick="removeTab(@j);">Reiter entfernen</a></li>
+        i++;
+        j++;
+    }
+    <li id="addTab"><a class="btn" onclick="addTab();">Neuen Reiter hinzufügen</a></li>
+</ul>

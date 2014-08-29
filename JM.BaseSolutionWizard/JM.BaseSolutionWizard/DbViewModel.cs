@@ -22,8 +22,6 @@ namespace JM.BaseSolutionWizard
         {
             get
             {
-                model.DataSource = ServerName;
-                model.InitialCatalog = DBName;
                 return model;
             }
         }

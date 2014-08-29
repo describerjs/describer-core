@@ -1,17 +1,22 @@
-﻿<div class="tabs">
-	<input type="radio" id="tab1" name="tab" class="tab-control" checked />
-	<label for="tab1" class="tab">$tab-label$</label>
-	<input type="radio" id="tab2" name="tab" class="tab-control" />
-	<label for="tab2" class="tab">$tab-label</label>
-	<input type="radio" id="tab3" name="tab" class="tab-control" />
-	<label for="tab3" class="tab">$tab-label</label>
-	<div class="tab-content">
-		$tab-content1$
+﻿@model TabsRegion
+
+@if (Model != null && Model.Tabs != null && Model.Tabs.Any())
+{
+	<div class="tabs">
+		@for (var i = 0; i < Model.Tabs.Count; i++)
+		{
+			<input type="radio" id="@("tab" + i)" name="tab" class="tab-control" @(i == 0 ? "checked" : "") />
+			<label for="@("tab" + i)" class="tab">@Model.Tabs[i].Title</label>
+		}
+		@foreach (var tab in Model.Tabs)
+		{
+			<div class="tab-content">
+				@tab.Body
+			</div>
+		}
 	</div>
-	<div class="tab-content">
-		$tab-content2$
-	</div>
-	<div class="tab-content">
-		$tab-content3$
-	</div>
-</div>
+}
+else
+{
+	<div class="error-msg">Tabs-Model ist leer</div>
+}
