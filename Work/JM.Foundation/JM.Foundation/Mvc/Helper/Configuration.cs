@@ -1,5 +1,4 @@
 ﻿using JM.Foundation.Configuration;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
