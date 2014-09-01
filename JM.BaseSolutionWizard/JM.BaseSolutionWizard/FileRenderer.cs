@@ -30,7 +30,7 @@ namespace JM.BaseSolutionWizard
                         {
                             DefaultConnectionString = en.StandardConnectionString,
                             PiranhaConnectionString = en.AdminConnectionString,
-                            IsDebug = en.IsLocal
+                            IsDebug = en.IsDebug
                         }
                     })
                 .ToList();

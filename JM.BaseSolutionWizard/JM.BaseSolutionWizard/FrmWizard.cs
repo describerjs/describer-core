@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
         string solutionRootPath;
         Stream transformationFileTemplate;
         Stream dbCreationScriptTemplate;
-        private Stream dbContentScript;
+        private Stream dbInitialDataScript;
 
         public FrmWizard()
         {
@@ -27,14 +27,14 @@ namespace WindowsFormsApplication1
             string projectName, 
             string solutionRootPath,
             Stream transformationFileTemplate,
-            Stream dbCreationScriptTemplate, Stream dbContentScript)
+            Stream dbCreationScriptTemplate, Stream dbInitialDataScript)
             : this()
         {
             this.projectName = projectName;
             this.solutionRootPath = solutionRootPath;
             this.transformationFileTemplate = transformationFileTemplate;
             this.dbCreationScriptTemplate = dbCreationScriptTemplate;
-            this.dbContentScript = dbContentScript;
+            this.dbInitialDataScript = dbInitialDataScript;
 
             var builder = new SqlConnectionStringBuilder
             {
@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
                     {
                         AdminConnectionString = builder.ConnectionString,
                         EnvironmentName = "Dev",
-                        IsLocal = true,
+                        IsDebug = true,
                         StandardConnectionString = builder.ConnectionString
                     }
                 };
@@ -80,13 +80,14 @@ namespace WindowsFormsApplication1
             WriteEnvironments();
 
             //todo: Tobi, was soll hier anstatt null übergeben werden?!
-            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbContentScript)
+            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbInitialDataScript)
             {
                 DataSource =
                     this.environments.Select(
                         env => new DbViewModel(new SqlConnectionStringBuilder(env.AdminConnectionString))).ToList()
             };
             frm.ShowDialog();
+            this.Close();
         }
 
         private void WriteEnvironments()
@@ -103,7 +104,7 @@ namespace WindowsFormsApplication1
             var renderer = new FileRenderer();
             renderer.RenderFiles(format, Path.Combine(this.solutionRootPath, "Solution Files"), environments);
 
-            var localEnvironment = this.environments.Single(env => env.IsLocal);
+            var localEnvironment = this.environments.Single(env => env.IsDebug);
             ApplyToWebconfig(localEnvironment);
         }
 
@@ -115,6 +116,8 @@ namespace WindowsFormsApplication1
             var tempFilename = Path.GetTempFileName();
             ApplyTransform(transformationFile, tempFilename, targetFile);
 
+            //todo: temp => target
+            File.Copy(tempFilename, targetFile, true);
         }
 
         private static void ApplyTransform(string transformationFile, string targetFileName, string transformationSource)

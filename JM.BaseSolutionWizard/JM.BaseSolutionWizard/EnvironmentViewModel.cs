@@ -16,7 +16,7 @@ namespace JM.BaseSolutionWizard
         private string environmentName = string.Empty;
         private bool isLocal = false;
 
-        public bool IsLocal
+        public bool IsDebug
         {
             get
             {
