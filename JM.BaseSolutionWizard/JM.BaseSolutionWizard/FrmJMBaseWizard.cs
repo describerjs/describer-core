@@ -40,20 +40,17 @@ namespace JM.BaseSolutionWizard
         {
             get
             {
-                return 
-                    this
-                    .environmentViewModelBindingSource
+                var environments = environmentViewModelBindingSource
                     .OfType<EnvironmentViewModel>()
-                    .Where(en => !string.IsNullOrWhiteSpace(en.EnvironmentName));
+                    .Where(en => !string.IsNullOrWhiteSpace(en.EnvironmentName)).ToList();
+
+                return environments;
             }
         }
 
         public void SetData(IEnumerable<EnvironmentViewModel> models)
         {
-            foreach (var item in models)
-            {
-                this.environmentViewModelBindingSource.List.Add(item);
-            }
+            environmentViewModelBindingSource.DataSource = models.ToList();
         }
 
         protected override void OnClosing(CancelEventArgs e)

@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
                     {
                         AdminConnectionString = builder.ConnectionString,
                         EnvironmentName = "Dev",
-                        IsDebug = true,
+                        IsLocal = true,
                         StandardConnectionString = builder.ConnectionString
                     }
                 };
@@ -79,7 +79,6 @@ namespace WindowsFormsApplication1
         {
             WriteEnvironments();
 
-            //todo: Tobi, was soll hier anstatt null übergeben werden?!
             var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbInitialDataScript)
             {
                 DataSource =
@@ -104,7 +103,7 @@ namespace WindowsFormsApplication1
             var renderer = new FileRenderer();
             renderer.RenderFiles(format, Path.Combine(this.solutionRootPath, "Solution Files"), environments);
 
-            var localEnvironment = this.environments.Single(env => env.IsDebug);
+            var localEnvironment = this.environments.Single(env => env.IsLocal);
             ApplyToWebconfig(localEnvironment);
         }
 

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace JM.BaseSolutionWizard
 {
@@ -16,7 +9,7 @@ namespace JM.BaseSolutionWizard
         private string environmentName = string.Empty;
         private bool isLocal = false;
 
-        public bool IsDebug
+        public bool IsLocal
         {
             get
             {

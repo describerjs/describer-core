@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJMBaseWizard));
             System.Windows.Forms.Label adminConnectionStringLabel;
             System.Windows.Forms.Label standardConnectionStringLabel;
             System.Windows.Forms.Label environmentNameLabel;
             System.Windows.Forms.Label isLocalLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJMBaseWizard));
             this.environmentViewModelBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.environmentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.environmentViewModelBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.adminConnectionStringTextBox = new System.Windows.Forms.TextBox();
             this.standardConnectionStringTextBox = new System.Windows.Forms.TextBox();
             this.environmentNameTextBox = new System.Windows.Forms.TextBox();
-            this.environmentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isLocalCheckBox = new System.Windows.Forms.CheckBox();
             adminConnectionStringLabel = new System.Windows.Forms.Label();
             standardConnectionStringLabel = new System.Windows.Forms.Label();
@@ -60,6 +60,42 @@
             this.environmentViewModelBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // adminConnectionStringLabel
+            // 
+            adminConnectionStringLabel.AutoSize = true;
+            adminConnectionStringLabel.Location = new System.Drawing.Point(12, 69);
+            adminConnectionStringLabel.Name = "adminConnectionStringLabel";
+            adminConnectionStringLabel.Size = new System.Drawing.Size(167, 13);
+            adminConnectionStringLabel.TabIndex = 4;
+            adminConnectionStringLabel.Text = "Admin/Piranha Connection String:";
+            // 
+            // standardConnectionStringLabel
+            // 
+            standardConnectionStringLabel.AutoSize = true;
+            standardConnectionStringLabel.Location = new System.Drawing.Point(12, 95);
+            standardConnectionStringLabel.Name = "standardConnectionStringLabel";
+            standardConnectionStringLabel.Size = new System.Drawing.Size(140, 13);
+            standardConnectionStringLabel.TabIndex = 8;
+            standardConnectionStringLabel.Text = "Standard Connection String:";
+            // 
+            // environmentNameLabel
+            // 
+            environmentNameLabel.AutoSize = true;
+            environmentNameLabel.Location = new System.Drawing.Point(12, 43);
+            environmentNameLabel.Name = "environmentNameLabel";
+            environmentNameLabel.Size = new System.Drawing.Size(100, 13);
+            environmentNameLabel.TabIndex = 10;
+            environmentNameLabel.Text = "Environment Name:";
+            // 
+            // isLocalLabel
+            // 
+            isLocalLabel.AutoSize = true;
+            isLocalLabel.Location = new System.Drawing.Point(12, 121);
+            isLocalLabel.Name = "isLocalLabel";
+            isLocalLabel.Size = new System.Drawing.Size(47, 13);
+            isLocalLabel.TabIndex = 11;
+            isLocalLabel.Text = "Is Local:";
             // 
             // environmentViewModelBindingNavigator
             // 
@@ -90,6 +126,35 @@
             this.environmentViewModelBindingNavigator.Size = new System.Drawing.Size(394, 25);
             this.environmentViewModelBindingNavigator.TabIndex = 4;
             this.environmentViewModelBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Neu hinzufügen";
+            // 
+            // environmentViewModelBindingSource
+            // 
+            this.environmentViewModelBindingSource.DataSource = typeof(JM.BaseSolutionWizard.EnvironmentViewModel);
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 22);
+            this.bindingNavigatorCountItem.Text = "von {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Die Gesamtanzahl der Elemente.";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Löschen";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -123,16 +188,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Aktuelle Position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 22);
-            this.bindingNavigatorCountItem.Text = "von {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Die Gesamtanzahl der Elemente.";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
@@ -155,26 +213,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Neu hinzufügen";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Löschen";
             // 
             // environmentViewModelBindingNavigatorSaveItem
             // 
@@ -185,15 +225,6 @@
             this.environmentViewModelBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.environmentViewModelBindingNavigatorSaveItem.Text = "Daten speichern";
             // 
-            // adminConnectionStringLabel
-            // 
-            adminConnectionStringLabel.AutoSize = true;
-            adminConnectionStringLabel.Location = new System.Drawing.Point(12, 69);
-            adminConnectionStringLabel.Name = "adminConnectionStringLabel";
-            adminConnectionStringLabel.Size = new System.Drawing.Size(167, 13);
-            adminConnectionStringLabel.TabIndex = 4;
-            adminConnectionStringLabel.Text = "Admin/Piranha Connection String:";
-            // 
             // adminConnectionStringTextBox
             // 
             this.adminConnectionStringTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource, "AdminConnectionString", true));
@@ -201,15 +232,6 @@
             this.adminConnectionStringTextBox.Name = "adminConnectionStringTextBox";
             this.adminConnectionStringTextBox.Size = new System.Drawing.Size(199, 20);
             this.adminConnectionStringTextBox.TabIndex = 5;
-            // 
-            // standardConnectionStringLabel
-            // 
-            standardConnectionStringLabel.AutoSize = true;
-            standardConnectionStringLabel.Location = new System.Drawing.Point(12, 95);
-            standardConnectionStringLabel.Name = "standardConnectionStringLabel";
-            standardConnectionStringLabel.Size = new System.Drawing.Size(140, 13);
-            standardConnectionStringLabel.TabIndex = 8;
-            standardConnectionStringLabel.Text = "Standard Connection String:";
             // 
             // standardConnectionStringTextBox
             // 
@@ -219,15 +241,6 @@
             this.standardConnectionStringTextBox.Size = new System.Drawing.Size(199, 20);
             this.standardConnectionStringTextBox.TabIndex = 9;
             // 
-            // environmentNameLabel
-            // 
-            environmentNameLabel.AutoSize = true;
-            environmentNameLabel.Location = new System.Drawing.Point(12, 43);
-            environmentNameLabel.Name = "environmentNameLabel";
-            environmentNameLabel.Size = new System.Drawing.Size(100, 13);
-            environmentNameLabel.TabIndex = 10;
-            environmentNameLabel.Text = "Environment Name:";
-            // 
             // environmentNameTextBox
             // 
             this.environmentNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource, "EnvironmentName", true));
@@ -235,19 +248,6 @@
             this.environmentNameTextBox.Name = "environmentNameTextBox";
             this.environmentNameTextBox.Size = new System.Drawing.Size(199, 20);
             this.environmentNameTextBox.TabIndex = 11;
-            // 
-            // environmentViewModelBindingSource
-            // 
-            this.environmentViewModelBindingSource.DataSource = typeof(JM.BaseSolutionWizard.EnvironmentViewModel);
-            // 
-            // isLocalLabel
-            // 
-            isLocalLabel.AutoSize = true;
-            isLocalLabel.Location = new System.Drawing.Point(12, 121);
-            isLocalLabel.Name = "isLocalLabel";
-            isLocalLabel.Size = new System.Drawing.Size(47, 13);
-            isLocalLabel.TabIndex = 11;
-            isLocalLabel.Text = "Is Local:";
             // 
             // isLocalCheckBox
             // 

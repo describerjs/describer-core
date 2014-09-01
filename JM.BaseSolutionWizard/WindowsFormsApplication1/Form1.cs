@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
                     {
                         AdminConnectionString = builder.ConnectionString,
                         EnvironmentName = "Dev",
-                        IsDebug = true,
+                        IsLocal = true,
                         StandardConnectionString = builder.ConnectionString
                     }
                 };
