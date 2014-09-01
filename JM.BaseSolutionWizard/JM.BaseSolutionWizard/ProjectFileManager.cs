@@ -23,6 +23,34 @@ namespace JM.BaseSolutionWizard
             _templateDirectory = templateInfo.DirectoryName;
         }
 
+        public void CopyFile(string fromFolder, string toFolder, string fileName)
+        {
+            var filePath = Path.Combine(fromFolder, fileName);
+
+            if(File.Exists(filePath))
+                File.Copy(filePath, Path.Combine(toFolder, fileName));
+        }
+        public void CopyDirectory(string fromFolder, string toFolder, string directoryName)
+        {
+            var directoryPath = Path.Combine(fromFolder, directoryName);
+            
+            if (Directory.Exists(directoryPath))
+            {
+                var directoryInfo = new DirectoryInfo(directoryPath);
+
+                var newDirectoryPath = Path.Combine(toFolder, directoryName);
+                Directory.CreateDirectory(newDirectoryPath);
+
+                var subDirectories = directoryInfo.GetDirectories();
+                if (subDirectories.Any())
+                    subDirectories.ToList().ForEach(d => CopyDirectory(directoryPath, newDirectoryPath, d.Name));
+                
+                var files = directoryInfo.GetFiles();
+                if (files.Any())
+                    files.ToList().ForEach(f => CopyFile(directoryPath, newDirectoryPath, f.Name));
+            }
+        }
+
         public void AddFileToProject(string filepath, Project project)
         {
             if (File.Exists(filepath) && project != null)

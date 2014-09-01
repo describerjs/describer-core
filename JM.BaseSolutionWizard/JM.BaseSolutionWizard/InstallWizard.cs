@@ -37,15 +37,16 @@ namespace JM.BaseSolutionWizard
                     _fileManager.SolutionName,
                     _fileManager.SolutionRootPath,
                     _fileManager.GetFilestreamFromTemplate("Web.config.MTemplate"),
-                    _fileManager.GetFilestreamFromTemplate("DbCreateScript.MTemplate")); // ToDo: Template
+                    _fileManager.GetFilestreamFromTemplate("DbCreateScript.MTemplate"),
+                    null);
 
             frmWizard.ShowDialog();
             
             //hier werden die Confis zu den zugehörigen Anwendungen hinzugefügt
             var pSolutionFiles = _fileManager.AddDirectoryToProject(Path.Combine(_fileManager.SolutionRootPath, SOLUTIONFILESFOLDER));
 
-            //hier werden dateien und orders zu den Solutionpath hinzugefügt
-            AddFilesFromTemplate(pSolutionFiles);
+            //hier werden dateien und orders zu den "Solution Files" Order hinzugefügt
+            AddFilesFromTemplateToSolution(pSolutionFiles);
             
             //schließ alle geöffnete Dokumenten
             _fileManager.CloseAllOpenedDocuments();
@@ -68,14 +69,23 @@ namespace JM.BaseSolutionWizard
         /// <summary>
         /// fügt wichtige Dateien aus dem Template zu dem Project hinzu;
         /// </summary>
-        /// <param name="project"></param>
-        private void AddFilesFromTemplate(Project project)
+        /// <param name="project">das Projekt wo die Dateien hinzugefügt werden müssen</param>
+        private void AddFilesFromTemplateToSolution(Project project)
         {
             var templatePath = _fileManager.TemplateDirectory;
-            _fileManager.AddFileToProject(Path.Combine(templatePath, "Settings.StyleCop"), project);
-            _fileManager.AddFileToProject(Path.Combine(templatePath, "NuGet.Config"), project);
-            _fileManager.AddFileToProject(Path.Combine(templatePath, "EditStyleCopSettings.cmd"), project);
-            _fileManager.AddDirectoryToProject(Path.Combine(templatePath, "StyleCop"), project);
+            var solutionPath = _fileManager.SolutionRootPath;
+
+            //erst werden die Dateien in Projektordner kopiert
+            _fileManager.CopyFile(templatePath, solutionPath, "Settings.StyleCop");
+            _fileManager.CopyFile(templatePath, solutionPath, "NuGet.Config");
+            _fileManager.CopyFile(templatePath, solutionPath, "EditStyleCopSettings.cmd");
+            _fileManager.CopyDirectory(templatePath, solutionPath, "StyleCop");
+
+            //dann werden die Dateien zum Projekt hinzugefügt
+            _fileManager.AddFileToProject(Path.Combine(solutionPath, "Settings.StyleCop"), project);
+            _fileManager.AddFileToProject(Path.Combine(solutionPath, "NuGet.Config"), project);
+            _fileManager.AddFileToProject(Path.Combine(solutionPath, "EditStyleCopSettings.cmd"), project);
+            _fileManager.AddDirectoryToProject(Path.Combine(solutionPath, "StyleCop"), project);
         }
     }
 }

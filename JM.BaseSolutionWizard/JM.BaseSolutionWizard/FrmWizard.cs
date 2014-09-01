@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
         string solutionRootPath;
         Stream transformationFileTemplate;
         Stream dbCreationScriptTemplate;
+        private Stream dbContentScript;
 
         public FrmWizard()
         {
@@ -26,13 +27,14 @@ namespace WindowsFormsApplication1
             string projectName, 
             string solutionRootPath,
             Stream transformationFileTemplate,
-            Stream dbCreationScriptTemplate)
+            Stream dbCreationScriptTemplate, Stream dbContentScript)
             : this()
         {
             this.projectName = projectName;
             this.solutionRootPath = solutionRootPath;
             this.transformationFileTemplate = transformationFileTemplate;
             this.dbCreationScriptTemplate = dbCreationScriptTemplate;
+            this.dbContentScript = dbContentScript;
 
             var builder = new SqlConnectionStringBuilder
             {
@@ -54,11 +56,6 @@ namespace WindowsFormsApplication1
                         StandardConnectionString = builder.ConnectionString
                     }
                 };
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
         }
 
         void wizard_FormClosed(object sender, FormClosedEventArgs e)
@@ -83,7 +80,7 @@ namespace WindowsFormsApplication1
             WriteEnvironments();
 
             //todo: Tobi, was soll hier anstatt null übergeben werden?!
-            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, null)
+            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbContentScript)
             {
                 DataSource =
                     this.environments.Select(
