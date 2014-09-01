@@ -57,7 +57,7 @@ module.exports = function(grunt){
 			},
 			uglify: {
 				build : {
-					src     : ['**/*.js', '!*.min.js', '!main.js'],
+					src     : ['**/*.js', '!*.min.js', '!require-main.js'],
 					cwd     : 'js/',
 					dest    : 'js/build/',
 					expand  : true
@@ -65,7 +65,7 @@ module.exports = function(grunt){
 			},
 			copy: {
 				main: {
-					src: ['**/*.js', '!*.min.js', '!main.js'],
+					src: ['**/*.js', '!*.min.js', '!require-main.js'],
 					cwd: 'js/',
 					dest: 'js/build/',
 					expand  : true
@@ -93,8 +93,8 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			replace: {
 				example: {
-					src: ['js/main.js'],             // source files array (supports minimatch)
-					dest: 'js/build/main.js',             // destination directory or file
+					src: ['js/require-main.js'],             // source files array (supports minimatch)
+					dest: 'js/build/require-main.js',             // destination directory or file
 					replacements: [
 						getObjFor('externals/customized/', 'js/build/'),
 						getObjFor('externals/customized/overwritings/', 'js/build/'),
@@ -118,13 +118,13 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			uglify: {
 				build : {
-					src     : ['js/build/main.js'],
+					src     : ['js/build/require-main.js'],
 					expand  : true
 				}
 			},
 			revisions: {
 				rename: {
-					src: 'js/build/main.js',
+					src: 'js/build/require-main.js',
 					dest: ''
 				}
 			}

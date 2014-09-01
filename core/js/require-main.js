@@ -52,8 +52,6 @@ require.config({
 		'actions.toggle'                                   : 'mylibs/actions/toggle',
 		'actions.trigger'                                  : 'mylibs/actions/trigger',
 
-		'add-ons.formvalidate'                             : 'mylibs/add-ons/formvalidate',
-
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
 		'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
 
@@ -63,6 +61,7 @@ require.config({
 		'modules.equalheights'                             : 'mylibs/modules/equalheights',
 		'modules.form.autocomplete'                        : 'mylibs/modules/form/autocomplete',
 		'modules.form.formvalidate'                        : 'mylibs/modules/form/formvalidate',
+		'modules.form.formvalidate-addon'                  : 'mylibs/modules/form/formvalidate-addon',
 		'modules.form.selectOptionExtractInGroup'          : 'mylibs/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
 		'modules.modal'                                    : 'mylibs/modules/modal',
@@ -139,9 +138,9 @@ require(['jquery', '_config'], function($, _config){
 			//----------------------------- Listener for click --------------------------------------------------------
 
 			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
-			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmelement] zur initialisierung und Aufruf der click-Funktion des Plugins
-			// Click-Listener für Kontainer-Tags mit Attribut [data-jmelement] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
-			$body.on('click',   'button[type="submit"][data-jmname], ' +
+			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmname] zur initialisierung und Aufruf der click-Funktion des Plugins
+			// Click-Listener für Kontainer-Tags mit Attribut [data-jmname] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
+			/*$body.on('click',   'button[type="submit"][data-jmname], ' +
 								'div[data-jmname],' +
 								'h3[data-jmname], ' +
 								'input[type="submit"][data-jmname], ' +
@@ -151,7 +150,10 @@ require(['jquery', '_config'], function($, _config){
 								'li[data-jmname], ' +
 								'select[data-jmname]' +
 								'tr[data-jmname], ' +
-								'ul[data-jmname]', jmHF.eventDelegationTrigger);
+								'ul[data-jmname]', jmHF.eventDelegationTrigger);*/
+
+			$body.on('click',   '*[data-jmname]:not(label[data-jmname], a[data-jmname])', jmHF.eventDelegationTrigger);
+
 
 			$body.on('click', 'label[data-jmname]', jmHF.eventDelegationTriggerForLabels);
 
@@ -194,7 +196,7 @@ require(['jquery', '_config'], function($, _config){
 			// -----------------------------------------------------
 
 			// läde die auf der Seite benötigten JS-Module
-			$body.requirementsForJmElements();
+			$body.requirementsForJmPlugins();
 
 			// Initialisiert die Elemente, die mit dem Attribut data-jmdominit="true" versehen sind
 			$body.triggerSelfexecObj();

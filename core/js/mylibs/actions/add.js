@@ -124,7 +124,7 @@ define(['jquery', '_super'], function ($, _super){
 			if(this.is('data') === ''){
 				setTimeout(function(){
 					$data
-						.requirementsForJmElements()
+						.requirementsForJmPlugins()
 						.triggerSelfexecObj()
 						.picturefill();
 				}, 200);

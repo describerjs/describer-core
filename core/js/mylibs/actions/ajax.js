@@ -178,7 +178,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	        }
 	        this.$destination[this.is('inject')](data);
 	        data
-		        .requirementsForJmElements()
+		        .requirementsForJmPlugins()
 		        .triggerSelfexecObj()
 		        .picturefill();
         },*/
@@ -200,7 +200,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    setTimeout(function(){
 			    if($.type(that.data) !== 'string'){
 				    that.data
-					    .requirementsForJmElements()
+					    .requirementsForJmPlugins()
 					    .triggerSelfexecObj()
 					    .picturefill();
 			    }
