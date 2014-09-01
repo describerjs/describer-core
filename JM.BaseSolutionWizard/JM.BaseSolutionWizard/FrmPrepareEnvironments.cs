@@ -68,7 +68,7 @@ namespace JM.BaseSolutionWizard
                 myCommand.ExecuteNonQuery();
                 string script;
 
-                using (StreamReader reader = new StreamReader(this.dbContent))
+                using (var reader = new StreamReader(this.dbContent))
                 {
                     script = reader.ReadToEnd();
 

@@ -137,6 +137,7 @@
     <Compile Include="Mustache-sharp\VariableArgument.cs" />
     <Compile Include="Mustache-sharp\VariableFoundEventArgs.cs" />
     <Compile Include="Mustache-sharp\WithTagDefinition.cs" />
+    <Compile Include="ProjectFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\SR1.Designer.cs">
       <AutoGen>True</AutoGen>

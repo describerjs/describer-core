@@ -82,7 +82,8 @@ namespace WindowsFormsApplication1
         {
             WriteEnvironments();
 
-            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate)
+            //todo: Tobi, was soll hier anstatt null übergeben werden?!
+            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, null)
             {
                 DataSource =
                     this.environments.Select(
