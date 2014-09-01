@@ -149,12 +149,16 @@ define(['jquery', '_config'], function($, _config){
 		var $this = $(this);
 		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
 		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
-		// Wenn das e.target kein label mit verschachteltem radio oder checkbox ist, ist die Bedingung true              if ( ! ( 'label' && ( 'label'>'radio || 'label'>'checkbox' ) ) ) )
-		if(!($(e.target).find('input[type="radio"]').doesExist() || $(e.target).find('input[type="checkbox"]').doesExist())){
-			// jmHF.triggerChangeEventForAllRadiosInGroup wird aufgerufen, damit jeder Radio-Butten das Change-Event feuert, wenn sich in der Gruppe die Selection ändert.
-			jmHF.triggerChangeEventForAllOtherRadiosInGroup(e);
+		if(e.target.tagName.toLowerCase() === 'label'){
 			jmHF.eventDelegationHepler($this, e);
 		}
+	};
+
+	jmHF.eventDelegationTriggerForRadios = function(e){
+		var $this = $(this);
+		// jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
+		jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
+		jmHF.eventDelegationHepler($this, e);
 	};
 
 	jmHF.eventDelegationHepler = function($this, e){
@@ -254,8 +258,8 @@ define(['jquery', '_config'], function($, _config){
 	};
 
 
-	// Jeder Radio-Butten feuert das Change-Event, wenn sich in der Gruppe die Selection ändert.
-	jmHF.triggerChangeEventForAllOtherRadiosInGroup = function(e){
+	// Alle anderen Radio-Buttons feuern das jmtrigger-Event, wenn sich in der Gruppe die Selection ändert.
+	jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup = function(e){
 		var radiogroup, $that;
 		if(e.target.tagName.toLowerCase() === 'input'){
 			if($(e.target).attr('type') === 'radio'){
@@ -264,7 +268,7 @@ define(['jquery', '_config'], function($, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
-					$(item).trigger('change');
+					$(item).trigger('jmtrigger');
 				});
 			}
 		}

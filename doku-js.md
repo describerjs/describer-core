@@ -42,7 +42,7 @@ Zum Einen werden so nur eine geringe Anzahl an Event-Listener benötigt (Hörne 
 Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen "actions" ableiten.
 Diese sogenanten "actions" können zu Plugin-Kombinationen (oder halt actions-Kombinationen) kombiniert werde um diese gewünschten Funktionalität zu erhalten.
 
-Die Deklaration geschieht in der _config.js. Hier ist zu jedem jmelement ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmelemente mit einem Referenz-Name versehen (data-jmname="..."). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (_config.js) vorgenommen.
+Die Deklaration geschieht in der _config.js. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen (data-jmname="..."). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (_config.js) vorgenommen.
 
 Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):
 
@@ -54,7 +54,7 @@ Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Refer
 	// Entsprechendes Config-JSON:
 	{
 	    jmname : 'anchor',                                  // wird im HTML referenziert
-	    jmelement: 'actions.scroll',                        // Plugin
+	    jmplugin: 'actions.scroll',                        // Plugin
 	    jmconfig : {                                        // Konfigurationsobjekt
 	        'event' : 'click',                              // die Aktion soll auf User-Klick gestartet werden
 	        'scrollTo' : '$(this.$elem.attr(\'href\'))'     // Angabe, wohin gescrollt werden soll
@@ -65,16 +65,17 @@ Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Refer
 Den größten Vorteil diese Herrangehenswiese ist neben der **sehr vereinheitlichten Deklaration** die **große Wiederverwendbarkeit** der Module. Folglich werden Request gespart und die Funktionalität der Plugins ist **robuster** (weniger Fehleranfällig) durch ihre hohe Verwendung.
 
 ## 2. File- und Ordnerstruktur ##
-Im Root-JS-Verzeichnis liegt die **main.js**. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
+Im Root-JS-Verzeichnis liegen die Dateien **require-main.js** und **empty.js**. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
 
-### main.js ###
-Sie wird als erste Datei von RequireJS geladen. Es werden hier alle ***Konfigurationen*** von RequireJS vorgenommen sowie alle ***body-Eventlistener*** und die ***initial ausgeführten Funktionenaufrufe*** on dom-ready.
+### require-main.js ###
+Sie wird als erste Datei von RequireJS geladen und ist die Basis des JMUI-Frameworks. Hier werden neben den body-Eventlistener für die Plugin-Initialisierung via Event-Delegation und den initial ausgeführten Funktionenaufrufe on dom-ready alle Plugins mit ihrem ***Verzeichnis-Pfad*** hinterlegt.
 
-***Konfigurationen***
 
-In erster Linie werden unter require.config({ paths: {...} }); alle Module mit einer entsprechenden Key für den Verzeichnis-Pfad hinterlegt. 
+***Verzeichnis-Pfad der Plugins***
 
-Beispiel:
+Er dient zum einen um eine **kürzere Referenz** auf das Plugin im require-Array zu bekommen und zum anderen ist er für die **Versionierung** notwendig. 
+
+**Beispiel** des paths-Objekts in Anlehnung der **kürzeren Referenz**:
 
 
      require.config({
@@ -94,10 +95,9 @@ Beispiel:
             'actions.ajax'                                     : 'mylibs/actions/ajax',
 
             'actions.trigger'                                  : 'mylibs/actions/trigger',
-    
-            'add-ons.formvalidate'                             : 'mylibs/add-ons/formvalidate',
-    
+        
             'modules.carousel'                                 : 'mylibs/modules/carousel',
+			'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
             'modules.countdown'                                : 'mylibs/modules/countdown',
 
             'modules.video'                                    : 'mylibs/modules/video',
@@ -107,25 +107,54 @@ Beispiel:
             
             ...
 
+
 Bei externen Dateien, welche entsprechend im externe-Ordner liegen wird nur der Dateiname als Key angegeben (ausgenommen overwritings), da diese in der Regen eindeutig genug sind.
 
 Anders verhält es sich bei den selbst erstellten Dateien die im mylibs untergebracht sind. Diese werden mit ihrer ganzen Pfadangabe exklusive mylibs angegeben, wobei ein "/" mit einem "." und ein "." mit einem "_" ersetzt wird. 
 
 
-***body-Eventlistener***
+**Beispiel** des paths-Objekts in Anlehnung an die **Versionierung** (versionierte require-main.fc251c.js):
 
-Die Eventlistener, die auf dem body hören, werden entweder durch User-Interaktionen (click, change, focus, blur und nach click auf einen submitbutton -> trigger "checkValidation") oder von der execdomReadyObject-Funktion getriggert.
- 
+	require.config({
+	        paths      : {
+	    
+	            // externals
+	
+	            'scrolltotop'                                      : 'build/externals/customized/scrolltotop.b08575',
+	            'jquery_autocomplete'                              : 'build/externals/customized/jquery.autocomplete.f69d17',
+	            'jquery_ba-dotimeout'                              : 'build/externals/customized/jquery.ba-dotimeout.5af41c',
+	
 
-***initial ausgeführten Funktionenaufrufe***
+	            // mylibs
+	            '_config'                                          : 'build/mylibs/_config.525c11',
+	            '_super'                                           : 'build/mylibs/_super.9ff67a',
+	            'actions.add'                                      : 'build/mylibs/actions/add.7e0ccd',
+	            'actions.ajax'                                     : 'build/mylibs/actions/ajax.db6fa1',
+	
+	            'actions.trigger'                                  : 'build/mylibs/actions/trigger.8806d2',
+	    	    
+	            'modules.carousel'                                 : 'build/mylibs/modules/carousel.4381f9',
+				'modules.carousel-ts'                              : 'build/empty',
+	            'modules.countdown'                                : 'build/mylibs/modules/countdown.618b24',
+	
+	            'modules.video'                                    : 'build/mylibs/modules/video.22266d',
+	    
+	            'utils.helpers'                                    : 'build/mylibs/utils/helpers.021d32',
+	            'utils.jquery_helpers'                             : 'build/mylibs/utils/jquery.helpers.6fed76',
+	            
+	            ...
 
-- $body.requirementsForJmElements();
-- $body.triggerSelfexecObj();
-- execDomReadyObject();
-- picturefill();
-- jmHF.replaceSVGForOldBrowser();
+Bei der versionierten require-main.js werden die Pfade wie folgt angepasst. Jeder Pfad wird um das prefix 'build/' erweiter, so das die Module alle aus dem neu angelegten build-Ordner geladen werden. Zudem erhalten die Dateinamen einen md5-hash, der via Grunt hinzugefügt werden. So wird das Cach-bustin unterbunden, da bei einer Modul-Änderung automatisch ein neue md5-hash (checksum) gebildet wird. Liegen keine Änderungen in der Datei vor, wird auch kein neue md5-hash gebildet und die Datei wird aus dem Browser-Cach bzw. aus dem localStorge geladen.
 
+### empty.js ###
 
+Die einzige Aufgabe der empty.js ist es, die Modul-Ladefunktionalität aufrecht zu halten und so das Plugin mit einem **lehres Objekt** zu erweitern.
+*Beispiel*:
+Soll bei der Auslieferung des Produkts ein Touch-Support nicht unterstützt werden, werden die entsprechenden Datein mit der Endung "-ts" (die den Support für das Modul bieten) aus dem Build-Ordner gelöscht. Demzufolge würde jedoch die Ladefunktionalität 
+
+	define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){ ...
+
+von RequireJS fehlschlagen. Hier kommt die empty.js zum Einsatz. Auf sie wird im Datei-Pfade (siehe vorrangegangenes Beispiel der require-main.fc251c.js) verwiesen, welcher durch Grunt bei einer nicht vorhandener Datei automatisch gesetzt wird. Eine Versionierung ist hier nicht Notwendig, da der Inhalt sich nie änder wird.
 
 ### externals-Ordner ###
 
@@ -182,103 +211,160 @@ Hier wie z.B. video.css, die das komplette Styling des Video-Players beinhalten.
 
 Die css.js ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  
 
+
 ## 3. Deklaration von HTML-Module-Funktionen ##
 
-Die Deklaration geschieht in der _config.js. Hier ist zu jedem jmelement ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmelemente mit einem Referenz-Name versehen (data-jmname="..."). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (_config.js) vorgenommen.
+Die Deklaration geschieht als Objekt in der _config.js. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
+Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.
 
-### Allgemeine Deklaration ###
+Die Deklaration in der _config.js bestehend aus 
 
-#### Bsp. 1: Deklaration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname): ####
 
-	// Beispielhafte Initialisierung im HTML:
-	<a class="textlink" href="#anchor-optionen" data-jmname="anchor">Zusatzoptionen wählen</a>
-_
+1. jmname
+2. jmplugin
+3. jmconfig
 
-	// Entsprechendes Config-JSON:
+einfaches Beispiel:
+
 	{
-	    jmname : 'anchor',                                  // wird im HTML referenziert
-	    jmelement: 'actions.scroll',                        // Plugin
-	    jmconfig : {                                        // Konfigurationsobjekt
-	        'event' : 'click',                              // die Aktion soll auf User-Klick gestartet werden
-	        'scrollTo' : '$(this.$elem.attr(\'href\'))'     // Angabe, wohin gescrollt werden soll
+	    jmname : 'anchor',
+	    jmplugin: 'actions.scroll',
+	    jmconfig : {
+	        'event' : 'click',
+			'scrollTo' : '$(this.$elem.attr(\'href\'))'
 	    }
 	 }
 
 
-#### Bsp. 2: Konfiguration mit zwei Plugins und Bindung an das HTML mit einer Referenz (data-jmname): ####
 
-	// Beispielhafte Initialisierung im HTML:
-	<select class="select" data-jmname="select-email-einstellung">.....</select>
 
-_
+###jmname###
 
-	//Entsprechendes Config-JSON:
+Mit jmname wird die HTML-Module-Funktionalität beschrieben. Ebenso wird dieses im HTML-Tag angebeben und dient so als Referenz. 
+
+	<a class="textlink" href="#anchor-optionen" data-jmname="anchor">Zusatzoptionen wählen</a>
+
+
+###jmplugin###
+
+Hier wird das zu verwendete Plugin bzw. die zu verwendeten Plugins angegeben. Werden für die HTML-Module-Funktionalität mehrer Plugins benötigt, werden diese mit "|" separiert.
+
+Beispiel-Part:
+
+	jmplugin: 'actions.remove|actions.add',
+
+###jmconfig###
+
+Für jedes jmplugin ist ein eigenes jmconfig-Objekt anzulenge. Bei mehreren Plugins sind diese in ein Array zu schreiben, wobei die Reihenfolge der Objekte der Reihenfolge der Plugins in jmplugin entspricht.
+
+Beispiel einer kompletten HTML-Module-Funktionalität:
+
 	{
-	    jmname : 'select-email-einstellung',                // wird im HTML referenziert
-	    jmelement: 'actions.remove|actions.add',            // Plugin: wenn mehrere Plugins kombiniet werde sollen, sind diese mit einem | zu trennen.
-	    // Werden gleichnamige Plugins mehrfach verwendet, sind diese im jmelement mit vorangehenden_ durchzunummerieren. Bsp.: jmelement: 'actions.remove_1|actions.add_1|actions.remove_2|actions.add_2'
-	    // für jedes Plugin muss ein config-Objekt hinterlegt sein. Da hier zwei Plugins kombiniert werde, sind die config-Objekte in einem Array hinterlegt und mit einem Komma getrennt.
-	    // Die Reihenfolge einspricht der Reihenfolge der Plugins im jmelement.
-	    jmconfig :[                                        
+		jmname : 'select-email-einstellung', 
+		jmplugin: 'actions.remove|actions.add',            
+		jmconfig :[                                        
 	        {                                                  
-	            'event' : 'change',                             // die Aktions soll bei einem change-Event des Elements stattfinden.
-	            'datatype' : 'class',                           // es soll eine Klasse weggenommen werden.
-	            'data' : 'show',                                // der Name lautet show.
-	            // die Aktion soll auf diesem/n Element/en durchgeführt werden. (Hier wird mittels $.makeArray eine jQuery-Selection in ein Array mit HTML-Elementen umgewandelt,
-	            // da diese im Plugin immer mit einem $() gewrappt werden (und somit nicht nochmal mit jQuery-Funktionalitäten versehen werden sollen.).
-	            // Bei 'relatedTo' könnten z.B. auch '.classe' oder '#id' oder '[attr="..."]' angegeben werden. )
+	            'event' : 'change', 
+	            'datatype' : 'class',
+	            'data' : 'show',
 	            'relatedTo': '$.makeArray(this.$elem.closest(\'.filter-panel\').siblings(\'table\').find(\'tr\'))'
 	        },
 	        {
-	            'event' : 'change',                             // die Aktions soll bei einem change-Event des Elements stattfinden.
-	            'datatype' : 'class',                           // es soll eine Klasse hinzugefügt werden.
-	            'data' : 'show',                                // der Name lautet show.
-	            // die Aktion soll auf diesem/n Element/en durchgeführt werden.
-	            'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.val()+\'"]\'))'
+	            'event' : 'change',
+				'datatype' : 'class',
+	            'data' : 'show',
+				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.val()+\'"]\'))'
 	        }
 	    ]
-	 }
+	}
 
-#### Bsp. 3: Kombinieren von mehreren data-jmname: ####
+Wie auch im CSS ist das Überschreiben bestimmter Values in **Ausnahmefällen** in HTML möglich.
 
-	// Beispielhafte Initialisierung im HTML:
-	// <input class="input-autocomplete" data-jmdominit="true" data-jmname="autofillInput|sync-val" data-rule-jmbankname="Bitte geben Sie eine gültigen Banknamen ein." data-rule-jmrequired="Bitte ausfüllen" id="Bank" maxlength="50" name="Payment.BankName" type="text" value="Wird automatisch ausgefüllt" disabled="disabled" tabindex="-1">
+### Deklaration im DOM für die Attribute data-jmname und data-jmconfig ###
+
+Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration im DOM je nach Anwendungsfall aussehen könnte. Hier wird immer auch die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig aussehen könnte.
+
+_config.js
+
+	...
+	{
+	    jmname : 'ex-one-obj', 
+	    jmplugin: 'actions.add',            
+	    jmconfig : {
+			'event' : 'click',
+	        'data': 'alt'
+			...
+	    }
+	},
+	{
+	    jmname : 'ex-two-obj', 
+	    jmplugin: 'actions.add_1|actions.add_2',            
+	    jmconfig : [{
+			'event' : 'click',
+	        'data': 'alt1'
+			...
+	    },{
+			'event' : 'hover',
+	        'data': 'alt2'
+			...
+	    }]
+	}
+
+
+1) Beispiel mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):
+
+	<div data-jmname="ex-one-obj" data-jmconfig="{ 'data': 'neu' }">click</div>
+
+Alternative 1: data-jmconfig-Objekt mit einem [ ] gewrappt (-> unnötiger mehraufwand):
+
+
+	<div data-jmname="ex-one-obj" data-jmconfig="[{ 'data': 'neu' }]">click</div>
+
+Alternative 2: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht. (-> unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via "|" getrennt) im data-jmname-Attribut gelistet sind)
+
+	<div data-jmname="ex-one-obj" data-jmconfig="{'ex-one-obj': { 'data': 'neu' }}">click</div>
+
+*Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.*
+
+2) Beispiel mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_1 und actions.add_2 alias actions.add):
+
+	<div data-jmname="ex-two-obj" data-jmconfig="[{ 'data': 'neu1' }, { 'event' : 'click', 'data': 'neu2' }]">click</div>
+
+Alternative: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Array als Value für die jmnames-Angabe steht. (-> unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via "|" getrennt) im data-jmname-Attribut gelistet sind)
+
+	<div data-jmname="ex-two-obj" data-jmconfig="{'ex-two-obj': [{ 'data': 'neu' }, { 'event' : 'click', 'data': 'neu2' }]}">click</div>
+
+*Es wird zum einen die "data"-Angabe für das Plugin actions.add_1 ('data': 'alt') im jmconfig-Array (erstes Objekt) mit "neu" überschrieben und zum anderen wird für das Plugin actions.add_2 die "event"- und die "data"-Angabe ('event' : 'hover', 'data': 'alt2') mit "click" bzw. "neu2" überschrieben.*
+
+#### Wichtig! die Erweiterung des Plugin-Namens ..._1 oder ..._2 etc ist notwendig, da hier ein Plugin mehrmals für eine HTML-Module-Funktionalität in unterschielichen Konfigurationen verwendet wird. Andernfalls ist es dem Framework nicht möglicht zu überprüfen, ob das Plugin schon initialisiert wurde oder nicht. ####
+
+3) Beispiel mit zwei data-jmnamen und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add (HTML-Module-Funktionalität: ex-one-obj), sowei actions.add_1 und actions.add_2 alias actions.add (HTML-Module-Funktionalität: ex-two-obj)):
+
+
+	<div data-jmname="ex-one-obj|ex-two-obj" data-jmconfig="{ 'ex-one-obj' : { 'data': 'neu' }, 'ex-two-obj' : [{ 'data': 'neu1' }, { 'event' : 'click', 'data': 'neu2' }]}">click</div>
+
+
+4) Beispiel mit einem data-jmname und dem überschreiben von nur einem key-value-Pairs des entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_2 alias actions.add):
+
+	<div data-jmname="ex-two-obj" data-jmconfig="[{}, { 'event' : 'click', 'data': 'neu2' }]">click</div>
+
+#### Wichtig! Betrifft die Überschreibung nicht alle Plugins, so sind für diese Plugins lehren Objekt anzugeben.  ####
 
 
 
-#### my HTML-Beispiele ####
-        <!--<div data-jmname="test1|test2" style="border: 1px solid #000000" data-jmconfig="{ 'test1' : [{ 'data': 'neu11' }, { 'data': 'neu12 '},{ 'data': 'neu13' }, { 'data': 'neu14' }], 'test2' : [{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]}">click</div>-->
-        <!--<div data-jmname="test1|test2" style="border: 1px solid #000000" data-jmconfig="{ 'test1' : [{}, { 'data': 'neu12 '},{}, { 'data': 'neu14' }], 'test2' : [{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]}">click</div>-->
-        <!--<div data-jmname="test1|test2" style="border: 1px solid #000000" data-jmconfig="{'test2' : [{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]}">click</div>-->
-        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="{'test1' : { 'data': 'neu21' }}">click</div>-->
-        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="[{ 'data': 'neu21' }, { 'data': 'neu22' }, { 'data': 'neu23' }, { 'data': 'neu24' }]">click</div>-->
-        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="{ 'data': 'neu21' }">click</div>-->
-        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="[{ 'data': 'neu21' }]">click</div>-->
-        <!--<div data-jmname="test1" style="border: 1px solid #000000" data-jmconfig="{ 'data': 'neu21' }">click</div>-->
+### Deklaration der Funktionalität des Plugins ###
 
+####  Event ####
 
-### Deklaration - Event ###
+die HTML-Module-Funktionen können durch unterschietliche Events ausgelöst werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren.
 
-die HTML-Module-Funktionen kann durch unterschietliche Events getriggert werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren.
+##### click #####
 
-#### click ####
+Der Body hört bei allen Tags auf das Klick-Event. Eine Unterscheidung findet nur bei a-Tags und label-Tags statt. 
+Im Fall vom a-Tag wird ein e.preventDefault vor der Initialisierung ausgeführt. Im Fall eines lable-Tags wird zuerste eine Prüfung duchgeführt, ob das Event-Target vom label ansicht stammt und nicht vom verschachtelten input[type="radio"] oder input[type="checkbox"] (Fix für doppelten Eventtrigger, der z.B. bei (Label > input[type="radio"]) besteht).
 
-h3[data-jmname],
-input[type="submit"][data-jmname],
-input[type="button"][data-jmname],
-button[type="submit"][data-jmname],
-input[type="text"][data-jmname],
-input[type="checkbox"][data-jmname],
-button[type="submit"][data-jmname],
-div[data-jmname],
-a[data-jmname],
-label[data-jmname],
-tr[data-jmname],
-li[data-jmname],
-ul[data-jmname],
-select[data-jmname]
+##### change #####
 
-#### change ####
 
 select[data-jmname],
 input[type="radio"][data-jmname],
@@ -286,7 +372,7 @@ input[type="checkbox"][data-jmname],
 input[type="text"][data-jmname],
 input[type="email"][data-jmname]
 
-#### focus change blur checkValidation ####
+##### focus change blur checkValidation #####
 NUR AUF FORM-TAGS MIT DEM ATTRIBUT data-jmname="form"
 
 
@@ -297,32 +383,32 @@ Einige Events benötigen jedoch aufgrund ihrer Bestimmtheit das Attribut data-jm
 
 Bei den hier folgenden Events ist dieses Attribut von nöten.
 
-#### dominit ####
+##### dominit #####
 die Aktion wird auf domready oder wenn das HTML-Element via ajax in das DOM injektet wird ausgeführt.
 
-#### raf ####
+##### raf #####
 Die Aktion wird auf jedem requestAnimationFrame durchgeführt (bei jedem neuzeichnen des Bildes)
 
-#### interval (angegeben in z.B. interval-5000) ####
+##### interval (angegeben in z.B. interval-5000) #####
 Die Aktion wird alle 5000 ms durchgeführt
 
-#### blur ####
+##### blur #####
 Die Aktion wird auf blur durchgeführt
 
-#### hover ####
+##### hover #####
 Die Aktion wird auf hover durchgeführt
 
-#### keyup (abgegeben in z.B. keyup-dotimeout-500)  #### 
+##### keyup (abgegeben in z.B. keyup-delay-500)  ##### 
 Die Aktion wird auf keyup mit einem delay von 500 ms durchgeführt (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)
 
-#### jmchange ####
+##### jmchange #####
 Die Aktion wird durchgeführt, wenn jmchange auf diesem Element getriggert wird
 
 Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js
 
 	{
 	    jmname : 'sync-val',                                // wird im HTML referenziert
-	    jmelement: 'actions.add',                           // Plugin
+	    jmplugin: 'actions.add',                           // Plugin
 	    jmconfig :{                                         // Konfigurationsobjekt
 	        // das action wird bei domready, change und bei keyup mit einem delay von 500 ms (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)
 	        'event' : 'dominit|change|keyup-dotimeout-500', 
@@ -336,3 +422,7 @@ Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js
 
 
 ## 4. Erstellung von Plugins ##
+
+
+-ts berücksichtigen
+empty.js berücksichtigen

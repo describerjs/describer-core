@@ -99,20 +99,20 @@ require.config({
 });
 
 
-require(['jquery', '_config'], function($, _config){
+require(['jquery', '_config'], function($){
 	// need jquery
 	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
 		// DomReady
 		$(function(){
 
+			var $body = $('body');
+
+
 			// -----------------------------------------------------
 			// --------------- User Events -------------------------
 			// -----------------------------------------------------
 
-			var $body = $('body');
-
-
-			//----------------- Listener for focus, change, blur, checkValidation -------------------------------------
+			//---------------- Listener for focus, change, blur, checkValidation -------------------------------------
 
 
 			// Jedes Input(ausgenommen type="submit"), texarea und select feuert ein Event "checkValidation" wenn focus, change oder blur getriggert wird.
@@ -120,55 +120,24 @@ require(['jquery', '_config'], function($, _config){
 						'change ' +
 						'focus ' +
 						'checkValidation', 'form[data-jmname="form"]', jmHF.eventDelegationTrigger);
+
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
 			$body.on('change',  'select[data-jmname], ' +
-								'input[type="radio"][data-jmname], ' +
 								'input[type="checkbox"][data-jmname], ' +
 								'input[type="text"][data-jmname], ' +
 								'input[type="email"][data-jmname]', jmHF.eventDelegationTrigger);
 
+			// Change-Listenerinput[type="radio"]
+			$body.on('change',  'input[type="radio"][data-jmname]', jmHF.eventDelegationTriggerForRadios);
 
 
-			//---------------------------------------------------------------------------------------------------------
+			//---------------- Listener for click --------------------------------------------------------
 
-
-
-
-
-			//----------------------------- Listener for click --------------------------------------------------------
+			$body.on('click', '[data-jmname]:not(label[data-jmname], a[data-jmname])', jmHF.eventDelegationTrigger);
 
 			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
-			// Click-Listener für Selbstschließende-Tags oder nur Text-Knoten beinhaltende Tags wie h3, input und button mit Attribut [data-jmname] zur initialisierung und Aufruf der click-Funktion des Plugins
-			// Click-Listener für Kontainer-Tags mit Attribut [data-jmname] wie div, tr, li, ul select zur initialisierung und Aufruf der click-Funktion des Plugins
-			/*$body.on('click',   'button[type="submit"][data-jmname], ' +
-								'div[data-jmname],' +
-								'h3[data-jmname], ' +
-								'input[type="submit"][data-jmname], ' +
-								'input[type="button"][data-jmname], ' +
-								'input[type="text"][data-jmname], ' +
-								'input[type="checkbox"][data-jmname], ' +
-								'li[data-jmname], ' +
-								'select[data-jmname]' +
-								'tr[data-jmname], ' +
-								'ul[data-jmname]', jmHF.eventDelegationTrigger);*/
-
-			$body.on('click',   '*[data-jmname]:not(label[data-jmname], a[data-jmname])', jmHF.eventDelegationTrigger);
-
 
 			$body.on('click', 'label[data-jmname]', jmHF.eventDelegationTriggerForLabels);
-
-
-			// Browser-Back-Button -> somit wird ein Spinner auf der Seite zuvor (Klick auf Link oder Submit-Button) gelöscht. Der Spinner dient zu besseren UX
-			/*window.addEventListener("popstate", function(){
-				$('#linkspinner').remove();
-			});*/
-
-
-
-
-
-
-
 
 
 
@@ -177,17 +146,10 @@ require(['jquery', '_config'], function($, _config){
 			// -----------------------------------------------------
 
 
-
 			$body.on('dominit', '[data-jmname]', jmHF.eventDelegationTrigger);
 
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
 			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);
-
-
-
-
-
-
 
 
 
@@ -200,11 +162,6 @@ require(['jquery', '_config'], function($, _config){
 
 			// Initialisiert die Elemente, die mit dem Attribut data-jmdominit="true" versehen sind
 			$body.triggerSelfexecObj();
-
-			// Prüft die URL auf evtl. Variablen und für dann die entsprechende Funktionalität aus
-			/*jmHF.applyUrlVars('scrollToId');
-			jmHF.applyUrlVars('scrollToAreaEdit');
-			jmHF.applyUrlVars('scrollToTBopenId');*/
 
 			// Externe Lib. Sie wird verwendet, um ein delay von 300ms bei Klick auf Touch-Devices zu unterdrücken.
 			// Die Verzögerung entsteht durch das warte des Device auf einen evtl. doppleClick, der ein Zoomen in die Seite auslöst.
@@ -221,66 +178,6 @@ require(['jquery', '_config'], function($, _config){
 				jmHF.checkConfigJS();
 				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
 			}
-			//jmHF.replaceSVGForOldBrowser();
-
-
-			/*$(window).on('resize', function(){
-				$.doTimeout('resize', 500, function () {
-					$body.triggerSelfexecObj();
-				});
-
-			});*/
-
-			// (function (d, s, id) {
-			//     var js, fjs = d.getElementsByTagName(s)[0];
-			//     if (d.getElementById(id)) return;
-			//     js = d.createElement(s); js.id = id;
-			//     js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=" + window.FBID;
-			//     fjs.parentNode.insertBefore(js, fjs);
-			// }(document, 'script', 'facebook-jssdk'));
-
-			/*(function () {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();*/
-			
-			//////////////////////////////////// ie8 FIX for CSS Design ////////////////////////////////////////////////////////////////
-			/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
-				(function () {
-					$body.on('change', 'input[type="radio"], input[type="checkbox"]', function (e) {
-						var that = this;
-						$(that).ie8BugfixForRadioAndCheckbox();
-					})
-				})()
-			}*/
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			// (function (i, s, o, g, r, a, m) {
-			//     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-			//         (i[r].q = i[r].q || []).push(arguments)
-			//     }, i[r].l = 1 * new Date(); a = s.createElement(o),
-			//     m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-			// })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-			// ga('create', 'UA-47221651-1', 'kalbini-duyur.de');
-			// ga('send', 'pageview');
-
-			// Fix für den BUG @Soll beim Andrea geteste werden //
-			// In CheckOut beim Seiten Aktualieseirung "Mit Offene/Ausgefüllte Lieferadresse-ToggleBox" 
-			// Input felder werden alle disabled, aber die solllen immer "Enable/Editierbar" bleiben.
-			// Hier korrektur für:
-			// SHOW ToggleBox >> Input Felder Enable, auch mit Seiten Aktualieseirung
-			// HIDE ToggleBox >> Input Felder disable, auch mit Seiten Aktualieseirung
-
-			//////////////////////////////////// ie8 FIX for CSS Design ////////////////////////////////////////////////////////////////
-			/*if($('#LieferadresseBlock').css('display') !== undefined){
-				if($('#LieferadresseBlock').css('display') === 'none'){
-					$('.tb-content :input').prop('disabled', false);
-				}else{
-					$('.tb-content :input').prop('disabled', true);
-				}
-			}*/
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		});
 	});
 });
