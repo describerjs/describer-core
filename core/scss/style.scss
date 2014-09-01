@@ -3,13 +3,14 @@
 \*------------------------------------*/
 
 /**
- * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
  * RESET...............................Set reset defaults
+ * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
  * GLOBAL ELEMENTS.....................Establish global styles
  * GLOBAL CLASSES......................Set reset defaults
  * LAYOUT..............................Grid & Column Designs
  * STRUCTURE...........................Page-Structure
  * COMPONENTS/MODULES..................Build the Elements / Modules
+ * DEBUG...............................Debug Information
 **/
 
 
@@ -20,8 +21,8 @@
     $GENERIC ELEMENTS
 \*------------------------------------*/
 
-@import "generic/generic-import";
 @import "generic/reset";
+@import "generic/generic-import";
 
 
 
@@ -73,14 +74,25 @@
 
 @import "objects/buttons";
 @import "objects/lists";
-@import "objects/text";
+@import "objects/social-media";
 @import "objects/modules/accordion";
 @import "objects/modules/nav";
 @import "objects/modules/owl-carousel";
 @import "objects/modules/stage-teaser";
 @import "objects/modules/tabs";
 @import "objects/modules/teaser";
+@import "objects/modules/text-block";
 @import "objects/modules/togglebox";
+
+
+
+
+
+/*------------------------------------*\
+    $DEBUG
+\*------------------------------------*/
+
+/*@import "generic/debug";*/
 
 
 

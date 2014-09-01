@@ -19,9 +19,7 @@
 \*------------------------------------*/
 
 // Default List-Styling - <ul>|<ol>
-%list {
-	@extend %as-list;
-	@extend %as-list--typeset;
+%default-list {
 	list-style: none;
 	list-style-position: outside;
 }
@@ -48,7 +46,7 @@ li {
 \*------------------------------------*/
 
 ul {
-	@extend %list;
+	@extend %default-list;
 }
 
 
@@ -60,7 +58,7 @@ ul {
 \*------------------------------------*/
 
 ol {
-	@extend %list;
+	@extend %default-list;
 }
 
 

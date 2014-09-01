@@ -55,23 +55,26 @@ $theme-selection-bg:			$theme-color-beta;
 $theme-selection-fg:			$theme-color-alpha;
 
 // Navigation
-$theme-nav-items-bg:			$theme-color-alpha;
-$theme-nav-items-fg:			$theme-color-beta;
-$theme-nav-link-bg:				$theme-color-alpha;
-$theme-nav-link-fg:				$theme-color-beta;
-$theme-nav-link-active-bg:		$theme-color-gamma;
-$theme-nav-link-active-fg:		$theme-nav-items-fg;
+$theme-nav-bg:					$theme-color-gamma;
+$theme-nav-fg:					$theme-color-beta;
+$theme-nav-items-bg:			$theme-nav-bg;
+$theme-nav-items-fg:			$theme-nav-fg;
+$theme-nav-link-bg:				$theme-nav-items-bg;
+$theme-nav-link-fg:				$theme-nav-items-fg;
+$theme-nav-link-active-bg:		$theme-color-delta;
+$theme-nav-link-active-fg:		$theme-color-beta;
 $theme-flyout-bg:				$theme-nav-link-active-bg;
+$theme-flyout-fg:				$theme-nav-link-active-fg;
+$theme-flyout-link-bg:			$theme-nav-link-bg;
 $theme-flyout-link-fg:			$theme-nav-link-fg;
-$theme-flyout-link-active-bg:	$theme-color-delta;
-$theme-flyout-group-bg:			$theme-color-epsilon;
-$theme-flyout-group-fg:			$theme-color-zeta;
-$theme-flyout-group-active-bg:	$theme-color-zeta;
-$theme-flyout-group-active-fg:	$theme-color-eta;
+$theme-flyout-link-active-bg:	$theme-color-eta;
+$theme-flyout-link-active-fg:	$theme-color-gamma;
+$theme-flyout-group-bg:			$theme-color-zeta;
+$theme-flyout-group-fg:			$theme-color-gamma;
+$theme-flyout-group-active-bg:	$theme-flyout-link-active-bg;
+$theme-flyout-group-active-fg:	$theme-flyout-link-active-fg;
 $theme-menu-btn-bg:				$theme-color-alpha;
 $theme-menu-btn-fg:				$theme-color-beta;
-$theme-menu-btn-active-bg:		$theme-color-alpha;
-$theme-menu-btn-active-fg:		$theme-color-beta;
 $theme-menu-item-bg:			$theme-color-gamma;
 
 // Buttons
@@ -90,11 +93,11 @@ $theme-cta-active-fg:			$theme-color-alpha;
 
 // Accordion
 $theme-accordion-bg:			$theme-color-gamma;
-$theme-accordion-fg:			$theme-color-delta;
+$theme-accordion-fg:			$theme-color-beta;
 $theme-accordion-handle-bg:		$theme-color-epsilon;
 $theme-accordion-handle-fg:		$theme-color-alpha;
-$theme-accordion-active-bg:		$theme-color-gamma;
-$theme-accordion-active-fg:		$theme-color-alpha;
+$theme-accordion-active-bg:		$theme-color-delta;
+$theme-accordion-active-fg:		$theme-color-beta;
 
 // Tabs
 $theme-tabs-bg:					$theme-color-zeta;
@@ -104,7 +107,7 @@ $theme-tab-active-bg:			$theme-color-alpha;
 $theme-tab-active-fg:			$theme-color-beta;
 $theme-tab-hover-bg:			$theme-color-gamma;
 $theme-tab-hover-fg:			$theme-color-beta;
-$theme-tab-content-bg:			$theme-color-gamma;
+$theme-tab-content-bg:			$theme-color-alpha;
 $theme-tab-content-fg:			$theme-color-beta;
 
 // Togglebox
@@ -131,8 +134,16 @@ $font-nav:	$font;
     $BREAKPOINTS
 \*------------------------------------*/
 
+$bp-small:	22em;
 $bp-med:	48em;
 $bp-large:	60em;
+
+$bp-xs:		$bp-small;
+$bp-s:		29.75em;
+$bp-m:		$bp-med;
+$bp-l:		$bp-large;
+$bp-xl:		73em;
+$bp-xxl:	82em;
 
 
 
@@ -152,30 +163,35 @@ $layout-maxwidth:	80em;
     $SPACING
 \*------------------------------------*/
 
+// Distance calculated by Grid
+$dist:						$total-width * (($gutter-width * .5) / gridsystem-width($columns));
+
 // Margins - Preferably Top & Bottom
-$space:					rhythm(1, 16px);
-$space-and-half:		rhythm(1.5, 16px);
-$space-double:			rhythm(2, 16px);
-$space-triple:			rhythm(3, 16px);
-$space-quad:			rhythm(4, 16px);
-$space-half:			rhythm(.5, 16px);
-$space-quarter:			rhythm(.25, 16px);
-$space-three-quarter:	($space-half + $space-quarter);
+$space:						rhythm(1, $browser-default-font-size);
+$space-and-half:			rhythm(1.5, $browser-default-font-size);
+$space-double:				rhythm(2, $browser-default-font-size);
+$space-triple:				rhythm(3, $browser-default-font-size);
+$space-quad:				rhythm(4, $browser-default-font-size);
+$space-half:				rhythm(.5, $browser-default-font-size);
+$space-quarter:				rhythm(.25, $browser-default-font-size);
+$space-three-quarter:		$space-half + $space-quarter;
 
 // Paddings - Preferably Left & Right
-$pad:					1rem;
-$pad-and-half:			$pad*1.5;
-$pad-double:			$pad*2;
-$pad-triple:			$pad*3;
-$pad-quad:				$pad*4;
-$pad-half:				$pad/2;
-$pad-quarter:			$pad/4;
-$pad-three-quarter:		($pad-half + $pad-quarter);
+$pad:						1rem;
+$pad-and-half:				$pad * 1.5;
+$pad-double:				$pad * 2;
+$pad-triple:				$pad * 3;
+$pad-quad:					$pad * 4;
+$pad-half:					$pad / 2;
+$pad-quarter:				$pad / 4;
+$pad-three-quarter:			$pad-half + $pad-quarter;
 
-$default-spacing:		$space-half;
-$default-padding:		$pad;
-
-$dist:					$total-width*(($gutter-width*.5)/gridsystem-width($columns));
+// Defaults
+$default-spacing:			$space;
+$default-padding:			$pad;
+$default-padding-s:			$dist + 3;
+$default-padding-m:			$dist + 1;
+$default-padding-l:			$dist;
 
 
 

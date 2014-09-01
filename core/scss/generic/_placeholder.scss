@@ -29,10 +29,7 @@
 
 // Modules Defaults
 %element-default {
-	@include clearfix;
-	@include column(12);
-	@include element-default-spacing;
-	position: relative;
+	@include element-default;
 }
 
 // Modules Inner-Elements
@@ -43,6 +40,12 @@
 // Nested Elements w/Grid
 %element-nested-default {
 	@include element-nested-default;
+}
+
+// Textmodule Defaults
+%element-text-default {
+	@include column(12);
+	@include unfolded-padding;
 }
 
 

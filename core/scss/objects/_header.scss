@@ -4,6 +4,7 @@
 
 /**
  * .page-header........................HTML <header> Section
+ * .logo...............................Site-Logo
 **/
 
 
@@ -16,6 +17,38 @@
 
 .page-header {
 	@extend %page-element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    LOGO
+\*------------------------------------*/
+
+.logo {
+	@extend %element-inner-default;
+	@include column(8);
+	display: block;
+	position: relative;
+	z-index: 1;
+
+	@include bp-xs {
+		@include column(6);
+	}
+
+	@include bp-s {
+		@include column(5);
+	}
+
+	@include bp-m {
+		@include column(4);
+	}
+
+	@include bp-l {
+		@include column(3);
+	}
 }
 
 
