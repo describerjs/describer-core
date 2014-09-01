@@ -66,6 +66,11 @@ namespace JM.BaseSolutionWizard
                 conn.Open();
                 var myCommand = new SqlCommand(sqlCreateDBQuery, conn);
                 myCommand.ExecuteNonQuery();
+            }
+        
+            using (var conn = new SqlConnection(cnb.ConnectionString))
+            {
+                conn.Open();
                 string script;
 
                 using (var reader = new StreamReader(this.dbContent))
