@@ -172,6 +172,7 @@ h6, .h6 {
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
  * SPACING.............................Abst├ñnde definieren
+ * TRANSITIONS.........................Eigenschaften f├╝r Transitions
 **/
 /*------------------------------------*\
     $COLORS
@@ -196,6 +197,9 @@ $theme-color-lambda:	#000;
 \*------------------------------------*/
 /*------------------------------------*\
     $SPACING
+\*------------------------------------*/
+/*------------------------------------*\
+	$TRANSITIONS
 \*------------------------------------*/
 /*------------------------------------*\
 	
@@ -436,11 +440,11 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
 }
 
 .accordion .acc-panel, .togglebox .tb-content {
-  -moz-transition: opacity 0.3s ease, opacity 0.3s ease;
-  -ms-transition: opacity 0.3s ease, opacity 0.3s ease;
-  -o-transition: opacity 0.3s ease, opacity 0.3s ease;
-  -webkit-transition: opacity 0.3s ease, opacity 0.3s ease;
-  transition: opacity 0.3s ease, opacity 0.3s ease;
+  -moz-transition: height 0.3s ease, opacity 0.3s ease;
+  -ms-transition: height 0.3s ease, opacity 0.3s ease;
+  -o-transition: height 0.3s ease, opacity 0.3s ease;
+  -webkit-transition: height 0.3s ease, opacity 0.3s ease;
+  transition: height 0.3s ease, opacity 0.3s ease;
   /*display: none;*/
   height: 0;
   opacity: 0;
@@ -556,11 +560,33 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 /*------------------------------------*\
     $LINKS
 \*------------------------------------*/
+/**
+ * ANCHOR..............................HTML <a> Element
+ * LINK................................Textlink
+**/
+/*------------------------------------*\
+    $ANCHOR
+\*------------------------------------*/
 a {
   cursor: pointer;
   outline: 0;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+/*------------------------------------*\
+    $LINK
+\*------------------------------------*/
+.link {
+  -moz-transition: color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out;
+  -webkit-transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+  color: #999;
+}
+.link:focus, .link:hover {
+  color: #333;
 }
 
 /*------------------------------------*\
@@ -1758,9 +1784,10 @@ main {
   *zoom: 1;
   clear: both;
   display: none;
-  -ms-touch-action: pan-y;
+  margin-bottom: 1.5rem;
   position: relative;
   width: 100%;
+  -ms-touch-action: pan-y;
   /* mouse grab icon */
 }
 .owl-carousel:after, .owl-carousel:before {
