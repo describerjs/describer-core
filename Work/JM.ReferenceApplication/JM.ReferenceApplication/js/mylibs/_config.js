@@ -355,90 +355,14 @@ define(function(){
 				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
 				'data':'jmHF.escapeHtml(this.$elem.val())'
 			}
-		},
-		{
-			jmname   : 'test1',
-			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
-			jmconfig : [
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show1',
-					'relatedTo': '.a'
-				},
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show1',
-					'relatedTo': '.b'
-				},
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show1',
-					'relatedTo': '.c'
-				},
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show1',
-					'relatedTo': '.d'
-				}
-			]
-		},
-		{
-			jmname   : 'test2',
-			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
-			jmconfig : [
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show2',
-					'relatedTo': '.a'
-				},
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show2',
-					'relatedTo': '.b'
-				},
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show2',
-					'relatedTo': '.c'
-				},
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'show2',
-					'relatedTo': '.d'
-				}
-			]
-		},
-		{
-			jmname   : 'radiotest',
-			jmplugin: 'actions.add',
-			jmconfig : [
-				{
-					'event'    : 'click',
-					'datatype' : 'class',
-					'data'     : 'radiotest',
-					'relatedTo': 'this.$elem[0]'
-				}
-			]
-		},
-		{
-			jmname   : 'labeltest',
-			jmplugin: 'actions.add',
-			jmconfig : [
-				{
-					'event'    : 'change',
-					'datatype' : 'class',
-					'data'     : 'labeltest',
-					'relatedTo': 'this.$elem[0]'
-				}
-			]
+		},{
+			jmname   : 'equalheights-not-mobile',
+			jmplugin: 'modules.equalheights',
+			jmconfig :{
+				'event'    : 'dominit',
+				// TODO Andreas & Daniel lösung finden für Modernizr.mq
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			}
 		}
 	];
 });
