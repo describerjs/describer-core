@@ -18,59 +18,41 @@
     }
 }
 
-@*@section Head{
+@section Head{
+	<!-- here be added -->
 	@Html.Partial("~/Areas/Manager/Views/Shared/Partial/TinyMCE.cshtml");
-}*@
+}
 <script>
 	var tabID = @Model.Tabs.Count;
 	var tabIndex = @Model.Tabs.Count;
 	var regionID = '@regionID';
 
-	function addTab() {
-		//hier lesen wir die nächte ID
+	function addTab() 
+	{
 		var id = tabID + 1;
 		var index = tabIndex;
-		//alert("tabIndex:"+tabIndex);
-
-		//hier wird eine neue FAQ mit der nächten ID hinzugefügt
-		$("#addTab").before("<li class='tab_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionID +"].Body.Tabs[" + index + "].Title' id='TabTitle_" + id + "'></div><li class='tab_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8'  class='editor' name='Regions["+ regionID +"].Body.Tabs[" + index + "].Body' id='TabContent_" + id + "' cols='20'></textarea></div></li><li class='tab_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeTab(" + id + ")';'>Reiter entfernen</a></li>");
-        
+		$("#addTab").before("<li class='tab_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionID +"].Body.Tabs[" + index + "].Title' id='TabTitle_" + id + "'></div><li class='tab_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' class='editor' name='Regions["+ regionID +"].Body.Tabs[" + index + "].Body' id='TabContent_" + id + "' cols='20'></textarea></div></li><li class='tab_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeTab(" + id + ")';'>Reiter entfernen</a></li>");
+		tinymce.EditorManager.execCommand('mceAddEditor', true, 'TabContent_' + id);
 		tabID++;
 		tabIndex++;
 	}
-	function removeTab(id) {
-		//alert("id:"+id);
-		//alert("tabID:"+tabID);
-		$(".tab_" + id).remove();
 
+	function removeTab(id) 
+	{
+		$(".tab_" + id).remove();
 		var countIndex = 0;
 		for(var f = 0; f < tabID; f++){
 
 			var idtochange = f + 1;
-
-			//alert("idtochange:"+idtochange);
-
 			var inputID = "#TabTitle_" + idtochange;
 			var textAreaID = "#TabContent_" + idtochange;
             
-			// alert("inputID:"+inputID);
-			//alert("textAreaID:" + textAreaID);
-
-			if($(inputID).length && $(textAreaID).length){
-
-				//alert("current name:"+$(inputID).attr("name"));
-
+			if($(inputID).length && $(textAreaID).length)
+			{
 				$(inputID).attr("name", "Regions["+ regionID +"].Body.Tabs[" + countIndex + "].Title");
 				$(inputID).attr("data-index", countIndex);
-
-				// alert("new name:"+$(inputID).attr("name"));
-
-				// alert("current name:"+$(textAreaID).attr("name"));
-
 				$(textAreaID).attr("name", "Regions["+ regionID +"].Body.Tabs[" + countIndex + "].Body");
 				$(textAreaID).attr("data-index", countIndex);
-
-				//alert("new name:"+$(textAreaID).attr("name"));
 				countIndex++;
 			}
 		}
@@ -89,7 +71,7 @@
         <li class="tab_@j">
             <label>Inhalt:</label> 
 	        <div class="input">
-		        @Html.TextAreaFor(m => m.Tabs[i].Body, new { data_index= i, id="TabContent_" + j, rows=8, cols=20})
+		        @Html.TextAreaFor(m => m.Tabs[i].Body, new { data_index= i, id="TabContent_" + j, rows=8, cols=20, @class="editor"})
 	        </div>
         </li>
         <li class="tab_@j"><a class="btn" onclick="removeTab(@j);">Reiter entfernen</a></li>
