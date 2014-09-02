@@ -354,34 +354,31 @@ Alternative: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei
 
 ### Deklaration der Funktionalität des Plugins ###
 
-####  Event ####
+#### event ####
 
 die HTML-Module-Funktionen können durch unterschietliche Events ausgelöst werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren.
 
+
+- click (**alle** [data-jmname])
+- change (**select**[data-jmname], **input**[data-jmname], **textarea**[data-jmname])
+- jmtrigger (**alle** [data-jmname])
+
+
+Nur bei dem form-Tag mit [data-jmname="form"] sind noch die events focus, blur, change und checkValidation als Event-Listener regirstiert.
+
+
+
 ##### click #####
 
-Der Body hört bei allen Tags auf das Klick-Event. Eine Unterscheidung findet nur bei a-Tags und label-Tags statt. 
-Im Fall vom a-Tag wird ein e.preventDefault vor der Initialisierung ausgeführt. Im Fall eines lable-Tags wird zuerste eine Prüfung duchgeführt, ob das Event-Target vom label ansicht stammt und nicht vom verschachtelten input[type="radio"] oder input[type="checkbox"] (Fix für doppelten Eventtrigger, der z.B. bei (Label > input[type="radio"]) besteht).
 
 ##### change #####
 
+Folgende Events lassen sich nur durch die Angabe von data-jmdominit="true" als Data-Attribut im HTML aktivieren. Sie sind auch auf alle Tags anwendbar.
 
-select[data-jmname],
-input[type="radio"][data-jmname],
-input[type="checkbox"][data-jmname],
-input[type="text"][data-jmname],
-input[type="email"][data-jmname]
-
-##### focus change blur checkValidation #####
-NUR AUF FORM-TAGS MIT DEM ATTRIBUT data-jmname="form"
-
-
-Einige Events benötigen jedoch aufgrund ihrer Bestimmtheit das Attribut data-jmdominit="true"
 
 	// Beispielhafte Initialisierung im HTML:
 	<input data-jmname="sync-val" data-jmdominit="true" type="text" name="vorname" />
 
-Bei den hier folgenden Events ist dieses Attribut von nöten.
 
 ##### dominit #####
 die Aktion wird auf domready oder wenn das HTML-Element via ajax in das DOM injektet wird ausgeführt.
@@ -389,7 +386,7 @@ die Aktion wird auf domready oder wenn das HTML-Element via ajax in das DOM inje
 ##### raf #####
 Die Aktion wird auf jedem requestAnimationFrame durchgeführt (bei jedem neuzeichnen des Bildes)
 
-##### interval (angegeben in z.B. interval-5000) #####
+##### interval-xxx (angegeben in z.B. interval-5000) #####
 Die Aktion wird alle 5000 ms durchgeführt
 
 ##### blur #####
@@ -398,27 +395,52 @@ Die Aktion wird auf blur durchgeführt
 ##### hover #####
 Die Aktion wird auf hover durchgeführt
 
-##### keyup (abgegeben in z.B. keyup-delay-500)  ##### 
+##### keyup/keyup-delay-xxx (abgegeben in z.B. keyup-delay-500)  ##### 
 Die Aktion wird auf keyup mit einem delay von 500 ms durchgeführt (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)
 
-##### jmchange #####
-Die Aktion wird durchgeführt, wenn jmchange auf diesem Element getriggert wird
 
-Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js
+Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js:
 
 	{
-	    jmname : 'sync-val',                                // wird im HTML referenziert
-	    jmplugin: 'actions.add',                           // Plugin
-	    jmconfig :{                                         // Konfigurationsobjekt
-	        // das action wird bei domready, change und bei keyup mit einem delay von 500 ms (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)
-	        'event' : 'dominit|change|keyup-dotimeout-500', 
-	        'datatype' : 'text',                            // es soll text hinzugefügt werden
-	        // die Aktion soll auf diesem/n Element/en durchgeführt werden.
+	    jmname : 'sync-val',
+	    jmplugin: 'actions.add',
+	    jmconfig: {
+	        'event': 'dominit|change|keyup-delay-500', 
+	        'datatype': 'text',
 	        'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))', 
-	        'data':'jmHF.escapeHtml(this.$elem.val())'      // der Text aus dem input-field soll hinzugefügt werden.
+	        'data': 'jmHF.escapeHtml(this.$elem.val())'
 	    }
 	 }
 
+Die HTML-Module-Funktionalität wird bei **domready**, **change** und bei **keyup** mit einem delay von 500 ms ausgefürt.
+
+#### datatype ####
+#### relatedTo ####
+#### data ####
+#### condition ####
+#### wait ####
+#### url ####
+#### inject ####
+#### scrollTo (offsetangabe integrieren früher eigener key -> scrollToOffset) ####
+
+
+// TODO Andreas
+Folgende keys wurden für frühere Projekte verwendet, stehen aber noch nicht als empfohlen da.
+
+method - ajax   -> type
+
+delay - modules.carousel
+
+afterexec - ajax
+hideby - modules.formcomponents.autocomplete
+zipcode - modules.formcomponents.autocomplete
+nextFocusNameAttr - modules.formcomponents.autocomplete
+ajax - modules.formcomponents.formvalidate
+opposition - modules.dependentSelectionGroup
+additionalloadertarget - actions.ajax
+loader - actions.link
+width - modules.video
+height - modules.video
 
 
 ## 4. Erstellung von Plugins ##

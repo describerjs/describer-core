@@ -123,9 +123,8 @@ require(['jquery', '_config'], function($){
 
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
 			$body.on('change',  'select[data-jmname], ' +
-								'input[type="checkbox"][data-jmname], ' +
-								'input[type="text"][data-jmname], ' +
-								'input[type="email"][data-jmname]', jmHF.eventDelegationTrigger);
+								'textarea[data-jmname]'+
+								'input[data-jmname]:not(input[type="radio"][data-jmname])', jmHF.eventDelegationTrigger);
 
 			// Change-Listenerinput[type="radio"]
 			$body.on('change',  'input[type="radio"][data-jmname]', jmHF.eventDelegationTriggerForRadios);
@@ -133,7 +132,7 @@ require(['jquery', '_config'], function($){
 
 			//---------------- Listener for click --------------------------------------------------------
 
-			$body.on('click', '[data-jmname]:not(label[data-jmname], a[data-jmname])', jmHF.eventDelegationTrigger);
+			$body.on('click', '[data-jmname]:not(label[data-jmname], a[data-jmname], form[data-jmname])', jmHF.eventDelegationTrigger);
 
 			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
 
