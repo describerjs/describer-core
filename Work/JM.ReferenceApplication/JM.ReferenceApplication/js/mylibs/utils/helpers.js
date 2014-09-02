@@ -17,7 +17,7 @@ define(['jquery', '_config'], function($, _config){
 
 	jmHF.alert = function(p_data){
 		if(window.debug){
-			alert(p_data);
+			window.alert(p_data);
 		}
 	};
 
@@ -42,6 +42,19 @@ define(['jquery', '_config'], function($, _config){
 			$.doTimeout('jmHF.warn', 200, function(){
 				jmHF.alert('Warnung! siehe Console JM ->');
 			});
+		}
+	};
+
+	jmHF.checkConfigJS = function(){
+		for(var i = 0, leni = _config.length; i < leni; i++){
+			var _jmpluginLength = _config[i].jmplugin.split('|').length;
+			var _jmconfigObjCount = ($.type(_config[i].jmconfig) === 'object') ? 1 : _config[i].jmconfig.length;
+			if(_jmpluginLength !== _jmconfigObjCount){
+				window.console.trace('%cJM \n ->Die Anzahl der jmplugins "'+_config[i].jmplugin+'" im Konfigurationsmodul jmname="'+_config[i].jmname+'"  und die Anzahl der zugehörigen jmconfig-Objekte stimmen nicht überein.', 'color: orange; font-style: italic');
+				$.doTimeout('jmHF.warn', 200, function(){
+					jmHF.alert('Error! in _config.js -> siehe Console JM');
+				});
+			}
 		}
 	};
 
@@ -136,18 +149,22 @@ define(['jquery', '_config'], function($, _config){
 		var $this = $(this);
 		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
 		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
-		// Wenn das e.target kein label mit verschachteltem radio oder checkbox ist, ist die Bedingung true              if ( ! ( 'label' && ( 'label'>'radio || 'label'>'checkbox' ) ) ) )
-		if(!($(e.target).find('input[type="radio"]').doesExist() || $(e.target).find('input[type="checkbox"]').doesExist())){
-			// jmHF.triggerChangeEventForAllRadiosInGroup wird aufgerufen, damit jeder Radio-Butten das Change-Event feuert, wenn sich in der Gruppe die Selection ändert.
-			jmHF.triggerChangeEventForAllOtherRadiosInGroup(e);
+		if(e.target.tagName.toLowerCase() === 'label'){
 			jmHF.eventDelegationHepler($this, e);
 		}
+	};
+
+	jmHF.eventDelegationTriggerForRadios = function(e){
+		var $this = $(this);
+		// jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
+		jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
+		jmHF.eventDelegationHepler($this, e);
 	};
 
 	jmHF.eventDelegationHepler = function($this, e){
 		var _jmname = $this.attr('data-jmname').split('|');
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
-			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmElementByJmName(_config, _jmname[i]), 'e': e });
+			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmPluginByJmName(_config, _jmname[i]), 'e': e });
 		}
 	};
 
@@ -169,7 +186,7 @@ define(['jquery', '_config'], function($, _config){
 		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
 		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
 		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
-				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmelement-String sind diese mit ..._1|..._2 usw. zu benennen.');
+				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
 		}
@@ -184,7 +201,7 @@ define(['jquery', '_config'], function($, _config){
 			if($.type(Obj.$element.data(p_plugin)) === 'undefined' || ($.type(Obj.$element.data(p_plugin)) !== 'undefined' && Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)) || ($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) !== 'undefined' && !Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin))){
 				// Das Element hat noch keine Instanz von dem Plugin
 
-				// Ist das Plugin noch nicht erstellt wird es mit dem name des jmelements und dem Objekt des OrginalPlugins erstellt.
+				// Ist das Plugin noch nicht erstellt wird es mit dem name des jmplugins und dem Objekt des OrginalPlugins erstellt.
 				// Dies ist der Fall, wenn z.B. mehrmals das gleiche Plugins auf das Element angewendet wird.
 				// Das Plugin ist dann mit "pluginName"+"_1" und "pluginName"+"_2" der Fall,
 				// oder wenn eine Plugin mit unterschiedlichen Namen (z.B. symbolische Name wie action.toggle -> navi wird) initialisiert werden kann.
@@ -222,27 +239,27 @@ define(['jquery', '_config'], function($, _config){
 	};
 
 
-	jmHF.helperForRequirementsForJmElements = function(_config, jmname){
+	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
-		var jmelementString = jmHF.getJmElementByJmName(_config, jmname);
-		if($.type(jmelementString) === 'undefined'){
+		var _jmpluginString = jmHF.getJmPluginByJmName(_config, jmname);
+		if($.type(_jmpluginString) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
 			return;
 		}
-		if(jmelementString.split('|').length > 1){
-			$.each(jmelementString.split('|'), function(index, innerItem){
+		if(_jmpluginString.split('|').length > 1){
+			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
 				require([_requirePlugin], function(){});
 			});
 		}else{
-			_requirePlugin = jmHF.returnRequireLoadPlugin(jmelementString);
+			_requirePlugin = jmHF.returnRequireLoadPlugin(_jmpluginString);
 			require([_requirePlugin], function(){});
 		}
 	};
 
 
-	// Jeder Radio-Butten feuert das Change-Event, wenn sich in der Gruppe die Selection ändert.
-	jmHF.triggerChangeEventForAllOtherRadiosInGroup = function(e){
+	// Alle anderen Radio-Buttons feuern das jmtrigger-Event, wenn sich in der Gruppe die Selection ändert.
+	jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup = function(e){
 		var radiogroup, $that;
 		if(e.target.tagName.toLowerCase() === 'input'){
 			if($(e.target).attr('type') === 'radio'){
@@ -251,18 +268,18 @@ define(['jquery', '_config'], function($, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
-					$(item).trigger('change');
+					$(item).trigger('jmtrigger');
 				});
 			}
 		}
 	};
 
-	jmHF.getJmElementByJmName = function(p_config, p_name){
+	jmHF.getJmPluginByJmName = function(p_config, p_name){
 		var i = 0;
 		var _length = p_config.length;
 		for(; i < _length; i++){
 			if(p_config[i].jmname === p_name){
-				return p_config[i].jmelement;
+				return p_config[i].jmplugin;
 			}
 		}
 	};
@@ -301,231 +318,6 @@ define(['jquery', '_config'], function($, _config){
 		div.appendChild(document.createTextNode(str));
 		return div.innerHTML;
 	};
-
-	// UNSAFE with unsafe strings; only use on previously-escaped ones!
-	/*jmHF.unescapeHtml = function (escapedStr) {
-		var div = document.createElement('div');
-		div.innerHTML = escapedStr;
-		var child = div.childNodes[0];
-		return child ? child.nodeValue : '';
-	};*/
-
-
-
-	// Kreiert einen Spinner auf dem übergebenen Target
-	/*jmHF.addOnlySpinnerToTarget = function(p_$target) {
-		p_$target.spin({
-			lines: 7, // The number of lines to draw
-			length: 0, // The length of each line
-			width: 5, // The line thickness
-			radius: 10, // The radius of the inner circle
-			corners: 1, // Corner roundness (0..1)
-			rotate: 2, // The rotation offset
-			direction: 1, // 1: clockwise, -1: counterclockwise
-			color: '#000', // #rgb or #rrggbb or array of colors
-			speed: 1.5, // Rounds per second
-			trail: 86, // Afterglow percentage
-			shadow: false, // Whether to render a shadow
-			hwaccel: false, // Whether to use hardware acceleration
-			className: 'spinjsspinner', // The CSS class to assign to the spinner
-			zIndex: 99, // The z-index (defaults to 2000000000)
-			top: 'auto', // Top position relative to parent in px
-			left: 'auto' // Left position relative to parent in px
-		});
-	};*/
-
-	// Kreiert einen Spinner mit Layer auf dem übergebenen Target
-	/*jmHF.addSpinnerToTarget = function(p_$target, p_id) {
-		var $targetElem = p_$target;
-		var spinnerDiv = $('<div data-jmspinnerid="' + p_id + '" class="spinnenrlayer" style="z-index:99; min-height: 22px; opacity: 0; position: absolute; background-color:#fff; left: ' + (parseInt($targetElem.offset().left, 10) + parseInt($targetElem.css('margin-left'), 10)) + 'px; top: ' + (parseInt($targetElem.offset().top, 10) + parseInt($targetElem.css('margin-top'), 10)) + 'px; height:' + $targetElem.outerHeight() + 'px; width: ' + $targetElem.outerWidth() + 'px;">').hide().fadeIn();
-		$('body').append(spinnerDiv);
-		spinnerDiv.transition({
-			opacity: 0.7
-		}, 300, 'ease');
-		jmHF.addOnlySpinnerToTarget(spinnerDiv);
-		if (spinnerDiv.height() > $(window).height()) {
-			spinnerDiv.find('.spinjsspinner').eq(0).css('top', $(window).height() / 2);
-		}
-	};*/
-
-	// Löscht einen Spinner mit Layer auf dem übergebenen Target
-	/*jmHF.removeSpinnerFromTarget = function(p_$target, p_id, p_time) {
-		var time = $.type(p_time !== 'undefined') ? p_time : 400;
-		var $targetElem = p_$target;
-		$('div.spinnenrlayer[data-jmspinnerid="' + p_id + '"]').transition({
-			opacity: 0
-		}, p_time, 'ease').doTimeout(p_time, function() {
-			$(this).remove();
-		});
-	};*/
-
-	// Kreiert einen Spinner mit Layer auf dem Body-Tag
-	/*jmHF.addSpinnerToBody = function(p_removetime) {
-		var spinnerDiv = $('<div data-jmelement="jmMask" id="linkspinner" style="display: block; z-index: 996; background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: fixed; left: 0px; top: 0px; opacity: 0"></div>');
-		$('body').append(spinnerDiv);
-		spinnerDiv.transition({
-			opacity: 1
-		}, 500, 'ease');
-		spinnerDiv.spin({
-			lines: 15, // The number of lines to draw
-			length: 0, // The length of each line
-			width: 10, // The line thickness
-			radius: 60, // The radius of the inner circle
-			corners: 1, // Corner roundness (0..1)
-			rotate: 0, // The rotation offset
-			direction: 1, // 1: clockwise, -1: counterclockwise
-			color: '#000', // #rgb or #rrggbb or array of colors
-			speed: 1, // Rounds per second
-			trail: 72, // Afterglow percentage
-			shadow: false, // Whether to render a shadow
-			hwaccel: false, // Whether to use hardware acceleration
-			className: 'spinner', // The CSS class to assign to the spinner
-			zIndex: 2e9, // The z-index (defaults to 2000000000)
-			top: 'auto', // Top position relative to parent in px
-			left: 'auto' // Left position relative to parent in px
-		});
-		if (spinnerDiv.height() > $(window).height()) {
-			spinnerDiv.find('.spinjsspinner').eq(0).css('top', $(window).height() / 2);
-		}
-
-		if($.type(p_removetime) !== 'undefined'){
-			// FadeOut
-			setTimeout(function(){
-				spinnerDiv.transition({
-					opacity: 0
-				}, 500, 'ease');
-			}, p_removetime);
-			// Remove
-			setTimeout(function(){
-				spinnerDiv.remove();
-			}, p_removetime + 500);
-		}
-		
-	};*/
-
-	// Kreiert einen Div-Element nach dem übergebenen Element, mit den Klassen 'switch' für die Schalter-Optik und 'needsclick' um FastClick.js auf diesem Element zu deakivieren (ist andernfalls Fehlerhaft). 
-	/*jmHF.createSwitch = function($elem) {
-		$('<div/>', {
-			'class': 'switch needsclick'
-		}).insertAfter($elem);
-	};*/
-
-	// Positioniert das übergebende Element mittig auf dem Display
-	/*jmHF.centerElement = function(p_elem) {
-		var _elemheight = p_elem.height();
-		var _windowHeigth = $(window).height();
-		var _elemWidth = p_elem.width();
-		var _windowWidth = $(window).width();
-		var _windowScrollTop = $(window).scrollTop();
-		var _windowScrollLeft = $(window).scrollLeft();
-		p_elem.css('top', (_windowHeigth - _elemheight) / 2 + _windowScrollTop + "px");
-		p_elem.css('left', (_windowWidth - _elemWidth) / 2 + _windowScrollLeft + "px");
-	};*/
-
-	// Bugfix für jmHF.centerElement, da es auf dem Layer in Position-Left nicht korrekt funktioniert.
-	/*jmHF.centerLayer = function(p_elem) {
-		var _elemheight = p_elem.height();
-		var _windowHeigth = $(window).height();
-		var _elemWidth = p_elem.width();
-		var _windowWidth = $(window).width();
-		var _windowScrollTop = $(window).scrollTop();
-		var _windowScrollLeft = $(window).scrollLeft();
-		if (_elemheight > _windowHeigth) {
-			p_elem.css('top', _windowScrollTop + "px");
-		} else {
-			p_elem.css('top', (_windowHeigth - _elemheight) / 2 + _windowScrollTop + "px");
-		}
-		p_elem.css('left', '5%');
-	};*/
-
-	// bindPlugin
-	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten, und ruft optional eine eigene Methode
-	// auf wie z.B. click, change oder auch domInit auf
-	// Obj
-
-	/*jmHF.delayRAF = function(p_func, p_delay){
-		setTimeout(function(){
-            window.requestAnimationFrame(p_func);
-        }, p_delay);
-	};*/
-
-	// Es wird zum übergebene Element gescrollt. Optional kann ein offset übergeben werden
-	/*jmHF.scrollToElement = function(p_$target, p_delta_offset) {
-		var _delta_offset = 0;
-		if ($.type(p_delta_offset) === 'number') {
-			_delta_offset = p_delta_offset;
-		}
-		$('body').scrollToTop(p_$target.offset().top + _delta_offset); // $('body, html') html wird nicht supported vom ios
-		*/
-	/*$('html, body').animate({
-				scrollTop: p_$target.offset().top + _delta_offset
-			}, 800);*/
-	/*
-		};*/
-
-	/*jmHF.isMobile = function() {
-		return matchMedia('only screen and (max-width: 61.1875em)').matches;
-	};*/
-
-	/*jmHF.isTablet = function() {
-		return matchMedia('only screen and (min-width: 48em) and (max-width: 61.1875em)').matches;
-	};*/
-
-	/*jmHF.initFB = function ($elem, callbackFB, randomString) {
-		FB.XFBML.parse($elem, function () {
-			$.doTimeout(randomString, 1000, function () {
-				if ($.type(callbackFB) !== 'undefined') {
-					callbackFB.call(this);
-				}
-			});
-		});
-	};*/
-
-	// Anwendung der Get-Parameter, die in der URL hinterlegt wurden. // scrollToId, scrollToAreaEdit, scrollToTBopenId
-	/*jmHF.applyUrlVars = function(p_key) {
-
-		var $elem, _urlvar = $.getUrlVar(p_key),
-			// sucht den Interaction-Link, der geklickt werden soll.
-			_getInteractingElem = function($elem) {
-				var $interactingElem;
-				if ($elem.find('[data-jmelement="jmInteractionAjaxLink"]').eq(0).doesExist()) {
-					$interactingElem = $elem.find('[data-jmelement="jmInteractionAjaxLink"]').eq(0);
-				} else if ($elem.find('[data-jmelement="jmGetPartiaViewLink"]').eq(0).doesExist()) {
-					$interactingElem = $elem.find('[data-jmelement="jmGetPartiaViewLink"]').eq(0);
-				}
-				return $interactingElem;
-			};
-
-		if ($.type(_urlvar) !== 'undefined') {
-			$elem = $('#' + _urlvar);
-			if ($elem.doesExist()) {
-				switch (p_key) {
-				case 'scrollToId':
-					jmHF.scrollToElement($elem);
-					break;
-				case 'scrollToAreaEdit':
-					$elem = _getInteractingElem($elem);
-					if ($elem.doesExist()) {
-						jmHF.bindPlugin({ '$element': $elem, 'plugin': $elem.attr('data-jmelement')});
-						$.doTimeout('scrollToAreaEdit', 2000, function() {
-							$elem.data($elem.attr('data-jmelement')).click();
-						});
-					}
-					break;
-				case 'scrollToTBopenId':
-					jmHF.bindPlugin({ '$element': $elem, 'plugin': 'jmToggleboxElem'});
-					$.doTimeout('scrollToTBopenId', 1000, function() {
-						$elem.data('jmToggleboxElem').open();
-					});
-					break;
-				}
-			}
-		}
-	};*/
-
-	/*jmHF.objLength = function(p_obj){
-		return $.map(p_obj, function(n, i) { return i; }).length;
-	};*/
 
 	if (!Function.prototype.bind) {
 		Function.prototype.bind = function (oThis) {

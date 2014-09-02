@@ -65,7 +65,7 @@ define(function(){
 	//
 	//
 	//
-	//   ** besteht das Modul aus mehreren Plugins (jmelement), dann werden die data-config-Objekte in einem Array gelistet.
+	//   ** besteht das Modul aus mehreren Plugins (jmplugin), dann werden die data-config-Objekte in einem Array gelistet.
 	//  _______________________________________________________________________________________________________________________
 	//
 	//  //TODO Andreas Beispiele for MVC und HTML müssen noch richtig aufgeliste und getestet werde.
@@ -84,11 +84,11 @@ define(function(){
 
 	// !!!!!!!!!!!!!!!!!!!!!! ************************** in _config.js  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//
-	//   1 X data-jmelement
+	//   1 X data-jmplugin
 	//
 	//	    {
 	//          jmname   : 'nav',
-	//          jmelement: 'actions.toggle',
+	//          jmplugin: 'actions.toggle',
 	//          jmconfig : {
 	//              'event'    : 'click',
 	//              'datatype' : 'class',
@@ -98,11 +98,11 @@ define(function(){
 	//	    }
 	//
 	//
-	//   2... X data-jmelement
+	//   2... X data-jmplugin
 	//
 	//      {
 	//          jmname   : 'flyout-link',
-    //          jmelement: 'actions.add|actions.link',
+    //          jmplugin: 'actions.add|actions.link',
 	//          jmconfig : [
 	//              {
 	//                  'event'    : 'click',
@@ -124,7 +124,7 @@ define(function(){
 	return [
 		{
 			jmname   : 'nav',
-			jmelement: 'actions.toggle',
+			jmplugin: 'actions.toggle',
 			jmconfig : {
 				'event'    : 'click',
 				'datatype' : 'class',
@@ -133,7 +133,7 @@ define(function(){
 			}
 		},{
 			jmname   : 'nav-link',
-			jmelement: 'actions.remove_1|actions.remove_2|actions.add|actions.link',
+			jmplugin: 'actions.remove_1|actions.remove_2|actions.add|actions.link',
 			jmconfig : [
 				{
 					'event'    : 'hover',
@@ -161,7 +161,7 @@ define(function(){
 			]
 		},{
 			jmname   : 'menu-close',
-			jmelement: 'actions.remove',
+			jmplugin: 'actions.remove',
 			jmconfig : {
 				'event'    : 'click',
 				'datatype' : 'class',
@@ -170,7 +170,7 @@ define(function(){
 			}
 		},{
 			jmname   : 'flyout-link',
-			jmelement: 'actions.add|actions.link',
+			jmplugin: 'actions.add|actions.link',
 			jmconfig : [
 				{
 					'event'    : 'click',
@@ -186,7 +186,7 @@ define(function(){
 			]
 		},{
 			jmname   : 'show-html-comment-only-desktop',
-			jmelement: 'actions.add',
+			jmplugin: 'actions.add',
 			jmconfig : {
 				'event'   : 'dominit',
 				'datatype': 'html',
@@ -195,14 +195,14 @@ define(function(){
 
 		},{
 			jmname   : 'modal',
-			jmelement: 'modules.modal',
+			jmplugin: 'modules.modal',
 			jmconfig : {
 				'event'    : 'click|dominit',
 				'method'	: 'post'
 			}
 		},{
 			jmname   : 'togglepartner-flat',
-			jmelement: 'actions.toggle|actions.trigger',
+			jmplugin: 'actions.toggle|actions.trigger',
 			jmconfig : [
 				{
 					'event'    : 'change',
@@ -222,7 +222,7 @@ define(function(){
 		},{
 			// Soll das Carousel wieder abgebaut werde, wenn die condition bei orientations-change nicht mehr greift?
 			jmname   : 'carousel',
-			jmelement: 'modules.carousel',
+			jmplugin: 'modules.carousel',
 			jmconfig : {
 				'event'    : 'dominit',
 				'delay'    : '450',
@@ -230,7 +230,7 @@ define(function(){
 			}
 		},{
 			jmname   : 'checkbox-label-color',
-			jmelement: 'actions.remove_1|actions.add_1|actions.remove_2|actions.add_2',
+			jmplugin: 'actions.remove_1|actions.add_1|actions.remove_2|actions.add_2',
 			jmconfig : [
 				{
 					'event'    : 'change',
@@ -261,7 +261,7 @@ define(function(){
 			]
 		},{
 			jmname   : 'select-for-sync-and-set-area',
-			jmelement: 'actions.set|actions.add|actions.trigger',
+			jmplugin: 'actions.set|actions.add|actions.trigger',
 			jmconfig : [
 				{
 					'event'    : 'dominit',
@@ -299,7 +299,7 @@ define(function(){
 			]
 		},{
 			jmname   : 'tarif-radio-for-set-select',
-			jmelement: 'actions.set',
+			jmplugin: 'actions.set',
 			jmconfig :{
 				'event'    : 'change',
 				'datatype' : 'val',
@@ -309,7 +309,7 @@ define(function(){
 
 		},{
 			jmname   : 'togglebox',
-			jmelement: 'actions.toggle',
+			jmplugin: 'actions.toggle',
 			jmconfig : {
 				'event'    : 'click',
 				'datatype' : 'class',
@@ -319,7 +319,7 @@ define(function(){
 		},
 		{
 			jmname   : 'accordionbox',
-			jmelement: 'actions.remove|actions.toggle',
+			jmplugin: 'actions.remove|actions.toggle',
 			jmconfig : [
 				{
 					'event'    : 'click',
@@ -338,13 +338,107 @@ define(function(){
 			]
 		},{
 			jmname   : 'testlable',
-			jmelement: 'actions.toggle',
+			jmplugin: 'actions.toggle',
 			jmconfig : {
 				'event'    : 'click',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem.parent()[0]'
 			}
+		},
+		{
+			jmname   : 'sync-val',
+			jmplugin: 'actions.add',
+			jmconfig :{
+				'event'    : 'dominit|change|keyup-delay-500',
+				'datatype' : 'text',
+				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
+				'data':'jmHF.escapeHtml(this.$elem.val())'
+			}
+		},
+		{
+			jmname   : 'test1',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.d'
+				}
+			]
+		},
+		{
+			jmname   : 'test2',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.d'
+				}
+			]
+		},
+		{
+			jmname   : 'radiotest',
+			jmplugin: 'actions.add',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'radiotest',
+					'relatedTo': 'this.$elem[0]'
+				}
+			]
+		},
+		{
+			jmname   : 'labeltest',
+			jmplugin: 'actions.add',
+			jmconfig : [
+				{
+					'event'    : 'change',
+					'datatype' : 'class',
+					'data'     : 'labeltest',
+					'relatedTo': 'this.$elem[0]'
+				}
+			]
 		}
 	];
 });
