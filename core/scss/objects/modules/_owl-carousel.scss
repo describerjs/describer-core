@@ -21,9 +21,10 @@
 	@include clearfix;
 	clear: both;
 	display: none;
-	-ms-touch-action: pan-y;
+	margin-bottom: $default-spacing;
 	position: relative;
 	width: 100%;
+	-ms-touch-action: pan-y;
 
 	.owl-wrapper {
 		@include clearfix;

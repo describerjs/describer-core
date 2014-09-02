@@ -53,7 +53,7 @@ $tabs:		5;
 $tabs_i:	1;
 
 @for $tabs_i from 1 through $tabs {
-  .tab-control {
+	.tab-control {
 		&:nth-of-type(#{$tabs_i}):checked {
 			~ .tab-content {
 				&:nth-of-type(#{$tabs_i}) {
@@ -61,14 +61,6 @@ $tabs_i:	1;
 				}
 			}
 		}
-	}
-}
-
-// Jedes Tab erhält die gleichen Eigenschaften
-@mixin tabs-tab {
-	margin: {
-		left: 1px;
-		right: 0;
 	}
 }
 
@@ -83,15 +75,19 @@ $tabs_i:	1;
 .tabs {
 	@extend %element-default;
 	background-color: $theme-tabs-bg;
+	border: 1px solid $theme-tabs-bg;
+	border-top: 0;
 	padding-top: $default-spacing;
 
 	// Ein Tab <label>
-	.tab {
+	&> .tab {
 		@extend %element-inner-default;
 		@include transition(top .3s ease-out);
 		background-color: $theme-tab-bg;
 		color: $theme-tab-fg;
 		margin-bottom: -($space-half);
+		margin-left: 1px !important;
+		margin-right: 0 !important;
 		padding-bottom: $space;
 		position: relative;
 		text-align: center;
@@ -99,23 +95,42 @@ $tabs_i:	1;
 
 		&:nth-of-type(1):nth-last-of-type(2),
 		&:nth-of-type(2):nth-last-of-type(1) {
-			@include column(3);
-			@include tabs-tab;
+			@include bp-s {
+				@include column(6);
+			}
+
+			@include bp-m {
+				@include column(5);
+			}
+
+			@include bp-l {
+				@include column(4);
+			}
 		}
 
 		&:nth-of-type(1):nth-last-of-type(3),
 		&:nth-of-type(2):nth-last-of-type(2),
 		&:nth-of-type(3):nth-last-of-type(1) {
-			@include column(3);
-			@include tabs-tab;
+			@include bp-m {
+				@include column(4);
+			}
+
+			@include bp-l {
+				@include column(3);
+			}
 		}
 
 		&:nth-of-type(1):nth-last-of-type(4),
 		&:nth-of-type(2):nth-last-of-type(3),
 		&:nth-of-type(3):nth-last-of-type(2),
 		&:nth-of-type(4):nth-last-of-type(1) {
-			@include column(3);
-			@include tabs-tab;
+			@include bp-m {
+				@include column(3);
+			}
+
+			@include bp-l {
+				@include column(3);
+			}
 		}
 
 		&:nth-of-type(1):nth-last-of-type(5),
@@ -123,18 +138,9 @@ $tabs_i:	1;
 		&:nth-of-type(3):nth-last-of-type(3),
 		&:nth-of-type(4):nth-last-of-type(2),
 		&:nth-of-type(5):nth-last-of-type(1) {
-			@include column(2);
-			@include tabs-tab;
-		}
-
-		&:nth-of-type(1):nth-last-of-type(6),
-		&:nth-of-type(2):nth-last-of-type(5),
-		&:nth-of-type(3):nth-last-of-type(4),
-		&:nth-of-type(4):nth-last-of-type(3),
-		&:nth-of-type(5):nth-last-of-type(2),
-		&:nth-of-type(6):nth-last-of-type(1) {
-			@include column(2);
-			@include tabs-tab;
+			@include bp-m {
+				@include column(2.5);
+			}
 		}
 
 		&:hover {
@@ -149,7 +155,7 @@ $tabs_i:	1;
 	}
 
 	// Inhalt des Tabs.
-	.tab-content {
+	&> .tab-content {
 		@extend %element-inner-default;
 		background-color: $theme-tab-content-bg;
 		clear: both;
@@ -159,7 +165,7 @@ $tabs_i:	1;
 	}
 
 	// Dient zum Steuern der einzelnen Tabs und ist ein Radiobutton <input>
-	.tab-control {
+	&> .tab-control {
 		display: none;
 
 		&:checked {

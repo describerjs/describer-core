@@ -2,12 +2,57 @@
     $LINKS
 \*------------------------------------*/
 
+/**
+ * ANCHOR..............................HTML <a> Element
+ * LINK................................Textlink
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $ANCHOR
+\*------------------------------------*/
+
 a {
 	cursor: pointer;
 	outline: 0;
 	text-decoration: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+
+
+
+
+/*------------------------------------*\
+    $LINK
+\*------------------------------------*/
+
+.link {
+	@if $theme-link-bg != $theme-color-zero {
+		@include transitions(	background-color $transition-duration $transition-function,
+								color $transition-duration $transition-function);
+		background-color: $theme-link-bg;
+		color: $theme-link-fg;
+	} @else {
+		@include transition(color $transition-duration $transition-function);
+		color: $theme-link-fg;
+	}
+
+	&:focus,
+	&:hover {
+		@if $theme-link-bg != $theme-color-zero {
+			background-color: $theme-link-hover-bg;
+		}
+		color: $theme-link-hover-fg;
+	}
+}
+
+
+
+
 
 /*------------------------------------*\
     

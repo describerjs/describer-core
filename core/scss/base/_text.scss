@@ -30,6 +30,7 @@ address {
 
 hr {
 	@extend %element-default;
+	margin: $space-double 0;
 }
 
 

@@ -11,6 +11,7 @@
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
  * SPACING.............................Abstände definieren
+ * TRANSITIONS.........................Eigenschaften für Transitions
 **/
 
 
@@ -24,6 +25,7 @@
 $black:	#000;
 $white: #fff;
 
+$theme-color-zero:		transparent;
 $theme-color-alpha:		#fff;
 $theme-color-beta:		#000;
 $theme-color-gamma:		#ddd;
@@ -54,6 +56,34 @@ $theme-page-fg:					$theme-color-beta;
 $theme-selection-bg:			$theme-color-beta;
 $theme-selection-fg:			$theme-color-alpha;
 
+// Accordion
+$theme-accordion-bg:			$theme-color-gamma;
+$theme-accordion-fg:			$theme-color-beta;
+$theme-accordion-handle-bg:		$theme-color-epsilon;
+$theme-accordion-handle-fg:		$theme-color-alpha;
+$theme-accordion-active-bg:		$theme-color-delta;
+$theme-accordion-active-fg:		$theme-color-beta;
+
+// Buttons
+$theme-btn-bg:					$theme-color-epsilon;
+$theme-btn-fg:					$theme-color-zeta;
+$theme-btn-active-bg:			$theme-color-gamma;
+$theme-btn-active-fg:			$theme-color-delta;
+$theme-btn-disabled-bg:			$theme-color-zeta;
+$theme-btn-disabled-fg:			$theme-color-eta;
+$theme-btn-disabled-active-bg:	$theme-color-delta;
+$theme-btn-disabled-active-fg:	$theme-color-epsilon;
+$theme-cta-bg:					$theme-color-beta;
+$theme-cta-fg:					$theme-color-alpha;
+$theme-cta-active-bg:			$theme-color-zeta;
+$theme-cta-active-fg:			$theme-color-alpha;
+
+// Links
+$theme-link-bg:					$theme-color-zero;
+$theme-link-fg:					$theme-color-epsilon;
+$theme-link-hover-bg:			$theme-color-zero;
+$theme-link-hover-fg:			$theme-color-eta;
+
 // Navigation
 $theme-nav-bg:					$theme-color-gamma;
 $theme-nav-fg:					$theme-color-beta;
@@ -76,28 +106,6 @@ $theme-flyout-group-active-fg:	$theme-flyout-link-active-fg;
 $theme-menu-btn-bg:				$theme-color-alpha;
 $theme-menu-btn-fg:				$theme-color-beta;
 $theme-menu-item-bg:			$theme-color-gamma;
-
-// Buttons
-$theme-btn-bg:					$theme-color-epsilon;
-$theme-btn-fg:					$theme-color-zeta;
-$theme-btn-active-bg:			$theme-color-gamma;
-$theme-btn-active-fg:			$theme-color-delta;
-$theme-btn-disabled-bg:			$theme-color-zeta;
-$theme-btn-disabled-fg:			$theme-color-eta;
-$theme-btn-disabled-active-bg:	$theme-color-delta;
-$theme-btn-disabled-active-fg:	$theme-color-epsilon;
-$theme-cta-bg:					$theme-color-beta;
-$theme-cta-fg:					$theme-color-alpha;
-$theme-cta-active-bg:			$theme-color-zeta;
-$theme-cta-active-fg:			$theme-color-alpha;
-
-// Accordion
-$theme-accordion-bg:			$theme-color-gamma;
-$theme-accordion-fg:			$theme-color-beta;
-$theme-accordion-handle-bg:		$theme-color-epsilon;
-$theme-accordion-handle-fg:		$theme-color-alpha;
-$theme-accordion-active-bg:		$theme-color-delta;
-$theme-accordion-active-fg:		$theme-color-beta;
 
 // Tabs
 $theme-tabs-bg:					$theme-color-zeta;
@@ -192,6 +200,18 @@ $default-padding:			$pad;
 $default-padding-s:			$dist + 3;
 $default-padding-m:			$dist + 1;
 $default-padding-l:			$dist;
+
+
+
+
+
+/*------------------------------------*\
+	$TRANSITIONS
+\*------------------------------------*/
+
+$transition-delay:		0;
+$transition-duration:	.3s;
+$transition-function:	ease-in-out;
 
 
 
