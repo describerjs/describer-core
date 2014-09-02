@@ -334,6 +334,35 @@
         </nav>
 	</header>
 	<main role="main">
+        <div class="tabs">
+            <input type="radio" id="tab1" name="tab" class="tab-control" checked />
+            <label for="tab1" class="tab">$tab-label$</label>
+            <input type="radio" id="tab2" name="tab" class="tab-control" />
+            <label for="tab2" class="tab">$tab-label</label>
+            <input type="radio" id="tab3" name="tab" class="tab-control" />
+            <label for="tab3" class="tab">$tab-label</label>
+            <div class="tab-content">
+                $tab-content1$
+            </div>
+            <div class="tab-content">
+                $tab-content2$
+            </div>
+            <div class="tab-content">
+                $tab-content3$
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="togglebox">
+            <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+            <div class="tb-content">
+                $togglecontent$
+            </div>
+        </div>
+
+        <hr />
+
         <h1>module.html</h1>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
@@ -349,26 +378,6 @@
                 <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </section>
         </div>
-
-        <hr />
-
-		<div class="tabs">
-			<input type="radio" id="tab1" name="tab" class="tab-control" checked />
-			<label for="tab1" class="tab">$tab-label$</label>
-			<input type="radio" id="tab2" name="tab" class="tab-control" />
-			<label for="tab2" class="tab">$tab-label</label>
-			<input type="radio" id="tab3" name="tab" class="tab-control" />
-			<label for="tab3" class="tab">$tab-label</label>
-			<div class="tab-content">
-				$tab-content1$
-			</div>
-			<div class="tab-content">
-				$tab-content2$
-			</div>
-			<div class="tab-content">
-				$tab-content3$
-			</div>
-		</div>
 
         <hr />
 
@@ -492,15 +501,6 @@
 
         <hr />
 
-        <div class="togglebox">
-            <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
-            <div class="tb-content">
-                $togglecontent$
-            </div>
-        </div>
-
-        <hr />
-
         <div class="accordion">
             <ul class="acc-group">
                 <li class="acc-item">
@@ -527,7 +527,7 @@
 	<footer class="page-footer" role="contentinfo">
         <section class="h-card">
             <div class="hc-section">
-                <a class="u-url p-organization-name" href="/">Beispiel-AG</a>
+                <a class="u-url p-organization-name link" href="/">Beispiel-AG</a>
             </div>
             <address class="hc-section">
                 <span class="p-street-address">Beispiel Str. 111a</span>
@@ -535,16 +535,16 @@
                 <span class="p-country-name">Beispielland</span>
             </address>
             <div class="hc-section">
-                <a class="p-tel" href="tel:+4921155572484">Fon: +49 2 11 55 57 24 84</a>
+                <a class="p-tel link" href="tel:+4921155572484">Fon: +49 2 11 55 57 24 84</a>
                 <span class="p-tel-fax">Fax: +49 2 11 55 57 24 84</span>
             </div>
             <div class="hc-section">
-                <a class="u-email" href="mailto:info@beispiel-ag.de">info@beispiel-ag.de</a>
-                <a class="u-url" href="http://www.beispiel-ag.de">www.beispiel-ag.de</a>
+                <a class="u-email link" href="mailto:info@beispiel-ag.de">info@beispiel-ag.de</a>
+                <a class="u-url link" href="http://www.beispiel-ag.de">www.beispiel-ag.de</a>
             </div>
         </section>
         <div class="legal">
-            <a class="imprint" href="$impressum$">Impressum</a>
+            <a class="imprint link" href="$impressum$">Impressum</a>
             <p class="copyright">&copy; Copyright 2014</p>
         </div>
 	</footer>
