@@ -1,66 +1,53 @@
-﻿@using Piranha.Extend.Regions
+﻿@using JM.Foundation.Mvc.Helper
+@using Piranha.Extend.Regions
 @model FaqRegion
 @{
     //i wird für Arrayindex benutzt
     var i = 0;
     //j wird als Idenfifier benutzt
     var j = 1;
+	string regionID = "0";
 
     if(Model.Faqs == null)
     {
         Model.Faqs = new List<TextRegion>();
+		var fieldString = @Html.GetFullHtmlFieldId(m => m.Faqs.FirstOrDefault());
+	    regionID = fieldString.Replace("Regions[", "").Split(']')[0];
     }
 }
 <script>
     var faqID = @Model.Faqs.Count;
-    var faqIndex = @Model.Faqs.Count;
+	var faqIndex = @Model.Faqs.Count;
+	var regionID = '@regionID';
 
     function addFaq() {
         //hier lesen wir die nächte ID
         var id = faqID + 1;
         var index = faqIndex;
-        //alert("faqIndex:"+faqIndex);
-
-        //hier wird eine neue FAQ mit der nächten ID hinzugefügt
-        $("#addFaq").before("<li class='faq_" + id + "'><label>Frage " + id + ":</label><div class='input'><input type='text' value='' name='Regions[0].Body.Faqs[" + index + "].Title' id='Question_" + id + "'></div><li class='faq_" + id + "'><label>Antwort:</label><div class='input'><textarea rows='8' name='Regions[0].Body.Faqs[" + index + "].Body' id='Answer_" + id + "' cols='20'></textarea></div></li><li class='faq_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeFaq(" + id + ")';'>Faq entfernen</a></li>");
+        $("#addFaq").before("<li class='faq_" + id + "'><label>Frage " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionID +"].Body.Faqs[" + index + "].Title' id='Question_" + id + "'></div><li class='faq_" + id + "'><label>Antwort:</label><div class='input'><textarea rows='8' name='Regions["+ regionID +"].Body.Faqs[" + index + "].Body' id='Answer_" + id + "' cols='20'></textarea></div></li><li class='faq_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeFaq(" + id + ")';'>Faq entfernen</a></li>");
         
         faqID++;
         faqIndex++;
     }
-    function removeFaq(id) {
-        //alert("id:"+id);
-        //alert("faqID:"+faqID);
+    function removeFaq(id)
+    {
         $(".faq_" + id).remove();
 
         var countIndex = 0;
         for(var f = 0; f < faqID; f++){
 
             var idtochange = f + 1;
-
-            //alert("idtochange:"+idtochange);
-
-            var inputID = "#Question_" + idtochange;
+			var inputID = "#Question_" + idtochange;
             var textAreaID = "#Answer_" + idtochange;
             
-           // alert("inputID:"+inputID);
-            //alert("textAreaID:" + textAreaID);
-
-            if($(inputID).length && $(textAreaID).length){
-
-                //alert("current name:"+$(inputID).attr("name"));
-
-                $(inputID).attr("name", "Regions[0].Body.Faqs[" + countIndex + "].Title");
+            if($(inputID).length && $(textAreaID).length)
+            {
+				$(inputID).attr("name", "Regions["+ regionID +"].Body.Faqs[" + countIndex + "].Title");
                 $(inputID).attr("data-index", countIndex);
 
-               // alert("new name:"+$(inputID).attr("name"));
-
-               // alert("current name:"+$(textAreaID).attr("name"));
-
-                $(textAreaID).attr("name", "Regions[0].Body.Faqs[" + countIndex + "].Body");
+                $(textAreaID).attr("name", "Regions["+ regionID +"].Body.Faqs[" + countIndex + "].Body");
                 $(textAreaID).attr("data-index", countIndex);
-
-                //alert("new name:"+$(textAreaID).attr("name"));
-                countIndex++;
+				countIndex++;
             }
         }
         faqIndex--;
@@ -72,13 +59,13 @@
         <li class="faq_@j">
             <label>Frage @j:</label> 
             <div class="input">
-                <input type="text" value="@faq.Title" data-index="@i" name="Regions[0].Body.Faqs[@i].Title" id="Question_@j">
+                <input type="text" value="@faq.Title" data-index="@i" name="Regions[@regionID].Body.Faqs[@i].Title" id="Question_@j">
             </div>
         </li>
         <li class="faq_@j">
             <label>Antwort:</label> 
             <div class="input">
-                <textarea rows="8" data-index="@i" name="Regions[0].Body.Faqs[@i].Body" id="Answer_@j" cols="20">@faq.Body</textarea>
+                <textarea rows="8" data-index="@i" name="Regions[@regionID].Body.Faqs[@i].Body" id="Answer_@j" cols="20">@faq.Body</textarea>
             </div>
         </li>
         <li class="faq_@j"><a class="btn" onclick="removeFaq(@j);">Faq entfernen</a></li>

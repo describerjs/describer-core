@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.17\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.19\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -196,7 +196,6 @@
     <Compile Include="Monitoring\SystemBoundaryAttribute.cs" />
     <Compile Include="Configuration\ConfigObjects\Setting.cs" />
     <Compile Include="Configuration\ConfigObjects\SettingsCollection.cs" />
-    <Compile Include="SharedViews\PictureFillModel.cs" />
     <Compile Include="Utils\EmbeddedViewPathProvider.cs" />
     <Compile Include="Utils\RequestParameter.cs" />
   </ItemGroup>
