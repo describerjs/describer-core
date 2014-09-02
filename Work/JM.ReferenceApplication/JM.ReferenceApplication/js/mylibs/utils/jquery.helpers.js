@@ -35,14 +35,14 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 	};
 
 	// sucht die benötigten AMD-Module für die nun im DOM existierenden Tags raus und läd sie schon mal vorab via require([_requirePlugin]).
-	$.fn.requirementsForJmElements = function(){
+	$.fn.requirementsForJmPlugins = function(){
 		return this.each(function(){
 			var $elem = $(this);
 			$elem.find('[data-jmname]').addBack('[data-jmname]').each(function(index, item){
 				var $item = $(item);
 				var _jmname = $item.data('jmname').split('|');
 				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.helperForRequirementsForJmElements(_config, _jmname[i]);
+					jmHF.helperForRequirementsForJmPlugins(_config, _jmname[i]);
 				}
 			});
 		});
