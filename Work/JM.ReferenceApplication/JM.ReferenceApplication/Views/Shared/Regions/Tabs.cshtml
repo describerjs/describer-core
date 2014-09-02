@@ -11,7 +11,7 @@
 		@foreach (var tab in Model.Tabs)
 		{
 			<div class="tab-content">
-				@tab.Body
+				@MvcHtmlString.Create(tab.Body)
 			</div>
 		}
 	</div>
