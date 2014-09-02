@@ -30,7 +30,12 @@
 .logo {
 	@extend %element-inner-default;
 	@include column(8);
+	background-color: $theme-logo-bg;
 	display: block;
+	margin: {
+		bottom: $space-quarter;
+		top: $space-quarter;
+	}
 	position: relative;
 	z-index: 1;
 
@@ -48,6 +53,10 @@
 
 	@include bp-l {
 		@include column(3);
+		margin: {
+			bottom: $space-half;
+			top: $space-half;
+		}
 	}
 }
 

@@ -1031,7 +1031,10 @@ p:last-child {
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   float: left;
+  background-color: #aaa;
   display: block;
+  margin-bottom: 0.375rem;
+  margin-top: 0.375rem;
   position: relative;
   z-index: 1;
 }
@@ -1065,6 +1068,8 @@ p:last-child {
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     float: left;
+    margin-bottom: 0.75rem;
+    margin-top: 0.75rem;
   }
 }
 
@@ -1499,6 +1504,7 @@ main {
     position: relative;
     background-color: #ddd;
     color: #000;
+    margin-bottom: 0;
   }
   .nav:after, .nav:before {
     content: "\0020";
@@ -2425,7 +2431,7 @@ main {
 }
 @media screen and (min-width: 60em) {
   .stage-teaser {
-    min-height: 400px;
+    min-height: 395px;
   }
 }
 @media screen and (min-width: 48em) {
