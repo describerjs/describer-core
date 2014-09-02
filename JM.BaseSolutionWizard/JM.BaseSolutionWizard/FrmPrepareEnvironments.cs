@@ -1,4 +1,5 @@
-﻿using Mustache;
+﻿using System;
+using Mustache;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -10,8 +11,8 @@ namespace JM.BaseSolutionWizard
 {
     public partial class FrmPrepareEnvironments : Form
     {
-        Stream dbCreationTemplate;
-        Stream dbContent;
+        string dbCreationTemplate;
+        string dbContent;
 
         public FrmPrepareEnvironments()
         {
@@ -21,8 +22,9 @@ namespace JM.BaseSolutionWizard
         }
 
         public FrmPrepareEnvironments(
-            Stream dbCreationTemplate,
-            Stream dbContent) : this()
+            string dbCreationTemplate,
+            string dbContent)
+            : this()
         {
             this.dbCreationTemplate = dbCreationTemplate;
             this.dbContent = dbContent;
@@ -72,17 +74,24 @@ namespace JM.BaseSolutionWizard
             {
                 conn.Open();
                 string script;
-
+                
                 using (var reader = new StreamReader(this.dbContent))
                 {
-                    script = reader.ReadToEnd();
-
-                    IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
-                        RegexOptions.Multiline | RegexOptions.IgnoreCase);
-
-                    foreach (var cstring in commandStrings.Where(c => !string.IsNullOrWhiteSpace(c)))
+                    try
                     {
-                        new SqlCommand(cstring, conn).ExecuteNonQuery();
+                        script = reader.ReadToEnd();
+
+                        IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
+                            RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                        foreach (var cstring in commandStrings.Where(c => !string.IsNullOrWhiteSpace(c)))
+                        {
+                            new SqlCommand(cstring, conn).ExecuteNonQuery();
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        //todo: handeln (wenn's die Tabelle schon gibt!)
                     }
                 }
             }
