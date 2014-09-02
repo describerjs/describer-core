@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EnvDTE;
@@ -141,6 +142,7 @@ namespace JM.BaseSolutionWizard
         /// <param name="filename"></param>
         /// <returns></returns>
         /// <remarks>Die Datei muss sich im Root-Verzeichnis des Templates befinden.</remarks>
+        [Obsolete]
         public Stream GetFilestreamFromTemplate(string filename)
         {
             var filePath = Path.Combine(TemplateDirectory, filename);

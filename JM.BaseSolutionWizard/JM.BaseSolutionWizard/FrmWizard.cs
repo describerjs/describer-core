@@ -14,9 +14,9 @@ namespace WindowsFormsApplication1
 
         string projectName;
         string solutionRootPath;
-        Stream transformationFileTemplate;
-        Stream dbCreationScriptTemplate;
-        private Stream dbInitialDataScript;
+        private string transformationFileTemplate;
+        private string dbCreationScriptTemplate;
+        private string dbInitialDataScript;
 
         public FrmWizard()
         {
@@ -26,8 +26,8 @@ namespace WindowsFormsApplication1
         public FrmWizard(
             string projectName, 
             string solutionRootPath,
-            Stream transformationFileTemplate,
-            Stream dbCreationScriptTemplate, Stream dbInitialDataScript)
+            string transformationFileTemplate,
+            string dbCreationScriptTemplate, string dbInitialDataScript)
             : this()
         {
             this.projectName = projectName;

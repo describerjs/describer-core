@@ -36,9 +36,9 @@ namespace JM.BaseSolutionWizard
                 new FrmWizard(
                     _fileManager.SolutionName,
                     _fileManager.SolutionRootPath,
-                    _fileManager.GetFilestreamFromTemplate("Web.config.MTemplate"),
-                    _fileManager.GetFilestreamFromTemplate("DbCreateScript.MTemplate"),
-                    _fileManager.GetFilestreamFromTemplate("InitialData.sql"));
+                    Path.Combine(_fileManager.TemplateDirectory,"Web.config.MTemplate"),
+                    Path.Combine(_fileManager.TemplateDirectory, "DbCreateScript.MTemplate"),
+                    Path.Combine(_fileManager.TemplateDirectory, "InitialData.sql"));
 
             frmWizard.ShowDialog();
             
