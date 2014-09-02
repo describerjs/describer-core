@@ -1,2 +1,2 @@
 ﻿IF (NOT EXISTS (SELECT name FROM master.sys.databases WHERE name = N'{{InitialCatalog}}'))
-CREATE DATABASE {{InitialCatalog}}
+CREATE DATABASE [{{InitialCatalog}}]
