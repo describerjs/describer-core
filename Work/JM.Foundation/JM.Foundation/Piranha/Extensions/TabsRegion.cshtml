@@ -8,75 +8,79 @@
     //j wird als Idenfifier benutzt
     var j = 1;
 	string regionID = "0";
-	
-	
-    if(Model.Tabs == null)
-    {
-        Model.Tabs = new List<TextRegion>();
-	    var fieldString = @Html.GetFullHtmlFieldId(m => m.Tabs.FirstOrDefault());
-	    regionID = fieldString.Replace("Regions[", "").Split(']')[0];
-    }
-}
+	string fieldString = "";
 
-@section Head{
-	<!-- here be added -->
-	@Html.Partial("~/Areas/Manager/Views/Shared/Partial/TinyMCE.cshtml");
-}
-<script>
-	var tabID = @Model.Tabs.Count;
-	var tabIndex = @Model.Tabs.Count;
-	var regionID = '@regionID';
-
-	function addTab() 
+	if (Model.Tabs == null)
 	{
-		var id = tabID + 1;
-		var index = tabIndex;
-		$("#addTab").before("<li class='tab_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionID +"].Body.Tabs[" + index + "].Title' id='TabTitle_" + id + "'></div><li class='tab_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' class='editor' name='Regions["+ regionID +"].Body.Tabs[" + index + "].Body' id='TabContent_" + id + "' cols='20'></textarea></div></li><li class='tab_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeTab(" + id + ")';'>Reiter entfernen</a></li>");
-		tinymce.EditorManager.execCommand('mceAddEditor', true, 'TabContent_' + id);
-		tabID++;
-		tabIndex++;
+		Model.Tabs = new List<TextRegion>();
+	}
+	fieldString = @Html.GetFullHtmlFieldName(m => m.Tabs.FirstOrDefault().Title);
+	regionID = fieldString.Replace("Regions[", "").Split(']')[0];
+}
+
+<script>
+	// Floatpanels für Editoren wieder entfernen
+	$(document).ready(function() {
+		if(tinyMCE.editors.length > 1){
+			$(window).unbind('scroll');
+		}
+	});
+
+	var tabID_@regionID = @Model.Tabs.Count;
+	var tabIndex_@regionID = @Model.Tabs.Count;
+
+	function @String.Format("addTab_{0}()", regionID) 
+	{
+		var id = tabID_@regionID + 1;
+		var index = tabIndex_@regionID;
+		var regionid= "@regionID";
+		$("#addTab_" + regionid).before("<li class='tab_" + regionid+ "_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Tabs[" + index + "].Title' id='TabTitle_"  + regionid+ "_" + id + "'></div><li class='tab_"  + regionid+ "_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' class='editor' name='Regions["+ regionid +"].Body.Tabs[" + index + "].Body' id='TabContent_" + regionid+ "_"  + id + "' cols='20'></textarea></div></li><li class='tab_" + regionid+ "_"  + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeTab_"+regionid+"(" + id + ")';'>Reiter entfernen</a></li>");
+		tinymce.EditorManager.execCommand('mceAddEditor', true, 'TabContent_' + regionid+ "_"  + id);
+		tabID_@regionID++;
+		tabIndex_@regionID++;
 	}
 
-	function removeTab(id) 
+	function @String.Format("removeTab_{0}(id)", regionID) 
 	{
-		$(".tab_" + id).remove();
+		var regionid= "@regionID";
+		$(".tab_" + regionid + "_" + id).remove();
 		var countIndex = 0;
-		for(var f = 0; f < tabID; f++){
+		for(var f = 0; f < tabID_@regionID; f++){
 
 			var idtochange = f + 1;
-			var inputID = "#TabTitle_" + idtochange;
-			var textAreaID = "#TabContent_" + idtochange;
+			var inputID = "#TabTitle_" + regionid + "_" + idtochange;
+			var textAreaID = "#TabContent_" + regionid + "_" + idtochange;
             
 			if($(inputID).length && $(textAreaID).length)
 			{
-				$(inputID).attr("name", "Regions["+ regionID +"].Body.Tabs[" + countIndex + "].Title");
+				$(inputID).attr("name", "Regions["+ regionid +"].Body.Tabs[" + countIndex + "].Title");
 				$(inputID).attr("data-index", countIndex);
-				$(textAreaID).attr("name", "Regions["+ regionID +"].Body.Tabs[" + countIndex + "].Body");
+				$(textAreaID).attr("name", "Regions["+ regionid +"].Body.Tabs[" + countIndex + "].Body");
 				$(textAreaID).attr("data-index", countIndex);
 				countIndex++;
 			}
 		}
-		tabIndex--;
+		tabIndex_@regionID--;
 	}
 </script>
 <ul class="form">
     @foreach(var tab in Model.Tabs)
     {
-        <li class="tab_@j">
+        <li class="@String.Format("tab_{0}_{1}", regionID, j)">
             <label>Titel @j:</label>
 	        <div class="input">
-		        @Html.TextBoxFor(m => m.Tabs[i].Title, new { data_index= i, id="TabTitle_" + j})
+		        @Html.TextBoxFor(m => m.Tabs[i].Title, new { data_index = i, id = String.Format("TabTitle_{0}_{1}", regionID, j)})
 	        </div>
         </li>
-        <li class="tab_@j">
+        <li class="@String.Format("tab_{0}_{1}", regionID, j)">
             <label>Inhalt:</label> 
 	        <div class="input">
-		        @Html.TextAreaFor(m => m.Tabs[i].Body, new { data_index= i, id="TabContent_" + j, rows=8, cols=20, @class="editor"})
+		        @Html.TextAreaFor(m => m.Tabs[i].Body, new { data_index= i, id = String.Format("TabContent_{0}_{1}", regionID, j), rows=8, cols=20, @class="editor"})
 	        </div>
         </li>
-        <li class="tab_@j"><a class="btn" onclick="removeTab(@j);">Reiter entfernen</a></li>
+        <li class="@String.Format("tab_{0}_{1}", regionID, j)"><a class="btn" onclick="@String.Format("removeTab_{0}({1});", regionID, j)">Reiter entfernen</a></li>
         i++;
         j++;
     }
-    <li id="addTab"><a class="btn" onclick="addTab();">Neuen Reiter hinzufügen</a></li>
+    <li id="@String.Format("addTab_{0}", regionID)"><a class="btn" onclick="@String.Format("addTab_{0}();", regionID)">Neuen Reiter hinzufügen</a></li>
 </ul>

@@ -287,7 +287,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			return that.staticObjFromDom;
 		},
 
-		// gibt für das jmelement-Plugin das entsprechende Objekt aus der _config.js zurück.
+		// gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
 		_getStaticConfigObj: function(){
 			for(var i = 0, leni = _config.length; i < leni; i++){
 				if(_config[i].jmname === this.myJmName){

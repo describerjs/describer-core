@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using JM.Foundation.SharedViews;
 using Piranha.Extend;
+using Piranha.Extend.Regions;
 
 [Export(typeof(IExtension))]
 [ExportMetadata("InternalId", "TeaserExtension")]
@@ -31,5 +31,5 @@ public class TeaserExtension : Extension
 
     public IList<string> BulletPoints { get; set; }
 
-    public PictureFillModel Image { get; set; }
+	public ImageRegion Image { get; set; }
 }

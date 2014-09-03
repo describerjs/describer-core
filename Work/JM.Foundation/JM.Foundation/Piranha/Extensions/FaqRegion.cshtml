@@ -1,89 +1,81 @@
-﻿@using Piranha.Extend.Regions
+﻿@using JM.Foundation.Mvc.Helper
+@using Piranha.Extend.Regions
 @model FaqRegion
 @{
     //i wird für Arrayindex benutzt
     var i = 0;
     //j wird als Idenfifier benutzt
     var j = 1;
+	string regionID = "0";
+	var fieldString = "asda";
 
-    if(Model.Faqs == null)
-    {
-        Model.Faqs = new List<TextRegion>();
-    }
+	if (Model.Faqs == null)
+	{
+		Model.Faqs = new List<TextRegion>();
+	}
+	fieldString = @Html.GetFullHtmlFieldName(m => m.Faqs.FirstOrDefault());
+	regionID = fieldString.Replace("Regions[", "").Split(']')[0];
 }
 <script>
-    var faqID = @Model.Faqs.Count;
-    var faqIndex = @Model.Faqs.Count;
+	// @fieldString
+	var faqID_@regionID = @Model.Faqs.Count;
+	var faqIndex_@regionID = @Model.Faqs.Count;
 
-    function addFaq() {
-        //hier lesen wir die nächte ID
-        var id = faqID + 1;
-        var index = faqIndex;
-        //alert("faqIndex:"+faqIndex);
-
-        //hier wird eine neue FAQ mit der nächten ID hinzugefügt
-        $("#addFaq").before("<li class='faq_" + id + "'><label>Frage " + id + ":</label><div class='input'><input type='text' value='' name='Regions[0].Body.Faqs[" + index + "].Title' id='Question_" + id + "'></div><li class='faq_" + id + "'><label>Antwort:</label><div class='input'><textarea rows='8' name='Regions[0].Body.Faqs[" + index + "].Body' id='Answer_" + id + "' cols='20'></textarea></div></li><li class='faq_" + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeFaq(" + id + ")';'>Faq entfernen</a></li>");
+	function @String.Format("addFaq_{0}(id)", regionID)
+	{
+		//hier lesen wir die nächte ID
+		var id = faqID_@regionID + 1;
+		var index = faqIndex_@regionID;
+		var regionid = @regionID;
+		$("#addFaq_"+ regionid).before("<li class='faq_" + regionid + "_" + id + "'><label>Frage " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Faqs[" + index + "].Title' id='Question_" + regionid + "_" + id + "'></div><li class='faq_" + regionid + "_" + id + "'><label>Antwort:</label><div class='input'><textarea rows='8' name='Regions["+ regionid +"].Body.Faqs[" + index + "].Body' id='Answer_" + regionid + "_" + id + "' cols='20'></textarea></div></li><li class='faq_" + regionid + "_" + id + "'><a class='btn' data-remove-id='" + regionid + "_" + id + "' onclick='removeFaq_"+regionid+"(" + id + ")';'>Faq entfernen</a></li>");
         
-        faqID++;
-        faqIndex++;
-    }
-    function removeFaq(id) {
-        //alert("id:"+id);
-        //alert("faqID:"+faqID);
-        $(".faq_" + id).remove();
+		faqID_@regionID++;
+		faqIndex_@regionID++;
+	}
 
-        var countIndex = 0;
-        for(var f = 0; f < faqID; f++){
+	function @String.Format("removeFaq_{0}(id)", regionID) 
+	{
+		var regionid = @regionID;
+		$(".faq_" + regionid + "_" + id).remove();
 
-            var idtochange = f + 1;
+		var countIndex = 0;
+		for(var f = 0; f < faqID_@regionID; f++){
 
-            //alert("idtochange:"+idtochange);
-
-            var inputID = "#Question_" + idtochange;
-            var textAreaID = "#Answer_" + idtochange;
+			var idtochange = f + 1;
+			var inputID = "#Question_" + regionid + "_" + idtochange;
+			var textAreaID = "#Answer_" + regionid + "_" + idtochange;
             
-           // alert("inputID:"+inputID);
-            //alert("textAreaID:" + textAreaID);
+			if($(inputID).length && $(textAreaID).length)
+			{
+				$(inputID).attr("name", "Regions["+ regionid +"].Body.Faqs[" + countIndex + "].Title");
+				$(inputID).attr("data-index", countIndex);
 
-            if($(inputID).length && $(textAreaID).length){
-
-                //alert("current name:"+$(inputID).attr("name"));
-
-                $(inputID).attr("name", "Regions[0].Body.Faqs[" + countIndex + "].Title");
-                $(inputID).attr("data-index", countIndex);
-
-               // alert("new name:"+$(inputID).attr("name"));
-
-               // alert("current name:"+$(textAreaID).attr("name"));
-
-                $(textAreaID).attr("name", "Regions[0].Body.Faqs[" + countIndex + "].Body");
-                $(textAreaID).attr("data-index", countIndex);
-
-                //alert("new name:"+$(textAreaID).attr("name"));
-                countIndex++;
-            }
-        }
-        faqIndex--;
-    }
+				$(textAreaID).attr("name", "Regions["+ regionid +"].Body.Faqs[" + countIndex + "].Body");
+				$(textAreaID).attr("data-index", countIndex);
+				countIndex++;
+			}
+		}
+		faqIndex_@regionID--;
+	}
 </script>
 <ul class="form">
-    @foreach(var faq in Model.Faqs)
+    @foreach (var faq in Model.Faqs)
     {
-        <li class="faq_@j">
+	    <li class="@String.Format("faq_{0}_{1}", regionID, j)">
             <label>Frage @j:</label> 
             <div class="input">
-                <input type="text" value="@faq.Title" data-index="@i" name="Regions[0].Body.Faqs[@i].Title" id="Question_@j">
+                <input type="text" value="@faq.Title" data-index="@i" name="Regions[@regionID].Body.Faqs[@i].Title" id="@String.Format("Question_{0}_{1}", regionID, j)">
             </div>
         </li>
-        <li class="faq_@j">
+        <li class="@String.Format("faq_{0}_{1}", regionID, j)">
             <label>Antwort:</label> 
             <div class="input">
-                <textarea rows="8" data-index="@i" name="Regions[0].Body.Faqs[@i].Body" id="Answer_@j" cols="20">@faq.Body</textarea>
+                <textarea rows="8" data-index="@i" name="Regions[@regionID].Body.Faqs[@i].Body" id="@String.Format("Answer_{0}_{1}", regionID, j)" cols="20">@faq.Body</textarea>
             </div>
         </li>
-        <li class="faq_@j"><a class="btn" onclick="removeFaq(@j);">Faq entfernen</a></li>
+        <li class="@String.Format("faq_{0}_{1}", regionID, j)"><a class="btn" onclick="@String.Format("removeFaq_{0}({1});", regionID, j)">Faq entfernen</a></li>
         i++;
         j++;
     }
-    <li id="addFaq"><a class="btn" onclick="addFaq();">Neue Faq hinzufügen</a></li>
+    <li id="addFaq_@regionID"><a class="btn" onclick="@String.Format("addFaq_{0}();", regionID)">Neue Faq hinzufügen</a></li>
 </ul>
