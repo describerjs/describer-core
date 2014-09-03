@@ -79,12 +79,22 @@ namespace WindowsFormsApplication1
         {
             WriteEnvironments();
 
+            var models = new List<DbViewModel>();
+
+            foreach (var environment in this.environments)
+            {
+                models.Add(new DbViewModel(new SqlConnectionStringBuilder(environment.AdminConnectionString)));
+                if (environment.AdminConnectionString != environment.StandardConnectionString)
+                {
+                    models.Add(new DbViewModel(new SqlConnectionStringBuilder(environment.StandardConnectionString), true));
+                }
+            }
+
             var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbInitialDataScript)
             {
-                DataSource =
-                    this.environments.Select(
-                        env => new DbViewModel(new SqlConnectionStringBuilder(env.AdminConnectionString))).ToList()
+                DataSource = models
             };
+
             frm.ShowDialog();
             this.Close();
         }
