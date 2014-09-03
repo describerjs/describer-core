@@ -12,6 +12,6 @@ namespace WindowsFormsApplication1
 
         public string PiranhaConnectionString;
 
-        public bool IsDebug;
+        public bool IsRelease;
     }
 }
