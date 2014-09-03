@@ -34,6 +34,11 @@ namespace JM.ReferenceApplication.Areas.JMTools.Controllers
 			return View();
 		}
 
+		public ActionResult UpdateFrontEndCacheKey()
+		{
+			return View();
+		}
+
 		#endregion
 
 		#region PartialViews

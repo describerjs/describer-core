@@ -1,4 +1,6 @@
-﻿using JM.Foundation.Configuration;
+﻿using System;
+using System.Web;
+using JM.Foundation.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -38,6 +40,33 @@ namespace JM.Foundation.Mvc.Helper
         }
         
         #endregion
+
+		/// <summary>
+		/// Liest den aktuellen Key aus, der für das Caching der Main JS genutzt wird.
+		/// Ist der Key leer wird ein neuer erzeugt und gespeichert.
+		/// </summary>
+		/// <returns>string Key</returns>
+	    public static string GetFrontEndCacheKey()
+	    {
+		    var key = HttpContext.Current.Application["frontendcachekey"] as string;
+
+		    if (String.IsNullOrEmpty(key))
+			    key = UpdateFrontEndCacheKey();
+
+		    return key;
+	    }
+
+		/// <summary>
+		/// Erzeugt und speichert einen neuen Key für das Caching der Main JS.
+		/// </summary>
+		/// <returns>string Key</returns>
+	    public static string UpdateFrontEndCacheKey()
+	    {
+		    var key = DateTime.Now.ToString("yyyyMMddhhmmss");
+		    HttpContext.Current.Application["frontendcachekey"] = key;
+
+		    return key;
+	    }
 
         #region private methods
 

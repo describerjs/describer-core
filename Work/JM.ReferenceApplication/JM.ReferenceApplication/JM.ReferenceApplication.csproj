@@ -66,9 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.40, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.41, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\JM.Foundation\packages\JM.Foundation.1.0.0.40\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\..\JM.Foundation\packages\JM.Foundation.1.0.0.41\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -2994,6 +2994,7 @@
     <Content Include="Views\Shared\_BasisJS.cshtml" />
     <Content Include="Views\Shared\Regions\Carousel.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_Teaser.cshtml" />
+    <Content Include="Areas\JMTools\Views\Administration\UpdateFrontEndCacheKey.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\JMTools\Models\" />
