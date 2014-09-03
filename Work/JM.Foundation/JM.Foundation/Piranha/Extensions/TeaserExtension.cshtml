@@ -1,4 +1,5 @@
-﻿@using JM.Foundation.SharedViews
+﻿@using System.Web.Mvc.Html
+@using JM.Foundation.Mvc.Helper
 @model TeaserExtension
 
 @{
@@ -6,53 +7,20 @@
     {
         Model.BulletPoints = new List<string>{"","","","",""};
     }
-    if(Model.Image == null)
-    {
-        Model.Image = new PictureFillModel();
-    }
-}
 
+	var fieldString = @Html.GetFullHtmlFieldName(m => m.Header);
+	var regionID = fieldString.Replace("Regions[", "").Split(']')[0];
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#pnl-image').addClass('content-editor');
+    });
+</script>
 <ul class="form">
 	<li>
 		@Html.LabelFor(m => m.Header)
 		<div class="input">@Html.TextBoxFor(m => m.Header)</div>
 	</li>
-    <li>
-        @Html.LabelFor(m => m.Image.Alt)
-        <div class="input">@Html.TextAreaFor(m => m.Image.Alt)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.ImageName)
-        <div class="input">@Html.TextAreaFor(m => m.Image.ImageName)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.Height)
-        <div class="input">@Html.TextAreaFor(m => m.Image.Height)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.Width)
-        <div class="input">@Html.TextAreaFor(m => m.Image.Width)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.HeightTablet)
-        <div class="input">@Html.TextAreaFor(m => m.Image.HeightTablet)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.WidthTablet)
-        <div class="input">@Html.TextAreaFor(m => m.Image.WidthTablet)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.HeightMobile)
-        <div class="input">@Html.TextAreaFor(m => m.Image.HeightMobile)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.WidthMobile)
-        <div class="input">@Html.TextAreaFor(m => m.Image.WidthMobile)</div>
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Image.Attributes)
-        <div class="input">@Html.TextAreaFor(m => m.Image.Attributes)</div>
-    </li>
     <li>
 		@Html.LabelFor(m => m.FooterText)
 		<div class="input">@Html.TextBoxFor(m => m.FooterText)</div>
@@ -65,9 +33,12 @@
     {
         <li>
             <label>Bulletpoint @i:</label> 
-            <div class="input">
-                <input type="text" value="@Model.BulletPoints[@i]" name="Regions[0].Body.BulletPoints[@i]" id="bp_@i">
-            </div>
+	        <div class="input">
+		        @Html.TextBoxFor(m => m.BulletPoints[@i], new { id=String.Format("bp_{0}_{1}", regionID, i)})
+	        </div>
         </li>
     }
+	<li>
+		@Html.PartialFor("ImageRegion", m => m.Image)
+	</li>
 </ul>

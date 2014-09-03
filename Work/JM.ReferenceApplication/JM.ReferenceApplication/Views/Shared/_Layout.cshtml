@@ -97,7 +97,7 @@
 <body>
     <div class="page">
         <header class="page-header" role="banner">
-            <a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=LOGO" alt="Beispiel-AG" /></a>
+            <a class="logo" href="/"><img src="/img/logo.svg" alt="Logo" /></a>
             @*<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
                 <!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
             </div>*@
@@ -105,6 +105,7 @@
             @*@Html.Partial("_LoginPartial")*@
         </header>
         <main role="main">
+            @RenderBody()
             <div class="togglebox">
 		        <a class="tb-subject" data-jmname="togglebox">Features</a>
 		        <div class="tb-content">
@@ -124,29 +125,26 @@
 			        @PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br />
 		        </div>
 	        </div>
-            @RenderBody()
         </main>
         <footer class="page-footer" role="contentinfo">
             <section class="h-card">
-                <div class="hc-section">
-                    <a class="u-url p-organization-name link" href="/">Beispiel-AG</a>
-                </div>
+                <div class="hc-section"><a class="u-url p-organization-name link" href="/">join.media GmbH &amp; Co. KG</a></div>
                 <address class="hc-section">
-                    <span class="p-street-address">Beispiel Str. 111a</span>
-                    <span class="p-locality">11111 Beispiel-Location</span>
-                    <span class="p-country-name">Beispielland</span>
+                    <span class="p-street-address">Düsseldorfer Straße 269</span>
+                    <span class="p-locality">45481 Mülheim an der Ruhr</span>
+                    <span class="p-country-name">Deutschland</span>
                 </address>
                 <div class="hc-section">
-                    <a class="p-tel link" href="tel:+4921155572484">Fon: +49 2 11 55 57 24 84</a>
-                    <span class="p-tel-fax">Fax: +49 2 11 55 57 24 84</span>
+                    <a class="p-tel link" href="tel:+49208960320">Fon: +49 208 / 960 32 - 0</a>
+                    <span class="p-tel-fax">Fax: +49 208 / 960 32 - 10</span>
                 </div>
                 <div class="hc-section">
-                    <a class="u-email link" href="mailto:info@beispiel-ag.de">info@beispiel-ag.de</a>
-                    <a class="u-url link" href="http://www.beispiel-ag.de">www.beispiel-ag.de</a>
+                    <a class="u-email link" href="mailto:info@joinmedia.de">info@joinmedia.de</a>
+                    <a class="u-url link" href="http://www.joinmedia.de">www.joinmedia.de</a>
                 </div>
             </section>
             <div class="legal">
-                <a class="imprint link" href="$impressum$">Impressum</a>
+                <a class="imprint link" href="#Impressum">Impressum</a>
                 <p class="copyright">&copy; Copyright @DateTime.Now.Year</p>
             </div>
 	    </footer>
