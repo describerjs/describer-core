@@ -5,65 +5,78 @@ namespace JM.BaseSolutionWizard
 {
     public class DbViewModel : INotifyPropertyChanged
     {
+        private string _serverName;
+        private readonly SqlConnectionStringBuilder _model;
+        private bool _isCreated;
+        private bool _isStandardConnection;
+        private string _dBName;
+
         public DbViewModel(SqlConnectionStringBuilder builder)
         {
-            this.serverName = builder.DataSource;
-            this.dBName = builder.InitialCatalog;
-            this.model = builder;
+            _serverName = builder.DataSource;
+            _dBName = builder.InitialCatalog;
+            _model = builder;;
         }
-
-        public DbViewModel()
+        public DbViewModel(SqlConnectionStringBuilder builder, bool isStandardConnection) : this (builder)
         {
-
+            _isStandardConnection = isStandardConnection;
         }
 
-        private SqlConnectionStringBuilder model;
         public SqlConnectionStringBuilder Model
         {
             get
             {
-                return model;
+                return _model;
             }
         }
 
-        string serverName;
-
         public string ServerName
         {
-            get { return serverName; }
+            get { return _serverName; }
             set 
             {
-                if (value != this.serverName)
+                if (value != this._serverName)
                 {
-                    serverName = value;
+                    _serverName = value;
                     OnPropertyChanged("ServerName");
                 }
             }
         }
-        bool isCreated;
 
         public bool IsCreated
         {
-            get { return isCreated; }
+            get { return _isCreated; }
             set
             {
-                if (value != this.isCreated)
+                if (value != this._isCreated)
                 {
-                    isCreated = value;
+                    _isCreated = value;
                     OnPropertyChanged("IsCreated");
                 }
             }
         }
-        string dBName;
+
+        public bool IsStandardConnection
+        {
+            get { return _isStandardConnection; }
+            set
+            {
+                if (value != this._isStandardConnection)
+                {
+                    _isStandardConnection = value;
+                    //OnPropertyChanged("IsStandardConnection");
+                }
+            }
+        }
 
         public string DBName
         {
-            get { return dBName; }
+            get { return _dBName; }
             set
             {
-                if (value != this.dBName)
+                if (value != this._dBName)
                 {
-                    dBName = value;
+                    _dBName = value;
                     OnPropertyChanged("DBName");
                 }
             }

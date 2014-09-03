@@ -32,17 +32,17 @@ namespace JM.BaseSolutionWizard
 
         void dbViewModelDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == this.CreateDBColumn.Index)
+            if(e.ColumnIndex == this.CreateDBColumn.Index && e.RowIndex >= 0)
             {
                 var dbModel = this.dbViewModelDataGridView.Rows[e.RowIndex].DataBoundItem as DbViewModel;
                 if (dbModel != null && dbModel.Model != null)
                 {
-                    CreateDatabase(dbModel.Model);
+                    CreateDatabase(dbModel.Model, dbModel.IsStandardConnection);
                 }
             }
         }
 
-        private void CreateDatabase(SqlConnectionStringBuilder cnb)
+        private void CreateDatabase(SqlConnectionStringBuilder cnb, bool isStandardConnection)
         {
             var masterDBCs = new SqlConnectionStringBuilder
             {
@@ -69,29 +69,33 @@ namespace JM.BaseSolutionWizard
                 var myCommand = new SqlCommand(sqlCreateDBQuery, conn);
                 myCommand.ExecuteNonQuery();
             }
-        
-            using (var conn = new SqlConnection(cnb.ConnectionString))
+
+            //Create Tables just for Piranha (Admin) DB
+            if (!isStandardConnection)
             {
-                conn.Open();
-                string script;
-                
-                using (var reader = new StreamReader(this.dbContent))
+                using (var conn = new SqlConnection(cnb.ConnectionString))
                 {
-                    try
+                    conn.Open();
+                    string script;
+
+                    using (var reader = new StreamReader(this.dbContent))
                     {
-                        script = reader.ReadToEnd();
-
-                        IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
-                            RegexOptions.Multiline | RegexOptions.IgnoreCase);
-
-                        foreach (var cstring in commandStrings.Where(c => !string.IsNullOrWhiteSpace(c)))
+                        try
                         {
-                            new SqlCommand(cstring, conn).ExecuteNonQuery();
+                            script = reader.ReadToEnd();
+
+                            IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
+                                RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                            foreach (var cstring in commandStrings.Where(c => !string.IsNullOrWhiteSpace(c)))
+                            {
+                                new SqlCommand(cstring, conn).ExecuteNonQuery();
+                            }
                         }
-                    }
-                    catch (SqlException e)
-                    {
-                        //todo: handeln (wenn's die Tabelle schon gibt!)
+                        catch (SqlException e)
+                        {
+                            //todo: handeln (wenn's die Tabelle schon gibt!)
+                        }
                     }
                 }
             }
