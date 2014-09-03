@@ -7,8 +7,8 @@
     {
         Model.BulletPoints = new List<string>{"","","","",""};
     }
-   
-	var fieldString = @Html.GetFullHtmlFieldId(m => m.Header);
+
+	var fieldString = @Html.GetFullHtmlFieldName(m => m.Header);
 	var regionID = fieldString.Replace("Regions[", "").Split(']')[0];
 }
 <script type="text/javascript">
@@ -33,9 +33,9 @@
     {
         <li>
             <label>Bulletpoint @i:</label> 
-            <div class="input">
-                <input type="text" value="@Model.BulletPoints[@i]" name="Regions[@regionID].Body.BulletPoints[@i]" id="bp_@i">
-            </div>
+	        <div class="input">
+		        @Html.TextBoxFor(m => m.BulletPoints[@i], new { id=String.Format("bp_{0}_{1}", regionID, i)})
+	        </div>
         </li>
     }
 	<li>
