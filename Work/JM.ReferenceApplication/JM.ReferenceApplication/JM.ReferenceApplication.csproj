@@ -2994,6 +2994,7 @@
     <Content Include="Views\Shared\_BasisJS.cshtml" />
     <Content Include="Views\Shared\Regions\Carousel.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_Teaser.cshtml" />
+    <Content Include="Views\Home\Demo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\JMTools\Models\" />
