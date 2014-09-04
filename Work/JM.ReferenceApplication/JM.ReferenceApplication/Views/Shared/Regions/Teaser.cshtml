@@ -1,7 +1,7 @@
 ﻿@model TeaserExtension
 <a class="teaser" href="@Model.FooterLink" data-jmselector="equal-heights-children">
     @if(Model.Image != null){
-        <div class="t-img">
+        <div class="t-figure">
             @Html.Partial(
                 "Image/_PictureFill_Teaser", Model.Image)
         </div>
