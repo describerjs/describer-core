@@ -18,6 +18,7 @@
 main {
 	@extend %page-element-default;
 	overflow: hidden;
+	padding-top: $default-spacing;
 }
 
 

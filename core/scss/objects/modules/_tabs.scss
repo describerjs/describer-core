@@ -38,9 +38,7 @@
 
 // Active Tab
 %tab-active {
-	/*margin-bottom: -($default-spacing / 2);
-	padding-bottom: $default-spacing;*/
-	top: -($default-spacing / 2);
+	bottom: 0;
 }
 
 // Placeholder for checked Tabs
@@ -82,16 +80,15 @@ $tabs_i:	1;
 	// Ein Tab <label>
 	&> .tab {
 		@extend %element-inner-default;
-		@include transition(top .3s ease-out);
+		@include transition(bottom .3s ease-out);
 		background-color: $theme-tab-bg;
+		bottom: -($space-half);
 		color: $theme-tab-fg;
-		margin-bottom: -($space-half);
 		margin-left: 1px !important;
 		margin-right: 0 !important;
 		padding-bottom: $space;
 		position: relative;
 		text-align: center;
-		top: 0;
 
 		&:nth-of-type(1):nth-last-of-type(2),
 		&:nth-of-type(2):nth-last-of-type(1) {

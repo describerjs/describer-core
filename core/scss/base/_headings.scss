@@ -16,6 +16,13 @@
 \*------------------------------------*/
 
 %heading {
+	@if $theme-headings-bg != $theme-color-zero {
+		background-color: $theme-headings-bg;
+	}
+	@if $theme-headings-fg != $theme-body-fg {
+		color: $theme-headings-fg;
+	}
+	font-family: $font-heading;
 	font-weight: normal;
 
 	main > & {

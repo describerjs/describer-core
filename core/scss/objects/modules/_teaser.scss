@@ -33,13 +33,38 @@
 \*------------------------------------*/
 
 .teaser {
-	background-color: #dfe0e0;
 	@extend %element-default;
+	background-color: $theme-teaser-bg;
 	color: inherit;
 	display: block;
 
 	@include bp-s {
 		clear: none;
+	}
+
+	&:first-of-type:last-of-type {
+		@include bp-m {
+			.t-figure {
+				@include column(6);
+				clear: none;
+				margin: {
+					left: 0;
+					right: $dist * 2;
+				}
+
+				&~ .t-header,
+				&~ .t-content,
+				&~ .t-footer {
+					@include column(6);
+					clear: right;
+					float: right;
+					margin: {
+						left: $dist * 2;
+						right: 0;
+					}
+				}
+			}
+		}
 	}
 
 	&:nth-of-type(1):nth-last-of-type(2),
@@ -51,7 +76,6 @@
 		@include bp-l {
 			@include column(6);
 		}
-	
 	}
 
 	&:nth-of-type(1):nth-last-of-type(3),
@@ -87,11 +111,9 @@
 		@extend %teaser-element-default;
 	}
 
-	.t-footer {
-		@extend %teaser-element-default;
-	}
+	
 
-	.t-header {
+	.t-footer {
 		@extend %teaser-element-default;
 	}
 
@@ -99,8 +121,8 @@
 		/**/
 	}
 
-	.t-img {
-		/**/
+	.t-header {
+		@extend %teaser-element-default;
 	}
 }
 

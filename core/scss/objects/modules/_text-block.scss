@@ -7,13 +7,23 @@
 	@extend %element-inner-default;
 
 	@include bp-m {
-		@include element-inner-default;
-		@include column(6);
-		clear: none;
+		@include column(10);
 	}
 
-	@include bp-l {
-		/**/
+	@include bp-m {
+		@include column(8);
+	}
+
+	&:nth-of-type(1):nth-last-of-type(2),
+	&:nth-of-type(2):nth-last-of-type(1) {
+		@include bp-m {
+			@include column(6);
+			clear: none;
+		}
+
+		@include bp-l {
+			@include column(6);
+		}
 	}
 }
 

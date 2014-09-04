@@ -32,19 +32,19 @@
 \*------------------------------------*/
 
 // Höhe des Teaserbildes fix setzen
-$stage-teaser-img-height:	250px;	// img-Höhe-S
-$stage-teaser-img-height-m:	300px;	// img-Höhe-M
-$stage-teaser-img-height-l:	395px;	// img-Höhe-L
+/*$stage-teaser-img-height:	197px;	// img-Höhe-S*/
+$stage-teaser-img-height-m:	468px;	// img-Höhe-M
+$stage-teaser-img-height-l:	468px;	// img-Höhe-L
 
 // Die Elemente "st-header", "st-content", "st-footer" teilen sich die gleichen Eigenschaften.
 %stage-teaser-element-default {
 	@extend %element-nested-default;
 
-	@media screen and (min-width: $bp-med) {
+	@include bp-m {
 		@include column(8);
 	}
 
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		@include column(6);
 	}
 }
@@ -59,13 +59,16 @@ $stage-teaser-img-height-l:	395px;	// img-Höhe-L
 
 .stage-teaser {
 	@extend %element-default;
-	min-height: $stage-teaser-img-height;
 
-	@media screen and (min-width: $bp-med) {
+	main > & {
+		margin-top: -($default-spacing);
+	}
+
+	@include bp-m {
 		min-height: $stage-teaser-img-height-m;
 	}
 
-	@media screen and (min-width: $bp-large) {
+	@inlcude bp-l {
 		min-height: $stage-teaser-img-height-l;
 	}
 
@@ -74,11 +77,37 @@ $stage-teaser-img-height-l:	395px;	// img-Höhe-L
 		@extend %stage-teaser-element-default;
 	}
 
+	// Das Keyvisual
+	.st-figure {
+		margin-bottom: $default-spacing;
+		opacity: .5;
+		
+		@include bp-m {
+			@include position(0, 0, '', 0);
+		}
+
+		// Below we limit the minimun height on mobile and crop to the left
+		img {
+			max-width: $bp-m;
+
+			@include bp-m {
+				max-width: $bp-l;
+				min-height: $stage-teaser-img-height-m;
+			}
+
+			@include bp-l {
+				max-width: 100%;
+				min-height: $stage-teaser-img-height-m;
+				min-width: $layout-maxwidth;
+			}
+		}
+	}
+
 	// Footerbereich <footer>
 	.st-footer {
 		@extend %stage-teaser-element-default;
 		
-		@media screen and (min-width: $bp-med) {
+		@include bp-m {
 			@include position('', '', $default-spacing, 0);
 		}
 	}
@@ -91,33 +120,6 @@ $stage-teaser-img-height-l:	395px;	// img-Höhe-L
 	// Die einleitende Headline
 	.st-head {
 		/**/
-	}
-
-	// Das Keyvisual
-	.st-img {
-		opacity: .5;
-		position: absolute;
-
-		// Below we limit the minimun height on mobile and crop to the left
-		img {
-			max-width: $bp-med;
-			min-height: $stage-teaser-img-height;
-		}
-
-		@media screen and (min-width: $bp-med) {
-			img {
-				max-width: $bp-large;
-				min-height: $stage-teaser-img-height-m;
-			}
-		}
-
-		@media screen and (min-width: $bp-large) {
-			img {
-				max-width: 100%;
-				min-height: $stage-teaser-img-height-m;
-				min-width: $layout-maxwidth;
-			}
-		}
 	}
 }
 

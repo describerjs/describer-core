@@ -175,8 +175,8 @@ $rem-with-px-fallback               : true;                                     
     
     
 // Set rhythm for paragraphs and lists
-@mixin as-para--typeset                       { margin-bottom: rhythm(2, $para); }
-@mixin as-list--typeset                       { margin-bottom: rhythm(2, $para); }
+@mixin as-para--typeset                       { margin-bottom: rhythm(1, $para); }
+@mixin as-list--typeset                       { margin-bottom: rhythm(1, $para); }
 
 @mixin as-unordered-list--typeset             { @include as-list--typeset; }
 @mixin as-ordered-list--typeset               { @include as-unordered-list--typeset; }

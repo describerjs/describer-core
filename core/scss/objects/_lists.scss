@@ -4,6 +4,8 @@
 
 /**
  * GENERIC.............................Variables/Placeholder
+ * .....List
+ * .....List-Item
  * BULLET-LIST.........................List w/Bullets
 **/
 
@@ -20,6 +22,14 @@
 	@extend %as-list--typeset;
 }
 
+%list-item {
+	margin-bottom: $space-quarter;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
 
 
 
@@ -33,8 +43,8 @@
 	padding-left: ($pad + ($pad-quarter / 2));
 
 	.list-item {
+		@extend %list-item;
 		list-style-type: disc;
-		margin-bottom: $space-quarter;
 	}
 }
 
