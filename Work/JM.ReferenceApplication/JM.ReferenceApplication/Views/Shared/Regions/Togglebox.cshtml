@@ -1,6 +1,11 @@
-﻿<div class="togglebox">
-    <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
-    <div class="tb-content">
-        $togglecontent$
-    </div>
-</div>
+﻿@model Piranha.Extend.Regions.TextRegion
+
+@if (Model != null)
+{
+	<div class="togglebox">
+		<a class="tb-subject" data-jmname="togglebox">@Model.Title</a>
+		<div class="tb-content">
+			@Model.Body
+		</div>
+	</div>
+}

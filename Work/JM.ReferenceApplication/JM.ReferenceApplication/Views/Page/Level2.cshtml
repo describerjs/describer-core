@@ -1,9 +1,14 @@
-﻿@model Piranha.Models.PageModel
+﻿@using Piranha.Extend.Regions
+@model Piranha.Models.PageModel
 @{
-    ViewBag.Title = Model.Page.Title ;
+	ViewBag.Title = Model.Page.Title;
 }
 
-@Html.Partial("Regions/TextBlock")
-@Html.Partial("Regions/Togglebox")
-
+<div class="section">
+	@Html.Partial("Regions/Teaser", Model.Region<TeaserExtension>("Teaser"))
+</div>
+<div class="section">
+	@Html.Partial("Regions/TextBlock", Model.Region<TextRegion>("Text"))
+</div>
+@Html.Partial("Regions/Togglebox", Model.Region<TextRegion>("Toggle"))
 @Html.Partial("Regions/Tabs", Model.Region<TabsRegion>("Tabs"))
