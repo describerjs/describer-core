@@ -455,6 +455,13 @@
 	width: 100%;
 }
 
+// Inner Nested Elements Default
+@mixin element-inner-nested-default {
+	@include column(12);
+	@include element-default-padding-s;
+	position: relative;
+}
+
 // Unfolded Padding
 @mixin unfolded-padding {
 	@include unfolded-padding-s;

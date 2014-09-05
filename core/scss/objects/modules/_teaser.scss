@@ -21,7 +21,7 @@
 
 // Die Elemente "t-header", "t-content", "t-footer" teilen sich die gleichen Eigenschaften.
 %teaser-element-default {
-	@extend %element-nested-default;
+	@include element-inner-nested-default;
 }
 
 
@@ -71,6 +71,11 @@
 	&:nth-of-type(2):nth-last-of-type(1) {
 		@include bp-m {
 			@include column(6);
+			padding-bottom: $space-double;
+
+			.t-footer {
+				@include position('', '', 0, 0);
+			}
 		}
 
 		@include bp-l {
@@ -83,6 +88,11 @@
 	&:nth-of-type(3):nth-last-of-type(1) {
 		@include bp-m {
 			@include column(4);
+			padding-bottom: $space-double;
+
+			.t-footer {
+				@include position('', '', 0, 0);
+			}
 		}
 
 		@include bp-l {
@@ -96,6 +106,11 @@
 	&:nth-of-type(4):nth-last-of-type(1) {
 		@include bp-s {
 			@include column(6);
+			padding-bottom: $space-double;
+
+			.t-footer {
+				@include position('', '', 0, 0);
+			}
 		}
 
 		@include bp-m {
@@ -110,8 +125,6 @@
 	.t-content {
 		@extend %teaser-element-default;
 	}
-
-	
 
 	.t-footer {
 		@extend %teaser-element-default;
