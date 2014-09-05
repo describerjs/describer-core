@@ -30,7 +30,6 @@
 .logo {
 	@extend %element-inner-default;
 	@include column(8);
-	background-color: $theme-logo-bg;
 	display: block;
 	margin: {
 		bottom: $space-quarter;
