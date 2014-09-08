@@ -353,10 +353,49 @@ Alternative: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei
 
 
 ### Deklaration der Funktionalität des Plugins ###
+// TODO Andreas noch überarbeiten
+Die Funktionalitäten werden in der _config.js in einem entsprechenden Objekt deklariert. folgende Keys können für das entsprechende Plugin verwendet werden. Die unterstützen Plugins werden in ihrer Detailbeschreibung aufgelistet.
+
+- event (für alle Plugins required)
+- conditio (für alle Plugins)
+- relatedTo
+- datatype
+- data
+- wait
+- url
+- inject
+- scrollTo (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
+- type  (zuvor method genannt im ajax-module)
+- callback (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
+- width - modules.video
+- height - modules.video
+- zipcode - modules.formcomponents.autocomplete
+- nextFocus - zuvor nextFocusNameAttr - modules.formcomponents.autocomplete
+- animationsdelay - zuvor delay - modules.carousel
+- loader - actions.link/actions.ajax
+- loaderTo - zuvor additionalloadertarget - actions.ajax
+- submit - zuvor ajax - modules.formcomponents.formvalidate
+- // obsolate sollte als default zählen - hideby - modules.formcomponents.autocomplete
+- //opposition - modules.dependentSelectionGroup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### event ####
 
-die HTML-Module-Funktionen können durch unterschietliche Events ausgelöst werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren.
+die HTML-Module-Funktionen können durch unterschietliche Events ausgelöst werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren. 
 
 
 - click (**alle** [data-jmname])
@@ -372,6 +411,9 @@ Nur bei dem form-Tag mit [data-jmname="form"] sind noch die events focus, blur, 
 
 
 ##### change #####
+
+
+##### jmtrigger #####
 
 Folgende Events lassen sich nur durch die Angabe von data-jmdominit="true" als Data-Attribut im HTML aktivieren. Sie sind auch auf alle Tags anwendbar.
 
@@ -414,33 +456,7 @@ Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js
 
 Die HTML-Module-Funktionalität wird bei **domready**, **change** und bei **keyup** mit einem delay von 500 ms ausgefürt.
 
-#### datatype ####
-#### relatedTo ####
-#### data ####
-#### condition ####
-#### wait ####
-#### url ####
-#### inject ####
-#### scrollTo (offsetangabe integrieren früher eigener key -> scrollToOffset) ####
 
-
-// TODO Andreas
-Folgende keys wurden für frühere Projekte verwendet, stehen aber noch nicht als empfohlen da.
-
-method - ajax   -> type
-
-delay - modules.carousel
-
-afterexec - ajax
-hideby - modules.formcomponents.autocomplete
-zipcode - modules.formcomponents.autocomplete
-nextFocusNameAttr - modules.formcomponents.autocomplete
-ajax - modules.formcomponents.formvalidate
-opposition - modules.dependentSelectionGroup
-additionalloadertarget - actions.ajax
-loader - actions.link
-width - modules.video
-height - modules.video
 
 
 ## 4. Erstellung von Plugins ##

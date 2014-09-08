@@ -104,9 +104,7 @@ require(['jquery', '_config'], function($){
 	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
 		// DomReady
 		$(function(){
-
 			var $body = $('body');
-
 
 			// -----------------------------------------------------
 			// --------------- User Events -------------------------
@@ -137,7 +135,6 @@ require(['jquery', '_config'], function($){
 			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
 
 			$body.on('click', 'label[data-jmname]', jmHF.eventDelegationTriggerForLabels);
-
 
 
 			// -----------------------------------------------------
