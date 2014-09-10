@@ -931,6 +931,7 @@
     <Content Include="img\webp\user-guide-steps\user-guide-steps-2.webp" />
     <Content Include="img\webp\videoPlayer\ayyildiz_app_tutorial.webp" />
     <Content Include="img\webp\videoPlayer\iphone5s-video.webp" />
+    <Content Include="Views\Home\Demo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\JMTools\Models\" />
