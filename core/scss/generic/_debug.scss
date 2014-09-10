@@ -30,7 +30,6 @@ $IsDevServer: true;
 		background-color: rgba(0,0,0, .75);
 		
 		&:before {
-			@include element-default-padding;
 			@include as-heading__medium;
 			@include position(0, 0, '', 0);
 			background-color: rgba(0,0,0, .75);
@@ -65,5 +64,9 @@ $IsDevServer: true;
 				content: "Breakpoint: XXL";
 			}
 		}
+	}
+
+	.page {
+		@include baseline-grid;
 	}
 }

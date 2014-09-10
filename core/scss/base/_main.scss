@@ -74,7 +74,6 @@ body {
 \*------------------------------------*/
 
 .page {
-	@include baseline-grid;
 	background-color: $theme-page-bg;
 	color: $theme-page-fg;
 	margin: 0 auto;

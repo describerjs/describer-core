@@ -44,16 +44,15 @@
 @import "compass/css3/box-shadow";
 
 %nav-item {
-	@include bp-l {
-		@include element-default-padding;
-	}
+	/**/
 }
 
 // Die Links innerhalb "nav" & "flyout"
 %nav-link {
-	@extend %element-inner-default;
 	display: block;
 	font-family: $font-nav;
+	padding: $default-spacing $default-padding;
+	position: relative;
 }
 
 %flyout-link {
@@ -77,13 +76,14 @@
 
 // Die Navigation
 .nav {
-	position: relative;
+	@include element-default;
+	clear: none;
+	margin-bottom: 0;
 
 	@include bp-l {
-		@include element-default;
 		background-color: $theme-nav-bg;
+		clear: both;
 		color: $theme-nav-fg;
-		margin-bottom: 0;
 	}
 
 	// Der Container der einzelnen Elemente <ul>
@@ -94,6 +94,7 @@
 
 		@include bp-l {
 			background-color: inherit;
+			@include column(12);
 		}
 	}
 
@@ -112,14 +113,17 @@
 			&:before {
 				@include pseudo-element-default;
 				border-left: 1px solid $theme-nav-link-active-bg;
-				top: $space-half;
-				bottom: $space-half;
-				margin-left: -$dist;
+				top: $default-spacing;
+				bottom: $default-spacing;
 			}
 
 			&:first-child {
 				&:before {
 					border-left: initial;
+				}
+
+				@include bp-l {
+					margin-left: -($default-padding);
 				}
 			}
 		}
@@ -268,6 +272,7 @@
 
 // "flyout" wird per Hover eingeblendet, mobil reagiert diese auf Klick
 .flyout {
+	@include clearfix;
 	@include position('', 0, '', 0);
 	@include transition(opacity .3s linear);
 	@include visibility(hidden);
@@ -275,7 +280,10 @@
 	z-index: 2;
 
 	@include bp-l {
-		padding: $default-spacing 0;
+		padding: {
+			bottom: $space-three-quarter;
+			top: $space-three-quarter;
+		}
 	}
 
 	// Gruppierung der flyoutblöcke
