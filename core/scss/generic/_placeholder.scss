@@ -25,6 +25,8 @@
 %page-element-default {
 	@include row;
 	clear: both;
+
+	@include clearfix;
 }
 
 // Modules Defaults
@@ -44,8 +46,7 @@
 
 // Textmodule Defaults
 %element-text-default {
-	@include column(12);
-	@include unfolded-padding;
+	/*@include column(12);*/
 }
 
 
@@ -57,10 +58,21 @@
 \*------------------------------------*/
 
 %toggle-subject {
-	@extend %element-inner-default;
+	@extend %element-nested-default;
 	@include user-select;
 	display: block;
 	position: relative;
+
+	&:after {
+		@include pseudo-element-default;
+		@include transform-transition(.3s ease);
+		@include vertical-align(absolute);
+		border: $pad-half solid transparent;
+		border-left-color: rgba(0, 0, 0, .4);
+		height: 0;
+		right: $dist/2;
+		width: 0;
+	}
 }
 
 %toggle-content {
@@ -72,7 +84,7 @@
 }
 
 %toggle-content-visible {
-	@extend %element-inner-default;
+	@extend %element-nested-default;
 	/*display: block;*/
 	height: auto;
 	min-height: $default-padding;

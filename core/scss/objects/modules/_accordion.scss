@@ -55,17 +55,6 @@
 		margin-bottom: 3px;
 		position: relative;
 
-		&:after {
-			@include pseudo-element-default;
-			@include vertical-align(absolute);
-			border: $pad-half solid transparent;
-			border-left-color: rgba(0, 0, 0, .4);
-			height: 0;
-			right: $dist;
-			width: 0;
-			@include transform-transition(.3s ease);
-		}
-
 		&:hover {
 			background-color: $theme-accordion-active-bg;
 			color: $theme-accordion-active-fg;

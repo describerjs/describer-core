@@ -75,7 +75,7 @@ $tabs_i:	1;
 	background-color: $theme-tabs-bg;
 	border: 1px solid $theme-tabs-bg;
 	border-top: 0;
-	padding-top: $default-spacing;
+	padding-top: $default-inner-spacing;
 
 	// Ein Tab <label>
 	&> .tab {
@@ -153,11 +153,15 @@ $tabs_i:	1;
 
 	// Inhalt des Tabs.
 	&> .tab-content {
-		@extend %element-inner-default;
+		@extend %element-nested-default;
 		background-color: $theme-tab-content-bg;
 		clear: both;
 		color: $theme-tab-content-fg;
 		display: none;
+		padding: {
+			bottom: $default-spacing;
+			top: $default-spacing;
+		}
 		position: relative;
 	}
 

@@ -398,104 +398,45 @@
 
 // Default Spacing
 @mixin element-default-spacing {
-	margin-bottom: $default-spacing;
+	margin-bottom: $default-element-spacing;
 }
-
-// Default Padding
-@mixin element-default-padding {
-	@include element-default-padding-s;
-	
-	@media screen and (min-width: $bp-med) {
-		@include element-default-padding-m;
-	}
-
-	@media screen and (min-width: $bp-large) {
-		@include element-default-padding-l;
-	}
-}
-
-// Default Padding Small
-@mixin element-default-padding-s {
-	padding: $space-quarter $default-padding-s;
-}
-
-// Default Padding Medium
-@mixin element-default-padding-m {
-	padding: $space-quarter $default-padding-m;
-}
-
-// Default Padding Large
-@mixin element-default-padding-l {
-	padding: $space-quarter $default-padding-l;
-}
-
 
 // Elements Default
 @mixin element-default {
 	@include clearfix;
 	@include column(12);
 	@include element-default-spacing;
+	clear: both;
 	position: relative;
 }
 
 // Wrapped Elements Default
 @mixin element-inner-default {
-	@include element-default-padding;
+	@include column(12);
+	position: relative;
+	padding: {
+		bottom: $default-spacing;
+		top: $default-spacing;
+	}
+	
 }
 
 // Nested Elements Default
 @mixin element-nested-default {
-	@include column(12);
-	@include element-default-padding;
-	margin: {
-		left: 0 !important;
-		right: 0 !important;
-	};
+	@include inner-column(12);
 	position: relative;
-	width: 100%;
-}
-
-// Inner Nested Elements Default
-@mixin element-inner-nested-default {
-	@include column(12);
-	@include element-default-padding-s;
-	position: relative;
-}
-
-// Unfolded Padding
-@mixin unfolded-padding {
-	@include unfolded-padding-s;
+	padding: {
+		bottom: $default-inner-spacing;
+		top: $default-inner-spacing;
+	}
 	
-	@media screen and (min-width: $bp-med) {
-		@include unfolded-padding-m;
-	}
-
-	@media screen and (min-width: $bp-large) {
-		@include unfolded-padding-l;
-	}
 }
 
-// Unfolded Padding S
-@mixin unfolded-padding-s {
+// Indent Element
+@mixin element-indent($calc:1) {
 	padding: {
-		left: $default-padding-s;
-		right: $default-padding-s;
-	}
-}
-
-// Unfolded Padding M
-@mixin unfolded-padding-m {
-	padding: {
-		left: $default-padding-m;
-		right: $default-padding-m;
-	}
-}
-
-// Unfolded Padding L
-@mixin unfolded-padding-l {
-	padding: {
-		left: $default-padding-l;
-		right: $default-padding-l;
+		left: $dist / $calc;
+		right: $dist / $calc;
 	}
 }
 

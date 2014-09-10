@@ -36,19 +36,6 @@
 $stage-teaser-img-height-m:	468px;	// img-Höhe-M
 $stage-teaser-img-height-l:	468px;	// img-Höhe-L
 
-// Die Elemente "st-header", "st-content", "st-footer" teilen sich die gleichen Eigenschaften.
-%stage-teaser-element-default {
-	@extend %element-nested-default;
-
-	@include bp-m {
-		@include column(8);
-	}
-
-	@include bp-l {
-		@include column(6);
-	}
-}
-
 
 
 
@@ -60,27 +47,23 @@ $stage-teaser-img-height-l:	468px;	// img-Höhe-L
 .stage-teaser {
 	@extend %element-default;
 
-	main > & {
-		margin-top: -($default-spacing);
-	}
-
 	@include bp-m {
 		min-height: $stage-teaser-img-height-m;
 	}
 
-	@inlcude bp-l {
+	@include bp-l {
 		min-height: $stage-teaser-img-height-l;
-	}
 
-	// Umfasst den textlichen Inhalt
-	.st-content {
-		@extend %stage-teaser-element-default;
+		main > & {
+			margin-top: -($default-element-spacing);
+		}
 	}
 
 	// Das Keyvisual
 	.st-figure {
 		margin-bottom: $default-spacing;
 		opacity: .5;
+		overflow: hidden;
 		
 		@include bp-m {
 			@include position(0, 0, '', 0);
@@ -105,20 +88,37 @@ $stage-teaser-img-height-l:	468px;	// img-Höhe-L
 
 	// Footerbereich <footer>
 	.st-footer {
-		@extend %stage-teaser-element-default;
-		
 		@include bp-m {
-			@include position('', '', $default-spacing, 0);
+			@include position('', '', $default-inner-spacing, 0);
 		}
-	}
-
-	// Headerbereich <header>
-	.st-header {
-		@extend %stage-teaser-element-default;
 	}
 
 	// Die einleitende Headline
 	.st-head {
+		/**/
+	}
+
+	// Headerbereich <header>
+	.st-header {
+		/**/
+	}
+
+	// Innerer Container für "st-header", "st-main", "st-footer"
+	.st-inner {
+		@extend %element-inner-default;
+
+		@include bp-m {
+			@include column(8);
+			padding-bottom: $space-double;
+		}
+
+		@include bp-l {
+			@include column(6);
+		}
+	}
+
+	// Umfasst den textlichen Inhalt
+	.st-main {
 		/**/
 	}
 }

@@ -38,17 +38,6 @@
 		background-color: $theme-togglebox-bg;
 		color: $theme-togglebox-fg;
 		font-family: $font-btn;
-
-		&:after {
-			@include pseudo-element-default;
-			@include vertical-align(absolute);
-			border: $pad-half solid transparent;
-			border-left-color: rgba(0, 0, 0, .4);
-			height: 0;
-			right: $dist;
-			width: 0;
-			@include transform-transition(.3s ease);
-		}
 	}
 
 	// Der eigentliche Content.

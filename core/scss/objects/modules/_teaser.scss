@@ -3,27 +3,27 @@
 \*------------------------------------*/
 
 /**
- * GENERIC.............................Variables/Placeholder
- * TEASER..............................Teaser Element
-**/
-
-/**
  * 
 **/
 
 
 
+@mixin teaser-element-default($calc:1) {
+	.t-figure {
+		margin: {
+			left: -($dist * $calc);
+			right: -($dist * $calc);
+		}
+	}
 
+	.t-footer {
+		@include position('', '', $default-inner-spacing, $dist / 2);
+	}
 
-/*------------------------------------*\
-    $GENERIC
-\*------------------------------------*/
-
-// Die Elemente "t-header", "t-content", "t-footer" teilen sich die gleichen Eigenschaften.
-%teaser-element-default {
-	@include element-inner-nested-default;
+	.t-inner {
+		padding-bottom: $space-double;
+	}
 }
-
 
 
 
@@ -38,30 +38,18 @@
 	color: inherit;
 	display: block;
 
-	@include bp-s {
-		clear: none;
-	}
-
 	&:first-of-type:last-of-type {
 		@include bp-m {
 			.t-figure {
 				@include column(6);
-				clear: none;
 				margin: {
-					left: 0;
+					left: -($dist);
 					right: $dist * 2;
 				}
 
-				&~ .t-header,
-				&~ .t-content,
-				&~ .t-footer {
+				&+ .t-inner {
 					@include column(6);
-					clear: right;
-					float: right;
-					margin: {
-						left: $dist * 2;
-						right: 0;
-					}
+					clear: none;
 				}
 			}
 		}
@@ -71,15 +59,8 @@
 	&:nth-of-type(2):nth-last-of-type(1) {
 		@include bp-m {
 			@include column(6);
-			padding-bottom: $space-double;
-
-			.t-footer {
-				@include position('', '', 0, 0);
-			}
-		}
-
-		@include bp-l {
-			@include column(6);
+			@include element-indent(2);
+			@include teaser-element-default(1);
 		}
 	}
 
@@ -88,15 +69,8 @@
 	&:nth-of-type(3):nth-last-of-type(1) {
 		@include bp-m {
 			@include column(4);
-			padding-bottom: $space-double;
-
-			.t-footer {
-				@include position('', '', 0, 0);
-			}
-		}
-
-		@include bp-l {
-			@include column(4);
+			@include element-indent(2);
+			@include teaser-element-default(1.5);
 		}
 	}
 
@@ -106,15 +80,8 @@
 	&:nth-of-type(4):nth-last-of-type(1) {
 		@include bp-s {
 			@include column(6);
-			padding-bottom: $space-double;
-
-			.t-footer {
-				@include position('', '', 0, 0);
-			}
-		}
-
-		@include bp-m {
-			@include column(6);
+			@include element-indent(4);
+			@include teaser-element-default(4);
 		}
 
 		@include bp-l {
@@ -122,20 +89,34 @@
 		}
 	}
 
-	.t-content {
-		@extend %teaser-element-default;
+	//
+	.t-figure {
+		/**/
 	}
 
+	// Footerbereich <footer>
 	.t-footer {
-		@extend %teaser-element-default;
+		/**/
 	}
 
+	// Die einleitende Headline
 	.t-head {
 		/**/
 	}
 
+	// Headerbereich <header>
 	.t-header {
-		@extend %teaser-element-default;
+		/**/
+	}
+
+	// Innerer Container für "t-header", "t-main", "t-footer"
+	.t-inner {
+		@extend %element-inner-default;
+	}
+
+	// Umfasst den textlichen Inhalt
+	.t-main {
+		/**/
 	}
 }
 

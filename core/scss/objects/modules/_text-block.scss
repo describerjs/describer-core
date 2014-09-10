@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .text-block {
-	@extend %element-default;
-	@extend %element-inner-default;
+	@include element-default;
+	@include element-indent;
 
 	@include bp-m {
 		@include column(10);

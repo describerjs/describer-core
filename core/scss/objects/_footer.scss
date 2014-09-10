@@ -21,7 +21,6 @@
 .page-footer {
 	@extend %page-element-default;
 	border-top: 1px solid $black;
-	margin-top: $default-spacing;
 	padding: {
 		bottom: $default-spacing;
 		top: $default-spacing;
@@ -40,15 +39,13 @@
 	@extend %element-default;
 
 	.copyright {
-		@extend %element-nested-default;
+		@extend %element-inner-default;
 		@include column(7);
-		clear: none;
-		float: right;
 		text-align: right;
 	}
 
 	.imprint {
-		@extend %element-nested-default;
+		@extend %element-inner-default;
 		@include column(5);
 	}
 }
@@ -67,7 +64,6 @@
 
 .h-card {
 	@extend %element-default;
-	/*@extend %element-inner-default;*/
 
 	.u-url {
 		@extend %hcard-element;
@@ -102,11 +98,10 @@
 	}
 
 	.hc-section {
-		@extend %element-nested-default;
+		@extend %element-inner-default;
 
 		@include bp-m {
 			@include column(4);
-			clear: none;
 		}
 
 		@include bp-l {
