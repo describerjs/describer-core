@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+  		<meta charset="utf-8">
+    	<link rel="stylesheet" href="../css/monokai.css">
+		<script src="../js/highlight.pack.js"></script>
+    </head>
+    <body>
+		<h1>Doku HTML</h1>
+
+<h2>&lt;!DOCTYPE html&gt;</h2>
+
+<p>Die DOCTYPE ist die unverzichtbare Einleitung des HTML Dokuments und teilt dem Browser die verwendete HTML Version mit.</p>
+
+<h2><html class="no-js" lang="de"></h2>
+
+<p>Das <em><html></em> Element erhält zwei Attribute:</p>
+
+<ol>
+<li>Das <em>lang</em> Attribut ist Pflicht und teilt dem Browser die zu verwendende Aussprache mit. Der entsprechende Schrifttyp wird festglegt und die Aussprache für das Interface gesetzt (beispielsweise für Form-Elemente wie Date-Picker oder Validierungen).</li>
+<li>Zusätzlich wird die Klasse <em>no-js</em> gesetzt. Diese dient als Hilfe für die CSS Entwicklung und sagt lediglich, dass Javascript nicht unterstütz wird. Der Einsatz von Modernizr überschreibt diese Klasse mit <em>js</em>, um eine Javascript Unterstützung anzudeuten.</li>
+</ol>
+
+<h2><head></h2>
+
+<h3><title></h3>
+
+<p>Der Dokumententitel, wird in der Browsertitelleiste bzw. Tab angezeigt.</p>
+
+<h3><meta charset="utf-8" /></h3>
+
+<p>Der zu verwendende Zeichensatz.</p>
+
+<h3><meta http-equiv="X-UA-Compatible" content="IE=edge" /></h3>
+
+<p>Mit dem Internet Explorer 8 wurde der Kompatibilitätsmodus eingeführt, mit dessen hilfe eine Seite so gerendert wird, wie eine ältere IE Version dies tun würde.<br>
+Die Angabe <em>IE=edge</em> weist Internet Explorer an, den höchstmöglichen Modus zu nutzen, der in der entsprechenden Browserversion zur Verfügung steht. Im Klartext: Standardmodus.<br>
+Die Positionierung dieses Metas ist sehr strikt! Hier gilt: im Header vor allen anderen Elementen, außer dem <em><title></em> und anderen <em><meta></em>.</p>
+
+<h3><meta name="description" content="$description$" /></h3>
+
+<p><em>$description$</em> ist ein Beschreibungstext für die aktuelle Seite und wird dem User in den Suchergebnissen einer Suchmaschine angezeigt.</p>
+
+<h3><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" /></h3>
+
+<p>Weist dem aktuellen Viewport an, in den kompletten sichtbaren Bereich zu Skalieren.</p>
+
+<h3><link rel="shortcut icon" href="/favicon/favicon.ico" /></h3>
+
+<p>Das Favicon der Seite, wird im Browsertab vor der URL/Titel bzw. in den gespeicherten Favoriten angezeigt.  </p>
+
+<p><strong><link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png "></strong><br>
+<strong><link rel="apple-touch-icon" href="/favicon/apple-touch-icon-72x72.png" sizes="72x72" /></strong><br>
+<strong><link rel="apple-touch-icon" href="/favicon/apple-touch-icon-114x114.png" sizes="114x114" /></strong><br>
+<strong><link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-144x144-precomposed.png" sizes="144x144" /></strong><br>
+<strong><link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-114x114-precomposed.png" sizes="114x114" /></strong><br>
+<strong><link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-72x72-precomposed.png" sizes="72x72" /></strong><br>
+<strong><link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-57x57-precomposed.png" /></strong><br>
+iOS ermöglicht das speichern eines Favoriten auf dem Homescreen. Dazu lässt sich ein Icon referenzieren und lässt den Favoriten wie eine App aussehen. Für unterschiedlichste Geräte und Auflösungen gibt es jeweils ein eigenes Icon.  </p>
+
+<p><strong><meta name="msapplication-TileImage" content="img/favicon/ms-touch-icon-144x144-precomposed.png" /></strong><br>
+<strong><meta name="msapplication-TileColor" content="#222222" /></strong><br>
+Analog iOS bzw. apple-touch, allerdings für Windows 8. Hier lässt sich zusätzlich noch ein Farbwert für den Tile angeben.</p>
+
+<h2>Inline JS</h2>
+
+<p>Für das performante Laden von CSS und JS aus dem local Storage bzw. zuvor via Requrest ist diese Ladefunktionalität inline in die html-Seite zu integrieren, damit kein unstyled Content kurzzeitig auf der Seite dargestellt wird.</p>
+
+<h3>globalen JS-Vaiablen für den DEV/LIVE-Betrieb</h3>
+
+<p>Als erstes werden die globalen JS-Variablen für den DEV/LIVE-Betrieb festgelegt.
+Diese konfigurieren das Lade- und Speicherverhalten der CSS- und JS-Dateien, sodass im DEV-Betrieb die nicht minifizierten Dateien geladen werden und der local Storage nicht verwendet wird (ein Debugging der Datein ist so möglich). Zum anderen werden im LIVE-Betrieb die minifizierten Dateien geladen (entweder via Request oder aus dem local Storage) und im local Storage als key/value-Paar hinterlegt, wenn dieser supported wird.</p>
+
+<pre><code>// Hier muss eine Servervariable eingefügt werden, welche den Zustand wiedergibt,
+// ob der Server ein Entwicklungs- oder LIVE-Server ist.
+@if (Config.Instance.IsDevServer)
+{
+    // DEV
+    &lt;script&gt;
+        window.UseLocalStorage = false;
+        window.loadUnminifyVersion = true;
+        window.IsDevServer = true;
+    &lt;/script&gt;
+
+}
+else
+{
+    // LIVE
+    &lt;script&gt;
+        window.IsDevServer = false;
+        var checkDebugging = function(){
+            try{
+                if(localStorage.getItem(&#39;debugging&#39;) !== null){
+                    // kein Verwendung vom local Storage
+                    window.UseLocalStorage = false;
+                    window.loadUnminifyVersion = true;
+                }else{
+                    // Verwendung vom local Storage
+                    window.UseLocalStorage = true;
+                    window.loadUnminifyVersion = false;
+                }
+            }catch(e){
+                // kein Verwendung vom local Storage
+                window.UseLocalStorage = true;
+                window.loadUnminifyVersion = false;
+            }
+        };
+        checkDebugging();
+    &lt;/script&gt;
+}
+</code></pre>
+
+<h3>LIVE Debugging</h3>
+
+<p>Um das Debugging auch LIVE zu ermöglichen, kann ein manueller (in der Browser-Konsole) Eintrag im local-Storage hinterlegt werden, der dessen Verwendung unterbindet. </p>
+
+<pre><code>window.localStorage.setItem(&#39;debugging&#39;, &#39;true&#39;);
+</code></pre>
+
+<p>Hier wird eine Warnung ausgegeben, dass es nicht erlaubt ist den local Storage mit nicht versionierten Dateien zu verwenden.</p>
+
+<pre><code>if(window.UseLocalStorage &amp;&amp; window.loadUnminifyVersion){
+    console.warn(&#39;-------------!!!!!-----localStorage wird mit nicht versionierten Dateine befüllt!------!!!!!-----&#39;);
+}
+</code></pre>
+
+<h3>Definition von globalen Hilfsfunktionen</h3>
+
+<p>Diese Hilfsfunktionen werde unmittelbar vor der Ladefunktionalität der CSS- und JS-Datein benötigt.</p>
+
+<ul>
+<li><strong>window.domReadyObject</strong> -&gt; Das Objekt dient zum Vorhalten von Funktionen, die unmittelbar nach dem ready-Event von jQuery ausgeführt werden sollen</li>
+<li><strong>window.onDomOrAjaxReady</strong> -&gt; Die übergebenen Funktion wird entweder unmittelbar ausgeführt, wenn jQuery geladen und das &#39;ready&#39;-Event geschmissen wurde, oder im domReadyObject vorgehalten.</li>
+<li><strong>window.execDomReadyObject</strong> -&gt; Hier werden alle vorgehaltenen Funktionen im domReadyObject ausgeführt</li>
+<li><strong>window.testLocalStorage</strong> -&gt;  Modernizr-Test auf localStorage</li>
+<li><strong>window.clearLocalStorageForKey</strong> -&gt; Die Funktion prüft, ob es im localStorage schon einen identischen key (jeweils ohne Versionierungsnummer) gibt und löscht diese incl. value im localStorage.</li>
+<li><strong>window.addCSSToDOM</strong> -&gt; Fügt das CSS zum DOM entweder als link-Element oder aus dem localStorage</li>
+<li><strong>window.addJSToDOM</strong> -&gt; Fügt das JS zum DOM entweder als link-Element oder aus dem localStorage</li>
+<li><strong>window.checkLocalStorageByTimestamp</strong> -&gt; mit dieser Funktion wird entweder ein Zeitstempel erstellt (falls dieser noch nicht vorhanden) oder wenn der Zeitstempel im local Storage kleiner ist als der Referenz-Zeitstempel wird der local Storge gelöscht.</li>
+</ul>
+
+<p>Quellcode</p>
+
+<pre><code>window.domReadyObject = {
+    countProperties: function(){
+        var count = 0;
+        for(var property in this){
+            if(this.hasOwnProperty(property)){
+                count += 1;
+            }
+        }
+        return count;
+    }
+};
+
+window.onDomOrAjaxReady = function(p_function){
+    if(typeof jQuery !== &#39;undefined&#39;){
+        ($.isReady) ? p_function() : $(document).on(&#39;ready&#39;, p_function);
+    }else{
+        window.domReadyObject[&#39;func_&#39; + window.domReadyObject.countProperties()] = p_function;
+    }
+};
+
+window.execDomReadyObject = function(){
+    for(var property in window.domReadyObject){
+        if(window.domReadyObject.hasOwnProperty(property) &amp;&amp; (&#39;countProperties&#39; !== property)){
+            window.domReadyObject[property]();
+        }
+    }
+};
+
+window.testLocalStorage = function(){
+    var mod = &#39;modernizr&#39;;
+    try{
+        localStorage.setItem(mod, mod);
+        localStorage.removeItem(mod);
+        return true;
+    }catch(e){
+        return false;
+    }
+};
+
+window.clearLocalStorageForKey = function(p_key){
+    var keyWithoutExtension = p_key.substr(0, p_key.lastIndexOf(&#39;.&#39;));
+    var nonversionkey = keyWithoutExtension.substr(0, keyWithoutExtension.lastIndexOf(&#39;.&#39;));
+    var patt = new RegExp(nonversionkey);
+    var index = 0;
+    var length = localStorage.length;
+    try{
+        for(; index &lt;= length; index++){
+            if(patt.test(localStorage.key(index)) &amp;&amp; (localStorage.key(index) !== p_key)){
+                localStorage.removeItem(localStorage.key(index));
+            }
+        }
+    }catch(e){
+    }
+};
+
+window.addCSSToDOM = function(p_src){
+    var linkElem;
+    var styleElem;
+    // wenn localStorage vorliegt aber der Datei-Pfade(key) und entsprechen die value nicht vorhanden ist.
+    // -&gt; dynamische Erstellung eines link-tags mit Angabe des Datei-Pfades und anschließender ajax nach Dom-Ready um den Conten im localStorage abzulengen (kommt aus dem Cache).
+    if (window.UseLocalStorage &amp;&amp; testLocalStorage() &amp;&amp; (localStorage[p_src] === undefined)) {
+        // window.localStorage is available!
+        linkElem = document.createElement(&#39;link&#39;);
+        linkElem.setAttribute(&#39;rel&#39;, &#39;stylesheet&#39;);
+        linkElem.setAttribute(&#39;href&#39;, p_src);
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(linkElem);
+        onDomOrAjaxReady(function(){
+            (function(){
+                var xhr;
+                xhr = new XMLHttpRequest();
+                xhr.open(&#39;GET&#39;, p_src, true);
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4 &amp;&amp; xhr.status !== 404 &amp;&amp; xhr.responseText !== &#39;&#39;){
+                        clearLocalStorageForKey(p_src);
+                        localStorage[p_src] = xhr.responseText;
+                    }
+                };
+            })()
+        });
+        // wenn localStorage vorliegt und der Datei-Pfade(key) und entsprecher value im localStorage vorhanden ist.
+        // -&gt; dynamische Erstellung eines style-tags mit injection der value aus dem localStorage.
+    }else if(window.UseLocalStorage &amp;&amp; testLocalStorage() &amp;&amp; (localStorage[p_src] !== undefined)){
+        styleElem = document.createElement(&#39;style&#39;);
+        styleElem.appendChild(document.createTextNode(localStorage[p_src]));
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(styleElem);
+        // wenn kein localStorage vorliegt
+        // -&gt; dynamische Erstellung eines link-tags mit Angabe des Datei-Pfades
+    }else{
+        linkElem = document.createElement(&#39;link&#39;);
+        linkElem.setAttribute(&#39;rel&#39;, &#39;stylesheet&#39;);
+        linkElem.setAttribute(&#39;href&#39;, p_src);
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(linkElem);
+    }
+};
+
+window.addJSToDOM = function(p_src, p_attrkey, p_attrval){
+    var scriptElem;
+    // wenn localStorage vorliegt aber der Datei-Pfade(key) und entsprechen die value nicht vorhanden ist.
+    // -&gt; dynamische Erstellung eines script-tags mit Angabe des Datei-Pfades und anschließender ajax nach Dom-Ready um den Conten im localStorage abzulengen (kommt aus dem Cache).
+    if(window.UseLocalStorage &amp;&amp; testLocalStorage() &amp;&amp; (typeof localStorage[p_src] === &#39;undefined&#39;)){
+        // window.localStorage is available!
+        scriptElem = document.createElement(&#39;script&#39;);
+        scriptElem.setAttribute(&#39;src&#39;, p_src);
+        if(typeof p_attrkey !== &#39;undefined&#39;){
+            scriptElem.setAttribute(p_attrkey, p_attrval);
+        }
+        scriptElem.async = false;
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(scriptElem);
+        onDomOrAjaxReady(function(){
+            (function(){
+                var xhr;
+                xhr = new XMLHttpRequest();
+                xhr.open(&#39;GET&#39;, p_src, true);
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4 &amp;&amp; xhr.status !== 404 &amp;&amp; xhr.responseText !== &#39;&#39;){
+                        clearLocalStorageForKey(p_src);
+                        localStorage[p_src] = xhr.responseText;
+                    }
+                };
+            })()
+        });
+        // wenn localStorage vorliegt und der Datei-Pfade(key) und entsprecher value im localStorage vorhanden ist.
+        // -&gt; dynamische Erstellung eines style-tags mit injection der value aus dem localStorage.
+    }else if(window.UseLocalStorage &amp;&amp; testLocalStorage() &amp;&amp; (typeof localStorage[p_src] !== &#39;undefined&#39;)){
+        scriptElem = document.createElement(&#39;script&#39;);
+        if(typeof p_attrkey !== &#39;undefined&#39;){
+            scriptElem.setAttribute(p_attrkey, p_attrval);
+        }
+        scriptElem.text = localStorage[p_src];
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(scriptElem);
+        // wenn kein localStorage vorliegt
+        // -&gt; dynamische Erstellung eines link-tags mit Angabe des Datei-Pfades
+    }else{
+        scriptElem = document.createElement(&#39;script&#39;);
+        scriptElem.setAttribute(&#39;src&#39;, p_src);
+        if(typeof p_attrkey !== &#39;undefined&#39;){
+            scriptElem.setAttribute(p_attrkey, p_attrval);
+        }
+        scriptElem.async = false;
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(scriptElem);
+    }
+};
+
+window.checkLocalStorageByTimestamp = function(){
+    if(window.UseLocalStorage &amp;&amp; testLocalStorage()){
+        try{
+            // wenn kein timestamp im localStorage vorhanden ist wird einer erstellt.
+            if(localStorage.getItem(&#39;timestamp&#39;) === null){
+                localStorage[&#39;timestamp&#39;] = new Date().getTime().toString();
+            }else{
+                // wenn der timestamp im localStorage kleiner ist als der fest codierte Timestamp, wird wird der localStorage gelöscht.
+                if (parseInt(localStorage[&#39;timestamp&#39;], 10) &lt; 1402389706108) { // Nicht Ändern!!!! So wird bei allen Clients der localStorage gelöscht!!!! Nur Ändern, wenn sich die Datei-Pfad in der main.js zu den Modulen ändern Bsp. require.config({  paths:{ &#39;jmButtonForAddClassOnRelatedElem&#39;: &#39;mylibs/AMD-Plugins/jmButtonForAddClassOnRelatedElem&#39;,......
+                    window.localStorage.clear();
+                }
+            }
+        }catch(e){
+        }
+    }
+};
+</code></pre>
+
+<p>Bevor die initial verwendeten CSS- und JS-Datein geladen werde wird der local Storage auf einen Zeitstempel überprüft. Diese Funktionalität bietet dem Entwickler die Möglichkeit, den local Storage auf allen dem Client-Rechner manuell zu löschen. (Die Anpassung des Referenz-Zeitstempels in dieser Funktion ist nur im Notfall anzupassen)</p>
+
+<pre><code>checkLocalStorageByTimestamp();
+</code></pre>
+
+<h3>Auflistung der initial verwendeten CSS- und JS-Datein</h3>
+
+<ul>
+<li>modernizr.custom.js -&gt;  wir für Feature-Detektion verwendet</li>
+<li>matchmedia.js -&gt; für die JS-Abfrage auf MediaQuerys</li>
+<li>picturefill.js -&gt; Polyfill für Responsive Images</li>
+<li>style.css -&gt; globale CSS</li>
+<li>require.2.1.11.js -&gt; für das On-Demand-Script-Loading</li>
+</ul>
+
+<p>Quellcode</p>
+
+<pre><code>if (window.loadUnminifyVersion) {
+    addJSToDOM(&#39;/js/externals/customized/modernizr.custom.js&#39;);
+    addJSToDOM(&#39;/js/externals/vendor/matchmedia.js&#39;);
+    addJSToDOM(&#39;/js/externals/originalReferenceSource/picturefill.js&#39;);
+    addCSSToDOM(&#39;/css/style.css&#39;);
+    addJSToDOM(&#39;/js/externals/customized/require.2.1.11.js&#39;, &#39;data-main&#39;, &#39;/js/main.js&#39;);
+} else {
+    addJSToDOM(&#39;/js/build/externals/customized/modernizr.custom.6966b8.js&#39;);
+    addJSToDOM(&#39;/js/build/externals/vendor/matchmedia.05942b.js&#39;);
+    addJSToDOM(&#39;/js/build/externals/originalReferenceSource/picturefill.40a9ae.js&#39;);
+    addJSToDOM(&#39;/js/build/externals/customized/require.2.1.11.fce06e.js&#39;, &#39;data-main&#39;, &#39;/js/build/main.35bb76.js&#39;);
+    // TODO Hier muss noch nach eine Verbesserung gesucht werden
+    if (navigator.appVersion.indexOf(&quot;MSIE 8.&quot;) != -1) {
+        var linkElem = document.createElement(&#39;link&#39;);
+        linkElem.setAttribute(&#39;rel&#39;, &#39;stylesheet&#39;);
+        linkElem.setAttribute(&#39;href&#39;, &#39;/css/min/style.458d37.css&#39;);
+        document.getElementsByTagName(&#39;head&#39;)[0].appendChild(linkElem);
+    } else {
+        addCSSToDOM(&#39;/css/min/style.458d37.css&#39;);
+    }
+}
+</code></pre>
+
+<p>Hier ist noch die Angabe, welches CSS bei noscript verwendet werden soll und die Verlinkung der noscript.css</p>
+
+<pre><code>&lt;noscript&gt;
+    @if (Config.Instance.IsDevServer)
+    {
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/style.css&quot; /&gt;
+    }
+    else
+    {
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/min/style.458d37.css&quot; /&gt;
+    }
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/noscript.css&quot; /&gt;
+&lt;/noscript&gt; 
+</code></pre>
+
+<h3><noscript></h3>
+
+<p>Eine <em><noscript></em> Sektion kann beliebig oft sowohl im <em><head></em> als auch im <em><body></em> verwendet werden. In diesem Fall dient sie als Fallback zur &quot;gewöhnlichen&quot; Einbindung der Stylesheets, da diese gewöhnlich per Javascript geladen werden.
+return shell_exec(&quot;echo $input | $Markdown_script&quot;);</p>
+
+<h2><body></h2>
+
+<h3>&lt;... role=&quot;...&quot;&gt;</h3>
+
+<p>Die Role Attribute weisen den Elementen eine eindeutige Aufgabe zu und beschreiben die Struktur der Seite. Sie dienen der Barrierefreiheit und werden von ARIA (Accessible Rich Internet Apllication) gesteuert und können dem Anwender mitteilen wo er sich befindet bzw. was ihn an der entsprechenden Position des Dokuments erwartet.</p>
+
+<h4><header role="banner"></h4>
+
+<p>Der Kopfbereich des Dokuments. Er besteht typischerweis aus zentralen Inhalten und Funktionen wie z.B Logo, Navigation, Suchfunktion, etc.</p>
+
+<h4><nav role="navigation"></h4>
+
+<p>Die Hauptnavigation.</p>
+
+<h4><form role="search"></h4>
+
+<p>Bei Verwendung einer internen Suchfunktion.</p>
+
+<h4><main role="main"></h4>
+
+<p>Hier wird der Seiteninhalt untergebracht.</p>
+
+<h4><footer role="contentinfo"></h4>
+
+<p>Der Fußbereich des Dokuments. Hier werden sämtliche Metainformationen wie Copyright, Fußnoten, etc. aufgeführt. Aber auch zusätzliche Informationen zum aktuellen Dokument.</p>
+
+	<script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

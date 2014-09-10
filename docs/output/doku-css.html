@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+  		<meta charset="utf-8">
+    	<link rel="stylesheet" href="../css/monokai.css">
+		<script src="../js/highlight.pack.js"></script>
+    </head>
+    <body>
+		<h1>Doku CSS/SCSS</h1>
+
+<h2>Grundlegendes</h2>
+
+<p>Der Grundgedanke bei der Erstellung und Pflege der Stylesheets ist <em>Konsistenz</em>. Daraus resultiert eine einheitliche Datei- und Codegestaltung.
+Die Entwicklung erfolgt komplett in <a href="http://sass-lang.com" title="Sass - http://sass-lang.com">Sass</a> und in Anwendung von <a href="http://patternlab.io/about.html" title="Atomic Design - http://patternlab.io/about.html">Atomic Design</a>.</p>
+
+<p>Atomic Design verfolgt die Ansätze von:</p>
+
+<ul>
+<li><a href="http://smacss.com" title="SMACSS - http://smacss.com">SMACSS - Scalable and Modular Architecture for CSS</a></li>
+<li><a href="http://oocss.org" title="OOCSS - http://oocss.org">OOCSS - Object-Oriented CSS</a></li>
+<li><a href="http://bem.info/method" title="BEM CSS Methology - http://bem.info/method">BEM CSS Methology - Block, Element, Modifier</a></li>
+<li><a href="https://github.com/csswizardry/CSS-Guidelines" title="csswizardry CSS-Guidelines - https://github.com/csswizardry/CSS-Guidelines">csswizardry CSS-Guidelines</a></li>
+</ul>
+
+<h2>File- &amp; Ordnerstruktur</h2>
+
+<h3>scss</h3>
+
+<p>Auf der Hauptebene exisitieren zwei Stylesheets namens <em>style.scss</em> und <em>noscript.scss</em>. Beide Dateien werden in den Ordner <em>css</em> im Root-Verzeichnis kompiliert. Sie teilen sich globale Dateien wie Mixins, Variablen &amp; Co., welche in &quot;generic/_generic-import&quot; als ein globaler Import zusammengefasst werden.</p>
+
+<h4>style.scss</h4>
+
+<p>Das ist das Stylesheet für die Website. Hier werden sämtliche Ressourcen aus den Verzeichnissen <em>base, generic &amp; object</em> zusammengetragen, Dopplungen und &quot;-noscript&quot;-Dateien ausgeschlossen. Ebenfalls sind hier die benötigten UI-Module an letzter Stelle einzukommentieren.</p>
+
+<h4>noscript.scss</h4>
+
+<p>Hier finden sich Fallback Regeln für No-JS Support. Diese wird per HTML mittels <noscript> eingebunden. Wird ein UI-Modul verwendet, ist die entsprechende &quot;-noscript&quot;-Datei hier ebenfalls einzukommentieren.</p>
+
+<h3>base: Die Basis</h3>
+
+<p>Das <em>base</em> Verzeichnis beinhaltet das Basis-Styling für alle globalen Elemente.</p>
+
+<h3>generic: Die Grundausstattung</h3>
+
+<p>Der <em>generic</em> Ordner liefert die Grundausstattung für Sass (Mixins, Variablen, etc.) und ein Browser-Reset CSS. Zusätzlich gibt es noch den Unterordner <em>originalReferenceSource</em> für originale Referenzdateien von 3rd Party Add-Ons. Diese werden nicht in das Framework eingebunden, sondern dienen nur der Referenz.</p>
+
+<h4>Konfiguration</h4>
+
+<p>Im Verzeichnis befindet sich eine &quot;_generic-import.scss&quot; Datei. Diese importiert alle Ressourcen in diesem Verzeichnis, welche als &quot;geteilte&quot; angesehen werden. So referenzieren sowohl &quot;style.scss&quot;, als auch &quot;noscript.scss&quot; auf diese Datei.</p>
+
+<p>Die einzelnen Sektionen sind klar definiert, so werden als erstes externe Referenzen als Add-Ons eingebunden. Die Basis bilden hier das &quot;Semantic-Grid-System&quot; und das &quot;Sassapparilla Typeset&quot;. Damit steht dem Projekt ein Content-Grid und Baseline-Grid zur Verfügung.</p>
+
+<h5>Add-Ons</h5>
+
+<h6>Semantic-Grid-System</h6>
+
+<p>Geliefert werden eine Hand voll Mixins, die der modularen Anwendung dienen und das Grid direkt am Modul definieren lassen. Zur Konfiguration können die Anzahl, Breite und Abstand der Spalten in einem Pixelmaß festgelegt werden. Die enthaltenen Mixins errechnen daraus die prozentualen Werte, um in diesem Fall ein flexibles Raster zu erstellen.</p>
+
+<h6>Sassapparilla Typeset</h6>
+
+<p>Dieses Typeset dient zum definieren der Schriftgrade. So stehen Variablen &quot;$alpha, $beta, $gamma, etc.&quot; zur Verfügung, um Schriftgrößen für <h1>-<h6>, <p>, <ul> usw. anzugeben.
+Mithilfe von Funktionen aus Compass werden entsprechende line-heights und margins für die jeweiligen Elemente errechnet, woraus das Baseline-Grid für ein einheitliches Schriftbild resultiert.</p>
+
+<h5>Generic Elements</h5>
+
+<h6>Variables</h6>
+
+<p>In den Variables wird die Konfiguration des Basis-Designs definiert. Dazu gehören u.A. sämtliche Farbwerte, Theme, Typo, Breakpoints und Abstände, die sich sowohl in der Anwendung von &quot;base&quot; als auch in den &quot;objects&quot; wiederfinden.</p>
+
+<h6>Functions</h6>
+
+<p>Eine Sammlung nützlicher Sass-Funktionen die zur Hilfe und Erleichterung der CSS-Entwicklung beitragen.</p>
+
+<h6>Mixins</h6>
+
+<p>Eine Sammlung nützlicher Sass-Mixins die zur Hilfe und Erleichterung der CSS-Entwicklung beitragen. Aber auch Standardwerte für Elemente werden hier zusammengefasst.</p>
+
+<h6>Placeholder</h6>
+
+<p>Eine Sammlung nützlicher Sass-Placeholder die zur Hilfe und Erleichterung der CSS-Entwicklung beitragen. Somit wird vermieden, dass @extend nicht dateiübergreifend, sondern auf zentrale Eigenschaften angewandt wird.</p>
+
+<h4>Reset</h4>
+
+<p>Ein einfaches CSS Reset.</p>
+
+<h3>objects: Die modularen Elemente</h3>
+
+<p>In <em>object</em> sind die modularen Elemente untergebracht. Neben wichtigen Ressourcen wie Header, Footer &amp; Co. gibt es noch den Unterordner <em>modules</em>. Hier finden sich die UI-Module nach bestem Gewissen.
+Jedes UI-Modul bringt eine <em>-noscript</em>-Datei mit, in der die Regeln für No-JS Support aufgeführt sind.</p>
+
+<h2>Modulerstellung</h2>
+
+<p>Ein Modul definiert sich als eigener Import und befindet sich in der Ordnerstruktur unter &quot;/scss/objects/modules&quot;. Abgelegt wird die Datei mit der entsprechenden Benennung wie auch die des Moduls.</p>
+
+<h3>Kommentarblock mit dem Namen des Moduls</h3>
+
+<pre><code>/*------------------------------------*\
+    $TOGGLEBOX
+\*------------------------------------*/
+</code></pre>
+
+<h3>Kommentarblock mit Dokumentation zur Funktionsweise des Moduls</h3>
+
+<pre><code>/**
+ * Ein-/Auf-/Zuklapp Element
+ *
+    &lt;div class=&quot;togglebox&quot;&gt;
+        &lt;a class=&quot;tb-subject&quot; data-jmname=&quot;togglebox&quot;&gt;$toggletitle$&lt;/a&gt;
+        &lt;div class=&quot;tb-content&quot;&gt;
+            $togglecontent$
+        &lt;/div&gt;
+    &lt;/div&gt;
+ *
+ * Die Togglebox wird mit einem umschließenden &lt;div class=&quot;togglebox&quot;&gt; eingeleitet.
+ * Innerhalb &lt;div class=&quot;togglebox&quot;&gt; liegen auf gleicher Ebene zwei Elemente:
+ *
+ * &lt;a class=&quot;tb-subject&quot; data-jmname=&quot;togglebox&quot;&gt;$toggletitle$&lt;/a&gt;
+ * Beschreibt den Titel der Togglebox bzw. den Link.
+ * data-jmname=&quot;togglebox&quot; weist das javascript an, das &lt;div class=&quot;togglebox&quot;&gt; um die Klasse &quot;show&quot; zu erweitern
+ * und somit den Inhalt zu &lt;div class=&quot;tb-content&quot;&gt; ein- bzw. auszublenden.
+ *
+ * &lt;div class=&quot;tb-content&quot;&gt;
+ * Alles was zum Content der Togglebox gehört wird hier eingefügt.
+ *
+**/
+</code></pre>
+
+<h3>CSS zum Modul</h3>
+
+<pre><code>.togglebox {
+    // Der verantwortliche Link zum öffnen des Toggles &quot;tb-content&quot;.
+    .tb-subject {
+        /**/
+    }
+
+    // Der eigentliche Content.
+    .tb-content {
+        display: none;
+    }
+
+    // &quot;togglebox&quot; wird mit &quot;show&quot; erweitert und interagiert entsprechend.
+    &amp;.show {
+        .tb-content {
+            display: block;
+        }
+    }
+}
+</code></pre>
+
+<p>Jede Regel erhält einen Kommentar zur Bedeutung und Anwendung.</p>
+
+	<script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

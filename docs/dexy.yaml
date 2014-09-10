@@ -1,0 +1,2 @@
+.html|jinja:
+    - .md|redcarpet
