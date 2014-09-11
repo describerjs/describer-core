@@ -23,8 +23,8 @@ Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Verein
 
 Eine weitere Komponente des Frameworks ist die Netzwerk- und Browser-Performance sowie dessen Wartbarkeit und Skalierbarkeit. Dies wurde mit dem AMD-Prinzip (asynchronous module definition) durch RequireJS umgesetzt. Es bietet den Vorteil, dass jedes Plugin in einer eigenen Datei geschrieben ist und auch nur diese bei Bedarf geladen wird. Ein Overhead, an nicht verwendeten Code, der nicht nur geladen werden muss sondern auch geparst wird, wird so vermieden.
 
-### <a name="Event-Delegation"></a>Initialisierung der Module über Event-Delegation ###
-die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur die benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener wie z.B. **click, change, dominit, jmtrigger ...** hören auf dem **body**, der wiederum nur bei den aufgelistente elementen im **Selektor** seine **Funktion** ausführt.
+### <a name="Event-Delegation"></a>Initialisierung der Module über Event-Delegation
+die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur die benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener wie z.B. **click, change, dominit, jmtrigger ...** hören auf dem **body**, der wiederum nur bei den aufgelistente Elementen im **Selektor** seine **Funktion(handler)** ausführt.
 
 	$body.on('change', 'select[data-jmname], input[type="radio"][data-jmname], etc.', function(e){ 
 
@@ -33,18 +33,16 @@ die Initialisierung der Module on Demant durch die Interaktion vom User mit der 
 	// $body 															-> $('body')
 	// 'change'															-> Event/s
 	// 'select[data-jmname], input[type="radio"][data-jmname], etc.' 	-> Selektor 
-    // function(e){ 													-> Funktion
-
-	   });
+    // function(e){ ... });												-> Funktion
 
 Zum Einen werden so nur eine geringe Anzahl an Event-Listener benötigt (Hörne nur auf den Body und nicht auf jedes entsprechende Element) und zum Anderen ist immer gewärleistet, dass auch interaktionen (vom User oder via dominit) auf Elemente, die durch einnen Ajax-Aufruf nachträglich in das DOM integriert werden, registriert werden.
 
-### <a name="Deklaratives-Umsetzen"></a>Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten ###
+### <a name="Deklaratives-Umsetzen"></a>Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten
 
-Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen "actions" ableiten.
+Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen (hier im Framework "actions" genannt) ableiten.
 Diese sogenanten "actions" können zu Plugin-Kombinationen (oder halt actions-Kombinationen) kombiniert werde um diese gewünschten Funktionalität zu erhalten.
 
-Die Deklaration geschieht in der _config.js. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen (data-jmname="..."). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (_config.js) vorgenommen.
+Die Deklaration geschieht in der ```_config.js```. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen ```data-jmname="..."```. Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (```_config.js```) vorgenommen.
 
 Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):
 
@@ -67,7 +65,7 @@ Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Refer
 Den größten Vorteil diese Herrangehenswiese ist neben der **sehr vereinheitlichten Deklaration** die **große Wiederverwendbarkeit** der Module. Folglich werden Request gespart und die Funktionalität der Plugins ist **robuster** (weniger Fehleranfällig) durch ihre hohe Verwendung.
 
 ## 2. <a name="Ordnerstruktur"></a>File- und Ordnerstruktur ##
-Im Root-JS-Verzeichnis liegen die Dateien **require-main.js** und **empty.js**. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
+Im Root-JS-Verzeichnis liegen die Dateien ```require-main.js``` und ```empty.js```. Des Weiteren liegen hier die Ordner **externals**, **mylibs** und **requre-css**.
 
 ### require-main.js ###
 Sie wird als erste Datei von RequireJS geladen und ist die Basis des JMUI-Frameworks. Hier werden neben den body-Eventlistener für die Plugin-Initialisierung via Event-Delegation und den initial ausgeführten Funktionenaufrufe on dom-ready alle Plugins mit ihrem ***Verzeichnis-Pfad*** hinterlegt.
@@ -166,7 +164,7 @@ Im Ordner **customized** werden externe Plugins aus dem Ordner originalReference
 
 ### mylibs-Ordner ###
 
-Im mylibs-Ordner befinden sich 4 Unterordner (***actions***, ***custom***, ***modules*** und ***utils***) und die Datein ***_config.js***  (welche die Konfiguration der Plugins für ihren Anwendungsfall befinden) sowie die ***_super.js*** (Sie ist die "Super-Class", von der alle eigenen Plugins abgeleitet werden).
+Im mylibs-Ordner befinden sich 4 Unterordner (***actions***, ***custom***, ***modules*** und ***utils***) und die Datein ```_config.js```  (welche die Konfiguration der Plugins für ihren Anwendungsfall befinden) sowie die ```_super.js``` (Sie ist die "Super-Class", von der alle eigenen Plugins abgeleitet werden).
 
 #### actions-Ordner#####
 
@@ -195,7 +193,7 @@ Wie schon zuvor beschrieben, werden hier die speziellen Plugins hinterlegt, die 
 
 #### utils-Ordner#####
 
-Hier sind die Datein helpers.js und jquery.helpers.js hinterlegt. helpers.js beinhaltet allgemeine Helper-Funktionen, die im globalen Objekt jmHF als Methoden hinterlegt sind. jquery.helpers.js sind Funktionen hinterlegt, die im jQuery-Objekt hinterlegt sind. Sie sind somit jQuery-Plugins, die wie üblich auf eine Dom-Selection angewendet werden könne. 
+Hier sind die Datein ```helpers.js``` und ```jquery.helpers.js``` hinterlegt. ```helpers.js``` beinhaltet allgemeine Helper-Funktionen, die im globalen Objekt jmHF als Methoden hinterlegt sind. ```jquery.helpers.js``` sind Funktionen hinterlegt, die im jQuery-Objekt hinterlegt sind. Sie sind somit jQuery-Plugins, die wie üblich auf eine Dom-Selection angewendet werden könne. 
 
 Bsp.: 
 
@@ -206,17 +204,17 @@ Bsp.:
 
 ### require-css-Ordner ###
 
-hier werden neben der css.js alle CSS-Datein abgeleg, die On-Demant für ein komplexes Modul benötigt werden. 
-Hier wie z.B. video.css, die das komplette Styling des Video-Players beinhalten. Da der Video-Player jedoch nur selten zum Einsatz kommt ist das CSS nicht in der globalen styles.css integriert, sondern wird durch das Nachladen der video.css bei Bedarf in die Seite integriert.
+hier werden neben der ```css.js``` alle CSS-Datein abgeleg, die On-Demant für ein komplexes Modul benötigt werden. 
+Hier wie z.B. ```video.css```, die das komplette Styling des Video-Players beinhalten. Da der Video-Player jedoch nur selten zum Einsatz kommt ist das CSS nicht in der globalen styles.css integriert, sondern wird durch das Nachladen der video.css bei Bedarf in die Seite integriert.
 
 ***css.js***
 
-Die css.js ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  
+Die ```css.js``` ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  
 
 
 ## 3. <a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen ##
 
-Die Deklaration geschieht als Objekt in der _config.js. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
+Die Deklaration geschieht als Objekt in der ```_config.js```. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
 Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.
 
 Die Deklaration in der _config.js bestehend aus 

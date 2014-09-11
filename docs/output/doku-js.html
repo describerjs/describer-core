@@ -50,9 +50,7 @@ Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Verein
 // $body                                                            -&gt; $(&#39;body&#39;)
 // &#39;change&#39;                                                         -&gt; Event/s
 // &#39;select[data-jmname], input[type=&quot;radio&quot;][data-jmname], etc.&#39;    -&gt; Selektor 
-// function(e){                                                     -&gt; Funktion
-
-   });
+// function(e){ ... });                                             -&gt; Funktion
 </code></pre>
 
 <p>Zum Einen werden so nur eine geringe Anzahl an Event-Listener benötigt (Hörne nur auf den Body und nicht auf jedes entsprechende Element) und zum Anderen ist immer gewärleistet, dass auch interaktionen (vom User oder via dominit) auf Elemente, die durch einnen Ajax-Aufruf nachträglich in das DOM integriert werden, registriert werden.</p>
@@ -62,7 +60,7 @@ Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Verein
 <p>Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen &quot;actions&quot; ableiten.
 Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt actions-Kombinationen) kombiniert werde um diese gewünschten Funktionalität zu erhalten.</p>
 
-<p>Die Deklaration geschieht in der <u>config.js. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen (data-jmname=&quot;...&quot;). Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (</u>config.js) vorgenommen.</p>
+<p>Die Deklaration geschieht in der <code>_config.js</code>. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen <code>data-jmname=&quot;...&quot;</code>. Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (<code>_config.js</code>) vorgenommen.</p>
 
 <p>Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):</p>
 
@@ -235,7 +233,7 @@ Hier wie z.B. video.css, die das komplette Styling des Video-Players beinhalten.
 
 <h2>3. <a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen</h2>
 
-<p>Die Deklaration geschieht als Objekt in der _config.js. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
+<p>Die Deklaration geschieht als Objekt in der &quot;_config.js&quot;. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
 Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.</p>
 
 <p>Die Deklaration in der _config.js bestehend aus </p>
