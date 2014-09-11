@@ -31,13 +31,9 @@
 	@extend %element-inner-default;
 	@include column(8);
 	display: block;
-	margin: {
-		bottom: $space-quarter;
-		top: $space-quarter;
-	}
 	padding: {
-		bottom: 0;
-		top: 0;
+		bottom: $space-half;
+		top: $space-half;
 	}
 	position: relative;
 	z-index: 1;
@@ -52,14 +48,7 @@
 
 	@include bp-m {
 		@include column(4);
-	}
 
-	@include bp-l {
-		@include column(3);
-		margin: {
-			bottom: $space-half;
-			top: $space-half;
-		}
 	}
 }
 
