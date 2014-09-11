@@ -1,4 +1,16 @@
 @charset "UTF-8";
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+/* http://www.weloveiconfonts.com/#entypo */
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  margin-right: 1rem;
+}
+
+/***************************************************************************************************************************/
+
 *,
 *:after,
 *:before {
