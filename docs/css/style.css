@@ -6,6 +6,7 @@
 /* entypo */
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
+  font-style: normal;
   margin-right: 1rem;
 }
 
