@@ -13,12 +13,12 @@
 
 <ol>
 <li><i class="entypo-lamp"></i><a href="#Philosofie">Philosofie</a> </li>
-<li><i class="entypo-folder"></i><a href="#Ordnerstruktur">File- und Ordnerstruktur</a></li>
+<li><i class="fontawesome-sitemap"></i><a href="#Ordnerstruktur">File- und Ordnerstruktur</a></li>
 <li><i class="entypo-vcard"></i><a href="#Deklaration">Deklaration von HTML-Module-Funktionen</a></li>
 <li><i class="entypo-brush"></i><a href="#Erstellung">Erstellung von Plugins</a></li>
 </ol>
 
-<h2>1. <a name="Philosofie"></a>Philosophie</h2>
+<h2>1. <i class="entypo-lamp"></i><a name="Philosofie"></a>Philosophie</h2>
 
 <p>Das JM-JS-Framework verfolgt 4 wesentlichen Aspekten.</p>
 
@@ -62,28 +62,29 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 
 <p>Die Deklaration geschieht in der <code>_config.js</code>. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen <code>data-jmname=&quot;...&quot;</code>. Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (<code>_config.js</code>) vorgenommen.</p>
 
-<p>Bsp.: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):</p>
+<p><i class="fontawesome-beaker"></i> Beispiel: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):</p>
 
-<pre><code>// Beispielhafte Initialisierung im HTML:
-&lt;a class=&quot;textlink&quot; href=&quot;#anchor-optionen&quot; data-jmname=&quot;anchor&quot;&gt;Zusatzoptionen wählen&lt;/a&gt;
+<pre><code>    // Beispielhafte Initialisierung im HTML:
+    &lt;a class=&quot;textlink&quot; href=&quot;#anchor-optionen&quot; data-jmname=&quot;anchor&quot;&gt;Zusatzoptionen wählen&lt;/a&gt;
+
 </code></pre>
 
-<h2></h2>
+<pre><code>
+    // Entsprechendes Config-JSON:
+    {
+        jmname : &#39;anchor&#39;,                                  // wird im HTML referenziert
+        jmplugin: &#39;actions.scroll&#39;,                        // Plugin
+        jmconfig : {                                        // Konfigurationsobjekt
+            &#39;event&#39; : &#39;click&#39;,                              // die Aktion soll auf User-Klick gestartet werden
+            &#39;scrollTo&#39; : &#39;$(this.$elem.attr(\&#39;href\&#39;))&#39;     // Angabe, wohin gescrollt werden soll
+        }
+     }
 
-<pre><code>// Entsprechendes Config-JSON:
-{
-    jmname : &#39;anchor&#39;,                                  // wird im HTML referenziert
-    jmplugin: &#39;actions.scroll&#39;,                        // Plugin
-    jmconfig : {                                        // Konfigurationsobjekt
-        &#39;event&#39; : &#39;click&#39;,                              // die Aktion soll auf User-Klick gestartet werden
-        &#39;scrollTo&#39; : &#39;$(this.$elem.attr(\&#39;href\&#39;))&#39;     // Angabe, wohin gescrollt werden soll
-    }
- }
 </code></pre>
 
 <p>Den größten Vorteil diese Herrangehenswiese ist neben der <strong>sehr vereinheitlichten Deklaration</strong> die <strong>große Wiederverwendbarkeit</strong> der Module. Folglich werden Request gespart und die Funktionalität der Plugins ist <strong>robuster</strong> (weniger Fehleranfällig) durch ihre hohe Verwendung.</p>
 
-<h2>2. <a name="Ordnerstruktur"></a>File- und Ordnerstruktur</h2>
+<h2>2. <i class="entypo-folder"></i><a name="Ordnerstruktur"></a>File- und Ordnerstruktur</h2>
 
 <p>Im Root-JS-Verzeichnis liegen die Dateien <code>require-main.js</code> und <code>empty.js</code>. Des Weiteren liegen hier die Ordner <strong>externals</strong>, <strong>mylibs</strong> und <strong>requre-css</strong>.</p>
 
@@ -95,7 +96,7 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 
 <p>Er dient zum einen um eine <strong>kürzere Referenz</strong> auf das Plugin im require-Array zu bekommen und zum anderen ist er für die <strong>Versionierung</strong> notwendig. </p>
 
-<p><strong>Beispiel</strong> des paths-Objekts in Anlehnung der <strong>kürzeren Referenz</strong>:</p>
+<p><i class="fontawesome-beaker"></i> Beispiel des paths-Objekts in Anlehnung der <strong>kürzeren Referenz</strong>:</p>
 
 <pre><code> require.config({
     paths      : {
@@ -131,7 +132,7 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 
 <p>Anders verhält es sich bei den selbst erstellten Dateien die im mylibs untergebracht sind. Diese werden mit ihrer ganzen Pfadangabe exklusive mylibs angegeben, wobei ein &quot;/&quot; mit einem &quot;.&quot; und ein &quot;.&quot; mit einem &quot;_&quot; ersetzt wird. </p>
 
-<p><strong>Beispiel</strong> des paths-Objekts in Anlehnung an die <strong>Versionierung</strong> (versionierte require-main.fc251c.js):</p>
+<p><i class="fontawesome-beaker"></i> Beispiel des paths-Objekts in Anlehnung an die <strong>Versionierung</strong> (versionierte require-main.fc251c.js):</p>
 
 <pre><code>require.config({
         paths      : {
@@ -171,7 +172,7 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 <em>Beispiel</em>:
 Soll bei der Auslieferung des Produkts ein Touch-Support nicht unterstützt werden, werden die entsprechenden Datein mit der Endung &quot;-ts&quot; (die den Support für das Modul bieten) aus dem Build-Ordner gelöscht. Demzufolge würde jedoch die Ladefunktionalität </p>
 
-<pre><code>define([&#39;jquery&#39;, &#39;_super&#39;, &#39;modules.carousel-ts&#39;], function ($, _super, ts){ ...
+<pre><code>define([&#39;jquery&#39;, &#39;_super&#39;, &#39;modules.carousel-ts&#39;], function ($, _super, ts){ ... 
 </code></pre>
 
 <p>von RequireJS fehlschlagen. Hier kommt die empty.js zum Einsatz. Auf sie wird im Datei-Pfade (siehe vorrangegangenes Beispiel der require-main.fc251c.js) verwiesen, welcher durch Grunt bei einer nicht vorhandener Datei automatisch gesetzt wird. Eine Versionierung ist hier nicht Notwendig, da der Inhalt sich nie änder wird.</p>
@@ -215,7 +216,7 @@ Im Ordner <strong>customized</strong> werden externe Plugins aus dem Ordner orig
 
 <p>Hier sind die Datein <code>helpers.js</code> und <code>jquery.helpers.js</code> hinterlegt. <code>helpers.js</code> beinhaltet allgemeine Helper-Funktionen, die im globalen Objekt jmHF als Methoden hinterlegt sind. <code>jquery.helpers.js</code> sind Funktionen hinterlegt, die im jQuery-Objekt hinterlegt sind. Sie sind somit jQuery-Plugins, die wie üblich auf eine Dom-Selection angewendet werden könne. </p>
 
-<p>Bsp.: </p>
+<p><i class="fontawesome-beaker"></i> Beispiel: </p>
 
 <pre><code>var $data = $(p_data);             // p_data = &#39;&lt;div&gt;&lt;p data-jmdominit=&quot;true&quot; .....&gt;&lt;/p&gt;&lt;/div&gt;&#39;
 $(&#39;body&#39;).append($data);
@@ -231,7 +232,7 @@ Hier wie z.B. <code>video.css</code>, die das komplette Styling des Video-Player
 
 <p>Die <code>css.js</code> ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  </p>
 
-<h2>3. <a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen</h2>
+<h2>3. <i class="entypo-vcard"></i><a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen</h2>
 
 <p>Die Deklaration geschieht als Objekt in der <code>_config.js</code>. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
 Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.</p>
@@ -244,7 +245,7 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 <li>jmconfig</li>
 </ol>
 
-<p>einfaches Beispiel:</p>
+<p><i class="fontawesome-beaker"></i> Beispiel:</p>
 
 <pre><code>{
     jmname : &#39;anchor&#39;,
@@ -276,7 +277,7 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <p>Für jedes jmplugin ist ein eigenes jmconfig-Objekt anzulenge. Bei mehreren Plugins sind diese in ein Array zu schreiben, wobei die Reihenfolge der Objekte der Reihenfolge der Plugins in jmplugin entspricht.</p>
 
-<p>Beispiel einer kompletten HTML-Module-Funktionalität:</p>
+<p><i class="fontawesome-beaker"></i> Beispiel einer kompletten HTML-Module-Funktionalität:</p>
 
 <pre><code>{
     jmname : &#39;select-email-einstellung&#39;, 
@@ -304,7 +305,7 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <p>Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration der HTML-Module-Funktionalität im DOM je nach Anwendungsfall aussehen könnte. Es wird zudem die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig durch die Angabe des <em>data-jmconfig</em>-Attributs aussehen könnte.</p>
 
-<p>Beispiel aus der <code>_config.js</code></p>
+<p><i class="fontawesome-beaker"></i> Beispiel aus der <code>_config.js</code></p>
 
 <pre><code>...
 {
@@ -331,30 +332,42 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 }
 </code></pre>
 
-<h4>Beispiel 1</h4>
+<h4><i class="entypo-clipboard"></i> Fall 1</h4>
 
-<p>Beispiel mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):</p>
+<p>Deklaration mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;{ &#39;data&#39;: &#39;neu&#39; }&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<h5>Alternative Angabe zu Beispiel 1</h5>
+<h5><i class="entypo-switch"></i> Alternative 1</h5>
 
-<p>data-jmconfig-Objekt mit einem [ ] gewrappt (-&gt; unnötiger mehraufwand):</p>
+<blockquote>
+<p><i class="fontawesome-warning-sign"></i>Unnötiger Mehraufwand</p>
+</blockquote>
+
+<p>Das data-jmconfig-Objekt mit einem [ ] gewrappt:</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;[{ &#39;data&#39;: &#39;neu&#39; }]&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<h5>Alternative 2</h5>
+<h5><i class="entypo-switch"></i> Alternative 2</h5>
 
-<p>data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht. (-&gt; unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot;|&quot; getrennt) im data-jmname-Attribut gelistet sind)</p>
+<p><i class="fontawesome-warning-sign"></i></p>
+
+<blockquote>
+<p>Unnötiger Mehraufwand. Diese Deklaration ist nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot;|&quot; getrennt) im data-jmname-Attribut gelistet sind.</p>
+</blockquote>
+
+<p>Das data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht.</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;{&#39;ex-one-obj&#39;: { &#39;data&#39;: &#39;neu&#39; }}&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p>-&gt; <em>Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.</em></p>
+<p><i class="fontawesome-reply"></i>Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.</p>
 
-<p>2) Beispiel mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_1 und actions.add_2 alias actions.add):</p>
+<h4><i class="entypo-clipboard"></i> Fall 2</h4>
+
+<p>Deklaration mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_1 und actions.add_2 alias actions.add):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-two-obj&quot; data-jmconfig=&quot;[{ &#39;data&#39;: &#39;neu1&#39; }, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]&quot;&gt;click&lt;/div&gt;
 </code></pre>
@@ -370,12 +383,16 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 <p>Wichtig! die Erweiterung des Plugin-Namens ..._1 oder ..._2 etc ist notwendig, da hier ein Plugin mehrmals für eine HTML-Module-Funktionalität in unterschielichen Konfigurationen verwendet wird. Andernfalls ist es dem Framework nicht möglicht zu überprüfen, ob das Plugin schon initialisiert wurde oder nicht.</p>
 </blockquote>
 
-<p>3) Beispiel mit zwei data-jmnamen und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add (HTML-Module-Funktionalität: ex-one-obj), sowei actions.add_1 und actions.add_2 alias actions.add (HTML-Module-Funktionalität: ex-two-obj)):</p>
+<h4><i class="entypo-clipboard"></i> Fall 3</h4>
+
+<p>Deklaration mit zwei data-jmnamen und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add (HTML-Module-Funktionalität: ex-one-obj), sowei actions.add_1 und actions.add_2 alias actions.add (HTML-Module-Funktionalität: ex-two-obj)):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj|ex-two-obj&quot; data-jmconfig=&quot;{ &#39;ex-one-obj&#39; : { &#39;data&#39;: &#39;neu&#39; }, &#39;ex-two-obj&#39; : [{ &#39;data&#39;: &#39;neu1&#39; }, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]}&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p>4) Beispiel mit einem data-jmname und dem überschreiben von nur einem key-value-Pairs des entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_2 alias actions.add):</p>
+<h4><i class="entypo-clipboard"></i> Fall 4</h4>
+
+<p>Deklaration mit einem data-jmname und dem überschreiben von nur einem key-value-Pairs des entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_2 alias actions.add):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-two-obj&quot; data-jmconfig=&quot;[{}, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]&quot;&gt;click&lt;/div&gt;
 </code></pre>
@@ -477,7 +494,7 @@ Die Funktionalitäten werden in der _config.js in einem entsprechenden Objekt de
 
 <p>Die HTML-Module-Funktionalität wird bei <strong>domready</strong>, <strong>change</strong> und bei <strong>keyup</strong> mit einem delay von 500 ms ausgefürt.</p>
 
-<h2>4. Erstellung von Plugins</h2>
+<h2>4. <i class="entypo-brush"></i><a name="Erstellung"></a>Erstellung von Plugins</h2>
 
 <p>-ts berücksichtigen
 empty.js berücksichtigen</p>
