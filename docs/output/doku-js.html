@@ -12,10 +12,10 @@
 	      <h1>JM-JS-Framework</h1>
 
 <ol>
-<li><a href="#Philosofie">Philosofie</a> </li>
-<li><a href="#Ordnerstruktur">File- und Ordnerstruktur</a></li>
-<li><a href="#Deklaration">Deklaration von HTML-Module-Funktionen</a></li>
-<li><a href="#Erstellung">Erstellung von Plugins</a></li>
+<li><i class="entypo-lamp"></i><a href="#Philosofie">Philosofie</a> </li>
+<li><i class="entypo-folder"></i><a href="#Ordnerstruktur">File- und Ordnerstruktur</a></li>
+<li><i class="entypo-vcard"></i><a href="#Deklaration">Deklaration von HTML-Module-Funktionen</a></li>
+<li><i class="entypo-brush"></i><a href="#Erstellung">Erstellung von Plugins</a></li>
 </ol>
 
 <h2>1. <a name="Philosofie"></a>Philosophie</h2>
@@ -41,7 +41,7 @@ Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Verein
 
 <h3><a name="Event-Delegation"></a>Initialisierung der Module über Event-Delegation</h3>
 
-<p>die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur die benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener wie z.B. <strong>click, change, dominit, jmtrigger ...</strong> hören auf dem <strong>body</strong>, der wiederum nur bei den aufgelistente elementen im <strong>Selektor</strong> seine <strong>Funktion</strong> ausführt.</p>
+<p>die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur die benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener wie z.B. <strong>click, change, dominit, jmtrigger ...</strong> hören auf dem <strong>body</strong>, der wiederum nur bei den aufgelistente Elementen im <strong>Selektor</strong> seine <strong>Funktion(handler)</strong> ausführt.</p>
 
 <pre><code>$body.on(&#39;change&#39;, &#39;select[data-jmname], input[type=&quot;radio&quot;][data-jmname], etc.&#39;, function(e){ 
 
@@ -57,7 +57,7 @@ Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Verein
 
 <h3><a name="Deklaratives-Umsetzen"></a>Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten</h3>
 
-<p>Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen &quot;actions&quot; ableiten.
+<p>Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen (hier im Framework &quot;actions&quot; genannt) ableiten.
 Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt actions-Kombinationen) kombiniert werde um diese gewünschten Funktionalität zu erhalten.</p>
 
 <p>Die Deklaration geschieht in der <code>_config.js</code>. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen <code>data-jmname=&quot;...&quot;</code>. Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (<code>_config.js</code>) vorgenommen.</p>
@@ -85,7 +85,7 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 
 <h2>2. <a name="Ordnerstruktur"></a>File- und Ordnerstruktur</h2>
 
-<p>Im Root-JS-Verzeichnis liegen die Dateien <strong>require-main.js</strong> und <strong>empty.js</strong>. Des Weiteren liegen hier die Ordner <strong>externals</strong>, <strong>mylibs</strong> und <strong>requre-css</strong>.</p>
+<p>Im Root-JS-Verzeichnis liegen die Dateien <code>require-main.js</code> und <code>empty.js</code>. Des Weiteren liegen hier die Ordner <strong>externals</strong>, <strong>mylibs</strong> und <strong>requre-css</strong>.</p>
 
 <h3>require-main.js</h3>
 
@@ -183,7 +183,7 @@ Im Ordner <strong>customized</strong> werden externe Plugins aus dem Ordner orig
 
 <h3>mylibs-Ordner</h3>
 
-<p>Im mylibs-Ordner befinden sich 4 Unterordner (<strong><em>actions</em></strong>, <strong><em>custom</em></strong>, <strong><em>modules</em></strong> und <strong><em>utils</em></strong>) und die Datein <strong><em>_config.js</em></strong>  (welche die Konfiguration der Plugins für ihren Anwendungsfall befinden) sowie die <strong><em>_super.js</em></strong> (Sie ist die &quot;Super-Class&quot;, von der alle eigenen Plugins abgeleitet werden).</p>
+<p>Im mylibs-Ordner befinden sich 4 Unterordner (<strong><em>actions</em></strong>, <strong><em>custom</em></strong>, <strong><em>modules</em></strong> und <strong><em>utils</em></strong>) und die Datein <code>_config.js</code>  (welche die Konfiguration der Plugins für ihren Anwendungsfall befinden) sowie die <code>_super.js</code> (Sie ist die &quot;Super-Class&quot;, von der alle eigenen Plugins abgeleitet werden).</p>
 
 <h4>actions-Ordner</h4>
 
@@ -213,7 +213,7 @@ Im Ordner <strong>customized</strong> werden externe Plugins aus dem Ordner orig
 
 <h4>utils-Ordner</h4>
 
-<p>Hier sind die Datein helpers.js und jquery.helpers.js hinterlegt. helpers.js beinhaltet allgemeine Helper-Funktionen, die im globalen Objekt jmHF als Methoden hinterlegt sind. jquery.helpers.js sind Funktionen hinterlegt, die im jQuery-Objekt hinterlegt sind. Sie sind somit jQuery-Plugins, die wie üblich auf eine Dom-Selection angewendet werden könne. </p>
+<p>Hier sind die Datein <code>helpers.js</code> und <code>jquery.helpers.js</code> hinterlegt. <code>helpers.js</code> beinhaltet allgemeine Helper-Funktionen, die im globalen Objekt jmHF als Methoden hinterlegt sind. <code>jquery.helpers.js</code> sind Funktionen hinterlegt, die im jQuery-Objekt hinterlegt sind. Sie sind somit jQuery-Plugins, die wie üblich auf eine Dom-Selection angewendet werden könne. </p>
 
 <p>Bsp.: </p>
 
@@ -224,19 +224,19 @@ $data.triggerSelfexecObj();       // &lt;- Funktion in der jquery.helpers.js
 
 <h3>require-css-Ordner</h3>
 
-<p>hier werden neben der css.js alle CSS-Datein abgeleg, die On-Demant für ein komplexes Modul benötigt werden. 
-Hier wie z.B. video.css, die das komplette Styling des Video-Players beinhalten. Da der Video-Player jedoch nur selten zum Einsatz kommt ist das CSS nicht in der globalen styles.css integriert, sondern wird durch das Nachladen der video.css bei Bedarf in die Seite integriert.</p>
+<p>hier werden neben der <code>css.js</code> alle CSS-Datein abgeleg, die On-Demant für ein komplexes Modul benötigt werden. 
+Hier wie z.B. <code>video.css</code>, die das komplette Styling des Video-Players beinhalten. Da der Video-Player jedoch nur selten zum Einsatz kommt ist das CSS nicht in der globalen styles.css integriert, sondern wird durch das Nachladen der video.css bei Bedarf in die Seite integriert.</p>
 
 <p><strong><em>css.js</em></strong></p>
 
-<p>Die css.js ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  </p>
+<p>Die <code>css.js</code> ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  </p>
 
 <h2>3. <a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen</h2>
 
-<p>Die Deklaration geschieht als Objekt in der &quot;_config.js&quot;. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
+<p>Die Deklaration geschieht als Objekt in der <code>_config.js</code>. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
 Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.</p>
 
-<p>Die Deklaration in der _config.js bestehend aus </p>
+<p>Die Deklaration in der <code>_config.js</code> bestehend aus:</p>
 
 <ol>
 <li>jmname</li>
@@ -302,9 +302,9 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <h3>Deklaration im DOM für die Attribute data-jmname und data-jmconfig</h3>
 
-<p>Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration im DOM je nach Anwendungsfall aussehen könnte. Hier wird immer auch die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig aussehen könnte.</p>
+<p>Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration der HTML-Module-Funktionalität im DOM je nach Anwendungsfall aussehen könnte. Es wird zudem die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig durch die Angabe des <em>data-jmconfig</em>-Attributs aussehen könnte.</p>
 
-<p>_config.js</p>
+<p>Beispiel aus der <code>_config.js</code></p>
 
 <pre><code>...
 {
@@ -331,22 +331,28 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 }
 </code></pre>
 
-<p>1) Beispiel mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):</p>
+<h4>Beispiel 1</h4>
+
+<p>Beispiel mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;{ &#39;data&#39;: &#39;neu&#39; }&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p>Alternative 1: data-jmconfig-Objekt mit einem [ ] gewrappt (-&gt; unnötiger mehraufwand):</p>
+<h5>Alternative Angabe zu Beispiel 1</h5>
+
+<p>data-jmconfig-Objekt mit einem [ ] gewrappt (-&gt; unnötiger mehraufwand):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;[{ &#39;data&#39;: &#39;neu&#39; }]&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p>Alternative 2: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht. (-&gt; unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot;|&quot; getrennt) im data-jmname-Attribut gelistet sind)</p>
+<h5>Alternative 2</h5>
+
+<p>data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht. (-&gt; unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot;|&quot; getrennt) im data-jmname-Attribut gelistet sind)</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;{&#39;ex-one-obj&#39;: { &#39;data&#39;: &#39;neu&#39; }}&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p><em>Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.</em></p>
+<p>-&gt; <em>Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.</em></p>
 
 <p>2) Beispiel mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_1 und actions.add_2 alias actions.add):</p>
 

@@ -1,8 +1,8 @@
 # JM-JS-Framework
-1. [Philosofie](#Philosofie) 
-2. [File- und Ordnerstruktur](#Ordnerstruktur)
-3. [Deklaration von HTML-Module-Funktionen](#Deklaration)
-4. [Erstellung von Plugins](#Erstellung)
+1. <i class="entypo-lamp"></i>[Philosofie](#Philosofie) 
+2. <i class="entypo-folder"></i>[File- und Ordnerstruktur](#Ordnerstruktur)
+3. <i class="entypo-vcard"></i>[Deklaration von HTML-Module-Funktionen](#Deklaration)
+4. <i class="entypo-brush"></i>[Erstellung von Plugins](#Erstellung)
 
 ## 1. <a name="Philosofie"></a>Philosophie
 
@@ -217,7 +217,7 @@ Die ```css.js``` ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen v
 Die Deklaration geschieht als Objekt in der ```_config.js```. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
 Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.
 
-Die Deklaration in der _config.js bestehend aus 
+Die Deklaration in der ```_config.js``` bestehend aus:
 
 
 1. jmname
@@ -282,9 +282,9 @@ Wie auch im CSS ist das Überschreiben bestimmter Values in **Ausnahmefällen** 
 
 ### Deklaration im DOM für die Attribute data-jmname und data-jmconfig ###
 
-Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration im DOM je nach Anwendungsfall aussehen könnte. Hier wird immer auch die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig aussehen könnte.
+Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration der HTML-Module-Funktionalität im DOM je nach Anwendungsfall aussehen könnte. Es wird zudem die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig durch die Angabe des *data-jmconfig*-Attributs aussehen könnte.
 
-_config.js
+Beispiel aus der ```_config.js```
 
 	...
 	{
@@ -311,20 +311,23 @@ _config.js
 	}
 
 
-1) Beispiel mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):
+#### Beispiel 1
+Beispiel mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):
 
 	<div data-jmname="ex-one-obj" data-jmconfig="{ 'data': 'neu' }">click</div>
 
-Alternative 1: data-jmconfig-Objekt mit einem [ ] gewrappt (-> unnötiger mehraufwand):
+##### Alternative Angabe zu Beispiel 1 
+data-jmconfig-Objekt mit einem [ ] gewrappt (-> unnötiger mehraufwand):
 
 
 	<div data-jmname="ex-one-obj" data-jmconfig="[{ 'data': 'neu' }]">click</div>
 
-Alternative 2: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht. (-> unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via "|" getrennt) im data-jmname-Attribut gelistet sind)
+##### Alternative 2
+data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht. (-> unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via "|" getrennt) im data-jmname-Attribut gelistet sind)
 
 	<div data-jmname="ex-one-obj" data-jmconfig="{'ex-one-obj': { 'data': 'neu' }}">click</div>
 
-*Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.*
+-> *Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.*
 
 2) Beispiel mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_1 und actions.add_2 alias actions.add):
 
