@@ -43,6 +43,8 @@
 
 @import "compass/css3/box-shadow";
 
+$menu-btn-height: 2.5rem;
+
 %nav-item {
 	/**/
 }
@@ -91,10 +93,12 @@
 		@include clearfix;
 		background-color: $theme-nav-items-bg;
 		clear: both;
+		margin-top: $menu-btn-height + 1;
 
 		@include bp-l {
-			background-color: inherit;
 			@include column(12);
+			background-color: inherit;
+			margin-top: 0;
 		}
 	}
 
@@ -169,10 +173,10 @@
 	@include position($pad-half, $dist, '', '');
 	color: $theme-menu-btn-fg;
 	display: block;
-	height: 2.5rem;
-	line-height: 2.4rem;
-	text-indent: -2.5rem;
-	width: 2.5rem;
+	height: $menu-btn-height;
+	line-height: $menu-btn-height - .1;
+	text-indent: -($menu-btn-height);
+	width: $menu-btn-height;
 	z-index: 1;
 
 	&:before {
