@@ -1,13 +1,35 @@
 @charset "UTF-8";
 
-@import url(http://weloveiconfonts.com/api/?family=entypo);
 /* http://www.weloveiconfonts.com/#entypo */
+/* http://www.weloveiconfonts.com/#fontawesome */
+@import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome);
 
 /* entypo */
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
+}
+
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+.fontawesome-reply {
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+
+i {
+  color: #66d9ef;
+  display: inline-block;
   font-style: normal;
-  margin-right: 1rem;
+  margin-right: .5rem;
+  min-width: 1.5rem;
+  text-align: center;
 }
 
 /***************************************************************************************************************************/
@@ -113,6 +135,7 @@ hr {
 
 a {
   cursor: pointer;
+  color: #999;
   outline: 0;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
@@ -121,10 +144,9 @@ a {
   -o-transition: color .2s ease-in-out;
   -webkit-transition: color .2s ease-in-out;
   transition: color .2s ease-in-out;
-  color: #999;
 }
 a:focus, a:hover {
-  color: #333;
+  color: #f92672;
 }
 
 html {
