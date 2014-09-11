@@ -16,14 +16,13 @@
 	<nav class="nav" id="nav" role="navigation">
 		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 		<ul class="nav-items">
-			<li class="nav-item">
-				<a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
+			<li class="nav-item menu-item">
+				<a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
 				<div class="flyout">
-					<div class="menu-close-btn" data-jmname="menu-close"></div>
 					<div class="flyout-group">
-						<div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
+						<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
 						<ul class="flyout-items">
-							<li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
+							<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-1">Subsubitem 1</a></li>
 						</ul>
 					</div>
 				</div>
@@ -105,7 +104,7 @@ $menu-btn-height: 2.5rem;
 	// Die einzelnen Elemente <li>
 	.nav-item {
 		@extend %nav-item;
-		@include transition(background-color 150ms linear);
+		@include transition(background-color .15s linear);
 		background-color: $theme-nav-link-bg;
 		border-bottom: 1px solid $theme-nav-link-active-bg;
 		z-index: 1;
@@ -114,21 +113,17 @@ $menu-btn-height: 2.5rem;
 			border-bottom: initial;
 			float: left;
 
-			&:before {
-				@include pseudo-element-default;
-				border-left: 1px solid $theme-nav-link-active-bg;
-				top: $default-spacing;
-				bottom: $default-spacing;
+			&:first-child {
+				margin-left: -($default-padding);
 			}
 
-			&:first-child {
-				&:before {
-					border-left: initial;
-				}
-
-				@include bp-l {
-					margin-left: -($default-padding);
-				}
+			&:before {
+				@include pseudo-element-default;
+				@include transitions(bottom .15s linear, top .15s linear);
+				background-color: $theme-nav-link-active-bg;
+				bottom: $default-spacing;
+				top: $default-spacing;
+				width: 1px;
 			}
 		}
 
@@ -146,7 +141,8 @@ $menu-btn-height: 2.5rem;
 
 				&+ .nav-item {
 					&:before {
-						border-left: initial;
+						bottom: 0;
+						top: 0;
 					}
 				}
 			}

@@ -1442,14 +1442,13 @@ main {
 	<nav class="nav" id="nav" role="navigation">
 		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 		<ul class="nav-items">
-			<li class="nav-item">
-				<a href="$item-1$" class="nav-link" data-jmname="nav-link" data-jmdominit="true">$item-1$</a>
+			<li class="nav-item menu-item">
+				<a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
 				<div class="flyout">
-					<div class="menu-close-btn" data-jmname="menu-close"></div>
 					<div class="flyout-group">
-						<div class="flyout-item"><a class="flyout-link section-name" href="$item-1$/$subitem-1$">$subitem-1$</a></div>
+						<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
 						<ul class="flyout-items">
-							<li class="flyout-item"><a class="flyout-link" href="$item-1$/$subitem-1$/$subsubitem-1$">$subsubitem-1$</a></li>
+							<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-1">Subsubitem 1</a></li>
 						</ul>
 					</div>
 				</div>
@@ -1532,11 +1531,11 @@ main {
   }
 }
 .nav .nav-item {
-  -moz-transition: background-color 150ms linear;
-  -ms-transition: background-color 150ms linear;
-  -o-transition: background-color 150ms linear;
-  -webkit-transition: background-color 150ms linear;
-  transition: background-color 150ms linear;
+  -moz-transition: background-color 0.15s linear;
+  -ms-transition: background-color 0.15s linear;
+  -o-transition: background-color 0.15s linear;
+  -webkit-transition: background-color 0.15s linear;
+  transition: background-color 0.15s linear;
   background-color: #ddd;
   border-bottom: 1px solid #aaa;
   z-index: 1;
@@ -1546,24 +1545,24 @@ main {
     border-bottom: initial;
     float: left;
   }
+  .nav .nav-item:first-child {
+    margin-left: -1rem;
+  }
   .nav .nav-item:before {
     content: "";
     display: block;
     position: absolute;
-    border-left: 1px solid #aaa;
-    top: 0.75rem;
+    -moz-transition: bottom 0.15s linear, top 0.15s linear;
+    -ms-transition: bottom 0.15s linear, top 0.15s linear;
+    -o-transition: bottom 0.15s linear, top 0.15s linear;
+    -webkit-transition: bottom 0.15s linear, top 0.15s linear;
+    transition: bottom 0.15s linear, top 0.15s linear;
+    background-color: #aaa;
     bottom: 0.75rem;
-  }
-  .nav .nav-item:first-child:before {
-    border-left: initial;
-  }
-}
-@media only screen and (min-width: 60em) and (min-width: 60em) {
-  .nav .nav-item:first-child {
-    margin-left: -1rem;
+    top: 0.75rem;
+    width: 1px;
   }
 }
-
 .nav .nav-item:hover {
   background-color: #aaa;
 }
@@ -1577,7 +1576,8 @@ main {
     visibility: visible;
   }
   .nav .nav-item:hover + .nav-item:before {
-    border-left: initial;
+    bottom: 0;
+    top: 0;
   }
 }
 .nav .nav-link {
