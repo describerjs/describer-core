@@ -209,7 +209,15 @@ p, dl, ol, ul, blockquote, code {
 
 /***************************************************************************************************************************/
 
-code {
+p code {
+  background-color: #272822;
+  color: #ddd;
+  display: inline-block;
+  font-size: .8rem;
+  padding: 0 .5rem;
+}
+
+.hljs {
   margin-left: -1rem;
   margin-right: -1rem;
 }
