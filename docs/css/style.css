@@ -238,7 +238,8 @@ p, dl, ol, ul {
   width: 75%;
 }
 
-p, dl, ol, ul, blockquote, code {
+p, dl, ol, ul, blockquote,
+.hljs {
   margin-bottom: 3rem;
 }
 
