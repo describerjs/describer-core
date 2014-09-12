@@ -24,20 +24,6 @@
 /*------------------------------------*\
     $ADD-ONS
 \*------------------------------------*/
-/*.is-typeset {
-	.headline	{ @extend %as-heading__headline; 	@extend %as-heading__headline--typeset; } 
-	h1			{ @extend %as-heading__largest; 	@extend %as-heading__largest--typeset; } 	
-	h2 			{ @extend %as-heading__large; 		@extend %as-heading__large--typeset; } 	
-	h3			{ @extend %as-heading__medium; 		@extend %as-heading__medium--typeset; } 	
-	h4 			{ @extend %as-heading__normal; 		@extend %as-heading__normal--typeset; }  	
-	h5			{ @extend %as-heading__small; 		@extend %as-heading__small--typeset; } 	
-	h6			{ @extend %as-heading__smallest; 	@extend %as-heading__smallest--typeset; }  	
-	p 			{ @extend %as-para--typeset; }
-	ol			{ @extend %as-ordered-list--typeset; }
-	ul 			{ @extend %as-unordered-list--typeset; }
-	li 			{ @extend %as-list--typeset; }
-	blockquote 	{ @extend %as-blockquote--typeset; }
-}*/
 /*------------------------------------*\
     $GENERIC ELEMENTS
 \*------------------------------------*/
@@ -47,8 +33,8 @@
 /**
  * COLORS..............................Diverse Farbwerte
  * THEME...............................Direkte Farbzuweisung an Elemente
- * ......-bg = background
- * ......-fg = foreground
+ * ......bg = background
+ * ......fg = foreground
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
@@ -58,11 +44,6 @@
 /*------------------------------------*\
     $COLORS
 \*------------------------------------*/
-/*
-$theme-color-iota:		#000;
-$theme-color-kappa:		#000;
-$theme-color-lambda:	#000;
-*/
 /*------------------------------------*\
     $THEME
 \*------------------------------------*/

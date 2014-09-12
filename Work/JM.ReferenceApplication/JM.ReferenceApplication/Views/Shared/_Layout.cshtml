@@ -68,7 +68,6 @@
             addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
-            //addCSSToDOM('/css/ayyildiz.css');
             addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")');
         } else {
             addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
@@ -104,7 +103,7 @@
 			@{ Html.RenderAction("_Navigation", "Content", new { area = "" }); }
             @*@Html.Partial("_LoginPartial")*@
         </header>
-        <main role="main">
+        <main class="page-main" role="main">
             @RenderBody()
             <div class="togglebox">
 		        <a class="tb-subject" data-jmname="togglebox">Features</a>
