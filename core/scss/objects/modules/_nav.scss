@@ -165,8 +165,8 @@ $menu-btn-height: 2.5rem;
 
 // Der Menuknopf für die mobile Darstellung mit Aufklappfunktion.
 .menu-btn {
+	@include absolute($pad-half, $dist, '', '');
 	@include hide-on-desktop;
-	@include position($pad-half, $dist, '', '');
 	color: $theme-menu-btn-fg;
 	display: block;
 	height: $menu-btn-height;
@@ -273,7 +273,7 @@ $menu-btn-height: 2.5rem;
 // "flyout" wird per Hover eingeblendet, mobil reagiert diese auf Klick
 .flyout {
 	@include clearfix;
-	@include position('', 0, '', 0);
+	@include absolute('', 0, '', 0);
 	@include transition(opacity .3s linear);
 	@include visibility(hidden);
 	background-color: $theme-flyout-bg;

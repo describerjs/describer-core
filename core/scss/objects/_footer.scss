@@ -20,7 +20,7 @@
 
 .page-footer {
 	@extend %page-element-default;
-	border-top: 1px solid $black;
+	border-top: 1px solid $theme-color-beta;
 	padding: {
 		bottom: $default-spacing;
 		top: $default-spacing;

@@ -231,10 +231,10 @@
 \*------------------------------------*/
 
 @mixin border-radius($amount) {
-	@include border-top-left-radius($amount);
 	@include border-bottom-left-radius($amount);
-	@include border-top-right-radius($amount);
 	@include border-bottom-right-radius($amount);
+	@include border-top-left-radius($amount);
+	@include border-top-right-radius($amount);
 }
 
 
@@ -339,7 +339,7 @@
 	$ABSOLUTE-POSITION
 \*------------------------------------*/
 
-@mixin position($top: "", $right: "", $bottom: "", $left: "") {
+@mixin absolute($top: "", $right: "", $bottom: "", $left: "") {
 	position: absolute;
 
 	@if $top != "" {
@@ -381,7 +381,6 @@
 \*------------------------------------*/
 
 @mixin user-select {
-	-khtml-user-select:		none;
 	-moz-user-select:		none;
 	-ms-user-select:		none;
 	-webkit-user-select:	none;

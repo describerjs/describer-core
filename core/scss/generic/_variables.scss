@@ -5,8 +5,8 @@
 /**
  * COLORS..............................Diverse Farbwerte
  * THEME...............................Direkte Farbzuweisung an Elemente
- * ......-bg = background
- * ......-fg = foreground
+ * ......bg = background
+ * ......fg = foreground
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
@@ -22,23 +22,15 @@
     $COLORS
 \*------------------------------------*/
 
-$black:	#000;
-$white: #fff;
-
 $theme-color-zero:		transparent;
-$theme-color-alpha:		$white;
-$theme-color-beta:		$black;
+$theme-color-alpha:		#fff;
+$theme-color-beta:		#000;
 $theme-color-gamma:		#f0f0f0;
 $theme-color-delta:		#ddd;
 $theme-color-epsilon:	#aaa;
 $theme-color-zeta:		#999;
 $theme-color-eta:		#666;
 $theme-color-theta:		#333;
-/*
-$theme-color-iota:		#000;
-$theme-color-kappa:		#000;
-$theme-color-lambda:	#000;
-*/
 
 
 
@@ -73,8 +65,6 @@ $theme-btn-active-bg:			$theme-color-delta;
 $theme-btn-active-fg:			$theme-color-epsilon;
 $theme-btn-disabled-bg:			$theme-color-eta;
 $theme-btn-disabled-fg:			$theme-color-theta;
-$theme-btn-disabled-active-bg:	$theme-color-epsilon;
-$theme-btn-disabled-active-fg:	$theme-color-zeta;
 $theme-cta-bg:					$theme-color-beta;
 $theme-cta-fg:					$theme-color-alpha;
 $theme-cta-active-bg:			$theme-color-eta;
@@ -141,6 +131,7 @@ $font-beta:		"Roboto Slab", $font;
 
 $font-btn:		$font-alpha;
 $font-heading:	$font-beta;
+$font-main:		$font-alpha;
 $font-nav:		$font-alpha;
 
 
@@ -208,9 +199,6 @@ $default-spacing:			$space-half;
 $default-inner-spacing:		$space-quarter;
 $default-element-spacing:	$space;
 $default-padding:			$pad;
-$default-padding-s:			$dist + 3;
-$default-padding-m:			$dist + 1;
-$default-padding-l:			$dist + 0.5;
 
 
 
