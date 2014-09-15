@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            Microsoft.TeamFoundation.VersionControl.Client.
+            Microsoft.TeamFoundation.VersionControl.Clie
         }
     }
 }
