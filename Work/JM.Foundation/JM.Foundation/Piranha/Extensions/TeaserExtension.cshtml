@@ -1,11 +1,13 @@
 ﻿@using System.Web.Mvc.Html
 @using JM.Foundation.Mvc.Helper
+@using Piranha.Extend.Regions
 @model TeaserExtension
 
 @{
     if(Model.BulletPoints == null)
     {
         Model.BulletPoints = new List<string>{"","","","",""};
+		Model.Image= new ImageRegion();
     }
 
 	var fieldString = @Html.GetFullHtmlFieldName(m => m.Header);

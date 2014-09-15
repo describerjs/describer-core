@@ -68,7 +68,6 @@
             addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
-            //addCSSToDOM('/css/ayyildiz.css');
             addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")');
         } else {
             addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
@@ -97,14 +96,14 @@
 <body>
     <div class="page">
         <header class="page-header" role="banner">
-            <a class="logo" href="/"><img src="/img/logo.svg" alt="Logo" /></a>
+            <a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
             @*<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
                 <!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
             </div>*@
 			@{ Html.RenderAction("_Navigation", "Content", new { area = "" }); }
             @*@Html.Partial("_LoginPartial")*@
         </header>
-        <main role="main">
+        <main class="page-main" role="main">
             @RenderBody()
             <div class="togglebox">
 		        <a class="tb-subject" data-jmname="togglebox">Features</a>

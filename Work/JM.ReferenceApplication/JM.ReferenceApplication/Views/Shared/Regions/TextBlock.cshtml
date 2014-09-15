@@ -1,4 +1,9 @@
-﻿<section class="text-block" data-jmselector="equal-heights-children">
-    <h1>$headline$</h1>
-    <p>$text$</p>
-</section>
+﻿@model Piranha.Extend.Regions.TextRegion
+
+@if (Model != null)
+{
+	<section class="text-block" data-jmselector="equal-heights-children">
+		<h2>@Model.Title</h2>
+		<p>@Model.Body</p>
+	</section>
+}

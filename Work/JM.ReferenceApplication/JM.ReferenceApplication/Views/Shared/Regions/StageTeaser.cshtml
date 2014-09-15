@@ -1,26 +1,28 @@
 ﻿@model TeaserExtension
 <div class="stage-teaser">
     @if(Model.Image != null){
-        <div class="st-img">
+        <div class="st-figure">
             @Html.Partial(
                 "Image/_PictureFill_StageTeaser", Model.Image)
         </div>
     }
-    <header class="st-header">
-        <h2 class="st-head">@Model.Header</h2>
-    </header>
-    <div class="st-content">
-        @if(Model.BulletPoints != null && Model.BulletPoints.Any(b => !string.IsNullOrEmpty(b)))
-        {
-            <ul class="bullet-list">
-                @foreach(var bp in Model.BulletPoints.Where(b => !string.IsNullOrEmpty(b)))
-                {
-                    <li class="list-item">@bp</li>
-                }
-            </ul>
-        }
+    <div class="st-inner">
+        <header class="st-header">
+            <h2 class="st-head">@Model.Header</h2>
+        </header>
+        <div class="st-main">
+            @if(Model.BulletPoints != null && Model.BulletPoints.Any(b => !string.IsNullOrEmpty(b)))
+            {
+                <ul class="bullet-list">
+                    @foreach(var bp in Model.BulletPoints.Where(b => !string.IsNullOrEmpty(b)))
+                    {
+                        <li class="list-item">@bp</li>
+                    }
+                </ul>
+            }
+        </div>
+        <footer class="st-footer">
+            <a class="cta" href="@Model.FooterLink">@Model.FooterText</a>
+        </footer>
     </div>
-    <footer class="st-footer">
-        <a class="cta" href="@Model.FooterLink">@Model.FooterText</a>
-    </footer>
 </div>

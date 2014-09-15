@@ -1,4 +1,5 @@
-﻿@model FaqRegion
+﻿@using System.Linq
+@model FaqRegion
 
 @if(Model.Faqs != null && Model.Faqs.Any(f => !string.IsNullOrEmpty(f.Body) && !string.IsNullOrEmpty(f.Title)))
 {
