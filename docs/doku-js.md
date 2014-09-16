@@ -477,6 +477,48 @@ Die Aktion wird auf keyup mit einem delay von 500 ms durchgeführt (erfolgt inne
 <i class="fontawesome-hand-right"></i> Die HTML-Module-Funktionalität wird bei **domready**, **change** und bei **keyup** mit einem delay von 500 ms ausgefürt.
 
 #### <i class="entypo-key"></i><a name="condition"></a> condition
+Die Angabe einer ```'condition'``` ist optional für **alle** Plugins. Die Durchführung des Plugins ist von dieser Bedingung abhängig.
+
+<i class="fontawesome-beaker"></i> Beispiel 1: Hier wird das Karussell nur auf einem Device mit mindestens 46.8em Screen-Width gebaut. Ist die Bedingung nicht gegeben, wird das Plugin ```'modules.carousel'``` zwar initialisiert, aber die ```_exec```-Funktion innerhalb des Plugins wird nicht ausgeführt.
+
+~~~
+{
+	jmname   : 'carousel',
+	jmplugin: 'modules.carousel',
+	jmconfig : {
+		'event'    			: 'dominit',
+		'animationsdelay'   : '450',
+		'condition'			: 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+	}
+}
+
+~~~
+
+<i class="fontawesome-beaker"></i> Beispiel 2: Der Flyout-Link funktioniert wie folgt:
+
+Funktion 1 (```'acitons.add'```): Wird er bei einer Screen-Width von bis zu 60em der Link geklickt, wird die Klasse  show dem Parent-Element hinzugefügt.
+
+Funktion 2 (```'actions.link'```): Wird 
+~~~
+{
+	jmname   : 'flyout-link',
+	jmplugin: 'actions.add|actions.link',
+	jmconfig : [
+		{
+			'event'    : 'click',
+			'datatype' : 'class',
+			'data'     : 'show',
+			'relatedTo': 'this.$elem.parent()[0]',
+			'condition': 'Modernizr.mq(\'only screen and (max-width : 60em)\')'
+		},
+		{
+			'event'    : 'click',
+			'condition': 'Modernizr.mq(\'only screen and (min-width : 60em)\') || this.$elem.parent().hasClass(\'show\')'
+		}
+	]
+}
+~~~
+
 #### <i class="entypo-key"></i><a name="relatedTo"></a> relatedTo
 #### <i class="entypo-key"></i><a name="datatype"></a> datatype
 #### <i class="entypo-key"></i><a name="data"></a> data

@@ -11,56 +11,80 @@
       <main role="main">
 	      <h1>JM-JS-Framework</h1>
 
-<ol>
-<li><i class="entypo-lamp"></i><a href="#Philosofie">Philosofie</a> </li>
-<li><i class="fontawesome-sitemap"></i><a href="#Ordnerstruktur">File- und Ordnerstruktur</a></li>
-<li><i class="entypo-vcard"></i><a href="#Deklaration">Deklaration von HTML-Module-Funktionen</a></li>
-<li><i class="entypo-brush"></i><a href="#Erstellung">Erstellung von Plugins</a></li>
-</ol>
-
-<h2>1. <i class="entypo-lamp"></i><a name="Philosofie"></a>Philosophie</h2>
-
-<p>Das JM-JS-Framework verfolgt 4 wesentlichen Aspekten.</p>
-
 <ul>
-<li>  <a href="#Verwendung-von-jQuery">Verwendung von jQuery</a> (man kann auf eine horrende Anzahl schon existierender Plugins zurückgreifen)</li>
-<li>  <a href="#AMD-Prinzip">Es verfolgt das AMD-Prinzip</a> (asynchronous module definition) (loading on demand)</li>
-<li>  <a href="#Event-Delegation">Initialisierung der Module über Event-Delegation</a></li>
-<li>  <a href="#Deklaratives-Umsetzen">Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten durch Kombination aus bestehenden Plugins</a></li>
+<li>1 <i class="entypo-lamp"></i><a href="#Philosofie">Philosofie</a> </li>
+<li>2 <i class="fontawesome-sitemap"></i><a href="#Ordnerstruktur">File- und Ordnerstruktur</a></li>
+<li>3 <i class="entypo-vcard"></i><a href="#Deklaration">Deklaration von HTML-Module-Funktionen</a></li>
+<li>4 <i class="entypo-brush"></i><a href="#Erstellung">Erstellung von Plugins</a></li>
 </ul>
 
-<h3><a name="Verwendung-von-jQuery"></a>Die Wahl zur Verwendung von jQuery</h3>
+<h2>1 <i class="entypo-lamp"></i><a name="Philosofie"></a>Philosophie</h2>
+
+<p>Das JM-JS-Framework verfolgt 4 wesentlichen Aspekten:</p>
+
+<ul>
+<li>  <a href="#Verwendung-von-jQuery">1.1 Verwendung von jQuery</a> (man kann auf eine horrende Anzahl schon existierender Plugins zurückgreifen)</li>
+<li>  <a href="#AMD-Prinzip">1.2 Es verfolgt das AMD-Prinzip</a> (asynchronous module definition) (loading on demand)</li>
+<li>  <a href="#Event-Delegation">1.3 Initialisierung der Module über Event-Delegation</a></li>
+<li>  <a href="#Deklaratives-Umsetzen">1.4 Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten durch Kombination aus bestehenden Plugins</a></li>
+</ul>
+
+<h3><a name="Verwendung-von-jQuery"></a>1.1 Die Wahl zur Verwendung von jQuery</h3>
 
 <p>Funktionalitäten im Web können mittels JavaScirpt durch verschieden Art und Weisen realisiert werden.
 Bei nur sehr geringen Funktionalitäten könne Websites mit reinen JavaScirpt umgesetzt werden (Vanila JS).
 Steigert sich der Funktionsumfang jedoch ist eine Abstraktionsschicht zur Vereinheitlichung der Browser-APIs und entsprechende Funktionswrapper, welche eine schnellere und einfachere Programmierung erlaubt, zu verwenden. Die sogenannten DOM-Manipulations-Frameworks wie z.B. mootools oder insbesondere jQuery haben zudem den Vorteil, dass eine Vielzahl von Programmiere ihre Plugins auf Basis dessen aufsetzen und somit eine Wiederverwendung im eigenen Projekt ermöglicht.</p>
 
-<h3><a name="AMD-Prinzip"></a>AMD</h3>
+<h3><a name="AMD-Prinzip"></a>1.2 AMD</h3>
 
 <p>Eine weitere Komponente des Frameworks ist die Netzwerk- und Browser-Performance sowie dessen Wartbarkeit und Skalierbarkeit. Dies wurde mit dem AMD-Prinzip (asynchronous module definition) durch RequireJS umgesetzt. Es bietet den Vorteil, dass jedes Plugin in einer eigenen Datei geschrieben ist und auch nur diese bei Bedarf geladen wird. Ein Overhead, an nicht verwendeten Code, der nicht nur geladen werden muss sondern auch geparst wird, wird so vermieden.</p>
 
-<h3><a name="Event-Delegation"></a>Initialisierung der Module über Event-Delegation</h3>
+<h3><a name="Event-Delegation"></a>1.3 Initialisierung der Module über Event-Delegation</h3>
 
 <p>die Initialisierung der Module on Demant durch die Interaktion vom User mit der Website bzw. durch das Framework selbst bei dom-ready bietet eine hohe Browser-Performance, da nur die benötigte Module initialisiert werden. Dies geschieht mittels Event-Delegation. Alle Event-Listener wie z.B. <strong>click, change, dominit, jmtrigger ...</strong> hören auf dem <strong>body</strong>, der wiederum nur bei den aufgelistente Elementen im <strong>Selektor</strong> seine <strong>Funktion(handler)</strong> ausführt.</p>
 
 <pre><code>$body.on(&#39;change&#39;, &#39;select[data-jmname], input[type=&quot;radio&quot;][data-jmname], etc.&#39;, function(e){ 
-
+    ...
 });
-
-// $body                                                            -&gt; $(&#39;body&#39;)
-// &#39;change&#39;                                                         -&gt; Event/s
-// &#39;select[data-jmname], input[type=&quot;radio&quot;][data-jmname], etc.&#39;    -&gt; Selektor 
-// function(e){ ... });                                             -&gt; Funktion
 </code></pre>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>$body</code></td>
+<td><i class="fontawesome-hand-right"></i></td>
+<td>$(&#39;body&#39;)</td>
+</tr>
+<tr>
+<td><code>&#39;change&#39;</code></td>
+<td><i class="fontawesome-hand-right"></i></td>
+<td>Event/s</td>
+</tr>
+<tr>
+<td><code>&#39;select[data-jmname], input[type=&quot;radio&quot;][data-jmname], etc.&#39;</code></td>
+<td><i class="fontawesome-hand-right"></i></td>
+<td>Selektor</td>
+</tr>
+<tr>
+<td><code>function(e){ ... });</code></td>
+<td><i class="fontawesome-hand-right"></i></td>
+<td>Funktion</td>
+</tr>
+</tbody></table>
 
 <p>Zum Einen werden so nur eine geringe Anzahl an Event-Listener benötigt (Hörne nur auf den Body und nicht auf jedes entsprechende Element) und zum Anderen ist immer gewärleistet, dass auch interaktionen (vom User oder via dominit) auf Elemente, die durch einnen Ajax-Aufruf nachträglich in das DOM integriert werden, registriert werden.</p>
 
-<h3><a name="Deklaratives-Umsetzen"></a>Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten</h3>
+<h3><a name="Deklaratives-Umsetzen"></a>1.4 Deklaratives Umsetzen (ähnlich CSS) der Funktionalitäten</h3>
 
 <p>Im Web lassen sich viel Funktionalitäten aus simpeln Aktionen (hier im Framework &quot;actions&quot; genannt) ableiten.
 Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt actions-Kombinationen) kombiniert werde um diese gewünschten Funktionalität zu erhalten.</p>
 
-<p>Die Deklaration geschieht in der <code>_config.js</code>. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen <code>data-jmname=&quot;...&quot;</code>. Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (<code>_config.js</code>) vorgenommen.</p>
+<p>Die Deklaration geschieht in der <a href="#_config"><code>_config.js</code></a>. Hier ist zu jedem jmplugin ein jmconfig-Objekt zu deklarieren. Im DOM werden die jmplugins mit einem Referenz-Name versehen <code>data-jmname=&quot;...&quot;</code>. Somit bleibt das HTML schlank und die Deklaration wir in einer entsprechenden Datei (<a href="#_config"><code>_config.js</code></a>) vorgenommen.</p>
 
 <p><i class="fontawesome-beaker"></i> Beispiel: Konfiguration mit nur einem Plugin und Bindung an das HTML mit einer Referenz (data-jmname):</p>
 
@@ -84,15 +108,34 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 
 <p>Den größten Vorteil diese Herrangehenswiese ist neben der <strong>sehr vereinheitlichten Deklaration</strong> die <strong>große Wiederverwendbarkeit</strong> der Module. Folglich werden Request gespart und die Funktionalität der Plugins ist <strong>robuster</strong> (weniger Fehleranfällig) durch ihre hohe Verwendung.</p>
 
-<h2>2. <i class="entypo-folder"></i><a name="Ordnerstruktur"></a>File- und Ordnerstruktur</h2>
+<h2>2 <i class="fontawesome-sitemap"></i><a name="Ordnerstruktur"></a>File- und Ordnerstruktur</h2>
 
-<p>Im Root-JS-Verzeichnis liegen die Dateien <code>require-main.js</code> und <code>empty.js</code>. Des Weiteren liegen hier die Ordner <strong>externals</strong>, <strong>mylibs</strong> und <strong>requre-css</strong>.</p>
+<p>Im JS-Verzeichnis liegen die Dateien <strong>require-main.js</strong> und <strong>empty.js</strong>. Des Weiteren liegen hier die Ordner <strong>externals</strong>, <strong>mylibs</strong> und <strong>requre-css</strong>.</p>
 
-<h3>require-main.js</h3>
+<ul>
+<li>2.1 <a href="#require-main"><i class="fontawesome-file"></i>require-main.js</a></li>
+<li>2.2 <a href="#empty"><i class="fontawesome-file"></i>empty.js</a></li>
+<li>2.3 <a href="#externals"><i class="entypo-folder"></i>externals</a></li>
+<li>2.4 <a href="#mylibs"><i class="entypo-folder"></i>mylibs</a>
+
+<ul>
+<li>2.4.1 <a href="#actions"><i class="entypo-folder"></i>actions</a></li>
+<li>2.4.2 <a href="#modules"><i class="entypo-folder"></i>modules</a></li>
+<li>2.4.3 <a href="#custom"><i class="entypo-folder"></i>custom</a></li>
+<li>2.4.4 <a href="#utils"><i class="entypo-folder"></i>utils</a></li>
+</ul></li>
+<li>2.5 <a href="#requre-css"><i class="entypo-folder"></i>requre-css</a>
+
+<ul>
+<li>2.5.1 <a href="#cssjs"><i class="fontawesome-file"></i>css.js</a></li>
+</ul></li>
+</ul>
+
+<h3><a name="require-main"></a>2.1 <i class="fontawesome-file"></i>require-main.js</h3>
 
 <p>Sie wird als erste Datei von RequireJS geladen und ist die Basis des JMUI-Frameworks. Hier werden neben den body-Eventlistener für die Plugin-Initialisierung via Event-Delegation und den initial ausgeführten Funktionenaufrufe on dom-ready alle Plugins mit ihrem <strong><em>Verzeichnis-Pfad</em></strong> hinterlegt.</p>
 
-<p><strong><em>Verzeichnis-Pfad der Plugins</em></strong></p>
+<h4>Verzeichnis-Pfad der Plugins</h4>
 
 <p>Er dient zum einen um eine <strong>kürzere Referenz</strong> auf das Plugin im require-Array zu bekommen und zum anderen ist er für die <strong>Versionierung</strong> notwendig. </p>
 
@@ -128,9 +171,7 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
         ...
 </code></pre>
 
-<p>Bei externen Dateien, welche entsprechend im externe-Ordner liegen wird nur der Dateiname als Key angegeben (ausgenommen overwritings), da diese in der Regen eindeutig genug sind.</p>
-
-<p>Anders verhält es sich bei den selbst erstellten Dateien die im mylibs untergebracht sind. Diese werden mit ihrer ganzen Pfadangabe exklusive mylibs angegeben, wobei ein &quot;/&quot; mit einem &quot;.&quot; und ein &quot;.&quot; mit einem &quot;_&quot; ersetzt wird. </p>
+<p>Bei externen Dateien, welche entsprechend im externe-Ordner liegen wird nur der Dateiname als Key angegeben (ausgenommen overwritings), da diese in der Regen eindeutig genug sind. Anders verhält es sich bei den selbst erstellten Dateien die im mylibs untergebracht sind. Diese werden mit ihrer ganzen Pfadangabe exklusive mylibs angegeben, wobei ein &quot;/&quot; mit einem &quot;.&quot; und ein &quot;.&quot; mit einem &quot;_&quot; ersetzt wird. </p>
 
 <p><i class="fontawesome-beaker"></i> Beispiel des paths-Objekts in Anlehnung an die <strong>Versionierung</strong> (versionierte require-main.fc251c.js):</p>
 
@@ -166,7 +207,7 @@ Diese sogenanten &quot;actions&quot; können zu Plugin-Kombinationen (oder halt 
 
 <p>Bei der versionierten require-main.js werden die Pfade wie folgt angepasst. Jeder Pfad wird um das prefix &#39;build/&#39; erweiter, so das die Module alle aus dem neu angelegten build-Ordner geladen werden. Zudem erhalten die Dateinamen einen md5-hash, der via Grunt hinzugefügt werden. So wird das Cach-bustin unterbunden, da bei einer Modul-Änderung automatisch ein neue md5-hash (checksum) gebildet wird. Liegen keine Änderungen in der Datei vor, wird auch kein neue md5-hash gebildet und die Datei wird aus dem Browser-Cach bzw. aus dem localStorge geladen.</p>
 
-<h3>empty.js</h3>
+<h3><a name="empty"></a>2.2 <i class="fontawesome-file"></i>empty.js</h3>
 
 <p>Die einzige Aufgabe der empty.js ist es, die Modul-Ladefunktionalität aufrecht zu halten und so das Plugin mit einem <strong>lehres Objekt</strong> zu erweitern.
 <em>Beispiel</em>:
@@ -177,18 +218,18 @@ Soll bei der Auslieferung des Produkts ein Touch-Support nicht unterstützt werd
 
 <p>von RequireJS fehlschlagen. Hier kommt die empty.js zum Einsatz. Auf sie wird im Datei-Pfade (siehe vorrangegangenes Beispiel der require-main.fc251c.js) verwiesen, welcher durch Grunt bei einer nicht vorhandener Datei automatisch gesetzt wird. Eine Versionierung ist hier nicht Notwendig, da der Inhalt sich nie änder wird.</p>
 
-<h3>externals-Ordner</h3>
+<h3><a name="externals"></a>2.3 <i class="entypo-folder"></i>externals-Ordner</h3>
 
 <p>Hier werden die externen plugins abgelegt. Das Original-Plugin wird in <strong>originalReferencesSource</strong> hinterlegt, um bei Updates vergleichen zu können, welche Änderung ausschließlich der plugin-Entwickler vorgenommen hat.
 Im Ordner <strong>customized</strong> werden externe Plugins aus dem Ordner originalReferencesSource kopiert und angepasst. Ist es möglich, die Original-Source im Nachhinein zu überschreiben, werden diese Überschreibungen in <strong>overwritings</strong> mit gleichnamige source gespeichert.</p>
 
-<h3>mylibs-Ordner</h3>
+<h3><a name="mylibs"></a>2.4 <i class="entypo-folder"></i>mylibs-Ordner</h3>
 
-<p>Im mylibs-Ordner befinden sich 4 Unterordner (<strong><em>actions</em></strong>, <strong><em>custom</em></strong>, <strong><em>modules</em></strong> und <strong><em>utils</em></strong>) und die Datein <code>_config.js</code>  (welche die Konfiguration der Plugins für ihren Anwendungsfall befinden) sowie die <code>_super.js</code> (Sie ist die &quot;Super-Class&quot;, von der alle eigenen Plugins abgeleitet werden).</p>
+<p>Im mylibs-Ordner befinden sich 4 Unterordner (<strong><em>actions</em></strong>, <strong><em>custom</em></strong>, <strong><em>modules</em></strong> und <strong><em>utils</em></strong>) und die Datein <a href="#_config"><code>_config.js</code></a>  (welche die Konfiguration der Plugins für ihren Anwendungsfall befinden) sowie die <code>_super.js</code> (Sie ist die &quot;Super-Class&quot;, von der alle eigenen Plugins abgeleitet werden).</p>
 
-<h4>actions-Ordner</h4>
+<h4><a name="actions"></a>2.4.1 <i class="entypo-folder"></i>actions-Ordner</h4>
 
-<p>Hier werden die &quot;actions-Plugins&quot; hinterlegt. Mit diesen ist es möglich, Funktionen von Modulen (z.B. Navigation oder Toggelbox) zu beschreiben. Es wird hierzu ein JSON-Objekt in der _config.js angelegt und entsprechend mit den benötigten actions konfiguriert.</p>
+<p>Hier werden die &quot;actions-Plugins&quot; hinterlegt. Mit diesen ist es möglich, Funktionen von Modulen (z.B. Navigation oder Toggelbox) zu beschreiben. Es wird hierzu ein JSON-Objekt in der <a href="#_config"><code>_config.js</code></a> angelegt und entsprechend mit den benötigten actions konfiguriert.</p>
 
 <p>Folgende actions stehen zur verfügung:</p>
 
@@ -204,15 +245,15 @@ Im Ordner <strong>customized</strong> werden externe Plugins aus dem Ordner orig
 <li>trigger</li>
 </ul>
 
-<h4>modules-Ordner</h4>
+<h4><a name="modules"></a>2.4.2 <i class="entypo-folder"></i>modules-Ordner</h4>
 
 <p>Ist es nicht möglich die benötigte Funktionalität der Komponente mit den actions und deren Kombination umzusetzen, können im Ordner <strong><em>modules</em></strong> Plugins angelegt werden, die diese Funktionalität erfüllen. Dis die Funktionalität allerding so speziel, dass sie nicht in anderen Projekten eine Anwendung finden, ist das zu entwickelnde Plugin im Ordner <strong><em>custom</em></strong> zu hinterlegen.</p>
 
-<h4>custom-Ordner</h4>
+<h4><a name="custom"></a>2.4.3 <i class="entypo-folder"></i>custom-Ordner</h4>
 
 <p>Wie schon zuvor beschrieben, werden hier die speziellen Plugins hinterlegt, die nicht in anderen Projekten wiederverwendbar sind.</p>
 
-<h4>utils-Ordner</h4>
+<h4><a name="utils"></a>2.4.4 <i class="entypo-folder"></i>utils-Ordner</h4>
 
 <p>Hier sind die Datein <code>helpers.js</code> und <code>jquery.helpers.js</code> hinterlegt. <code>helpers.js</code> beinhaltet allgemeine Helper-Funktionen, die im globalen Objekt jmHF als Methoden hinterlegt sind. <code>jquery.helpers.js</code> sind Funktionen hinterlegt, die im jQuery-Objekt hinterlegt sind. Sie sind somit jQuery-Plugins, die wie üblich auf eine Dom-Selection angewendet werden könne. </p>
 
@@ -223,27 +264,35 @@ $(&#39;body&#39;).append($data);
 $data.triggerSelfexecObj();       // &lt;- Funktion in der jquery.helpers.js
 </code></pre>
 
-<h3>require-css-Ordner</h3>
+<h3><a name="requirecss"></a>2.5 <i class="entypo-folder"></i>require-css-Ordner</h3>
 
 <p>hier werden neben der <code>css.js</code> alle CSS-Datein abgeleg, die On-Demant für ein komplexes Modul benötigt werden. 
 Hier wie z.B. <code>video.css</code>, die das komplette Styling des Video-Players beinhalten. Da der Video-Player jedoch nur selten zum Einsatz kommt ist das CSS nicht in der globalen styles.css integriert, sondern wird durch das Nachladen der video.css bei Bedarf in die Seite integriert.</p>
 
-<p><strong><em>css.js</em></strong></p>
+<h4><a name="cssjs"></a>2.5.1 <i class="fontawesome-file"></i>css.js</h4>
 
 <p>Die <code>css.js</code> ist ein RequireJS-Plugin. Sie wird benötigt um das nachladen von CSS via RequireJS umzusetzen.  </p>
 
-<h2>3. <i class="entypo-vcard"></i><a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen</h2>
+<h2>3 <i class="entypo-vcard"></i><a name="Deklaration"></a>Deklaration von HTML-Module-Funktionen</h2>
 
-<p>Die Deklaration geschieht als Objekt in der <code>_config.js</code>. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
+<ul>
+<li>3.1 <i class="entypo-vcard"></i><a href="#_config">Deklaration in der _config.js</a></li>
+<li>3.2 <i class="entypo-vcard"></i><a href="#Deklaration-im-DOM">Deklaration im DOM für die Attribute data-jmname und data-jmconfig</a></li>
+<li>3.3 <i class="entypo-vcard"></i><a href="#Deklaration-der-Funktionalitaet">Deklaration der Funktionalität des Plugins</a></li>
+</ul>
+
+<h3>3.1 <a name="_config"></a><i class="entypo-vcard"></i>Deklaration in der _config.js</h3>
+
+<p>Die Deklaration geschieht als Objekt in der <a href="#_config"><code>_config.js</code></a>. Die Auslagerung der Deklaration aus dem DOM hat zwei Vorteile. Zum einen bleibt das HTML schlank und Übersichtlich und zum Anderen befindet sich die Konfigurationen aller HTML-Module-Funktionen an einem zentralen Ort. 
 Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des Tags mit einer Klasse beschrieben und die Klassen werden in einer CSS-Datei deklariert.</p>
 
-<p>Die Deklaration in der <code>_config.js</code> bestehend aus:</p>
+<p>Das Deklaration-Objekt bestehend aus:</p>
 
-<ol>
-<li>jmname</li>
-<li>jmplugin</li>
-<li>jmconfig</li>
-</ol>
+<ul>
+<li><i class="entypo-tag"></i><a href="#jmname">jmname</a></li>
+<li><a href="#jmplugin">jmplugin</a></li>
+<li><i class="fontawesome-cogs"></i><a href="#jmconfig">jmconfig</a></li>
+</ul>
 
 <p><i class="fontawesome-beaker"></i> Beispiel:</p>
 
@@ -257,23 +306,23 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
  }
 </code></pre>
 
-<p>###jmname###</p>
+<h4><a name="jmname"></a><i class="entypo-tag"></i>jmname</h4>
 
 <p>Mit jmname wird die HTML-Module-Funktionalität beschrieben. Ebenso wird dieses im HTML-Tag angebeben und dient so als Referenz. </p>
 
 <pre><code>&lt;a class=&quot;textlink&quot; href=&quot;#anchor-optionen&quot; data-jmname=&quot;anchor&quot;&gt;Zusatzoptionen wählen&lt;/a&gt;
 </code></pre>
 
-<p>###jmplugin###</p>
+<h4><a name="jmplugin"></a> jmplugin</h4>
 
-<p>Hier wird das zu verwendete Plugin bzw. die zu verwendeten Plugins angegeben. Werden für die HTML-Module-Funktionalität mehrer Plugins benötigt, werden diese mit &quot;|&quot; separiert.</p>
+<p>Hier wird das zu verwendete Plugin bzw. die zu verwendeten Plugins angegeben. Werden für die HTML-Module-Funktionalität mehrer Plugins benötigt, werden diese mit &quot; | &quot; separiert.</p>
 
 <p>Beispiel-Part:</p>
 
 <pre><code>jmplugin: &#39;actions.remove|actions.add&#39;,
 </code></pre>
 
-<p>###jmconfig###</p>
+<h4><a name="jmconfig"></a><i class="fontawesome-cogs"></i>jmconfig</h4>
 
 <p>Für jedes jmplugin ist ein eigenes jmconfig-Objekt anzulenge. Bei mehreren Plugins sind diese in ein Array zu schreiben, wobei die Reihenfolge der Objekte der Reihenfolge der Plugins in jmplugin entspricht.</p>
 
@@ -301,11 +350,11 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <p>Wie auch im CSS ist das Überschreiben bestimmter Values in <strong>Ausnahmefällen</strong> in HTML möglich.</p>
 
-<h3>Deklaration im DOM für die Attribute data-jmname und data-jmconfig</h3>
+<h3><a name="Deklaration-im-DOM"></a>3.2 <i class="entypo-vcard"></i>Deklaration im DOM für die Attribute data-jmname und data-jmconfig</h3>
 
 <p>Folgend werden mehrere Beispiele aufgelistet, wie eine Deklaration der HTML-Module-Funktionalität im DOM je nach Anwendungsfall aussehen könnte. Es wird zudem die Möglichkeit aufgezeigt, wie ein Überschreiben der jmconfig durch die Angabe des <em>data-jmconfig</em>-Attributs aussehen könnte.</p>
 
-<p><i class="fontawesome-beaker"></i> Beispiel aus der <code>_config.js</code></p>
+<p><i class="fontawesome-beaker"></i> Beispiel aus der <a href="#_config"><code>_config.js</code></a></p>
 
 <pre><code>...
 {
@@ -334,7 +383,7 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <h4><i class="entypo-clipboard"></i> Fall 1</h4>
 
-<p>Deklaration mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin actions.add):</p>
+<p>Deklaration mit einem data-jmname und dem überschreiben eines key-value-Pair des entsprechendem data-jmconfig-Objekt (hier für das Plugin <code>actions.add</code>):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;{ &#39;data&#39;: &#39;neu&#39; }&quot;&gt;click&lt;/div&gt;
 </code></pre>
@@ -342,7 +391,7 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 <h5><i class="entypo-switch"></i> Alternative 1</h5>
 
 <blockquote>
-<p><i class="fontawesome-warning-sign"></i>Unnötiger Mehraufwand</p>
+<p><i class="entypo-attention"></i> Unnötiger Mehraufwand</p>
 </blockquote>
 
 <p>Das data-jmconfig-Objekt mit einem [ ] gewrappt:</p>
@@ -352,10 +401,8 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <h5><i class="entypo-switch"></i> Alternative 2</h5>
 
-<p><i class="fontawesome-warning-sign"></i></p>
-
 <blockquote>
-<p>Unnötiger Mehraufwand. Diese Deklaration ist nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot;|&quot; getrennt) im data-jmname-Attribut gelistet sind.</p>
+<p><i class="entypo-attention"></i> Unnötiger Mehraufwand. Diese Deklaration ist nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot; | &quot; getrennt) im data-jmname-Attribut gelistet sind.</p>
 </blockquote>
 
 <p>Das data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Objket als Value für die jmnames-Angabe steht.</p>
@@ -363,122 +410,143 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj&quot; data-jmconfig=&quot;{&#39;ex-one-obj&#39;: { &#39;data&#39;: &#39;neu&#39; }}&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p><i class="fontawesome-reply"></i>Es wird die data-Angabe für das jmconfig-Objekt in der -config.js überschrieben.</p>
+<p><i class="fontawesome-hand-right"></i>Es wird die data-Angabe für das jmconfig-Objekt in der <a href="#_config"><code>_config.js</code></a> überschrieben.</p>
 
 <h4><i class="entypo-clipboard"></i> Fall 2</h4>
 
-<p>Deklaration mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_1 und actions.add_2 alias actions.add):</p>
+<p>Deklaration mit einem data-jmname und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins <code>actions.add_1</code> und <code>actions.add_2</code> alias <code>actions.add</code>):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-two-obj&quot; data-jmconfig=&quot;[{ &#39;data&#39;: &#39;neu1&#39; }, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p>Alternative: data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Array als Value für die jmnames-Angabe steht. (-&gt; unnötiger mehraufwand. wird nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot;|&quot; getrennt) im data-jmname-Attribut gelistet sind)</p>
+<h5><i class="entypo-switch"></i> Alternative</h5>
+
+<blockquote>
+<p><i class="entypo-attention"></i> Unnötiger Mehraufwand. Diese Deklaration ist nur benötigt, wenn mehrere HTML-Module-Funktionalitäten (via &quot; | &quot; getrennt) im data-jmname-Attribut gelistet sind.</p>
+</blockquote>
+
+<p>Das data-jmconfig-Objekt wird zusätzlich in ein Objekt gewrappt, wobei das jmconfig-Array als Value für die jmnames-Angabe steht.</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-two-obj&quot; data-jmconfig=&quot;{&#39;ex-two-obj&#39;: [{ &#39;data&#39;: &#39;neu&#39; }, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]}&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
-<p><em>Es wird zum einen die &quot;data&quot;-Angabe für das Plugin actions.add_1 (&#39;data&#39;: &#39;alt&#39;) im jmconfig-Array (erstes Objekt) mit &quot;neu&quot; überschrieben und zum anderen wird für das Plugin actions.add_2 die &quot;event&quot;- und die &quot;data&quot;-Angabe (&#39;event&#39; : &#39;hover&#39;, &#39;data&#39;: &#39;alt2&#39;) mit &quot;click&quot; bzw. &quot;neu2&quot; überschrieben.</em></p>
+<p><i class="fontawesome-hand-right"></i>Es wird zum einen die <code>&#39;data&#39;</code>-Angabe für das Plugin <code>actions.add_1</code> (<code>&#39;data&#39;: &#39;alt&#39;</code>) im jmconfig-Array (erstes Objekt) mit &quot;<strong>neu</strong>&quot; überschrieben und zum anderen wird für das Plugin <code>actions.add_2</code> die <code>&#39;event&#39;</code>- und die <code>&#39;data&#39;</code>-Angabe (<code>&#39;event&#39; : &#39;hover&#39;, &#39;data&#39;: &#39;alt2&#39;</code>) mit &quot;<strong>click</strong>&quot; bzw. &quot;<strong>neu2</strong>&quot; überschrieben.</p>
 
 <blockquote>
-<p>Wichtig! die Erweiterung des Plugin-Namens ..._1 oder ..._2 etc ist notwendig, da hier ein Plugin mehrmals für eine HTML-Module-Funktionalität in unterschielichen Konfigurationen verwendet wird. Andernfalls ist es dem Framework nicht möglicht zu überprüfen, ob das Plugin schon initialisiert wurde oder nicht.</p>
+<p><i class="entypo-alert"></i> Wichtig! die Erweiterung des Plugin-Namens <code>..._1</code> oder <code>..._2</code> etc ist notwendig, da hier ein Plugin mehrmals für eine HTML-Module-Funktionalität in unterschielichen Konfigurationen verwendet wird. Andernfalls ist es dem Framework nicht möglicht zu überprüfen, ob das Plugin schon initialisiert wurde oder nicht.</p>
 </blockquote>
 
 <h4><i class="entypo-clipboard"></i> Fall 3</h4>
 
-<p>Deklaration mit zwei data-jmnamen und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add (HTML-Module-Funktionalität: ex-one-obj), sowei actions.add_1 und actions.add_2 alias actions.add (HTML-Module-Funktionalität: ex-two-obj)):</p>
+<p>Deklaration mit zwei data-jmnamen und dem überschreiben von mehreren key-value-Pairs der entsprechenden data-jmconfig-Objekte (hier für die Plugins <code>actions.add</code> (HTML-Module-Funktionalität: <code>ex-one-obj</code>), sowei <code>actions.add_1</code> und <code>actions.add_2</code> alias <code>actions.add</code> (HTML-Module-Funktionalität: <code>ex-two-obj</code>)):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-one-obj|ex-two-obj&quot; data-jmconfig=&quot;{ &#39;ex-one-obj&#39; : { &#39;data&#39;: &#39;neu&#39; }, &#39;ex-two-obj&#39; : [{ &#39;data&#39;: &#39;neu1&#39; }, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]}&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
 <h4><i class="entypo-clipboard"></i> Fall 4</h4>
 
-<p>Deklaration mit einem data-jmname und dem überschreiben von nur einem key-value-Pairs des entsprechenden data-jmconfig-Objekte (hier für die Plugins actions.add_2 alias actions.add):</p>
+<p>Deklaration mit einem data-jmname und dem überschreiben von nur einem key-value-Pairs des entsprechenden data-jmconfig-Objekte (hier für die Plugins <code>actions.add_2</code> alias <code>actions.add</code>):</p>
 
 <pre><code>&lt;div data-jmname=&quot;ex-two-obj&quot; data-jmconfig=&quot;[{}, { &#39;event&#39; : &#39;click&#39;, &#39;data&#39;: &#39;neu2&#39; }]&quot;&gt;click&lt;/div&gt;
 </code></pre>
 
 <blockquote>
-<p>Wichtig! Betrifft die Überschreibung nicht alle Plugins, so sind für diese Plugins lehren Objekt anzugeben.</p>
+<p><i class="entypo-alert"></i> Wichtig! Betrifft die Überschreibung nicht alle Plugins, so sind für diese Plugins lehren Objekt anzugeben.</p>
 </blockquote>
 
-<h3>Deklaration der Funktionalität des Plugins</h3>
+<h3><a name="Deklaration-der-Funktionalitaet"></a>3.3 <i class="entypo-vcard"></i>Deklaration der Funktionalität des Plugins</h3>
 
-<p>// TODO Andreas noch überarbeiten
-Die Funktionalitäten werden in der _config.js in einem entsprechenden Objekt deklariert. folgende Keys können für das entsprechende Plugin verwendet werden. Die unterstützen Plugins werden in ihrer Detailbeschreibung aufgelistet.</p>
+<p>// TODO Andreas noch überarbeiten</p>
+
+<p>Die Funktionalitäten werden in der <a href="#_config"><code>_config.js</code></a> in einem entsprechenden Objekt deklariert. Folgende Keys können für das entsprechende Plugin verwendet werden. Die unterstützen Plugins werden in ihrer Detailbeschreibung aufgelistet.</p>
 
 <ul>
-<li>event (für alle Plugins required)</li>
-<li>conditio (für alle Plugins)</li>
-<li>relatedTo</li>
-<li>datatype</li>
-<li>data</li>
-<li>wait</li>
-<li>url</li>
-<li>inject</li>
-<li>scrollTo (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</li>
-<li>type  (zuvor method genannt im ajax-module)</li>
-<li>callback (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</li>
-<li>width - modules.video</li>
-<li>height - modules.video</li>
-<li>zipcode - modules.formcomponents.autocomplete</li>
-<li>nextFocus - zuvor nextFocusNameAttr - modules.formcomponents.autocomplete</li>
-<li>animationsdelay - zuvor delay - modules.carousel</li>
-<li>loader - actions.link/actions.ajax</li>
-<li>loaderTo - zuvor additionalloadertarget - actions.ajax</li>
-<li>submit - zuvor ajax - modules.formcomponents.formvalidate</li>
+<li><a href="#event">event</a> (für alle Plugins required)</li>
+<li><a href="#condition">condition</a> (für alle Plugins)</li>
+<li><a href="#relatedTo">relatedTo</a></li>
+<li><a href="#datatype">datatype</a></li>
+<li><a href="#data">data</a></li>
+<li><a href="#wait">wait</a></li>
+<li><a href="#url">url</a></li>
+<li><a href="#inject">inject</a></li>
+<li><a href="#scrollTo">scrollTo</a> (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</li>
+<li><a href="#type">type</a>  (zuvor method genannt im ajax-module)</li>
+<li><a href="#callback">callback</a> (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</li>
+<li><a href="#width">width</a> - modules.video</li>
+<li><a href="#height">height</a> - modules.video</li>
+<li><a href="#zipcode">zipcode</a> - modules.formcomponents.autocomplete</li>
+<li><a href="#nextFocus">nextFocus</a> - zuvor nextFocusNameAttr - modules.formcomponents.autocomplete</li>
+<li><a href="#animationsdelay">animationsdelay</a> - zuvor delay - modules.carousel</li>
+<li><a href="#loader">loader</a> - actions.link/actions.ajax</li>
+<li><a href="#loaderTo">loaderTo</a> - zuvor additionalloadertarget - actions.ajax</li>
+<li><a href="#submit">submit</a> - zuvor ajax - modules.formcomponents.formvalidate</li>
 <li>// obsolate sollte als default zählen - hideby - modules.formcomponents.autocomplete</li>
 <li>//opposition - modules.dependentSelectionGroup</li>
 </ul>
 
-<h4>event</h4>
+<h4><i class="entypo-key"></i><a name="event"></a>3.3.1 event</h4>
 
-<p>die HTML-Module-Funktionen können durch unterschietliche Events ausgelöst werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events Initialisieren. </p>
+<p>Die HTML-Module-Funktionen können durch unterschietliche Events ausgelöst werden. Über die Event-Listener am Body lassen sicht die Plugins durch folgende Events initialisieren: </p>
 
 <ul>
-<li>click (<strong>alle</strong> [data-jmname])</li>
-<li>change (<strong>select</strong>[data-jmname], <strong>input</strong>[data-jmname], <strong>textarea</strong>[data-jmname])</li>
-<li>jmtrigger (<strong>alle</strong> [data-jmname])</li>
+<li><a href="#click"><code>&#39;click&#39;</code></a> (<strong>alle</strong> [data-jmname])</li>
+<li><a href="#change"><code>&#39;change&#39;</code></a> (<strong>select</strong>[data-jmname], <strong>input</strong>[data-jmname], <strong>textarea</strong>[data-jmname])</li>
+<li><a href="#jmtrigger"><code>&#39;jmtrigger&#39;</code></a> (<strong>alle</strong> [data-jmname])</li>
 </ul>
 
-<p>Nur bei dem form-Tag mit [data-jmname=&quot;form&quot;] sind noch die events focus, blur, change und checkValidation als Event-Listener regirstiert.</p>
+<p>Nur bei dem form-Tag mit <code>form[data-jmname=&quot;form&quot;]</code> sind noch die Events <code>&#39;focus&#39;</code>, <code>&#39;blur&#39;</code>, <code>&#39;change&#39;</code> und <code>&#39;checkValidation&#39;</code> als Event-Listener regirstiert. 
+Desweiteren lassen sich folgende Events durch die Angabe von <code>data-jmdominit=&quot;true&quot;</code> als Data-Attribut im HTML aktivieren. Sie sind auch auf alle Tags anwendbar.</p>
 
-<h5>click</h5>
+<ul>
+<li><a href="#dominit"><code>&#39;dominit&#39;</code></a></li>
+<li><a href="#raf"><code>&#39;raf&#39;</code></a></li>
+<li><a href="#interval"><code>&#39;interval-xxx&#39;</code></a></li>
+<li><a href="#blur"><code>&#39;blur&#39;</code></a></li>
+<li><a href="#hover"><code>&#39;hover&#39;</code></a></li>
+<li><a href="#keyup"><code>&#39;keyup/keyup-delay-xxx&#39;</code></a></li>
+</ul>
 
-<h5>change</h5>
+<blockquote>
+<p><i class="entypo-attention"></i>Angabe von <code>data-jmdominit=&quot;true&quot;</code> im Tag notwendig <code>&lt;input data-jmname=&quot;sync-val&quot; data-jmdominit=&quot;true&quot; type=&quot;text&quot; name=&quot;vorname&quot; /&gt;</code></p>
+</blockquote>
 
-<h5>jmtrigger</h5>
+<h5><a name="event"></a><i class="entypo-flash"></i>3.3.1.1 click</h5>
 
-<p>Folgende Events lassen sich nur durch die Angabe von data-jmdominit=&quot;true&quot; als Data-Attribut im HTML aktivieren. Sie sind auch auf alle Tags anwendbar.</p>
+<p>Die Aktion wird auf click durchgeführt</p>
 
-<pre><code>// Beispielhafte Initialisierung im HTML:
-&lt;input data-jmname=&quot;sync-val&quot; data-jmdominit=&quot;true&quot; type=&quot;text&quot; name=&quot;vorname&quot; /&gt;
-</code></pre>
+<h5><a name="event"></a><i class="entypo-flash"></i>3.3.1.2 change</h5>
 
-<h5>dominit</h5>
+<p>Die Aktion wird auf change durchgeführt</p>
+
+<h5><a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger</h5>
+
+<p>Die Aktion wird auf jmtrigger durchgeführt</p>
+
+<h5><a name="dominit"></a><i class="entypo-flash"></i>3.3.1.4 dominit</h5>
 
 <p>die Aktion wird auf domready oder wenn das HTML-Element via ajax in das DOM injektet wird ausgeführt.</p>
 
-<h5>raf</h5>
+<h5><a name="raf"></a><i class="entypo-flash"></i>3.3.1.5 raf</h5>
 
 <p>Die Aktion wird auf jedem requestAnimationFrame durchgeführt (bei jedem neuzeichnen des Bildes)</p>
 
-<h5>interval-xxx (angegeben in z.B. interval-5000)</h5>
+<h5><a name="interval"></a><i class="entypo-flash"></i>3.3.1.6 interval-xxx (angegeben in z.B. interval-5000)</h5>
 
 <p>Die Aktion wird alle 5000 ms durchgeführt</p>
 
-<h5>blur</h5>
+<h5><a name="blur"></a><i class="entypo-flash"></i>3.3.1.7 blur</h5>
 
 <p>Die Aktion wird auf blur durchgeführt</p>
 
-<h5>hover</h5>
+<h5><a name="hover"></a><i class="entypo-flash"></i>3.3.1.8 hover</h5>
 
 <p>Die Aktion wird auf hover durchgeführt</p>
 
-<h5>keyup/keyup-delay-xxx (abgegeben in z.B. keyup-delay-500)  #####</h5>
+<h5><a name="keyup"></a><i class="entypo-flash"></i>3.3.1.9 keyup/keyup-delay-xxx (abgegeben in z.B. keyup-delay-500)</h5>
 
-<p>Die Aktion wird auf keyup mit einem delay von 500 ms durchgeführt (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.)</p>
+<p>Die Aktion wird auf keyup mit einem delay von 500 ms durchgeführt (erfolgt innerhalb dieser 500ms ein weiterer keyup-event, wird der vorherige überschrieben und die 500ms starte von neuen.). Wird kein -delay-xxx angegeben, wird die Aktion unmittelbar ausgeführt.</p>
 
-<p>Beispielhafte Implementierung für diese HTML-Module-Funktione in der _config.js:</p>
+<p><i class="fontawesome-beaker"></i> Beispielhafte Implementierung für diese HTML-Module-Funktione in der <a href="#_config"><code>_config.js</code></a>:</p>
 
 <pre><code>{
     jmname : &#39;sync-val&#39;,
@@ -492,9 +560,86 @@ Die Funktionalitäten werden in der _config.js in einem entsprechenden Objekt de
  }
 </code></pre>
 
-<p>Die HTML-Module-Funktionalität wird bei <strong>domready</strong>, <strong>change</strong> und bei <strong>keyup</strong> mit einem delay von 500 ms ausgefürt.</p>
+<p><i class="fontawesome-hand-right"></i> Die HTML-Module-Funktionalität wird bei <strong>domready</strong>, <strong>change</strong> und bei <strong>keyup</strong> mit einem delay von 500 ms ausgefürt.</p>
 
-<h2>4. <i class="entypo-brush"></i><a name="Erstellung"></a>Erstellung von Plugins</h2>
+<h4><i class="entypo-key"></i><a name="condition"></a> condition</h4>
+
+<p>Die Angabe einer <code>&#39;condition&#39;</code> ist optional für <strong>alle</strong> Plugins. Die Durchführung des Plugins ist von dieser Bedingung abhängig.</p>
+
+<p><i class="fontawesome-beaker"></i> Beispiel 1: Hier wird das Karussell nur auf einem Device mit mindestens 46.8em Screen-Width gebaut. Ist die Bedingung nicht gegeben, wird das Plugin <code>&#39;modules.carousel&#39;</code> zwar initialisiert, aber die <code>_exec</code>-Funktion innerhalb des Plugins wird nicht ausgeführt.</p>
+
+<pre><code>{
+    jmname   : &#39;carousel&#39;,
+    jmplugin: &#39;modules.carousel&#39;,
+    jmconfig : {
+        &#39;event&#39;             : &#39;dominit&#39;,
+        &#39;animationsdelay&#39;   : &#39;450&#39;,
+        &#39;condition&#39;         : &#39;Modernizr.mq(\&#39;only screen and (min-width : 46.8em)\&#39;)&#39;
+    }
+}
+
+</code></pre>
+
+<p><i class="fontawesome-beaker"></i> Beispiel 2: Der Flyout-Link funktioniert wie folgt:</p>
+
+<p>Funktion 1 (<code>&#39;acitons.add&#39;</code>): Wird er bei einer Screen-Width von bis zu 60em der Link geklickt, wird die Klasse  show dem Parent-Element hinzugefügt.</p>
+
+<p>Funktion 2 (<code>&#39;actions.link&#39;</code>): Wird </p>
+
+<pre><code>{
+    jmname   : &#39;flyout-link&#39;,
+    jmplugin: &#39;actions.add|actions.link&#39;,
+    jmconfig : [
+        {
+            &#39;event&#39;    : &#39;click&#39;,
+            &#39;datatype&#39; : &#39;class&#39;,
+            &#39;data&#39;     : &#39;show&#39;,
+            &#39;relatedTo&#39;: &#39;this.$elem.parent()[0]&#39;,
+            &#39;condition&#39;: &#39;Modernizr.mq(\&#39;only screen and (max-width : 60em)\&#39;)&#39;
+        },
+        {
+            &#39;event&#39;    : &#39;click&#39;,
+            &#39;condition&#39;: &#39;Modernizr.mq(\&#39;only screen and (min-width : 60em)\&#39;) || this.$elem.parent().hasClass(\&#39;show\&#39;)&#39;
+        }
+    ]
+}
+</code></pre>
+
+<h4><i class="entypo-key"></i><a name="relatedTo"></a> relatedTo</h4>
+
+<h4><i class="entypo-key"></i><a name="datatype"></a> datatype</h4>
+
+<h4><i class="entypo-key"></i><a name="data"></a> data</h4>
+
+<h4><i class="entypo-key"></i><a name="wait"></a> wait</h4>
+
+<h4><i class="entypo-key"></i><a name="url"></a> url</h4>
+
+<h4><i class="entypo-key"></i><a name="inject"></a> inject</h4>
+
+<h4><i class="entypo-key"></i><a name="scrollTo"></a> scrollTo (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</h4>
+
+<h4><i class="entypo-key"></i><a name="type"></a> type  (zuvor method genannt im ajax-module)</h4>
+
+<h4><i class="entypo-key"></i><a name="callback"></a> callback (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</h4>
+
+<h4><i class="entypo-key"></i><a name="width"></a> width - modules.video</h4>
+
+<h4><i class="entypo-key"></i><a name="height"></a> height - modules.video</h4>
+
+<h4><i class="entypo-key"></i><a name="zipcode"></a> zipcode - modules.formcomponents.autocomplete</h4>
+
+<h4><i class="entypo-key"></i><a name="nextFocus"></a> nextFocus - zuvor nextFocusNameAttr - modules.formcomponents.autocomplete</h4>
+
+<h4><i class="entypo-key"></i><a name="animationsdelay"></a> animationsdelay - zuvor delay - modules.carousel</h4>
+
+<h4><i class="entypo-key"></i><a name="loader"></a> loader - actions.link/actions.ajax</h4>
+
+<h4><i class="entypo-key"></i><a name="loaderTo"></a> loaderTo - zuvor additionalloadertarget - actions.ajax</h4>
+
+<h4><i class="entypo-key"></i><a name="submit"></a> submit - zuvor ajax - modules.formcomponents.formvalidate</h4>
+
+<h2>4 <i class="entypo-brush"></i><a name="Erstellung"></a>Erstellung von Plugins</h2>
 
 <p>-ts berücksichtigen
 empty.js berücksichtigen</p>
