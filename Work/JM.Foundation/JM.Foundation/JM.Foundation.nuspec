@@ -17,8 +17,6 @@
                 <dependency id="Autofac" version="3.5.0" />
                 <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.4" />
                 <dependency id="Castle.Core" version="3.3.0" />
-                <dependency id="EnterpriseLibrary.SemanticLogging" version="2.0.1406.1" />
-                <dependency id="EnterpriseLibrary.SemanticLogging.TextFile" version="2.0.1406.1" />
                 <dependency id="EntityFramework" version="6.1.0" />
                 <dependency id="MarkdownSharp" version="1.13.0.0" />
                 <dependency id="Microsoft.AspNet.Mvc" version="5.1.2" />

@@ -42,6 +42,7 @@ namespace JM.Foundation.Piranha.Helper
 		private static string Url(string virtualpath)
 		{
             Contract.Assume(HttpContext.Current != null);
+            Contract.Ensures(Contract.Result<string>() != null);
 
 			var request = HttpContext.Current.Request;
 			return virtualpath.Replace("~/", request.ApplicationPath + (request.ApplicationPath != "/" ? "/" : string.Empty));

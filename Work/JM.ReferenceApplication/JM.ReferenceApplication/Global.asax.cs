@@ -28,9 +28,7 @@ namespace JM.ReferenceApplication
             MvcHandler.DisableMvcResponseHeader = true;
 
             // Eventlogging
-
-            // Startet das Event-Handling über EventSource
-            ApplicationEvents.Log.Initialize();
+            LoggingConfig.ConfigureLogging();
 
             // Logaufruf: Start der Application
             ApplicationEvents.Log.ApplicationStartup();
@@ -43,6 +41,11 @@ namespace JM.ReferenceApplication
             
             HostingEnvironment
                 .RegisterVirtualPathProvider(new EmbeddedViewPathProvider(typeof(FaqRegion).Assembly));
+        }
+
+        protected void Application_End()
+        {
+            LoggingConfig.EndLogging();
         }
 
         /// <summary>

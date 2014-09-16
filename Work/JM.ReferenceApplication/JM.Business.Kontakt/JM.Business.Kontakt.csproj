@@ -53,9 +53,9 @@
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.42, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.49, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.1.0.0.42\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.49\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -63,12 +63,6 @@
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.0.26.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging">
-      <HintPath>..\packages\EnterpriseLibrary.SemanticLogging.2.0.1406.1\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.TextFile">
-      <HintPath>..\packages\EnterpriseLibrary.SemanticLogging.TextFile.2.0.1406.1\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.TextFile.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>

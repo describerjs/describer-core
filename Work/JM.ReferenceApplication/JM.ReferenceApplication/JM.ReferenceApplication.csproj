@@ -66,9 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.42, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.49, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.1.0.0.42\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.49\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -78,13 +78,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnterpriseLibrary.SemanticLogging.2.0.1406.1\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
+      <HintPath>..\packages\EventSourceSynced.EnterpriseLibrary.SemanticLogging.1.1.1401-eventsourcesync10160\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.TextFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnterpriseLibrary.SemanticLogging.TextFile.2.0.1406.1\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.TextFile.dll</HintPath>
+      <HintPath>..\packages\EventSourceSynced.EnterpriseLibrary.SemanticLogging.Database.1.1.1401-eventsourcesync10160\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -222,6 +230,7 @@
     <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />

@@ -4,12 +4,12 @@ namespace JM.ReferenceApplication.Common.Monitoring
 {
     public partial class ApplicationEvents
     {
-        [Event(10, Level = EventLevel.Informational)]
+        [Event(1, Level = EventLevel.Informational)]
         public void ApplicationStartup()
         {
             if (IsEnabled())
             {
-                WriteEvent(10);
+                WriteEvent(1);
             }
         }
     }

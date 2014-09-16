@@ -1,7 +1,7 @@
-﻿using System;
-using System.Web;
-using JM.Foundation.Configuration;
+﻿using JM.Foundation.Configuration;
+using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace JM.Foundation.Mvc.Helper
@@ -50,8 +50,10 @@ namespace JM.Foundation.Mvc.Helper
 	    {
 		    var key = HttpContext.Current.Application["frontendcachekey"] as string;
 
-		    if (String.IsNullOrEmpty(key))
-			    key = UpdateFrontEndCacheKey();
+            if (string.IsNullOrEmpty(key))
+            {
+                key = UpdateFrontEndCacheKey();
+            }
 
 		    return key;
 	    }
