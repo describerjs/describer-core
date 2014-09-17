@@ -26,7 +26,7 @@ namespace JM.ReferenceApplication
 
             // Information Disclosure: MVC-Header entfernen
             MvcHandler.DisableMvcResponseHeader = true;
-
+            
             // Eventlogging
             LoggingConfig.ConfigureLogging();
 
@@ -45,6 +45,7 @@ namespace JM.ReferenceApplication
 
         protected void Application_End()
         {
+            ApplicationEvents.Log.ApplicationStopped();
             LoggingConfig.EndLogging();
         }
 

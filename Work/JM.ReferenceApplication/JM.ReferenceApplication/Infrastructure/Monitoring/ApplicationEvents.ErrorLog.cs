@@ -2,6 +2,7 @@
 using Microsoft.Diagnostics.Tracing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,29 @@ namespace JM.ReferenceApplication.Common.Monitoring
 {
     public partial class ApplicationEvents
     {
+        [Event(104, Level = EventLevel.Error)]
+        public void PiranhaError(
+            string origin,
+            string message)
+        {
+            if (IsEnabled())
+            {
+                WriteEvent(104, origin, message);
+            }
+        }
+
+        [Event(105, Level = EventLevel.Error)]
+        public void PiranhaException(
+            string origin,
+            string message,
+            string exDetails)
+        {
+            if (IsEnabled())
+            {
+                WriteEvent(105, origin, message, exDetails);
+            }
+        }
+
         [Event(101, Level = EventLevel.Error, Task = Tasks.CriticalBusinessTask)]
         protected override void FatalBusinessException(
             string message,

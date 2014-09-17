@@ -12,7 +12,7 @@ namespace JM.ReferenceApplication.App_Start
 {
     public static class LoggingConfig
     {
-        private static SinkSubscription<SqlDatabaseSink> subscription;
+        private static SinkSubscription<SqlDatabaseSink> s_subscription;
 
         public static void ConfigureLogging()
         {
@@ -32,7 +32,7 @@ namespace JM.ReferenceApplication.App_Start
                     Microsoft.Diagnostics.Tracing.EventLevel.LogAlways,
                     Microsoft.Diagnostics.Tracing.EventKeywords.All);
 
-            LoggingConfig.subscription =
+            s_subscription =
                 listener
                 .LogToSqlDatabase(
                     "JM.ReferenceApplication",
@@ -41,11 +41,10 @@ namespace JM.ReferenceApplication.App_Start
 
         public static void EndLogging()
         {
-            if(LoggingConfig.subscription != null)
+            if (s_subscription != null)
             {
-
-                LoggingConfig.subscription.Dispose();
-                LoggingConfig.subscription = null;
+                s_subscription.Dispose();
+                s_subscription = null;
             }
         }
     }
