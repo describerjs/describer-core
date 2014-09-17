@@ -22,13 +22,13 @@ namespace JM.ReferenceApplication
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutoFacConfig.RegisterDependencyResolver();
+            var container = AutoFacConfig.RegisterDependencyResolver();
 
             // Information Disclosure: MVC-Header entfernen
             MvcHandler.DisableMvcResponseHeader = true;
             
             // Eventlogging
-            LoggingConfig.ConfigureLogging();
+            LoggingConfig.ConfigureLogging(container);
 
             // Logaufruf: Start der Application
             ApplicationEvents.Log.ApplicationStartup();

@@ -1,4 +1,5 @@
 ﻿using JM.Business.Data;
+using JM.Business;
 using JM.Foundation;
 using System.Collections.Generic;
 
@@ -10,6 +11,8 @@ namespace JM.Business.Manager
 		List<string> GetCompleteData();
 
         string GetDataByIndex(int index);
+
+        void ThrowException(int paramter);
 	}
 
 	public class LameManager : ILameManager
@@ -23,6 +26,7 @@ namespace JM.Business.Manager
 
 		public List<string> GetCompleteData()
 		{
+            ModuleEvents.Log.OnGetCompleteData();
 			return _repository.GetData();
 		}
 
@@ -30,5 +34,10 @@ namespace JM.Business.Manager
 		{
 			return _repository.GetDatabyIndex(index);
 		}
-	}
+
+        public void ThrowException(int paramter)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }
