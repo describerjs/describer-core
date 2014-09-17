@@ -164,7 +164,8 @@ packages/
 # =========================
 # node_modules
 # =========================
-node_modules/*
+node_modules/
 
 # Webstorm
 .idea
+Cache/
