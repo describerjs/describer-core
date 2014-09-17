@@ -25,14 +25,14 @@ namespace JM.ReferenceApplication.Infrastructure.Monitoring
                 // Alle folgenden Events erhalten die selbe ID.
                 ApplicationEvents.SetCurrentThreadActivityId(Guid.NewGuid());
 
-                ApplicationEvents.Log.BeginRequest(context.Request.QueryString.ToString(), _beginRequestTime.ToString());
+                ApplicationEvents.Log.BeginRequest(context.Request.QueryString.ToString());
             };
 
             context.EndRequest += (s, args) =>
             {
                 var endRequestTime = DateTime.UtcNow;
                 var diff = endRequestTime - _beginRequestTime;
-                ApplicationEvents.Log.EndRequest(context.Request.QueryString.ToString(), endRequestTime.ToString(), diff.ToString());
+                ApplicationEvents.Log.EndRequest(context.Request.QueryString.ToString(), diff.ToString());
             };
         }
     }
