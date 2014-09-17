@@ -53,7 +53,7 @@
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>
-    <script src="/js/externals/originalReferenceSource/require.2.1.11.js" data-main="/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")"></script>
+    <script src="/js/externals/originalReferenceSource/require.2.1.11.js" data-main="/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css" />
@@ -68,19 +68,19 @@
             addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
-            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")');
+            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
         } else {
             addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
             addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
-            addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
-            addCSSToDOM('/css/build/style.86d06a.css');
-            addJSToDOM('/js/build/externals/customized/require.2.1.11.17e342.js', 'data-main', '/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")');
+            addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.b30289.js');
+            addCSSToDOM('/css/build/style.c73cbc.css');
+            addJSToDOM('/js/build/externals/customized/require.2.1.11.17e342.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
         }
     </script>
 
     <noscript>
-        <link rel="stylesheet" href="/css/build/style.86d06a.css" />
-        <link rel="stylesheet" href="/css/build/noscript.589281.css" />
+        <link rel="stylesheet" href="/css/build/style.c73cbc.css" />
+        <link rel="stylesheet" href="/css/build/noscript.4b086a.css" />
     </noscript>
     }
 
