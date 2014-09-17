@@ -78,7 +78,9 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    }
 	    },
 
+	    // TODO Andreas bereinigen der _getData-Funktion Sonderfall $$ als neues Modul, welches von ajax abgeleitet wird.
         _getData: function(){
+	        // TODO Andreas ist doppelt siehe _super.js
 	        if(this.is('data').indexOf('this.') !== -1){
 		        return eval(this.is('data'));
 	        }
