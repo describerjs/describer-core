@@ -1,0 +1,108 @@
+﻿@using JM.ReferenceApplication.Areas.JMTools.Models
+@model List<Trace>
+
+@section scripts
+{
+<script>
+    jQuery(function ($) {
+        var asc = "asc";
+        var desc = "desc";
+        var currentAction = "showing";
+        var currentSearch = "";
+
+        $("#showall").click(function () {
+            currentAction = "showing";
+            $.ajax({
+                url: "/jmtools/administration/GetAllTraces",
+                type: "POST",
+                data: currentSearch,
+                dataType: "html",
+                success: function (result) {
+                    initTable(result);
+                }
+            });
+        });        
+
+        $("#searchBtn").click(function () {
+            var searchText = $("#search").val();
+            var name = $("#properties option:selected").val();
+            currentSearch = "name=" + name + "&text=" + searchText;
+            currentAction = "searching";
+
+            $.ajax({
+                url: "/jmtools/administration/SearchTraces",
+                type: "POST",
+                data: currentSearch,
+                dataType: "html",
+                success: function(result) {
+                    initTable(result);
+                }
+            });
+        });
+
+        var initTable = function (htmlResult) {
+            $("#table-update").html(htmlResult);
+            addSortEvents();
+        };
+
+        var addSortEvents = function () {
+            $("th").click(function() {
+                var sorting = $(this).data("sort");
+                var sortBy = $(this).attr('id');
+                var query = "sort=" + sorting + "&sortBy=" + sortBy;
+                if (currentAction == "searching") {
+                    query = query + "&" + currentSearch;
+                }
+                $.ajax({
+                    url: "/jmtools/administration/SortTraces",
+                    type: "POST",
+                    data: query,
+                    dataType: "html",
+                    success: function(result) {
+                        initTable(result);
+                        var head = $("#" + sortBy);
+                        if (sorting == asc) {
+                            head.data("sort", desc);
+                        } else {
+                            head.data("sort", asc);
+                        }
+                    }
+                });
+            });
+        };
+    });
+</script>
+}
+@section css{
+    <style type="text/css">
+        .container
+        {
+            max-width: 1830px;
+        }
+       th
+        {
+            cursor: pointer;
+        }
+    </style>
+}
+
+<div class="row">
+    <h1>JMTools BE Administration.</h1>
+    <p>EventTracing</p>
+</div>
+<div id="update-panel">
+    <div class="filter">
+        <input type="button" value="Show All" id="showall"/>
+        <label><strong>Suchen:</strong></label>
+        <input type="text" id="search" value=""/>
+        <label>in: </label>
+        <select id="properties">
+            @foreach (var property in typeof(Trace).GetProperties().Skip(1))
+            {
+                <option value="@property.Name">@property.Name</option>
+            }
+        </select>
+        <input type="button" value="Suchen" id="searchBtn"/>
+    </div>    
+    <div id="table-update"></div>
+</div>
