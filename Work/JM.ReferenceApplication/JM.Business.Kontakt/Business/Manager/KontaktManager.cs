@@ -65,8 +65,7 @@ namespace JM.Business.Kontakt.Business.Manager
             }
 
 			// Loggen des Aufrufs
-            // ToDo: New durch statisches Log() ersetzen.
-			new ModuleEvents().ContactFormSent(model.Email, model.FirstName, model.LastName);
+			ModuleEvents.Log.ContactFormSent(model.Email, model.FirstName, model.LastName);
 
 			var sender = new SmtpClient(_config.SmtpServer.Server);
 			sender.Send(mail);

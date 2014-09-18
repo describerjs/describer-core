@@ -19,7 +19,7 @@ namespace JM.ReferenceApplication.App_Start
         /// <summary>
         /// Erstellt den DependencyResolver mit allen definierten Typen und registriert alle Controller
         /// </summary>
-        public static void RegisterDependencyResolver()
+        public static IContainer RegisterDependencyResolver()
         {
             // Hier wird der DI-Container erzeugt, in dem alle Referenzen auf Typen (Klassen) gesammelt werden,
             // die über DI zur Verfügung stehen sollen.
@@ -65,6 +65,7 @@ namespace JM.ReferenceApplication.App_Start
             // diesen erfolgt dann das eigentliche Auflösen der Abhängigkeiten
             var container = autofacBuilder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            return container;
         }
     }
 }

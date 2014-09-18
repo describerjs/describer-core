@@ -19,7 +19,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.52\lib\net45\</OutputPath>
+<<<<<<< HEAD
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.49\lib\net45\</OutputPath>
+=======
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.50\lib\net45\</OutputPath>
+>>>>>>> feature/Loggin_auf_Modulebene
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
