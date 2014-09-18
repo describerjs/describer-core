@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
 
         public string PiranhaConnectionString;
 
-        public string LoggingConnectionString;
+        public string EventTracingSqlSink;
 
         public bool IsRelease;
     }

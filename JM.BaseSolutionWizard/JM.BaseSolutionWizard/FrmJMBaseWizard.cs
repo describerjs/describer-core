@@ -17,12 +17,12 @@ namespace JM.BaseSolutionWizard
             this.adminConnectionStringTextBox.Enabled = false;
             this.standardConnectionStringTextBox.Enabled = false;
             this.environmentNameTextBox.Enabled = false;
-            this.environmentViewModelBindingSource.ListChanged += environmentViewModelBindingSource_ListChanged;
+            this.environmentViewModelBindingSource1.ListChanged += environmentViewModelBindingSource_ListChanged;
         }
 
         void environmentViewModelBindingSource_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if (this.environmentViewModelBindingSource.List.Count == 0)
+            if (this.environmentViewModelBindingSource1.List.Count == 0)
             {
                 this.adminConnectionStringTextBox.Enabled = false;
                 this.standardConnectionStringTextBox.Enabled = false;
@@ -40,7 +40,7 @@ namespace JM.BaseSolutionWizard
         {
             get
             {
-                var environments = environmentViewModelBindingSource
+                var environments = environmentViewModelBindingSource1
                     .OfType<EnvironmentViewModel>()
                     .Where(en => !string.IsNullOrWhiteSpace(en.EnvironmentName)).ToList();
 
@@ -50,7 +50,7 @@ namespace JM.BaseSolutionWizard
 
         public void SetData(IEnumerable<EnvironmentViewModel> models)
         {
-            environmentViewModelBindingSource.DataSource = models.ToList();
+            environmentViewModelBindingSource1.DataSource = models.ToList();
         }
 
         protected override void OnClosing(CancelEventArgs e)
