@@ -244,6 +244,7 @@
     </Compile>
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
+    <Compile Include="Areas\JMTools\Models\Traces.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -944,9 +945,10 @@
     <Content Include="Views\Home\Demo.cshtml" />
     <Content Include="Views\Page\TextListPage.cshtml" />
     <Content Include="Views\Shared\Regions\TextList.cshtml" />
+    <Content Include="Areas\JMTools\Views\Administration\EventTracing.cshtml" />
+    <Content Include="Areas\JMTools\Views\Shared\_TracesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\JMTools\Models\" />
     <Folder Include="Areas\Manager\Views\Extensions\" />
     <Folder Include="css\min\" />
   </ItemGroup>
