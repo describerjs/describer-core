@@ -38,10 +38,10 @@ namespace WindowsFormsApplication1
 
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE",
+                DataSource = EnvironmentConsts.DefaultDataSource,
                 InitialCatalog = projectName,
-                UserID = "sa",
-                Password = "Join#media960",
+                UserID = EnvironmentConsts.DefaultUserID,
+                Password = EnvironmentConsts.DefaultPassword,
                 MultipleActiveResultSets = true
             };
 
@@ -53,7 +53,8 @@ namespace WindowsFormsApplication1
                         AdminConnectionString = builder.ConnectionString,
                         EnvironmentName = "Dev",
                         IsLocal = true,
-                        StandardConnectionString = builder.ConnectionString
+                        StandardConnectionString = builder.ConnectionString,
+                        LoggingConnectionString = EnvironmentConsts.DefaultLoggingDbConnectionString
                     }
                 };
         }
