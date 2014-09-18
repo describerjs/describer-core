@@ -1,0 +1,14 @@
+﻿@using Piranha.Extend.Regions
+@model Piranha.Models.PageModel
+@{
+    ViewBag.Title = Model.Page.Title ;
+}
+<div class="text-block">
+    <h1>@Model.Page.Title - TextList</h1>
+</div>
+@{
+    var textList = Model.Region<TextListRegion>("TextListRegion");
+    var text = Model.Region<TextRegion>("SimpleText");
+}
+@Html.Partial("Regions/TextList", textList)
+@Html.Partial("Regions/TextBlock", text)

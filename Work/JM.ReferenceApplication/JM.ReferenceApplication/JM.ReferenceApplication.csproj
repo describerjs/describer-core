@@ -66,9 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.49, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.52, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.1.0.0.49\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.52\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -942,6 +942,8 @@
     <Content Include="img\webp\videoPlayer\ayyildiz_app_tutorial.webp" />
     <Content Include="img\webp\videoPlayer\iphone5s-video.webp" />
     <Content Include="Views\Home\Demo.cshtml" />
+    <Content Include="Views\Page\TextListPage.cshtml" />
+    <Content Include="Views\Shared\Regions\TextList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\JMTools\Models\" />

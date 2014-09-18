@@ -6,7 +6,7 @@
     <h1>@Model.Page.Title - Faq</h1>
 </div>
 @{
-    @*In Piranha wurde für den PageType "Level0" eine Region names "Teaser" definiert.*@
+    @*In Piranha wurde für den PageType "Faq" eine Region names "Faq" definiert.*@
     var faqModel = Model.Region<FaqRegion>("Faq");
 }
 @Html.Partial("Regions/Faq", faqModel);
