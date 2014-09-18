@@ -92,7 +92,7 @@ namespace JM.BaseSolutionWizard
                                 new SqlCommand(cstring, conn).ExecuteNonQuery();
                             }
                         }
-                        catch (SqlException e)
+                        catch (SqlException)
                         {
                             //todo: handeln (wenn's die Tabelle schon gibt!)
                         }
