@@ -1,12 +1,12 @@
 ﻿using JM.Foundation.ErrorHandling;
 using Microsoft.Diagnostics.Tracing;
 
-namespace JM.Business.Kontakt
+namespace JM.Business
 {
 	/// <summary>
 	/// Bietet Funktionen zum Loggen/Erfassen aller definierten Events in diesem Modul
 	/// </summary>
-    [EventSource(Name = "JM-Business-Kontakt")]
+    [EventSource(Name = "JM-Business")]
     public sealed class ModuleEvents : JMEventSourceBase<ModuleEvents>
 	{
 		[Event(104, Level = EventLevel.Informational)]
@@ -66,5 +66,11 @@ namespace JM.Business.Kontakt
             public const EventTask BusinessTask = (EventTask)2;
             public const EventTask GenericTask = (EventTask)3;
         }
-	}
+
+        [Event(105, Level = EventLevel.Informational)]
+        public void OnGetCompleteData()
+        {
+            WriteEvent(105);
+        }
+    }
 }

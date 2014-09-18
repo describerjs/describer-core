@@ -24,20 +24,20 @@ namespace JM.ReferenceApplication.Common.Monitoring
         }
 
         [Event(10000, Level = EventLevel.Informational, Opcode = EventOpcode.Start, Task = Tasks.RequestMonitoring)]
-        public void BeginRequest(string queryString, string utcTimeStamp)
+        public void BeginRequest(string queryString)
         {
             if (IsEnabled())
             {
-                WriteEvent(10000, queryString, utcTimeStamp);
+                WriteEvent(10000, queryString);
             }
         }
 
         [Event(10001, Level = EventLevel.Informational, Opcode = EventOpcode.Stop, Task = Tasks.RequestMonitoring)]
-        public void EndRequest(string queryString, string utcTimeStamp, string duration)
+        public void EndRequest(string queryString, string duration)
         {
             if (IsEnabled())
             {
-                WriteEvent(10001, queryString, utcTimeStamp, duration);
+                WriteEvent(10001, queryString, duration);
             }
         }
 

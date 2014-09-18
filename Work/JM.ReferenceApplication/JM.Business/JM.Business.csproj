@@ -120,6 +120,8 @@
     <Compile Include="Configuration\DeviceIdElement.cs" />
     <Compile Include="Manager\ImportantManager.cs" />
     <Compile Include="Manager\LameManager.cs" />
+    <Compile Include="ModuleDefinition.cs" />
+    <Compile Include="ModuleEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

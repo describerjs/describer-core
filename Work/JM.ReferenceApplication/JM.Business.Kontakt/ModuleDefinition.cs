@@ -4,6 +4,7 @@ using JM.Business.Kontakt.Business.Manager;
 using JM.Business.Kontakt.Business.Model;
 using JM.Business.Kontakt.Contracts.Manager;
 using JM.Business.Kontakt.Contracts.Model;
+using JM.Foundation.ErrorHandling;
 
 namespace JM.Business.Kontakt
 {
@@ -47,6 +48,10 @@ namespace JM.Business.Kontakt
 			builder
 				.RegisterType<Business.Model.PersonalData>()
 				.As<IPersonalData>();
+
+            builder
+                .RegisterInstance<ModuleEvents>(ModuleEvents.Log)
+                .As<JMEventSourceBase>();
 
 			base.Load(builder);
 		}
