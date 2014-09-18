@@ -32,7 +32,7 @@ define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var that = this;
 			require(['owl_carousel', 'overwritings.owl_carousel'], function(param1, param2){
 				that.indexCount = 0;

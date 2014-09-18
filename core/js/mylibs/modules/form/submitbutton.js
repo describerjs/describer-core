@@ -53,7 +53,7 @@ define(['jquery', '_super', 'jquery_ba-dotimeout'], function ($, _super) {
 
 		},*/
 
-		_exec: function(){
+		_exec: function(e){
 			jmHF.submit();
 			// die Submit-Funkionalität wird vom FormValidate-Plugin im submitHandler übernommen, der bei Click eines Input-Fields vom Typ Submit getriggert wird.
 			this.$elem.trigger('checkValidation', this.$elem);

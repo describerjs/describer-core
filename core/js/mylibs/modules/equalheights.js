@@ -31,7 +31,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var vals = this.$elem.find('[data-jmselector="equal-heights-children"]');
 			vals.innerHeight();
 			//if (isMobile) return;

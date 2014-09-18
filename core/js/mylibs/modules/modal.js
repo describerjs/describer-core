@@ -21,7 +21,7 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$modal = $('#'+this._getID());
 			if(this.$modal.doesExist()){
 				window.requestAnimationFrame(this._open.bind(this));

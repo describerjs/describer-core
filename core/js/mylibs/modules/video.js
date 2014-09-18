@@ -30,7 +30,7 @@ define(['jquery', '_super', 'video', 'css!require-css.video'], function ($, _sup
             //
         },
 
-        _exec: function () {
+        _exec: function (e) {
             var steps = $(".app_tutorial_step");
             var step1 = $(".app_tutorial_step1");
             var step2 = $(".app_tutorial_step2");

@@ -31,7 +31,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$opposition = $(this.is('opposition'));
 			for(var i = 0, leni = this.$opposition.length; i < leni; i++){
 			    if(this.$opposition.eq(i).prop('checked')){

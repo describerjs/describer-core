@@ -59,7 +59,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$elem.append(this.$ani);
 			window.location.href = this.$elem.attr('href');
 		}

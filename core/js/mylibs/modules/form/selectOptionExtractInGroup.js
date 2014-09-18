@@ -33,7 +33,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.nextVal = this.$elem.val();
 			var tempOption;
 			var tempSelectionen = $(this.is('relatedTo')).find('option:selected');

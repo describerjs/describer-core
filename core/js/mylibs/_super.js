@@ -21,27 +21,27 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 		},
 
 		// wird vom Body-Listener für 'click' aufgerufen
-		click: function(){
-			if(this.includes('event', 'click') && this.isCondition()) this._execWait();
+		click: function(e){
+			if(this.includes('event', 'click') && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'change' aufgerufen
-		change: function(){
-			if(this.includes('event', 'change') && this.isCondition()) this._execWait();
+		change: function(e){
+			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
-		jmtrigger: function(){
-			if(this.includes('event', 'jmtrigger') && this.isCondition()) this._execWait();
+		jmtrigger: function(e){
+			if(this.includes('event', 'jmtrigger') && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
-		dominit: function(){
-			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait();
+		dominit: function(e){
+			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 			//
 			if(this.includes('event', 'raf')) this._raf();
-			if(this.partOf('event', 'interval')) this._interval();
+			if(this.partOf('event', 'interval')) this._interval(e);
 
 			// init Event-Listener auf this.$elem
 			if(this.includes('event', 'blur')) this.$elem.on('blur', this._blur.bind(this));
@@ -296,47 +296,53 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
 		},
 
-		_execWait: function(){
+		_execWait: function(e){
 			var that = this;
-			if(this.is('wait') !== ''){
-				setTimeout(function(){ that._exec(); }, parseInt(this.is('wait'), 10));
+			if(this.is('wait') === ''){
+				this._exec(e);
 				return;
 			}
-			this._exec();
+			if(this.is('wait') === 'raf'){
+				window.requestAnimationFrame(this._exec.bind(this, e));
+				return;
+			}
+			if(this.is('wait') !== ''){
+				setTimeout(function(){ that._exec(e); }, parseInt(this.is('wait'), 10));
+			}
 		},
 
-		_interval : function(){
+		_interval : function(e){
 			var that = this;
 			setInterval(function(){
-				if(that.isCondition()) that._execWait();
+				if(that.isCondition()) that._execWait(e);
 				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
 			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
 		},
 
-		_hover: function(){
+		_hover: function(e){
 			if(this.isCondition()){
-				this._execWait();
+				this._execWait(e);
 			}
 		},
 
-		_blur: function(){
+		_blur: function(e){
 			if(this.isCondition()){
-				this._execWait();
+				this._execWait(e);
 			}
 		},
 
-		_focus: function(){
+		_focus: function(e){
 			if(this.isCondition()){
-				this._execWait();
+				this._execWait(e);
 			}
 		},
 
-		_keyup: function(){
+		_keyup: function(e){
 			if(this.isCondition()){
 				if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
-					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this));
+					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
 				}else{
-					this._execWait.bind(this)
+					this._execWait.bind(this, e)
 				}
 			}
 		},

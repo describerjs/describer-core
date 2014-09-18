@@ -393,16 +393,16 @@ Deklaration mit einem data-jmname und dem überschreiben von nur einem key-value
 Die Funktionalitäten werden in der [```_config.js```](#_config) in einem entsprechenden Objekt deklariert. Folgende Keys können für das entsprechende Plugin verwendet werden. Die unterstützen Plugins werden in ihrer Detailbeschreibung aufgelistet.
 
 - [event](#event) (für alle Plugins required)
-- [condition](#condition) (für alle Plugins)
-- [wait](#wait) (für alle Plugins)
+- [condition](#condition) (für alle Plugins optional)
+- [wait](#wait) (für alle Plugins optional)
 - [relatedTo](#relatedTo)
 - [datatype](#datatype)
 - [data](#data)
 - [url](#url)
 - [inject](#inject)
-- [scrollTo](#scrollTo) (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
 - [type](#type)  (zuvor method genannt im ajax-module)
 - [callback](#callback) (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
+- [scrollTo](#scrollTo) (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
 - [width](#width) - modules.video
 - [height](#height) - modules.video
 - [zipcode](#zipcode) - modules.formcomponents.autocomplete
@@ -435,13 +435,13 @@ Des Weiteren lassen sich folgende Events durch die Angabe von ```data-jmdominit=
 
 > <i class="entypo-attention"></i>Angabe von ```data-jmdominit="true"``` im Tag notwendig ```<input data-jmname="sync-val" data-jmdominit="true" type="text" name="vorname" />```
 
-##### <a name="event"></a><i class="entypo-flash"></i>3.3.1.1 click
+##### <a name="click"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.1 click
 Die Aktion wird auf click durchgeführt
 
-##### <a name="event"></a><i class="entypo-flash"></i>3.3.1.2 change
+##### <a name="change"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.2 change
 Die Aktion wird auf change durchgeführt
 
-##### <a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger
+##### <a name="jmtrigger"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger
 Die Aktion wird auf jmtrigger durchgeführt
 
 ##### <a name="dominit"></a><i class="entypo-flash"></i>3.3.1.4 dominit
@@ -549,9 +549,16 @@ Plugin 2 (```'actions.link'```): Ist die Screen-Width gleich Desktop oder hat da
 
 ----------
 
-#### <i class="entypo-key"></i><a name="wait"></a>3.3.3 wait
+#### <i class="entypo-key"></i><a name="wait"></a>3.3.3 wait  (Value: 'String')
 > <i class="entypo-info-circled"></i> Ist als Event ```'raf'``` angegeben ist die Angabe von ```'wait'``` nicht berücksichtigt.
-Bei der Angabe von ```'wait'``` wird die Ausführung um den entsprechenden Wert verzögert.
+
+Bei der Angabe von ```'wait'``` wird die Ausführung um den entsprechenden Wert verzögert. Alternativ kann auch ```'raf'``` angegeben werde. So wird erst beim nachsten requestAnimationFrame die Aktion durchgeführt.
+
+
+~~~
+'wait': '1000'
+~~~
+<i class="fontawesome-hand-right"></i> Die Ausführung wird um 1 Sekunde verzögert.
 
 ----------
 
@@ -627,15 +634,45 @@ oder via eval()
 'data'     : 'this.$elem.val()'
 ~~~
 
+----------
+
+#### <i class="entypo-key"></i><a name="url"></a>3.3.8 url  (Value: 'String')
+
+Die Angabe ```'url'``` wird bei folgenden Plugins verwendet:
+- actions.ajax (required)
+- modules.form.autocomplete (required)
+
+----------
+
+#### <i class="entypo-key"></i><a name="inject"></a>3.3.7 inject  (Value: 'String')
+
+Die Angabe ```'inject'``` wird bei folgenden Plugins verwendet:
+- actions.add (Verwendung nur bei ```'datatype':'html'``` und hier optional. Default ist ```'html'```)()
+- actions.ajax (required)
 
 
-#### <i class="entypo-key"></i><a name="url"></a>3.3.7 url
+Für  ```'inject'``` sind die jQuery-DOM-Insertion-Methoden anzugeben wie z.B. Value ist ```'after'```, ```'before'```, ```'append'```, ```'prepend'```, ```'html'```, ```'wrap'``` etc.
 
+----------
 
-#### <i class="entypo-key"></i><a name="inject"></a>3.3.8 inject
-#### <i class="entypo-key"></i><a name="scrollTo"></a>3.3.9 scrollTo (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
-#### <i class="entypo-key"></i><a name="type"></a>3.3.10 type  (zuvor method genannt im ajax-module)
-#### <i class="entypo-key"></i><a name="callback"></a>3.3.11 callback (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
+#### <i class="entypo-key"></i><a name="type"></a>3.3.9 type  (Value: 'String')  
+
+Die Angabe ```'type'``` wird bei folgenden Plugins verwendet:
+- actions.ajax (optional fallback ist Value 'get')
+
+die Value ist ```'post'``` oder ```'get'``` sein.
+
+(wurde zuvor ```'method'``` genannt im Plugin actions.ajax)
+----------
+
+#### <i class="entypo-key"></i><a name="callback"></a>3.3.10 callback (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
+
+----------
+
+#### <i class="entypo-key"></i><a name="scrollTo"></a>3.3.11 scrollTo (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
+
+----------
+
 #### <i class="entypo-key"></i><a name="width"></a>3.3.12 width - modules.video
 #### <i class="entypo-key"></i><a name="height"></a>3.3.13 height - modules.video
 #### <i class="entypo-key"></i><a name="zipcode"></a>3.3.14 zipcode - modules.formcomponents.autocomplete

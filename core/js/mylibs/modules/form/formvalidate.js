@@ -32,7 +32,7 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var that = this;
 			return this.$elem.validate({
 				onchange: function(element, event) {

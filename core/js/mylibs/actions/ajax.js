@@ -125,15 +125,15 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
             return q;
         },
 
-        _exec: function(){
+        _exec: function(e){
             var that = this;
 	        if(this.is('additionalloadertarget') !== ''){
 		        $(this.is('additionalloadertarget')).append(this.$additionalloader);
 	        }
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
-	        this.injection = this.subObj_injection || this.is('inject');
+	        this.injection = this.subObj_injection || this.is('inject');  // TODO Andreas this.subObj_injection wird im modal verwendet. Bessere Lösung finden
             $.ajax({
-                type: (that.is('method') !== '') ? ((that.is('method', 'post')) ? 'POST' : 'GET') : 'GET',
+                type: (that.is('type') !== '') ? ((that.is('type', 'post')) ? 'POST' : 'GET') : 'GET',
                 url: that._getUrl(),
                 data: that._getData(),
                 beforeSend: function (){

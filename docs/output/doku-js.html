@@ -468,8 +468,8 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 
 <ul>
 <li><a href="#event">event</a> (für alle Plugins required)</li>
-<li><a href="#condition">condition</a> (für alle Plugins)</li>
-<li><a href="#wait">wait</a> (für alle Plugins)</li>
+<li><a href="#condition">condition</a> (für alle Plugins optional)</li>
+<li><a href="#wait">wait</a> (für alle Plugins optional)</li>
 <li><a href="#relatedTo">relatedTo</a></li>
 <li><a href="#datatype">datatype</a></li>
 <li><a href="#data">data</a></li>
@@ -516,15 +516,15 @@ Des Weiteren lassen sich folgende Events durch die Angabe von <code>data-jmdomin
 <p><i class="entypo-attention"></i>Angabe von <code>data-jmdominit=&quot;true&quot;</code> im Tag notwendig <code>&lt;input data-jmname=&quot;sync-val&quot; data-jmdominit=&quot;true&quot; type=&quot;text&quot; name=&quot;vorname&quot; /&gt;</code></p>
 </blockquote>
 
-<h5><a name="event"></a><i class="entypo-flash"></i>3.3.1.1 click</h5>
+<h5><a name="click"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.1 click</h5>
 
 <p>Die Aktion wird auf click durchgeführt</p>
 
-<h5><a name="event"></a><i class="entypo-flash"></i>3.3.1.2 change</h5>
+<h5><a name="change"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.2 change</h5>
 
 <p>Die Aktion wird auf change durchgeführt</p>
 
-<h5><a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger</h5>
+<h5><a name="jmtrigger"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger</h5>
 
 <p>Die Aktion wird auf jmtrigger durchgeführt</p>
 
@@ -643,12 +643,18 @@ Des Weiteren lassen sich folgende Events durch die Angabe von <code>data-jmdomin
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="wait"></a>3.3.3 wait</h4>
+<h4><i class="entypo-key"></i><a name="wait"></a>3.3.3 wait  (Value: &#39;String&#39;)</h4>
 
 <blockquote>
-<p><i class="entypo-info-circled"></i> Ist als Event <code>&#39;raf&#39;</code> angegeben ist die Angabe von <code>&#39;wait&#39;</code> nicht berücksichtigt.
-Bei der Angabe von <code>&#39;wait&#39;</code> wird die Ausführung um den entsprechenden Wert verzögert.</p>
+<p><i class="entypo-info-circled"></i> Ist als Event <code>&#39;raf&#39;</code> angegeben ist die Angabe von <code>&#39;wait&#39;</code> nicht berücksichtigt.</p>
 </blockquote>
+
+<p>Bei der Angabe von <code>&#39;wait&#39;</code> wird die Ausführung um den entsprechenden Wert verzögert. Alternativ kann auch <code>&#39;raf&#39;</code> angegeben werde. So wird erst beim nachsten requestAnimationFrame die Aktion durchgeführt.</p>
+
+<pre><code>&#39;wait&#39;: &#39;1000&#39;
+</code></pre>
+
+<p><i class="fontawesome-hand-right"></i> Die Ausführung wird um 1 Sekunde verzögert.</p>
 
 <hr>
 
@@ -737,11 +743,35 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 <pre><code>&#39;data&#39;     : &#39;this.$elem.val()&#39;
 </code></pre>
 
-<h4><i class="entypo-key"></i><a name="url"></a>3.3.7 url</h4>
+<hr>
 
-<h4><i class="entypo-key"></i><a name="inject"></a>3.3.8 inject</h4>
+<h4><i class="entypo-key"></i><a name="url"></a>3.3.8 url  (Value: &#39;String&#39;)</h4>
+
+<p>Die Angabe <code>&#39;url&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>actions.ajax (required)</li>
+<li>modules.form.autocomplete (required)</li>
+</ul>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="inject"></a>3.3.7 inject  (Value: &#39;String&#39;)</h4>
+
+<p>Die Angabe <code>&#39;inject&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>actions.add (optional bei <code>&#39;datatype&#39;:&#39;html&#39;</code>)()</li>
+<li>actions.ajax (required)</li>
+</ul>
+
+<p>Für  <code>&#39;inject&#39;</code> sind die jQuery-DOM-Insertion-Methoden anzugeben wie z.B. Value ist <code>&#39;after&#39;</code>, <code>&#39;before&#39;</code>, <code>&#39;append&#39;</code>, <code>&#39;prepend&#39;</code>, <code>&#39;html&#39;</code>, <code>&#39;wrap&#39;</code> etc.</p>
+
+<hr>
 
 <h4><i class="entypo-key"></i><a name="scrollTo"></a>3.3.9 scrollTo (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</h4>
+
+<hr>
 
 <h4><i class="entypo-key"></i><a name="type"></a>3.3.10 type  (zuvor method genannt im ajax-module)</h4>
 

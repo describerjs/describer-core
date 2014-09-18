@@ -32,13 +32,9 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
-			if(this.is('wait') !== 'raf'){
-				this._triggerEvent();
-			}else{
-				window.requestAnimationFrame(this._triggerEvent.bind(this));
-			}
+			this._triggerEvent();
 		},
 
 		_triggerEvent: function(){

@@ -32,7 +32,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			if(this.is('scrollTo') !== ''){
 				this._scrollTo();
 			}
