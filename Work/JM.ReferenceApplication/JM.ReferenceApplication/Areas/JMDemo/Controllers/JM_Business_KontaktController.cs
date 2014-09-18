@@ -36,7 +36,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		public ActionResult Index()
         {
 	        var model = _kontaktManager.GetStartModel(User.Identity.GetUserId());
-            /*TEST TEST*/
             return View(model);
         }
 
