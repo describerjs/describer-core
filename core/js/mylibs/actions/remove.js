@@ -53,30 +53,22 @@ define(['jquery', '_super'], function ($, _super){
 
 		_removeClass: function(){
 			this.$destination.removeClass(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_removeHtml: function(){
 			this.$destination.remove();
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_removeAttr: function(){
 			this.$destination.removeAttr(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_removeProp: function(){
 			this.$destination.removeProp(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		}
 
 	});

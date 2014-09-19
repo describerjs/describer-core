@@ -39,9 +39,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		_triggerEvent: function(){
 			this.$destination.trigger(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		}
 
 	});

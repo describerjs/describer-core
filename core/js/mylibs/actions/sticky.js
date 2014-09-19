@@ -37,6 +37,7 @@ define(['jquery', '_super', 'fixedsticky'], function ($, _super){
 
 		_exec: function(e){
 			this.$elem.fixedsticky();
+			this._finishing();
 		}
 
 		/*render: function(){

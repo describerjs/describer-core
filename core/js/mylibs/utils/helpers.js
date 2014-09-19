@@ -134,9 +134,9 @@ define(['jquery', '_config'], function($, _config){
 		return p_plugin;
 	};
 
-	jmHF.eventDelegationTrigger = function(e){
+	jmHF.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
-		jmHF.eventDelegationHepler($this, e);
+		jmHF.eventDelegationHepler($this, e, param);
 	};
 
 	jmHF.eventDelegationTriggerForATags = function(e){
@@ -161,10 +161,10 @@ define(['jquery', '_config'], function($, _config){
 		jmHF.eventDelegationHepler($this, e);
 	};
 
-	jmHF.eventDelegationHepler = function($this, e){
+	jmHF.eventDelegationHepler = function($this, e, param){
 		var _jmname = $this.attr('data-jmname').split('|');
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
-			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmPluginByJmName(_config, _jmname[i]), 'e': e });
+			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmPluginByJmName(_config, _jmname[i]), 'e': e, 'e_param': param });
 		}
 	};
 
@@ -229,11 +229,7 @@ define(['jquery', '_config'], function($, _config){
 
 			// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
 			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type(_elem[Obj.e.type]) !== 'undefined'){
-				_elem[Obj.e.type](Obj.e);
-			}
-			// wird mit dem Objekt ein Callback übergeben, wird dieser ausgeführt.
-			if($.type(Obj.callback) !== 'undefined'){
-				Obj.callback.call(this);
+				_elem[Obj.e.type](Obj.e, Obj.e_param);
 			}
 		});
 	};

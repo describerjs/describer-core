@@ -470,14 +470,14 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 <li><a href="#event">event</a> (für alle Plugins required)</li>
 <li><a href="#condition">condition</a> (für alle Plugins optional)</li>
 <li><a href="#wait">wait</a> (für alle Plugins optional)</li>
+<li><a href="#callback">callback</a> (für alle Plugins optional) this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</li>
 <li><a href="#relatedTo">relatedTo</a></li>
 <li><a href="#datatype">datatype</a></li>
 <li><a href="#data">data</a></li>
 <li><a href="#url">url</a></li>
 <li><a href="#inject">inject</a></li>
-<li><a href="#scrollTo">scrollTo</a> (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</li>
 <li><a href="#type">type</a>  (zuvor method genannt im ajax-module)</li>
-<li><a href="#callback">callback</a> (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</li>
+<li><a href="#scrollTo">scrollTo</a> (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</li>
 <li><a href="#width">width</a> - modules.video</li>
 <li><a href="#height">height</a> - modules.video</li>
 <li><a href="#zipcode">zipcode</a> - modules.formcomponents.autocomplete</li>
@@ -658,7 +658,14 @@ Des Weiteren lassen sich folgende Events durch die Angabe von <code>data-jmdomin
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="relatedTo"></a>3.3.4 relatedTo  (Value: &#39;HTMLElement/e&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="callback"></a>3.3.4 callback (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</h4>
+
+<p>&#39;callback&#39; : &#39;$(\&#39;[data-jmname=&quot;togglebox&quot;]\&#39;).eq(0).jmtrigger(\&#39;click\&#39;)&#39;
+&#39;event&#39;:&#39;jmtrigger:click&#39;</p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="relatedTo"></a>3.3.5 relatedTo  (Value: &#39;HTMLElement/e&#39;)</h4>
 
 <blockquote>
 <p><i class="entypo-info-circled"></i> Wenn in der Value ein &#39;this.&#39; enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.</p>
@@ -701,7 +708,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="datatype"></a>3.3.5 datatype  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="datatype"></a>3.3.6 datatype  (Value: &#39;String&#39;)</h4>
 
 <p>Die Angabe <code>&#39;datatype&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
@@ -716,7 +723,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="data"></a>3.3.6 data  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="data"></a>3.3.7 data  (Value: &#39;String&#39;)</h4>
 
 <blockquote>
 <p><i class="entypo-info-circled"></i> Wenn in der Value ein &#39;this.&#39; enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.</p>
@@ -756,12 +763,12 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="inject"></a>3.3.7 inject  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="inject"></a>3.3.8 inject  (Value: &#39;String&#39;)</h4>
 
 <p>Die Angabe <code>&#39;inject&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
 <ul>
-<li>actions.add (optional bei <code>&#39;datatype&#39;:&#39;html&#39;</code>)()</li>
+<li>actions.add (Verwendung nur bei <code>&#39;datatype&#39;:&#39;html&#39;</code> und hier optional. Default ist <code>&#39;html&#39;</code>)()</li>
 <li>actions.ajax (required)</li>
 </ul>
 
@@ -769,13 +776,23 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="scrollTo"></a>3.3.9 scrollTo (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</h4>
+<h4><i class="entypo-key"></i><a name="type"></a>3.3.10 type  (Value: &#39;String&#39;)</h4>
+
+<p>Die Angabe <code>&#39;type&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>actions.ajax (optional fallback ist Value &#39;get&#39;)</li>
+</ul>
+
+<p>die Value ist <code>&#39;post&#39;</code> oder <code>&#39;get&#39;</code> sein.</p>
+
+<p>(wurde zuvor <code>&#39;method&#39;</code> genannt im Plugin actions.ajax)</p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="type"></a>3.3.10 type  (zuvor method genannt im ajax-module)</h4>
+<h4><i class="entypo-key"></i><a name="scrollTo"></a>3.3.11 scrollTo (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</h4>
 
-<h4><i class="entypo-key"></i><a name="callback"></a>3.3.11 callback (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</h4>
+<hr>
 
 <h4><i class="entypo-key"></i><a name="width"></a>3.3.12 width - modules.video</h4>
 

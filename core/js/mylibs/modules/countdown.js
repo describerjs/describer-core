@@ -11,7 +11,6 @@
  */
 define(['jquery', 'actions.ajax', 'jquery_countdown-de'], function ($, extendOjb){
 	'use strict';
-	// TODO Andreas hier mal checken, warum nicht von _super abgeleitet
 	var countdown = $.extend({}, extendOjb, {
 		_injectAfterFrame: function(){
 			this.$elem.hide();

@@ -61,6 +61,7 @@ define(['jquery', 'actions.ajax', 'jquery_autocomplete'], function ($, extendOjb
 					that.$elem.trigger('change');
 				}
 			});
+			this._finishing();
 		}
 	});
 

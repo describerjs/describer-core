@@ -311,7 +311,7 @@ define(function(){
 			jmname   : 'togglebox',
 			jmplugin: 'actions.toggle',
 			jmconfig : {
-				'event'    : 'click',
+				'event'    : 'click|jmtrigger:click',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem.parent()[0]'

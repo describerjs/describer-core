@@ -70,17 +70,13 @@ define(['jquery', '_super'], function ($, _super){
 
 		_setVal: function(){
 			this.$destination.val(this.data);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_setAttr: function(){
 			var data = this.data.split(':');
 			this.$destination.attr(data[0], data[1]);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_setProp: function(){
@@ -89,9 +85,7 @@ define(['jquery', '_super'], function ($, _super){
 				data[1] = (data[1] === 'true');
 			}
 			this.$destination.prop(data[0], data[1]);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		}/*,
 
 		_setHtml: function(){

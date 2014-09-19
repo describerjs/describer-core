@@ -37,6 +37,7 @@ define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 			require(['owl_carousel', 'overwritings.owl_carousel'], function(param1, param2){
 				that.indexCount = 0;
 				that.$elem.owlCarousel(that.getConfig());
+				that._finishing();
 			});
 		},
 

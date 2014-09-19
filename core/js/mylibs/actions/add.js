@@ -83,47 +83,33 @@ define(['jquery', '_super'], function ($, _super){
 
 		_addClass: function(){
 			this.$destination.addClass(this.data);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_addStyle: function(){
 			this.$destination.css(this._getCssObj());
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_addAttr: function(){
 			var data = this.data.split(':');
 			this.$destination.attr(data[0], data[1]);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_addHtml: function(){
 			var $data = $(this.data);
 			this.$destination[this.injectMethod]($data);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
 			if(this.is('data') === ''){
-				setTimeout(function(){
-					$data
-						.requirementsForJmPlugins()
-						.triggerSelfexecObj()
-						.picturefill();
-				}, 200);
+				this._finishing($data);
+			}else{
+				this._finishing();
 			}
 		},
 
 		_addText: function(){
 			this.$destination.html(this.data);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_addProp: function(){
@@ -132,9 +118,7 @@ define(['jquery', '_super'], function ($, _super){
 				data[1] = (data[1] === 'true');
 			}
 			this.$destination.prop(data[0], data[1]);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		}
 
 	});

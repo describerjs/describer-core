@@ -25,6 +25,7 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		onInitExec: function () {
+
 		},
 
 		options: {
@@ -38,6 +39,7 @@ define(['jquery', '_super'], function ($, _super){
 				    this.$opposition.eq(i).prop('checked', false).trigger('jmtrigger');
 			    }
 			}
+			this._finishing();
 		}
 	});
 

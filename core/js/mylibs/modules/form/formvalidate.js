@@ -121,6 +121,7 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 					jmGO.submit = false;
 				}
 			});
+			this._finishing();
 		},
 
 		checkValidation: function(e) {

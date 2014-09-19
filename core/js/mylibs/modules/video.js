@@ -52,6 +52,7 @@ define(['jquery', '_super', 'video', 'css!require-css.video'], function ($, _sup
                 that.$video = this;
                 that._playerReady();
                 that._addListener();
+	            that._finishing();
             });
         },
 

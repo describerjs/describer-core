@@ -76,9 +76,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		_toggleClass: function(){
 			this.$destination.toggleClass(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_toggleAttr: function() {
@@ -89,6 +87,7 @@ define(['jquery', '_super'], function ($, _super){
 			}else{
 				this.$destination.attr(data[0], data[1]);
 			}
+			this._finishing();
 		},
 
 	    _toggleProp: function() {
@@ -97,6 +96,7 @@ define(['jquery', '_super'], function ($, _super){
 				    this.$destination.prop('checked', !this.$destination.prop('checked'));
 				    //this.$destination.trigger('change');
 		    }
+		    this._finishing();
 		    //this.$destination.attr(data[0], data[1]);
 
 	    }

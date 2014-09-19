@@ -46,6 +46,7 @@ define(['jquery', '_super'], function ($, _super){
 					this.$filterSelects.eq(i).find('option[value="'+tempSelectionen[j].value+'"]').not('option:selected').prop('disabled', true).hide();
 				}
 			}
+			this._finishing();
 		}
 
 	});

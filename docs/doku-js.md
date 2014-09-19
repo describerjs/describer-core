@@ -395,13 +395,13 @@ Die Funktionalitäten werden in der [```_config.js```](#_config) in einem entspr
 - [event](#event) (für alle Plugins required)
 - [condition](#condition) (für alle Plugins optional)
 - [wait](#wait) (für alle Plugins optional)
+- [callback](#callback) (für alle Plugins optional) this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
 - [relatedTo](#relatedTo)
 - [datatype](#datatype)
 - [data](#data)
 - [url](#url)
 - [inject](#inject)
 - [type](#type)  (zuvor method genannt im ajax-module)
-- [callback](#callback) (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
 - [scrollTo](#scrollTo) (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
 - [width](#width) - modules.video
 - [height](#height) - modules.video
@@ -562,7 +562,14 @@ Bei der Angabe von ```'wait'``` wird die Ausführung um den entsprechenden Wert 
 
 ----------
 
-#### <i class="entypo-key"></i><a name="relatedTo"></a>3.3.4 relatedTo  (Value: 'HTMLElement/e')
+#### <i class="entypo-key"></i><a name="callback"></a>3.3.4 callback (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
+
+'callback' : '$(\'[data-jmname="togglebox"]\').eq(0).jmtrigger(\'click\')'
+'event':'jmtrigger:click'
+
+----------
+
+#### <i class="entypo-key"></i><a name="relatedTo"></a>3.3.5 relatedTo  (Value: 'HTMLElement/e')
 > <i class="entypo-info-circled"></i> Wenn in der Value ein 'this.' enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.
 
 Die Angabe ```'relatedTo'``` wird bei folgenden Plugins verwendet:
@@ -599,7 +606,7 @@ oder
 
 ----------
 
-#### <i class="entypo-key"></i><a name="datatype"></a>3.3.5 datatype  (Value: 'String')
+#### <i class="entypo-key"></i><a name="datatype"></a>3.3.6 datatype  (Value: 'String')
 
 Die Angabe ```'datatype'``` wird bei folgenden Plugins verwendet:
 - actions.add (required)
@@ -611,7 +618,7 @@ die Value ist ```'class'```, ```'html'```, ```'val'```, ```'prop'```, ```'style'
 
 ----------
 
-#### <i class="entypo-key"></i><a name="data"></a>3.3.6 data  (Value: 'String')
+#### <i class="entypo-key"></i><a name="data"></a>3.3.7 data  (Value: 'String')
 > <i class="entypo-info-circled"></i> Wenn in der Value ein 'this.' enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.
 
 Die Angabe ```'data'``` wird bei folgenden Plugins verwendet:
@@ -644,7 +651,7 @@ Die Angabe ```'url'``` wird bei folgenden Plugins verwendet:
 
 ----------
 
-#### <i class="entypo-key"></i><a name="inject"></a>3.3.7 inject  (Value: 'String')
+#### <i class="entypo-key"></i><a name="inject"></a>3.3.8 inject  (Value: 'String')
 
 Die Angabe ```'inject'``` wird bei folgenden Plugins verwendet:
 - actions.add (Verwendung nur bei ```'datatype':'html'``` und hier optional. Default ist ```'html'```)()
@@ -655,7 +662,7 @@ Für  ```'inject'``` sind die jQuery-DOM-Insertion-Methoden anzugeben wie z.B. V
 
 ----------
 
-#### <i class="entypo-key"></i><a name="type"></a>3.3.9 type  (Value: 'String')  
+#### <i class="entypo-key"></i><a name="type"></a>3.3.10 type  (Value: 'String')  
 
 Die Angabe ```'type'``` wird bei folgenden Plugins verwendet:
 - actions.ajax (optional fallback ist Value 'get')
@@ -663,11 +670,10 @@ Die Angabe ```'type'``` wird bei folgenden Plugins verwendet:
 die Value ist ```'post'``` oder ```'get'``` sein.
 
 (wurde zuvor ```'method'``` genannt im Plugin actions.ajax)
-----------
-
-#### <i class="entypo-key"></i><a name="callback"></a>3.3.10 callback (zuvor afterexec genannt im ajax-module)  this.trigger('jmtrigger')? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin
 
 ----------
+
+
 
 #### <i class="entypo-key"></i><a name="scrollTo"></a>3.3.11 scrollTo (offsetangabe integrieren zuvor eigener key -> scrollToOffset)
 

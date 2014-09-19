@@ -130,8 +130,11 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	        if(this.is('additionalloadertarget') !== ''){
 		        $(this.is('additionalloadertarget')).append(this.$additionalloader);
 	        }
+	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
-	        this.injection = this.subObj_injection || this.is('inject');  // TODO Andreas this.subObj_injection wird im modal verwendet. Bessere Lösung finden
+	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
+	        // TODO Andreas  this.subObj_injection wird im modal verwendet. Bessere Lösung finden
+	        this.injection = this.subObj_injection || this.is('inject');
             $.ajax({
                 type: (that.is('type') !== '') ? ((that.is('type', 'post')) ? 'POST' : 'GET') : 'GET',
                 url: that._getUrl(),
@@ -198,22 +201,21 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    }
 
 		    this.$destination[this.injection](this.data);
-		    //this.$destination[this.injection](this.data);
-		    setTimeout(function(){
-			    if($.type(that.data) !== 'string'){
-				    that.data
-					    .requirementsForJmPlugins()
-					    .triggerSelfexecObj()
-					    .picturefill();
-			    }
-			}, 200);
-		    if(this.is('afterexec') === 'remove'){
+		    if($.type(that.data) !== 'string'){
+			    this._finishing(this.data);
+		    }else{
+			    this._finishing();
+		    }
+
+		    // TODO Andreas bitte testen: Das Auskommentierte sollte jetzt durch die Angabe via 'callback' oblosate sein
+		    /*if(this.is('afterexec') === 'remove'){
 		        //this.$elem.parent().data('masonry').masonry( 'appended', that.data );
 			    this.$elem.remove();
-		    }
+		    }*/
 		    this.ajaxCompleteCallback();
 	    },
 
+	    // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Funktionsdefinition für erbende Plugins
 	    ajaxCompleteCallback: function(){
 
 	    }

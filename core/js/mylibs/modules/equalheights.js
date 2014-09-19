@@ -25,6 +25,7 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		onInitExec: function () {
+
 		},
 
 		options: {
@@ -40,6 +41,7 @@ define(['jquery', '_super'], function ($, _super){
 			});
 			var max = Math.max.apply(null, heightsArray);
 			vals.height(max);
+			this._finishing();
 		}
 	});
 

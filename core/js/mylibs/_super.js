@@ -31,8 +31,14 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 		},
 
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
-		jmtrigger: function(e){
-			if(this.includes('event', 'jmtrigger') && this.isCondition()) this._execWait(e);
+		jmtrigger: function(e, e_param){
+			if($.type(e_param) === 'undefined'){
+				if(window.debug){
+					jmHF.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
+				}
+				return;
+			}
+			if(this.includes('event', 'jmtrigger:'+e_param.event) && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
@@ -348,8 +354,30 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 		},
 
 		// ************** allgemein benutzbare Funktionen **************
+		_finishing: function(p_$data){
+			var that = this;
+			this._scrollTo();
+			if($.type(p_$data) !== 'undefined'){
+				setTimeout(function(){
+					p_$data
+						.requirementsForJmPlugins()
+						.triggerSelfexecObj()
+						.picturefill();
+					that._callback();
+				}, 200);
+				return;
+			}
+			this._callback();
+		},
+
 		_scrollTo: function(){
-			$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0);
+			if(this.is('scrollTo')){
+				$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0);
+			}
+		},
+
+		_callback: function(){
+			if($.type(this.is('callback') !== 'undefined')) eval(this.is('callback'));
 		}
 	};
 });
