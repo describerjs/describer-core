@@ -13,7 +13,7 @@
 						@foreach (var sub in map.Pages)
 						{
 							<div class="flyout-group">
-								<div class="flyout-item"><a class="flyout-group-title" href="@JMPiranhaHelper.GenerateUrl(sub)">@(String.IsNullOrEmpty(sub.NavigationTitle) ? sub.Title : sub.NavigationTitle)</a></div>
+								<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="@JMPiranhaHelper.GenerateUrl(sub)">@(String.IsNullOrEmpty(sub.NavigationTitle) ? sub.Title : sub.NavigationTitle)</a></div>
 								@if (sub.Pages != null && sub.Pages.Any())
 								{
 									<ul class="flyout-items">

@@ -21,7 +21,7 @@
                     initTable(result);
                 }
             });
-        });        
+        });
 
         $("#searchBtn").click(function () {
             var searchText = $("#search").val();
@@ -40,6 +40,10 @@
             });
         });
 
+        $(document).on("click", "#clearResults", function () {
+	    	$("#table-update").html("");
+	    });
+		
         var initTable = function (htmlResult) {
             $("#table-update").html(htmlResult);
             addSortEvents();
@@ -87,22 +91,31 @@
 }
 
 <div class="row">
-    <h1>JMTools BE Administration.</h1>
-    <p>EventTracing</p>
+    <h1>JMTools EventTracing</h1>
 </div>
-<div id="update-panel">
-    <div class="filter">
-        <input type="button" value="Show All" id="showall"/>
-        <label><strong>Suchen:</strong></label>
-        <input type="text" id="search" value=""/>
-        <label>in: </label>
-        <select id="properties">
-            @foreach (var property in typeof(Trace).GetProperties().Skip(1))
-            {
-                <option value="@property.Name">@property.Name</option>
-            }
-        </select>
-        <input type="button" value="Suchen" id="searchBtn"/>
-    </div>    
-    <div id="table-update"></div>
+<div class="row" id="update-panel">
+	<div class="col-sm-12">
+		<div class="filter form-horizontal">
+			<div class="form-group">
+				<label for="search" class="col-sm-1">Suche nach</label>
+				<input type="text" class="form-control" id="search" placeholder="Suchbegriff">
+			</div>
+			<div class="form-group">
+				<label for="properties" class="col-sm-1">Suche in </label>
+				<select id="properties" class="form-control">
+					@foreach (var property in typeof(Trace).GetProperties().Skip(1))
+					{
+						<option value="@property.Name">@property.Name</option>
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-1">
+					<button type="button" class="btn btn-sm btn-default" id="showall">Alle anzeigen</button>
+					<button type="button" class="btn btn-sm btn-default btn-primary" value="Suchen" id="searchBtn">Suche</button>
+				</div>
+			</div>
+		</div>    
+		<div id="table-update"></div>
+	</div>
 </div>
