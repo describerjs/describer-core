@@ -25,8 +25,6 @@
 %page-element-default {
 	@include row;
 	clear: both;
-
-	@include clearfix;
 }
 
 // Modules Defaults
@@ -46,7 +44,8 @@
 
 // Textmodule Defaults
 %element-text-default {
-	/*@include column(12);*/
+	@include column(12);
+	@include element-indent;
 }
 
 

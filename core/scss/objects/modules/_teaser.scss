@@ -17,7 +17,7 @@
 	}
 
 	.t-footer {
-		@include position('', '', $default-inner-spacing, $dist / 2);
+		@include absolute('', '', $default-inner-spacing, $dist / 2);
 	}
 
 	.t-inner {

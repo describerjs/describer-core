@@ -30,11 +30,11 @@ $IsDevServer: true;
 		background-color: rgba(0,0,0, .75);
 		
 		&:before {
+			@include absolute(0, 0, '', 0);
 			@include as-heading__medium;
-			@include position(0, 0, '', 0);
 			background-color: rgba(0,0,0, .75);
-			border-bottom: 1px solid $white;
-			color: $white;
+			border-bottom: 1px solid $theme-color-alpha;
+			color: $theme-color-alpha;
 			content: "Breakpoint: 0";
 			position: fixed;
 			text-align: center;

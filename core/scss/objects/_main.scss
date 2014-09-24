@@ -15,9 +15,8 @@
     $MAIN
 \*------------------------------------*/
 
-main {
+.page-main {
 	@extend %page-element-default;
-	overflow: hidden;
 
 	@include bp-l {
 		padding-top: $default-element-spacing;
