@@ -120,8 +120,8 @@ define(['jquery'], function(jQuery){
 							if(e.keyCode === 13){
 								jQueryinput.get(0).blur();
 								e.preventDefault();
-								if(options.jmnextFocusNameAttr !== ''){
-									jQuery('[name="'+options.jmnextFocusNameAttr+'"]').focus();
+								if(options.jmnextFocus !== ''){
+									jQuery(options.jmnextFocus).focus();
 								}
 							}
 						}
@@ -599,7 +599,7 @@ define(['jquery'], function(jQuery){
 		options.jmhideByResult = options.jmhideByResult || false;  // Added By Joinmedia
 		options.jmzindex = options.jmzindex || false;  // Added By Joinmedia
 		options.jmappendToClass = options.jmappendToClass || false;  // Added By Joinmedia
-		options.jmnextFocusNameAttr = options.jmnextFocusNameAttr || '';  // Added By Joinmedia
+		options.jmnextFocus = options.jmnextFocus || '';  // Added By Joinmedia
 
 		this.each(function(){
 			var input = this;

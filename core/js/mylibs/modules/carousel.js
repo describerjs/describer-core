@@ -51,7 +51,7 @@ define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 				singleItem     : true,
 				autoPlay       : true,
 				stopOnHover    : true,
-				jmDelayTime    : (that.is('delay') !== '') ? parseInt(that.is('delay'), 10) : 2000,
+				jmDelayTime    : (that.is('animationsdelay') !== '') ? parseInt(that.is('animationsdelay'), 10) : 2000,
 				afterInit: function(){
 					that._setAllTeaserToVisible();
 					that._setCommentToPaginierung();

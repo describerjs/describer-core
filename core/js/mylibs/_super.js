@@ -82,7 +82,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 				case 'relatedTo':
 				case 'scrollTo':
 				case 'data':
-				case 'additionalloadertarget':
+				case 'loaderTo':
 					// return String or Dom-Element/e
 					return (this.configObj[p_dataAttr].indexOf('this.') !== -1) ? eval(_returnString) : _returnString;
 				default:

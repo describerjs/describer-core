@@ -56,7 +56,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
             }else{
                 this.$ani = $('<div class="loading-container"><div class="loading"></div></div>');
             }
-	        if(this.is('additionalloadertarget') !== ''){
+	        if(this.is('loaderTo') !== ''){
 		        this.$additionalloader = $('<div class="loading-container"><div class="loading"></div></div>');
 	        }
             
@@ -127,8 +127,8 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 
         _exec: function(e){
             var that = this;
-	        if(this.is('additionalloadertarget') !== ''){
-		        $(this.is('additionalloadertarget')).append(this.$additionalloader);
+	        if(this.is('loaderTo') !== ''){
+		        $(this.is('loaderTo')).append(this.$additionalloader);
 	        }
 	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
@@ -149,7 +149,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 
             }).fail(function () {
 	            that.$ani.remove();
-	            if(that.is('additionalloadertarget') !== ''){
+	            if(that.is('loaderTo') !== ''){
 		            that.$additionalloader.remove();
 	            }
             });

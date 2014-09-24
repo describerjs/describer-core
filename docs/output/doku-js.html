@@ -470,24 +470,24 @@ Es ist mit der Anwendung von CSS vergleichbar. Hier werden auch die styles des T
 <li><a href="#event">event</a> (für alle Plugins required)</li>
 <li><a href="#condition">condition</a> (für alle Plugins optional)</li>
 <li><a href="#wait">wait</a> (für alle Plugins optional)</li>
-<li><a href="#callback">callback</a> (für alle Plugins optional) this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</li>
+<li><a href="#callback">callback</a> (für alle Plugins optional)</li>
+<li><a href="#scrollTo">scrollTo</a> (für alle Plugins optional)</li>
+<li><a href="#scrollToOffset">scrollToOffset</a> (für alle Plugins optional, setzt die Angabe von scrollTo voraus)</li>
 <li><a href="#relatedTo">relatedTo</a></li>
 <li><a href="#datatype">datatype</a></li>
 <li><a href="#data">data</a></li>
 <li><a href="#url">url</a></li>
 <li><a href="#inject">inject</a></li>
-<li><a href="#type">type</a>  (zuvor method genannt im ajax-module)</li>
-<li><a href="#scrollTo">scrollTo</a> (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</li>
-<li><a href="#width">width</a> - modules.video</li>
-<li><a href="#height">height</a> - modules.video</li>
-<li><a href="#zipcode">zipcode</a> - modules.formcomponents.autocomplete</li>
-<li><a href="#nextFocus">nextFocus</a> - zuvor nextFocusNameAttr - modules.formcomponents.autocomplete</li>
-<li><a href="#animationsdelay">animationsdelay</a> - zuvor delay - modules.carousel</li>
-<li><a href="#loader">loader</a> - actions.link/actions.ajax</li>
-<li><a href="#loaderTo">loaderTo</a> - zuvor additionalloadertarget - actions.ajax</li>
-<li><a href="#submit">submit</a> - zuvor ajax - modules.formcomponents.formvalidate</li>
-<li>// obsolate sollte als default zählen - hideby - modules.formcomponents.autocomplete</li>
-<li>//opposition - modules.dependentSelectionGroup</li>
+<li><a href="#type">type</a>  - zuvor method</li>
+<li><a href="#width">width</a></li>
+<li><a href="#height">height</a></li>
+<li><a href="#zipcode">zipcode</a></li>
+<li><a href="#nextFocus">nextFocus</a> - zuvor nextFocusNameAttr</li>
+<li><a href="#submit">submit</a> - zuvor ajax</li>
+<li><a href="#state">state</a></li>
+<li><a href="#animationsdelay">animationsdelay</a> - zuvor delay</li>
+<li><a href="#loader">loader</a></li>
+<li><a href="#loaderTo">loaderTo</a> - zuvor additionalloadertarget</li>
 </ul>
 
 <h4><i class="entypo-key"></i><a name="event"></a>3.3.1 event  (Value: &#39;String&#39;)</h4>
@@ -518,15 +518,19 @@ Des Weiteren lassen sich folgende Events durch die Angabe von <code>data-jmdomin
 
 <h5><a name="click"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.1 click</h5>
 
-<p>Die Aktion wird auf click durchgeführt</p>
+<p>Die Aktion wird auf click durchgeführt.</p>
 
 <h5><a name="change"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.2 change</h5>
 
-<p>Die Aktion wird auf change durchgeführt</p>
+<p>Die Aktion wird auf change durchgeführt.</p>
 
-<h5><a name="jmtrigger"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger</h5>
+<h5><a name="jmtrigger"></a><a name="event"></a><i class="entypo-flash"></i>3.3.1.3 jmtrigger:xxx</h5>
 
-<p>Die Aktion wird auf jmtrigger durchgeführt</p>
+<p>Die Aktion wird z.B. auf <code>&#39;jmtrigger:click&#39;</code> durchgeführt. xxx steht hier für einen entsprechenden dynamisch getriggerten nativen Event.</p>
+
+<blockquote>
+<p><i class="entypo-attention"></i>DO NOT TRIGGER REAL EVENT NAMES WITH JQUERY! <a href="http://davidwalsh.name/dont-trigger-real-event-names">http://davidwalsh.name/dont-trigger-real-event-names</a></p>
+</blockquote>
 
 <h5><a name="dominit"></a><i class="entypo-flash"></i>3.3.1.4 dominit</h5>
 
@@ -649,7 +653,7 @@ Des Weiteren lassen sich folgende Events durch die Angabe von <code>data-jmdomin
 <p><i class="entypo-info-circled"></i> Ist als Event <code>&#39;raf&#39;</code> angegeben ist die Angabe von <code>&#39;wait&#39;</code> nicht berücksichtigt.</p>
 </blockquote>
 
-<p>Bei der Angabe von <code>&#39;wait&#39;</code> wird die Ausführung um den entsprechenden Wert verzögert. Alternativ kann auch <code>&#39;raf&#39;</code> angegeben werde. So wird erst beim nachsten requestAnimationFrame die Aktion durchgeführt.</p>
+<p>Die Angabe von <code>&#39;wait&#39;</code> ist <strong>optional</strong> für <strong>alle</strong> Plugins. Hierbei wird die Ausführung um den entsprechenden Wert verzögert. Alternativ kann auch <code>&#39;raf&#39;</code> angegeben werde. So wird erst beim nachsten requestAnimationFrame die Aktion durchgeführt.</p>
 
 <pre><code>&#39;wait&#39;: &#39;1000&#39;
 </code></pre>
@@ -658,14 +662,58 @@ Des Weiteren lassen sich folgende Events durch die Angabe von <code>data-jmdomin
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="callback"></a>3.3.4 callback (zuvor afterexec genannt im ajax-module)  this.trigger(&#39;jmtrigger&#39;)? Erweitern des Eventlisteners in der _super.js z.B. jmtrigger:jmname+jmplugin</h4>
+<h4><i class="entypo-key"></i><a name="callback"></a>3.3.4 callback  (Value: &#39;String&#39;) (zuvor afterexec genannt im ajax-module)</h4>
 
-<p>&#39;callback&#39; : &#39;$(\&#39;[data-jmname=&quot;togglebox&quot;]\&#39;).eq(0).jmtrigger(\&#39;click\&#39;)&#39;
-&#39;event&#39;:&#39;jmtrigger:click&#39;</p>
+<blockquote>
+<p><i class="entypo-info-circled"></i> Die Value wird via eval() in der JS-Kontext überführt.</p>
+</blockquote>
+
+<p>Die Angabe von <code>&#39;callback&#39;</code> ist <strong>optional</strong> für <strong>alle</strong> Plugins. Hierbei wird nach der Durchführung/Ausführung des Plugins die als String angegebenen Value ausgeführt.</p>
+
+<p>Beispiel: als Callback wird hier ein JM-Event getriggert. </p>
+
+<pre><code>&#39;callback&#39; : &#39;$(\&#39;[data-jmname=&quot;togglebox&quot;]\&#39;).eq(0).jmtrigger(\&#39;click\&#39;)&#39;
+</code></pre>
+
+<p>Dieser muss entsprechenden bei dem Element <code>&#39;jmname&#39;: &#39;trgglebox&#39;</code> als <code>&#39;event&#39;</code> mit <code>&#39;jmtrigger:click&#39;</code> registriert sein.</p>
+
+<pre><code>&#39;event&#39;:&#39;click|hover|jmtrigger:click&#39;
+</code></pre>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="relatedTo"></a>3.3.5 relatedTo  (Value: &#39;HTMLElement/e&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="scrollTo"></a>3.3.5 scrollTo  (Value: &#39;DOM-Selector&#39; oder &#39;HTMLElement&#39;)</h4>
+
+<blockquote>
+<p><i class="entypo-info-circled"></i> Wenn in der Value ein &#39;this.&#39; enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.  </p>
+</blockquote>
+
+<p>Die Angabe von <code>&#39;scrollTo&#39;</code> ist <strong>optional</strong> für <strong>alle</strong> Plugins. Hierbei wird nach der Durchführung/Ausführung des Plugins zu dem Element gescrollt, welches entweder aus der DOM-Selection zurückgegeben oder direkt als HTMLElement angebeben wird.</p>
+
+<p>Beispiel: via ID</p>
+
+<pre><code>&#39;scrollTo&#39; : &#39;#ElementID&#39;
+</code></pre>
+
+<p>Beispiel: via Attribut</p>
+
+<pre><code>&#39;scrollTo&#39; : &#39;[data-domselector=&quot;hardwareview&quot;]&#39;
+</code></pre>
+
+<p>Beispiel: via eval() evaluiert. So wird ein Anker erzeugt <code>&lt;a data-jmname=&quot;anker&quot; href=&quot;#ankerID&quot;&gt;Anker&lt;/a&gt;</code></p>
+
+<pre><code>&#39;scrollTo&#39; : &#39;$(this.$elem.attr(\&#39;href\&#39;))&#39;
+</code></pre>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="scrollToOffset"></a>3.3.6 scrollToOffset (Value: &#39;Int&#39;)</h4>
+
+<p>Die Angabe von <code>&#39;scrollToOffset&#39;</code> setzt die Angabe von scrollTo voraus. Hier kann ein positiver Versatz zum scrollTo-Element angegeben werden.</p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="relatedTo"></a>3.3.7 relatedTo  (Value: &#39;HTMLElement/e&#39;)</h4>
 
 <blockquote>
 <p><i class="entypo-info-circled"></i> Wenn in der Value ein &#39;this.&#39; enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.</p>
@@ -708,7 +756,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="datatype"></a>3.3.6 datatype  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="datatype"></a>3.3.8 datatype  (Value: &#39;String&#39;)</h4>
 
 <p>Die Angabe <code>&#39;datatype&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
@@ -723,7 +771,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="data"></a>3.3.7 data  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="data"></a>3.3.9 data  (Value: &#39;String&#39;)</h4>
 
 <blockquote>
 <p><i class="entypo-info-circled"></i> Wenn in der Value ein &#39;this.&#39; enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.</p>
@@ -752,7 +800,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="url"></a>3.3.8 url  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="url"></a>3.3.10 url  (Value: &#39;String&#39;)</h4>
 
 <p>Die Angabe <code>&#39;url&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
@@ -763,7 +811,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="inject"></a>3.3.8 inject  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="inject"></a>3.3.11 inject  (Value: &#39;String&#39;)</h4>
 
 <p>Die Angabe <code>&#39;inject&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
@@ -776,7 +824,7 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="type"></a>3.3.10 type  (Value: &#39;String&#39;)</h4>
+<h4><i class="entypo-key"></i><a name="type"></a>3.3.12 type  (Value: &#39;String&#39;)</h4>
 
 <p>Die Angabe <code>&#39;type&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
@@ -790,25 +838,115 @@ Die Value könnte z.B. wie folgt aussehne: </p>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="scrollTo"></a>3.3.11 scrollTo (offsetangabe integrieren zuvor eigener key -&gt; scrollToOffset)</h4>
+<h4><i class="entypo-key"></i><a name="width"></a>3.3.13 width  (Value: &#39;Int&#39;)</h4>
+
+<p>Die Angabe <code>&#39;width&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>modules.video (required)</li>
+</ul>
 
 <hr>
 
-<h4><i class="entypo-key"></i><a name="width"></a>3.3.12 width - modules.video</h4>
+<h4><i class="entypo-key"></i><a name="height"></a>3.3.14 height  (Value: &#39;Int&#39;)</h4>
 
-<h4><i class="entypo-key"></i><a name="height"></a>3.3.13 height - modules.video</h4>
+<p>Die Angabe <code>&#39;width&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
-<h4><i class="entypo-key"></i><a name="zipcode"></a>3.3.14 zipcode - modules.formcomponents.autocomplete</h4>
+<ul>
+<li>modules.video (required)</li>
+</ul>
 
-<h4><i class="entypo-key"></i><a name="nextFocus"></a>3.3.15 nextFocus - zuvor nextFocusNameAttr - modules.formcomponents.autocomplete</h4>
+<hr>
 
-<h4><i class="entypo-key"></i><a name="animationsdelay"></a>3.3.16 animationsdelay - zuvor delay - modules.carousel</h4>
+<h4><i class="entypo-key"></i><a name="zipcode"></a>3.3.15 zipcode  (Value: &#39;Int&#39;)</h4>
 
-<h4><i class="entypo-key"></i><a name="loader"></a>3.3.17 loader - actions.link/actions.ajax</h4>
+<p>Die Angabe <code>&#39;zipcode&#39;</code> wird bei folgenden Plugins verwendet:</p>
 
-<h4><i class="entypo-key"></i><a name="loaderTo"></a>3.3.18 loaderTo - zuvor additionalloadertarget - actions.ajax</h4>
+<ul>
+<li>modules.form.autocomplete (required)</li>
+</ul>
 
-<h4><i class="entypo-key"></i><a name="submit"></a>3.3.19 submit - zuvor ajax - modules.formcomponents.formvalidate</h4>
+<p>Beispiel: Bei jeder Durchführung wird <code>&#39;zipcode&#39;</code> neu Ausgelesen  </p>
+
+<pre><code>&#39;zipcode&#39;: &#39;this.$elem.closest(\&#39;fieldset\&#39;).find(\&#39;input[data-jmname*=&quot;autocomplete-plz&quot;]\&#39;).val()&#39;
+</code></pre>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="nextFocus"></a>3.3.16 nextFocus  (Value: &#39;DOM-Selector&#39; oder &#39;HTMLElement&#39;)</h4>
+
+<p>Die Angabe <code>&#39;nextFocus&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>modules.form.autocomplete (required)</li>
+</ul>
+
+<p>Wird nach der Eingabe die Enter-Taste geklickt, springt der Cursor bzw. setzt den Fokus in das entsprechend angegebene Element.</p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="submit"></a>3.3.17 submit  (Value: &#39;Boolean&#39;) - zuvor ajax</h4>
+
+<p>Die Angabe <code>&#39;submit&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>modules.form.formvalidate (required)</li>
+</ul>
+
+<p>Anhand der Angabe wird das Formular submitted oder via ajax gepostet.</p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="state"></a>3.3.18 state  (Value: &#39;String&#39;)</h4>
+
+<p>Die Angabe <code>&#39;state&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>modules.form.submitbutton (optional default:dafault)</li>
+</ul>
+
+<p>Für  <code>&#39;state&#39;</code> sind folgende Value gültig: <code>&#39;default&#39;</code> oder <code>&#39;activOnFormChanges&#39;</code></p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="animationsdelay"></a>3.3.19 animationsdelay  (Value: &#39;Int&#39;) - zuvor delay</h4>
+
+<p>Die Angabe <code>&#39;animationsdelay&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>modules.carousel (optional default:2000)</li>
+</ul>
+
+<p><code>&#39;animationsdelay&#39;</code> ist die Zeit, um die die Animation des Karusells verzögert wird. Ausschließlich wird unmittelbar die Klasse <code>leaving</code> gesetzt und dann nach der Verzögerung die Animation gestartet.</p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="loader"></a>3.3.20 loader  (Value: &#39;String&#39;)</h4>
+
+<p>Die Angabe <code>&#39;loader&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>actions.link (optional default:default)</li>
+<li>actions.ajax (optional default:default)</li>
+</ul>
+
+<p>Für  <code>&#39;loader&#39;</code> sind folgende Value gültig: <code>&#39;sticky&#39;</code>, <code>&#39;spinner&#39;</code>, <code>&#39;none&#39;</code> oder <code>&#39;default&#39;</code>.</p>
+
+<hr>
+
+<h4><i class="entypo-key"></i><a name="loaderTo"></a>3.3.21 loaderTo  (Value: &#39;DOM-Selector&#39; oder &#39;HTMLElement&#39;) - zuvor additionalloadertarget</h4>
+
+<blockquote>
+<p><i class="entypo-info-circled"></i> Wenn in der Value ein &#39;this.&#39; enthalten ist wird der Stirng via eval() in der JS-Kontext überführt.  </p>
+</blockquote>
+
+<p>Die Angabe <code>&#39;loader&#39;</code> wird bei folgenden Plugins verwendet:</p>
+
+<ul>
+<li>actions.ajax (optional)</li>
+</ul>
+
+<hr>
 
 <h2>4 <i class="entypo-brush"></i><a name="Erstellung"></a>Erstellung von Plugins</h2>
 

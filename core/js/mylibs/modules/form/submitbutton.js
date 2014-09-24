@@ -61,12 +61,15 @@ define(['jquery', '_super', 'jquery_ba-dotimeout'], function ($, _super) {
 		},
 
 		_checkState: function () {
-			if(this.is('state', 'disable without form changes')){
-				this.formquery = this.$formElem.serialize();
-				this._setBtnState(this.formquery);
-				this._addListenerForDisableEnableState();
+			switch(this.is('state')){
+				case 'activOnFormChanges':
+					this.formquery = this.$formElem.serialize();
+					this._setBtnState(this.formquery);
+					this._addListenerForDisableEnableState();
+					break;
+				default:
+					break;
 			}
-
 		},
 
 		_addListenerForDisableEnableState: function(){

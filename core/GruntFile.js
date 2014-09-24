@@ -135,8 +135,8 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			replace: {
 				example: {
-					src: ['module.html'],             // source files array (supports minimatch)
-					dest: 'module.html',             // destination directory or file
+					src: ['demo.html'],             // source files array (supports minimatch)
+					dest: 'demo.html',             // destination directory or file
 					replacements: [{
 						from: /css\/build\/style(.*?)\.css/g,          // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
@@ -246,13 +246,13 @@ module.exports = function(grunt){
 						}
 					},
 					{
-						from: /\/js\/build\/main(.*)\'/g,                   // string replacement
+						from: /\/js\/build\/require-main(.*)\'/g,                   // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
 							var _filename = '';
 							grunt.file.recurse('js/build', callback);
 							function callback(abspath, rootdir, subdir, filename) {
 								var str = filename;
-								var patt = new RegExp(/^main.(.*)/g);
+								var patt = new RegExp(/^require-main.(.*)/g);
 								var res = patt.test(str);
 								if(res){
 									//grunt.log.write('res: '+_filename);
