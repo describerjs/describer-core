@@ -17,6 +17,10 @@
 			connectionString="{{PiranhaConnectionString}}"
 			providerName="System.Data.SqlClient"
 			xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+    <add name="piranha"
+      connectionString="{{EventTracingSqlSink}}"
+      providerName="System.Data.SqlClient"
+      xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
   </connectionStrings>
 
   <system.web>

@@ -4,7 +4,7 @@
     Id="*" 
     Name="BaseSolutionWizard" 
     Language="1031" 
-    Version="1.0.0.1" 
+    Version="1.0.0.2" 
     Manufacturer="join.media" 
     UpgradeCode="90fe149f-bc81-4501-ad83-bd72dbb15962">
 		<Package 
