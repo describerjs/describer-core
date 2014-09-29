@@ -47,6 +47,7 @@
 	// Der verantwortliche Link zum öffnen des Toggles "acc-panel".
 	.acc-handle {
 		@extend %toggle-subject;
+		@include transitions(background-color $transition-duration $transition-function, color $transition-duration $transition-function);
 		@include user-select;
 		background-color: $theme-accordion-handle-bg;
 		color: $theme-accordion-handle-fg;
@@ -74,12 +75,9 @@
 	// "acc-item" wird mit "show" erweitert und interagiert entpsrechend.
 	.show {
 		&> .acc-handle {
+			@extend %toggle-subject-visible;
 			background-color: $theme-accordion-active-bg;
 			color: $theme-accordion-active-fg;
-
-			&:after {
-				@include transform(rotate(90deg));
-			}
 		}
 
 		&> .acc-panel {

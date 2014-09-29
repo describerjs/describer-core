@@ -44,15 +44,11 @@
 
 $menu-btn-height: 2.5rem;
 
-%nav-item {
-	/**/
-}
-
 // Die Links innerhalb "nav" & "flyout"
 %nav-link {
+	@include element-indent;
 	display: block;
 	font-family: $font-nav;
-	padding: $default-spacing $default-padding;
 	position: relative;
 }
 
@@ -77,7 +73,7 @@ $menu-btn-height: 2.5rem;
 
 // Die Navigation
 .nav {
-	@include element-default;
+	@extend %element-default;
 	clear: none;
 	margin-bottom: 0;
 
@@ -95,7 +91,6 @@ $menu-btn-height: 2.5rem;
 		margin-top: $menu-btn-height + 1;
 
 		@include bp-l {
-			@include column(12);
 			background-color: inherit;
 			margin-top: 0;
 		}
@@ -103,7 +98,6 @@ $menu-btn-height: 2.5rem;
 
 	// Die einzelnen Elemente <li>
 	.nav-item {
-		@extend %nav-item;
 		@include transition(background-color .15s linear);
 		background-color: $theme-nav-link-bg;
 		border-bottom: 1px solid $theme-nav-link-active-bg;
@@ -113,10 +107,6 @@ $menu-btn-height: 2.5rem;
 			border-bottom: initial;
 			float: left;
 
-			&:first-child {
-				margin-left: -($default-padding);
-			}
-
 			&:before {
 				@include pseudo-element-default;
 				@include transitions(bottom .15s linear, top .15s linear);
@@ -124,6 +114,12 @@ $menu-btn-height: 2.5rem;
 				bottom: $default-spacing;
 				top: $default-spacing;
 				width: 1px;
+			}
+
+			&:first-child {
+				&:before {
+					background-color: inherit;
+				}
 			}
 		}
 
@@ -304,11 +300,13 @@ $menu-btn-height: 2.5rem;
 
 	.flyout-group-title {
 		@extend %flyout-link;
+		@include indent(padding, 2);
 		background-color: $theme-flyout-group-bg;
 		color: $theme-flyout-group-fg;
 
 		@include bp-l {
 			@include transition(background-color 150ms linear);
+			@include indent(padding, 1);
 
 			&:hover {
 				background-color: $theme-flyout-group-active-bg;
@@ -319,8 +317,6 @@ $menu-btn-height: 2.5rem;
 
 	// Die einzelnen Elemente <li>
 	.flyout-item {
-		@extend %nav-item;
-
 		@include bp-l {
 			@include transition(background-color 150ms linear);
 			padding: {
@@ -333,6 +329,11 @@ $menu-btn-height: 2.5rem;
 	// Die eigentlichen Links
 	.flyout-link {
 		@extend %flyout-link;
+		@include indent(padding, 3);
+
+		@include bp-l {
+			@include indent(padding, 1);
+		}
 	}
 
 	// Mobil wird bei "Klick" diese Klasse getoggled, damit auch hier die Anzeige funktioniert, weil sonst auf hover reagiert wird.

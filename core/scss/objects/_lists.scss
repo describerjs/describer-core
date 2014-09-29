@@ -5,8 +5,8 @@
 /**
  * GENERIC.............................Variables/Placeholder
  * .....List
- * .....List-Item
- * BULLET-LIST.........................List w/Bullets
+ * LISTE-ITEM..........................List-Item
+ * BULLET-LIST.........................Bullets
 **/
 
 
@@ -22,14 +22,23 @@
 	@extend %as-list--typeset;
 }
 
-%list-item {
+
+
+
+
+/*------------------------------------*\
+    $LIST-ITEM
+\*------------------------------------*/
+
+.list-item {
 	margin-bottom: $space-quarter;
+	padding-left: $pad;
+	position: relative;
 
 	&:last-child {
 		margin-bottom: 0;
 	}
 }
-
 
 
 
@@ -40,11 +49,13 @@
 
 .bullet-list {
 	@extend %list;
-	padding-left: $pad;
 
 	.list-item {
-		@extend %list-item;
-		list-style-type: disc;
+		&:before {
+			@include pseudo-element-default;
+			content: "\2022";
+			left: 0;
+		}
 	}
 }
 
