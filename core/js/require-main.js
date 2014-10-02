@@ -99,11 +99,11 @@ require.config({
 });
 
 
-require(['jquery', '_config'], function($){
+require(['jquery', '_config'], function require_jquery($){
 	// need jquery
-	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function(){
+	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function require_helpers(){
 		// DomReady
-		$(function(){
+		$(function domReady(){
 			var $body = $('body');
 
 			// -----------------------------------------------------

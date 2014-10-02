@@ -31,14 +31,22 @@ window.onerror = function(message, url, linenumber) {
 };
 </script>-->
 
+<script src="/js/raven.js"></script>
 <script>
+    Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
+</script>
+<!--<script src="/js/raven-jm.js"></script>
+<script>
+    Raven.config('http://www.joinmedia.de').install();
+</script>-->
+<!--<script>
     window.UseLocalStorage = false;
     window.loadUnminifyVersion = true;
     window.debug = true;
-</script>
+</script>-->
 
 
-<!--<script>
+<script>
     window.debug = false;
     var checkDebugging = function(){
         try{
@@ -55,7 +63,7 @@ window.onerror = function(message, url, linenumber) {
         }
     };
     checkDebugging();
-</script>-->
+</script>
 
 <script>
     if(window.UseLocalStorage && window.loadUnminifyVersion){
@@ -190,41 +198,47 @@ window.onerror = function(message, url, linenumber) {
                             localStorage[p_src] = xhr.responseText;
                         }
                     };
-                })()
+                })();
             });
             // wenn localStorage vorliegt und der Datei-Pfade(key) und entsprecher value im localStorage vorhanden ist.
             // -> dynamische Erstellung eines style-tags mit injection der value aus dem localStorage.
         }else if(window.UseLocalStorage && testLocalStorage() && (typeof localStorage[p_src] !== 'undefined')){
+
             try{
-                if ( localStorage[p_src] ) {
-                    new Function(localStorage[p_src]);
-                    scriptElem = document.createElement('script');
-                    if(typeof p_attrkey !== 'undefined'){
-                        scriptElem.setAttribute(p_attrkey, p_attrval);
-                    }
-                    scriptElem.text = localStorage[p_src];
-                    document.getElementsByTagName('head')[0].appendChild(scriptElem);
-                }
-            }catch(e){
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', p_src, true);
-                xhr.send();
-
-                xhr.onreadystatechange = function () {
-                    var scriptElem;
-                    if (xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== '') {
-                        clearLocalStorageForKey(p_src);
-                        localStorage.setItem(p_src, xhr.responseText);
-                        scriptElem = document.createElement("script");
+                (function(){
+                    if ( localStorage[p_src] ) {
+                        new Function(localStorage[p_src]);
+                        scriptElem = document.createElement('script');
                         if(typeof p_attrkey !== 'undefined'){
                             scriptElem.setAttribute(p_attrkey, p_attrval);
                         }
-                        scriptElem.text = xhr.responseText;
+                        scriptElem.text = localStorage[p_src];
                         document.getElementsByTagName('head')[0].appendChild(scriptElem);
-                        location.reload();
                     }
-                };
+                })();
+
+            }catch(e){
+                (function(){
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', p_src, true);
+                    xhr.send();
+
+                    xhr.onreadystatechange = function () {
+                        var scriptElem;
+                        if (xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== '') {
+                            clearLocalStorageForKey(p_src);
+                            localStorage.setItem(p_src, xhr.responseText);
+                            scriptElem = document.createElement("script");
+                            if(typeof p_attrkey !== 'undefined'){
+                                scriptElem.setAttribute(p_attrkey, p_attrval);
+                            }
+                            scriptElem.text = xhr.responseText;
+                            document.getElementsByTagName('head')[0].appendChild(scriptElem);
+                            location.reload();
+                        }
+                    };
+                })();
             }
             // wenn kein localStorage vorliegt
             // -> dynamische Erstellung eines link-tags mit Angabe des Datei-Pfades
@@ -240,54 +254,47 @@ window.onerror = function(message, url, linenumber) {
     };
 
     window.tryToEvalLocalStorageStirngOrFixIt = function(p_str, p_url, p_moduleName, p_callback){
-        var xhr;
         try{
-            (function( code ) {
-                var script,
-                    indirect = eval;
+            (function firstTryToCreateScirptElement( code ) {
+                var script;
                 if ( code ) {
-                    if ( code.indexOf("use strict") === 1 ) {
-                        script = document.createElement("script");
-                        script.text = code;
-                        document.head.appendChild( script ).parentNode.removeChild( script );
-                    } else {
-                        indirect( code );
-                    }
-                }
+                    new Function(code);
+                    script = document.createElement('script');
+                    /*if(typeof p_url !== 'undefined'){
+                        script.setAttribute(p_url, p_moduleName);
+                    }*/
+                    script.setAttribute('data-name', p_moduleName);
+                    script.text = code;
+                    document.getElementsByTagName('head')[0].appendChild(script);
+                 }
+                p_callback();
             })(p_str);
-            p_callback();
         }catch(e){
-            if (window.UseLocalStorage && (p_moduleName !== 'main') && window.testLocalStorage()) {
-                // window.localStorage is available!
-                xhr = new XMLHttpRequest();
-
+            Raven.captureException(e);
+            (function secontTryToCreateScirptElement(){
+                var xhr = new XMLHttpRequest();
                 xhr.open('GET', p_url, true);
                 xhr.send();
-
                 xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== '') {
+                    if(xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== ''){
                         clearLocalStorageForKey(p_url);
                         localStorage.setItem(p_url, xhr.responseText);
-                        (function( code ) {
-                            var script,
-                                indirect = eval;
+                        (function secontTryToCreateScirptElementAjaxResponse( code ) {
+                            var script;
                             if ( code ) {
-                                if ( code.indexOf("use strict") === 1 ) {
-                                    script = document.createElement("script");
-                                    script.text = code;
-                                    document.head.appendChild( script ).parentNode.removeChild( script );
-                                } else {
-                                    indirect( code );
-                                }
+                                new Function(code);
+                                script = document.createElement('script');
+                                script.setAttribute('data-name', p_moduleName);
+                                script.text = code;
+                                document.getElementsByTagName('head')[0].appendChild(script);
                             }
                         })(xhr.responseText);
                         p_callback();
-                        //Support anonymous modules.
+                    }else{
+                        Raven.captureMessage('Ajax File load is Broken!', { tags: { key: 'The response of secontTryToCreateScirptElementAjax is not (xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== \'\')'}});
                     }
                 };
-
-                //node.appendChild();
-            }
+            })();
         }
     };
 
@@ -322,8 +329,8 @@ window.onerror = function(message, url, linenumber) {
         addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
         addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
         addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.b30289.js');
-        addJSToDOM('/js/build/externals/customized/require.2.1.11.42fa63.js', 'data-main', '/js/build/require-main.5eed73.js');
-        addCSSToDOM('/css/build/style.03eca3.css');
+        addJSToDOM('/js/build/externals/customized/require.2.1.11.42fa63.js', 'data-main', '/js/build/require-main.7314fe.js');
+        addCSSToDOM('/css/build/style.c73cbc.css');
     }
 </script>
 <noscript>

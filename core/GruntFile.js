@@ -63,6 +63,27 @@ module.exports = function(grunt){
 					expand  : true
 				}
 			},
+			replace: {
+				example: {
+					src: ['js/build/**/*.js'],
+					overwrite: true,                 // overwrite matched source files
+					replacements: [{
+						from: /^define(.*?)function/,          // string replacement
+						to: function(matchedWord, index, fullText, regexMatches){
+							var match;
+							var _return;
+							try{
+								match = /a.plugin\("(.*?)"/i.exec(fullText)[1];
+								match = match.replace(/\./g, '_');
+								_return = matchedWord + ' __MOD__' + match;
+							}catch(e){
+								_return = matchedWord;
+							}
+							return _return;
+						}
+					}]
+				}
+			},
 			copy: {
 				main: {
 					src: ['**/*.js', '!*.min.js', '!require-main.js'],
@@ -330,7 +351,7 @@ module.exports = function(grunt){
 
 
 
-	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'cssmin', 'revisions' ]);
+	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'replace', 'cssmin', 'revisions' ]);
 	grunt.registerTask('default2', ['task_step2', 'replace' ]);
 	grunt.registerTask('default3', ['task_step3', 'uglify', 'revisions' ]);
 	grunt.registerTask('default4', ['task_step4', 'replace' ]);
