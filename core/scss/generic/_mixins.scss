@@ -411,31 +411,78 @@
 
 // Wrapped Elements Default
 @mixin element-inner-default {
-	@include column(12);
-	position: relative;
-	padding: {
-		bottom: $default-spacing;
-		top: $default-spacing;
+	@include element-indent;
+	margin: {
+		left: 0 !important;
+		right: 0 !important;
 	}
-	
+	position: relative;
 }
 
 // Nested Elements Default
 @mixin element-nested-default {
-	@include inner-column(12);
-	position: relative;
+	@include element-inner-default;
 	padding: {
 		bottom: $default-inner-spacing;
 		top: $default-inner-spacing;
 	}
-	
 }
 
-// Indent Element
-@mixin element-indent($calc:1) {
-	padding: {
-		left: $dist / $calc;
-		right: $dist / $calc;
+// Indent Elements
+@mixin element-indent {
+	padding: $default-spacing $dist-s;
+
+	@include bp-m {
+		padding: {
+			left: $dist-m;
+			right: $dist-m;
+		}
+	}
+
+	@include bp-l {
+		padding: {
+			left: $dist-l;
+			right: $dist-l;
+		}
+	}
+}
+
+// Single Indent
+@mixin indent($arg: padding, $multiply: 1) {
+	@if $arg == left {
+		left: $dist-s * $multiply;
+
+		@include bp-m {
+			left: $dist-m * $multiply;
+		}
+
+		@include bp-l {
+			left: $dist-l * $multiply;
+		}
+	}
+
+	@if $arg == margin {
+		margin-left: $dist-s * $multiply;
+
+		@include bp-m {
+			margin-left: $dist-m * $multiply;
+		}
+
+		@include bp-l {
+			margin-left: $dist-l * $multiply;
+		}
+	}
+
+	@if $arg == padding {
+		padding-left: $dist-s * $multiply;
+
+		@include bp-m {
+			padding-left: $dist-m * $multiply;
+		}
+
+		@include bp-l {
+			padding-left: $dist-l * $multiply;
+		}
 	}
 }
 

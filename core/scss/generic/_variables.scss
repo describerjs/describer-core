@@ -174,7 +174,7 @@ $layout-maxwidth:	80em;
 // Distance calculated by Grid
 $dist:						$total-width * (($gutter-width * .5) / gridsystem-width($columns));
 
-// Margins - Preferably Top & Bottom
+// Preferably Top & Bottom
 $space:						rhythm(1, $browser-default-font-size);
 $space-and-half:			rhythm(1.5, $browser-default-font-size);
 $space-double:				rhythm(2, $browser-default-font-size);
@@ -184,7 +184,7 @@ $space-half:				rhythm(.5, $browser-default-font-size);
 $space-quarter:				rhythm(.25, $browser-default-font-size);
 $space-three-quarter:		$space-half + $space-quarter;
 
-// Paddings - Preferably Left & Right
+// Preferably Left & Right
 $pad:						1rem;
 $pad-and-half:				$pad * 1.5;
 $pad-double:				$pad * 2;
@@ -199,6 +199,12 @@ $default-spacing:			$space-half;
 $default-inner-spacing:		$space-quarter;
 $default-element-spacing:	$space;
 $default-padding:			$pad;
+$default-inner-padding:		$pad-and-half;
+
+
+$dist-s: $pad;
+$dist-m: $pad;
+$dist-l: $pad-and-half;
 
 
 

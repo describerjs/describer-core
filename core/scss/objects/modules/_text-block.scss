@@ -3,14 +3,15 @@
 \*------------------------------------*/
 
 .text-block {
-	@include element-default;
-	@include element-indent;
+	@extend %element-default;
+	@include column(11);
+	@include indent;
 
 	@include bp-m {
 		@include column(10);
 	}
 
-	@include bp-m {
+	@include bp-l {
 		@include column(8);
 	}
 

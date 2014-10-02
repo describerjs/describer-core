@@ -43,24 +43,13 @@ $total-width: 100%;
 		left: $total-width*(($gutter-width*.5)/gridsystem-width($columns));
 		right: $total-width*(($gutter-width*.5)/gridsystem-width($columns));
 	};
+
 	@if $x != $columns {
 		clear: none;
 		float: left;
 	}
 	// *width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns))-$correction;
 	// *margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns))-$correction;
-}
-@mixin inner-column($x,$columns:$columns) {
-	width: 100%;
-	padding: {
-		left: $total-width*(($gutter-width*.5)/gridsystem-width($columns));
-		right: $total-width*(($gutter-width*.5)/gridsystem-width($columns));
-	};
-
-	@if $x != $columns {
-		clear: none;
-		float: left;
-	}
 }
 @mixin push($offset:1) {
 	margin-left: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));
