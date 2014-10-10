@@ -38,15 +38,17 @@ namespace JM.Foundation.Configuration
 		/// Liste der gültigen Domains für den Server
 		/// </summary>
         [ConfigurationProperty("domains", IsRequired = true)]
-		public IEnumerable<string> Domains
+		public string Domains
 		{
 			get
 			{
-                Contract.Ensures(Contract.Result<IEnumerable<string>>() != null);
-				
-                return
-                    (this["domains"] as string ?? string.Empty).ToList(',');
+                return this["domains"] as string;
 			}
 		}
+
+	    public IEnumerable<string> GetDomainList()
+	    {
+		    return Domains.Contains(",") ? Domains.ToList(',') : new List<string>();
+	    }
     }
 }

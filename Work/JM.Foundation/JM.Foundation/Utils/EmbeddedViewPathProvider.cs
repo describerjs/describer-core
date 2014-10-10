@@ -72,7 +72,7 @@ namespace JM.Foundation.Utils
 
             internal static string GetResourceName(string virtualPath)
             {
-                if (!virtualPath.Contains("Areas/Manager/Views/Extensions"))
+                if (!virtualPath.Contains("Areas/Manager/Views/Shared"))
                 {
                     return null;
                 }

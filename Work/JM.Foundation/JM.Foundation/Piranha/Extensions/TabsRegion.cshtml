@@ -12,7 +12,7 @@
 
 	if (Model.Tabs == null)
 	{
-		Model.Tabs = new List<TextRegion>();
+		Model.Tabs = new List<TextRegion> { new TextRegion() };
 	}
 	fieldString = @Html.GetFullHtmlFieldName(m => m.Tabs.FirstOrDefault().Title);
 	regionID = fieldString.Replace("Regions[", "").Split(']')[0];

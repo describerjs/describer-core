@@ -1,4 +1,5 @@
 ﻿using JM.Foundation.DependencyInjection;
+using JM.Foundation.Mvc.ViewEngine;
 using JM.Foundation.Utils;
 using JM.ReferenceApplication.App_Start;
 using JM.ReferenceApplication.Common.Monitoring;
@@ -22,6 +23,10 @@ namespace JM.ReferenceApplication
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			// Unsere ViewEngine benutzen, um *Views automatisch aus den Template-Ordnern zu holen
+			ViewEngines.Engines.Insert(0, new TemplateAwareViewEngine());
+
             var container = AutoFacConfig.RegisterDependencyResolver();
 
             // Information Disclosure: MVC-Header entfernen

@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.52\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.64\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -152,8 +152,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConfigObjects\Template.cs" />
+    <Compile Include="Configuration\ConfigObjects\TemplateCollection.cs" />
     <Compile Include="Extensions\LinqExtensions.cs" />
     <Compile Include="Mvc\Helper\Helper.cs" />
+    <Compile Include="Mvc\ViewEngine\TemplateAwareViewEngine.cs" />
     <Compile Include="Piranha\Extensions\TabsRegion.cs" />
     <Compile Include="Piranha\Extensions\TeaserExtension.cs" />
     <Compile Include="Configuration\Config.cs" />

@@ -12,6 +12,9 @@ namespace JM.Foundation.Mvc.Helper
     /// </summary>
     public static class Configuration
     {
+		private const string SESSIONKEY_FRONTEND_TEMPLATE = "jbs_template";
+	    private const string SESSIONKEY_FRONTEND_CACHE = "jbs_frontendcachekey";
+
         #region public methods
         
         /// <summary>
@@ -22,7 +25,7 @@ namespace JM.Foundation.Mvc.Helper
         /// <returns>bool</returns>
         public static bool FeatureEnabled(this HtmlHelper helper, PerformanceFeature feature)
         {
-            var setting = GetSetting((int)feature);
+            var setting = getSetting((int)feature);
 
             return setting != null && setting.Value;
         }
@@ -48,7 +51,7 @@ namespace JM.Foundation.Mvc.Helper
 		/// <returns>string Key</returns>
 	    public static string GetFrontEndCacheKey()
 	    {
-		    var key = HttpContext.Current.Application["frontendcachekey"] as string;
+			var key = HttpContext.Current.Application[SESSIONKEY_FRONTEND_CACHE] as string;
 
             if (string.IsNullOrEmpty(key))
             {
@@ -65,11 +68,71 @@ namespace JM.Foundation.Mvc.Helper
 	    public static string UpdateFrontEndCacheKey()
 	    {
 		    var key = DateTime.Now.ToString("yyyyMMddhhmmss");
-		    HttpContext.Current.Application["frontendcachekey"] = key;
+			HttpContext.Current.Application[SESSIONKEY_FRONTEND_CACHE] = key;
 
 		    return key;
 	    }
 
+		/// <summary>
+		/// Prüft ob ein Template aktiviert ist
+		/// </summary>
+		/// <returns>bool</returns>
+	    public static bool HasActiveTemplate()
+		{
+			return getTemplateFromSession() != null || ApplicationConfiguration.SiteConfig.Templates.Any(t => t.Active);
+		}
+
+		/// <summary>
+		/// Speichert das gewählte Template (sofern vorhanden) in der Session. Ist id leer wird der Sessionkey gelöscht.
+		/// Bei Anfragen auf die anderen Template-Methoden überschreibt dieser Wert die Einstellungen in der Config
+		/// </summary>
+		/// <param name="id"></param>
+	    public static void SetActiveTemplateForSession(string id)
+	    {
+			if (String.IsNullOrEmpty(id))
+			{
+				HttpContext.Current.Session[SESSIONKEY_FRONTEND_TEMPLATE] = null;
+				return;
+			}
+
+			var template = ApplicationConfiguration.SiteConfig.Templates.FirstOrDefault(t => t.ID == id);
+			if (template == null)
+				return;
+
+			HttpContext.Current.Session[SESSIONKEY_FRONTEND_TEMPLATE] = id;
+	    }
+
+		/// <summary>
+		/// Gibt die ID des Templates zurück, das für die Session gesetzt wurde.
+		/// </summary>
+		/// <returns></returns>
+		public static string GetActiveTemplateFromSession()
+		{
+			var template = getTemplateFromSession();
+			return template != null ? template.ID : String.Empty;
+		}
+
+		/// <summary>
+		/// Gibt den Pfad zum aktiven Template-Ordner zurück
+		/// Für das ermitteln von Pfaden von anderen Resourcen im Template-Order
+		/// </summary>
+		/// <returns>string path</returns>
+		public static string GetActiveTemplatePath()
+		{
+			var template = getTemplateFromSession() ?? ApplicationConfiguration.SiteConfig.Templates.FirstOrDefault(t => t.Active);
+			return template != null ? template.Path : "";
+		}
+
+		/// <summary>
+		/// Gibt die ID des aktiven Template zurück
+		/// </summary>
+		/// <returns>string path</returns>
+		public static string GetActiveTemplateID()
+		{
+			var template = getTemplateFromSession() ?? ApplicationConfiguration.SiteConfig.Templates.FirstOrDefault(t => t.Active);
+			return template != null ? template.ID : "";
+		}
+		
         #region private methods
 
         /// <summary>
@@ -86,7 +149,7 @@ namespace JM.Foundation.Mvc.Helper
         /// </summary>
         /// <param name="id">Id des Settings</param>
         /// <returns>Setting</returns>
-        private static Setting GetSetting(int id)
+        private static Setting getSetting(int id)
         {
             var config = GetConfig();
             
@@ -94,6 +157,20 @@ namespace JM.Foundation.Mvc.Helper
                 (config.Features ?? Enumerable.Empty<Setting>())
                 .FirstOrDefault(d => d.ID == id.ToString());
         }
+
+		/// <summary>
+		/// Prüft ob Template in der Sessio gespeichert ist und gibt es zurück oder null
+		/// </summary>
+		/// <returns>Template</returns>
+	    private static Template getTemplateFromSession()
+	    {
+		    var key = HttpContext.Current.Session[SESSIONKEY_FRONTEND_TEMPLATE] as string;
+		    if (!string.IsNullOrEmpty(key))
+		    {
+				return ApplicationConfiguration.SiteConfig.Templates.FirstOrDefault(t => t.ID == key);
+		    }
+		    return null;
+	    }
 
         #endregion
     }
