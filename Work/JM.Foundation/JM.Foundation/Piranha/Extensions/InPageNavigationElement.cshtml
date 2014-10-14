@@ -1,0 +1,9 @@
+﻿@using System.Web.Mvc.Html
+@model InPageNavigationElement
+
+<ul class="form">
+	<li>
+		@Html.LabelFor(m => m.Text, "Name des Navigationspunktes")
+		<div class="input">@Html.TextBoxFor(m => m.Text)</div>
+	</li>
+</ul>
