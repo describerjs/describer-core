@@ -3,22 +3,22 @@
 <nav class="nav" id="nav" role="navigation">
     <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 	<ul class="nav-items">
-		@foreach (var map in Model)
+		@foreach (var map in Model.Where(m => !m.IsHidden))
 		{
-			var hasSubNav = map.Pages != null && map.Pages.Any();
+			var hasSubNav = map.Pages != null && map.Pages.Any(m => !m.IsHidden);
 			<li class="nav-item menu-item">
 				<a href="@JMPiranhaHelper.GenerateUrl(map)" class="nav-link" @if (hasSubNav) { <text>data-jmname="nav-link" data-jmdominit="true"</text>}>@(String.IsNullOrEmpty(map.NavigationTitle) ? map.Title : map.NavigationTitle)</a>
 				@if (hasSubNav)
 				{
 					<div class="flyout">
-						@foreach (var sub in map.Pages)
+						@foreach (var sub in map.Pages.Where(m => !m.IsHidden))
 						{
 							<div class="flyout-group">
 								<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="@JMPiranhaHelper.GenerateUrl(sub)">@(String.IsNullOrEmpty(sub.NavigationTitle) ? sub.Title : sub.NavigationTitle)</a></div>
-								@if (sub.Pages != null && sub.Pages.Any())
+								@if (sub.Pages != null && sub.Pages.Any(m => !m.IsHidden))
 								{
 									<ul class="flyout-items">
-										@foreach (var subSub in sub.Pages)
+										@foreach (var subSub in sub.Pages.Where(m => !m.IsHidden))
 										{
 											<li class="flyout-item"><a class="flyout-link" href="@JMPiranhaHelper.GenerateUrl(subSub)">@(String.IsNullOrEmpty(subSub.NavigationTitle) ? subSub.Title : subSub.NavigationTitle)</a></li>
 										}
