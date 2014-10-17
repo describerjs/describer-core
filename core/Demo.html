@@ -342,8 +342,7 @@ window.onerror = function(message, url, linenumber) {
     <link rel="stylesheet" href="/css/noscript.css" />
 </noscript>
 <style>
-.demo-section { background-color: #f0f0f0; margin-bottom: 3rem; padding: 1rem; }
-.demo-section-title { margin: 0; padding: 1rem 3rem; }
+.demo-section { background-color: #f0f0f0; margin-bottom: 3rem; padding-top: 1rem; }
 </style>
 </head>
 
@@ -354,9 +353,6 @@ window.onerror = function(message, url, linenumber) {
 		<!-- <form class="search" role="search" style="display:none">
 			<input type="search" name="search" />
 		</form> -->
-		<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
-			<!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
-		</div>
 		<nav class="nav" id="nav" role="navigation">
 			<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 			<ul class="nav-items">
@@ -415,8 +411,8 @@ window.onerror = function(message, url, linenumber) {
 		</nav>
 	</header>
 	<main class="page-main" role="main">
-        <h2 class="demo-section-title" id="Text-Elemente">Text-Elemente</h2>
-        <section class="demo-section">
+        <h2 id="Text-Elemente">Text-Elemente</h2>
+        <div class="demo-section">
     		<section class="text-block" id="Text-Elemente-Heading">
     			<h3>Heading</h3>
     			<p>Headlines &lt;h1&gt;-&lt;h6&gt;</p>
@@ -432,7 +428,6 @@ window.onerror = function(message, url, linenumber) {
     				<h6>Lorem ipsum dolor sit amet</h6>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="Text-Elemente-Text">
     			<h3>Text</h3>
     			<p>Fließtext Element</p>
@@ -443,7 +438,6 @@ window.onerror = function(message, url, linenumber) {
     				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="Text-Elemente-Listen">
     			<h3>Listen</h3>
     			<p>Listentypen</p>
@@ -451,22 +445,25 @@ window.onerror = function(message, url, linenumber) {
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
-    				<ul>
-    					<li class="list-item">Lorem ipsum dolor sit amet</li>
-    					<li class="list-item">Lorem ipsum dolor sit amet</li>
-    					<li class="list-item">Lorem ipsum dolor sit amet</li>
-    				</ul>
-    				<hr />
-    				<ul class="bullet-list">
-    					<li class="list-item">Lorem ipsum dolor sit amet</li>
-    					<li class="list-item">Lorem ipsum dolor sit amet</li>
-    					<li class="list-item">Lorem ipsum dolor sit amet</li>
-    				</ul>
+                    <section>
+                        <h4>Bullet List</h4>
+        				<ul class="bullet-list">
+        					<li class="list-item">Lorem ipsum dolor sit amet</li>
+        					<li class="list-item">Lorem ipsum dolor sit amet</li>
+        					<li class="list-item">Lorem ipsum dolor sit amet</li>
+        				</ul>
+                        <h4>Decimal List</h4>
+                        <ol class="decimal-list">
+                            <li class="list-item">Lorem ipsum dolor sit amet</li>
+                            <li class="list-item">Lorem ipsum dolor sit amet</li>
+                            <li class="list-item">Lorem ipsum dolor sit amet</li>
+                        </ol>
+                    </section>
     			</div>
     		</div>
-        </section>
-        <h2 class="demo-section-title" id="UI-Elemente">UI-Elemente</h2>
-        <section class="demo-section">
+        </div>
+        <h2 id="UI-Elemente">UI-Elemente</h2>
+        <div class="demo-section">
     		<section class="text-block" id="UI-Elemente-Accordion">
     			<h3>Accordion</h3>
     			<p>Ziehharmonika Effekt</p>
@@ -515,7 +512,6 @@ window.onerror = function(message, url, linenumber) {
     				</div>
                 </div>
             </div>
-            <hr />
             <section class="text-block" id="UI-Elemente-Carousel">
         		<h3>Carousel</h3>
         		<p>Umschließt mindestens zwei Elemente und funktioniert es zu einer Rotation.</p>
@@ -611,7 +607,6 @@ window.onerror = function(message, url, linenumber) {
         			</div>
         		</div>
         	</div>
-        	<hr />
     		<section class="text-block" id="UI-Elemente-Navigation">
     			<h3>Navigation</h3>
     			<p>Hauptnavigation/Menu</p>
@@ -697,7 +692,6 @@ window.onerror = function(message, url, linenumber) {
     				</nav>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="UI-Elemente-Stage-Teaser">
     			<h3>Stage-Teaser</h3>
     			<p>Hauptbühnen-Element</p>
@@ -734,7 +728,6 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="UI-Elemente-Tabs">
     			<h3>Tabs</h3>
     			<p>Reiternavigation</p>
@@ -764,7 +757,6 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="UI-Elemente-Teaser">
     			<h3>Teaser</h3>
     			<p>Teaserelement</p>
@@ -859,7 +851,6 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="UI-Elemente-Text-Block">
     			<h3>Text-Block</h3>
     			<p>Blockelement bestehend aus Headline und Copy.</p>
@@ -879,7 +870,6 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-    		<hr />
     		<section class="text-block" id="UI-Elemente-Togglebox">
     			<h3>Togglebox</h3>
     			<p>Auf-/Zuklapp-Element</p>
@@ -896,9 +886,9 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-        </section>
-        <h2 class="demo-section-title" id="SocialMedia">SocialMedia</h2>
-        <section class="demo-section">
+        </div>
+        <h2 id="SocialMedia">SocialMedia</h2>
+        <div class="demo-section">
     		<section class="text-block" id="SocialMedia-Facebook">
     			<h3>Facebook-Like</h3>
     			<p>Facebook-Like-Element</p>
@@ -911,7 +901,7 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-        </section>
+        </div>
 	</main>
 	<footer class="page-footer" role="contentinfo">
 		<section class="h-card">

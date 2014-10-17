@@ -25,32 +25,16 @@ address {
 
 
 /*------------------------------------*\
-    $HORIZONTAL_RULE
-\*------------------------------------*/
-
-hr {
-	@extend %element-default;
-	margin: $space-double 0;
-}
-
-
-
-
-
-/*------------------------------------*\
     $PARAGRAPH
 \*------------------------------------*/
 
 p {
+	@extend %element-text-default;
 	@include as-para;
 	@include as-para--typeset;
 
 	&:last-child {
 		margin-bottom: 0;
-	}
-
-	main > & {
-		@extend %element-text-default;
 	}
 }
 

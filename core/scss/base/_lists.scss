@@ -20,6 +20,7 @@
 
 // Default List-Styling - <ul>|<ol>
 %default-list {
+	@extend %element-text-default;
 	list-style: none;
 	list-style-position: outside;
 }
@@ -35,6 +36,7 @@
 li {
 	/**/
 }
+
 
 
 
