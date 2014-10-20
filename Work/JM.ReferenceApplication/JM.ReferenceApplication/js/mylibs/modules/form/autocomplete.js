@@ -16,7 +16,7 @@ define(['jquery', 'actions.ajax', 'jquery_autocomplete'], function ($, extendOjb
 			return eval(this.is('zipcode'));
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var that = this;
 			/*this.$elem.css({
 				'background-color': 'transparent',
@@ -49,7 +49,7 @@ define(['jquery', 'actions.ajax', 'jquery_autocomplete'], function ($, extendOjb
 				maxItemsToShow: 5,
 				jmhideByResult: (that.is('hideby') !== '') ? parseInt(that.is('hideby'), 10) : 0,
 				jmzindex: 99,
-				jmnextFocusNameAttr: that.is('nextFocusNameAttr'),
+				jmnextFocusNameAttr: that.is('nextFocus'),
 				//jmappendToClass: 'push',
 				zipCodeBool: (this.is('zipcode') !== ''),
 				minChars: 1,
@@ -61,6 +61,7 @@ define(['jquery', 'actions.ajax', 'jquery_autocomplete'], function ($, extendOjb
 					that.$elem.trigger('change');
 				}
 			});
+			this._finishing();
 		}
 	});
 
