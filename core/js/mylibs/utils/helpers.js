@@ -90,15 +90,13 @@ define(['jquery', '_config'], function($, _config){
 					case 'blur':
 					case 'focus':
 					case 'hover':
-						//alert('noregex');
-						break;
 					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/interval(.*)/))? _eventsArray[m] : undefined):
 						if(_dataJmnameElemente.eq(i).attr('data-jmdominit') !== 'true'){
 							console.group();
 							console.log('%cJM -> Das Element ...', 'color: red; font-style: italic');
 							console.log(_dataJmnameElemente.eq(i)[0]);
-							console.log('%c ... benötigt ein data-jmdominit="true" Attribut!', 'color: red; font-style: italic');
+							console.log('%c ... benötigt ein data-jmdominit="true" Attribut, da das event "'+_eventsArray[m]+'" im jmconfig-Obj angegeben wurde!', 'color: red; font-style: italic');
 							console.groupEnd();
 							jmHF.alert('Fehler: siehe Console! JM ->')
 						}
@@ -164,7 +162,18 @@ define(['jquery', '_config'], function($, _config){
 	jmHF.eventDelegationHepler = function($this, e, param){
 		var _jmname = $this.attr('data-jmname').split('|');
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
-			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmPluginByJmName(_config, _jmname[i]), 'e': e, 'e_param': param });
+			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': jmHF.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
+		}
+	};
+
+	// gebt das complette Objekt für den übergebenen jmname aus der _config.js zurück ({jmname:...,jmplugin:...,jmconfig:...})
+	jmHF.getConfigObj = function(p_name){
+		var i = 0;
+		var _length = _config.length;
+		for(; i < _length; i++){
+			if(_config[i].jmname === p_name){
+				return _config[i];
+			}
 		}
 	};
 
@@ -178,18 +187,54 @@ define(['jquery', '_config'], function($, _config){
 		if($.type(Obj.$element) === 'undefined'){
 			return;
 		}
-		if($.type(Obj.plugin) === 'undefined'){
+		if($.type(Obj.configObj) === 'undefined'){
 			return;
 		}
-		_pluginArray = Obj.plugin.split('|');
+		_pluginArray = Obj.configObj.jmplugin.split('|');
 		for (var i = 0, leni = _pluginArray.length; i < leni; i++) {
 		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
 		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
 		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
 				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
-			jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
+			// event-Check for init plugin
+			if(jmHF.matchTriggerEventWithConfigEvents(Obj.e.type, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
+				jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
+			}
 		}
+	};
+
+	jmHF.matchTriggerEventWithConfigEvents = function(p_eventType, p_pluginConfigOjb){
+		//console.log(p_pluginConfigOjb);
+		// Erstelle ein Array aus der event-Value-Angabe aus dem config-Obj
+		var eventArray = p_pluginConfigOjb.event.split('|');
+		var _retrun = false;
+		// Durchlaufe das Event-Array
+		for(var i = 0, leni = eventArray.length; i < leni; i++){
+			if(eventArray[i] === p_eventType){
+				// return true if p_eventType === click || change
+				_retrun = true;
+			}else if(eventArray[i].split(':')[0] === p_eventType){
+				// return true if eventArray[i] contains jmtrigger
+				_retrun = true;
+			}else if('dominit' === p_eventType){
+				switch(eventArray[i]){
+					case 'dominit':
+					case 'raf':
+					case 'blur':
+					case 'focus':
+					case 'hover':
+					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
+					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
+						// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
+						_retrun = true;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		return _retrun;
 	};
 
 	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){

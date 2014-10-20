@@ -31,22 +31,21 @@ window.onerror = function(message, url, linenumber) {
 };
 </script>-->
 
-<script src="/js/raven.js"></script>
+<!--<script src="/js/raven.js"></script>
 <script>
     Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
-</script>
-<!--<script src="/js/raven-jm.js"></script>
-<script>
-    Raven.config('http://www.joinmedia.de').install();
 </script>-->
-<!--<script>
+<script src="/js/raven-jm.js"></script>
+<script>
+    Raven.config('http://www.joinmedia.de/log').install();
+</script>
+<script>
     window.UseLocalStorage = false;
     window.loadUnminifyVersion = true;
     window.debug = true;
-</script>-->
+</script>
 
-
-<script>
+<!--<script>
     window.debug = false;
     var checkDebugging = function(){
         try{
@@ -63,7 +62,8 @@ window.onerror = function(message, url, linenumber) {
         }
     };
     checkDebugging();
-</script>
+    Raven.captureMessage('TestError!');
+</script>-->
 
 <script>
     if(window.UseLocalStorage && window.loadUnminifyVersion){
@@ -505,11 +505,10 @@ window.onerror = function(message, url, linenumber) {
 									</div>
 								</li>
 								<li class="acc-item">
-									<a class="acc-handle" data-jmname="accordionbox" href="#">Ipsum Accordion</a>
+									<a class="acc-handle" data-jmname="accordionbox" data-jmconfig="[{}, {}, { 'url': '/ajax-files/togglebox.html' }]" href="#">Ipsum Accordion (ajax)</a>
 									<div class="acc-panel">
-										<h5>Ipsum Accordion</h5>
-										<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									</div>
+
+                                    </div>
 								</li>
 								<li class="acc-item">
 									<a class="acc-handle" data-jmname="accordionbox" href="#">Dolor Accordion</a>
@@ -915,6 +914,12 @@ window.onerror = function(message, url, linenumber) {
 								<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 							</div>
 						</div>
+                        <div class="togglebox">
+                            <a class="tb-subject" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-files/togglebox.html'}, {}]">Lorem ipsum dolor (ajax)</a>
+                            <div class="tb-content">
+
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>

@@ -309,17 +309,25 @@ define(function(){
 
 		},{
 			jmname   : 'togglebox',
-			jmplugin: 'actions.toggle',
-			jmconfig : {
-				'event'    : 'click|jmtrigger:click',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem.parent()[0]'
-			}
-		},
-		{
+			jmplugin: 'actions.ajax|actions.toggle',
+			jmconfig : [
+				{
+					'event'    : 'jmtrigger:open',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.tb-content\')[0]',
+					'condition': '($.trim(this.$elem.siblings(\'.tb-content\').html()).length) === 0'
+				},{
+					'event'    : 'click|jmtrigger:click',
+					'datatype' : 'class',
+					'data'     : 'show',
+					'relatedTo': 'this.$elem.parent()[0]',
+					'callback' : 'if(this.$elem.parent().hasClass(\'show\')) this.$elem.jmtrigger(\'open\')'
+				}
+			]
+		},{
+			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat. toggel um das geöffnete Element auch wieder schliessen zu können.
 			jmname   : 'accordionbox',
-			jmplugin: 'actions.remove|actions.toggle',
+			jmplugin: 'actions.remove|actions.toggle|actions.ajax',
 			jmconfig : [
 				{
 					'event'    : 'click',
@@ -329,11 +337,16 @@ define(function(){
 					'condition': '!this.$elem.parent().hasClass(\'show\')'
 				},
 				{
-					'wait'      :'10',
 					'event'    : 'click',
 					'datatype' : 'class',
 					'data'     : 'show',
-					'relatedTo': 'this.$elem.parent()[0]'
+					'relatedTo': 'this.$elem.parent()[0]',
+					'callback' : 'if(this.$elem.parent().hasClass(\'show\') && (($.trim(this.$elem.siblings(\'.acc-panel\').html()).length) === 0)) this.$elem.jmtrigger(\'makeajax\')'
+				},{
+					'event'    : 'jmtrigger:makeajax',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.acc-panel\')[0]',
+					'condition': '$.type(this.configObj.url) !== \'undefined\'' // dominit überdenken
 				}
 			]
 		},{

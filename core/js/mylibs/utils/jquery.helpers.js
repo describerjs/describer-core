@@ -55,6 +55,7 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 			$elem.find('[data-jmdominit="true"]').addBack('[data-jmdominit="true"]').each(function (index, item) {
 				$(item).trigger('dominit');
 			});
+			// TODO Andreas wird das noch gebraucht?
 			$elem.find('[data-jmsetelementwithjs]').addBack('[data-jmsetelementwithjs]').each(function (index, item) {
 				$(item).trigger('setelementwithjs');
 			});

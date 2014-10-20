@@ -114,6 +114,7 @@ require(['jquery', '_config'], function require_jquery($){
 
 
 			// Jedes Input(ausgenommen type="submit"), texarea und select feuert ein Event "checkValidation" wenn focus, change oder blur getriggert wird.
+			// TODO Andreas evtl. obsolate da hier auch mit jmtrigger:checkValidation gearbeitet werden kann. Prüfen. Evtl. dominit="true" und blur, focus, jmtrigger:checkValidtion in den Config-Event-Stirng
 			$body.on(   'blur ' +
 						'change ' +
 						'focus ' +

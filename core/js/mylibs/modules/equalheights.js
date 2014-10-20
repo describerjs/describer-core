@@ -48,3 +48,4 @@ define(['jquery', '_super'], function ($, _super){
 	$.plugin('modules.equalheights', equalheights);
 	return equalheights;
 });
+// TODO Andreas trigger neu, wenn das Device die Orientierung gewechselt hat.
