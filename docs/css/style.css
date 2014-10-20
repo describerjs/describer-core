@@ -66,13 +66,13 @@ p i {
 }
 
 ::-moz-selection {
-  background: #000;
+  background: #999;
   color: #fff;
   text-shadow: none;
 }
 
 ::selection {
-  background: #000;
+  background: #999;
   color: #fff;
   text-shadow: none;
 }

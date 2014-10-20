@@ -103,7 +103,7 @@ h6, .h6 {
   line-height: 1.5rem;
 }
 
-.bullet-list {
+.bullet-list, .decimal-list {
   font-size: 16px;
   font-size: 1rem;
   line-height: 24px;
@@ -134,7 +134,7 @@ h6, .h6 {
   margin-bottom: 0rem;
 }
 
-.bullet-list {
+.bullet-list, .decimal-list {
   margin-bottom: 1.5rem;
 }
 
@@ -327,7 +327,7 @@ h6, .h6 {
   clear: both;
 }
 
-hr, .legal, .h-card, .accordion, .nav, .stage-teaser, .tabs, .teaser, .text-block, .togglebox {
+.legal, .h-card, .accordion, .nav, .stage-teaser, .tabs, .teaser, .text-block, .togglebox {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -336,11 +336,11 @@ hr, .legal, .h-card, .accordion, .nav, .stage-teaser, .tabs, .teaser, .text-bloc
   clear: both;
   position: relative;
 }
-hr:after, .legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after, hr:before, .legal:before, .h-card:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .text-block:before, .togglebox:before {
+.legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after, .legal:before, .h-card:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .text-block:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
-hr:after, .legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after {
+.legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after {
   clear: both;
 }
 
@@ -384,10 +384,21 @@ hr:after, .legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teas
   }
 }
 
-main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > p {
+main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > ul, main > ol, main > p {
   width: 97.91667%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
+  padding-left: 1rem;
+}
+@media only screen and (min-width: 48em) {
+  main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > ul, main > ol, main > p {
+    padding-left: 1rem;
+  }
+}
+@media only screen and (min-width: 60em) {
+  main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > ul, main > ol, main > p {
+    padding-left: 1.5rem;
+  }
 }
 
 /*------------------------------------*\
@@ -801,13 +812,6 @@ address {
 }
 
 /*------------------------------------*\
-    $HORIZONTAL_RULE
-\*------------------------------------*/
-hr {
-  margin: 3rem 0;
-}
-
-/*------------------------------------*\
     $PARAGRAPH
 \*------------------------------------*/
 p {
@@ -1131,12 +1135,19 @@ p:last-child {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
+.bullet-list .list-item {
+  padding-left: 1rem;
+}
+
+.decimal-list .list-item {
+  margin-left: 1.5rem;
+}
+
 /*------------------------------------*\
     $LIST-ITEM
 \*------------------------------------*/
 .list-item {
   margin-bottom: 0.375rem;
-  padding-left: 1rem;
   position: relative;
 }
 .list-item:last-child {
@@ -1152,6 +1163,13 @@ p:last-child {
   position: absolute;
   content: "\2022";
   left: 0;
+}
+
+/*------------------------------------*\
+    $DECIMAL-LIST
+\*------------------------------------*/
+.decimal-list {
+  list-style-type: decimal-leading-zero;
 }
 
 /*------------------------------------*\

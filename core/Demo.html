@@ -31,21 +31,22 @@ window.onerror = function(message, url, linenumber) {
 };
 </script>-->
 
-<!--<script src="/js/raven.js"></script>
+<script src="/js/raven.js"></script>
 <script>
     Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
-</script>-->
-<script src="/js/raven-jm.js"></script>
-<script>
-    Raven.config('http://www.joinmedia.de/log').install();
 </script>
+<!--<script src="/js/raven-jm.js"></script>
+<script>
+    Raven.config('http://www.joinmedia.de').install();
+</script>-->
 <script>
     window.UseLocalStorage = false;
     window.loadUnminifyVersion = true;
     window.debug = true;
 </script>
 
-<!--<script>
+<!-- 
+<script>
     window.debug = false;
     var checkDebugging = function(){
         try{
@@ -62,9 +63,8 @@ window.onerror = function(message, url, linenumber) {
         }
     };
     checkDebugging();
-    Raven.captureMessage('TestError!');
-</script>-->
-
+</script>
+ -->
 <script>
     if(window.UseLocalStorage && window.loadUnminifyVersion){
         console.warn('-------------!!!!!-----localStorage wird nicht gelöscht!------!!!!!-----');
@@ -341,6 +341,9 @@ window.onerror = function(message, url, linenumber) {
 
     <link rel="stylesheet" href="/css/noscript.css" />
 </noscript>
+<style>
+.demo-section { background-color: #f0f0f0; margin-bottom: 3rem; padding-top: 1rem; }
+</style>
 </head>
 
 <body>
@@ -350,594 +353,560 @@ window.onerror = function(message, url, linenumber) {
 		<!-- <form class="search" role="search" style="display:none">
 			<input type="search" name="search" />
 		</form> -->
-		<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
-			<!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
-		</div>
 		<nav class="nav" id="nav" role="navigation">
 			<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 			<ul class="nav-items">
 				<li class="nav-item menu-item">
-					<a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
+					<a href="#Text-Elemente" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Text-Elemente</a>
 					<div class="flyout">
 						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
-							<ul class="flyout-items">
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-1">Subsubitem 1</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-2">Subsubitem 2</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-3">Subsubitem 3</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-4">Subsubitem 4</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-5">Subsubitem 5</a></li>
-							</ul>
-						</div>
-						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-2">Subitem 2</a></div>
-							<ul class="flyout-items">
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-5">Subsubitem 5</a></li>
-							</ul>
+							<div class="flyout-item"><a class="flyout-group-title" href="#Text-Elemente-Heading">Heading</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#Text-Elemente-Text">Text</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#Text-Elemente-Listen">Listen</a></div>
 						</div>
 					</div>
 				</li>
 				<li class="nav-item menu-item">
-					<a href="#/Item-2" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 2</a>
+					<a href="#UI-Elemente" class="nav-link" data-jmname="nav-link" data-jmdominit="true">UI-Elemente</a>
 					<div class="flyout">
 						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-1">Subitem 1</a></div>
+							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Accordion">Accordion</a></div>
 						</div>
 						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-2">Subitem 2</a></div>
+							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Carousel">Carousel</a></div>
 						</div>
 						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-3">Subitem 3</a></div>
+							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Navigation">Navigation</a></div>
 						</div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Stage-Teaser">Stage-Teaser</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Tabs">Tabs</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Teaser">Teaser</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Text-Block">Text-Block</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Togglebox">Togglebox</a></div>
+                        </div>
 					</div>
 				</li>
 				<li class="nav-item menu-item">
-					<a href="#/Item-3" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 3</a>
-					<div class="flyout">
-						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-1">Subitem 1</a></div>
-						</div>
-						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-2">Subitem 2</a></div>
-							<ul class="flyout-items">
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
-							</ul>
-						</div>
-						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-3">Subitem 3</a></div>
-							<ul class="flyout-items">
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-1">Subsubitem 1</a></li>
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-2">Subsubitem 2</a></li>
-							</ul>
-						</div>
-						<div class="flyout-group">
-							<div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-4">Subitem 4</a></div>
-							<ul class="flyout-items">
-								<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-4/Subsubitem-1">Subsubitem 1</a></li>
-							</ul>
-						</div>
-					</div>
-				</li>
-				<li class="nav-item menu-item"><a href="#/Item-4" class="nav-link">Item 4</a></li>
-				<li class="nav-item menu-item"><a href="#/Item-5" class="nav-link" target="_blank">Item 5</a></li>
+                    <a href="#SocialMedia" class="nav-link" data-jmname="nav-link" data-jmdominit="true">SocialMedia</a>
+                    <div class="flyout">
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#SocialMedia-Facebook">Facebook</a></div>
+                        </div>
+                    </div>
+                </li>
 			</ul>
 		</nav>
 	</header>
 	<main class="page-main" role="main">
-		<div class="tabs">
-			<input type="radio" id="module-text" name="tab-mobule" class="tab-control" checked />
-			<label for="module-text" class="tab">Text-Elemente</label>
-			<input type="radio" id="module-ui" name="tab-mobule" class="tab-control" />
-			<label for="module-ui" class="tab">UI-Elemente</label>
-			<input type="radio" id="module-social" name="tab-mobule" class="tab-control" />
-			<label for="module-social" class="tab">SocialMedia</label>
-			<div class="tab-content">
-				<section class="text-block">
-					<h3>Heading</h3>
-					<p>Headlines &lt;h1&gt;-&lt;h6&gt;</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<h1>Lorem ipsum dolor sit amet</h1>
-						<h2>Lorem ipsum dolor sit amet</h2>
-						<h3>Lorem ipsum dolor sit amet</h3>
-						<h4>Lorem ipsum dolor sit amet</h4>
-						<h5>Lorem ipsum dolor sit amet</h5>
-						<h6>Lorem ipsum dolor sit amet</h6>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Text</h3>
-					<p>Fließtext Element</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Listen</h3>
-					<p>Listentypen</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<ul>
-							<li class="list-item">Lorem ipsum dolor sit amet</li>
-							<li class="list-item">Lorem ipsum dolor sit amet</li>
-							<li class="list-item">Lorem ipsum dolor sit amet</li>
-						</ul>
-						<hr />
-						<ul class="bullet-list">
-							<li class="list-item">Lorem ipsum dolor sit amet</li>
-							<li class="list-item">Lorem ipsum dolor sit amet</li>
-							<li class="list-item">Lorem ipsum dolor sit amet</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="tab-content">
-				<section class="text-block">
-					<h3>Accordion</h3>
-					<p>Ziehharmonika Effekt</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="accordion">
-							<ul class="acc-group">
-								<li class="acc-item">
-									<a class="acc-handle" data-jmname="accordionbox" href="#">Lorem Accordion</a>
-									<div class="acc-panel">
-										<h5>Lorem Accordion</h5>
-										<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									</div>
-								</li>
-								<li class="acc-item">
-									<a class="acc-handle" data-jmname="accordionbox" data-jmconfig="[{}, {}, { 'url': '/ajax-files/togglebox.html' }]" href="#">Ipsum Accordion (ajax)</a>
-									<div class="acc-panel">
+        <h2 id="Text-Elemente">Text-Elemente</h2>
+        <div class="demo-section">
+    		<section class="text-block" id="Text-Elemente-Heading">
+    			<h3>Heading</h3>
+    			<p>Headlines &lt;h1&gt;-&lt;h6&gt;</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<h1>Lorem ipsum dolor sit amet</h1>
+    				<h2>Lorem ipsum dolor sit amet</h2>
+    				<h3>Lorem ipsum dolor sit amet</h3>
+    				<h4>Lorem ipsum dolor sit amet</h4>
+    				<h5>Lorem ipsum dolor sit amet</h5>
+    				<h6>Lorem ipsum dolor sit amet</h6>
+    			</div>
+    		</div>
+    		<section class="text-block" id="Text-Elemente-Text">
+    			<h3>Text</h3>
+    			<p>Fließtext Element</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    			</div>
+    		</div>
+    		<section class="text-block" id="Text-Elemente-Listen">
+    			<h3>Listen</h3>
+    			<p>Listentypen</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+                    <section>
+                        <h4>Bullet List</h4>
+        				<ul class="bullet-list">
+        					<li class="list-item">Lorem ipsum dolor sit amet</li>
+        					<li class="list-item">Lorem ipsum dolor sit amet</li>
+        					<li class="list-item">Lorem ipsum dolor sit amet</li>
+        				</ul>
+                        <h4>Decimal List</h4>
+                        <ol class="decimal-list">
+                            <li class="list-item">Lorem ipsum dolor sit amet</li>
+                            <li class="list-item">Lorem ipsum dolor sit amet</li>
+                            <li class="list-item">Lorem ipsum dolor sit amet</li>
+                        </ol>
+                    </section>
+    			</div>
+    		</div>
+        </div>
+        <h2 id="UI-Elemente">UI-Elemente</h2>
+        <div class="demo-section">
+    		<section class="text-block" id="UI-Elemente-Accordion">
+    			<h3>Accordion</h3>
+    			<p>Ziehharmonika Effekt</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="accordion">
+    					<ul class="acc-group">
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Lorem Accordion</a>
+    							<div class="acc-panel">
+    								<h5>Lorem Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</div>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" data-jmconfig="[{ 'url': '/ajax-files/togglebox.html' }, {}, {}]" href="#">Ipsum Accordion (ajax)</a>
+    							<div class="acc-panel">
 
-                                    </div>
-								</li>
-								<li class="acc-item">
-									<a class="acc-handle" data-jmname="accordionbox" href="#">Dolor Accordion</a>
-									<div class="acc-panel">
-										<h5>Dolor Accordion</h5>
-										<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									</div>
-								</li>
-								<li class="acc-item">
-									<a class="acc-handle" data-jmname="accordionbox" href="#">Sit amet Accordion</a>
-									<div class="acc-panel">
-										<h5>Sit amet Accordion</h5>
-										<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									</div>
-								</li>
-								<li class="acc-item">
-									<a class="acc-handle" data-jmname="accordionbox" href="#">Consetetur Accordion</a>
-									<div class="acc-panel">
-										<h5>Consetetur Accordion</h5>
-										<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Carousel</h3>
-					<p>Umschließt mindestens zwei Elemente und funktioniert es zu einer Rotation.</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div data-jmname="carousel" data-jmdominit="true">
-							<div class="stage-teaser visible">
-								<div class="st-figure">
-									<picture>
-										<!--[if IE 9]><video style="display: none;"><![endif]-->
-										<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=LOREM" media="(min-width: 60em)" /></source>
-										<source srcset="//dummyimage.com/960x468/666/ddd.png&text=LOREM" media="(min-width: 48em)" /></source>
-										<source srcset="//dummyimage.com/768x197/666/ddd.png&text=LOREM"></source>
-										<!--[if IE 9]></video><![endif]-->
-										<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=LOREM" src="//dummyimage.com/1240x468/666/ddd.png&text=LOREM" alt="IMG" /></source>
-									</picture>
-								</div>
-                                <div class="st-inner">
-    								<header class="st-header">
-    									<h2 class="st-head">Lorem ipsum dolor sit amet</h2>
-    								</header>
-    								<div class="st-content">
-    									<ul class="bullet-list">
-    										<li class="list-item">Lorem ipsum dolor sit amet</li>
-    										<li class="list-item">Consetetur sadipscing elitr</li>
-    										<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    									</ul>
-    								</div>
-    								<footer class="st-footer">
-    									<a class="cta" href="#">Lorem</a>
-    								</footer>
                                 </div>
-							</div>
-							<!-- comment in by JS <img src="//dummyimage.com/140x48/666/ddd.png&text=LOREM" alt="LOREM" class="owl-page-img" /><p class="owl-page-title">Lorem ipsum dolor sit amet Promo</p> -->
-							<div class="stage-teaser hide-large hide-med">
-								<div class="st-figure">
-									<picture>
-										<!--[if IE 9]><video style="display: none;"><![endif]-->
-										<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=CONSETETUR" media="(min-width: 60em)" /></source>
-										<source srcset="//dummyimage.com/960x468/666/ddd.png&text=CONSETETUR" media="(min-width: 48em)" /></source>
-										<source srcset="//dummyimage.com/768x197/666/ddd.png&text=CONSETETUR"></source>
-										<!--[if IE 9]></video><![endif]-->
-										<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=CONSETETUR" src="//dummyimage.com/1240x468/666/ddd.png&text=CONSETETUR" alt="IMG" /></source>
-									</picture>
-								</div>
-                                <div class="st-inner">
-    								<header class="st-header">
-    									<h2 class="st-head">Consetetur sadipscing elitr</h2>
-    								</header>
-    								<div class="st-content">
-    									<ul class="bullet-list">
-    										<li class="list-item">Lorem ipsum dolor sit amet</li>
-    										<li class="list-item">Consetetur sadipscing elitr</li>
-    										<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    									</ul>
-    								</div>
-    								<footer class="st-footer">
-    									<a class="cta" href="#">Lorem</a>
-    								</footer>
-                                </div>
-							</div>
-							<!-- comment in by JS <img src="//dummyimage.com/140x48/666/ddd.png&text=CONSETETUR" alt="CONSETETUR" class="owl-page-img" /><p class="owl-page-title">Consetetur sadipscing elitr Promo</p> -->
-							<div class="stage-teaser hide-large hide-med">
-								<div class="st-figure">
-									<picture>
-										<!--[if IE 9]><video style="display: none;"><![endif]-->
-										<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=SED-DIAM" media="(min-width: 60em)" /></source>
-										<source srcset="//dummyimage.com/960x468/666/ddd.png&text=SED-DIAM" media="(min-width: 48em)" /></source>
-										<source srcset="//dummyimage.com/768x197/666/ddd.png&text=SED-DIAM"></source>
-										<!--[if IE 9]></video><![endif]-->
-										<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=SED-DIAM" src="//dummyimage.com/1240x468/666/ddd.png&text=SED-DIAM" alt="IMG" /></source>
-									</picture>
-								</div>
-                                <div class="st-inner">
-    								<header class="st-header">
-    									<h2 class="st-head">Sed diam nonumy eirmod tempor invidunt</h2>
-    								</header>
-    								<div class="st-content">
-    									<ul class="bullet-list">
-    										<li class="list-item">Lorem ipsum dolor sit amet</li>
-    										<li class="list-item">Consetetur sadipscing elitr</li>
-    										<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    									</ul>
-    								</div>
-    								<footer class="st-footer">
-    									<a class="cta" href="#">Lorem</a>
-    								</footer>
-                                </div>
-							</div>
-							<!-- comment in by JS <img src="//dummyimage.com/140x48/666/ddd.png&text=SED-DIAM" alt="SED DIAM" class="owl-page-img" /><p class="owl-page-title">Sed diam nonumy eirmod tempor invidunt Promo</p> -->
-						</div>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Navigation</h3>
-					<p>Hauptnavigation/Menu</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<nav class="nav" id="nav" role="navigation" style="margin-bottom: 20rem;">
-							<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
-							<ul class="nav-items">
-								<li class="nav-item menu-item">
-									<a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
-									<div class="flyout">
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
-											<ul class="flyout-items">
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-1">Subsubitem 1</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-2">Subsubitem 2</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-3">Subsubitem 3</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-4">Subsubitem 4</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-5">Subsubitem 5</a></li>
-											</ul>
-										</div>
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-2">Subitem 2</a></div>
-											<ul class="flyout-items">
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-5">Subsubitem 5</a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="nav-item menu-item">
-									<a href="#/Item-2" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 2</a>
-									<div class="flyout">
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-1">Subitem 1</a></div>
-										</div>
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-2">Subitem 2</a></div>
-										</div>
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-3">Subitem 3</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="nav-item menu-item">
-									<a href="#/Item-3" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 3</a>
-									<div class="flyout">
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-1">Subitem 1</a></div>
-										</div>
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-2">Subitem 2</a></div>
-											<ul class="flyout-items">
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
-											</ul>
-										</div>
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-3">Subitem 3</a></div>
-											<ul class="flyout-items">
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-1">Subsubitem 1</a></li>
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-2">Subsubitem 2</a></li>
-											</ul>
-										</div>
-										<div class="flyout-group">
-											<div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-4">Subitem 4</a></div>
-											<ul class="flyout-items">
-												<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-4/Subsubitem-1">Subsubitem 1</a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="nav-item menu-item"><a href="#/Item-4" class="nav-link">Item 4</a></li>
-								<li class="nav-item menu-item"><a href="#/Item-5" class="nav-link" target="_blank">Item 5</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Stage-Teaser</h3>
-					<p>Hauptbühnen-Element</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="stage-teaser">
-							<div class="st-figure">
-								<picture>
-									<!--[if IE 9]><video style="display: none;"><![endif]-->
-									<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-									<source srcset="//dummyimage.com/960x468/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-									<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-									<!--[if IE 9]></video><![endif]-->
-									<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=IMG" src="//dummyimage.com/1240x468/666/ddd.png&text=IMG" alt="IMG" /></source>
-								</picture>
-							</div>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Dolor Accordion</a>
+    							<div class="acc-panel">
+    								<h5>Dolor Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</div>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Sit amet Accordion</a>
+    							<div class="acc-panel">
+    								<h5>Sit amet Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</div>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Consetetur Accordion</a>
+    							<div class="acc-panel">
+    								<h5>Consetetur Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</div>
+    						</li>
+    					</ul>
+    				</div>
+                </div>
+            </div>
+            <section class="text-block" id="UI-Elemente-Carousel">
+        		<h3>Carousel</h3>
+        		<p>Umschließt mindestens zwei Elemente und funktioniert es zu einer Rotation.</p>
+        	</section>
+        	<div class="togglebox">
+        		<a class="tb-subject" data-jmname="togglebox">Demo</a>
+        		<div class="tb-content">
+        			<div data-jmname="carousel" data-jmdominit="true">
+        				<div class="stage-teaser visible">
+        					<div class="st-figure">
+        						<picture>
+        							<!--[if IE 9]><video style="display: none;"><![endif]-->
+        							<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=LOREM" media="(min-width: 60em)" /></source>
+        							<source srcset="//dummyimage.com/960x468/666/ddd.png&text=LOREM" media="(min-width: 48em)" /></source>
+        							<source srcset="//dummyimage.com/768x197/666/ddd.png&text=LOREM"></source>
+        							<!--[if IE 9]></video><![endif]-->
+        							<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=LOREM" src="//dummyimage.com/1240x468/666/ddd.png&text=LOREM" alt="IMG" /></source>
+        						</picture>
+        					</div>
                             <div class="st-inner">
-    							<header class="st-header">
-    								<h2 class="st-head">Lorem ipsum dolor sit amet</h2>
+        						<header class="st-header">
+        							<h2 class="st-head">Lorem ipsum dolor sit amet</h2>
+        						</header>
+        						<div class="st-content">
+        							<ul class="bullet-list">
+        								<li class="list-item">Lorem ipsum dolor sit amet</li>
+        								<li class="list-item">Consetetur sadipscing elitr</li>
+        								<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+        							</ul>
+        						</div>
+        						<footer class="st-footer">
+        							<a class="cta" href="#">Lorem</a>
+        						</footer>
+                            </div>
+        				</div>
+        				<!-- comment in by JS <img src="//dummyimage.com/140x48/666/ddd.png&text=LOREM" alt="LOREM" class="owl-page-img" /><p class="owl-page-title">Lorem ipsum dolor sit amet Promo</p> -->
+        				<div class="stage-teaser hide-large hide-med">
+        					<div class="st-figure">
+        						<picture>
+        							<!--[if IE 9]><video style="display: none;"><![endif]-->
+        							<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=CONSETETUR" media="(min-width: 60em)" /></source>
+        							<source srcset="//dummyimage.com/960x468/666/ddd.png&text=CONSETETUR" media="(min-width: 48em)" /></source>
+        							<source srcset="//dummyimage.com/768x197/666/ddd.png&text=CONSETETUR"></source>
+        							<!--[if IE 9]></video><![endif]-->
+        							<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=CONSETETUR" src="//dummyimage.com/1240x468/666/ddd.png&text=CONSETETUR" alt="IMG" /></source>
+        						</picture>
+        					</div>
+                            <div class="st-inner">
+        						<header class="st-header">
+        							<h2 class="st-head">Consetetur sadipscing elitr</h2>
+        						</header>
+        						<div class="st-content">
+        							<ul class="bullet-list">
+        								<li class="list-item">Lorem ipsum dolor sit amet</li>
+        								<li class="list-item">Consetetur sadipscing elitr</li>
+        								<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+        							</ul>
+        						</div>
+        						<footer class="st-footer">
+        							<a class="cta" href="#">Lorem</a>
+        						</footer>
+                            </div>
+        				</div>
+        				<!-- comment in by JS <img src="//dummyimage.com/140x48/666/ddd.png&text=CONSETETUR" alt="CONSETETUR" class="owl-page-img" /><p class="owl-page-title">Consetetur sadipscing elitr Promo</p> -->
+        				<div class="stage-teaser hide-large hide-med">
+        					<div class="st-figure">
+        						<picture>
+        							<!--[if IE 9]><video style="display: none;"><![endif]-->
+        							<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=SED-DIAM" media="(min-width: 60em)" /></source>
+        							<source srcset="//dummyimage.com/960x468/666/ddd.png&text=SED-DIAM" media="(min-width: 48em)" /></source>
+        							<source srcset="//dummyimage.com/768x197/666/ddd.png&text=SED-DIAM"></source>
+        							<!--[if IE 9]></video><![endif]-->
+        							<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=SED-DIAM" src="//dummyimage.com/1240x468/666/ddd.png&text=SED-DIAM" alt="IMG" /></source>
+        						</picture>
+        					</div>
+                            <div class="st-inner">
+        						<header class="st-header">
+        							<h2 class="st-head">Sed diam nonumy eirmod tempor invidunt</h2>
+        						</header>
+        						<div class="st-content">
+        							<ul class="bullet-list">
+        								<li class="list-item">Lorem ipsum dolor sit amet</li>
+        								<li class="list-item">Consetetur sadipscing elitr</li>
+        								<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+        							</ul>
+        						</div>
+        						<footer class="st-footer">
+        							<a class="cta" href="#">Lorem</a>
+        						</footer>
+                            </div>
+        				</div>
+        				<!-- comment in by JS <img src="//dummyimage.com/140x48/666/ddd.png&text=SED-DIAM" alt="SED DIAM" class="owl-page-img" /><p class="owl-page-title">Sed diam nonumy eirmod tempor invidunt Promo</p> -->
+        			</div>
+        		</div>
+        	</div>
+    		<section class="text-block" id="UI-Elemente-Navigation">
+    			<h3>Navigation</h3>
+    			<p>Hauptnavigation/Menu</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<nav class="nav" id="nav" role="navigation" style="margin-bottom: 20rem;">
+    					<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+    					<ul class="nav-items">
+    						<li class="nav-item menu-item">
+    							<a href="#/Item-1" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 1</a>
+    							<div class="flyout">
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-1">Subitem 1</a></div>
+    									<ul class="flyout-items">
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-1">Subsubitem 1</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-2">Subsubitem 2</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-3">Subsubitem 3</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-4">Subsubitem 4</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-1/Subsubitem-5">Subsubitem 5</a></li>
+    									</ul>
+    								</div>
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-1/Subitem-2">Subitem 2</a></div>
+    									<ul class="flyout-items">
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-1/Subitem-2/Subsubitem-5">Subsubitem 5</a></li>
+    									</ul>
+    								</div>
+    							</div>
+    						</li>
+    						<li class="nav-item menu-item">
+    							<a href="#/Item-2" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 2</a>
+    							<div class="flyout">
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-1">Subitem 1</a></div>
+    								</div>
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-2">Subitem 2</a></div>
+    								</div>
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-2/Subitem-3">Subitem 3</a></div>
+    								</div>
+    							</div>
+    						</li>
+    						<li class="nav-item menu-item">
+    							<a href="#/Item-3" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Item 3</a>
+    							<div class="flyout">
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-1">Subitem 1</a></div>
+    								</div>
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-2">Subitem 2</a></div>
+    									<ul class="flyout-items">
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-1">Subsubitem 1</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-2">Subsubitem 2</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-3">Subsubitem 3</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-2/Subsubitem-4">Subsubitem 4</a></li>
+    									</ul>
+    								</div>
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="#/Item-3/Subitem-3">Subitem 3</a></div>
+    									<ul class="flyout-items">
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-1">Subsubitem 1</a></li>
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-3/Subsubitem-2">Subsubitem 2</a></li>
+    									</ul>
+    								</div>
+    								<div class="flyout-group">
+    									<div class="flyout-item"><a class="flyout-group-title" href="#/Item-3/Subitem-4">Subitem 4</a></div>
+    									<ul class="flyout-items">
+    										<li class="flyout-item"><a class="flyout-link" href="#/Item-3/Subitem-4/Subsubitem-1">Subsubitem 1</a></li>
+    									</ul>
+    								</div>
+    							</div>
+    						</li>
+    						<li class="nav-item menu-item"><a href="#/Item-4" class="nav-link">Item 4</a></li>
+    						<li class="nav-item menu-item"><a href="#/Item-5" class="nav-link" target="_blank">Item 5</a></li>
+    					</ul>
+    				</nav>
+    			</div>
+    		</div>
+    		<section class="text-block" id="UI-Elemente-Stage-Teaser">
+    			<h3>Stage-Teaser</h3>
+    			<p>Hauptbühnen-Element</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="stage-teaser">
+    					<div class="st-figure">
+    						<picture>
+    							<!--[if IE 9]><video style="display: none;"><![endif]-->
+    							<source srcset="//dummyimage.com/1240x468/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+    							<source srcset="//dummyimage.com/960x468/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+    							<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+    							<!--[if IE 9]></video><![endif]-->
+    							<img srcset="//dummyimage.com/1240x468/666/ddd.png&text=IMG" src="//dummyimage.com/1240x468/666/ddd.png&text=IMG" alt="IMG" /></source>
+    						</picture>
+    					</div>
+                        <div class="st-inner">
+    						<header class="st-header">
+    							<h2 class="st-head">Lorem ipsum dolor sit amet</h2>
+    						</header>
+    						<div class="st-content">
+    							<ul class="bullet-list">
+    								<li class="list-item">Lorem ipsum dolor sit amet</li>
+    								<li class="list-item">Consetetur sadipscing elitr</li>
+    								<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+    							</ul>
+    						</div>
+    						<footer class="st-footer">
+    							<a class="cta" href="#">Lorem</a>
+    						</footer>
+                        </div>
+    				</div>
+    			</div>
+    		</div>
+    		<section class="text-block" id="UI-Elemente-Tabs">
+    			<h3>Tabs</h3>
+    			<p>Reiternavigation</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="tabs">
+    					<input type="radio" id="tab1" name="tab" class="tab-control" checked />
+    					<label for="tab1" class="tab">Lorem</label>
+    					<input type="radio" id="tab2" name="tab" class="tab-control" />
+    					<label for="tab2" class="tab">Ipsum</label>
+    					<input type="radio" id="tab3" name="tab" class="tab-control" />
+    					<label for="tab3" class="tab">Dolor sit</label>
+    					<div class="tab-content">
+    						<h5>Lorem Content</h5>
+    						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</div>
+    					<div class="tab-content">
+    						<h5>Ipsum Content</h5>
+    						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</div>
+    					<div class="tab-content">
+    						<h5>Dolor sit Content</h5>
+    						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    		<section class="text-block" id="UI-Elemente-Teaser">
+    			<h3>Teaser</h3>
+    			<p>Teaserelement</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="section">
+    					<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
+    						<div class="t-figure">
+    							<picture>
+    								<!--[if IE 9]><video style="display: none;"><![endif]-->
+    								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+    								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+    								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+    								<!--[if IE 9]></video><![endif]-->
+    								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+    							</picture>
+    						</div>
+                            <div class="st-inner">
+    							<header class="t-header">
+    								<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
     							</header>
-    							<div class="st-content">
+    							<div class="t-content">
     								<ul class="bullet-list">
     									<li class="list-item">Lorem ipsum dolor sit amet</li>
     									<li class="list-item">Consetetur sadipscing elitr</li>
     									<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
     								</ul>
     							</div>
-    							<footer class="st-footer">
-    								<a class="cta" href="#">Lorem</a>
+    							<footer class="t-footer">
+    								<span class="btn">Lorem</span>
     							</footer>
                             </div>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Tabs</h3>
-					<p>Reiternavigation</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="tabs">
-							<input type="radio" id="tab1" name="tab" class="tab-control" checked />
-							<label for="tab1" class="tab">Lorem</label>
-							<input type="radio" id="tab2" name="tab" class="tab-control" />
-							<label for="tab2" class="tab">Ipsum</label>
-							<input type="radio" id="tab3" name="tab" class="tab-control" />
-							<label for="tab3" class="tab">Dolor sit</label>
-							<div class="tab-content">
-								<h5>Lorem Content</h5>
-								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-							</div>
-							<div class="tab-content">
-								<h5>Ipsum Content</h5>
-								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-							</div>
-							<div class="tab-content">
-								<h5>Dolor sit Content</h5>
-								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Teaser</h3>
-					<p>Teaserelement</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="section">
-							<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
-								<div class="t-figure">
-									<picture>
-										<!--[if IE 9]><video style="display: none;"><![endif]-->
-										<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-										<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-										<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-										<!--[if IE 9]></video><![endif]-->
-										<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
-									</picture>
-								</div>
-                                <div class="st-inner">
-    								<header class="t-header">
-    									<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
-    								</header>
-    								<div class="t-content">
-    									<ul class="bullet-list">
-    										<li class="list-item">Lorem ipsum dolor sit amet</li>
-    										<li class="list-item">Consetetur sadipscing elitr</li>
-    										<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    									</ul>
-    								</div>
-    								<footer class="t-footer">
-    									<span class="btn">Lorem</span>
-    								</footer>
-                                </div>
-							</a>
-						</div>
-						<div class="section">
-							<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
-                                <div class="t-figure">
-    								<picture>
-    									<!--[if IE 9]><video style="display: none;"><![endif]-->
-    									<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-    									<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-    									<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-    									<!--[if IE 9]></video><![endif]-->
-    									<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
-    								</picture>
-                                </div>
-                                <div class="st-inner">
-    								<header class="t-header">
-    									<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
-    								</header>
-    								<div class="t-content">
-    									<ul class="bullet-list">
-    										<li class="list-item">Lorem ipsum dolor sit amet</li>
-    										<li class="list-item">Consetetur sadipscing elitr</li>
-    										<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    									</ul>
-    								</div>
-    								<footer class="t-footer">
-    									<span class="btn">Lorem</span>
-    								</footer>
-                                </div>
-							</a>
-							<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
-                                <div class="t-figure">
-    								<picture>
-    									<!--[if IE 9]><video style="display: none;"><![endif]-->
-    									<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-    									<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-    									<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-    									<!--[if IE 9]></video><![endif]-->
-    									<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
-    								</picture>
-                                </div>
-                                <div class="st-inner">
-    								<header class="t-header">
-    									<h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
-    								</header>
-    								<div class="t-content">
-    									<ul class="bullet-list">
-    										<li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
-    										<li class="list-item">Stet clita kasd gubergren.</li>
-    										<li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
-    									</ul>
-    								</div>
-    								<footer class="t-footer">
-    									<span class="btn">Lorem</span>
-    								</footer>
-                                </div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Text-Block</h3>
-					<p>Blockelement bestehend aus Headline und Copy.</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="section">
-							<section class="text-block">
-								<h3>Lorem ipsum dolor sit amet</h3>
-								<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-							</section>
-							<section class="text-block">
-								<h5>At vero eos et accusam et justo duo dolores et ea rebum</h5>
-								<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-							</section>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<section class="text-block">
-					<h3>Togglebox</h3>
-					<p>Auf-/Zuklapp-Element</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="togglebox">
-							<a class="tb-subject" data-jmname="togglebox">Lorem ipsum dolor</a>
-							<div class="tb-content">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-							</div>
-						</div>
-                        <div class="togglebox">
-                            <a class="tb-subject" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-files/togglebox.html'}, {}]">Lorem ipsum dolor (ajax)</a>
-                            <div class="tb-content">
-
+    					</a>
+    				</div>
+    				<div class="section">
+    					<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
+                            <div class="t-figure">
+    							<picture>
+    								<!--[if IE 9]><video style="display: none;"><![endif]-->
+    								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+    								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+    								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+    								<!--[if IE 9]></video><![endif]-->
+    								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+    							</picture>
                             </div>
+                            <div class="st-inner">
+    							<header class="t-header">
+    								<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
+    							</header>
+    							<div class="t-content">
+    								<ul class="bullet-list">
+    									<li class="list-item">Lorem ipsum dolor sit amet</li>
+    									<li class="list-item">Consetetur sadipscing elitr</li>
+    									<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+    								</ul>
+    							</div>
+    							<footer class="t-footer">
+    								<span class="btn">Lorem</span>
+    							</footer>
+                            </div>
+    					</a>
+    					<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
+                            <div class="t-figure">
+    							<picture>
+    								<!--[if IE 9]><video style="display: none;"><![endif]-->
+    								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+    								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+    								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+    								<!--[if IE 9]></video><![endif]-->
+    								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+    							</picture>
+                            </div>
+                            <div class="st-inner">
+    							<header class="t-header">
+    								<h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+    							</header>
+    							<div class="t-content">
+    								<ul class="bullet-list">
+    									<li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+    									<li class="list-item">Stet clita kasd gubergren.</li>
+    									<li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+    								</ul>
+    							</div>
+    							<footer class="t-footer">
+    								<span class="btn">Lorem</span>
+    							</footer>
+                            </div>
+    					</a>
+    				</div>
+    			</div>
+    		</div>
+    		<section class="text-block" id="UI-Elemente-Text-Block">
+    			<h3>Text-Block</h3>
+    			<p>Blockelement bestehend aus Headline und Copy.</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="section">
+    					<section class="text-block">
+    						<h3>Lorem ipsum dolor sit amet</h3>
+    						<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</section>
+    					<section class="text-block">
+    						<h5>At vero eos et accusam et justo duo dolores et ea rebum</h5>
+    						<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</section>
+    				</div>
+    			</div>
+    		</div>
+    		<section class="text-block" id="UI-Elemente-Togglebox">
+    			<h3>Togglebox</h3>
+    			<p>Auf-/Zuklapp-Element</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="togglebox">
+    					<a class="tb-subject" data-jmname="togglebox">Lorem ipsum dolor</a>
+    					<div class="tb-content">
+    						<h5>Lorem ipsum dolor sit amet</h5>
+    						<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</div>
+    				</div>
+                    <div class="togglebox">
+                        <a class="tb-subject" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-files/togglebox.html'}, {}]">Lorem ipsum dolor (ajax)</a>
+                        <div class="tb-content">
+
                         </div>
-					</div>
-				</div>
-			</div>
-			<div class="tab-content">
-				<section class="text-block">
-					<h3>Facebook-Like</h3>
-					<p>Facebook-Like-Element</p>
-				</section>
-				<div class="togglebox">
-					<a class="tb-subject" data-jmname="togglebox">Demo</a>
-					<div class="tb-content">
-						<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
-							<!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                    </div>
+    			</div>
+    		</div>
+        </div>
+        <h2 id="SocialMedia">SocialMedia</h2>
+        <div class="demo-section">
+    		<section class="text-block" id="SocialMedia-Facebook">
+    			<h3>Facebook-Like</h3>
+    			<p>Facebook-Like-Element</p>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
+    					<!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
+    				</div>
+    			</div>
+    		</div>
+        </div>
 	</main>
 	<footer class="page-footer" role="contentinfo">
 		<section class="h-card">

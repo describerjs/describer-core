@@ -327,8 +327,14 @@ define(function(){
 		},{
 			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat. toggel um das geöffnete Element auch wieder schliessen zu können.
 			jmname   : 'accordionbox',
-			jmplugin: 'actions.remove|actions.toggle|actions.ajax',
+			jmplugin: 'actions.ajax|actions.remove|actions.toggle|',
 			jmconfig : [
+				{
+					'event'    : 'jmtrigger:makeajax',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.acc-panel\')[0]',
+					'condition': '$.type(this.configObj.url) !== \'undefined\''
+				},
 				{
 					'event'    : 'click',
 					'datatype' : 'class',
@@ -342,11 +348,6 @@ define(function(){
 					'data'     : 'show',
 					'relatedTo': 'this.$elem.parent()[0]',
 					'callback' : 'if(this.$elem.parent().hasClass(\'show\') && (($.trim(this.$elem.siblings(\'.acc-panel\').html()).length) === 0)) this.$elem.jmtrigger(\'makeajax\')'
-				},{
-					'event'    : 'jmtrigger:makeajax',
-					'inject'   : 'html',
-					'relatedTo': 'this.$elem.siblings(\'.acc-panel\')[0]',
-					'condition': '$.type(this.configObj.url) !== \'undefined\'' // dominit überdenken
 				}
 			]
 		},{

@@ -44,7 +44,10 @@
 
 // Textmodule Defaults
 %element-text-default {
-	@include column(12);
+	main > & {
+		@include column(12);
+		@include indent;
+	}
 }
 
 
