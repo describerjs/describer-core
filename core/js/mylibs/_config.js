@@ -1,5 +1,5 @@
 /*!
- * _config v0.9
+ * _config
  *
  * http://joinmedia.de/
  *
@@ -377,6 +377,14 @@ define(function(){
 				'event': 'dominit',
 				// TODO Andreas & Daniel lösung finden für Modernizr.mq
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			}
+		},
+		{
+			jmname   : 'back-to-top',
+			jmplugin: 'actions.scroll',
+			jmconfig : {
+				'event'    : 'click',
+				'scrollTo' : '.page'
 			}
 		},
 		{

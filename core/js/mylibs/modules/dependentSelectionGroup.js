@@ -1,5 +1,5 @@
 /*!
- * modules.dependentSelectionGroup v0.9
+ * modules.dependentSelectionGroup
  *
  * http://joinmedia.de/
  *

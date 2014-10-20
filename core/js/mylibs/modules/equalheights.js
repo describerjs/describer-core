@@ -1,5 +1,5 @@
 /*!
- * modules.equalheights v0.9
+ * modules.equalheights
  *
  * http://joinmedia.de/
  *

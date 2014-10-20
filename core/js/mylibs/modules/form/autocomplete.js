@@ -1,5 +1,5 @@
 /*!
- * modules.form.autocomplete v0.9
+ * modules.form.autocomplete
  *
  * http://joinmedia.de/
  *

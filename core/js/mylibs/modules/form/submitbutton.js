@@ -1,5 +1,5 @@
 /*!
- * modules.form.submitbutton v0.9
+ * modules.form.submitbutton
  *
  * http://joinmedia.de/
  *

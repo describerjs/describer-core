@@ -1,5 +1,5 @@
 /*!
- * actions.ajax v0.9
+ * actions.ajax
  *
  * http://joinmedia.de/
  *

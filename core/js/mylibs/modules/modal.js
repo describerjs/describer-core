@@ -1,5 +1,5 @@
 /*!
- * modules.modal v0.9
+ * modules.modal
  *
  * http://joinmedia.de/
  *

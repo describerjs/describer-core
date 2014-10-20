@@ -1,5 +1,5 @@
 /*!
- * actions.set v0.9
+ * actions.set
  *
  * http://joinmedia.de/
  *

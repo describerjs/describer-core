@@ -1,5 +1,5 @@
 /*!
- * _super v0.91
+ * _super
  *
  * http://joinmedia.de/
  *

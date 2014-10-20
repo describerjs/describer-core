@@ -1,5 +1,5 @@
 /*!
- * actions.sticky v0.9
+ * actions.sticky
  *
  * http://joinmedia.de/
  *

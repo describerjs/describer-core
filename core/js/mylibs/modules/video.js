@@ -1,5 +1,5 @@
 ﻿/*!
- * modules.video v0.9
+ * modules.video
  *
  * http://joinmedia.de/
  *

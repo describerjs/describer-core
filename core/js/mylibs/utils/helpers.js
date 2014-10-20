@@ -1,5 +1,5 @@
 /*!
- * utils.helpers v0.9
+ * utils.helpers
  *
  * http://joinmedia.de/
  *

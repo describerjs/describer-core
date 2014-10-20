@@ -1,5 +1,5 @@
 /*!
- * modules.form.selectOptionExtractInGroup v0.9
+ * modules.form.selectOptionExtractInGroup
  *
  * http://joinmedia.de/
  *

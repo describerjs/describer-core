@@ -1,5 +1,5 @@
 /*!
- * actions.link v0.9
+ * actions.link
  *
  * http://joinmedia.de/
  *

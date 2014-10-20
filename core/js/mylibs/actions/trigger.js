@@ -1,5 +1,5 @@
 /*!
- * actions.trigger v0.9
+ * actions.trigger
  *
  * http://joinmedia.de/
  *
