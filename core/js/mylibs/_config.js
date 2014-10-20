@@ -327,7 +327,7 @@ define(function(){
 		},{
 			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat. toggel um das geöffnete Element auch wieder schliessen zu können.
 			jmname   : 'accordionbox',
-			jmplugin: 'actions.ajax|actions.remove|actions.toggle|',
+			jmplugin: 'actions.ajax|actions.remove|actions.toggle',
 			jmconfig : [
 				{
 					'event'    : 'jmtrigger:makeajax',
@@ -368,6 +368,15 @@ define(function(){
 				'datatype' : 'text',
 				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
 				'data':'jmHF.escapeHtml(this.$elem.val())'
+			}
+		},
+		{
+			jmname: 'equalheights-not-mobile',
+			jmplugin: 'modules.equalheights',
+			jmconfig: {
+				'event': 'dominit',
+				// TODO Andreas & Daniel lösung finden für Modernizr.mq
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},
 		{
