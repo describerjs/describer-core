@@ -32,32 +32,14 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
-			var that = this;
-			// wait - section
-			// 1. this.waited = false -> geht in setTimeout
-			// 2. this.waited = true && Aufruf der Funktion _exec
-			// 3. da jetzt wait === true ist wird setTimeout übersprungen
-			// 4. this.waited = false, um beim nächsten Aufruf wieder in setTimeout zu kommen
-			if(!this.waited && this.is('wait') !== '' && this.is('wait') !== 'raf'){
-				this.waited = true;
-				setTimeout(function(){ that._exec(); }, parseInt(this.is('wait'), 10));
-				return;
-			}
-			this.waited = false;
+		_exec: function(e){
 			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
-			if(this.is('wait') !== 'raf'){
-				this._triggerEvent();
-			}else{
-				window.requestAnimationFrame(this._triggerEvent.bind(this));
-			}
+			this._triggerEvent();
 		},
 
 		_triggerEvent: function(){
 			this.$destination.trigger(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		}
 
 	});

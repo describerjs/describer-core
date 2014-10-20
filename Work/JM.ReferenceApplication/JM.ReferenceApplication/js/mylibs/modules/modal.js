@@ -21,10 +21,10 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$modal = $('#'+this._getID());
 			if(this.$modal.doesExist()){
-				window.requestAnimationFrame(this._open.bind(this));
+				window.requestAnimationFrame(this._openAndCallFinishing.bind(this));
 			}else{
 				window.requestAnimationFrame(this._createModal.bind(this));
 			}
@@ -49,6 +49,7 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 		},
 
 		_execAjax: function(){
+			// TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
 			this.subObj_$destination = this.$modal.find('.modal-dialog');
 			extendOjb._exec.call(this);
 			this.$modal.addClass('is-loading');
@@ -62,11 +63,8 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 				'height': $(document).height(),
 				'padding-top': jmHF.getScrollPos()
 			});
-			setTimeout(function(){
-				this.$modal.find('.modal-dialog').css({'transform': 'translateY(0%) rotateX(0deg)'});
-				this.$modal.addClass('open');
-			}.bind(this),100);
-//			this.$modal.on('click', '.modal-close', function(e){
+
+			//			this.$modal.on('click', '.modal-close', function(e){
 			this.$modal.find('.modal-dialog').on('click', function(e){
 				/* // umsetzung um ein rt-modal mit üblicher Event-Delegation umzusätzen.
 				if($(e.target).attr('data-jmname') !== 'modal'){
@@ -85,6 +83,17 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 			});
 
 			this.$modal.on('click', this._close.bind(this));
+			setTimeout(function(){
+				this.$modal.find('.modal-dialog').css({'transform': 'translateY(0%) rotateX(0deg)'});
+				this.$modal.addClass('open');
+			}.bind(this),100);
+		},
+
+		_openAndCallFinishing: function(){
+			this._open();
+			setTimeout(function(){
+				this._finishing();
+			}.bind(this),100);
 		},
 
 		_close: function(e){
