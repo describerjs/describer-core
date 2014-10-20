@@ -27,7 +27,10 @@
     <meta name="msapplication-TileColor" content="#222222" />
     @if (HttpContext.Current.IsDebuggingEnabled)
     {
-        <script type="text/javascript" src="//d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" data-token="f0d48ad2c3b34824bebe43fa8851188d"></script>
+        <script src="/js/raven.js"></script>
+        <script>
+            Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
+        </script>
     }
 
     @Html.Partial("_basisJS")
