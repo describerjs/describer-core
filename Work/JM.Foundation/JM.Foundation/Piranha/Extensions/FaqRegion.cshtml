@@ -1,4 +1,5 @@
-﻿@using JM.Foundation.Mvc.Helper
+﻿@using System.Web.Mvc.Html
+@using JM.Foundation.Mvc.Helper
 @using Piranha.Extend.Regions
 @model FaqRegion
 @{
@@ -77,5 +78,9 @@
         i++;
         j++;
     }
-    <li id="addFaq_@regionID"><a class="btn" onclick="@String.Format("addFaq_{0}();", regionID)">Neue Faq hinzufügen</a></li>
+	<li id="addFaq_@regionID"><a class="btn" onclick="@String.Format("addFaq_{0}();", regionID)">Neue Faq hinzufügen</a></li>
+	<li>
+        @Html.LabelFor(m => m.Hide, "Element verstecken")
+        <div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+    </li>
 </ul>

@@ -33,4 +33,8 @@
 	<li>
 		@Html.PartialFor("ImageRegion", m => m.Image)
 	</li>
+	<li>
+        @Html.LabelFor(m => m.Hide, "Element verstecken")
+        <div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+    </li>
 </ul>

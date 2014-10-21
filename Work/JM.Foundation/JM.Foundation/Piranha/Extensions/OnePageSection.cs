@@ -29,4 +29,6 @@ public class OnePageSection : Extension
     }
 
 	public ImageRegion Image { get; set; }
+
+	public bool Hide { get; set; }
 }

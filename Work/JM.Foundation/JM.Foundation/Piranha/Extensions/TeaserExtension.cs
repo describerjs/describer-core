@@ -32,4 +32,6 @@ public class TeaserExtension : Extension
     public IList<string> BulletPoints { get; set; }
 
 	public ImageRegion Image { get; set; }
+
+	public bool Hide { get; set; }
 }
