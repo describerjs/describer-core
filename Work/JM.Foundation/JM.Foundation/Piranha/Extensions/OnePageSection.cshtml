@@ -1,5 +1,13 @@
 ﻿@using System.Web.Mvc.Html
+@using Piranha.Extend.Regions
 @model OnePageSection
+
+@{
+	if (Model.Image == null)
+	{
+		Model.Image = new ImageRegion();
+	}
+}
 
 <script type="text/javascript">
     $(document).ready(function () {

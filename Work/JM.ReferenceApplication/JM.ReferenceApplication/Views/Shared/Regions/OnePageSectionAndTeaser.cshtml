@@ -1,0 +1,34 @@
+﻿@model JM.ReferenceApplication.Infrastructure.Models.OnePageSectionWithTeaserModel
+
+@if (Model != null && Model.Section != null)
+{
+	<div class="section" @(!String.IsNullOrEmpty(Model.Section.NavigationName) ? "id=\"" + Model.Section.NavigationName + "\"" : "")>
+		<div class="image">
+			<picture>
+				<!--[if IE 9]><video style="display: none;"><![endif]-->
+				<source srcset="@UI.Content(Model.Section.Image.Id, PictureFill.SectionHeaderWidth, PictureFill.SectionHeaderHeight)" media="(min-width: 75em)">
+				<source srcset="@UI.Content(Model.Section.Image.Id, PictureFill.SectionHeaderWidth_Tablet, PictureFill.SectionHeaderHeight_Tablet)" media="(min-width: 48em)">
+				<source srcset="@UI.Content(Model.Section.Image.Id, PictureFill.SectionHeaderWidth_Mobile, PictureFill.SectionHeaderHeight_Mobile)">
+				<!--[if IE 9]></video><![endif]-->
+				<img srcset="@UI.Content(Model.Section.Image.Id, PictureFill.SectionHeaderWidth, PictureFill.SectionHeaderHeight)" src="@UI.Content(Model.Section.Image.Id, PictureFill.SectionHeaderWidth, PictureFill.SectionHeaderHeight)" alt="@Model.Image.Description">
+			</picture>
+		</div>
+		<div class="content">
+			<h2 class="">@Model.Section.Headline</h2>
+			@MvcHtmlString.Create(Model.Section.Content)
+		</div>
+	
+		@if (Model.Teaser1 != null)
+		{
+			<div class="teaser">
+				tba
+			</div>
+		}
+		@if (Model.Teaser2 != null)
+		{
+			<div class="teaser">
+				tba
+			</div>
+		}
+	</div>
+}
