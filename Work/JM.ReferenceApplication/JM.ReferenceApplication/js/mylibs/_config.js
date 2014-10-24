@@ -309,18 +309,32 @@ define(function(){
 
 		},{
 			jmname   : 'togglebox',
-			jmplugin: 'actions.toggle',
-			jmconfig : {
-				'event'    : 'click',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem.parent()[0]'
-			}
-		},
-		{
-			jmname   : 'accordionbox',
-			jmplugin: 'actions.remove|actions.toggle',
+			jmplugin: 'actions.ajax|actions.toggle',
 			jmconfig : [
+				{
+					'event'    : 'jmtrigger:open',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.tb-content\')[0]',
+					'condition': '($.trim(this.$elem.siblings(\'.tb-content\').html()).length) === 0'
+				},{
+					'event'    : 'click|jmtrigger:click',
+					'datatype' : 'class',
+					'data'     : 'show',
+					'relatedTo': 'this.$elem.parent()[0]',
+					'callback' : 'if(this.$elem.parent().hasClass(\'show\')) this.$elem.jmtrigger(\'open\')'
+				}
+			]
+		},{
+			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat. toggel um das geöffnete Element auch wieder schliessen zu können.
+			jmname   : 'accordionbox',
+			jmplugin: 'actions.ajax|actions.remove|actions.toggle',
+			jmconfig : [
+				{
+					'event'    : 'jmtrigger:makeajax',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.acc-panel\')[0]',
+					'condition': '$.type(this.configObj.url) !== \'undefined\''
+				},
 				{
 					'event'    : 'click',
 					'datatype' : 'class',
@@ -329,11 +343,11 @@ define(function(){
 					'condition': '!this.$elem.parent().hasClass(\'show\')'
 				},
 				{
-					'wait'      :'10',
 					'event'    : 'click',
 					'datatype' : 'class',
 					'data'     : 'show',
-					'relatedTo': 'this.$elem.parent()[0]'
+					'relatedTo': 'this.$elem.parent()[0]',
+					'callback' : 'if(this.$elem.parent().hasClass(\'show\') && (($.trim(this.$elem.siblings(\'.acc-panel\').html()).length) === 0)) this.$elem.jmtrigger(\'makeajax\')'
 				}
 			]
 		},{
@@ -355,14 +369,14 @@ define(function(){
 				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
 				'data':'jmHF.escapeHtml(this.$elem.val())'
 			}
-		},{
-			jmname   : 'equalheights-not-mobile',
-			jmplugin: 'modules.equalheights',
-			jmconfig :{
-				'event'    : 'dominit',
-				// TODO Andreas & Daniel lösung finden für Modernizr.mq
-				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
-			}
+		}, {
+		    jmname: 'equalheights-not-mobile',
+		    jmplugin: 'modules.equalheights',
+		    jmconfig: {
+		        'event': 'dominit',
+		        // TODO Andreas & Daniel lösung finden für Modernizr.mq
+		        'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+		    }
 		}
 	];
 });

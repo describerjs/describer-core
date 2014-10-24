@@ -17,53 +17,43 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			this.myPos = this.pos;
 			this.myJmName = this.jmname;
 			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
-			this.waited = false;
 			this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
 		// wird vom Body-Listener für 'click' aufgerufen
-		click: function(){
-			if(this.includes('event', 'click') && this.isCondition()) this._exec();
+		click: function(e){
+			if(this.includes('event', 'click') && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'change' aufgerufen
-		change: function(){
-			if(this.includes('event', 'change') && this.isCondition()) this._exec();
+		change: function(e){
+			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
-		jmtrigger: function(){
-			if(this.includes('event', 'jmtrigger') && this.isCondition()) this._exec();
+		jmtrigger: function(e, e_param){
+			if($.type(e_param) === 'undefined'){
+				if(window.debug){
+					jmHF.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
+				}
+				return;
+			}
+			if(this.includes('event', 'jmtrigger:'+e_param.event) && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
-		dominit: function(){
-			if(this.includes('event', 'dominit') && this.isCondition()) this._exec();
+		dominit: function(e){
+			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 			//
 			if(this.includes('event', 'raf')) this._raf();
-			if(this.partOf('event', 'interval')) this._interval();
+			if(this.partOf('event', 'interval')) this._interval(e);
 
 			// init Event-Listener auf this.$elem
 			if(this.includes('event', 'blur')) this.$elem.on('blur', this._blur.bind(this));
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._focus.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._hover.bind(this));
 			if(this.partOf('event', 'keyup')) this.$elem.on('keyup', this._keyup.bind(this));
-		},
-
-		_raf: function(){
-			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
-			this.conditionSource = this.isCondition('source');
-			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
-			this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
-		},
-
-		_interval : function(){
-			var that = this;
-			setInterval(function(){
-				if(that.isCondition()) that._exec();
-				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
-			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -92,7 +82,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 				case 'relatedTo':
 				case 'scrollTo':
 				case 'data':
-				case 'additionalloadertarget':
+				case 'loaderTo':
 					// return String or Dom-Element/e
 					return (this.configObj[p_dataAttr].indexOf('this.') !== -1) ? eval(_returnString) : _returnString;
 				default:
@@ -305,37 +295,89 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			return this.staticObj;
 		},
 
-		_hover: function(){
-			if(this.isCondition()){
-				this._exec();
+		_raf: function(){
+			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
+			this.conditionSource = this.isCondition('source');
+			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
+			this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
+		},
+
+		_execWait: function(e){
+			var that = this;
+			if(this.is('wait') === ''){
+				this._exec(e);
+				return;
+			}
+			if(this.is('wait') === 'raf'){
+				window.requestAnimationFrame(this._exec.bind(this, e));
+				return;
+			}
+			if(this.is('wait') !== ''){
+				setTimeout(function(){ that._exec(e); }, parseInt(this.is('wait'), 10));
 			}
 		},
 
-		_blur: function(){
+		_interval : function(e){
+			var that = this;
+			setInterval(function(){
+				if(that.isCondition()) that._execWait(e);
+				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
+			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
+		},
+
+		_hover: function(e){
 			if(this.isCondition()){
-				this._exec();
+				this._execWait(e);
 			}
 		},
 
-		_focus: function(){
+		_blur: function(e){
 			if(this.isCondition()){
-				this._exec();
+				this._execWait(e);
 			}
 		},
 
-		_keyup: function(){
+		_focus: function(e){
+			if(this.isCondition()){
+				this._execWait(e);
+			}
+		},
+
+		_keyup: function(e){
 			if(this.isCondition()){
 				if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
-					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._exec.bind(this));
+					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
 				}else{
-					this._exec.bind(this)
+					this._execWait.bind(this, e)
 				}
 			}
 		},
 
 		// ************** allgemein benutzbare Funktionen **************
+		_finishing: function(p_$data){
+			var that = this;
+			this._scrollTo();
+			if($.type(p_$data) !== 'undefined'){
+				setTimeout(function(){
+					p_$data
+						.requirementsForJmPlugins()
+						.triggerSelfexecObj()
+						.picturefill();
+					that._callback();
+				}, 200);
+				return;
+			}
+			this._callback();
+		},
+
 		_scrollTo: function(){
-			$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0);
+			if(this.is('scrollTo')){
+				$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0);
+			}
+		},
+
+		_callback: function(){
+			if($.type(this.is('callback') !== 'undefined')) eval(this.is('callback'));
 		}
 	};
 });

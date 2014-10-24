@@ -1,0 +1,40 @@
+﻿@using System.Web.Mvc.Html
+@using Piranha.Extend.Regions
+@model OnePageSection
+
+@{
+	if (Model.Image == null)
+	{
+		Model.Image = new ImageRegion();
+	}
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    	$('#pnl-image').addClass('content-editor');
+    });
+</script>
+<ul class="form">
+	<li>
+		@Html.LabelFor(m => m.Headline, "Überschrift")
+		<div class="input">@Html.TextBoxFor(m => m.Headline)</div>
+	</li>
+    <li>
+		@Html.LabelFor(m => m.Content)
+		<div class="input">
+		    @Html.TextAreaFor(m => m.Content, new { rows=8, cols=20, @class="editor"})
+	    </div>
+	</li>
+    <li>
+		@Html.LabelFor(m => m.NavigationName, "Navigationspunkt")
+	    <div class="input">@Html.TextBoxFor(m => m.NavigationName)</div>
+		<p>Wenn ausgefüllt, erscheint diese Sektion unter dem angegebenen Namen in der Navigation.</p>
+	</li>
+	<li>
+		@Html.PartialFor("ImageRegion", m => m.Image)
+	</li>
+	<li>
+        @Html.LabelFor(m => m.Hide, "Element verstecken")
+        <div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+    </li>
+</ul>

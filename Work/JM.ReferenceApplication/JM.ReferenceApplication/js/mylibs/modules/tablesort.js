@@ -32,9 +32,10 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$elem.closest('table').find('tbody').find('tr').add(this.$elem.closest('table').find('tfoot').find('tr')).switchColumnsViaClassName( this._oldClass, this.$elem.val(), this.num );
 			this._oldClass = this.$elem.val();
+			this._finishing();
 		}
 	});
 

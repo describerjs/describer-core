@@ -32,19 +32,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
-			var that = this;
-			// wait - section
-			// 1. this.waited = false -> geht in setTimeout
-			// 2. this.waited = true && Aufruf der Funktion _exec
-			// 3. da jetzt wait === true ist wird setTimeout übersprungen
-			// 4. this.waited = false, um beim nächsten Aufruf wieder in setTimeout zu kommen
-			if(!this.waited && this.is('wait') !== '' && this.is('wait') !== 'raf'){
-				this.waited = true;
-				setTimeout(function(){ that._exec(); }, parseInt(this.is('wait'), 10));
-				return;
-			}
-			this.waited = false;
+		_exec: function(e){
 			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
 			this.data = this.is('data');
 			switch(this.is('datatype')){
@@ -82,17 +70,13 @@ define(['jquery', '_super'], function ($, _super){
 
 		_setVal: function(){
 			this.$destination.val(this.data);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_setAttr: function(){
 			var data = this.data.split(':');
 			this.$destination.attr(data[0], data[1]);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_setProp: function(){
@@ -101,9 +85,7 @@ define(['jquery', '_super'], function ($, _super){
 				data[1] = (data[1] === 'true');
 			}
 			this.$destination.prop(data[0], data[1]);
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		}/*,
 
 		_setHtml: function(){

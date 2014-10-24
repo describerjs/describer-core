@@ -1,35 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Piranha.Extend;
 using Piranha.Extend.Regions;
 
 [Export(typeof(IExtension))]
-[ExportMetadata("InternalId", "TeaserExtension")]
-[ExportMetadata("Name", "Teaser")]
+[ExportMetadata("InternalId", "OnePageSection")]
+[ExportMetadata("Name", "OnePageSection")]
 [ExportMetadata("Type", ExtensionType.Region)]
 [Serializable]
-public class TeaserExtension : Extension
+public class OnePageSection : Extension
 {
-    public string Header
+    public string Headline
     {
         get;
         set;
     }
     
-    public string FooterText
+    public string Content
     {
         get;
         set;
     }
 
-    public string FooterLink
+    public string NavigationName
     {
         get;
         set;
     }
-
-    public IList<string> BulletPoints { get; set; }
 
 	public ImageRegion Image { get; set; }
 

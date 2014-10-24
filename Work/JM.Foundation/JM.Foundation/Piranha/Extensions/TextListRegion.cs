@@ -12,5 +12,6 @@ using Extension = Piranha.Extend.Extension;
 [Serializable]
 public class TextListRegion : Extension
 {
-    public IList<TextRegion> TextList { get; set; }
+	public IList<TextRegion> TextList { get; set; }
+	public bool Hide { get; set; }
 }

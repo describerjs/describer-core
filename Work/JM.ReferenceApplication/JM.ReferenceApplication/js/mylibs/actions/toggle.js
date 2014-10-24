@@ -38,19 +38,7 @@ define(['jquery', '_super'], function ($, _super){
 
         },
 
-        _exec: function(){
-	        var that = this;
-	        // wait - section
-	        // 1. this.waited = false -> geht in setTimeout
-	        // 2. this.waited = true && Aufruf der Funktion _exec
-	        // 3. da jetzt wait === true ist wird setTimeout übersprungen
-	        // 4. this.waited = false, um beim nächsten Aufruf wieder in setTimeout zu kommen
-	        if(!this.waited && this.is('wait') !== '' && this.is('wait') !== 'raf'){
-		        this.waited = true;
-		        setTimeout(function(){ that._exec(); }, parseInt(this.is('wait'), 10));
-		        return;
-	        }
-	        this.waited = false;
+        _exec: function(e){
 	        // check auf Zustandsänderung bei Radios und Checkboxen um den Toggel valida auf change-Events anzuwenden.
 	        if(this.includes('event', 'change') && this._isRadio()){
 		        this.newstate = this._getNewState();
@@ -88,9 +76,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		_toggleClass: function(){
 			this.$destination.toggleClass(this.is('data'));
-			if(this.is('scrollTo') !== ''){
-				this._scrollTo();
-			}
+			this._finishing();
 		},
 
 		_toggleAttr: function() {
@@ -101,6 +87,7 @@ define(['jquery', '_super'], function ($, _super){
 			}else{
 				this.$destination.attr(data[0], data[1]);
 			}
+			this._finishing();
 		},
 
 	    _toggleProp: function() {
@@ -109,6 +96,7 @@ define(['jquery', '_super'], function ($, _super){
 				    this.$destination.prop('checked', !this.$destination.prop('checked'));
 				    //this.$destination.trigger('change');
 		    }
+		    this._finishing();
 		    //this.$destination.attr(data[0], data[1]);
 
 	    }
