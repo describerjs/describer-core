@@ -152,15 +152,15 @@
           </Catch>
         </TryCatch.Catches>
         <TryCatch.Finally>
-          <Sequence DisplayName="Ausführen abschließender Aktionen für den Agent">
-            <mtbac:DropBinaries DestinationPath="\\radler\\develop" DisplayName="Binärdateien in Ablage kopieren" Enabled="True" SourcePath="[OutputLocation]" sap2010:WorkflowViewState.IdRef="DropBinaries_1" />
+          <Sequence DisplayName="Ausführen abschließender Aktionen für den Agent" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <mtbac:DropBinaries DestinationPath="{x:Null}" DisplayName="Binärdateien in Ablage kopieren" Enabled="True" sap2010:WorkflowViewState.IdRef="DropBinaries_1" />
+            <mtbwa:CopyDirectory Destination="\\radler\develop" Source="[OutputLocation]" sap2010:WorkflowViewState.IdRef="CopyDirectory_1" />
             <mtbac:ResetEnvironment DisplayName="Zurücksetzen der Umgebung" sap2010:WorkflowViewState.IdRef="ResetEnvironment_1" />
-            <sap2010:WorkflowViewState.IdRef>Sequence_4</sap2010:WorkflowViewState.IdRef>
           </Sequence>
         </TryCatch.Finally>
       </TryCatch>
     </mtbwa:AgentScope>
-    <sads:DebugSymbol.Symbol>d1BDOlxHaXRSZXBvc1xKTS5Gb3VuZGF0aW9uMlxCdWlsZHN5c3RlbVxCdWlsZFByb2Nlc3NcVGVtcGxhdGVzXEpNLkZvdW5kYXRpb24ueGFtbFABjwwB3hABDAHCBwHkCgELAeMLAeoLAQoB+xQBghUBCQFiAZ4HAQgBwhQB3RQBBwH7EAGDFAEGAasVAbIVAQUBnRQBpBQBBAHhFgH1FwEDAYULAcQLAQJ3A6QBDgIBAXgFeLgBAgFgeQWiARgCAQJ4RXhaAgFhefgBedQCAgEHeYoBeesBAgEFeeUCeZMDAgEDegd6xgECAVx7B3vEAQIBVnwHfPYBAgFSfQehARICAQl6pgF6qwECAV96M3o4AgFeer4BesMBAgFdeyZ7OQIBWntBe1UCAVh7jwF7lQECAVd81gF88wECAVR8igF8kAECAVN/C4sBFgIBFpsBC58BFgIBD5MBD5YBGgIBCoMBDYMB5AICAUyEAQ2EAeUFAgE5hQENhQGbAgIBNIYBDYYB5wICAS6HAQ2HAeYCAgEoiAENiAGtAgIBIYkBDYkB6QICARuKAQ2KAbYBAgEXnAENnAHTAQIBEZ0BDZ0BhAECARCUARGUAbQBAgEMlQERlQGEAQIBC4MBxwGDAc0BAgFRgwEngwGIAQIBT4MB1wGDAbMCAgFNhAHBA4QB1AMCAUqEAYgDhAGOAwIBSYQB2gWEAeIFAgFIhAHzBIQBzwUCAUaEAYEEhAHlBAIBRIQBTYQB6AECAUKEAf8BhAGYAgIBQIQBngOEAbADAgE+hAHBAoQBxwICAT2EASmEATcCATuEAeoDhAHwAwIBOoUBxgGFAcwBAgE4hQEnhQGlAQIBN4UB1gGFAeoBAgE1hgHJAYYBzwECATOGASeGAYkBAgExhgHZAYYBtgICAS+HAcoBhwHQAQIBLYcBJ4cBhwECASuHAdoBhwG1AgIBKYgBmAKIAaoCAgEmiAGEAYgB1gECASSIATuIAVQCASKJAcwBiQHSAQIBIIkBJ4kBiAECAR6JAdwBiQG4AgIBHIoBoAGKAbMBAgEZigFTigFZAgEYnAF7nAGBAQIBFZwBMZwBRAIBFJwBjQGcAZ8BAgESlAFllAF3AgEN</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1BDOlxHaXRSZXBvc1xKTS5Gb3VuZGF0aW9uMlxCdWlsZHN5c3RlbVxCdWlsZFByb2Nlc3NcVGVtcGxhdGVzXEpNLkZvdW5kYXRpb24ueGFtbFEBjwwB3hABDAHCBwHkCgELAeMLAeoLAQoB+xQBghUBCQFiAZ4HAQgBwhQB3RQBBwH7EAGDFAEGAasVAbIVAQUBnRQBpBQBBAHhFgH1FwEDAYULAcQLAQJ3A6QBDgIBAXgFeLgBAgFheQWiARgCAQJ4RXhaAgFiefgBedQCAgEHeYoBeesBAgEFeeUCeZMDAgEDegd6xgECAV17B3vEAQIBV3wHfPYBAgFTfQehARICAQl6pgF6qwECAWB6M3o4AgFfer4BesMBAgFeeyZ7OQIBW3tBe1UCAVl7jwF7lQECAVh81gF88wECAVV8igF8kAECAVR/C4sBFgIBF5sBC58BFgIBD5MBD5YBGgIBCoMBDYMB5AICAU2EAQ2EAeUFAgE6hQENhQGbAgIBNYYBDYYB5wICAS+HAQ2HAeYCAgEpiAENiAGtAgIBIokBDYkB6QICARyKAQ2KAbYBAgEYnAENnAGsAQIBFZ0BDZ0BjwECARGeAQ2eAYQBAgEQlAERlAG0AQIBDJUBEZUBhAECAQuDAccBgwHNAQIBUoMBJ4MBiAECAVCDAdcBgwGzAgIBToQBwQOEAdQDAgFLhAGIA4QBjgMCAUqEAdoFhAHiBQIBSYQB8wSEAc8FAgFHhAGBBIQB5QQCAUWEAU2EAegBAgFDhAH/AYQBmAICAUGEAZ4DhAGwAwIBP4QBwQKEAccCAgE+hAEphAE3AgE8hAHqA4QB8AMCATuFAcYBhQHMAQIBOYUBJ4UBpQECATiFAdYBhQHqAQIBNoYByQGGAc8BAgE0hgEnhgGJAQIBMoYB2QGGAbYCAgEwhwHKAYcB0AECAS6HASeHAYcBAgEshwHaAYcBtQICASqIAZgCiAGqAgIBJ4gBhAGIAdYBAgEliAE7iAFUAgEjiQHMAYkB0gECASGJASeJAYgBAgEfiQHcAYkBuAICAR2KAaABigGzAQIBGooBU4oBWQIBGZwBcpwBeAIBFp0BLp0BQAIBFJ0BSJ0BWgIBEpQBZZQBdwIBDQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -200,24 +200,25 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="DropBinaries_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CopyDirectory_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="ResetEnvironment_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,208">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,270">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,1319" />
-      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1629" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="462,1815">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,1381" />
+      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1691" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="462,1877">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1895">
+      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1957">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
