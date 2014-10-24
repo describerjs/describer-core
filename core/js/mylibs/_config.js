@@ -380,6 +380,38 @@ define(function(){
 			}
 		},
 		{
+			jmname: 'parallax-content-gyrosscope-orientationSupport',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'orientationSupport'
+			}
+		},
+		{
+			jmname: 'parallax-content-gyrosscope-mouseSupport',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'mouseSupport'
+			}
+		},
+		{
+			jmname: 'parallax-content-scroll',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'scroll'
+			}
+		},
+		{
+			jmname: 'parallax-content-scroll-fallback',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'scroll-fallback'
+			}
+		},
+		{
 			jmname   : 'test1',
 			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
 			jmconfig : [
