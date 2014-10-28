@@ -378,8 +378,42 @@ define(function(){
 				// TODO Andreas & Daniel lösung finden für Modernizr.mq
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
+		},{
+			jmname: 'bildertauch-on-view',
+			jmplugin: 'actions.add|actions.remove',
+			jmconfig: [{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.8',
+				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset)'
+			},
+			{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.8',
+				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
+			}]
 		},
-		{
+
+
+	/*var eot = $(this.element).offset().top;
+	var wih = window.innerHeight;
+	var wpo = window.pageYOffset;
+	var first = wpo + wih  > eot;
+	var secont = wpo < eot + this.eh;
+	var range = wih + this.eh;
+	if(first && ! secont){
+		this.iy = 0;
+	}else if(!first && secont){
+		this.iy = 1;
+	}else if(first && secont){
+		this.iy = -2*((wpo + wih - eot) / range)+1;
+	}
+		*/{
 			jmname   : 'test1',
 			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
 			jmconfig : [
