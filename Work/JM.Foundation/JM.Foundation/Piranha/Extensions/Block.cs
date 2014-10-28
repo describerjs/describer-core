@@ -14,7 +14,8 @@ using Piranha.Extend.Regions;
 public class Block : Extension
 {
 	private ImageRegion _image;
-	
+
+	public string Headline { get; set; }
 	public string Content { get; set; }
 	public string Anchor{ get; set; }
 	public string ImageOrientation { get; set; }

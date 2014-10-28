@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.72\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.73\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -159,6 +159,8 @@
     <Compile Include="Mvc\ViewEngine\TemplateAwareViewEngine.cs" />
     <Compile Include="Piranha\Extensions\InPageNavigationElement.cs" />
     <Compile Include="Piranha\Extensions\Block.cs" />
+    <Compile Include="Piranha\Extensions\Accordion.cs" />
+    <Compile Include="Piranha\Extensions\ToggleBox.cs" />
     <Compile Include="Piranha\Extensions\OnePageSection.cs" />
     <Compile Include="Piranha\Extensions\TabsRegion.cs" />
     <Compile Include="Piranha\Extensions\TeaserExtension.cs" />
@@ -212,6 +214,8 @@
     <EmbeddedResource Include="Piranha\Extensions\InPageNavigationElement.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\OnePageSection.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\Block.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\ToggleBox.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\Accordion.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />

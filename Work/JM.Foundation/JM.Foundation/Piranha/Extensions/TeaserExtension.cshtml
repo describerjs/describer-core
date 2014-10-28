@@ -1,15 +1,8 @@
 ﻿@using System.Web.Mvc.Html
 @using JM.Foundation.Mvc.Helper
-@using Piranha.Extend.Regions
 @model TeaserExtension
 
 @{
-    if(Model.BulletPoints == null)
-    {
-        Model.BulletPoints = new List<string>{"","","","",""};
-		Model.Image= new ImageRegion();
-    }
-
 	var fieldString = @Html.GetFullHtmlFieldName(m => m.Header);
 	var regionID = fieldString.Replace("Regions[", "").Split(']')[0];
 }
@@ -44,7 +37,17 @@
 		@Html.PartialFor("ImageRegion", m => m.Image)
 	</li>
 	<li>
-        @Html.LabelFor(m => m.Hide, "Element verstecken")
-        <div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+		@Html.LabelFor(m => m.Hide, "Element verstecken")
+		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+	</li>
+	<li>
+		@Html.LabelFor(m => m.EnableParallax, "Parallax-Darstellung")
+		<div class="input">@Html.CheckBoxFor(m => m.EnableParallax)</div>
+	</li>
+		<li>
+        @Html.LabelFor(m => m.ParallaxValue, "Parallax-Einstellung")
+			<div class="input">@Html.TextBoxFor(m => m.ParallaxValue)</div>
+			@Html.ValidationMessageFor(m => m.ParallaxValue)
+			<p>Dieser Wert beschreibt die Stärke des Parallaxeffekts. Der Wert sollte eine Kommazahl zwischen 1 und 3 sein - empfohlen ist 1.5.</p>
     </li>
 </ul>

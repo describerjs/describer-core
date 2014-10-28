@@ -1,0 +1,87 @@
+﻿@using System.Web.Mvc.Html
+@using JM.Foundation.Mvc.Helper
+@using Piranha.Extend.Regions
+@model Accordion
+@{
+    //i wird für Arrayindex benutzt
+    var i = 0;
+    //j wird als Idenfifier benutzt
+    var j = 1;
+	string regionID = "0";
+	string fieldString = "";
+
+	fieldString = @Html.GetFullHtmlFieldName(m => m.Elements.FirstOrDefault().Title);
+	regionID = fieldString.Replace("Regions[", "").Split(']')[0];
+}
+
+<script>
+	// Floatpanels für Editoren wieder entfernen
+	$(document).ready(function() {
+		if(tinyMCE.editors.length > 1){
+			$(window).unbind('scroll');
+		}
+	});
+
+	var tabID_@regionID = @Model.Elements.Count;
+	var tabIndex_@regionID = @Model.Elements.Count;
+
+	function @String.Format("addacc_{0}()", regionID) 
+	{
+		var id = tabID_@regionID + 1;
+		var index = tabIndex_@regionID;
+		var regionid= "@regionID";
+		$("#addacc_" + regionid).before("<li class='acc_" + regionid+ "_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Elements[" + index + "].Title' id='AccTitle_"  + regionid+ "_" + id + "'></div><li class='acc_"  + regionid+ "_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' class='editor' name='Regions["+ regionid +"].Body.Elements[" + index + "].Body' id='AccContent_" + regionid+ "_"  + id + "' cols='20'></textarea></div></li><li class='acc_" + regionid+ "_"  + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeacc_"+regionid+"(" + id + ")';'>Reiter entfernen</a></li>");
+		tinymce.EditorManager.execCommand('mceAddEditor', true, 'AccContent_' + regionid+ "_"  + id);
+		tabID_@regionID++;
+		tabIndex_@regionID++;
+	}
+
+	function @String.Format("removeacc_{0}(id)", regionID) 
+	{
+		var regionid= "@regionID";
+		$(".acc_" + regionid + "_" + id).remove();
+		var countIndex = 0;
+		for(var f = 0; f < tabID_@regionID; f++){
+
+			var idtochange = f + 1;
+			var inputID = "#AccTitle_" + regionid + "_" + idtochange;
+			var textAreaID = "#AccContent_" + regionid + "_" + idtochange;
+            
+			if($(inputID).length && $(textAreaID).length)
+			{
+				$(inputID).attr("name", "Regions["+ regionid +"].Body.Elements[" + countIndex + "].Title");
+				$(inputID).attr("data-index", countIndex);
+				$(textAreaID).attr("name", "Regions["+ regionid +"].Body.Elements[" + countIndex + "].Body");
+				$(textAreaID).attr("data-index", countIndex);
+				countIndex++;
+			}
+		}
+		tabIndex_@regionID--;
+	}
+</script>
+<ul class="form">
+    @foreach (var tab in Model.Elements)
+    {
+        <li class="@String.Format("acc_{0}_{1}", regionID, j)">
+            <label>Titel @j:</label>
+	        <div class="input">
+		        @Html.TextBoxFor(m => m.Elements[i].Title, new { data_index = i, id = String.Format("AccTitle_{0}_{1}", regionID, j)})
+	        </div>
+        </li>
+        <li class="@String.Format("acc_{0}_{1}", regionID, j)">
+            <label>Inhalt:</label> 
+	        <div class="input">
+		        @Html.TextAreaFor(m => m.Elements[i].Body, new { data_index= i, id = String.Format("AccContent_{0}_{1}", regionID, j), rows=8, cols=20, @class="editor"})
+	        </div>
+        </li>
+        <li class="@String.Format("acc_{0}_{1}", regionID, j)"><a class="btn" onclick="@String.Format("removeacc_{0}({1});", regionID, j)">Reiter entfernen</a></li>
+        i++;
+        j++;
+    }
+	<li id="@String.Format("addacc_{0}", regionID)"><a class="btn" onclick="@String.Format("addacc_{0}();", regionID)">Neuen Reiter hinzufügen</a></li>
+	<li>
+		@Html.LabelFor(m => m.Hide, "Verstecken")
+		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+		<p>Blendet das aktuelle Element vollständig aus</p>
+	</li>
+</ul>
