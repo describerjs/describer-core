@@ -1,11 +1,11 @@
-﻿@model Piranha.Extend.Regions.TextRegion
+﻿@model ToggleBox
 
-@if (Model != null)
+@if (Model != null && !Model.Hide)
 {
 	<div class="togglebox">
-		<a class="tb-subject" data-jmname="togglebox">@Model.Title</a>
+		<a class="tb-subject" data-jmname="togglebox">@Model.Headline</a>
 		<div class="tb-content">
-			@Model.Body
+			@MvcHtmlString.Create(Model.Content)
 		</div>
 	</div>
 }

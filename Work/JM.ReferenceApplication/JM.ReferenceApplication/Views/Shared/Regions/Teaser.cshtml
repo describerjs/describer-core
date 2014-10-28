@@ -1,28 +1,32 @@
 ﻿@model TeaserExtension
 <a class="teaser" href="@Model.FooterLink">
-    @if(Model.Image != null){
-        <div class="t-figure">
-            @Html.Partial(
-                "Image/_PictureFill_Teaser", Model.Image)
-        </div>
-    }
-    <div class="t-inner" data-jmselector="equal-heights-children">
-        <header class="t-header">
-            <h3 class="t-head">@Model.Header</h3>
-        </header>
-        <div class="t-main">
-            @if (Model.BulletPoints != null && Model.BulletPoints.Any(b => !string.IsNullOrEmpty(b)))
-            {
-                <ul class="bullet-list">
-                    @foreach (var bp in Model.BulletPoints.Where(b => !string.IsNullOrEmpty(b)))
-                    {
-                        <li class="list-item">@bp</li>
-                    }
-                </ul>
-            }
-        </div>
-        <footer class="t-footer">
-	        <span class="btn">@Model.FooterText</span>
-        </footer>
-    </div>
+	@if(Model.Image != null){
+		<div class="t-figure">
+			@Html.Partial(
+				"Image/_PictureFill_Teaser", Model.Image)
+		</div>
+	}
+	<div class="t-inner" data-jmselector="equal-heights-children">
+		<header class="t-header">
+			<h3 class="t-head">@Model.Header</h3>
+		</header>
+		<div class="t-main">
+			@if (Model.BulletPoints != null && Model.BulletPoints.Any(b => !string.IsNullOrEmpty(b)))
+			{
+				<ul class="bullet-list">
+					@foreach (var bp in Model.BulletPoints.Where(b => !string.IsNullOrEmpty(b)))
+					{
+						<li class="list-item">@bp</li>
+					}
+				</ul>
+			}
+		</div>
+		<footer class="t-footer">
+			<span class="btn">@Model.FooterText</span>
+		</footer>
+	</div>
 </a>
+<!--
+Parallaxen sind an: @Model.EnableParallax | 
+Parallexen-Intensität: @Model.ParallaxValue
+-->
