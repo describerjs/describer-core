@@ -12,6 +12,9 @@ using Piranha.Extend.Regions;
 [Serializable]
 public class TeaserExtension : Extension
 {
+	private IList<string> _bulletPoints;
+	private ImageRegion _image;
+
     public string Header
     {
         get;
@@ -30,15 +33,17 @@ public class TeaserExtension : Extension
         set;
     }
 
-	private IList<string> _bulletPoints;
-
 	public IList<string> BulletPoints
 	{
 		get { return _bulletPoints ?? (_bulletPoints = new List<string>{"","","","",""}); }
 		set { _bulletPoints = value; }
 	}
 
-	public ImageRegion Image { get; set; }
+	public ImageRegion Image
+	{
+		get { return _image ?? (_image = new ImageRegion()); }
+		set { _image = value; }
+	}
 
 	public bool EnableParallax { get; set; }
 

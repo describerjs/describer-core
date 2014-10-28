@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Web.Mvc;
-using Piranha.Areas.Manager.Views.Comment;
 using Piranha.Extend;
 using Piranha.Extend.Regions;
 
@@ -35,7 +34,9 @@ public class Block : Extension
 			{
 				new SelectListItem {Text = "Keine", Value = ""},
 				new SelectListItem {Text = "Links", Value = "left"},
-				new SelectListItem {Text = "Rechts", Value = "right"}
+				new SelectListItem {Text = "Rechts", Value = "right"},
+				new SelectListItem {Text = "Oben", Value = "top"},
+				new SelectListItem {Text = "Unten", Value = "bottom"}
 			};
 		}
 	}
