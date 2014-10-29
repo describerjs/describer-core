@@ -64,6 +64,7 @@ require.config({
 		'modules.form.formvalidate-addon'                  : 'mylibs/modules/form/formvalidate-addon',
 		'modules.form.selectOptionExtractInGroup'          : 'mylibs/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
+		'modules.frameAni'                                 : 'mylibs/modules/frameAni',
 		'modules.modal'                                    : 'mylibs/modules/modal',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',

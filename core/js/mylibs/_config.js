@@ -378,6 +378,14 @@ define(function(){
 				// TODO Andreas & Daniel lösung finden für Modernizr.mq
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
+		},{
+			jmname: 'frame-ani-by-scrolling',
+			jmplugin: 'modules.frameAni',
+			jmconfig: {
+				'event': 'dominit',
+				// TODO Andreas & Daniel lösung finden für Modernizr.mq
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			}
 		},
 		{
 			jmname   : 'test1',
