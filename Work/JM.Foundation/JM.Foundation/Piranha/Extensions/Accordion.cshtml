@@ -30,7 +30,7 @@
 		var id = tabID_@regionID + 1;
 		var index = tabIndex_@regionID;
 		var regionid= "@regionID";
-		$("#addacc_" + regionid).before("<li class='acc_" + regionid+ "_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Elements[" + index + "].Title' id='AccTitle_"  + regionid+ "_" + id + "'></div><li class='acc_"  + regionid+ "_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' class='editor' name='Regions["+ regionid +"].Body.Elements[" + index + "].Body' id='AccContent_" + regionid+ "_"  + id + "' cols='20'></textarea></div></li><li class='acc_" + regionid+ "_"  + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeacc_"+regionid+"(" + id + ")';'>Reiter entfernen</a></li>");
+		$("#addacc_" + regionid).before("<li class='acc_" + regionid+ "_" + id + "'><label>Titel " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Elements[" + index + "].Title' id='AccTitle_"  + regionid+ "_" + id + "'></div><li class='acc_"  + regionid+ "_" + id + "'><label>Inhalt:</label><div class='input'><textarea rows='8' class='editor' name='Regions["+ regionid +"].Body.Elements[" + index + "].Body' id='AccContent_" + regionid+ "_"  + id + "' cols='20'></textarea></div></li><li class='acc_" + regionid+ "_"  + id + "'><a class='btn' data-remove-id='" + id + "' onclick='removeacc_"+regionid+"(" + id + ")';'>Element entfernen</a></li>");
 		tinymce.EditorManager.execCommand('mceAddEditor', true, 'AccContent_' + regionid+ "_"  + id);
 		tabID_@regionID++;
 		tabIndex_@regionID++;
@@ -74,11 +74,11 @@
 		        @Html.TextAreaFor(m => m.Elements[i].Body, new { data_index= i, id = String.Format("AccContent_{0}_{1}", regionID, j), rows=8, cols=20, @class="editor"})
 	        </div>
         </li>
-        <li class="@String.Format("acc_{0}_{1}", regionID, j)"><a class="btn" onclick="@String.Format("removeacc_{0}({1});", regionID, j)">Reiter entfernen</a></li>
+        <li class="@String.Format("acc_{0}_{1}", regionID, j)"><a class="btn" onclick="@String.Format("removeacc_{0}({1});", regionID, j)">Element entfernen</a></li>
         i++;
         j++;
     }
-	<li id="@String.Format("addacc_{0}", regionID)"><a class="btn" onclick="@String.Format("addacc_{0}();", regionID)">Neuen Reiter hinzufügen</a></li>
+	<li id="@String.Format("addacc_{0}", regionID)"><a class="btn" onclick="@String.Format("addacc_{0}();", regionID)">Neues Element hinzufügen</a></li>
 	<li>
 		@Html.LabelFor(m => m.Hide, "Verstecken")
 		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>

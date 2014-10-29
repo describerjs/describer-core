@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.75\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.79\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -157,9 +157,12 @@
     <Compile Include="Extensions\LinqExtensions.cs" />
     <Compile Include="Mvc\Helper\Helper.cs" />
     <Compile Include="Mvc\ViewEngine\TemplateAwareViewEngine.cs" />
+    <Compile Include="Piranha\Controller\PiranhaModelController.cs" />
     <Compile Include="Piranha\Extensions\InPageNavigationElement.cs" />
     <Compile Include="Piranha\Extensions\Block.cs" />
     <Compile Include="Piranha\Extensions\Accordion.cs" />
+    <Compile Include="Piranha\Extensions\Tile.cs" />
+    <Compile Include="Piranha\Extensions\Tiles.cs" />
     <Compile Include="Piranha\Extensions\ToggleBox.cs" />
     <Compile Include="Piranha\Extensions\OnePageSection.cs" />
     <Compile Include="Piranha\Extensions\TabsRegion.cs" />
@@ -202,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\" />
+    <Folder Include="Piranha\Extensions\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -216,6 +220,8 @@
     <EmbeddedResource Include="Piranha\Extensions\Block.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\ToggleBox.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\Accordion.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\Tiles.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\Tile.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />

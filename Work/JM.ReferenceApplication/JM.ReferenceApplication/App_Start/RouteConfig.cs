@@ -24,6 +24,14 @@ namespace JM.ReferenceApplication
 				    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
 				    namespaces: new[] { "JM.ReferenceApplication.Controllers" })
                 .DataTokens["UseNamespaceFallback"] = false;
+
+			routes
+				.MapRoute(
+					name: "DefaultPiranha",
+					url: "{controller}/{action}/{id}",
+					defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+					namespaces: new[] { "JM.Foundation.Piranha.Controller" })
+				.DataTokens["UseNamespaceFallback"] = false;
         }
     }
 }

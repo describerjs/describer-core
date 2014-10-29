@@ -14,6 +14,7 @@ public class TeaserExtension : Extension
 {
 	private IList<string> _bulletPoints;
 	private ImageRegion _image;
+	private float _parallaxValue;
 
     public string Header
     {
@@ -47,8 +48,17 @@ public class TeaserExtension : Extension
 
 	public bool EnableParallax { get; set; }
 
-	[Range(1, 3, ErrorMessage = "Der Wert muss eine Kommazahl zwischen 1 und 3 sein.")]
-	public float ParallaxValue { get; set; }
+	[Range(1, 2, ErrorMessage = "Der Wert muss eine Kommazahl zwischen 1 und 2 sein.")]
+	public float ParallaxValue
+	{
+		get
+		{
+			if(_parallaxValue == 0)
+				_parallaxValue = 1;
+			return _parallaxValue;
+		}
+		set { _parallaxValue = value; }
+	}
 
 	public bool Hide { get; set; }
 }
