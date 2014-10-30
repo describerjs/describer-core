@@ -1,0 +1,77 @@
+/*------------------------------------*\
+    $BILDERAUSTAUSCH
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * BILDERAUSTAUSCH.....................Bilderaustausch  Element
+**/
+
+/**
+ * Der "stage-teaser" findet sich als einleitendes Element einer Seite.
+ * Innerhalb "stage-teaser" gibt es drei Elemente: "stage-teaser-img", "stage-teaser-head" und "stage-teaser-content".
+ * "stage-teaser-img" ist das Keyvisual.
+ * "stage-teaser-head" ist die Headline.
+ * "stage-teaser-content" umfasst den restlichen Inhalt.
+ *
+ * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-Höhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
+ *
+	<div class="bilderaustausch">
+    </div>
+ *
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+
+
+/*------------------------------------*\
+    $BILDERAUSTAUSCH
+\*------------------------------------*/
+
+.bilderaustausch {
+	// Fade-in/out on scroll
+	.fade-in {
+		@include transition(opacity .5s linear);
+		opacity: 0;
+		
+		&.show {
+			opacity: 1;
+		}
+	}
+
+	// Slide-in/out on scroll
+	.slide-in {
+		@include animation('bt-slide-out .5s 1 forwards');
+		left: -100%;
+		position: relative;
+
+		&.show {
+			@include animation('bt-slide-in .5s 1 forwards');
+		}
+	}
+}
+
+// Keyframe animation für slide-in
+@include keyframes(bt-slide-in) {
+  0%   { left: -100%; }
+  100% { left: 0; }
+}
+
+// Keyframe animation für slide-out
+@include keyframes(bt-slide-out) {
+  0%   { left: 0; }
+  100% { left: -100%; }
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
