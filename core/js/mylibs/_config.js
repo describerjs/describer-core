@@ -379,14 +379,14 @@ define(function(){
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},{
-			jmname: 'bildertauch-on-view',
+			jmname: 'add-remove-show-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
 				'event': 'dominit|raf-nc',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.8',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
 				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset)'
 			},
 			{
@@ -394,7 +394,7 @@ define(function(){
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.8',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
 				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
 			}]
 		},
