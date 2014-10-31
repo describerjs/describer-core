@@ -6,11 +6,12 @@
 	string regionID = "0";
 	string fieldString = "";
 
+	var i = 0;
 	fieldString = @Html.GetFullHtmlFieldName(m => m.Elements.FirstOrDefault().Content);
-	regionID = fieldString.Replace("Regions[", "").Split(']')[0];
+	regionID = fieldString.Replace("Regions[", "").Split(']')[0].Replace(".", "");
 }
 
-<div id="@String.Format("tileformupdate{0}", regionID)">
+<span id="@String.Format("tileformupdate{0}", regionID)">
 <script>
 	// Floatpanels für Editoren wieder entfernen
 	$(document).ready(function() {
@@ -19,17 +20,18 @@
 		}
 
 		$("body").on("click", "#@String.Format("addtile{0}", regionID)", function () {
-			var serializedData = $('#@String.Format("tileform{0}", regionID)').serialize();
+			var serializedData = $('form').serialize();
 			jQuery.ajax({
 				url: '/PiranhaModel/AddTile',
 				type: 'POST',
-				data: serializedData,
+				data: serializedData + "&regionID=@regionID",
 				beforeSend: function () {
 					//addSpinnerToBody();
 				},
 				success: function (data) {
 					$("#@String.Format("tileformupdate{0}", regionID)").replaceWith(data);
-					removeSpinnerToBody();
+					addEditors();
+					//removeSpinnerToBody();
 				},
 				error: function () {
 					//removeSpinnerToBody();
@@ -38,25 +40,25 @@
 			});
 		});
 	});
+	function addEditors() {
+		tinymce.init({ selector: 'textarea' });
+	}
 </script>
 <ul class="form" id="@String.Format("tileform{0}", regionID)">
 	@foreach(var tile in Model.Elements)
 	{
-		<li>
-			@Html.LabelFor(m => tile.Content)
-			<div class="input">
-				@Html.TextAreaFor(m => tile.Content, new { rows=8, cols=20, @class="editor"})
-			</div>
-		</li>
-		<li>
-			@Html.PartialFor("ImageRegion", m => tile.Image)
-		</li>
+		<li><p>Kachel @(i + 1)</p></li>
+		@Html.EditorFor(m => Model.Elements[i], "TileEditor");
+		i++;
 	}
-	<li><a class="btn" id="@String.Format("addtile{0}", regionID)">Neue Kachel hinzufügen</a></li>
+	<li>
+		<label>Kachel hinzufügen</label>
+		<div class="input"><a class="btn" id="@String.Format("addtile{0}", regionID)">+</a></div>
+	</li>
 	<li>
 		@Html.LabelFor(m => m.Hide, "Verstecken")
 		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
 		<p>Blendet das aktuelle Element vollständig aus</p>
 	</li>
 </ul>
-	</div>
+</span>

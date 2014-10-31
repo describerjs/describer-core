@@ -39,7 +39,7 @@ namespace JM.ReferenceApplication
             ApplicationEvents.Log.ApplicationStartup();
 
             // Um für Post-Actions keine Model in der Web.dll definieren zu müssen,
-            // wird ein eigener Modelbinder eingesetzt. Dieser erkennt über die AutoFac-Dependencyinjection
+            // wird ein eigener Modelbinder eingesetzt. Dieser erkennt über die AutoFac-Dependencyinje	ction
             // welche Klasse instanziiert werden muss und führt das aus. Somit können in PostActions
             // Interfaces als Actions übergeben werden.
             ModelBinders.Binders.DefaultBinder = new AbstractModelBinder(DependencyResolver.Current);

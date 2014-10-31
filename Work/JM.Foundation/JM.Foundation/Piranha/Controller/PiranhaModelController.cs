@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls.WebParts;
+using Piranha.Models.Manager.PageModels;
 
 namespace JM.Foundation.Piranha.Controller
 {
 	public class PiranhaModelController : System.Web.Mvc.Controller
 	{
-		public PartialViewResult AddTile(Tiles model)
+		[ValidateInput(false)]
+		public ActionResult AddTile(EditModel model, int regionID)
 		{
-			if(model == null)
-				model = new Tiles();
+			var tileRegion = model.Regions.ToList().ElementAt(regionID);
+			var tiles = (Tiles)tileRegion.Body;
+			tiles.Elements.Add(new Tile());
 
-			model.Elements.Add(new Tile());
+			var editModel = new SharedModelEdit() {Regions = model.Regions, RegionID = regionID};
 
-			return PartialView("Tiles.cshtml", model);
+			return PartialView("~/Areas/Manager/Views/Shared/SharedModelEdit.cshtml", editModel);
 		}
 	}
 }
