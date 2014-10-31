@@ -380,35 +380,35 @@ define(function(){
 			}
 		},
 		{
-			jmname: 'parallax-content-gyrosscope-orientationSupport',
+			jmname: 'parallax-content-orientation',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
 				'event': 'dominit',
-				'data' : 'orientationSupport'
+				'data' : 'orientation'
 			}
 		},
 		{
-			jmname: 'parallax-content-gyrosscope-mouseSupport',
+			jmname: 'parallax-content-scrollY',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
 				'event': 'dominit',
-				'data' : 'mouseSupport'
+				'data' : 'scrollY'
 			}
 		},
 		{
-			jmname: 'parallax-content-scroll',
+			jmname: 'parallax-content-scrollY-fallback',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
 				'event': 'dominit',
-				'data' : 'scroll'
+				'data' : 'scrollY-fallback'
 			}
 		},
 		{
-			jmname: 'parallax-content-scroll-fallback',
+			jmname: 'parallax-content-orientationX-scrollY',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
 				'event': 'dominit',
-				'data' : 'scroll-fallback'
+				'data' : 'orientationX-scrollY'
 			}
 		},
 		{

@@ -31,7 +31,10 @@
     frictionY: 0.1,
     originX: 0.5,
     originY: 0.5,
-    gyrosscopeparallax: true
+	gyromouseX: false,
+	gyromouseY: false,
+	scrollX: false,
+	scrollY: false
   };
 
   function Plugin(element, options) {
@@ -257,20 +260,21 @@
   Plugin.prototype.enable = function() {
     if (!this.enabled) {
       this.enabled = true;
-        if(this.gyrosscopeparallax){
-      	  if (this.orientationSupport) {
-	    this.portrait = null;
-	    window.addEventListener('deviceorientation', this.onDeviceOrientation);
-	    setTimeout(this.onOrientationTimer, this.supportDelay);
-	  }else{
-	    this.cx = 0;
-	    this.cy = 0;
-	    this.portrait = false;
-	    window.addEventListener('mousemove', this.onMouseMove);
+      if(this.gyromouseX || this.gyromouseY){
+        if (this.orientationSupport) {
+	      this.portrait = null;
+	      window.addEventListener('deviceorientation', this.onDeviceOrientation);
+	      setTimeout(this.onOrientationTimer, this.supportDelay);
+	    }else{
+	      this.cx = 0;
+	      this.cy = 0;
+	      this.portrait = false;
+	      window.addEventListener('mousemove', this.onMouseMove);
+	    }
+      }
+	  if(this.scrollY){
+	    this.myraf = requestAnimationFrame(this.onRAF);
 	  }
-        }else{
-	  this.myraf = requestAnimationFrame(this.onRAF);
-	}
       window.addEventListener('resize', this.onWindowResize);
       this.raf = requestAnimationFrame(this.onAnimationFrame);
     }
@@ -425,8 +429,13 @@
 
       // Extract Rotation
       var x = (event.beta  || 0) / MAGIC_NUMBER; //  -90 :: 90
-      var y = (event.gamma || 0) / MAGIC_NUMBER; // -180 :: 180
-
+      var y = (event.gamma || 0) / (MAGIC_NUMBER); // -180 :: 180
+	  // Um einen flip zu vermeinden range nur -1 u 1. Andernfalls ist die Range von -2 u. 2
+	  if(y>1){
+		  y = 1 - (y-1)
+	  }else if(y<-1){
+		  y = -1 - (y +1)
+	  }
       // Detect Orientation Change
       var portrait = window.innerHeight > window.innerWidth;
       if (this.portrait !== portrait) {
@@ -437,13 +446,18 @@
       // Set Calibration
       if (this.calibrationFlag) {
         this.calibrationFlag = false;
-        this.cx = x;
-        this.cy = y;
+	      this.cx = -x;
+	      this.cy = y;
       }
 
       // Set Input
-      this.ix = x;
-      this.iy = y;
+      if (portrait) {
+	    if(this.gyromouseX) this.iy = y;
+	    if(this.gyromouseY) this.ix = x;
+      }else{
+	    if(this.gyromouseX) this.ix = -x;
+	    if(this.gyromouseY) this.iy = y;
+      }
     }
   };
 
@@ -452,7 +466,7 @@
     // Cache mouse coordinates.
     var clientX = event.clientX;
     var clientY = event.clientY;
-
+	//this.invertX = false;// add by JM
     // Calculate Mouse Input
     if (!this.orientationSupport && this.relativeInput) {
 
@@ -466,31 +480,39 @@
 
       // Calculate input relative to the element.
       this.ix = (clientX - this.ex - this.ecx) / this.erx;
-      this.iy = (clientY - this.ey - this.ecy) / this.ery;
+	  if(!this.gyromouseY) this.iy = (clientY - this.ey - this.ecy) / this.ery;
 
     } else {
-
       // Calculate input relative to the window.
-      this.ix = (clientX - this.wcx) / this.wrx;
-      this.iy = (clientY - this.wcy) / this.wry;
+	  if(this.gyromouseX) this.ix = (clientX - this.wcx) / this.wrx;
+	  if(this.gyromouseY) this.iy = (clientY - this.wcy) / this.wry;
     }
   };
 
   Plugin.prototype.onRAF = function() {
+	var calc;
     var eot = $(this.element).offset().top;
     var wih = window.innerHeight;
     var wpo = window.pageYOffset;
     var first = wpo + wih  > eot;
     var secont = wpo < eot + this.eh;
     var range = wih + this.eh;
+	var portrait = wih > window.innerWidth;
     if(first && ! secont){
-      this.iy = 0;
+	    calc = 0;
     }else if(!first && secont){
-      this.iy = 1;
+	    calc = 1;
     }else if(first && secont){
-      this.iy = -2*((wpo + wih - eot) / range)+1;
+	    calc = -2*((wpo + wih - eot) / range)+1;
     }
-    this.ix = 0;
+	if(portrait){
+	  if(this.scrollY) this.ix = calc;
+	  if(this.scrollX) this.iy = calc;
+	}else{
+	  if(this.scrollY) this.iy = calc;
+	  if(this.scrollX) this.ix = calc;
+	}
+
     this.myraf = requestAnimationFrame(this.onRAF);
   };
 

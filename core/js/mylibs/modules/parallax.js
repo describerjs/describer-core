@@ -34,28 +34,49 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 
 		_exec: function(e){
 			switch(this.is('data')){
-				case 'orientationSupport':
+				case 'orientation':
 					this.$elem.parallax({
-						invertX: false,
-						limitY: 40
+						limitY: 40,
+						gyromouseX: true,
+						gyromouseY: true
 					});
 					break;
-				case 'mouseSupport':
-					this.$elem.parallax();
+				case 'scrollY':
+					if(window.userOS === 'iOS' && Number(userOSver.charAt(0)) < 8){
+						// Fallback für <iOS8
+						this.$elem.parallax({
+							limitY: 40,
+							gyromouseY: true
+						});
+					}else{
+						this.$elem.parallax({
+							frictionY: 1,
+							scrollY: true
+						});
+					}
 					break;
-				case 'scroll':
+				case 'scrollY-fallback':
+					// Fallback für <iOS8
 					this.$elem.parallax({
-						frictionX: 1,
-						frictionY: 1,
-						gyrosscopeparallax: false
+						limitY: 40,
+						gyromouseY: true
 					});
 					break;
-				case 'scroll-fallback':
-					this.$elem.parallax({
-						limitX: 0,
-						invertX: false,
-						limitY: 40
-					});
+				case 'orientationX-scrollY':
+					if(window.userOS === 'iOS' && Number(userOSver.charAt(0)) < 8){
+						// Fallback für <iOS8
+						this.$elem.parallax({
+							limitY: 40,
+							gyromouseX: true,
+							gyromouseY: true
+						});
+					}else{
+						this.$elem.parallax({
+							gyromouseX: true,
+							frictionY: 1,
+							scrollY: true
+						});
+					}
 					break;
 				default:
 					break;

@@ -428,6 +428,30 @@ define(['jquery', '_config'], function($, _config){
 		return str;
 	};
 
+	window.setGlobalOSVars = (function(){
+		window.ua = navigator.userAgent;
+
+		// determine OS
+		if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
+			window.userOS = 'iOS';
+			window.uaindex = ua.indexOf( 'OS ' );
+		}else if ( ua.match(/Android/i) ){
+			window.userOS = 'Android';
+			window.uaindex = ua.indexOf( 'Android ' );
+		}else{
+			window.userOS = 'unknown';
+		}
+
+		// determine version
+		if ( userOS === 'iOS'  &&  uaindex > -1 ){
+			window.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
+		}else if ( userOS === 'Android'  &&  uaindex > -1 ){
+			window.userOSver = ua.substr( uaindex + 8, 3 );
+		}else{
+			window.userOSver = 'unknown';
+		}
+	})();
+
 	// vim: et ts=2 sw=2
 
 });
