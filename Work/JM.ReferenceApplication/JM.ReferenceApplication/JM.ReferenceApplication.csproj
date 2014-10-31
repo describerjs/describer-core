@@ -955,6 +955,7 @@
     <Content Include="template\default\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Regions\Tiles.cshtml" />
     <Content Include="Views\Page\Featuretest.cshtml" />
+    <Content Include="Views\Shared\Regions\Block.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Extensions\" />

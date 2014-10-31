@@ -1,22 +1,18 @@
-﻿<div class="accordion">
-    <ul class="acc-group">
-        <li class="acc-item">
-            <a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
-            <div class="acc-panel">
-                <p>$accordion-content$</p>
-            </div>
-        </li>
-        <li class="acc-item">
-            <a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
-            <div class="acc-panel">
-                <p>$accordion-content$</p>
-            </div>
-        </li>
-        <li class="acc-item">
-            <a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
-            <div class="acc-panel">
-                <p>$accordion-content$</p>
-            </div>
-        </li>
-    </ul>
-</div>
+﻿@model Accordion
+
+@if (Model != null && Model.Elements.Any() && !Model.Hide)
+{
+	<div class="accordion">
+		<ul class="acc-group">
+			@foreach (var element in Model.Elements)
+			{
+				<li class="acc-item">
+					<a data-jmname="accordionbox" href="#" class="acc-handle">@element.Title</a>
+					<div class="acc-panel">
+						@MvcHtmlString.Create(element.Body)
+					</div>
+				</li>
+			}
+		</ul>
+	</div>
+}
