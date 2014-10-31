@@ -56,6 +56,10 @@
 		<div class="input"><a class="btn" id="@String.Format("addtile{0}", regionID)">+</a></div>
 	</li>
 	<li>
+		@Html.LabelFor(m => m.Tiling, "Kachelung")
+		<div class="input">@Html.DropDownListFor(m => m.Tiling, Model.TilingSelection)</div>
+	</li>
+	<li>
 		@Html.LabelFor(m => m.Hide, "Verstecken")
 		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
 		<p>Blendet das aktuelle Element vollständig aus</p>

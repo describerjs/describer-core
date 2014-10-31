@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.95\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.96\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

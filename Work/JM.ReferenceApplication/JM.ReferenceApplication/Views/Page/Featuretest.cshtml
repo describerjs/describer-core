@@ -1,0 +1,6 @@
+﻿@model Piranha.Models.PageModel
+@{
+    ViewBag.Title = Model.Page.Title ;
+}
+
+@Html.Partial("Regions/Tiles", Model.Region<Tiles>("Tiles"))
