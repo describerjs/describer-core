@@ -33,7 +33,15 @@
  * ABSOLUTE-POSITION...................Elements absolute position
  * MOVE/CHANGE-3D-POSITION.............Transform Elements position
  * USER-SELECT.........................Disable User Text Selection
+ * LAYOUT..............................Layouting Elements
+ * .....constrained....................Wrapper to constrain Elements
  * ELEMENT-DEFAULTS....................Default Element properties
+ * .....element-default-spacing........Set Default Spacing Value to Elements
+ * .....element-default................Default Element Properties
+ * .....element-inner-default..........Nested Default Element inside Default Element
+ * .....element-nested-default.........Nested Default Element inside Default Element (varied padding)
+ * .....element-indent.................padding values for nested Elements, basically grid correction
+ * .....indent.........................Left indention. Possible values: left, margin, padding (default)
  * APPEARANCE..........................Platform-Native Styling
  * FLEXBOX.............................Flex-Box default properties
 **/
@@ -392,6 +400,23 @@
 
 
 /*------------------------------------*\
+	$LAYOUT
+\*------------------------------------*/
+
+@mixin constrained {
+	@include clearfix;
+	margin: 0 auto;
+	max-width: $layout-maxwidth;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
+
+
+
+
+
+/*------------------------------------*\
 	$ELEMENT-DEFAULTS
 \*------------------------------------*/
 
@@ -406,6 +431,7 @@
 	@include column(12);
 	@include element-default-spacing;
 	clear: both;
+	display: block;
 	position: relative;
 }
 

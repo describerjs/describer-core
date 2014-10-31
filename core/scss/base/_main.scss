@@ -82,6 +82,9 @@ body {
 	width: 100%;
 }
 
+.page-constrained {
+	@include constrained;
+}
 
 
 

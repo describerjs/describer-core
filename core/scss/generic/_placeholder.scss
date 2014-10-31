@@ -25,6 +25,7 @@
 %page-element-default {
 	@include row;
 	clear: both;
+	position: relative;
 }
 
 // Modules Defaults

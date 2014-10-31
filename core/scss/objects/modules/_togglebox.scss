@@ -43,7 +43,7 @@
 	// Der eigentliche Content.
 	.tb-content {
 		@extend %toggle-content;
-		background-color: $theme-page-bg;
+		background-color: $theme-togglebox-content-bg;
 	}
 
 	// "togglebox" wird mit "show" erweitert und interagiert entsprechend.

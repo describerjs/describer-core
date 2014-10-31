@@ -226,7 +226,15 @@ h6, .h6 {
  * ABSOLUTE-POSITION...................Elements absolute position
  * MOVE/CHANGE-3D-POSITION.............Transform Elements position
  * USER-SELECT.........................Disable User Text Selection
+ * LAYOUT..............................Layouting Elements
+ * .....constrained....................Wrapper to constrain Elements
  * ELEMENT-DEFAULTS....................Default Element properties
+ * .....element-default-spacing........Set Default Spacing Value to Elements
+ * .....element-default................Default Element Properties
+ * .....element-inner-default..........Nested Default Element inside Default Element
+ * .....element-nested-default.........Nested Default Element inside Default Element (varied padding)
+ * .....element-indent.................padding values for nested Elements, basically grid correction
+ * .....indent.........................Left indention. Possible values: left, margin, padding (default)
  * APPEARANCE..........................Platform-Native Styling
  * FLEXBOX.............................Flex-Box default properties
 **/
@@ -284,6 +292,9 @@ h6, .h6 {
 	$USER-SELECT
 \*------------------------------------*/
 /*------------------------------------*\
+	$LAYOUT
+\*------------------------------------*/
+/*------------------------------------*\
 	$ELEMENT-DEFAULTS
 \*------------------------------------*/
 /*------------------------------------*\
@@ -318,6 +329,7 @@ h6, .h6 {
   margin-left: -1.04167%;
   margin-right: -1.04167%;
   clear: both;
+  position: relative;
 }
 .page-header:after, .page-main:after, .page-footer:after, .page-header:before, .page-main:before, .page-footer:before {
   content: "\0020";
@@ -327,20 +339,21 @@ h6, .h6 {
   clear: both;
 }
 
-.legal, .h-card, .accordion, .nav, .stage-teaser, .tabs, .teaser, .text-block, .togglebox {
+.legal, .h-card, .accordion, .block, .nav, .stage-teaser, .tabs, .teaser, .tiles, .togglebox {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   margin-bottom: 1.5rem;
   clear: both;
+  display: block;
   position: relative;
 }
-.legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after, .legal:before, .h-card:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .text-block:before, .togglebox:before {
+.legal:after, .h-card:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .legal:before, .h-card:before, .accordion:before, .block:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
-.legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after {
+.legal:after, .h-card:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after {
   clear: both;
 }
 
@@ -773,6 +786,22 @@ body {
   width: 100%;
 }
 
+.page-constrained {
+  *zoom: 1;
+  margin: 0 auto;
+  max-width: 80em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.page-constrained:after, .page-constrained:before {
+  content: "\0020";
+  display: table;
+}
+.page-constrained:after {
+  clear: both;
+}
+
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -945,7 +974,10 @@ p:last-child {
 \*------------------------------------*/
 /**
  * MAIN................................HTML <main> Section
- * SECTION.............................Content-Container/Column-Wrapper
+ * SECTIONS............................Content-Container/Column-Wrapper
+ * .....section........................Regular
+ * .....section-onepage................OnePager
+ * STAGE...............................Intro-Element
 **/
 /*------------------------------------*\
     $MAIN
@@ -957,18 +989,27 @@ p:last-child {
 }
 
 /*------------------------------------*\
-    $SECTION
+    $SECTIONS
 \*------------------------------------*/
-.section {
+.section, .section-onepage, .stage {
   *zoom: 1;
   clear: both;
+  overflow: hidden;
+  position: relative;
 }
-.section:after, .section:before {
+.section:after, .section-onepage:after, .stage:after, .section:before, .section-onepage:before, .stage:before {
   content: "\0020";
   display: table;
 }
-.section:after {
+.section:after, .section-onepage:after, .stage:after {
   clear: both;
+}
+
+/*------------------------------------*\
+    $STAGE
+\*------------------------------------*/
+.stage .stage-content {
+  /**/
 }
 
 /*------------------------------------*\
@@ -1079,7 +1120,7 @@ p:last-child {
   text-decoration: none;
   white-space: nowrap;
 }
-@media screen and (min-width: 48em) {
+@media only screen and (min-width: 48em) {
   .btn, .btn-disabled, .cta {
     display: inline-block;
     width: auto;
@@ -1291,6 +1332,155 @@ p:last-child {
 .accordion .show > .acc-handle {
   background-color: #aaa;
   color: #000;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $BACK-TO-TOP
+\*------------------------------------*/
+.back-to-top {
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 1.5rem center;
+  color: #666;
+  display: inline-block;
+  margin: 0.75rem -0.75rem;
+  padding: 0.75rem 1.5rem 0.75rem 3rem;
+  position: relative;
+}
+.back-to-top:active, .back-to-top:focus, .back-to-top:hover {
+  text-decoration: underline;
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+/*------------------------------------*\
+    $BLOCK
+\*------------------------------------*/
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+.block .block-content, .block .block-figure, .block .block-header {
+  padding: 0.75rem 1rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative;
+  padding-bottom: 0.375rem;
+  padding-top: 0.375rem;
+}
+@media only screen and (min-width: 48em) {
+  .block .block-content, .block .block-figure, .block .block-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .block .block-content, .block .block-figure, .block .block-header {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .block .block-content, .block .block-figure, .block .block-header {
+    width: 64.58333%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .block.img-left .block-content, .block.img-right .block-content {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+  }
+  .block.img-left .block-figure, .block.img-right .block-figure {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+    margin-top: 0.375rem;
+  }
+}
+
+.block.img-bottom, .block.img-top {
+  /**/
+}
+
+/*------------------------------------*\
+    $BLOCK
+\*------------------------------------*/
+@media only screen and (min-width: 48em) {
+  .section .block:nth-of-type(1):nth-last-of-type(2), .section-onepage .block:nth-of-type(1):nth-last-of-type(2), .stage .block:nth-of-type(1):nth-last-of-type(2), .section .block:nth-of-type(2):nth-last-of-type(1), .section-onepage .block:nth-of-type(2):nth-last-of-type(1), .stage .block:nth-of-type(2):nth-last-of-type(1) {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+    clear: none;
+  }
+  .section .block:nth-of-type(1):nth-last-of-type(2) .block-content, .section-onepage .block:nth-of-type(1):nth-last-of-type(2) .block-content, .stage .block:nth-of-type(1):nth-last-of-type(2) .block-content,
+  .section .block:nth-of-type(1):nth-last-of-type(2) .block-figure,
+  .section-onepage .block:nth-of-type(1):nth-last-of-type(2) .block-figure,
+  .stage .block:nth-of-type(1):nth-last-of-type(2) .block-figure,
+  .section .block:nth-of-type(1):nth-last-of-type(2) .block-header,
+  .section-onepage .block:nth-of-type(1):nth-last-of-type(2) .block-header,
+  .stage .block:nth-of-type(1):nth-last-of-type(2) .block-header, .section .block:nth-of-type(2):nth-last-of-type(1) .block-content, .section-onepage .block:nth-of-type(2):nth-last-of-type(1) .block-content, .stage .block:nth-of-type(2):nth-last-of-type(1) .block-content,
+  .section .block:nth-of-type(2):nth-last-of-type(1) .block-figure,
+  .section-onepage .block:nth-of-type(2):nth-last-of-type(1) .block-figure,
+  .stage .block:nth-of-type(2):nth-last-of-type(1) .block-figure,
+  .section .block:nth-of-type(2):nth-last-of-type(1) .block-header,
+  .section-onepage .block:nth-of-type(2):nth-last-of-type(1) .block-header,
+  .stage .block:nth-of-type(2):nth-last-of-type(1) .block-header {
+    width: 97.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .section .block:nth-of-type(1):nth-last-of-type(2), .section-onepage .block:nth-of-type(1):nth-last-of-type(2), .stage .block:nth-of-type(1):nth-last-of-type(2), .section .block:nth-of-type(2):nth-last-of-type(1), .section-onepage .block:nth-of-type(2):nth-last-of-type(1), .stage .block:nth-of-type(2):nth-last-of-type(1) {
+    width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+  }
+}
+.block .block-figure {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.block .block-head {
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 48em) {
+  .block.img-left .block-content {
+    float: right;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .block.img-right .block-figure {
+    float: right;
+  }
 }
 
 /*------------------------------------*\
@@ -1724,6 +1914,7 @@ p:last-child {
   clear: both;
   display: none;
   margin-bottom: 0.75rem;
+  overflow: hidden;
   position: relative;
   width: 100%;
   -ms-touch-action: pan-y;
@@ -2290,12 +2481,12 @@ p:last-child {
   opacity: 0;
   right: 100%;
 }
-@media screen and (min-width: 60em) {
+@media only screen and (min-width: 60em) {
   .owl-carousel .stage-teaser.hide-large {
     display: none;
   }
 }
-@media screen and (min-width: 48em) {
+@media only screen and (min-width: 48em) {
   .owl-carousel .stage-teaser.hide-med {
     display: none;
   }
@@ -2608,8 +2799,7 @@ p:last-child {
     margin-right: 1.04167%;
     clear: none;
     float: left;
-    margin-left: -1.04167%;
-    margin-right: 2.08333%;
+    margin-left: 0;
   }
   .teaser:first-of-type:last-of-type .t-figure + .t-inner {
     width: 47.91667%;
@@ -2684,29 +2874,28 @@ p:last-child {
     
 \*------------------------------------*/
 /*------------------------------------*\
-    $TEXT-BLOCK
+    $TILES
 \*------------------------------------*/
-.text-block {
-  width: 89.58333%;
+.tiles {
+  width: 97.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+}
+.tiles .tile {
+  width: 47.91667%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   clear: none;
   float: left;
-  padding-left: 1rem;
+  background-color: #000;
+  color: #fff;
+  display: block;
+  margin-bottom: 1.04167%;
+  text-align: center;
 }
 @media only screen and (min-width: 48em) {
-  .text-block {
-    padding-left: 1rem;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .text-block {
-    padding-left: 1.5rem;
-  }
-}
-@media only screen and (min-width: 48em) {
-  .text-block {
-    width: 81.25%;
+  .tiles.tiles-1x4 .tile {
+    width: 31.25%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -2714,8 +2903,8 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
-  .text-block {
-    width: 64.58333%;
+  .tiles.tiles-1x4 .tile {
+    width: 22.91667%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -2723,18 +2912,42 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
-  .text-block:nth-of-type(1):nth-last-of-type(2), .text-block:nth-of-type(2):nth-last-of-type(1) {
+  .tiles.tiles-1x6 .tile {
+    width: 31.25%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .tiles.tiles-1x6 .tile {
+    width: 14.58333%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .tiles.tiles-2x2 {
     width: 47.91667%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
     float: left;
-    clear: none;
   }
 }
-@media only screen and (min-width: 60em) {
-  .text-block:nth-of-type(1):nth-last-of-type(2), .text-block:nth-of-type(2):nth-last-of-type(1) {
+@media only screen and (min-width: 48em) {
+  .tiles.tiles-2x3 {
     width: 47.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+  }
+  .tiles.tiles-2x3 .tile {
+    width: 31.25%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;

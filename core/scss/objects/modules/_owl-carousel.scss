@@ -22,6 +22,7 @@
 	clear: both;
 	display: none;
 	margin-bottom: $default-spacing;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 	-ms-touch-action: pan-y;
@@ -501,13 +502,13 @@
 		}
 
 		&.hide-large {
-			@media screen and (min-width: $bp-large) {
+			@include bp-l {
 				display: none;
 			}
 		}
 
 		&.hide-med {
-			@media screen and (min-width: $bp-med) {
+			@include bp-m {
 				display: none;
 			}
 		}

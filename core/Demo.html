@@ -342,7 +342,17 @@ window.onerror = function(message, url, linenumber) {
     <link rel="stylesheet" href="/css/noscript.css" />
 </noscript>
 <style>
-.demo-section { background-color: #f0f0f0; margin-bottom: 3rem; padding-top: 1rem; }
+.demo-section { margin-bottom: 3rem; }
+.demo-section > .block { background-color: #f0f0f0; margin-bottom: 0; padding-bottom: 1rem; padding-top: 1rem; 
+    -moz-transition:    background-color .3s ease;
+    -ms-transition:     background-color .3s ease;
+    -o-transition:      background-color .3s ease;
+    -webkit-transition: background-color .3s ease;
+    transition:         background-color .3s ease;
+}
+.demo-section > .block:hover { background-color: #f9f9f9; }
+.demo-section > .togglebox { margin-bottom: 3px; }
+.demo-section > .togglebox.show > .tb-content { border: 1px solid #ddd; padding: 1rem 0 0; }
 </style>
 </head>
 
@@ -376,6 +386,9 @@ window.onerror = function(message, url, linenumber) {
 						<div class="flyout-group">
 							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Accordion">Accordion</a></div>
 						</div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Block">Block</a></div>
+                        </div>
 						<div class="flyout-group">
 							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Carousel">Carousel</a></div>
 						</div>
@@ -392,7 +405,7 @@ window.onerror = function(message, url, linenumber) {
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Teaser">Teaser</a></div>
                         </div>
                         <div class="flyout-group">
-                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Text-Block">Text-Block</a></div>
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Tiles">Tiles</a></div>
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Togglebox">Togglebox</a></div>
@@ -413,60 +426,85 @@ window.onerror = function(message, url, linenumber) {
 	<main class="page-main" role="main">
         <h2 id="Text-Elemente">Text-Elemente</h2>
         <div class="demo-section">
-    		<section class="text-block" id="Text-Elemente-Heading">
-    			<h3>Heading</h3>
-    			<p>Headlines &lt;h1&gt;-&lt;h6&gt;</p>
+    		<section class="block" id="Text-Elemente-Heading">
+                <section class="block-content">
+        			<h3>Heading</h3>
+        			<p>Headlines &lt;h1&gt;-&lt;h6&gt;</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
-    				<h1>Lorem ipsum dolor sit amet</h1>
-    				<h2>Lorem ipsum dolor sit amet</h2>
-    				<h3>Lorem ipsum dolor sit amet</h3>
-    				<h4>Lorem ipsum dolor sit amet</h4>
-    				<h5>Lorem ipsum dolor sit amet</h5>
-    				<h6>Lorem ipsum dolor sit amet</h6>
-    			</div>
-    		</div>
-    		<section class="text-block" id="Text-Elemente-Text">
-    			<h3>Text</h3>
-    			<p>Fließtext Element</p>
-    		</section>
-    		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
-    			<div class="tb-content">
-    				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    			</div>
-    		</div>
-    		<section class="text-block" id="Text-Elemente-Listen">
-    			<h3>Listen</h3>
-    			<p>Listentypen</p>
-    		</section>
-    		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
-    			<div class="tb-content">
-                    <section>
-                        <h4>Bullet List</h4>
-        				<ul class="bullet-list">
-        					<li class="list-item">Lorem ipsum dolor sit amet</li>
-        					<li class="list-item">Lorem ipsum dolor sit amet</li>
-        					<li class="list-item">Lorem ipsum dolor sit amet</li>
-        				</ul>
-                        <h4>Decimal List</h4>
-                        <ol class="decimal-list">
-                            <li class="list-item">Lorem ipsum dolor sit amet</li>
-                            <li class="list-item">Lorem ipsum dolor sit amet</li>
-                            <li class="list-item">Lorem ipsum dolor sit amet</li>
-                        </ol>
+                    <section class="block" id="Text-Elemente-Heading">
+                        <div class="block-content">
+            				<h1>Lorem ipsum dolor sit amet</h1>
+            				<h2>Lorem ipsum dolor sit amet</h2>
+            				<h3>Lorem ipsum dolor sit amet</h3>
+            				<h4>Lorem ipsum dolor sit amet</h4>
+            				<h5>Lorem ipsum dolor sit amet</h5>
+            				<h6>Lorem ipsum dolor sit amet</h6>
+                        </div>
                     </section>
     			</div>
     		</div>
+    		<section class="block" id="Text-Elemente-Text">
+                <section class="block-content">
+        			<h3>Text</h3>
+        			<p>Fließtext Element</p>
+                </section>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+                    <section class="block" id="Text-Elemente-Heading">
+                        <div class="block-content">
+    				        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </section>
+    			</div>
+    		</div>
+    		<section class="block" id="Text-Elemente-Listen">
+                <section class="block-content">
+        			<h3>Listen</h3>
+        			<p>Listentypen</p>
+                </section>
+    		</section>
+    		<div class="togglebox">
+    			<a class="tb-subject" data-jmname="togglebox">Demo (Bullet List)</a>
+    			<div class="tb-content">
+                    <section class="block" id="Text-Elemente-Heading">
+                        <div class="block-content">
+            				<ul class="bullet-list">
+            					<li class="list-item">Lorem ipsum dolor sit amet</li>
+            					<li class="list-item">Lorem ipsum dolor sit amet</li>
+            					<li class="list-item">Lorem ipsum dolor sit amet</li>
+            				</ul>
+                        </div>
+                    </section>
+    			</div>
+    		</div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Decimal List)</a>
+                <div class="tb-content">
+                    <section class="block" id="Text-Elemente-Heading">
+                        <div class="block-content">
+                            <ol class="decimal-list">
+                                <li class="list-item">Lorem ipsum dolor sit amet</li>
+                                <li class="list-item">Lorem ipsum dolor sit amet</li>
+                                <li class="list-item">Lorem ipsum dolor sit amet</li>
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
         <h2 id="UI-Elemente">UI-Elemente</h2>
         <div class="demo-section">
-    		<section class="text-block" id="UI-Elemente-Accordion">
-    			<h3>Accordion</h3>
-    			<p>Ziehharmonika Effekt</p>
+    		<section class="block" id="UI-Elemente-Accordion">
+                <section class="block-content">
+        			<h3>Accordion</h3>
+        			<p>Ziehharmonika Effekt</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -511,9 +549,90 @@ window.onerror = function(message, url, linenumber) {
     				</div>
                 </div>
             </div>
-            <section class="text-block" id="UI-Elemente-Carousel">
-        		<h3>Carousel</h3>
-        		<p>Umschließt mindestens zwei Elemente und funktioniert es zu einer Rotation.</p>
+            <section class="block" id="UI-Elemente-Block">
+                <section class="block-content">
+                    <h3>Block</h3>
+                    <p>Contentelement bestehend aus Text und Optionalem Bild. Das Bild kann flexibel ausgerichtet werden.</p>
+                </section>
+            </section>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Default Block-Element)</a>
+                <div class="tb-content">
+                    <section class="block" data-jmselector="equal-heights-children">
+                        <div class="block-content">
+                            <h3>Lorem ipsum dolor sit amet</h3>
+                            <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit zusätzlichem Header)</a>
+                <div class="tb-content">
+                    <section class="block" data-jmselector="equal-heights-children">
+                        <header class="block-header">
+                            <h2 class="block-head">Lorem ipsum dolor sit amet</h2>
+                        </header>
+                        <div class="block-content">
+                            <h3>Lorem ipsum dolor sit amet</h3>
+                            <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild links)</a>
+                <div class="tb-content">
+                    <section class="block img-left" data-jmselector="equal-heights-children">
+                        <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
+                        <div class="block-content">
+                            <h3>Lorem ipsum dolor sit amet</h3>
+                            <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild rechts)</a>
+                <div class="tb-content">
+                    <section class="block img-right" data-jmselector="equal-heights-children">
+                        <div class="block-content">
+                            <h3>Lorem ipsum dolor sit amet</h3>
+                            <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild oben)</a>
+                <div class="tb-content">
+                    <section class="block img-top" data-jmselector="equal-heights-children">
+                        <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
+                        <div class="block-content">
+                            <h3>Lorem ipsum dolor sit amet</h3>
+                            <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild unten)</a>
+                <div class="tb-content">
+                    <section class="block img-bottom" data-jmselector="equal-heights-children">
+                        <div class="block-content">
+                            <h3>Lorem ipsum dolor sit amet</h3>
+                            <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+            <section class="block" id="UI-Elemente-Carousel">
+                <section class="block-content">
+            		<h3>Carousel</h3>
+            		<p>Umschließt mindestens zwei Elemente und funktioniert es zu einer Rotation.</p>
+                </section>
         	</section>
         	<div class="togglebox">
         		<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -606,9 +725,11 @@ window.onerror = function(message, url, linenumber) {
         			</div>
         		</div>
         	</div>
-    		<section class="text-block" id="UI-Elemente-Navigation">
-    			<h3>Navigation</h3>
-    			<p>Hauptnavigation/Menu</p>
+    		<section class="block" id="UI-Elemente-Navigation">
+                <section class="block-content">
+        			<h3>Navigation</h3>
+        			<p>Hauptnavigation/Menu</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -691,9 +812,11 @@ window.onerror = function(message, url, linenumber) {
     				</nav>
     			</div>
     		</div>
-    		<section class="text-block" id="UI-Elemente-Stage-Teaser">
-    			<h3>Stage-Teaser</h3>
-    			<p>Hauptbühnen-Element</p>
+    		<section class="block" id="UI-Elemente-Stage-Teaser">
+                <section class="block-content">
+        			<h3>Stage-Teaser</h3>
+        			<p>Hauptbühnen-Element</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -727,9 +850,11 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-    		<section class="text-block" id="UI-Elemente-Tabs">
-    			<h3>Tabs</h3>
-    			<p>Reiternavigation</p>
+    		<section class="block" id="UI-Elemente-Tabs">
+                <section class="block-content">
+        			<h3>Tabs</h3>
+        			<p>Reiternavigation</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -756,122 +881,408 @@ window.onerror = function(message, url, linenumber) {
     				</div>
     			</div>
     		</div>
-    		<section class="text-block" id="UI-Elemente-Teaser">
-    			<h3>Teaser</h3>
-    			<p>Teaserelement</p>
+    		<section class="block" id="UI-Elemente-Teaser">
+                <section class="block-content">
+        			<h3>Teaser</h3>
+        			<p>Teaserelement</p>
+                </section>
     		</section>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Teaser x1)</a>
+                <div class="tb-content">
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">Lorem ipsum dolor sit amet</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">Lorem ipsum dolor sit amet</li>
+                                    <li class="list-item">Consetetur sadipscing elitr</li>
+                                    <li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                </div>
+            </div>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" data-jmname="togglebox">Demo (Teaser x2)</a>
     			<div class="tb-content">
-    				<div class="section">
-    					<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
-    						<div class="t-figure">
-    							<picture>
-    								<!--[if IE 9]><video style="display: none;"><![endif]-->
-    								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-    								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-    								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-    								<!--[if IE 9]></video><![endif]-->
-    								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
-    							</picture>
-    						</div>
-                            <div class="st-inner">
-    							<header class="t-header">
-    								<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
-    							</header>
-    							<div class="t-content">
-    								<ul class="bullet-list">
-    									<li class="list-item">Lorem ipsum dolor sit amet</li>
-    									<li class="list-item">Consetetur sadipscing elitr</li>
-    									<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    								</ul>
-    							</div>
-    							<footer class="t-footer">
-    								<span class="btn">Lorem</span>
-    							</footer>
-                            </div>
-    					</a>
-    				</div>
-    				<div class="section">
-    					<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
-                            <div class="t-figure">
-    							<picture>
-    								<!--[if IE 9]><video style="display: none;"><![endif]-->
-    								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-    								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-    								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-    								<!--[if IE 9]></video><![endif]-->
-    								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
-    							</picture>
-                            </div>
-                            <div class="st-inner">
-    							<header class="t-header">
-    								<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
-    							</header>
-    							<div class="t-content">
-    								<ul class="bullet-list">
-    									<li class="list-item">Lorem ipsum dolor sit amet</li>
-    									<li class="list-item">Consetetur sadipscing elitr</li>
-    									<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
-    								</ul>
-    							</div>
-    							<footer class="t-footer">
-    								<span class="btn">Lorem</span>
-    							</footer>
-                            </div>
-    					</a>
-    					<a class="teaser" href="$teaser-link$" data-jmselector="equal-heights-children">
-                            <div class="t-figure">
-    							<picture>
-    								<!--[if IE 9]><video style="display: none;"><![endif]-->
-    								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-    								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-    								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
-    								<!--[if IE 9]></video><![endif]-->
-    								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
-    							</picture>
-                            </div>
-                            <div class="st-inner">
-    							<header class="t-header">
-    								<h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
-    							</header>
-    							<div class="t-content">
-    								<ul class="bullet-list">
-    									<li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
-    									<li class="list-item">Stet clita kasd gubergren.</li>
-    									<li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
-    								</ul>
-    							</div>
-    							<footer class="t-footer">
-    								<span class="btn">Lorem</span>
-    							</footer>
-                            </div>
-    					</a>
-    				</div>
+					<a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+							<picture>
+								<!--[if IE 9]><video style="display: none;"><![endif]-->
+								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+								<!--[if IE 9]></video><![endif]-->
+								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+							</picture>
+                        </div>
+                        <div class="t-inner">
+							<header class="t-header">
+								<h3 class="t-head">Lorem ipsum dolor sit amet</h3>
+							</header>
+							<div class="t-content">
+								<ul class="bullet-list">
+									<li class="list-item">Lorem ipsum dolor sit amet</li>
+									<li class="list-item">Consetetur sadipscing elitr</li>
+									<li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+								</ul>
+							</div>
+							<footer class="t-footer">
+								<span class="btn">Lorem</span>
+							</footer>
+                        </div>
+					</a>
+					<a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+							<picture>
+								<!--[if IE 9]><video style="display: none;"><![endif]-->
+								<source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+								<source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+								<source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+								<!--[if IE 9]></video><![endif]-->
+								<img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+							</picture>
+                        </div>
+                        <div class="t-inner">
+							<header class="t-header">
+								<h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+							</header>
+							<div class="t-content">
+								<ul class="bullet-list">
+									<li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+									<li class="list-item">Stet clita kasd gubergren.</li>
+									<li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+								</ul>
+							</div>
+							<footer class="t-footer">
+								<span class="btn">Lorem</span>
+							</footer>
+                        </div>
+					</a>
     			</div>
     		</div>
-    		<section class="text-block" id="UI-Elemente-Text-Block">
-    			<h3>Text-Block</h3>
-    			<p>Blockelement bestehend aus Headline und Copy.</p>
-    		</section>
-    		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
-    			<div class="tb-content">
-    				<div class="section">
-    					<section class="text-block">
-    						<h3>Lorem ipsum dolor sit amet</h3>
-    						<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    					</section>
-    					<section class="text-block">
-    						<h5>At vero eos et accusam et justo duo dolores et ea rebum</h5>
-    						<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    					</section>
-    				</div>
-    			</div>
-    		</div>
-    		<section class="text-block" id="UI-Elemente-Togglebox">
-    			<h3>Togglebox</h3>
-    			<p>Auf-/Zuklapp-Element</p>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Teaser x3)</a>
+                <div class="tb-content">
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">Lorem ipsum dolor sit amet</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">Lorem ipsum dolor sit amet</li>
+                                    <li class="list-item">Consetetur sadipscing elitr</li>
+                                    <li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+                                    <li class="list-item">Stet clita kasd gubergren.</li>
+                                    <li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+                                    <li class="list-item">Stet clita kasd gubergren.</li>
+                                    <li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (Teaser x4)</a>
+                <div class="tb-content">
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">Lorem ipsum dolor sit amet</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">Lorem ipsum dolor sit amet</li>
+                                    <li class="list-item">Consetetur sadipscing elitr</li>
+                                    <li class="list-item">Sed diam nonumy eirmod tempor invidunt</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+                                    <li class="list-item">Stet clita kasd gubergren.</li>
+                                    <li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+                                    <li class="list-item">Stet clita kasd gubergren.</li>
+                                    <li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                        <div class="t-figure">
+                            <picture>
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                                <source srcset="//dummyimage.com/959x299/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                                <source srcset="//dummyimage.com/768x197/666/ddd.png&text=IMG"></source>
+                                <!--[if IE 9]></video><![endif]-->
+                                <img srcset="//dummyimage.com/610x190/666/ddd.png&text=IMG" src="//dummyimage.com/610x190/666/ddd.png&text=IMG" alt="IMG" /></source>
+                            </picture>
+                        </div>
+                        <div class="t-inner">
+                            <header class="t-header">
+                                <h3 class="t-head">At vero eos et accusam et justo duo dolores et ea rebum</h3>
+                            </header>
+                            <div class="t-content">
+                                <ul class="bullet-list">
+                                    <li class="list-item">At vero eos et accusam et justo duo dolores et ea rebum.</li>
+                                    <li class="list-item">Stet clita kasd gubergren.</li>
+                                    <li class="list-item">No sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
+                                </ul>
+                            </div>
+                            <footer class="t-footer">
+                                <span class="btn">Lorem</span>
+                            </footer>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <section class="block" id="UI-Elemente-Tiles">
+                <section class="block-content">
+                    <h3>Tiles</h3>
+                    <p>Kacheln</p>
+                </section>
+            </section>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (1x2: Default)</a>
+                <div class="tb-content">
+                    <ul class="tiles tiles">
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=2" alt="2" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=3" alt="3" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=4" alt="4" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=5" alt="5" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=6" alt="6" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=7" alt="7" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=8" alt="8" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=9" alt="9" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=10" alt="10" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=11" alt="11" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=12" alt="12" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (1x4)</a>
+                <div class="tb-content">
+                    <ul class="tiles tiles-1x4">
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=2" alt="2" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=3" alt="3" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=4" alt="4" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=5" alt="5" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=6" alt="6" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=7" alt="7" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=8" alt="8" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=9" alt="9" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=10" alt="10" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=11" alt="11" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=12" alt="12" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (1x6)</a>
+                <div class="tb-content">
+                    <ul class="tiles tiles-1x6">
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=2" alt="2" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=3" alt="3" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=4" alt="4" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=5" alt="5" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=6" alt="6" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=7" alt="7" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=8" alt="8" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=9" alt="9" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=10" alt="10" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=11" alt="11" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=12" alt="12" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (2x2)</a>
+                <div class="tb-content">
+                    <ul class="tiles tiles-2x2">
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=2" alt="2" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=3" alt="3" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=4" alt="4" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=5" alt="5" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=6" alt="6" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=7" alt="7" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=8" alt="8" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=9" alt="9" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=10" alt="10" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=11" alt="11" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=12" alt="12" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo (2x3)</a>
+                <div class="tb-content">
+                    <ul class="tiles tiles-2x3">
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=2" alt="2" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=3" alt="3" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=4" alt="4" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=5" alt="5" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=6" alt="6" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=7" alt="7" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=8" alt="8" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=9" alt="9" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=10" alt="10" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=11" alt="11" /></li>
+                        <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=12" alt="12" /></li>
+                    </ul>
+                </div>
+            </div>
+    		<section class="block" id="UI-Elemente-Togglebox">
+                <section class="block-content">
+        			<h3>Togglebox</h3>
+        			<p>Auf-/Zuklapp-Element</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -885,18 +1296,18 @@ window.onerror = function(message, url, linenumber) {
     				</div>
                     <div class="togglebox">
                         <a class="tb-subject" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-files/togglebox.html'}, {}]">Lorem ipsum dolor (ajax)</a>
-                        <div class="tb-content">
-
-                        </div>
+                        <div class="tb-content"></div>
                     </div>
     			</div>
     		</div>
         </div>
         <h2 id="SocialMedia">SocialMedia</h2>
         <div class="demo-section">
-    		<section class="text-block" id="SocialMedia-Facebook">
-    			<h3>Facebook-Like</h3>
-    			<p>Facebook-Like-Element</p>
+    		<section class="block" id="SocialMedia-Facebook">
+                <section class="block-content">
+        			<h3>Facebook-Like</h3>
+        			<p>Facebook-Like-Element</p>
+                </section>
     		</section>
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
@@ -907,10 +1318,10 @@ window.onerror = function(message, url, linenumber) {
     			</div>
     		</div>
         </div>
-	</main>
-    <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
-	<footer class="page-footer" role="contentinfo">
-		<section class="h-card">
+    </main>
+    <footer class="page-footer" role="contentinfo">
+        <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>	
+		<!-- <section class="h-card">
 			<div class="hc-section"><a class="u-url p-organization-name link" href="/">Beispiel-AG</a></div>
 			<address class="hc-section"><span class="p-street-address">Beispiel Str. 111a</span> <span class="p-locality">11111 Beispiel-Location</span> <span class="p-country-name">Beispielland</span></address>
 			<div class="hc-section"><a class="p-tel link" href="tel:+4921155572484">Fon: +49 2 11 55 57 24 84</a> <span class="p-tel-fax">Fax: +49 2 11 55 57 24 84</span></div>
@@ -919,7 +1330,7 @@ window.onerror = function(message, url, linenumber) {
 		<div class="legal">
 			<a class="imprint link" href="$impressum$">Impressum</a>
 			<p class="copyright">&copy; Copyright 2014</p>
-		</div>
+		</div> -->
 	</footer>
 </div>
 <script>

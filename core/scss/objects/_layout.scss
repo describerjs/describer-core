@@ -45,34 +45,34 @@
 \*------------------------------------*/
 
 .col-2 {
-	@media screen and (min-width: $bp-med) {
+	@include bp-m {
 		@include column(6);
 		clear: none;
 	}
 
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		@include column(6);
 	}
 }
 
 .col-3 {
-	@media screen and (min-width: $bp-med) {
+	@include bp-m {
 		@include column(6);
 		clear: none;
 	}
 
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		@include column(4);
 	}
 }
 
 .col-4 {
-	@media screen and (min-width: $bp-med) {
+	@include bp-m {
 		@include column(4);
 		clear: none;
 	}
 
-	@media screen and (min-width: $bp-large) {
+	@include bp-l {
 		@include column(3);
 	}
 }
@@ -93,11 +93,11 @@
 	@extend %row;
 
 	.col {
-		@media all and (min-width: $bp-med) {
+		@include bp-m {
 			@include column(12);
 		}
 
-		@media all and (min-width: $bp-large) {
+		@include bp-l {
 			@include column(6);
 		}
 	}
@@ -108,11 +108,11 @@
 	@extend %row;
 
 	.col {
-		@media all and (min-width: $bp-med) {
+		@include bp-m {
 			@include column(12)
 		}
 
-		@media all and (min-width: $bp-large) {
+		@include bp-l {
 			@include column(4);
 		}
 	}
@@ -123,11 +123,11 @@
 	@extend %row;
 
 	.col {
-		@media all and (min-width: $bp-med) {
+		@include bp-m {
 			@include column(6)
 		}
 
-		@media all and (min-width: $bp-large) {
+		@include bp-l {
 			@include column(3);
 		}
 	}
@@ -138,11 +138,11 @@
 	@extend %row;
 
 	.col {
-		@media all and (min-width: $bp-med) {
+		@include bp-m {
 			@include column(4);
 		}
 
-		@media all and (min-width: $bp-large) {
+		@include bp-l {
 			@include column(2.4);
 		}
 	}
@@ -153,11 +153,11 @@
 	@extend %row;
 
 	.col {
-		@media all and (min-width: $bp-med) {
+		@include bp-m {
 			@include column(4)
 		}
 
-		@media all and (min-width: $bp-large) {
+		@include bp-l {
 			@include column(2);
 		}
 	}

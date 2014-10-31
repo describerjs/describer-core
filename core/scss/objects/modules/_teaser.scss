@@ -12,10 +12,7 @@
 		@include bp-m {
 			.t-figure {
 				@include column(6);
-				margin: {
-					left: -($dist);
-					right: $dist * 2;
-				}
+				margin-left: 0;
 
 				&+ .t-inner {
 					@include column(6);
