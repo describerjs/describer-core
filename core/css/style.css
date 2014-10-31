@@ -21,6 +21,7 @@
 /* Border-Box http:/paulirish.com/2012/box-sizing-border-box-ftw/ */
 @import url("//fonts.googleapis.com/css?family=Roboto+Slab");
 @import url("//fonts.googleapis.com/css?family=Roboto+Condensed");
+/* line 6, ../scss/generic/_reset.scss */
 *,
 *:after,
 *:before {
@@ -29,19 +30,23 @@
   box-sizing: border-box;
 }
 
+/* line 14, ../scss/generic/_reset.scss */
 html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, form, legend, label, table, header, footer, nav, section, figure, picture {
   margin: 0;
   padding: 0;
 }
 
+/* line 19, ../scss/generic/_reset.scss */
 header, footer, main, nav, section, article, hgroup, figure, picture {
   display: block;
 }
 
+/* line 23, ../scss/generic/_reset.scss */
 img, table {
   border: 0;
 }
 
+/* line 27, ../scss/generic/_reset.scss */
 picture {
   line-height: 0;
 }
@@ -61,6 +66,7 @@ picture {
 /*------------------------------------*\
     $ADD-ONS
 \*------------------------------------*/
+/* line 152, ../scss/generic/_sassaparilla-typeset.scss */
 h1, .h1 {
   font-size: 36px;
   font-size: 2.25rem;
@@ -68,6 +74,7 @@ h1, .h1 {
   line-height: 3rem;
 }
 
+/* line 153, ../scss/generic/_sassaparilla-typeset.scss */
 h2, .h2 {
   font-size: 32px;
   font-size: 2rem;
@@ -75,6 +82,7 @@ h2, .h2 {
   line-height: 2.25rem;
 }
 
+/* line 154, ../scss/generic/_sassaparilla-typeset.scss */
 h3, .h3 {
   font-size: 28px;
   font-size: 1.75rem;
@@ -82,6 +90,7 @@ h3, .h3 {
   line-height: 2.25rem;
 }
 
+/* line 155, ../scss/generic/_sassaparilla-typeset.scss */
 h4, .h4 {
   font-size: 24px;
   font-size: 1.5rem;
@@ -89,6 +98,7 @@ h4, .h4 {
   line-height: 2.25rem;
 }
 
+/* line 156, ../scss/generic/_sassaparilla-typeset.scss */
 h5, .h5 {
   font-size: 20px;
   font-size: 1.25rem;
@@ -96,6 +106,7 @@ h5, .h5 {
   line-height: 1.5rem;
 }
 
+/* line 157, ../scss/generic/_sassaparilla-typeset.scss */
 h6, .h6 {
   font-size: 16px;
   font-size: 1rem;
@@ -103,6 +114,7 @@ h6, .h6 {
   line-height: 1.5rem;
 }
 
+/* line 160, ../scss/generic/_sassaparilla-typeset.scss */
 .bullet-list, .decimal-list {
   font-size: 16px;
   font-size: 1rem;
@@ -110,30 +122,37 @@ h6, .h6 {
   line-height: 1.5rem;
 }
 
+/* line 188, ../scss/generic/_sassaparilla-typeset.scss */
 h1, .h1 {
   margin-bottom: 1.875rem;
 }
 
+/* line 189, ../scss/generic/_sassaparilla-typeset.scss */
 h2, .h2 {
   margin-bottom: 1.5rem;
 }
 
+/* line 190, ../scss/generic/_sassaparilla-typeset.scss */
 h3, .h3 {
   margin-bottom: 1.125rem;
 }
 
+/* line 191, ../scss/generic/_sassaparilla-typeset.scss */
 h4, .h4 {
   margin-bottom: 0.75rem;
 }
 
+/* line 192, ../scss/generic/_sassaparilla-typeset.scss */
 h5, .h5 {
   margin-bottom: 0.375rem;
 }
 
+/* line 193, ../scss/generic/_sassaparilla-typeset.scss */
 h6, .h6 {
   margin-bottom: 0rem;
 }
 
+/* line 198, ../scss/generic/_sassaparilla-typeset.scss */
 .bullet-list, .decimal-list {
   margin-bottom: 1.5rem;
 }
@@ -152,8 +171,8 @@ h6, .h6 {
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
- * SPACING.............................Abst├ñnde definieren
- * TRANSITIONS.........................Eigenschaften f├╝r Transitions
+ * SPACING.............................Abstände definieren
+ * TRANSITIONS.........................Eigenschaften für Transitions
 **/
 /*------------------------------------*\
     $COLORS
@@ -281,6 +300,9 @@ h6, .h6 {
 	$MOVE/CHANGE-3D-POSITION
 \*------------------------------------*/
 /*------------------------------------*\
+	$KEYFRAME-ANIMATION
+\*------------------------------------*/
+/*------------------------------------*\
 	$USER-SELECT
 \*------------------------------------*/
 /*------------------------------------*\
@@ -311,6 +333,7 @@ h6, .h6 {
 /*------------------------------------*\
 	$ELEMENT_DEFAULTS
 \*------------------------------------*/
+/* line 25, ../scss/generic/_placeholder.scss */
 .page-header, .page-main, .page-footer {
   *zoom: 1;
   display: block;
@@ -319,14 +342,17 @@ h6, .h6 {
   margin-right: -1.04167%;
   clear: both;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .page-header:after, .page-main:after, .page-footer:after, .page-header:before, .page-main:before, .page-footer:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .page-header:after, .page-main:after, .page-footer:after {
   clear: both;
 }
 
+/* line 31, ../scss/generic/_placeholder.scss */
 .legal, .h-card, .accordion, .nav, .stage-teaser, .tabs, .teaser, .text-block, .togglebox {
   *zoom: 1;
   width: 97.91667%;
@@ -336,14 +362,17 @@ h6, .h6 {
   clear: both;
   position: relative;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after, .legal:before, .h-card:before, .accordion:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .text-block:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .legal:after, .h-card:after, .accordion:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .text-block:after, .togglebox:after {
   clear: both;
 }
 
+/* line 36, ../scss/generic/_placeholder.scss */
 .logo, .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab, .teaser .t-inner {
   padding: 0.75rem 1rem;
   margin-left: 0 !important;
@@ -351,18 +380,21 @@ h6, .h6 {
   position: relative;
 }
 @media only screen and (min-width: 48em) {
+  /* line 36, ../scss/generic/_placeholder.scss */
   .logo, .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab, .teaser .t-inner {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 36, ../scss/generic/_placeholder.scss */
   .logo, .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab, .teaser .t-inner {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
+/* line 41, ../scss/generic/_placeholder.scss */
 .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .tabs > .tab-content {
   padding: 0.75rem 1rem;
   margin-left: 0 !important;
@@ -372,18 +404,21 @@ h6, .h6 {
   padding-top: 0.375rem;
 }
 @media only screen and (min-width: 48em) {
+  /* line 41, ../scss/generic/_placeholder.scss */
   .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .tabs > .tab-content {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 41, ../scss/generic/_placeholder.scss */
   .accordion .acc-handle, .togglebox .tb-subject, .accordion .show > .acc-panel, .togglebox.show > .tb-content, .tabs > .tab-content {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
+/* line 47, ../scss/generic/_placeholder.scss */
 main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > ul, main > ol, main > p {
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -391,11 +426,13 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
   padding-left: 1rem;
 }
 @media only screen and (min-width: 48em) {
+  /* line 47, ../scss/generic/_placeholder.scss */
   main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > ul, main > ol, main > p {
     padding-left: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 47, ../scss/generic/_placeholder.scss */
   main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, main > .h4, main > h5, main > .h5, main > h6, main > .h6, main > ul, main > ol, main > p {
     padding-left: 1.5rem;
   }
@@ -404,6 +441,7 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
 /*------------------------------------*\
 	TOGGLE_ELEMENT
 \*------------------------------------*/
+/* line 61, ../scss/generic/_placeholder.scss */
 .accordion .acc-handle, .togglebox .tb-subject {
   padding-left: 2.5rem;
   -moz-user-select: none;
@@ -424,15 +462,18 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
   }*/
 }
 @media only screen and (min-width: 48em) {
+  /* line 61, ../scss/generic/_placeholder.scss */
   .accordion .acc-handle, .togglebox .tb-subject {
     padding-left: 2.5rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 61, ../scss/generic/_placeholder.scss */
   .accordion .acc-handle, .togglebox .tb-subject {
     padding-left: 3.75rem;
   }
 }
+/* line 79, ../scss/generic/_placeholder.scss */
 .accordion .acc-handle:before, .togglebox .tb-subject:before {
   left: 1rem;
   content: "";
@@ -459,16 +500,19 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
   width: 10px;
 }
 @media only screen and (min-width: 48em) {
+  /* line 79, ../scss/generic/_placeholder.scss */
   .accordion .acc-handle:before, .togglebox .tb-subject:before {
     left: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 79, ../scss/generic/_placeholder.scss */
   .accordion .acc-handle:before, .togglebox .tb-subject:before {
     left: 1.5rem;
   }
 }
 
+/* line 95, ../scss/generic/_placeholder.scss */
 .accordion .show > .acc-handle, .togglebox.show > .tb-subject {
   /*&:after {
   	@include transform(rotate(90deg));
@@ -478,10 +522,12 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
   	top: 60%;
   }*/
 }
+/* line 104, ../scss/generic/_placeholder.scss */
 .accordion .show > .acc-handle:before, .togglebox.show > .tb-subject:before {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFElEQVQYlWNgGBrgP5GYeIWDHQAA2JUT7a+Ikh8AAAAASUVORK5CYII=");
 }
 
+/* line 109, ../scss/generic/_placeholder.scss */
 .accordion .acc-panel, .togglebox .tb-content {
   -moz-transition: height 0.3s ease, opacity 0.3s ease;
   -ms-transition: height 0.3s ease, opacity 0.3s ease;
@@ -494,6 +540,7 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
   overflow: hidden;
 }
 
+/* line 117, ../scss/generic/_placeholder.scss */
 .accordion .show > .acc-panel, .togglebox.show > .tb-content {
   /*display: block;*/
   height: auto;
@@ -501,16 +548,19 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
   opacity: 1;
 }
 @media only screen and (min-width: 60em) {
+  /* line 117, ../scss/generic/_placeholder.scss */
   .accordion .show > .acc-panel, .togglebox.show > .tb-content {
     padding-left: 2.5rem;
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 48em) {
+  /* line 117, ../scss/generic/_placeholder.scss */
   .accordion .show > .acc-panel, .togglebox.show > .tb-content {
     padding-left: 2.5rem;
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 60em) {
+  /* line 117, ../scss/generic/_placeholder.scss */
   .accordion .show > .acc-panel, .togglebox.show > .tb-content {
     padding-left: 3.75rem;
   }
@@ -548,6 +598,7 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
 /*------------------------------------*\
     $LABEL
 \*------------------------------------*/
+/* line 17, ../scss/base/_forms.scss */
 label {
   cursor: pointer;
   display: block;
@@ -614,6 +665,7 @@ input[type="search"]::-webkit-search-decoration {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
+/* line 18, ../scss/base/_headings.scss */
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Roboto Slab", "Arial", sans-serif;
   font-weight: normal;
@@ -635,6 +687,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 /*------------------------------------*\
     $ANCHOR
 \*------------------------------------*/
+/* line 18, ../scss/base/_links.scss */
 a {
   cursor: pointer;
   outline: 0;
@@ -645,16 +698,18 @@ a {
 /*------------------------------------*\
     $LINK
 \*------------------------------------*/
+/* line 33, ../scss/base/_links.scss */
 .link {
   -moz-transition: color 0.3s ease-in-out;
   -ms-transition: color 0.3s ease-in-out;
   -o-transition: color 0.3s ease-in-out;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
-  color: #999;
+  color: #999999;
 }
+/* line 44, ../scss/base/_links.scss */
 .link:focus, .link:hover {
-  color: #333;
+  color: #333333;
 }
 
 /*------------------------------------*\
@@ -673,6 +728,7 @@ a {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
+/* line 22, ../scss/base/_lists.scss */
 ul, ol {
   list-style: none;
   list-style-position: outside;
@@ -681,6 +737,7 @@ ul, ol {
 /*------------------------------------*\
     $LIST_ITEM
 \*------------------------------------*/
+/* line 36, ../scss/base/_lists.scss */
 li {
   /**/
 }
@@ -694,14 +751,17 @@ li {
 /*------------------------------------*\
     $DEFINITION_LIST
 \*------------------------------------*/
+/* line 72, ../scss/base/_lists.scss */
 dl {
   overflow: hidden;
 }
 
+/* line 76, ../scss/base/_lists.scss */
 dt {
   font-weight: bold;
 }
 
+/* line 80, ../scss/base/_lists.scss */
 dd {
   margin-left: 0;
 }
@@ -721,24 +781,27 @@ dd {
 /*------------------------------------*\
     $TEXT_SELECTION
 \*------------------------------------*/
+/* line 20, ../scss/base/_main.scss */
 ::-moz-selection {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
   text-shadow: none;
 }
 
+/* line 26, ../scss/base/_main.scss */
 ::selection {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
   text-shadow: none;
 }
 
 /*------------------------------------*\
     $HTML
 \*------------------------------------*/
+/* line 40, ../scss/base/_main.scss */
 html {
-  background-color: #fff;
-  color: #000;
+  background-color: white;
+  color: black;
   font: 100% "Roboto Condensed", "Arial", sans-serif;
   font-weight: 100;
   line-height: 1.5em;
@@ -749,11 +812,13 @@ html {
 /*------------------------------------*\
     $BODY
 \*------------------------------------*/
+/* line 58, ../scss/base/_main.scss */
 body {
   position: relative;
   width: 100%;
 }
 @media print {
+  /* line 58, ../scss/base/_main.scss */
   body {
     line-height: 48px;
     line-height: 3rem;
@@ -764,9 +829,10 @@ body {
 /*------------------------------------*\
     $PAGE_WRAPPER
 \*------------------------------------*/
+/* line 76, ../scss/base/_main.scss */
 .page {
-  background-color: #fff;
-  color: #000;
+  background-color: white;
+  color: black;
   margin: 0 auto;
   max-width: 80em;
   overflow: hidden;
@@ -788,6 +854,7 @@ body {
 /*------------------------------------*\
     $FLEXIBLE_MEDIA
 \*------------------------------------*/
+/* line 20, ../scss/base/_media.scss */
 img, video, object {
   height: auto;
   max-width: 100%;
@@ -807,6 +874,7 @@ img, video, object {
 /*------------------------------------*\
     $ADDRESS
 \*------------------------------------*/
+/* line 19, ../scss/base/_text.scss */
 address {
   font-style: inherit;
 }
@@ -814,6 +882,7 @@ address {
 /*------------------------------------*\
     $PARAGRAPH
 \*------------------------------------*/
+/* line 31, ../scss/base/_text.scss */
 p {
   font-size: 16px;
   font-size: 1rem;
@@ -821,6 +890,7 @@ p {
   line-height: 1.5rem;
   margin-bottom: 1.5rem;
 }
+/* line 36, ../scss/base/_text.scss */
 p:last-child {
   margin-bottom: 0;
 }
@@ -843,10 +913,12 @@ p:last-child {
 /*------------------------------------*\
     $JS/NOJS
 \*------------------------------------*/
+/* line 24, ../scss/base/_global-classes.scss */
 .js-element {
   /**/
 }
 
+/* line 29, ../scss/base/_global-classes.scss */
 .nojs-element {
   display: none;
 }
@@ -854,16 +926,19 @@ p:last-child {
 /*------------------------------------*\
     $VISIBILITY/DISPLAY
 \*------------------------------------*/
+/* line 42, ../scss/base/_global-classes.scss */
 .is-hidden {
   display: none;
   visibility: hidden;
 }
 
+/* line 48, ../scss/base/_global-classes.scss */
 .is-visible {
   display: block;
   visibility: visible;
 }
 
+/* line 54, ../scss/base/_global-classes.scss */
 .is-vishidden {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -897,6 +972,7 @@ p:last-child {
 /*------------------------------------*\
     LOGO
 \*------------------------------------*/
+/* line 30, ../scss/objects/_header.scss */
 .logo {
   width: 64.58333%;
   margin-left: 1.04167%;
@@ -910,6 +986,7 @@ p:last-child {
   z-index: 1;
 }
 @media only screen and (min-width: 22em) {
+  /* line 30, ../scss/objects/_header.scss */
   .logo {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -919,6 +996,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 29.75em) {
+  /* line 30, ../scss/objects/_header.scss */
   .logo {
     width: 39.58333%;
     margin-left: 1.04167%;
@@ -928,6 +1006,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 30, ../scss/objects/_header.scss */
   .logo {
     width: 31.25%;
     margin-left: 1.04167%;
@@ -951,6 +1030,7 @@ p:last-child {
     $MAIN
 \*------------------------------------*/
 @media only screen and (min-width: 60em) {
+  /* line 18, ../scss/objects/_main.scss */
   .page-main {
     padding-top: 1.5rem;
   }
@@ -959,14 +1039,17 @@ p:last-child {
 /*------------------------------------*\
     $SECTION
 \*------------------------------------*/
+/* line 34, ../scss/objects/_main.scss */
 .section {
   *zoom: 1;
   clear: both;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .section:after, .section:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .section:after {
   clear: both;
 }
@@ -987,8 +1070,9 @@ p:last-child {
 /*------------------------------------*\
     $FOOTER
 \*------------------------------------*/
+/* line 21, ../scss/objects/_footer.scss */
 .page-footer {
-  border-top: 1px solid #000;
+  border-top: 1px solid black;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
 }
@@ -996,6 +1080,7 @@ p:last-child {
 /*------------------------------------*\
     $LEGAL
 \*------------------------------------*/
+/* line 41, ../scss/objects/_footer.scss */
 .legal .copyright {
   width: 56.25%;
   margin-left: 1.04167%;
@@ -1004,6 +1089,7 @@ p:last-child {
   float: left;
   text-align: right;
 }
+/* line 47, ../scss/objects/_footer.scss */
 .legal .imprint {
   width: 39.58333%;
   margin-left: 1.04167%;
@@ -1015,11 +1101,13 @@ p:last-child {
 /*------------------------------------*\
     $HCARD
 \*------------------------------------*/
+/* line 61, ../scss/objects/_footer.scss */
 .h-card .u-url, .h-card .p-organization-name, .h-card .p-street-address, .h-card .p-locality, .h-card .p-country-name, .h-card .p-tel, .h-card .p-tel-fax, .h-card .u-email {
   display: block;
 }
 
 @media only screen and (min-width: 48em) {
+  /* line 100, ../scss/objects/_footer.scss */
   .h-card .hc-section {
     width: 31.25%;
     margin-left: 1.04167%;
@@ -1029,6 +1117,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 100, ../scss/objects/_footer.scss */
   .h-card .hc-section {
     width: 22.91667%;
     margin-left: 1.04167%;
@@ -1056,6 +1145,7 @@ p:last-child {
 /*------------------------------------*\
 	$GENERIC
 \*------------------------------------*/
+/* line 20, ../scss/objects/_buttons.scss */
 .btn, .btn-disabled, .cta {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -1080,6 +1170,7 @@ p:last-child {
   white-space: nowrap;
 }
 @media screen and (min-width: 48em) {
+  /* line 20, ../scss/objects/_buttons.scss */
   .btn, .btn-disabled, .cta {
     display: inline-block;
     width: auto;
@@ -1089,21 +1180,24 @@ p:last-child {
 /*------------------------------------*\
 	$BTN
 \*------------------------------------*/
+/* line 48, ../scss/objects/_buttons.scss */
 .btn {
-  background-color: #999;
-  color: #666;
+  background-color: #999999;
+  color: #666666;
 }
+/* line 53, ../scss/objects/_buttons.scss */
 .btn:active, .btn:hover {
-  background-color: #ddd;
-  color: #aaa;
+  background-color: #dddddd;
+  color: #aaaaaa;
 }
 
 /*------------------------------------*\
 	$BTN-DISABLED
 \*------------------------------------*/
+/* line 68, ../scss/objects/_buttons.scss */
 .btn-disabled {
-  background-color: #666;
-  color: #333;
+  background-color: #666666;
+  color: #333333;
   cursor: default;
   pointer-events: none;
 }
@@ -1111,13 +1205,15 @@ p:last-child {
 /*------------------------------------*\
 	$CTA
 \*------------------------------------*/
+/* line 84, ../scss/objects/_buttons.scss */
 .cta {
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
+/* line 89, ../scss/objects/_buttons.scss */
 .cta:active, .cta:hover {
-  background-color: #666;
-  color: #fff;
+  background-color: #666666;
+  color: white;
 }
 
 /*------------------------------------*\
@@ -1138,10 +1234,12 @@ p:last-child {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
+/* line 28, ../scss/objects/_lists.scss */
 .bullet-list .list-item {
   padding-left: 1rem;
 }
 
+/* line 32, ../scss/objects/_lists.scss */
 .decimal-list .list-item {
   margin-left: 1.5rem;
 }
@@ -1149,10 +1247,12 @@ p:last-child {
 /*------------------------------------*\
     $LIST-ITEM
 \*------------------------------------*/
+/* line 44, ../scss/objects/_lists.scss */
 .list-item {
   margin-bottom: 0.375rem;
   position: relative;
 }
+/* line 48, ../scss/objects/_lists.scss */
 .list-item:last-child {
   margin-bottom: 0;
 }
@@ -1160,6 +1260,7 @@ p:last-child {
 /*------------------------------------*\
     $BULLET-LIST
 \*------------------------------------*/
+/* line 67, ../scss/objects/_lists.scss */
 .bullet-list .list-item:before {
   content: "";
   display: block;
@@ -1171,6 +1272,7 @@ p:last-child {
 /*------------------------------------*\
     $DECIMAL-LIST
 \*------------------------------------*/
+/* line 83, ../scss/objects/_lists.scss */
 .decimal-list {
   list-style-type: decimal-leading-zero;
 }
@@ -1187,10 +1289,12 @@ p:last-child {
 /*------------------------------------*\
     $FB_PLUGIN
 \*------------------------------------*/
+/* line 17, ../scss/objects/_social-media.scss */
 .fb-plugin {
   display: none;
 }
 @media only screen and (min-width: 60em) {
+  /* line 17, ../scss/objects/_social-media.scss */
   .fb-plugin {
     padding: 0.75rem 1rem;
     margin-left: 0 !important;
@@ -1207,18 +1311,21 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 48em) {
+  /* line 17, ../scss/objects/_social-media.scss */
   .fb-plugin {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 60em) {
+  /* line 17, ../scss/objects/_social-media.scss */
   .fb-plugin {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 27, ../scss/objects/_social-media.scss */
   .fb-plugin > iframe {
     float: right;
   }
@@ -1257,13 +1364,16 @@ p:last-child {
 	</div>
  *
 **/
+/* line 37, ../scss/objects/modules/_accordion.scss */
 .accordion {
-  background-color: #ddd;
-  color: #000;
+  background-color: #dddddd;
+  color: black;
 }
+/* line 43, ../scss/objects/modules/_accordion.scss */
 .accordion .acc-group {
   /**/
 }
+/* line 48, ../scss/objects/modules/_accordion.scss */
 .accordion .acc-handle {
   -moz-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   -ms-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -1274,23 +1384,26 @@ p:last-child {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  background-color: #999;
-  color: #fff;
+  background-color: #999999;
+  color: white;
   display: block;
   font-family: "Roboto Condensed", "Arial", sans-serif;
   margin-bottom: 3px;
   position: relative;
 }
+/* line 59, ../scss/objects/modules/_accordion.scss */
 .accordion .acc-handle:hover {
-  background-color: #aaa;
-  color: #000;
+  background-color: #aaaaaa;
+  color: black;
 }
+/* line 66, ../scss/objects/modules/_accordion.scss */
 .accordion .acc-item {
   /**/
 }
+/* line 77, ../scss/objects/modules/_accordion.scss */
 .accordion .show > .acc-handle {
-  background-color: #aaa;
-  color: #000;
+  background-color: #aaaaaa;
+  color: black;
 }
 
 /*------------------------------------*\
@@ -1307,7 +1420,7 @@ p:last-child {
  *
 **/
 /**
- * Navigation mit Menu-Button f├╝r mobile Darstellung
+ * Navigation mit Menu-Button für mobile Darstellung
  *
 	<nav class="nav" id="nav" role="navigation">
 		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
@@ -1330,6 +1443,7 @@ p:last-child {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
+/* line 48, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
   padding: 0.75rem 1rem;
   display: block;
@@ -1337,75 +1451,88 @@ p:last-child {
   position: relative;
 }
 @media only screen and (min-width: 48em) {
+  /* line 48, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 48, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
+/* line 55, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-group-title, .flyout .flyout-link {
-  background-color: #ddd;
-  color: #000;
+  background-color: #dddddd;
+  color: black;
 }
+/* line 60, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-group-title:hover, .flyout .flyout-link:hover {
-  background-color: #333;
-  color: #ddd;
+  background-color: #333333;
+  color: #dddddd;
 }
 
 /*------------------------------------*\
     $NAV
 \*------------------------------------*/
+/* line 75, ../scss/objects/modules/_nav.scss */
 .nav {
   clear: none;
   margin-bottom: 0;
 }
 @media only screen and (min-width: 60em) {
+  /* line 75, ../scss/objects/modules/_nav.scss */
   .nav {
-    background-color: #ddd;
+    background-color: #dddddd;
     clear: both;
-    color: #000;
+    color: black;
   }
 }
+/* line 87, ../scss/objects/modules/_nav.scss */
 .nav .nav-items {
   *zoom: 1;
-  background-color: #ddd;
+  background-color: #dddddd;
   clear: both;
   margin-top: 3.5rem;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .nav .nav-items:after, .nav .nav-items:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .nav .nav-items:after {
   clear: both;
 }
 @media only screen and (min-width: 60em) {
+  /* line 87, ../scss/objects/modules/_nav.scss */
   .nav .nav-items {
     background-color: inherit;
     margin-top: 0;
   }
 }
+/* line 100, ../scss/objects/modules/_nav.scss */
 .nav .nav-item {
   -moz-transition: background-color 0.15s linear;
   -ms-transition: background-color 0.15s linear;
   -o-transition: background-color 0.15s linear;
   -webkit-transition: background-color 0.15s linear;
   transition: background-color 0.15s linear;
-  background-color: #ddd;
-  border-bottom: 1px solid #aaa;
+  background-color: #dddddd;
+  border-bottom: 1px solid #aaaaaa;
   z-index: 1;
 }
 @media only screen and (min-width: 60em) {
+  /* line 100, ../scss/objects/modules/_nav.scss */
   .nav .nav-item {
     border-bottom: initial;
     float: left;
   }
+  /* line 110, ../scss/objects/modules/_nav.scss */
   .nav .nav-item:before {
     content: "";
     display: block;
@@ -1415,44 +1542,51 @@ p:last-child {
     -o-transition: bottom 0.15s linear, top 0.15s linear;
     -webkit-transition: bottom 0.15s linear, top 0.15s linear;
     transition: bottom 0.15s linear, top 0.15s linear;
-    background-color: #aaa;
+    background-color: #aaaaaa;
     bottom: 0.75rem;
     top: 0.75rem;
     width: 1px;
   }
+  /* line 120, ../scss/objects/modules/_nav.scss */
   .nav .nav-item:first-child:before {
     background-color: inherit;
   }
 }
+/* line 126, ../scss/objects/modules/_nav.scss */
 .nav .nav-item:hover {
-  background-color: #aaa;
+  background-color: #aaaaaa;
 }
+/* line 129, ../scss/objects/modules/_nav.scss */
 .nav .nav-item:hover .nav-link {
-  color: #000;
+  color: black;
 }
 @media only screen and (min-width: 60em) {
+  /* line 134, ../scss/objects/modules/_nav.scss */
   .nav .nav-item:hover .flyout {
     height: auto;
     opacity: 1;
     visibility: visible;
   }
+  /* line 139, ../scss/objects/modules/_nav.scss */
   .nav .nav-item:hover + .nav-item:before {
     bottom: 0;
     top: 0;
   }
 }
+/* line 148, ../scss/objects/modules/_nav.scss */
 .nav .nav-link {
-  color: #000;
+  color: black;
 }
 
 /*------------------------------------*\
     $MENU
 \*------------------------------------*/
+/* line 163, ../scss/objects/modules/_nav.scss */
 .menu-btn, .menu-close-btn, .show-menu .menu-btn {
   position: absolute;
   top: 0.5rem;
   right: 1.04167%;
-  color: #000;
+  color: black;
   display: block;
   height: 2.5rem;
   line-height: 2.4rem;
@@ -1461,14 +1595,16 @@ p:last-child {
   z-index: 1;
 }
 @media screen and (min-width: 60em) {
+  /* line 163, ../scss/objects/modules/_nav.scss */
   .menu-btn, .menu-close-btn, .show-menu .menu-btn {
     display: none;
   }
 }
+/* line 174, ../scss/objects/modules/_nav.scss */
 .menu-btn:before, .menu-close-btn:before, .show-menu .menu-btn:before {
-  -moz-box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
-  -webkit-box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
-  box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
+  -moz-box-shadow: 0 0 0 2px black, 0 8px 0 2px black, 0 16px 0 2px black;
+  -webkit-box-shadow: 0 0 0 2px black, 0 8px 0 2px black, 0 16px 0 2px black;
+  box-shadow: 0 0 0 2px black, 0 8px 0 2px black, 0 16px 0 2px black;
   content: "";
   display: block;
   position: absolute;
@@ -1485,6 +1621,7 @@ p:last-child {
   top: 30%;
 }
 
+/* line 188, ../scss/objects/modules/_nav.scss */
 .menu-close-btn:after, .show-menu .menu-btn:after, .show-menu .menu-close-btn:after, .menu-close-btn:before, .show-menu .menu-btn:before, .show-menu .menu-close-btn:before {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -1492,13 +1629,14 @@ p:last-child {
   content: "";
   display: block;
   position: absolute;
-  background-color: #000;
+  background-color: black;
   height: 3px;
   left: .5rem;
   right: .5rem;
   top: 45%;
   width: 60%;
 }
+/* line 200, ../scss/objects/modules/_nav.scss */
 .menu-close-btn:after, .show-menu .menu-btn:after, .show-menu .menu-close-btn:after {
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -1506,6 +1644,7 @@ p:last-child {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+/* line 204, ../scss/objects/modules/_nav.scss */
 .menu-close-btn:before, .show-menu .menu-btn:before, .show-menu .menu-close-btn:before {
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -1515,6 +1654,7 @@ p:last-child {
 }
 
 @media screen and (max-width: 60em) {
+  /* line 210, ../scss/objects/modules/_nav.scss */
   .menu-item {
     -moz-transform: translate3d(1000em, 0, 0);
     -ms-transform: translate3d(1000em, 0, 0);
@@ -1523,11 +1663,13 @@ p:last-child {
     transform: translate3d(1000em, 0, 0);
     position: absolute;
   }
+  /* line 216, ../scss/objects/modules/_nav.scss */
   .menu-item .flyout-group .flyout-items {
     height: 0;
     opacity: 0;
     visibility: hidden;
   }
+  /* line 221, ../scss/objects/modules/_nav.scss */
   .menu-item .flyout-group .show + .flyout-items {
     height: auto;
     opacity: 1;
@@ -1535,14 +1677,17 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 210, ../scss/objects/modules/_nav.scss */
   .menu-item {
     float: left;
   }
 }
 @media screen and (max-width: 60em) {
+  /* line 234, ../scss/objects/modules/_nav.scss */
   .menu-item .flyout {
     position: inherit;
   }
+  /* line 239, ../scss/objects/modules/_nav.scss */
   .menu-item.show .flyout {
     height: auto;
     opacity: 1;
@@ -1550,6 +1695,7 @@ p:last-child {
   }
 }
 
+/* line 248, ../scss/objects/modules/_nav.scss */
 .show-menu .menu-item {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
@@ -1557,7 +1703,7 @@ p:last-child {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   position: absolute;
-  background-color: #ddd;
+  background-color: #dddddd;
   clear: left;
   position: initial;
   width: 100%;
@@ -1566,6 +1712,7 @@ p:last-child {
 /*------------------------------------*\
     $FLYOUT
 \*------------------------------------*/
+/* line 270, ../scss/objects/modules/_nav.scss */
 .flyout {
   *zoom: 1;
   position: absolute;
@@ -1579,33 +1726,40 @@ p:last-child {
   height: 0;
   opacity: 0;
   visibility: hidden;
-  background-color: #aaa;
+  background-color: #aaaaaa;
   z-index: 2;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .flyout:after, .flyout:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .flyout:after {
   clear: both;
 }
 @media only screen and (min-width: 60em) {
+  /* line 270, ../scss/objects/modules/_nav.scss */
   .flyout {
     padding-bottom: 1.125rem;
     padding-top: 1.125rem;
   }
 }
+/* line 286, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-groups {
   *zoom: 1;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .flyout .flyout-groups:after, .flyout .flyout-groups:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .flyout .flyout-groups:after {
   clear: both;
 }
 @media only screen and (min-width: 60em) {
+  /* line 291, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group {
     width: 31.25%;
     margin-left: 1.04167%;
@@ -1614,25 +1768,30 @@ p:last-child {
     float: left;
   }
 }
+/* line 296, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-group > .flyout-item {
   text-transform: uppercase;
 }
+/* line 301, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-group-title {
   padding-left: 2rem;
-  background-color: #666;
-  color: #ddd;
+  background-color: #666666;
+  color: #dddddd;
 }
 @media only screen and (min-width: 48em) {
+  /* line 301, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title {
     padding-left: 2rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 301, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title {
     padding-left: 3rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 301, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title {
     -moz-transition: background-color 150ms linear;
     -ms-transition: background-color 150ms linear;
@@ -1643,22 +1802,26 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 48em) {
+  /* line 301, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title {
     padding-left: 1rem;
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 60em) {
+  /* line 301, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title {
     padding-left: 1.5rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 311, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-group-title:hover {
-    background-color: #333;
-    color: #ddd;
+    background-color: #333333;
+    color: #dddddd;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 319, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-item {
     -moz-transition: background-color 150ms linear;
     -ms-transition: background-color 150ms linear;
@@ -1669,35 +1832,42 @@ p:last-child {
     padding-top: 0;
   }
 }
+/* line 330, ../scss/objects/modules/_nav.scss */
 .flyout .flyout-link {
   padding-left: 3rem;
 }
 @media only screen and (min-width: 48em) {
+  /* line 330, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-link {
     padding-left: 3rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 330, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-link {
     padding-left: 4.5rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 330, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-link {
     padding-left: 1rem;
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 48em) {
+  /* line 330, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-link {
     padding-left: 1rem;
   }
 }
 @media only screen and (min-width: 60em) and (min-width: 60em) {
+  /* line 330, ../scss/objects/modules/_nav.scss */
   .flyout .flyout-link {
     padding-left: 1.5rem;
   }
 }
 
+/* line 340, ../scss/objects/modules/_nav.scss */
 .flyout.show {
   height: auto;
   opacity: 1;
@@ -1719,6 +1889,7 @@ p:last-child {
 /*------------------------------------*\
     $OWL_CORE
 \*------------------------------------*/
+/* line 20, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel {
   *zoom: 1;
   clear: both;
@@ -1729,13 +1900,16 @@ p:last-child {
   -ms-touch-action: pan-y;
   /* mouse grab icon */
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .owl-carousel:after, .owl-carousel:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .owl-carousel:after {
   clear: both;
 }
+/* line 29, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-wrapper {
   *zoom: 1;
   -moz-transform: translate3d(0, 0, 0);
@@ -1746,18 +1920,22 @@ p:last-child {
   display: none;
   position: relative;
 }
+/* line 52, ../scss/generic/_mixins.scss */
 .owl-carousel .owl-wrapper:after, .owl-carousel .owl-wrapper:before {
   content: "\0020";
   display: table;
 }
+/* line 58, ../scss/generic/_mixins.scss */
 .owl-carousel .owl-wrapper:after {
   clear: both;
 }
+/* line 35, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-wrapper .owl-wrapper-outer {
   overflow: hidden;
   position: relative;
   width: 100%;
 }
+/* line 40, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-wrapper .owl-wrapper-outer.autoHeight {
   -moz-transition: height 0.5s ease-in-out;
   -ms-transition: height 0.5s ease-in-out;
@@ -1765,16 +1943,19 @@ p:last-child {
   -webkit-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
 }
+/* line 46, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-item {
   float: left;
   overflow: hidden;
   position: relative;
   /* preloading images */
 }
+/* line 52, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-item.loading {
   min-height: 150px;
   background: transparent url("AjaxLoader.gif") no-repeat scroll center center;
 }
+/* line 58, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-wrapper,
 .owl-carousel .owl-item {
   -moz-backface-visibility: hidden;
@@ -1787,10 +1968,12 @@ p:last-child {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
+/* line 64, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-page,
 .owl-carousel .owl-controls .owl-buttons div {
   cursor: pointer;
 }
+/* line 69, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls {
   -moz-user-select: none;
   -ms-user-select: none;
@@ -1800,11 +1983,13 @@ p:last-child {
   position: relative;
   -webkit-tap-highlight-color: transparent;
 }
+/* line 75, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-buttons {
   position: absolute;
   top: 0;
   width: 100%;
 }
+/* line 81, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-prev,
 .owl-carousel .owl-controls .owl-next {
   height: 50px;
@@ -1813,6 +1998,7 @@ p:last-child {
   position: absolute;
   text-indent: -9999em;
 }
+/* line 89, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-prev:after,
 .owl-carousel .owl-controls .owl-next:after {
   content: "";
@@ -1824,28 +2010,35 @@ p:last-child {
   text-indent: 0;
   top: 0;
 }
+/* line 99, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-prev {
   left: 2%;
 }
 @media screen and (min-width: 60em) {
+  /* line 99, ../scss/objects/modules/_owl-carousel.scss */
   .owl-carousel .owl-controls .owl-prev {
     left: 2.188em;
   }
 }
+/* line 106, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-prev:after {
   content: "<";
 }
+/* line 111, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-next {
   right: 3%;
 }
 @media screen and (min-width: 60em) {
+  /* line 111, ../scss/objects/modules/_owl-carousel.scss */
   .owl-carousel .owl-controls .owl-next {
     right: 3.125em;
   }
 }
+/* line 118, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-controls .owl-next:after {
   content: ">";
 }
+/* line 124, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-page {
   filter: Alpha(Opacity=75);
   /*IE7 fix*/
@@ -1856,17 +2049,21 @@ p:last-child {
   width: 140px;
 }
 @media screen and (min-width: 60em) {
+  /* line 124, ../scss/objects/modules/_owl-carousel.scss */
   .owl-carousel .owl-page {
     width: 340px;
   }
 }
+/* line 136, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-page:first-child {
   margin-left: 0;
 }
+/* line 143, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-page .owl-page-img {
   float: left;
   width: 140px;
 }
+/* line 148, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .owl-page .owl-page-title {
   display: none;
   float: right;
@@ -1875,10 +2072,12 @@ p:last-child {
   width: 188px;
 }
 @media screen and (min-width: 60em) {
+  /* line 148, ../scss/objects/modules/_owl-carousel.scss */
   .owl-carousel .owl-page .owl-page-title {
     display: block;
   }
 }
+/* line 162, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .grabbing {
   cursor: url("grabbing.png") 8 8, move;
 }
@@ -1886,6 +2085,7 @@ p:last-child {
 /*------------------------------------*\
     $OWL_THEME
 \*------------------------------------*/
+/* line 176, ../scss/objects/modules/_owl-carousel.scss */
 .owl-buttons div {
   display: inline-block;
   zoom: 1;
@@ -1893,6 +2093,7 @@ p:last-child {
   padding: 3px 10px;
 }
 
+/* line 184, ../scss/objects/modules/_owl-carousel.scss */
 .owl-controls {
   margin-top: 10px;
   text-align: center;
@@ -1900,18 +2101,21 @@ p:last-child {
   /* Use it for non-touch hover action */
   /* Styling Pagination*/
 }
+/* line 192, ../scss/objects/modules/_owl-carousel.scss */
 .owl-controls .clickable .owl-buttons div:hover {
   filter: Alpha(Opacity=100);
   /*IE7 fix*/
   opacity: 1;
   text-decoration: none;
 }
+/* line 201, ../scss/objects/modules/_owl-carousel.scss */
 .owl-controls .owl-page {
   display: inline-block;
   *display: inline;
   /*IE7 life-saver */
   zoom: 1;
 }
+/* line 206, ../scss/objects/modules/_owl-carousel.scss */
 .owl-controls .owl-page span {
   display: block;
   width: 12px;
@@ -1926,6 +2130,7 @@ p:last-child {
   background: #869791;
   /* If PaginationNumbers is true */
 }
+/* line 219, ../scss/objects/modules/_owl-carousel.scss */
 .owl-controls .owl-page span.owl-numbers {
   border-radius: 30px;
   color: #FFF;
@@ -1934,6 +2139,7 @@ p:last-child {
   padding: 2px 10px;
   width: auto;
 }
+/* line 229, ../scss/objects/modules/_owl-carousel.scss */
 .owl-controls .owl-page.active, .owl-controls .owl-page:hover {
   filter: Alpha(Opacity=100);
   /*IE7 fix*/
@@ -1943,6 +2149,7 @@ p:last-child {
 /*------------------------------------*\
     $OWL_TRANSITIONS
 \*------------------------------------*/
+/* line 247, ../scss/objects/modules/_owl-carousel.scss */
 .owl-origin {
   -webkit-perspective: 1200px;
   -webkit-perspective-origin-x: 50%;
@@ -1954,6 +2161,7 @@ p:last-child {
 }
 
 /* fade */
+/* line 258, ../scss/objects/modules/_owl-carousel.scss */
 .owl-fade-out {
   z-index: 10;
   -webkit-animation: fadeOut .7s both ease;
@@ -1961,6 +2169,7 @@ p:last-child {
   animation: fadeOut .7s both ease;
 }
 
+/* line 265, ../scss/objects/modules/_owl-carousel.scss */
 .owl-fade-in {
   -webkit-animation: fadeIn .7s both ease;
   -moz-animation: fadeIn .7s both ease;
@@ -1968,12 +2177,14 @@ p:last-child {
 }
 
 /* backSlide */
+/* line 272, ../scss/objects/modules/_owl-carousel.scss */
 .owl-backSlide-out {
   -webkit-animation: backSlideOut 1s both ease;
   -moz-animation: backSlideOut 1s both ease;
   animation: backSlideOut 1s both ease;
 }
 
+/* line 278, ../scss/objects/modules/_owl-carousel.scss */
 .owl-backSlide-in {
   -webkit-animation: backSlideIn 1s both ease;
   -moz-animation: backSlideIn 1s both ease;
@@ -1981,12 +2192,14 @@ p:last-child {
 }
 
 /* goDown */
+/* line 285, ../scss/objects/modules/_owl-carousel.scss */
 .owl-goDown-out {
   -webkit-animation: scaleToFade .7s ease both;
   -moz-animation: scaleToFade .7s ease both;
   animation: scaleToFade .7s ease both;
 }
 
+/* line 291, ../scss/objects/modules/_owl-carousel.scss */
 .owl-goDown-in {
   -webkit-animation: goDown .6s ease both;
   -moz-animation: goDown .6s ease both;
@@ -1994,12 +2207,14 @@ p:last-child {
 }
 
 /* scaleUp */
+/* line 298, ../scss/objects/modules/_owl-carousel.scss */
 .owl-fadeUp-in {
   -webkit-animation: scaleUpFrom .5s ease both;
   -moz-animation: scaleUpFrom .5s ease both;
   animation: scaleUpFrom .5s ease both;
 }
 
+/* line 304, ../scss/objects/modules/_owl-carousel.scss */
 .owl-fadeUp-out {
   -webkit-animation: scaleUpTo .5s ease both;
   -moz-animation: scaleUpTo .5s ease both;
@@ -2009,216 +2224,279 @@ p:last-child {
 /* Keyframes */
 /*empty*/
 @-webkit-keyframes empty {
+  /* line 314, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 1;
   }
 }
 @-moz-keyframes empty {
+  /* line 318, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 1;
   }
 }
 @keyframes empty {
+  /* line 322, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 1;
   }
 }
 @-webkit-keyframes fadeIn {
+  /* line 326, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 0;
   }
+
+  /* line 327, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 1;
   }
 }
 @-moz-keyframes fadeIn {
+  /* line 331, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 0;
   }
+
+  /* line 332, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 1;
   }
 }
 @keyframes fadeIn {
+  /* line 336, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 0;
   }
+
+  /* line 337, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 1;
   }
 }
 @-webkit-keyframes fadeOut {
+  /* line 341, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 1;
   }
+
+  /* line 342, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 0;
   }
 }
 @-moz-keyframes fadeOut {
+  /* line 346, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 1;
   }
+
+  /* line 347, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 0;
   }
 }
 @keyframes fadeOut {
+  /* line 351, ../scss/objects/modules/_owl-carousel.scss */
   0% {
     opacity: 1;
   }
+
+  /* line 352, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 0;
   }
 }
 @-webkit-keyframes backSlideOut {
+  /* line 356, ../scss/objects/modules/_owl-carousel.scss */
   25% {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
+
+  /* line 357, ../scss/objects/modules/_owl-carousel.scss */
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
   }
+
+  /* line 358, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
   }
 }
 @-moz-keyframes backSlideOut {
+  /* line 362, ../scss/objects/modules/_owl-carousel.scss */
   25% {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
+
+  /* line 363, ../scss/objects/modules/_owl-carousel.scss */
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
   }
+
+  /* line 364, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
   }
 }
 @keyframes backSlideOut {
+  /* line 368, ../scss/objects/modules/_owl-carousel.scss */
   25% {
     opacity: .5;
     transform: translateZ(-500px);
   }
+
+  /* line 369, ../scss/objects/modules/_owl-carousel.scss */
   75% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
   }
+
+  /* line 370, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
   }
 }
 @-webkit-keyframes backSlideIn {
+  /* line 374, ../scss/objects/modules/_owl-carousel.scss */
   0%, 25% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(200%);
   }
+
+  /* line 375, ../scss/objects/modules/_owl-carousel.scss */
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
+
+  /* line 376, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 1;
     -webkit-transform: translateZ(0) translateX(0);
   }
 }
 @-moz-keyframes backSlideIn {
+  /* line 380, ../scss/objects/modules/_owl-carousel.scss */
   0%, 25% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(200%);
   }
+
+  /* line 381, ../scss/objects/modules/_owl-carousel.scss */
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
+
+  /* line 382, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 1;
     -moz-transform: translateZ(0) translateX(0);
   }
 }
 @keyframes backSlideIn {
+  /* line 386, ../scss/objects/modules/_owl-carousel.scss */
   0%, 25% {
     opacity: .5;
     transform: translateZ(-500px) translateX(200%);
   }
+
+  /* line 387, ../scss/objects/modules/_owl-carousel.scss */
   75% {
     opacity: .5;
     transform: translateZ(-500px);
   }
+
+  /* line 388, ../scss/objects/modules/_owl-carousel.scss */
   100% {
     opacity: 1;
     transform: translateZ(0) translateX(0);
   }
 }
 @-webkit-keyframes scaleToFade {
+  /* line 392, ../scss/objects/modules/_owl-carousel.scss */
   to {
     opacity: 0;
     -webkit-transform: scale(0.8);
   }
 }
 @-moz-keyframes scaleToFade {
+  /* line 396, ../scss/objects/modules/_owl-carousel.scss */
   to {
     opacity: 0;
     -moz-transform: scale(0.8);
   }
 }
 @keyframes scaleToFade {
+  /* line 400, ../scss/objects/modules/_owl-carousel.scss */
   to {
     opacity: 0;
     transform: scale(0.8);
   }
 }
 @-webkit-keyframes goDown {
+  /* line 404, ../scss/objects/modules/_owl-carousel.scss */
   from {
     -webkit-transform: translateY(-100%);
   }
 }
 @-moz-keyframes goDown {
+  /* line 408, ../scss/objects/modules/_owl-carousel.scss */
   from {
     -moz-transform: translateY(-100%);
   }
 }
 @keyframes goDown {
+  /* line 412, ../scss/objects/modules/_owl-carousel.scss */
   from {
     transform: translateY(-100%);
   }
 }
 @-webkit-keyframes scaleUpFrom {
+  /* line 416, ../scss/objects/modules/_owl-carousel.scss */
   from {
     opacity: 0;
     -webkit-transform: scale(1.5);
   }
 }
 @-moz-keyframes scaleUpFrom {
+  /* line 420, ../scss/objects/modules/_owl-carousel.scss */
   from {
     opacity: 0;
     -moz-transform: scale(1.5);
   }
 }
 @keyframes scaleUpFrom {
+  /* line 424, ../scss/objects/modules/_owl-carousel.scss */
   from {
     opacity: 0;
     transform: scale(1.5);
   }
 }
 @-webkit-keyframes scaleUpTo {
+  /* line 428, ../scss/objects/modules/_owl-carousel.scss */
   to {
     opacity: 0;
     -webkit-transform: scale(1.5);
   }
 }
 @-moz-keyframes scaleUpTo {
+  /* line 432, ../scss/objects/modules/_owl-carousel.scss */
   to {
     opacity: 0;
     -moz-transform: scale(1.5);
   }
 }
 @keyframes scaleUpTo {
+  /* line 436, ../scss/objects/modules/_owl-carousel.scss */
   to {
     opacity: 0;
     transform: scale(1.5);
@@ -2227,6 +2505,7 @@ p:last-child {
 /*------------------------------------*\
     $OWL_CUSTOM
 \*------------------------------------*/
+/* line 451, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .stage-teaser .st-content,
 .owl-carousel .stage-teaser .st-header {
   -moz-transition-delay: 0.3s;
@@ -2248,6 +2527,7 @@ p:last-child {
   left: -100%;
   opacity: 0;
 }
+/* line 462, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .stage-teaser .st-img:before {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
@@ -2268,15 +2548,18 @@ p:last-child {
   opacity: 0;
   right: 100%;
 }
+/* line 473, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .stage-teaser.visible .st-content,
 .owl-carousel .stage-teaser.visible .st-header {
   left: 0;
   opacity: 1;
 }
+/* line 480, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .stage-teaser.visible .st-img:before {
   opacity: 1;
   right: 0;
 }
+/* line 488, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .stage-teaser.leaving .st-content,
 .owl-carousel .stage-teaser.leaving .st-header {
   -moz-transition-delay: 0;
@@ -2286,16 +2569,19 @@ p:last-child {
   left: -100%;
   opacity: 0;
 }
+/* line 496, ../scss/objects/modules/_owl-carousel.scss */
 .owl-carousel .stage-teaser.leaving .st-img:before {
   opacity: 0;
   right: 100%;
 }
 @media screen and (min-width: 60em) {
+  /* line 503, ../scss/objects/modules/_owl-carousel.scss */
   .owl-carousel .stage-teaser.hide-large {
     display: none;
   }
 }
 @media screen and (min-width: 48em) {
+  /* line 509, ../scss/objects/modules/_owl-carousel.scss */
   .owl-carousel .stage-teaser.hide-med {
     display: none;
   }
@@ -2318,9 +2604,9 @@ p:last-child {
  * "stage-teaser-head" ist die Headline.
  * "stage-teaser-content" umfasst den restlichen Inhalt.
  *
- * Die img-H├Âhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
- * $stage-teaser-img-height:	195px;	// img-H├Âhe-S
- * $stage-teaser-img-height-m:	468px;	// img-H├Âhe-M
+ * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-Höhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
  *
 	<div class="stage-teaser">
     </div>
@@ -2329,28 +2615,33 @@ p:last-child {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
-/*$stage-teaser-img-height:	197px;	// img-H├Âhe-S*/
+/*$stage-teaser-img-height:	197px;	// img-Höhe-S*/
 /*------------------------------------*\
     $STAGE-TEASER
 \*------------------------------------*/
 @media only screen and (min-width: 48em) {
+  /* line 47, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser {
     min-height: 468px;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 47, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser {
     min-height: 468px;
   }
+  /* line 57, ../scss/objects/modules/_stage-teaser.scss */
   main > .stage-teaser {
     margin-top: -1.5rem;
   }
 }
+/* line 63, ../scss/objects/modules/_stage-teaser.scss */
 .stage-teaser .st-figure {
   margin-bottom: 0.75rem;
   overflow: hidden;
 }
 @media only screen and (min-width: 48em) {
+  /* line 63, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-figure {
     position: absolute;
     top: 0;
@@ -2358,16 +2649,19 @@ p:last-child {
     left: 0;
   }
 }
+/* line 72, ../scss/objects/modules/_stage-teaser.scss */
 .stage-teaser .st-figure img {
   max-width: 48em;
 }
 @media only screen and (min-width: 48em) {
+  /* line 72, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-figure img {
     max-width: 60em;
     min-height: 468px;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 72, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-figure img {
     max-width: 100%;
     min-height: 468px;
@@ -2375,40 +2669,47 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 89, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-footer {
     position: absolute;
     bottom: 0.75rem;
   }
 }
+/* line 96, ../scss/objects/modules/_stage-teaser.scss */
 .stage-teaser .st-head {
   /**/
 }
+/* line 101, ../scss/objects/modules/_stage-teaser.scss */
 .stage-teaser .st-header {
   /**/
 }
+/* line 106, ../scss/objects/modules/_stage-teaser.scss */
 .stage-teaser .st-inner {
   padding: 0.75rem 1rem;
 }
 @media only screen and (min-width: 48em) {
+  /* line 106, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-inner {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 106, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-inner {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 106, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-inner {
     width: 64.58333%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
     float: left;
-    background-color: #fff;
+    background-color: white;
     background-color: rgba(255, 255, 255, 0.75);
     margin: 1.5rem 1.5rem;
     padding: 1.5rem 1.5rem 4.5rem;
@@ -2416,6 +2717,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 106, ../scss/objects/modules/_stage-teaser.scss */
   .stage-teaser .st-inner {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2426,6 +2728,7 @@ p:last-child {
     padding: 1.5rem 1.5rem 4.5rem;
   }
 }
+/* line 125, ../scss/objects/modules/_stage-teaser.scss */
 .stage-teaser .st-main {
   /**/
 }
@@ -2463,10 +2766,12 @@ p:last-child {
 /*------------------------------------*\
 	$GENERIC
 \*------------------------------------*/
+/* line 40, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab:hover, .tabs > .tab-control:checked + .tab {
   bottom: 0;
 }
 
+/* line 45, ../scss/objects/modules/_tabs.scss */
 .tab-control:nth-of-type(1):checked ~ .tab-content:nth-of-type(1), .tab-control:nth-of-type(2):checked ~ .tab-content:nth-of-type(2), .tab-control:nth-of-type(3):checked ~ .tab-content:nth-of-type(3), .tab-control:nth-of-type(4):checked ~ .tab-content:nth-of-type(4), .tab-control:nth-of-type(5):checked ~ .tab-content:nth-of-type(5) {
   display: block;
 }
@@ -2474,20 +2779,22 @@ p:last-child {
 /*------------------------------------*\
 	$TABS
 \*------------------------------------*/
+/* line 73, ../scss/objects/modules/_tabs.scss */
 .tabs {
-  background-color: #666;
-  border: 1px solid #666;
+  background-color: #666666;
+  border: 1px solid #666666;
   border-top: 0;
   padding-top: 0.375rem;
 }
+/* line 81, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab {
   -moz-transition: bottom 0.3s ease-out;
   -o-transition: bottom 0.3s ease-out;
   -webkit-transition: bottom 0.3s ease-out;
   transition: bottom 0.3s ease-out;
-  background-color: #999;
+  background-color: #999999;
   bottom: -0.75rem;
-  color: #fff;
+  color: white;
   margin-left: 1px !important;
   margin-right: 0 !important;
   padding-bottom: 1.5rem;
@@ -2495,6 +2802,7 @@ p:last-child {
   text-align: center;
 }
 @media only screen and (min-width: 29.75em) {
+  /* line 93, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(2), .tabs > .tab:nth-of-type(2):nth-last-of-type(1) {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2504,6 +2812,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 93, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(2), .tabs > .tab:nth-of-type(2):nth-last-of-type(1) {
     width: 39.58333%;
     margin-left: 1.04167%;
@@ -2513,6 +2822,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 93, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(2), .tabs > .tab:nth-of-type(2):nth-last-of-type(1) {
     width: 31.25%;
     margin-left: 1.04167%;
@@ -2522,6 +2832,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 108, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(3), .tabs > .tab:nth-of-type(2):nth-last-of-type(2), .tabs > .tab:nth-of-type(3):nth-last-of-type(1) {
     width: 31.25%;
     margin-left: 1.04167%;
@@ -2531,6 +2842,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 108, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(3), .tabs > .tab:nth-of-type(2):nth-last-of-type(2), .tabs > .tab:nth-of-type(3):nth-last-of-type(1) {
     width: 22.91667%;
     margin-left: 1.04167%;
@@ -2540,6 +2852,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 120, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(4), .tabs > .tab:nth-of-type(2):nth-last-of-type(3), .tabs > .tab:nth-of-type(3):nth-last-of-type(2), .tabs > .tab:nth-of-type(4):nth-last-of-type(1) {
     width: 22.91667%;
     margin-left: 1.04167%;
@@ -2549,6 +2862,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 120, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(4), .tabs > .tab:nth-of-type(2):nth-last-of-type(3), .tabs > .tab:nth-of-type(3):nth-last-of-type(2), .tabs > .tab:nth-of-type(4):nth-last-of-type(1) {
     width: 22.91667%;
     margin-left: 1.04167%;
@@ -2558,6 +2872,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 133, ../scss/objects/modules/_tabs.scss */
   .tabs > .tab:nth-of-type(1):nth-last-of-type(5), .tabs > .tab:nth-of-type(2):nth-last-of-type(4), .tabs > .tab:nth-of-type(3):nth-last-of-type(3), .tabs > .tab:nth-of-type(4):nth-last-of-type(2), .tabs > .tab:nth-of-type(5):nth-last-of-type(1) {
     width: 18.75%;
     margin-left: 1.04167%;
@@ -2566,28 +2881,33 @@ p:last-child {
     float: left;
   }
 }
+/* line 143, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab:hover {
-  background-color: #ddd;
-  color: #000;
+  background-color: #dddddd;
+  color: black;
 }
+/* line 149, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab:first-of-type {
   margin-left: 1.04167% !important;
 }
+/* line 155, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab-content {
-  background-color: #fff;
+  background-color: white;
   clear: both;
-  color: #000;
+  color: black;
   display: none;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
   position: relative;
 }
+/* line 169, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab-control {
   display: none;
 }
+/* line 173, ../scss/objects/modules/_tabs.scss */
 .tabs > .tab-control:checked + .tab {
-  background-color: #fff;
-  color: #000;
+  background-color: white;
+  color: black;
 }
 
 /*------------------------------------*\
@@ -2596,12 +2916,14 @@ p:last-child {
 /*------------------------------------*\
     $TEASER
 \*------------------------------------*/
+/* line 5, ../scss/objects/modules/_teaser.scss */
 .teaser {
   background-color: #f0f0f0;
   color: inherit;
   display: block;
 }
 @media only screen and (min-width: 48em) {
+  /* line 13, ../scss/objects/modules/_teaser.scss */
   .teaser:first-of-type:last-of-type .t-figure {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2611,6 +2933,7 @@ p:last-child {
     margin-left: -1.04167%;
     margin-right: 2.08333%;
   }
+  /* line 20, ../scss/objects/modules/_teaser.scss */
   .teaser:first-of-type:last-of-type .t-figure + .t-inner {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2621,6 +2944,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 28, ../scss/objects/modules/_teaser.scss */
   .teaser:nth-of-type(1):nth-last-of-type(2), .teaser:nth-of-type(2):nth-last-of-type(1) {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2630,6 +2954,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 35, ../scss/objects/modules/_teaser.scss */
   .teaser:nth-of-type(1):nth-last-of-type(3), .teaser:nth-of-type(2):nth-last-of-type(2), .teaser:nth-of-type(3):nth-last-of-type(1) {
     width: 31.25%;
     margin-left: 1.04167%;
@@ -2639,6 +2964,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 29.75em) {
+  /* line 43, ../scss/objects/modules/_teaser.scss */
   .teaser:nth-of-type(1):nth-last-of-type(4), .teaser:nth-of-type(2):nth-last-of-type(3), .teaser:nth-of-type(3):nth-last-of-type(2), .teaser:nth-of-type(4):nth-last-of-type(1) {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2648,6 +2974,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 43, ../scss/objects/modules/_teaser.scss */
   .teaser:nth-of-type(1):nth-last-of-type(4), .teaser:nth-of-type(2):nth-last-of-type(3), .teaser:nth-of-type(3):nth-last-of-type(2), .teaser:nth-of-type(4):nth-last-of-type(1) {
     width: 22.91667%;
     margin-left: 1.04167%;
@@ -2656,26 +2983,32 @@ p:last-child {
     float: left;
   }
 }
+/* line 57, ../scss/objects/modules/_teaser.scss */
 .teaser .t-figure {
   /**/
 }
 @media only screen and (min-width: 48em) {
+  /* line 62, ../scss/objects/modules/_teaser.scss */
   .teaser .t-footer {
     position: absolute;
     bottom: 0.75rem;
   }
 }
+/* line 69, ../scss/objects/modules/_teaser.scss */
 .teaser .t-head {
   /**/
 }
+/* line 74, ../scss/objects/modules/_teaser.scss */
 .teaser .t-header {
   /**/
 }
 @media only screen and (min-width: 48em) {
+  /* line 79, ../scss/objects/modules/_teaser.scss */
   .teaser .t-inner {
     padding-bottom: 3rem;
   }
 }
+/* line 88, ../scss/objects/modules/_teaser.scss */
 .teaser .t-main {
   /**/
 }
@@ -2686,6 +3019,7 @@ p:last-child {
 /*------------------------------------*\
     $TEXT-BLOCK
 \*------------------------------------*/
+/* line 5, ../scss/objects/modules/_text-block.scss */
 .text-block {
   width: 89.58333%;
   margin-left: 1.04167%;
@@ -2695,16 +3029,19 @@ p:last-child {
   padding-left: 1rem;
 }
 @media only screen and (min-width: 48em) {
+  /* line 5, ../scss/objects/modules/_text-block.scss */
   .text-block {
     padding-left: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 5, ../scss/objects/modules/_text-block.scss */
   .text-block {
     padding-left: 1.5rem;
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 5, ../scss/objects/modules/_text-block.scss */
   .text-block {
     width: 81.25%;
     margin-left: 1.04167%;
@@ -2714,6 +3051,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 5, ../scss/objects/modules/_text-block.scss */
   .text-block {
     width: 64.58333%;
     margin-left: 1.04167%;
@@ -2723,6 +3061,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 48em) {
+  /* line 18, ../scss/objects/modules/_text-block.scss */
   .text-block:nth-of-type(1):nth-last-of-type(2), .text-block:nth-of-type(2):nth-last-of-type(1) {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2733,6 +3072,7 @@ p:last-child {
   }
 }
 @media only screen and (min-width: 60em) {
+  /* line 18, ../scss/objects/modules/_text-block.scss */
   .text-block:nth-of-type(1):nth-last-of-type(2), .text-block:nth-of-type(2):nth-last-of-type(1) {
     width: 47.91667%;
     margin-left: 1.04167%;
@@ -2758,7 +3098,7 @@ p:last-child {
 		</div>
 	</div>
  *
- * Die Togglebox wird mit einem umschlie├ƒenden <div class="togglebox"> eingeleitet.
+ * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
  * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
  *
  * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
@@ -2767,20 +3107,170 @@ p:last-child {
  * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
  *
  * <div class="tb-content">
- * Alles was zum Content der Togglebox geh├Ârt wird hier eingef├╝gt.
+ * Alles was zum Content der Togglebox gehört wird hier eingefügt.
  *
 **/
+/* line 36, ../scss/objects/modules/_togglebox.scss */
 .togglebox .tb-subject {
-  background-color: #ddd;
-  color: #000;
+  background-color: #dddddd;
+  color: black;
   font-family: "Roboto Condensed", "Arial", sans-serif;
 }
+/* line 44, ../scss/objects/modules/_togglebox.scss */
 .togglebox .tb-content {
-  background-color: #fff;
+  background-color: white;
 }
 
 /*------------------------------------*\
 	
+\*------------------------------------*/
+/*------------------------------------*\
+    $BILDERAUSTAUSCH
+\*------------------------------------*/
+/**
+ * GENERIC.............................Variables/Placeholder
+ * BILDERAUSTAUSCH.....................Bilderaustausch  Element
+**/
+/**
+ * Der "stage-teaser" findet sich als einleitendes Element einer Seite.
+ * Innerhalb "stage-teaser" gibt es drei Elemente: "stage-teaser-img", "stage-teaser-head" und "stage-teaser-content".
+ * "stage-teaser-img" ist das Keyvisual.
+ * "stage-teaser-head" ist die Headline.
+ * "stage-teaser-content" umfasst den restlichen Inhalt.
+ *
+ * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-Höhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
+ *
+	<div class="bilderaustausch">
+    </div>
+ *
+**/
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+/*------------------------------------*\
+    $BILDERAUSTAUSCH
+\*------------------------------------*/
+/* line 42, ../scss/objects/modules/_bilderaustausch.scss */
+.bilderaustausch .fade-in {
+  -moz-transition: opacity 0.5s linear;
+  -o-transition: opacity 0.5s linear;
+  -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+}
+/* line 46, ../scss/objects/modules/_bilderaustausch.scss */
+.bilderaustausch .fade-in.show {
+  opacity: 1;
+}
+/* line 52, ../scss/objects/modules/_bilderaustausch.scss */
+.bilderaustausch .slide-in {
+  -webkit-animation: bt-slide-out .5s 1 forwards;
+  -moz-animation: bt-slide-out .5s 1 forwards;
+  -o-animation: bt-slide-out .5s 1 forwards;
+  animation: bt-slide-out .5s 1 forwards;
+  left: -100%;
+  position: relative;
+}
+/* line 57, ../scss/objects/modules/_bilderaustausch.scss */
+.bilderaustausch .slide-in.show {
+  -webkit-animation: bt-slide-in .5s 1 forwards;
+  -moz-animation: bt-slide-in .5s 1 forwards;
+  -o-animation: bt-slide-in .5s 1 forwards;
+  animation: bt-slide-in .5s 1 forwards;
+}
+
+@-webkit-keyframes bt-slide-in {
+  /* line 65, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: -100%;
+  }
+
+  /* line 66, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: 0;
+  }
+}
+@-moz-keyframes bt-slide-in {
+  /* line 65, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: -100%;
+  }
+
+  /* line 66, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: 0;
+  }
+}
+@-o-keyframes bt-slide-in {
+  /* line 65, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: -100%;
+  }
+
+  /* line 66, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: 0;
+  }
+}
+@keyframes bt-slide-in {
+  /* line 65, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: -100%;
+  }
+
+  /* line 66, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: 0;
+  }
+}
+@-webkit-keyframes bt-slide-out {
+  /* line 71, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: 0;
+  }
+
+  /* line 72, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: -100%;
+  }
+}
+@-moz-keyframes bt-slide-out {
+  /* line 71, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: 0;
+  }
+
+  /* line 72, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: -100%;
+  }
+}
+@-o-keyframes bt-slide-out {
+  /* line 71, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: 0;
+  }
+
+  /* line 72, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: -100%;
+  }
+}
+@keyframes bt-slide-out {
+  /* line 71, ../scss/objects/modules/_bilderaustausch.scss */
+  0% {
+    left: 0;
+  }
+
+  /* line 72, ../scss/objects/modules/_bilderaustausch.scss */
+  100% {
+    left: -100%;
+  }
+}
+/*------------------------------------*\
+    
 \*------------------------------------*/
 /*------------------------------------*\
     $DEBUG
