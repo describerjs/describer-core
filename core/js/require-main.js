@@ -22,6 +22,7 @@ require.config({
 		'jquery_ba-dotimeout'                              : 'externals/customized/jquery.ba-dotimeout',
 		'jquery_countdown'                                 : 'externals/customized/jquery.countdown',
 		'jquery_countdown-de'                              : 'externals/customized/jquery.countdown-de',
+		'jquery_parallax'                                  : 'externals/customized/jquery.parallax',
 		'jquery_plugin'                                    : 'externals/customized/jquery.plugin',
 		'jquery_validate'                                  : 'externals/customized/jquery.validate',
 		'owl_carousel'                                     : 'externals/customized/owl.carousel',
@@ -63,6 +64,7 @@ require.config({
 		'modules.form.selectOptionExtractInGroup'          : 'mylibs/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
 		'modules.modal'                                    : 'mylibs/modules/modal',
+		'modules.parallax'                                 : 'mylibs/modules/parallax',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',
 
