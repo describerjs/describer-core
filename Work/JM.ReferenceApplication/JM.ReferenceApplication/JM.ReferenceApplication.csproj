@@ -66,9 +66,9 @@
       <HintPath>..\..\JM.Foundation\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.96, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.75, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.1.0.0.96\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.75\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -229,7 +229,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmsService.cs" />
@@ -245,7 +244,6 @@
     <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
     <Compile Include="Areas\JMTools\Models\Traces.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ContentController.cs">
@@ -257,16 +255,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Models\ApplicationDbContext.cs" />
     <Compile Include="Infrastructure\Models\Extensions.cs" />
-    <Compile Include="Infrastructure\Models\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="Infrastructure\Models\ExternalLoginListViewModel.cs" />
-    <Compile Include="Infrastructure\Models\ForgotPasswordViewModel.cs" />
-    <Compile Include="Infrastructure\Models\IdentityModels.cs" />
-    <Compile Include="Infrastructure\Models\LoginViewModel.cs" />
-    <Compile Include="Infrastructure\Models\ManageUserViewModel.cs" />
-    <Compile Include="Infrastructure\Models\RegisterViewModel.cs" />
-    <Compile Include="Infrastructure\Models\ResetPasswordViewModel.cs" />
     <Compile Include="Infrastructure\Monitoring\ApplicationEvents.Category.cs" />
     <Compile Include="Infrastructure\Monitoring\ApplicationEvents.cs" />
     <Compile Include="Infrastructure\Monitoring\ApplicationEvents.ErrorLog.cs" />
@@ -642,6 +631,9 @@
     <Content Include="App_Data\Config\piranha.config" />
     <Content Include="Areas\JMDemo\Views\Module\JM_Foundation.cshtml" />
     <Content Include="Areas\JMDemo\js\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\Regions\Togglebox.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -649,20 +641,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Login\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Login\ConfirmEmail.cshtml" />
-    <Content Include="Views\Login\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Login\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Login\ForgotPassword.cshtml" />
-    <Content Include="Views\Login\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Login\Manage.cshtml" />
-    <Content Include="Views\Login\Register.cshtml" />
-    <Content Include="Views\Login\ResetPassword.cshtml" />
-    <Content Include="Views\Login\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Error\DisplayError.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business\Index.cshtml" />
@@ -671,21 +649,14 @@
     <Content Include="Areas\JMDemo\Views\JM_Business\Details.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business\ImportantModuleInfo.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business\ImportantConfiguredDeviceInfo.cshtml" />
-    <Content Include="Views\Error\DisplayErrorAlternative.cshtml" />
-    <Content Include="Views\Shared\Sidebar.cshtml" />
     <Content Include="Views\Post\Index.cshtml" />
-    <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData.cshtml" />
     <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData_Danke.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\MainJS.cshtml" />
     <Content Include="Views\Shared\Regions\StageTeaser.cshtml" />
-    <Content Include="Views\Page\Level0.cshtml" />
-    <Content Include="Views\Page\Level1.cshtml" />
-    <Content Include="Views\Page\Level2.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_StageTeaser.cshtml" />
     <Content Include="Views\Shared\Regions\Teaser.cshtml" />
-    <Content Include="Views\Shared\Regions\Togglebox.cshtml" />
     <Content Include="Views\Shared\Regions\Accordion.cshtml" />
     <Content Include="Views\Shared\Regions\TextBlock.cshtml" />
     <Content Include="Views\Shared\_LocalStorageJS.cshtml" />
@@ -693,7 +664,6 @@
     <Content Include="Views\Shared\_RequireConfig.cshtml" />
     <Content Include="Views\Shared\Regions\Tabs.cshtml" />
     <Content Include="package.json" />
-    <Content Include="Views\Page\FaqPage.cshtml" />
     <Content Include="Views\Shared\Regions\Faq.cshtml" />
     <Content Include="Views\Shared\_BasisJS.cshtml" />
     <Content Include="Views\Shared\Regions\Carousel.cshtml" />
@@ -943,7 +913,6 @@
     <Content Include="img\webp\videoPlayer\ayyildiz_app_tutorial.webp" />
     <Content Include="img\webp\videoPlayer\iphone5s-video.webp" />
     <Content Include="Views\Home\Demo.cshtml" />
-    <Content Include="Views\Page\TextListPage.cshtml" />
     <Content Include="Views\Shared\Regions\TextList.cshtml" />
     <Content Include="Areas\JMTools\Views\Administration\EventTracing.cshtml" />
     <Content Include="Areas\JMTools\Views\Shared\_TracesTable.cshtml" />
@@ -953,8 +922,7 @@
     <Content Include="Views\Content\_StyleSwitcher.cshtml" />
     <Content Include="template\default-onepage\Views\_ViewStart.cshtml" />
     <Content Include="template\default\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Regions\Tiles.cshtml" />
-    <Content Include="Views\Page\Featuretest.cshtml" />
+    <Content Include="Views\Page\demo.cshtml" />
     <Content Include="Views\Shared\Regions\Block.cshtml" />
   </ItemGroup>
   <ItemGroup>
