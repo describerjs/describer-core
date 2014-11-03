@@ -5,7 +5,7 @@
 <title>DEMO</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="description" content="$description$" />
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
@@ -30,35 +30,6 @@ window.onerror = function(message, url, linenumber) {
     return false;
 };
 </script>-->
-<style>
-    .scrollani { position: absolute; }
-    .scrollani .icon {
-        background-image: url("/img/twitter-sprite.svg");
-        background-size: 400px 100px;
-    }
-    .twitter {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        display: none;
-    }
-    .twitter.show {
-        display: block;
-    }
-    .twitter1 {
-        background-position: 0px 0px;
-    }
-    .twitter2 {
-        background-position: 1000px 0px;
-    }
-    .twitter3 {
-        background-position: 200px 0px;
-    }
-    .twitter4 {
-        background-position: 300px 0px;
-    }
-</style>
-
 <script src="/js/raven.js"></script>
 <script>
     Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
@@ -381,6 +352,7 @@ window.onerror = function(message, url, linenumber) {
 .demo-section > .block:hover { background-color: #f9f9f9; }
 .demo-section > .togglebox { margin-bottom: 3px; }
 .demo-section > .togglebox.show > .tb-content { border: 1px solid #ddd; padding: 1rem 0 0; }
+#UI-Elemente-Navigation + .togglebox.show .tb-content { overflow: visible; padding-bottom: 1rem; }
 </style>
 </head>
 
@@ -388,10 +360,7 @@ window.onerror = function(message, url, linenumber) {
 <div class="page">
 	<header class="page-header" role="banner">
 		<a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=DEMO" alt="DEMO" /></a>
-		<!-- <form class="search" role="search" style="display:none">
-			<input type="search" name="search" />
-		</form> -->
-		<nav class="nav" id="nav" role="navigation">
+		<nav class="nav" id="navi" role="navigation">
 			<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 			<ul class="nav-items">
 				<li class="nav-item menu-item">
@@ -414,6 +383,9 @@ window.onerror = function(message, url, linenumber) {
 						<div class="flyout-group">
 							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Accordion">Accordion</a></div>
 						</div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Back-To-Top">Back-To-Top</a></div>
+                        </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Block">Block</a></div>
                         </div>
@@ -440,17 +412,6 @@ window.onerror = function(message, url, linenumber) {
                         </div>
 					</div>
 				</li>
-                <li class="nav-item menu-item">
-                    <a href="#OnScroll" class="nav-link" data-jmname="nav-link" data-jmdominit="true">On Scroll Animation</a>
-                    <div class="flyout">
-                        <div class="flyout-group">
-                            <div class="flyout-item"><a class="flyout-group-title" href="#OnScroll-FadeIn">Fade-In</a></div>
-                        </div>
-                        <div class="flyout-group">
-                            <div class="flyout-item"><a class="flyout-group-title" href="#OnScroll-SlideIn">Slide-In</a></div>
-                        </div>
-                    </div>
-                </li>
 				<li class="nav-item menu-item">
                     <a href="#SocialMedia" class="nav-link" data-jmname="nav-link" data-jmdominit="true">SocialMedia</a>
                     <div class="flyout">
@@ -559,9 +520,7 @@ window.onerror = function(message, url, linenumber) {
     						</li>
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" data-jmconfig="[{ 'url': '/ajax-files/togglebox.html' }, {}, {}]" href="#">Ipsum Accordion (ajax)</a>
-    							<div class="acc-panel">
-
-                                </div>
+    							<div class="acc-panel"></div>
     						</li>
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" href="#">Dolor Accordion</a>
@@ -586,6 +545,22 @@ window.onerror = function(message, url, linenumber) {
     						</li>
     					</ul>
     				</div>
+                </div>
+            </div>
+            <section class="block" id="UI-Elemente-Back-To-Top">
+                <section class="block-content">
+                    <h3>Back-To-Top</h3>
+                    <p>Button scrollt die Seite nach oben</p>
+                </section>
+            </section>
+            <div class="togglebox">
+                <a class="tb-subject" data-jmname="togglebox">Demo</a>
+                <div class="tb-content">
+                    <section class="block" data-jmselector="equal-heights-children">
+                        <div class="block-content">
+                            <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
+                        </div>
+                    </section>
                 </div>
             </div>
             <section class="block" id="UI-Elemente-Block">
@@ -773,7 +748,7 @@ window.onerror = function(message, url, linenumber) {
     		<div class="togglebox">
     			<a class="tb-subject" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
-    				<nav class="nav" id="nav" role="navigation" style="margin-bottom: 20rem;">
+    				<nav class="nav" id="nav" role="navigation">
     					<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
     					<ul class="nav-items">
     						<li class="nav-item menu-item">
@@ -1340,71 +1315,6 @@ window.onerror = function(message, url, linenumber) {
     			</div>
     		</div>
         </div>
-        <!--<div data-jmname="bildertauch-on-view" data-jmdominit="true"><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p><p>asdfasdfasdf</p></div>-->
-        <div class="scrollani" data-jmname="frame-ani-by-scrolling|scrollControlTransition" data-jmdominit="true">
-            <div class="icon twitter twitter1"></div>
-            <div class="icon twitter twitter2"></div>
-            <div class="icon twitter twitter3"></div>
-            <div class="icon twitter twitter4"></div>
-            <!--<svg viewBox="0 0 100 100" class="icon shape-twitter-3">
-                <use xlink:href="#shape-twitter"></use>
-            </svg>
-            <img src="/img/twitter-sprite.svg" />-->
-        </div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div><div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-        <div><p>asdlfasdflkklj ölkj asödlkj lkjöalsk  aölkj öolajsdölkfjö lkj</p></div>
-
-
-
-
-
-
-
-
-        <h2 id="OnScroll">On Scroll Animation</h2>
-        <div class="demo-section">
-            <section class="text-block" id="OnScroll-FadeIn">
-                <h3>Fade-in on Scroll</h3>
-                <p>Fade element in on scroll event</p>
-            </section>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo</a>
-                <div class="tb-content">
-                    <div class="bilderaustausch">
-                        <div class="fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h1>Now you see me</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="demo-section">
-            <section class="text-block" id="OnScroll-SlideIn">
-                <h3>Slide-in on Scroll</h3>
-                <p>Slide element in on scroll event</p>
-            </section>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo</a>
-                <div class="tb-content">
-                    <div class="bilderaustausch">
-                        <div class="slide-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h1>Now you see me</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <h2 id="SocialMedia">SocialMedia</h2>
         <div class="demo-section">
     		<section class="block" id="SocialMedia-Facebook">
@@ -1422,67 +1332,9 @@ window.onerror = function(message, url, linenumber) {
     			</div>
     		</div>
         </div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-        <div><p>lkasdjöflaksjdöfl aslkfö aölksjf ölkj ölkasdf öljasdfkljölkjölkjasd fölkajs dölkj aklsjdf</p></div>
-
 	</main>
     <footer class="page-footer" role="contentinfo">
-        <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>	
+        <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
 		<!-- <section class="h-card">
 			<div class="hc-section"><a class="u-url p-organization-name link" href="/">Beispiel-AG</a></div>
 			<address class="hc-section"><span class="p-street-address">Beispiel Str. 111a</span> <span class="p-locality">11111 Beispiel-Location</span> <span class="p-country-name">Beispielland</span></address>
