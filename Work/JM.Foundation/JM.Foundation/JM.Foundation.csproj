@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.96\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.97\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -166,7 +166,7 @@
     <Compile Include="Piranha\Extensions\ToggleBox.cs" />
     <Compile Include="Piranha\Extensions\OnePageSection.cs" />
     <Compile Include="Piranha\Extensions\TabsRegion.cs" />
-    <Compile Include="Piranha\Extensions\TeaserExtension.cs" />
+    <Compile Include="Piranha\Extensions\Teaser.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Configuration\ConfigObjects\Server.cs" />
@@ -212,7 +212,7 @@
       <SubType>Designer</SubType>
     </None>
     <EmbeddedResource Include="Piranha\Extensions\FaqRegion.cshtml" />
-    <EmbeddedResource Include="Piranha\Extensions\TeaserExtension.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\Teaser.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\TabsRegion.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\TextListRegion.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\InPageNavigationElement.cshtml" />

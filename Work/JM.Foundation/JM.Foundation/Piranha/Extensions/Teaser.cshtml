@@ -1,10 +1,10 @@
 ﻿@using System.Web.Mvc.Html
 @using JM.Foundation.Mvc.Helper
-@model TeaserExtension
+@model Teaser
 
 @{
 	var fieldString = @Html.GetFullHtmlFieldName(m => m.Header);
-	var regionID = fieldString.Replace("Regions[", "").Split(']')[0];
+	var regionID = fieldString.Replace("Regions[", "").Split(']')[0].Replace(".", "");
 }
 <script type="text/javascript">
     $(document).ready(function () {
@@ -41,13 +41,13 @@
 		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
 	</li>
 	<li>
-		@Html.LabelFor(m => m.EnableParallax, "Parallax-Darstellung")
-		<div class="input">@Html.CheckBoxFor(m => m.EnableParallax)</div>
+		@Html.LabelFor(m => m.ImageEffect, "Bildeffekt")
+		<div class="input">@Html.DropDownListFor(m => m.ImageEffect, Model.ImageEffectSelection)</div>
 	</li>
 		<li>
-        @Html.LabelFor(m => m.ParallaxValue, "Parallax-Einstellung")
+        @Html.LabelFor(m => m.ParallaxValue, "Parallax-Stärke")
 			<div class="input">@Html.TextBoxFor(m => m.ParallaxValue)</div>
 			@Html.ValidationMessageFor(m => m.ParallaxValue)
-			<p>Dieser Wert beschreibt die Stärke des Parallaxeffekts. Der Wert sollte eine Kommazahl zwischen 1 und 3 sein - empfohlen ist 1.5.</p>
+			<p>Bestimmt die Stärke des Parallaxeffekts, wenn dieser aktiviert ist. Der Wert sollte eine Kommazahl zwischen 1 und 3 sein - empfohlen ist 1.5.</p>
     </li>
 </ul>

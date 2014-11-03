@@ -1,4 +1,5 @@
-﻿@model  Block
+﻿@using JM.ReferenceApplication.Infrastructure.Models
+@model  Block
 
 @if (Model != null && !Model.Hide)
 {
@@ -7,6 +8,7 @@
     
     var imageClass = string.Empty;
     var anchor = string.Empty;
+	
     if (Model != null)
     {
         imageClass = !String.IsNullOrEmpty(Model.ImageOrientation) ? String.Format("img-{0}", Model.ImageOrientation) : String.Empty;

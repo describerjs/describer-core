@@ -66,9 +66,9 @@
       <HintPath>..\..\JM.Foundation\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.75, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.97, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.1.0.0.75\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.97\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -256,6 +256,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Models\Extensions.cs" />
+    <Compile Include="Infrastructure\Models\PictureFillEffectModel.cs" />
     <Compile Include="Infrastructure\Monitoring\ApplicationEvents.Category.cs" />
     <Compile Include="Infrastructure\Monitoring\ApplicationEvents.cs" />
     <Compile Include="Infrastructure\Monitoring\ApplicationEvents.ErrorLog.cs" />
@@ -924,6 +925,8 @@
     <Content Include="template\default\_ViewStart.cshtml" />
     <Content Include="Views\Page\demo.cshtml" />
     <Content Include="Views\Shared\Regions\Block.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_Effects.cshtml" />
+    <Content Include="Views\Shared\Regions\Tiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Extensions\" />

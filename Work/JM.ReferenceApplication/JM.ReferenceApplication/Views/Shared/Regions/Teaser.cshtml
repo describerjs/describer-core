@@ -1,9 +1,10 @@
-﻿@model TeaserExtension
+﻿@using JM.ReferenceApplication.Infrastructure.Models
+@model Teaser
 <a class="teaser" href="@Model.FooterLink">
 	@if(Model.Image != null){
 		<div class="t-figure">
 			@Html.Partial(
-				"Image/_PictureFill_Teaser", Model.Image)
+				"Image/_PictureFill_Effects", PictureFillEffectModel.Get(Model))
 		</div>
 	}
 	<div class="t-inner" data-jmselector="equal-heights-children">
@@ -26,7 +27,3 @@
 		</footer>
 	</div>
 </a>
-<!--
-Parallaxen sind an: @Model.EnableParallax | 
-Parallexen-Intensität: @Model.ParallaxValue
--->

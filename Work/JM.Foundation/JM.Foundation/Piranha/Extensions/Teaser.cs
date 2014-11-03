@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using Piranha.Extend;
 using Piranha.Extend.Regions;
 
 [Export(typeof(IExtension))]
-[ExportMetadata("InternalId", "TeaserExtension")]
+[ExportMetadata("InternalId", "Teaser")]
 [ExportMetadata("Name", "Teaser")]
 [ExportMetadata("Type", ExtensionType.Region)]
 [Serializable]
-public class TeaserExtension : Extension
+public class Teaser : Extension
 {
 	private IList<string> _bulletPoints;
 	private ImageRegion _image;
@@ -46,7 +47,21 @@ public class TeaserExtension : Extension
 		set { _image = value; }
 	}
 
-	public bool EnableParallax { get; set; }
+	public string ImageEffect { get; set; }
+
+	public List<SelectListItem> ImageEffectSelection
+	{
+		get
+		{
+			return new List<SelectListItem>
+			{
+				new SelectListItem {Text = "Kein Effekt", Value = ""},
+				new SelectListItem {Text = "Parallax", Value = "parallax"},
+				new SelectListItem {Text = "Gyroskop", Value = "gyroscope"},
+				new SelectListItem {Text = "Parallax + Gyroskop", Value = "parallax_gyroscope"},
+			};
+		}
+	}
 
 	[Range(1, 2, ErrorMessage = "Der Wert muss eine Kommazahl zwischen 1 und 2 sein.")]
 	public float ParallaxValue
