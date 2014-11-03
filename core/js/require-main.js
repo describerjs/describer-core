@@ -65,6 +65,8 @@ require.config({
 		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
 		'modules.modal'                                    : 'mylibs/modules/modal',
 		'modules.parallax'                                 : 'mylibs/modules/parallax',
+		'modules.scrollControlFrames'                      : 'mylibs/modules/scrollControlFrames',
+		'modules.scrollControlTransform'                  : 'mylibs/modules/scrollControlTransform',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',
 

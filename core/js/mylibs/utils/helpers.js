@@ -360,6 +360,53 @@ define(['jquery', '_config'], function($, _config){
 		return div.innerHTML;
 	};
 
+	jmHF.transformSupport = function(value) {
+		var element = document.createElement('div');
+		var propertySupport = false;
+		var propertyValue = null;
+		var featureSupport = false;
+		var cssProperty = null;
+		var jsProperty = null;
+		for (var i = 0, l = window.jmGO.vendors.length; i < l; i++) {
+			if (window.jmGO.vendors[i] !== null) {
+				cssProperty = window.jmGO.vendors[i][0] + 'transform';
+				jsProperty = window.jmGO.vendors[i][1] + 'Transform';
+			} else {
+				cssProperty = 'transform';
+				jsProperty = 'transform';
+			}
+			if (element.style[jsProperty] !== undefined) {
+				propertySupport = true;
+				break;
+			}
+		}
+		switch(value) {
+			case '2D':
+				featureSupport = propertySupport;
+				break;
+			case '3D':
+				if (propertySupport) {
+					var body = document.body || document.createElement('body');
+					var documentElement = document.documentElement;
+					var documentOverflow = documentElement.style.overflow;
+					if (!document.body) {
+						documentElement.style.overflow = 'hidden';
+						documentElement.appendChild(body);
+						body.style.overflow = 'hidden';
+						body.style.background = '';
+					}
+					body.appendChild(element);
+					element.style[jsProperty] = 'translate3d(1px,1px,1px)';
+					propertyValue = window.getComputedStyle(element).getPropertyValue(cssProperty);
+					featureSupport = propertyValue !== undefined && propertyValue.length > 0 && propertyValue !== "none";
+					documentElement.style.overflow = documentOverflow;
+					body.removeChild(element);
+				}
+				break;
+		}
+		return featureSupport;
+	};
+
 	if (!Function.prototype.bind) {
 		Function.prototype.bind = function (oThis) {
 			if (typeof this !== "function") {
@@ -383,6 +430,8 @@ define(['jquery', '_config'], function($, _config){
 			return fBound;
 		};
 	}
+
+	window.jmGO.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
 	window.jmGO.uuID = function() {};
 
