@@ -604,8 +604,11 @@
     <Content Include="js\mylibs\utils\jquery.helpers.js" />
     <Content Include="js\mylibs\_config.js" />
     <Content Include="js\mylibs\_super.js" />
+    <Content Include="js\raven-jm.js" />
+    <Content Include="js\raven.js" />
     <Content Include="js\require-css\css.js" />
     <Content Include="js\require-css\video.css" />
+    <Content Include="js\require-main.js" />
     <Content Include="robots.txt" />
     <Content Include="App_Data\Config\JM.Business.config" />
     <Content Include="App_Data\autofac.config" />
