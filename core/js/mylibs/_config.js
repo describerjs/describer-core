@@ -415,42 +415,8 @@ define(function(){
 				'execElemOffsetX':'-200',
 				'execWindowScale': '1'
 			}
-		},{
-			jmname: 'bildertauch-on-view',
-			jmplugin: 'actions.add|actions.remove',
-			jmconfig: [{
-				'event': 'dominit|raf-nc',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.8',
-				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset)'
-			},
-			{
-				'event': 'dominit|raf-nc',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.8',
-				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
-			}]
 		},
-
-
-	/*var eot = $(this.element).offset().top;
-	var wih = window.innerHeight;
-	var wpo = window.pageYOffset;
-	var first = wpo + wih  > eot;
-	var secont = wpo < eot + this.eh;
-	var range = wih + this.eh;
-	if(first && ! secont){
-		this.iy = 0;
-	}else if(!first && secont){
-		this.iy = 1;
-	}else if(first && secont){
-		this.iy = -2*((wpo + wih - eot) / range)+1;
-	}
-		*/{
+		{
 			jmname   : 'back-to-top',
 			jmplugin: 'actions.scroll',
 			jmconfig : {

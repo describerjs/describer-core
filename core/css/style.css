@@ -907,6 +907,138 @@ p:last-child {
     
 \*------------------------------------*/
 /*------------------------------------*\
+	$ANIMATION
+\*------------------------------------*/
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....Mixin animation
+ * .....Mixin keyframes
+ * PARALLAX............................Container Properties for Parallax Elements
+ * .....parallax-img...................Parallax-Image
+ * .....parallax-inner.................Parallax-Image Container Element
+ * FADE................................Fade Properties
+ * .....fade-in........................Element Fade-In
+ * SLIDE...............................Slide Properties
+ * .....slide-in.......................Element Slide-In/Out
+**/
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+/*------------------------------------*\
+	$PARALLAX
+\*------------------------------------*/
+.parallax {
+  overflow: hidden;
+  position: relative;
+}
+.parallax .parallax-img {
+  /**/
+}
+.parallax .parallax-inner {
+  /**/
+}
+
+/*------------------------------------*\
+	$FADE
+\*------------------------------------*/
+.fade-in {
+  -moz-transition: opacity 0.5s linear;
+  -ms-transition: opacity 0.5s linear;
+  -o-transition: opacity 0.5s linear;
+  -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+}
+.fade-in.show {
+  opacity: 1;
+}
+
+/*------------------------------------*\
+	$SLIDE
+\*------------------------------------*/
+.slide-in {
+  -webkit-animation: bt-slide-out .5s 1 forwards;
+  -moz-animation: bt-slide-out .5s 1 forwards;
+  -o-animation: bt-slide-out .5s 1 forwards;
+  animation: bt-slide-out .5s 1 forwards;
+  left: -100%;
+  position: relative;
+}
+.slide-in.show {
+  -webkit-animation: bt-slide-in .5s 1 forwards;
+  -moz-animation: bt-slide-in .5s 1 forwards;
+  -o-animation: bt-slide-in .5s 1 forwards;
+  animation: bt-slide-in .5s 1 forwards;
+}
+
+@-webkit-keyframes bt-slide-in {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+@-moz-keyframes bt-slide-in {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+@-o-keyframes bt-slide-in {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+@keyframes bt-slide-in {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+@-webkit-keyframes bt-slide-out {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+@-moz-keyframes bt-slide-out {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+@-o-keyframes bt-slide-out {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+@keyframes bt-slide-out {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+/*------------------------------------*\
+	
+\*------------------------------------*/
+/*------------------------------------*\
     $LAYOUT
 \*------------------------------------*/
 /*@import "objects/layout";*/
