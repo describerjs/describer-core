@@ -296,7 +296,7 @@
     <Content Include="Areas\JMDemo\js\_references.js" />
     <Content Include="Areas\Manager\Content\Css\Editor.css" />
     <Content Include="Content\img\joinmedia.png" />
-    <Content Include="css\ayyildiz.css" />
+    <Content Include="css\noscript.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
