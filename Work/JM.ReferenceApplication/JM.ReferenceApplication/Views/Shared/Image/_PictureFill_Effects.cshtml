@@ -26,13 +26,13 @@
 	{
 		effectName = "parallax-content-orientation";
 		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
-		effectDivInnerStyle = String.Format("margin: 0 {0}%;", ((Model.ParallaxEffectStrength*100 - 100)/2).ToString("N"));
+		effectDivInnerStyle = String.Format("margin: 0 {0}%;height: 190px", ((Model.ParallaxEffectStrength * 100 - 100) / 2).ToString("N"));
 	}
 	if (Model.EnableParallaxAndGyroscope)
 	{
 		effectName = "parallax-content-orientationX-scrollY";
 		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
-		effectDivInnerStyle = String.Format("margin: 0 {0}%;", ((Model.ParallaxEffectStrength*100 - 100)/2).ToString("N"));
+		effectDivInnerStyle = String.Format("margin: 0 {0}%height: 190px;", ((Model.ParallaxEffectStrength * 100 - 100) / 2).ToString("N"));
 	}
 	
 	
@@ -46,13 +46,13 @@
 				<picture>
 					<!--[if IE 9]><video style="display: none;"><![endif]-->
 					@*<source srcset="@String.Format("/img/{0}-{1}-{2}.webp", Model.Image.ImageName, Model.Image.Width, Model.Image.Height)" media="(min-width: 60em)" type="image/webp">
-	<source srcset="@String.Format("/media/{0}-{1}-{2}.webp", Model.Image.ImageName, Model.Image.WidthTablet, Model.Image.HeightTablet)" media="(min-width: 48em)" type="image/webp">
-	<source srcset="@String.Format("/media/{0}-{1}-{2}.webp, /img/{0}-{1}-{2}-X2.webp 2x", Model.Image.ImageName, Model.Image.WidthMobile, Model.Image.HeightMobile)" type="image/webp">*@
-					<source srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth, PictureFill.TeaserHeight)" media="(min-width: 60em)">
-					<source srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth_Tablet, PictureFill.TeaserHeight_Tablet)" media="(min-width: 48em)">
-					<source srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth_Mobile, PictureFill.TeaserHeight_Mobile)">
+					<source srcset="@String.Format("/media/{0}-{1}-{2}.webp", Model.Image.ImageName, Model.Image.WidthTablet, Model.Image.HeightTablet)" media="(min-width: 48em)" type="image/webp">
+					<source srcset="@String.Format("/media/{0}-{1}-{2}.webp, /img/{0}-{1}-{2}-X2.webp 2x", Model.Image.ImageName, Model.Image.WidthMobile, Model.Image.HeightMobile)" type="image/webp">*@
+					<source srcset="@UI.Content(Model.Image.Id, Convert.ToInt32(PictureFill.TeaserWidth * Model.ParallaxEffectStrength), Convert.ToInt32(PictureFill.TeaserHeight * Model.ParallaxEffectStrength)))" media="(min-width: 60em)">
+					<source srcset="@UI.Content(Model.Image.Id, Convert.ToInt32(PictureFill.TeaserWidth_Tablet * Model.ParallaxEffectStrength), Convert.ToInt32(PictureFill.TeaserHeight_Tablet * Model.ParallaxEffectStrength))" media="(min-width: 48em)">
+					<source srcset="@UI.Content(Model.Image.Id, Convert.ToInt32(PictureFill.TeaserWidth_Mobile * Model.ParallaxEffectStrength), Convert.ToInt32(PictureFill.TeaserHeight_Mobile * Model.ParallaxEffectStrength))">
 					<!--[if IE 9]></video><![endif]-->
-					<img srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth, PictureFill.TeaserHeight)" src="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth, PictureFill.TeaserHeight)" alt="@Model.Image.Description" class="@effectCssClass" style="@effectImageStyle">
+					<img srcset="@UI.Content(Model.Image.Id, Convert.ToInt32(PictureFill.TeaserWidth * Model.ParallaxEffectStrength), Convert.ToInt32(PictureFill.TeaserHeight * Model.ParallaxEffectStrength))" src="@UI.Content(Model.Image.Id, Convert.ToInt32(PictureFill.TeaserWidth * Model.ParallaxEffectStrength), Convert.ToInt32(PictureFill.TeaserHeight * Model.ParallaxEffectStrength))" alt="@Model.Image.Description" class="@effectCssClass" style="@effectImageStyle">
 				</picture>
 			</div>
 		</div>
@@ -62,8 +62,8 @@
 		<picture>
 			<!--[if IE 9]><video style="display: none;"><![endif]-->
 			@*<source srcset="@String.Format("/img/{0}-{1}-{2}.webp", Model.Image.ImageName, Model.Image.Width, Model.Image.Height)" media="(min-width: 60em)" type="image/webp">
-<source srcset="@String.Format("/media/{0}-{1}-{2}.webp", Model.Image.ImageName, Model.Image.WidthTablet, Model.Image.HeightTablet)" media="(min-width: 48em)" type="image/webp">
-<source srcset="@String.Format("/media/{0}-{1}-{2}.webp, /img/{0}-{1}-{2}-X2.webp 2x", Model.Image.ImageName, Model.Image.WidthMobile, Model.Image.HeightMobile)" type="image/webp">*@
+			<source srcset="@String.Format("/media/{0}-{1}-{2}.webp", Model.Image.ImageName, Model.Image.WidthTablet, Model.Image.HeightTablet)" media="(min-width: 48em)" type="image/webp">
+			<source srcset="@String.Format("/media/{0}-{1}-{2}.webp, /img/{0}-{1}-{2}-X2.webp 2x", Model.Image.ImageName, Model.Image.WidthMobile, Model.Image.HeightMobile)" type="image/webp">*@
 			<source srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth, PictureFill.TeaserHeight)" media="(min-width: 60em)">
 			<source srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth_Tablet, PictureFill.TeaserHeight_Tablet)" media="(min-width: 48em)">
 			<source srcset="@UI.Content(Model.Image.Id, PictureFill.TeaserWidth_Mobile, PictureFill.TeaserHeight_Mobile)">
