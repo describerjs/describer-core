@@ -1,4 +1,5 @@
-﻿@model JM.ReferenceApplication.Infrastructure.Models.PictureFillEffectModel
+﻿@using System.Globalization
+@model JM.ReferenceApplication.Infrastructure.Models.PictureFillEffectModel
 
 @if (Model != null && !Model.Hide)
 {
@@ -25,14 +26,14 @@
 	if (Model.EnableGyroscope)
 	{
 		effectName = "parallax-content-orientation";
-		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
-		effectDivInnerStyle = String.Format("margin: 0 {0}%;height: 190px", ((Model.ParallaxEffectStrength * 100 - 100) / 2).ToString("N"));
+		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("F", CultureInfo.InvariantCulture), Convert.ToInt32(Model.ParallaxEffectStrength*100));
+		effectDivInnerStyle = String.Format("margin: 0 {0}%;", ((Model.ParallaxEffectStrength * 100 - 100) / 2).ToString("F", CultureInfo.InvariantCulture));
 	}
 	if (Model.EnableParallaxAndGyroscope)
 	{
 		effectName = "parallax-content-orientationX-scrollY";
-		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
-		effectDivInnerStyle = String.Format("margin: 0 {0}%height: 190px;", ((Model.ParallaxEffectStrength * 100 - 100) / 2).ToString("N"));
+		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength * 100 - 100) / 4).ToString("F", CultureInfo.InvariantCulture), Convert.ToInt32(Model.ParallaxEffectStrength * 100));
+		effectDivInnerStyle = String.Format("margin: 0 {0}%", ((Model.ParallaxEffectStrength * 100 - 100) / 2).ToString("F", CultureInfo.InvariantCulture));
 	}
 	
 	
