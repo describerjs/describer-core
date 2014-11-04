@@ -1,5 +1,5 @@
 /*!
- * _super v0.91
+ * _super
  *
  * http://joinmedia.de/
  *
@@ -17,6 +17,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			this.myPos = this.pos;
 			this.myJmName = this.jmname;
 			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
+			this.localScope();
 			this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
@@ -46,7 +47,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 			//
-			if(this.includes('event', 'raf')) this._raf();
+			if(this.partOf('event', 'raf')) this._raf();
 			if(this.partOf('event', 'interval')) this._interval(e);
 
 			// init Event-Listener auf this.$elem
@@ -102,7 +103,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 
 			if($.type(p_value) !== 'undefined' && p_value === 'source'){
 				// return String
-				return $.type(this.configObj['condition']) !== 'undefined' && this.configObj['condition'];
+				return ($.type(this.configObj['condition']) !== 'undefined') ? this.configObj['condition'] : true;
 			}
 			// wenn eine condition hinterlegt ist wird diese in den javascirpt-Kontext überführt andernfalls wird true zurückgegeben.
 			// return Bool
@@ -148,6 +149,13 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			})[0];
 			// return Stirng
 			return _return || '';
+		},
+
+		localScope: function(){
+			this.configObj = this._getConfigObjArray();
+			if($.type(this.configObj['localScope']) !== 'undefined'){
+				new Function('"use strict";'+ this.configObj['localScope']).call(this);
+			}
 		},
 
 		// gibt je nach parameter das aktuelle oder gespeicherte configObj zurück. Es wird hier aus Performancegründen ein ConfigObj gespeichert.
@@ -299,7 +307,21 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
 			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
-			this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
+			this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+		},
+
+		_render: function(){
+			// !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
+			var _rafStringArray = this.getPartOf('event', 'raf').split('raf');
+			if(eval(this.conditionSource)){
+				if(_rafStringArray[1] !== '-nc'){
+					window.cancelAnimationFrame(this.rAFRender);
+				}
+				this._exec();
+				this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			}else{
+				this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			}
 		},
 
 		_execWait: function(e){

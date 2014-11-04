@@ -1,5 +1,5 @@
 /*!
- * modules.tablesort v0.9
+ * modules.tablesort
  *
  * http://joinmedia.de/
  *

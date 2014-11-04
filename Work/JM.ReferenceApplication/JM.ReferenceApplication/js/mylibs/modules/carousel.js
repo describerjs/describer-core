@@ -1,5 +1,5 @@
 /*!
- * modules.carousel v0.9
+ * modules.carousel
  *
  * http://joinmedia.de/
  *

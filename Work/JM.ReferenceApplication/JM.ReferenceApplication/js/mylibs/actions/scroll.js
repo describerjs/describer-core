@@ -1,5 +1,5 @@
 /*!
- * actions.scroll v0.9
+ * actions.scroll
  *
  * http://joinmedia.de/
  *

@@ -1,5 +1,5 @@
 /*!
- * actions.remove v0.9
+ * actions.remove
  *
  * http://joinmedia.de/
  *

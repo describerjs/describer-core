@@ -1,5 +1,5 @@
 /*!
- * utils.helpers v0.9
+ * utils.helpers
  *
  * http://joinmedia.de/
  *
@@ -360,6 +360,53 @@ define(['jquery', '_config'], function($, _config){
 		return div.innerHTML;
 	};
 
+	jmHF.transformSupport = function(value) {
+		var element = document.createElement('div');
+		var propertySupport = false;
+		var propertyValue = null;
+		var featureSupport = false;
+		var cssProperty = null;
+		var jsProperty = null;
+		for (var i = 0, l = window.jmGO.vendors.length; i < l; i++) {
+			if (window.jmGO.vendors[i] !== null) {
+				cssProperty = window.jmGO.vendors[i][0] + 'transform';
+				jsProperty = window.jmGO.vendors[i][1] + 'Transform';
+			} else {
+				cssProperty = 'transform';
+				jsProperty = 'transform';
+			}
+			if (element.style[jsProperty] !== undefined) {
+				propertySupport = true;
+				break;
+			}
+		}
+		switch(value) {
+			case '2D':
+				featureSupport = propertySupport;
+				break;
+			case '3D':
+				if (propertySupport) {
+					var body = document.body || document.createElement('body');
+					var documentElement = document.documentElement;
+					var documentOverflow = documentElement.style.overflow;
+					if (!document.body) {
+						documentElement.style.overflow = 'hidden';
+						documentElement.appendChild(body);
+						body.style.overflow = 'hidden';
+						body.style.background = '';
+					}
+					body.appendChild(element);
+					element.style[jsProperty] = 'translate3d(1px,1px,1px)';
+					propertyValue = window.getComputedStyle(element).getPropertyValue(cssProperty);
+					featureSupport = propertyValue !== undefined && propertyValue.length > 0 && propertyValue !== "none";
+					documentElement.style.overflow = documentOverflow;
+					body.removeChild(element);
+				}
+				break;
+		}
+		return featureSupport;
+	};
+
 	if (!Function.prototype.bind) {
 		Function.prototype.bind = function (oThis) {
 			if (typeof this !== "function") {
@@ -383,6 +430,8 @@ define(['jquery', '_config'], function($, _config){
 			return fBound;
 		};
 	}
+
+	window.jmGO.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
 	window.jmGO.uuID = function() {};
 
@@ -427,6 +476,30 @@ define(['jquery', '_config'], function($, _config){
 		for (; i > 0; i >>>= 1, z += z) { if (i & 1) { str = z + str; } }
 		return str;
 	};
+
+	window.setGlobalOSVars = (function(){
+		window.ua = navigator.userAgent;
+
+		// determine OS
+		if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
+			window.userOS = 'iOS';
+			window.uaindex = ua.indexOf( 'OS ' );
+		}else if ( ua.match(/Android/i) ){
+			window.userOS = 'Android';
+			window.uaindex = ua.indexOf( 'Android ' );
+		}else{
+			window.userOS = 'unknown';
+		}
+
+		// determine version
+		if ( userOS === 'iOS'  &&  uaindex > -1 ){
+			window.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
+		}else if ( userOS === 'Android'  &&  uaindex > -1 ){
+			window.userOSver = ua.substr( uaindex + 8, 3 );
+		}else{
+			window.userOSver = 'unknown';
+		}
+	})();
 
 	// vim: et ts=2 sw=2
 

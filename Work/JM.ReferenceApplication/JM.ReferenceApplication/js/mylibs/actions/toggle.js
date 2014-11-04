@@ -1,5 +1,5 @@
 /*!
- * actions.toggle v0.9
+ * actions.toggle
  *
  * http://joinmedia.de/
  *

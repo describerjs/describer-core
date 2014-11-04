@@ -1,5 +1,5 @@
 /*!
- * _config v0.9
+ * _config
  *
  * http://joinmedia.de/
  *
@@ -369,14 +369,152 @@ define(function(){
 				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
 				'data':'jmHF.escapeHtml(this.$elem.val())'
 			}
-		}, {
-		    jmname: 'equalheights-not-mobile',
-		    jmplugin: 'modules.equalheights',
-		    jmconfig: {
-		        'event': 'dominit',
-		        // TODO Andreas & Daniel lösung finden für Modernizr.mq
-		        'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
-		    }
+		},
+		{
+			jmname: 'equalheights-not-mobile',
+			jmplugin: 'modules.equalheights',
+			jmconfig: {
+				'event': 'dominit',
+				// TODO Andreas & Daniel lösung finden für Modernizr.mq
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			}
+		},{
+			jmname: 'add-remove-show-on-view',
+			jmplugin: 'actions.add|actions.remove',
+			jmconfig: [{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
+				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset)'
+			},
+			{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
+				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
+			}]
+		},{
+			jmname: 'frame-ani-by-scrolling',
+			jmplugin: 'modules.scrollControlFrames',
+			jmconfig: {
+				'event': 'dominit|raf-nc',
+				'loop': '20',
+				'execElemOffset':'0',
+				'execWindowScale': '1'
+			}
+		},{
+			jmname: 'scrollControlTransition',
+			jmplugin: 'modules.scrollControlTransform',
+			jmconfig: {
+				'event': 'dominit|raf-nc',
+				'cssProperty':'translate|scale',
+				'execElemOffsetX':'-200',
+				'execWindowScale': '1'
+			}
+		},
+		{
+			jmname   : 'back-to-top',
+			jmplugin: 'actions.scroll',
+			jmconfig : {
+				'event'    : 'click',
+				'scrollTo' : '.page'
+			}
+		},
+		{
+			jmname: 'parallax-content-orientation',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'orientation'
+			}
+		},
+		{
+			jmname: 'parallax-content-scrollY',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'scrollY'
+			}
+		},
+		{
+			jmname: 'parallax-content-scrollY-fallback',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'scrollY-fallback'
+			}
+		},
+		{
+			jmname: 'parallax-content-orientationX-scrollY',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'orientationX-scrollY'
+			}
+		},
+		{
+			jmname   : 'test1',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.d'
+				}
+			]
+		},
+		{
+			jmname   : 'test2',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.d'
+				}
+			]
 		}
 	];
 });

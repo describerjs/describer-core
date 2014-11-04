@@ -1,5 +1,5 @@
 /*!
- * actions.ajax v0.9
+ * actions.ajax
  *
  * http://joinmedia.de/
  *
@@ -67,16 +67,6 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
         options: {
 
         },
-
-        render: function(){
-		    // !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
-		    if(eval(this.conditionSource)){
-			    window.cancelAnimationFrame(this.rAFRender);
-			    this._exec();
-		    }else{
-			    this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
-		    }
-	    },
 
 	    // TODO Andreas bereinigen der _getData-Funktion Sonderfall $$ als neues Modul, welches von ajax abgeleitet wird.
         _getData: function(){

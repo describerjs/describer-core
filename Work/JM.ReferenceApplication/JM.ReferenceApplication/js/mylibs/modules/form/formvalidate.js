@@ -1,5 +1,5 @@
 /*!
- * modules.form.formvalidate v0.9
+ * modules.form.formvalidate
  *
  * http://joinmedia.de/
  *

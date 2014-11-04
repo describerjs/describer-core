@@ -1,5 +1,5 @@
 /*!
- * utils.jquery_helpers v0.9
+ * utils.jquery_helpers
  *
  * http://joinmedia.de/
  *
