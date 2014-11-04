@@ -1,0 +1,138 @@
+/*------------------------------------*\
+	$ANIMATION
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....Mixin animation
+ * .....Mixin keyframes
+ * PARALLAX............................Container Properties for Parallax Elements
+ * .....parallax-img...................Parallax-Image
+ * .....parallax-inner.................Parallax-Image Container Element
+ * FADE................................Fade Properties
+ * .....fade-in........................Element Fade-In
+ * SLIDE...............................Slide Properties
+ * .....slide-in.......................Element Slide-In/Out
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+
+@mixin animation($animate...) {
+	$max: length($animate);
+	$animations: '';
+
+	@for $i from 1 through $max {
+		$animations: #{$animations + nth($animate, $i)};
+
+		@if $i < $max {
+			$animations: #{$animations + ", "};
+		}
+	}
+	
+	-webkit-animation: $animations;
+	-moz-animation:    $animations;
+	-o-animation:      $animations;
+	animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+
+	@keyframes #{$animationName} {
+		@content;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$PARALLAX
+\*------------------------------------*/
+
+.parallax {
+	overflow: hidden;
+	position: relative;
+
+	// Parallax-Image
+	.parallax-img {
+		/**/
+	}
+
+	// Prallax-Inner-Container
+	.parallax-inner {
+		/**/
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$FADE
+\*------------------------------------*/
+
+.fade-in {
+	@include transition(opacity .5s linear);
+	opacity: 0;
+
+	&.show {
+		opacity: 1;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SLIDE
+\*------------------------------------*/
+
+.slide-in {
+	@include animation("bt-slide-out .5s 1 forwards");
+	left: -100%;
+	position: relative;
+
+	&.show {
+		@include animation("bt-slide-in .5s 1 forwards");
+	}
+}
+
+// Keyframe animation für slide-in
+@include keyframes(bt-slide-in) {
+	0%		{ left: -100%; }
+	100%	{ left: 0; }
+}
+
+// Keyframe animation für slide-out
+@include keyframes(bt-slide-out) {
+	0%		{ left: 0; }
+	100%	{ left: -100%; }
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

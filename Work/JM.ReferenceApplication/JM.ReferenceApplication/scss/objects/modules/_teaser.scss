@@ -1,0 +1,92 @@
+/*------------------------------------*\
+    $TEASER
+\*------------------------------------*/
+
+.teaser {
+	@extend %element-default;
+	background-color: $theme-teaser-bg;
+	color: inherit;
+	display: block;
+
+	&:first-of-type:last-of-type {
+		@include bp-m {
+			.t-figure {
+				@include column(6);
+				margin-left: 0;
+
+				&+ .t-inner {
+					@include column(6);
+					clear: none;
+				}
+			}
+		}
+	}
+
+	&:nth-of-type(1):nth-last-of-type(2),
+	&:nth-of-type(2):nth-last-of-type(1) {
+		@include bp-m {
+			@include column(6);
+		}
+	}
+
+	&:nth-of-type(1):nth-last-of-type(3),
+	&:nth-of-type(2):nth-last-of-type(2),
+	&:nth-of-type(3):nth-last-of-type(1) {
+		@include bp-m {
+			@include column(4);
+		}
+	}
+
+	&:nth-of-type(1):nth-last-of-type(4),
+	&:nth-of-type(2):nth-last-of-type(3),
+	&:nth-of-type(3):nth-last-of-type(2),
+	&:nth-of-type(4):nth-last-of-type(1) {
+		@include bp-s {
+			@include column(6);
+		}
+
+		@include bp-l {
+			@include column(3);
+		}
+	}
+
+	//
+	.t-figure {
+		/**/
+	}
+
+	// Footerbereich <footer>
+	.t-footer {
+		@include bp-m {
+			@include absolute('', '', $default-spacing, '');
+		}
+	}
+
+	// Die einleitende Headline
+	.t-head {
+		/**/
+	}
+
+	// Headerbereich <header>
+	.t-header {
+		/**/
+	}
+
+	// Innerer Container für "t-header", "t-main", "t-footer"
+	.t-inner {
+		@extend %element-inner-default;
+
+		@include bp-m {
+			padding-bottom: $space-double;
+		}
+	}
+
+	// Umfasst den textlichen Inhalt
+	.t-main {
+		/**/
+	}
+}
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
