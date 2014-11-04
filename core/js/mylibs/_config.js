@@ -408,18 +408,13 @@ define(function(){
 			}
 		},{
 			jmname: 'scrollControlTransition',
-			jmplugin: 'modules.scrollControlTransform_1|modules.scrollControlTransform_2',
-			jmconfig: [{
+			jmplugin: 'modules.scrollControlTransform',
+			jmconfig: {
 				'event': 'dominit|raf-nc',
-				'cssProperty':'scale',
+				'cssProperty':'translate|scale',
 				'execElemOffsetX':'-200',
 				'execWindowScale': '1'
-			},{
-				'event': 'dominit|raf-nc',
-				'cssProperty':'translate',
-				'execElemOffsetX':'-200',
-				'execWindowScale': '1'
-			}]
+			}
 		},{
 			jmname: 'bildertauch-on-view',
 			jmplugin: 'actions.add|actions.remove',

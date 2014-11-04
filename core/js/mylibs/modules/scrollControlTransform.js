@@ -34,6 +34,7 @@ define(['jquery', '_super', 'utils.helpers'], function ($, _super){
 			this.transform3DSupport = jmHF.transformSupport('3D');
 			this.propertyCache = {};
 			this.containerWitdh = this.$elem.offsetParent().width();
+			this.transformArray = this.transform3DSupport
 			$(window).on('resize', this._newContainerWidth.bind(this));
 			//this.eot = this.$elem.offset().top;
 			//this.offset = window.innerHeight * 0.8;
@@ -45,8 +46,8 @@ define(['jquery', '_super', 'utils.helpers'], function ($, _super){
 
 		_exec: function(e){
 			var eot = this.$elem.offset().top+this.execElemOffset;
-			var wih = window.innerHeight;
-			var wpo = window.pageYOffset;
+			var wih = window.innerHeight || document.documentElement.clientHeight;
+			var wpo = window.pageYOffset || document.body.scrollTop; // ie8 Fallback
 			var first = wpo > eot - wih;
 			var second = wpo + wih < eot + this.$elem[0].getBoundingClientRect().height + wih*this.execWindowScale;
 			var range = (wih + this.$elem[0].getBoundingClientRect().height)*this.execWindowScale;
@@ -55,22 +56,12 @@ define(['jquery', '_super', 'utils.helpers'], function ($, _super){
 				y_factor = ((wpo + (wih*this.execWindowScale) - eot) / range);
 				y_factor = y_factor*this.loop - Math.floor(y_factor*this.loop);
 			}
-			if(first && ! second){
+			if(first && !second){
 				y_factor = 1;
 			}if(!first && second){
 				y_factor = 0;
 			}
-			//console.log(y_factor);
-			switch(this.is('cssProperty')){
-				case 'translate':
-					this._setPosition(y_factor*this.containerWitdh, 0);
-					break;
-				case 'scale':
-					this._setScale(1-(y_factor/2), 1-(y_factor/2));
-					break;
-			}
-
-			//this.$elem[0].style.left = (y_factor*100)+'%';
+			this._setProperty(y_factor);
 		},
 
 		_css: function(property, value) {
@@ -97,27 +88,52 @@ define(['jquery', '_super', 'utils.helpers'], function ($, _super){
 			});
 		},
 
-		_setPosition: function(x, y) {
-			x += 'px';
-			y += 'px';
-			if (this.transform3DSupport) {
-				this._css('transform', 'translate3d('+x+','+y+',0)');
-			} else if (this.transform2DSupport) {
-				this._css('transform', 'translate('+x+','+y+')');
-			} else {
-				this.$elem[0].style.left = x+'';
-				this.$elem[0].style.top = y+'';
+		_getTransformPropertys: function(){
+			var _cssPropertyArray = this.is('cssProperty').split('|');
+			var _transformString = '';
+			for(var i = 0, leni = _cssPropertyArray.length; i < leni; i++){
+				if(this.transform3DSupport){
+					_transformString = _transformString + _cssPropertyArray[i] + '3d' + '(##x-'+_cssPropertyArray[i]+'##, ##y-'+_cssPropertyArray[i]+'##, ##z-'+_cssPropertyArray[i]+'##) ';
+				}
+				else if(this.transform2DSupport){
+					_transformString = _transformString +_cssPropertyArray[i] + '(##x-'+_cssPropertyArray[i]+'##, ##y-'+_cssPropertyArray[i]+'##) ';
+				}
+				else{
+					_transformString = _transformString +_cssPropertyArray[i];
+				}
 			}
+			return _transformString;
 		},
 
-		_setScale: function(x, y) {
-			if (this.transform3DSupport) {
-				this._css('transform', 'scale3d('+x+','+y+',1)');
-			} else if (this.transform2DSupport) {
-				this._css('transform', 'scale('+x+','+y+')');
+		_setProperty: function(y_factor) {
+			var _transformString = this._getTransformPropertys();
+			var _x_translate = (y_factor*this.containerWitdh).toString();
+			var _y_translate = '0';
+			var _z_translate = '0';
+			var _x_scale = (1-(y_factor/2)).toString();
+			var _y_scale = (1-(y_factor/2)).toString();
+			var _z_scale = '1';
+			var _x_rotate = (1-(y_factor/2)).toString();
+			var _y_rotate = '0';
+			var _z_rotate = '0';
+			_transformString = _transformString
+				.replace(/##x-translate##/g, _x_translate+'px')
+				.replace(/##y-translate##/g, _y_translate+'px')
+				.replace(/##z-translate##/g, _z_translate+'px')
+				.replace(/##x-scale##/g, _x_scale)
+				.replace(/##y-scale##/g, _y_scale)
+				.replace(/##z-scale##/g, _z_scale)
+				.replace(/##x-rotate##/g, _x_rotate)
+				.replace(/##y-rotate##/g, _y_rotate)
+				.replace(/##z-rotate##/g, _z_rotate);
+
+			if (this.transform3DSupport || this.transform2DSupport) {
+				this._css('transform', _transformString);
 			} else {
-				this.$elem[0].style.width = (x*100)+'%';
-				this.$elem[0].style.heigth = (y*100)+'%';
+				this.$elem[0].style.left = _x_translate+'px';
+				this.$elem[0].style.top = _y_translate+'px';
+				this.$elem[0].style.width = _x_scale+'%';
+				this.$elem[0].style.heigth = _y_scale+'%';
 			}
 		},
 
