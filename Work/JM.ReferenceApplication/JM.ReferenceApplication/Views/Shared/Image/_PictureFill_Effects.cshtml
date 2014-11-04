@@ -15,7 +15,7 @@
 	if (effectEnabled)
 	{
 		effectCssClass = "parallax-img";
-		effectDepth = Model.ParallaxEffectStrength.ToString().Replace(",", "");
+		effectDepth = Model.ParallaxEffectStrength.ToString().Replace(",", ".");
 	}
 	
 	if (Model.EnableParallax)
@@ -25,14 +25,14 @@
 	if (Model.EnableGyroscope)
 	{
 		effectName = "parallax-content-orientation";
-		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", (Model.ParallaxEffectStrength*100 - 100/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
-		effectDivInnerStyle = String.Format("margin: 0 {0}%;", (Model.ParallaxEffectStrength*100 - 100/2).ToString("N"));
+		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
+		effectDivInnerStyle = String.Format("margin: 0 {0}%;", ((Model.ParallaxEffectStrength*100 - 100)/2).ToString("N"));
 	}
 	if (Model.EnableParallaxAndGyroscope)
 	{
 		effectName = "parallax-content-orientationX-scrollY";
-		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", (Model.ParallaxEffectStrength*100 - 100/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
-		effectDivInnerStyle = String.Format("margin: 0 {0}%;", (Model.ParallaxEffectStrength*100 - 100/2).ToString("N"));
+		effectImageStyle = String.Format("margin: -{0}% 0; width: {1}%;", ((Model.ParallaxEffectStrength*100 - 100)/4).ToString("N"), Convert.ToInt32(Model.ParallaxEffectStrength*100));
+		effectDivInnerStyle = String.Format("margin: 0 {0}%;", ((Model.ParallaxEffectStrength*100 - 100)/2).ToString("N"));
 	}
 	
 	
