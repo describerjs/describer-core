@@ -77,6 +77,22 @@ namespace JM.ReferenceApplication.Infrastructure.Models
 			};
 		}
 
+		/// <summary>
+		/// Erzeugt eine neue Instanz des Models und füllt sie mit den Daten aus dem Teasermodel
+		/// </summary>
+		/// <param name="model">Instanz der Klasse/Region AnimatedImage</param>
+		/// <returns>PictureFillEffectModel</returns>
+		public static PictureFillEffectModel Get(AnimatedImage model)
+		{
+			return new PictureFillEffectModel
+			{
+				Image = model.Image,
+				EffectKey = model.ImageEffect,
+				ParallaxEffectStrength = model.ParallaxValue,
+				Hide = model.Hide
+			};
+		}
+
 		#endregion
 	}
 }

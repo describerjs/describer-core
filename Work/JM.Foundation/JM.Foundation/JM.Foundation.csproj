@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.104\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.106\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -169,6 +169,8 @@
     <Compile Include="Piranha\Extensions\AnimatedText.cs" />
     <Compile Include="Piranha\Extensions\AnimatedImageSwap.cs" />
     <Compile Include="Piranha\Extensions\AnimatedSvg.cs" />
+    <Compile Include="Piranha\Extensions\AnimatedImage.cs" />
+    <Compile Include="Piranha\Models\ImageAnimationSelection.cs" />
     <Compile Include="Piranha\Models\Tile.cs" />
     <Compile Include="Piranha\Extensions\Tiles.cs" />
     <Compile Include="Piranha\Extensions\ToggleBox.cs" />
@@ -234,6 +236,7 @@
     <EmbeddedResource Include="Piranha\Extensions\AnimatedText.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\AnimatedImageSwap.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\AnimatedSvg.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\AnimatedImage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />

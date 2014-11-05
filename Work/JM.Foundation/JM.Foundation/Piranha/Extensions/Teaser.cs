@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using JM.Foundation.Piranha.Models;
 using Piranha.Extend;
 using Piranha.Extend.Regions;
 
@@ -17,23 +18,23 @@ public class Teaser : Extension
 	private ImageRegion _image;
 	private float _parallaxValue;
 
-    public string Header
-    {
-        get;
-        set;
-    }
-    
-    public string FooterText
-    {
-        get;
-        set;
-    }
+	public string Header
+	{
+		get;
+		set;
+	}
+	
+	public string FooterText
+	{
+		get;
+		set;
+	}
 
-    public string FooterLink
-    {
-        get;
-        set;
-    }
+	public string FooterLink
+	{
+		get;
+		set;
+	}
 
 	public IList<string> BulletPoints
 	{
@@ -51,16 +52,7 @@ public class Teaser : Extension
 
 	public List<SelectListItem> ImageEffectSelection
 	{
-		get
-		{
-			return new List<SelectListItem>
-			{
-				new SelectListItem {Text = "Kein Effekt", Value = ""},
-				new SelectListItem {Text = "Parallax", Value = "parallax"},
-				new SelectListItem {Text = "Gyroskop", Value = "gyroscope"},
-				new SelectListItem {Text = "Parallax + Gyroskop", Value = "parallax_gyroscope"},
-			};
-		}
+		get { return ImageAnimationSelection.Get(); }
 	}
 
 	[Range(1, 2, ErrorMessage = "Der Wert muss eine Kommazahl zwischen 1 und 2 sein.")]
