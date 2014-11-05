@@ -34,11 +34,17 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(e){
 			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
-			this._triggerEvent();
-		},
-
-		_triggerEvent: function(){
-			this.$destination.trigger(this.is('data'));
+			switch(this.is('datatype')){
+				case 'function':
+					this.$destination[this.is('datatype')]();
+					break;
+				case 'jmevent':
+					this.$destination.jmtrigger(this.is('data'));
+					break;
+				default:
+					this.$destination.trigger(this.is('data'));
+					break;
+			}
 			this._finishing();
 		}
 

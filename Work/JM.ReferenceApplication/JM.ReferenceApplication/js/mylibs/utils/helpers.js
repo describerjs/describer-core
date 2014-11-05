@@ -309,6 +309,7 @@ define(['jquery', '_config'], function($, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
+					jmHF.alert("bitte ändern in $(item).jmtrigger('change')");
 					$(item).trigger('jmtrigger');
 				});
 			}

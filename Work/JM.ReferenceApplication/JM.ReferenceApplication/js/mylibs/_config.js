@@ -398,6 +398,26 @@ define(function(){
 				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
 			}]
 		},{
+			jmname: 'animation-start-on-view',
+			jmplugin: 'actions.add|actions.remove',
+			jmconfig: [{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
+				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset) && !this.$elem.hasClass(\'show\')',
+				'callback': 'this.animateTransformTag.beginElement()'
+			},{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
+				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height)) && this.$elem.hasClass(\'show\')',
+				'callback': 'this.animateTransformTag.endElement()'
+			}]
+		},{
 			jmname: 'frame-ani-by-scrolling',
 			jmplugin: 'modules.scrollControlFrames',
 			jmconfig: {
