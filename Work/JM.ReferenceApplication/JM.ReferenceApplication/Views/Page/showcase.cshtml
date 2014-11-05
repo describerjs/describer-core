@@ -1,9 +1,10 @@
-﻿@model Piranha.Models.PageModel
+﻿@using Piranha.Extend.Regions
+@model Piranha.Models.PageModel
 @{
     ViewBag.Title = Model.Page.Title ;
 }
 
-@Html.Partial("Regions/Stage-Teaser", Model.Region<Teaser>("Stage-Teaser"))
+@Html.Partial("Regions/StageTeaser", Model.Region<Teaser>("StageTeaser"))
 
 @Html.Partial("Regions/AnimatedText", Model.Region<AnimatedText>("AnimatedText1"))
 
@@ -13,7 +14,7 @@
     @Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser3"))
 </div>
 
-@Html.Partial("Regions/Image", Model.Region<Image>("Image1"))
+@Html.Partial("Regions/AnimatedImage", Model.Region<AnimatedImage>("AnimatedImage1"))
 
 @Html.Partial("Regions/AnimatedText", Model.Region<AnimatedText>("AnimatedText2"))
 
@@ -23,6 +24,6 @@
     @Html.Partial("Regions/Block", Model.Region<Block>("Block3"))
 </div>
 
-@Html.Partial("Regions/Image", Model.Region<Image>("Image2"))
+@Html.Partial("Regions/AnimatedImage", Model.Region<AnimatedImage>("AnimatedImage2"))
 
 @Html.Partial("Regions/AnimatedText", Model.Region<AnimatedText>("AnimatedText3"))
