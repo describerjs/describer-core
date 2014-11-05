@@ -8,8 +8,8 @@
 
 	.tile {
 		@include column(6);
-		background-color: #000;
-		color: #fff;
+		/*background-color: #000;
+		color: #fff;*/
 		display: block;
 		margin-bottom: $dist;
 		text-align: center;

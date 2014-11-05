@@ -942,6 +942,7 @@ p:last-child {
  * .....fade-in........................Element Fade-In
  * SLIDE...............................Slide Properties
  * .....slide-in.......................Element Slide-In/Out
+ * SCROLL-ANIM.........................Scroll-Animation
 **/
 /*------------------------------------*\
 	$GENERIC
@@ -1062,6 +1063,7 @@ p:last-child {
 \*------------------------------------*/
 .scroll-anim {
   position: absolute;
+  z-index: 999;
 }
 
 /*------------------------------------*\
@@ -2685,14 +2687,17 @@ p:last-child {
 /*------------------------------------*\
     $STAGE-TEASER
 \*------------------------------------*/
+.stage-teaser {
+  overflow: hidden;
+}
 @media only screen and (min-width: 48em) {
   .stage-teaser {
-    min-height: 468px;
+    min-height: 500px;
   }
 }
 @media only screen and (min-width: 60em) {
   .stage-teaser {
-    min-height: 468px;
+    min-height: 500px;
   }
   main > .stage-teaser {
     margin-top: -1.5rem;
@@ -2716,13 +2721,13 @@ p:last-child {
 @media only screen and (min-width: 48em) {
   .stage-teaser .st-figure img {
     max-width: 60em;
-    min-height: 468px;
+    min-height: 500px;
   }
 }
 @media only screen and (min-width: 60em) {
   .stage-teaser .st-figure img {
     max-width: 100%;
-    min-height: 468px;
+    min-height: 500px;
     min-width: 80em;
   }
 }
@@ -3048,8 +3053,8 @@ p:last-child {
   margin-right: 1.04167%;
   clear: none;
   float: left;
-  background-color: #000;
-  color: #fff;
+  /*background-color: #000;
+  color: #fff;*/
   display: block;
   margin-bottom: 1.04167%;
   text-align: center;

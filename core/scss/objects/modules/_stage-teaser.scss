@@ -33,8 +33,8 @@
 
 // Höhe des Teaserbildes fix setzen
 /*$stage-teaser-img-height:	197px;	// img-Höhe-S*/
-$stage-teaser-img-height-m:	468px;	// img-Höhe-M
-$stage-teaser-img-height-l:	468px;	// img-Höhe-L
+$stage-teaser-img-height-m:	500px;	// img-Höhe-M
+$stage-teaser-img-height-l:	500px;	// img-Höhe-L
 
 
 
@@ -46,6 +46,7 @@ $stage-teaser-img-height-l:	468px;	// img-Höhe-L
 
 .stage-teaser {
 	@extend %element-default;
+	overflow: hidden;
 
 	@include bp-m {
 		min-height: $stage-teaser-img-height-m;

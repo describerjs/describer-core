@@ -374,6 +374,10 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#Text-Elemente-Listen">Listen</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#Text-Elemente-Listen-Bullet">Bullet List</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#Text-Elemente-Listen-Decimal">Decimal List</a></li>
+                            </ul> -->
 						</div>
 					</div>
 				</li>
@@ -388,6 +392,14 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Block">Block</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Default">Block Default</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Header">Block mit Header</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Links">Block mit Bild links</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Rechts">Block mit Bild rechts</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Oben">Block mit Bild oben</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Unten">Block mit Bild unten</a></li>
+                            </ul> -->
                         </div>
 						<div class="flyout-group">
 							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Carousel">Carousel</a></div>
@@ -403,9 +415,22 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Teaser">Teaser</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx1">Teaser x 1</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx2">Teaser x 2</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx3">Teaser x 3</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx4">Teaser x 4</a></li>
+                            </ul> -->
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Tiles">Tiles</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x2">Tiles 1x2</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x4">Tiles 1x4</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x6">Tiles 1x6</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-2x2">Tiles 2x2</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-2x3">Tiles 2x3</a></li>
+                            </ul> -->
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Togglebox">Togglebox</a></div>
@@ -420,22 +445,28 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                     </div>
                 </li>
+                <li class="nav-item menu-item">
+                    <a href="Demo-Animation.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Animationen</a>
+                </li>
+                <li class="nav-item menu-item">
+                    <a href="Demo-Templates.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Templates</a>
+                </li>
 			</ul>
 		</nav>
 	</header>
 	<main class="page-main" role="main">
         <h2 id="Text-Elemente">Text-Elemente</h2>
         <div class="demo-section">
-    		<section class="block" id="Text-Elemente-Heading">
+    		<div class="block" id="Text-Elemente-Heading">
                 <section class="block-content">
         			<h3>Heading</h3>
         			<p>Headlines &lt;h1&gt;-&lt;h6&gt;</p>
                 </section>
-    		</section>
+    		</div>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
-                    <section class="block" id="Text-Elemente-Heading">
+                    <section class="block">
                         <div class="block-content">
             				<h1>Lorem ipsum dolor sit amet</h1>
             				<h2>Lorem ipsum dolor sit amet</h2>
@@ -447,32 +478,32 @@ window.onerror = function(message, url, linenumber) {
                     </section>
     			</div>
     		</div>
-    		<section class="block" id="Text-Elemente-Text">
+    		<div class="block" id="Text-Elemente-Text">
                 <section class="block-content">
         			<h3>Text</h3>
         			<p>Fließtext Element</p>
                 </section>
-    		</section>
+    		</div>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
-                    <section class="block" id="Text-Elemente-Heading">
+                    <section class="block">
                         <div class="block-content">
     				        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                         </div>
                     </section>
     			</div>
     		</div>
-    		<section class="block" id="Text-Elemente-Listen">
+    		<div class="block" id="Text-Elemente-Listen">
                 <section class="block-content">
         			<h3>Listen</h3>
         			<p>Listentypen</p>
                 </section>
-    		</section>
-    		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo (Bullet List)</a>
+    		</div>
+    		<div class="togglebox" id="Text-Elemente-Listen-Bullet">
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo (Bullet List)</a>
     			<div class="tb-content">
-                    <section class="block" id="Text-Elemente-Heading">
+                    <section class="block">
                         <div class="block-content">
             				<ul class="bullet-list">
             					<li class="list-item">Lorem ipsum dolor sit amet</li>
@@ -483,10 +514,10 @@ window.onerror = function(message, url, linenumber) {
                     </section>
     			</div>
     		</div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Decimal List)</a>
+            <div class="togglebox" id="Text-Elemente-Listen-Decimal">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Decimal List)</a>
                 <div class="tb-content">
-                    <section class="block" id="Text-Elemente-Heading">
+                    <section class="block">
                         <div class="block-content">
                             <ol class="decimal-list">
                                 <li class="list-item">Lorem ipsum dolor sit amet</li>
@@ -500,61 +531,61 @@ window.onerror = function(message, url, linenumber) {
         </div>
         <h2 id="UI-Elemente">UI-Elemente</h2>
         <div class="demo-section">
-    		<section class="block" id="UI-Elemente-Accordion">
+    		<div class="block" id="UI-Elemente-Accordion">
                 <section class="block-content">
         			<h3>Accordion</h3>
         			<p>Ziehharmonika Effekt</p>
                 </section>
-    		</section>
+    		</div>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
     				<div class="accordion">
     					<ul class="acc-group">
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" href="#">Lorem Accordion</a>
-    							<div class="acc-panel">
+    							<section class="acc-panel">
     								<h5>Lorem Accordion</h5>
     								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    							</div>
+    							</section>
     						</li>
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" data-jmconfig="[{ 'url': '/ajax-files/togglebox.html' }, {}, {}]" href="#">Ipsum Accordion (ajax)</a>
-    							<div class="acc-panel"></div>
+    							<section class="acc-panel"></section>
     						</li>
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" href="#">Dolor Accordion</a>
-    							<div class="acc-panel">
+    							<section class="acc-panel">
     								<h5>Dolor Accordion</h5>
     								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    							</div>
+    							</section>
     						</li>
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" href="#">Sit amet Accordion</a>
-    							<div class="acc-panel">
+    							<section class="acc-panel">
     								<h5>Sit amet Accordion</h5>
     								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    							</div>
+    							</section>
     						</li>
     						<li class="acc-item">
     							<a class="acc-handle" data-jmname="accordionbox" href="#">Consetetur Accordion</a>
-    							<div class="acc-panel">
+    							<section class="acc-panel">
     								<h5>Consetetur Accordion</h5>
     								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    							</div>
+    							</section>
     						</li>
     					</ul>
     				</div>
                 </div>
             </div>
-            <section class="block" id="UI-Elemente-Back-To-Top">
+            <div class="block" id="UI-Elemente-Back-To-Top">
                 <section class="block-content">
                     <h3>Back-To-Top</h3>
                     <p>Button scrollt die Seite nach oben</p>
                 </section>
-            </section>
+            </div>
             <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo</a>
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
                 <div class="tb-content">
                     <section class="block" data-jmselector="equal-heights-children">
                         <div class="block-content">
@@ -569,77 +600,77 @@ window.onerror = function(message, url, linenumber) {
                     <p>Contentelement bestehend aus Text und Optionalem Bild. Das Bild kann flexibel ausgerichtet werden.</p>
                 </section>
             </section>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Default Block-Element)</a>
+            <div class="togglebox" id="UI-Elemente-Block-Default">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Default Block-Element)</a>
                 <div class="tb-content">
-                    <section class="block" data-jmselector="equal-heights-children">
-                        <div class="block-content">
+                    <div class="block" data-jmselector="equal-heights-children">
+                        <section class="block-content">
                             <h3>Lorem ipsum dolor sit amet</h3>
                             <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit zusätzlichem Header)</a>
+            <div class="togglebox" id="UI-Elemente-Block-Header">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Block mit zusätzlichem Header)</a>
                 <div class="tb-content">
-                    <section class="block" data-jmselector="equal-heights-children">
+                    <div class="block" data-jmselector="equal-heights-children">
                         <header class="block-header">
                             <h2 class="block-head">Lorem ipsum dolor sit amet</h2>
                         </header>
-                        <div class="block-content">
+                        <section class="block-content">
                             <h3>Lorem ipsum dolor sit amet</h3>
                             <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild links)</a>
+            <div class="togglebox" id="UI-Elemente-Block-Bild-Links">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Block mit Bild links)</a>
                 <div class="tb-content">
-                    <section class="block img-left" data-jmselector="equal-heights-children">
+                    <div class="block img-left" data-jmselector="equal-heights-children">
                         <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
-                        <div class="block-content">
+                        <section class="block-content">
                             <h3>Lorem ipsum dolor sit amet</h3>
                             <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild rechts)</a>
+            <div class="togglebox" id="UI-Elemente-Block-Bild-Rechts">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Block mit Bild rechts)</a>
                 <div class="tb-content">
-                    <section class="block img-right" data-jmselector="equal-heights-children">
-                        <div class="block-content">
+                    <div class="block img-right" data-jmselector="equal-heights-children">
+                        <section class="block-content">
                             <h3>Lorem ipsum dolor sit amet</h3>
                             <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        </div>
+                        </section>
                         <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
-                    </section>
+                    </div>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild oben)</a>
+            <div class="togglebox" id="UI-Elemente-Block-Bild-Oben">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Block mit Bild oben)</a>
                 <div class="tb-content">
-                    <section class="block img-top" data-jmselector="equal-heights-children">
+                    <div class="block img-top" data-jmselector="equal-heights-children">
                         <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
-                        <div class="block-content">
+                        <section class="block-content">
                             <h3>Lorem ipsum dolor sit amet</h3>
                             <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Block mit Bild unten)</a>
+            <div class="togglebox" id="UI-Elemente-Block-Bild-Unten">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Block mit Bild unten)</a>
                 <div class="tb-content">
-                    <section class="block img-bottom" data-jmselector="equal-heights-children">
-                        <div class="block-content">
+                    <div class="block img-bottom" data-jmselector="equal-heights-children">
+                        <section class="block-content">
                             <h3>Lorem ipsum dolor sit amet</h3>
                             <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        </div>
+                        </section>
                         <div class="block-figure"><img src="//dummyimage.com/1920x480/666/ddd.png&text=LOREM" alt="" /></div>
-                    </section>
+                    </div>
                 </div>
             </div>
             <section class="block" id="UI-Elemente-Carousel">
@@ -649,7 +680,7 @@ window.onerror = function(message, url, linenumber) {
                 </section>
         	</section>
         	<div class="togglebox">
-        		<a class="tb-subject" data-jmname="togglebox">Demo</a>
+        		<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
         		<div class="tb-content">
         			<div data-jmname="carousel" data-jmdominit="true">
         				<div class="stage-teaser visible">
@@ -746,7 +777,7 @@ window.onerror = function(message, url, linenumber) {
                 </section>
     		</section>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
     				<nav class="nav" id="nav" role="navigation">
     					<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
@@ -833,7 +864,7 @@ window.onerror = function(message, url, linenumber) {
                 </section>
     		</section>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
     				<div class="stage-teaser">
     					<div class="st-figure">
@@ -871,7 +902,7 @@ window.onerror = function(message, url, linenumber) {
                 </section>
     		</section>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
     				<div class="tabs">
     					<input type="radio" id="tab1" name="tab" class="tab-control" checked />
@@ -901,8 +932,8 @@ window.onerror = function(message, url, linenumber) {
         			<p>Teaserelement</p>
                 </section>
     		</section>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Teaser x1)</a>
+            <div class="togglebox" id="UI-Elemente-Teaserx1">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Teaser x1)</a>
                 <div class="tb-content">
                     <a class="teaser" href="#" data-jmselector="equal-heights-children">
                         <div class="t-figure">
@@ -933,8 +964,8 @@ window.onerror = function(message, url, linenumber) {
                     </a>
                 </div>
             </div>
-    		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo (Teaser x2)</a>
+    		<div class="togglebox" id="UI-Elemente-Teaserx2">
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo (Teaser x2)</a>
     			<div class="tb-content">
 					<a class="teaser" href="#" data-jmselector="equal-heights-children">
                         <div class="t-figure">
@@ -992,8 +1023,8 @@ window.onerror = function(message, url, linenumber) {
 					</a>
     			</div>
     		</div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Teaser x3)</a>
+            <div class="togglebox" id="UI-Elemente-Teaserx3">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Teaser x3)</a>
                 <div class="tb-content">
                     <a class="teaser" href="#" data-jmselector="equal-heights-children">
                         <div class="t-figure">
@@ -1078,8 +1109,8 @@ window.onerror = function(message, url, linenumber) {
                     </a>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (Teaser x4)</a>
+            <div class="togglebox" id="UI-Elemente-Teaserx4">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (Teaser x4)</a>
                 <div class="tb-content">
                     <a class="teaser" href="#" data-jmselector="equal-heights-children">
                         <div class="t-figure">
@@ -1197,8 +1228,8 @@ window.onerror = function(message, url, linenumber) {
                     <p>Kacheln</p>
                 </section>
             </section>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (1x2: Default)</a>
+            <div class="togglebox" id="UI-Elemente-Tiles-1x2">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (1x2: Default)</a>
                 <div class="tb-content">
                     <ul class="tiles tiles">
                         <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
@@ -1216,8 +1247,8 @@ window.onerror = function(message, url, linenumber) {
                     </ul>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (1x4)</a>
+            <div class="togglebox" id="UI-Elemente-Tiles-1x4">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (1x4)</a>
                 <div class="tb-content">
                     <ul class="tiles tiles-1x4">
                         <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
@@ -1235,8 +1266,8 @@ window.onerror = function(message, url, linenumber) {
                     </ul>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (1x6)</a>
+            <div class="togglebox" id="UI-Elemente-Tiles-1x6">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (1x6)</a>
                 <div class="tb-content">
                     <ul class="tiles tiles-1x6">
                         <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
@@ -1254,8 +1285,8 @@ window.onerror = function(message, url, linenumber) {
                     </ul>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (2x2)</a>
+            <div class="togglebox" id="UI-Elemente-Tiles-2x2">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (2x2)</a>
                 <div class="tb-content">
                     <ul class="tiles tiles-2x2">
                         <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
@@ -1273,8 +1304,8 @@ window.onerror = function(message, url, linenumber) {
                     </ul>
                 </div>
             </div>
-            <div class="togglebox">
-                <a class="tb-subject" data-jmname="togglebox">Demo (2x3)</a>
+            <div class="togglebox" id="UI-Elemente-Tiles-2x3">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo (2x3)</a>
                 <div class="tb-content">
                     <ul class="tiles tiles-2x3">
                         <li class="tile"><img src="//dummyimage.com/1920x720/666/ddd.png&text=1" alt="1" /></li>
@@ -1299,17 +1330,17 @@ window.onerror = function(message, url, linenumber) {
                 </section>
     		</section>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
     				<div class="togglebox">
-    					<a class="tb-subject" data-jmname="togglebox">Lorem ipsum dolor</a>
+    					<a class="tb-subject" href="#" data-jmname="togglebox">Lorem ipsum dolor</a>
     					<div class="tb-content">
     						<h5>Lorem ipsum dolor sit amet</h5>
     						<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     					</div>
     				</div>
                     <div class="togglebox">
-                        <a class="tb-subject" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-files/togglebox.html'}, {}]">Lorem ipsum dolor (ajax)</a>
+                        <a class="tb-subject" href="#" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-files/togglebox.html'}, {}]">Lorem ipsum dolor (ajax)</a>
                         <div class="tb-content"></div>
                     </div>
     			</div>
@@ -1324,7 +1355,7 @@ window.onerror = function(message, url, linenumber) {
                 </section>
     		</section>
     		<div class="togglebox">
-    			<a class="tb-subject" data-jmname="togglebox">Demo</a>
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
     			<div class="tb-content">
     				<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
     					<!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
