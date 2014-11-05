@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -78,10 +79,36 @@ namespace JM.Foundation.Mvc.Helper
 			}
 
 			if (htmlAttributes != null)
-				tag.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+				tag.MergeAttributes(ExtendedRouteValueDictionary(htmlAttributes));
 
 			return
 				MvcHtmlString.Create(tag.ToString());
+		}
+
+		#endregion
+
+		//////////////////////////////////////////////////////////////////////////////////////
+		#region Erweiterung des Routevaluedictionary
+
+		/// <summary>
+		/// Gibt das Routevaluedictionary wieder zurück, es wird nur aus dem Parameter "WT_ad" ein "WT.ad" gemacht, da "-" und "." nicht in den keys für 
+		/// das anonyme Object erlaubt sind. Bei Gelegenheit und Notwendigkeit erweitern!
+		/// </summary>
+		/// <param name="htmlAttributes"></param>
+		/// <returns></returns>
+		public static RouteValueDictionary ExtendedRouteValueDictionary(object htmlAttributes)
+		{
+			var result = new RouteValueDictionary();
+
+			if (htmlAttributes != null)
+			{
+				foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(htmlAttributes))
+				{
+					result.Add(property.Name.Replace('_', '-'), property.GetValue(htmlAttributes));
+				}
+			}
+
+			return result;
 		}
 
 		#endregion
