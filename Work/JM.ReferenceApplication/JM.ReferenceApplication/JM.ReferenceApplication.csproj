@@ -934,7 +934,7 @@
     <Content Include="Views\Shared\Regions\AnimatedImageSwap.cshtml" />
     <Content Include="Views\Shared\Regions\AnimatedSvg.cshtml" />
     <Content Include="Views\Shared\Regions\AnimatedImage.cshtml" />
-    <Content Include="Views\Page\showcase.cshtml" />
+    <Content Include="Views\Page\Showcase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Extensions\" />
