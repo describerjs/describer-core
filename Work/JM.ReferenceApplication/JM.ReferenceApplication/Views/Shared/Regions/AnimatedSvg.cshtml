@@ -1,0 +1,19 @@
+﻿@model AnimatedSvg
+
+@if (Model != null && !Model.Hide)
+{
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	CODE *@
+
+	object attributes = new {};
+
+	if (!String.IsNullOrEmpty(Model.EffectTrigger))
+	{
+		attributes = new { data_jmname = Model.EffectTrigger, data_jmdominit = "true" };
+	}
+	
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	HTML *@
+	
+	@Html.Image(Model.Image, attributes)
+}
