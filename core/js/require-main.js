@@ -1,4 +1,6 @@
 /*!
+ * require-main
+ *
  * http://joinmedia.de/
  *
  * Copyright (c) 2014 join.media GmbH & Co. KG
