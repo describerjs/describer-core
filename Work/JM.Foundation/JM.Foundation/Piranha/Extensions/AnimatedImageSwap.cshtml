@@ -1,0 +1,18 @@
+﻿@using System.Web.Mvc.Html
+@model AnimatedImageSwap
+<ul class="form">
+	<li>
+		<p>Zuerst das Ausgangsbild wählen, dann das Zielbild oder die Animation.</p>
+	</li>
+	<li>
+		@Html.PartialFor("ImageRegion", m => m.Image1)
+	</li>
+	<li>
+		@Html.PartialFor("ImageRegion", m => m.Image2)
+	</li>
+	<li>
+		@Html.LabelFor(m => m.Hide, "Verstecken")
+		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+		<p>Blendet das aktuelle Element vollständig aus</p>
+	</li>
+</ul>

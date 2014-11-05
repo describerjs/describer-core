@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.99\lib\net45\</OutputPath>
+    <OutputPath>..\..\JM.ReferenceApplication\packages\JM.Foundation.1.0.0.102\lib\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -108,7 +108,13 @@
     </Reference>
     <Reference Include="Piranha, Version=2.2.5281.40282, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>SharedBin\Piranha.dll</HintPath>
+      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\Piranha.dll</HintPath>
+    </Reference>
+    <Reference Include="Piranha.Mvc">
+      <HintPath>..\packages\PiranhaCMS.Mvc.2.2.2\lib\net45\Piranha.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc">
+      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\RazorGenerator.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -161,6 +167,7 @@
     <Compile Include="Piranha\Extensions\Block.cs" />
     <Compile Include="Piranha\Extensions\Accordion.cs" />
     <Compile Include="Piranha\Extensions\AnimatedText.cs" />
+    <Compile Include="Piranha\Extensions\AnimatedImageSwap.cs" />
     <Compile Include="Piranha\Models\Tile.cs" />
     <Compile Include="Piranha\Extensions\Tiles.cs" />
     <Compile Include="Piranha\Extensions\ToggleBox.cs" />
@@ -224,6 +231,7 @@
     <None Include="Piranha\Extensions\EditorTemplates\ImageRegion.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\TileEditor.cshtml" />
     <EmbeddedResource Include="Piranha\Extensions\AnimatedText.cshtml" />
+    <EmbeddedResource Include="Piranha\Extensions\AnimatedImageSwap.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />

@@ -66,9 +66,9 @@
       <HintPath>..\..\JM.Foundation\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JM.Foundation, Version=1.0.0.99, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JM.Foundation, Version=1.0.0.102, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JM.Foundation.1.0.0.99\lib\net45\JM.Foundation.dll</HintPath>
+      <HintPath>..\packages\JM.Foundation.1.0.0.102\lib\net45\JM.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -931,6 +931,7 @@
     <Content Include="Views\Shared\Image\_PictureFill_Effects.cshtml" />
     <Content Include="Views\Shared\Regions\Tiles.cshtml" />
     <Content Include="Views\Shared\Regions\AnimatedText.cshtml" />
+    <Content Include="Views\Shared\Regions\AnimatedImageSwap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Extensions\" />
