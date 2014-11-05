@@ -13,6 +13,7 @@
  * .....fade-in........................Element Fade-In
  * SLIDE...............................Slide Properties
  * .....slide-in.......................Element Slide-In/Out
+ * SCROLL-ANIM.........................Scroll-Animation
 **/
 
 
@@ -129,6 +130,18 @@
 	100%	{ left: -100%; }
 }
 
+
+
+
+
+/*------------------------------------*\
+	$SCROLL-ANIM
+\*------------------------------------*/
+
+.scroll-anim {
+	position: absolute;
+	z-index: 999;
+}
 
 
 

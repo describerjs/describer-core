@@ -97,7 +97,7 @@
 </head>
 
 <body>
-	@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }
+	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
 	<div class="page">
 		<header class="page-header" role="banner">
 			<a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
@@ -106,7 +106,7 @@
 		</header>
 		<main class="page-main" role="main">
 			@RenderBody()
-			<div class="togglebox">
+			@*<div class="togglebox">
 				<a class="tb-subject" data-jmname="togglebox">Features</a>
 				<div class="tb-content">
 					@PerformanceFeature.AriaRoles: @Html.FeatureEnabled(PerformanceFeature.AriaRoles)<br />
@@ -124,7 +124,7 @@
 					@PerformanceFeature.SpriteSheets: @Html.FeatureEnabled(PerformanceFeature.SpriteSheets)<br />
 					@PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br />
 				</div>
-			</div>
+			</div>*@
 		</main>
 		<footer class="page-footer" role="contentinfo">
 			<section class="h-card">

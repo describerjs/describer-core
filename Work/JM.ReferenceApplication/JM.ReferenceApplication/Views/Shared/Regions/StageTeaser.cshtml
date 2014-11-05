@@ -1,4 +1,5 @@
-﻿@model Teaser
+﻿@using JM.ReferenceApplication.Infrastructure.Models
+@model Teaser
 
 @if (Model != null && !Model.Hide)
 {
@@ -7,7 +8,7 @@
 		{
 			<div class="st-figure">
 				@Html.Partial(
-					"Image/_PictureFill_StageTeaser", Model.Image)
+					"Image/_PictureFill_EffectsStageTeaser", PictureFillEffectModel.Get(Model))
 			</div>
 		}
 		<div class="st-inner">

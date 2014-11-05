@@ -935,6 +935,9 @@
     <Content Include="Views\Shared\Regions\AnimatedSvg.cshtml" />
     <Content Include="Views\Shared\Regions\AnimatedImage.cshtml" />
     <Content Include="Views\Page\Showcase.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_Block.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_EffectsAnimatedImage.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_EffectsStageTeaser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Extensions\" />
