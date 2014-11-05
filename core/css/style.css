@@ -864,6 +864,9 @@ p:last-child {
  * JS/NOJS.............................JS/NOJS Elements
  * .....js-element
  * .....nojs-element
+ * OVERLAPPING.........................Overlapping Elements
+ * .....overlapped
+ * .....to-overlap
  * VISIBILITY/DISPLAY..................Visibility/Display Stats of Elements
  * .....is-hidden
  * .....is-visible
@@ -878,6 +881,25 @@ p:last-child {
 
 .nojs-element {
   display: none;
+}
+
+/*------------------------------------*\
+    $OVERLAPPING
+\*------------------------------------*/
+.overlapping {
+  position: relative;
+}
+.overlapping .overlapped {
+  /**/
+}
+.overlapping .to-overlap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+.overlapping .to-overlap.show {
+  visibility: visible;
 }
 
 /*------------------------------------*\
@@ -1035,6 +1057,13 @@ p:last-child {
     left: -100%;
   }
 }
+/*------------------------------------*\
+	$SCROLL-ANIM
+\*------------------------------------*/
+.scroll-anim {
+  position: absolute;
+}
+
 /*------------------------------------*\
 	
 \*------------------------------------*/

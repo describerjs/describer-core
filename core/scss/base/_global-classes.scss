@@ -6,6 +6,9 @@
  * JS/NOJS.............................JS/NOJS Elements
  * .....js-element
  * .....nojs-element
+ * OVERLAPPING.........................Overlapping Elements
+ * .....overlapped
+ * .....to-overlap
  * VISIBILITY/DISPLAY..................Visibility/Display Stats of Elements
  * .....is-hidden
  * .....is-visible
@@ -28,6 +31,33 @@
 // NO-JS
 .nojs-element {
 	display: none;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $OVERLAPPING
+\*------------------------------------*/
+
+.overlapping {
+	position: relative;
+
+	//
+	.overlapped {
+		/**/
+	}
+
+	//
+	.to-overlap {
+		@include absolute(0, '', '', 0);
+		visibility: hidden;
+
+		&.show {
+			visibility: visible;
+		}
+	}
 }
 
 
