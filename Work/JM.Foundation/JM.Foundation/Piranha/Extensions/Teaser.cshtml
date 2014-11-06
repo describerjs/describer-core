@@ -7,32 +7,32 @@
 	var regionID = fieldString.Replace("Regions[", "").Split(']')[0].Replace(".", "");
 }
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#pnl-image').addClass('content-editor');
-    });
+	$(document).ready(function () {
+		$('#pnl-image').addClass('content-editor');
+	});
 </script>
 <ul class="form">
 	<li>
 		@Html.LabelFor(m => m.Header)
 		<div class="input">@Html.TextBoxFor(m => m.Header)</div>
 	</li>
-    <li>
+	<li>
 		@Html.LabelFor(m => m.FooterText)
 		<div class="input">@Html.TextBoxFor(m => m.FooterText)</div>
 	</li>
-    <li>
-        @Html.LabelFor(m => m.FooterLink)
-        <div class="input">@Html.TextBoxFor(m => m.FooterLink)</div>
-    </li>
-    @for(var i = 0; i < Model.BulletPoints.Count; i++)
-    {
-        <li>
-            <label>Bulletpoint @i:</label> 
-	        <div class="input">
-		        @Html.TextBoxFor(m => m.BulletPoints[@i], new { id=String.Format("bp_{0}_{1}", regionID, i)})
-	        </div>
-        </li>
-    }
+	<li>
+		@Html.LabelFor(m => m.FooterLink)
+		<div class="input">@Html.TextBoxFor(m => m.FooterLink)</div>
+	</li>
+	@for(var i = 0; i < Model.BulletPoints.Count; i++)
+	{
+		<li>
+			<label>Bulletpoint @i:</label> 
+			<div class="input">
+				@Html.TextBoxFor(m => m.BulletPoints[@i], new { id=String.Format("bp_{0}_{1}", regionID, i)})
+			</div>
+		</li>
+	}
 	<li>
 		@Html.PartialFor("ImageRegion", m => m.Image)
 	</li>
@@ -45,9 +45,9 @@
 		<div class="input">@Html.DropDownListFor(m => m.ImageEffect, Model.ImageEffectSelection)</div>
 	</li>
 		<li>
-        @Html.LabelFor(m => m.ParallaxValue, "Parallax-Stärke")
+		@Html.LabelFor(m => m.ParallaxValue, "Parallax-Stärke")
 			<div class="input">@Html.TextBoxFor(m => m.ParallaxValue)</div>
 			@Html.ValidationMessageFor(m => m.ParallaxValue)
-			<p>Bestimmt die Stärke des Parallaxeffekts, wenn dieser aktiviert ist. Der Wert sollte eine Kommazahl zwischen 1 und 3 sein - empfohlen ist 1.5.</p>
-    </li>
+			<p>Bestimmt die Stärke des Parallaxeffekts, wenn dieser aktiviert ist. Der Wert sollte eine Kommazahl zwischen 1 und 3 sein - empfohlen ist 1,5.</p>
+	</li>
 </ul>

@@ -1,29 +1,44 @@
-﻿@using JM.ReferenceApplication.Infrastructure.Models
-@model Teaser
-<a class="teaser" href="@Model.FooterLink">
-	@if(Model.Image != null){
-		<div class="t-figure">
-			@Html.Partial(
-				"Image/_PictureFill_Effects", PictureFillEffectModel.Get(Model))
-		</div>
-	}
-	<div class="t-inner" data-jmselector="equal-heights-children">
-		<header class="t-header">
-			<h3 class="t-head">@Model.Header</h3>
-		</header>
-		<div class="t-main">
-			@if (Model.BulletPoints != null && Model.BulletPoints.Any(b => !string.IsNullOrEmpty(b)))
+﻿@model Teaser
+
+@if (Model != null && !Model.Hide)
+{
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	CODE *@
+
+	//
+
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	HTML *@
+
+	<a class="teaser" href="@Model.FooterLink">
+		@if (Model.Image != null)
+		{
+			<div class="t-figure">
+				@Html.Partial(
+					"Image/_PictureFill_Effects", PictureFillEffectModel.Get(Model))
+			</div>
+		}
+		<div class="t-inner" data-jmselector="equal-heights-children">
+			<header class="t-header">
+				<h3 class="t-head">@Model.Header</h3>
+			</header>
+			<div class="t-main">
+				@if (Model.BulletPoints != null && Model.BulletPoints.Any(b => !string.IsNullOrEmpty(b)))
+				{
+					<ul class="bullet-list">
+						@foreach (var bp in Model.BulletPoints.Where(b => !string.IsNullOrEmpty(b)))
+						{
+							<li class="list-item">@bp</li>
+						}
+					</ul>
+				}
+			</div>
+			@if (!String.IsNullOrEmpty(Model.FooterText))
 			{
-				<ul class="bullet-list">
-					@foreach (var bp in Model.BulletPoints.Where(b => !string.IsNullOrEmpty(b)))
-					{
-						<li class="list-item">@bp</li>
-					}
-				</ul>
+				<footer class="t-footer">
+					<span class="btn">@Model.FooterText</span>
+				</footer>
 			}
 		</div>
-		<footer class="t-footer">
-			<span class="btn">@Model.FooterText</span>
-		</footer>
-	</div>
-</a>
+	</a>
+}

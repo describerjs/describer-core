@@ -1,8 +1,15 @@
-﻿@using JM.ReferenceApplication.Infrastructure.Models
-@model Teaser
+﻿@model Teaser
 
 @if (Model != null && !Model.Hide)
 {
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	CODE *@
+
+	//
+
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	HTML *@
+
 	<div class="stage-teaser">
 		@if (Model.Image != null)
 		{
@@ -26,9 +33,12 @@
 					</ul>
 				}
 			</div>
-			<footer class="st-footer">
-				<a class="cta" href="@Model.FooterLink">@Model.FooterText</a>
-			</footer>
+			@if (!String.IsNullOrEmpty(Model.FooterText))
+			{
+				<footer class="st-footer">
+					<a class="cta" href="@Model.FooterLink">@Model.FooterText</a>
+				</footer>
+			}
 		</div>
 	</div>
 }

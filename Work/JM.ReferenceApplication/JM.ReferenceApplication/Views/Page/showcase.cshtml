@@ -1,7 +1,7 @@
 ﻿@using Piranha.Extend.Regions
 @model Piranha.Models.PageModel
 @{
-    ViewBag.Title = Model.Page.Title ;
+	ViewBag.Title = Model.Page.Title ;
 }
 
 @section head {
@@ -27,9 +27,9 @@
 
 <section class="section-onepage">
 	<div class="page-constrained">
-	    @Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser1"))
-	    @Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser2"))
-	    @Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser3"))
+		@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser1"))
+		@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser2"))
+		@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser3"))
 	</div>
 </section>
 
@@ -43,19 +43,19 @@
 
 <section class="section-onepage">
 	<div class="page-constrained">
-	    @Html.Partial("Regions/Block", Model.Region<Block>("Block1"))
+		@Html.Partial("Regions/Block", Model.Region<Block>("Block1"))
 	</div>
 </section>
 
 <section class="section-onepage">
 	<div class="page-constrained">
-	    @Html.Partial("Regions/Block", Model.Region<Block>("Block2"))
+		@Html.Partial("Regions/Block", Model.Region<Block>("Block2"))
 	</div>
 </section>
 
 <section class="section-onepage">
 	<div class="page-constrained">
-	    @Html.Partial("Regions/Block", Model.Region<Block>("Block3"))
+		@Html.Partial("Regions/Block", Model.Region<Block>("Block3"))
 	</div>
 </section>
 
@@ -68,10 +68,10 @@
 @*@Html.Partial("Regions/AnimatedSvg", Model.Region<AnimatedSvg>("AnimatedSVG1"))*@
 
 <div class="overlapping scroll-anim" data-jmname="frame-ani-by-scrolling|scrollControlTransition" data-jmdominit="true">
-    <div class="to-overlap twitter twitter-wing-down"></div>
-    <div class="to-overlap twitter twitter-wing-mid-up"></div>
-    <div class="to-overlap twitter twitter-wing-up"></div>
-    <div class="to-overlap twitter twitter-wing-mid-down"></div>
+	<div class="to-overlap twitter twitter-wing-down"></div>
+	<div class="to-overlap twitter twitter-wing-mid-up"></div>
+	<div class="to-overlap twitter twitter-wing-up"></div>
+	<div class="to-overlap twitter twitter-wing-mid-down"></div>
 </div>
 
 <section class="section-onepage">
