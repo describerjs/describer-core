@@ -11,7 +11,7 @@
 		public const int BlockHeight_Mobile = 200;
 
 		// Stageteaser
-		public const int StageTeaserWidth = 1280;
+		public const int StageTeaserWidth = 1920;
 		public const int StageTeaserHeight = 500;
 		public const int StageTeaserWidth_Tablet = 960;
 		public const int StageTeaserHeight_Tablet = 500;
