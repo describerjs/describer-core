@@ -8,7 +8,7 @@
 <style>
 .page { max-width: none; }
 .page-constrained { max-width: 72rem; }
-.section-onepage { background-color: #ddd; }
+.section-onepage { background-color: #ddd; padding-bottom: 3rem; padding-top: 3rem; }
 .section-onepage:nth-of-type(2n+1) { background-color: #eee; }
 
 .scroll-anim .twitter { background-image: url("/img/twitter-sprite.svg"); background-size: 400px 100px; height: 100px; width: 100px; }
@@ -20,17 +20,13 @@
 }
 
 <section class="section-onepage">
-	<div class="page-constrained">
-		@Html.Partial("Regions/StageTeaser", Model.Region<Teaser>("StageTeaser"))
-	</div>
+	@Html.Partial("Regions/StageTeaser", Model.Region<Teaser>("StageTeaser"))
 </section>
 
 <section class="section-onepage">
-	<div class="page-constrained">
-		@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser1"))
-		@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser2"))
-		@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser3"))
-	</div>
+	@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser1"))
+	@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser2"))
+	@Html.Partial("Regions/Teaser", Model.Region<Teaser>("Teaser3"))
 </section>
 
 @Html.Partial("Regions/AnimatedImage", Model.Region<AnimatedImage>("Parallax1"))
@@ -65,7 +61,6 @@
 	</div>
 </section>
 
-
 <section class="section-onepage">
 	@Html.Partial("Regions/AnimatedSvg", Model.Region<AnimatedSvg>("AnimatedSVG1"))
 </section>	
@@ -83,18 +78,6 @@
 
 <section class="section-onepage">
 	<div class="page-constrained">
-		@Html.Partial("Regions/AnimatedText", Model.Region<AnimatedText>("AnimatedText3"))
-	</div>
-</section>
-
-<section class="section-onepage">
-	<div class="page-constrained">
-		@Html.Partial("Regions/Tiles", Model.Region<Tiles>("Tiles1"))
-	</div>
-</section>
-
-<section class="section-onepage">
-	<div class="page-constrained">
 		@Html.Partial("Regions/AnimatedText", Model.Region<AnimatedText>("AnimatedText4"))
 	</div>
 </section>
@@ -102,5 +85,17 @@
 <section class="section-onepage">
 	<div class="page-constrained">
 		@Html.Partial("Regions/AnimatedImageSwap", Model.Region<AnimatedImageSwap>("AnimatedImageSwap1"))
+	</div>
+</section>
+
+<section class="section-onepage">
+	<div class="page-constrained">
+		@Html.Partial("Regions/AnimatedText", Model.Region<AnimatedText>("AnimatedText3"))
+	</div>
+</section>
+
+<section class="section-onepage">
+	<div class="page-constrained">
+		@Html.Partial("Regions/Tiles", Model.Region<Tiles>("Tiles1"))
 	</div>
 </section>
