@@ -556,6 +556,7 @@
     <Content Include="js\externals\customized\jquery.ba-dotimeout.js" />
     <Content Include="js\externals\customized\jquery.countdown-de.js" />
     <Content Include="js\externals\customized\jquery.countdown.js" />
+    <Content Include="js\externals\customized\jquery.parallax.js" />
     <Content Include="js\externals\customized\jquery.plugin.js" />
     <Content Include="js\externals\customized\jquery.validate.js" />
     <Content Include="js\externals\customized\modernizr.custom.js" />
@@ -572,6 +573,7 @@
     <Content Include="js\externals\originalReferenceSource\jquery-1.11.0.min.js" />
     <Content Include="js\externals\originalReferenceSource\jquery-2.1.0.js" />
     <Content Include="js\externals\originalReferenceSource\jquery-2.1.0.min.js" />
+    <Content Include="js\externals\originalReferenceSource\jquery.parallax.js" />
     <Content Include="js\externals\originalReferenceSource\matchmedia.js" />
     <Content Include="js\externals\originalReferenceSource\md5.js" />
     <Content Include="js\externals\originalReferenceSource\owl.carousel.js" />
@@ -598,6 +600,9 @@
     <Content Include="js\mylibs\modules\form\selectOptionExtractInGroup.js" />
     <Content Include="js\mylibs\modules\form\submitbutton.js" />
     <Content Include="js\mylibs\modules\modal.js" />
+    <Content Include="js\mylibs\modules\parallax.js" />
+    <Content Include="js\mylibs\modules\scrollControlFrames.js" />
+    <Content Include="js\mylibs\modules\scrollControlTransform.js" />
     <Content Include="js\mylibs\modules\tablesort.js" />
     <Content Include="js\mylibs\modules\video.js" />
     <Content Include="js\mylibs\utils\helpers.js" />
