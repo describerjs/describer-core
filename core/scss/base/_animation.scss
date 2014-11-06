@@ -25,8 +25,8 @@
 \*------------------------------------*/
 
 @mixin animation($animate...) {
-	$max: length($animate);
-	$animations: '';
+	$max:			length($animate);
+	$animations:	'';
 
 	@for $i from 1 through $max {
 		$animations: #{$animations + nth($animate, $i)};
@@ -36,9 +36,9 @@
 		}
 	}
 	
-	-webkit-animation: $animations;
 	-moz-animation:    $animations;
 	-o-animation:      $animations;
+	-webkit-animation: $animations;
 	animation:         $animations;
 }
 
@@ -92,7 +92,7 @@
 \*------------------------------------*/
 
 .fade-in {
-	@include transition(opacity .5s linear);
+	@include transition(opacity .6s linear);
 	opacity: 0;
 
 	&.show {
@@ -109,25 +109,13 @@
 \*------------------------------------*/
 
 .slide-in {
-	@include animation("bt-slide-out .5s 1 forwards");
-	left: -100%;
+	@include transition(left .9s linear);
+	left: -200%;
 	position: relative;
 
 	&.show {
-		@include animation("bt-slide-in .5s 1 forwards");
+		left: 0;
 	}
-}
-
-// Keyframe animation für slide-in
-@include keyframes(bt-slide-in) {
-	0%		{ left: -100%; }
-	100%	{ left: 0; }
-}
-
-// Keyframe animation für slide-out
-@include keyframes(bt-slide-out) {
-	0%		{ left: 0; }
-	100%	{ left: -100%; }
 }
 
 

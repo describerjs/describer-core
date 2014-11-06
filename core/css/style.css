@@ -965,11 +965,11 @@ p:last-child {
 	$FADE
 \*------------------------------------*/
 .fade-in {
-  -moz-transition: opacity 0.5s linear;
-  -ms-transition: opacity 0.5s linear;
-  -o-transition: opacity 0.5s linear;
-  -webkit-transition: opacity 0.5s linear;
-  transition: opacity 0.5s linear;
+  -moz-transition: opacity 0.6s linear;
+  -ms-transition: opacity 0.6s linear;
+  -o-transition: opacity 0.6s linear;
+  -webkit-transition: opacity 0.6s linear;
+  transition: opacity 0.6s linear;
   opacity: 0;
 }
 .fade-in.show {
@@ -980,84 +980,18 @@ p:last-child {
 	$SLIDE
 \*------------------------------------*/
 .slide-in {
-  -webkit-animation: bt-slide-out .5s 1 forwards;
-  -moz-animation: bt-slide-out .5s 1 forwards;
-  -o-animation: bt-slide-out .5s 1 forwards;
-  animation: bt-slide-out .5s 1 forwards;
-  left: -100%;
+  -moz-transition: left 0.9s linear;
+  -ms-transition: left 0.9s linear;
+  -o-transition: left 0.9s linear;
+  -webkit-transition: left 0.9s linear;
+  transition: left 0.9s linear;
+  left: -200%;
   position: relative;
 }
 .slide-in.show {
-  -webkit-animation: bt-slide-in .5s 1 forwards;
-  -moz-animation: bt-slide-in .5s 1 forwards;
-  -o-animation: bt-slide-in .5s 1 forwards;
-  animation: bt-slide-in .5s 1 forwards;
+  left: 0;
 }
 
-@-webkit-keyframes bt-slide-in {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0;
-  }
-}
-@-moz-keyframes bt-slide-in {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0;
-  }
-}
-@-o-keyframes bt-slide-in {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0;
-  }
-}
-@keyframes bt-slide-in {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0;
-  }
-}
-@-webkit-keyframes bt-slide-out {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-@-moz-keyframes bt-slide-out {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-@-o-keyframes bt-slide-out {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-@keyframes bt-slide-out {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
 /*------------------------------------*\
 	$SCROLL-ANIM
 \*------------------------------------*/
