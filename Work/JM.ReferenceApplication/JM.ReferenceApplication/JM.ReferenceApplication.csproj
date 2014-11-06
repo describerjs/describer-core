@@ -551,6 +551,7 @@
     <Content Include="img\png\user-guide-steps\user-guide-steps-2.png" />
     <Content Include="img\png\videoPlayer\ayyildiz_app_tutorial.png" />
     <Content Include="img\png\videoPlayer\iphone5s-video.png" />
+    <Content Include="img\twitter-sprite.svg" />
     <Content Include="js\empty.js" />
     <Content Include="js\externals\customized\jquery.autocomplete.js" />
     <Content Include="js\externals\customized\jquery.ba-dotimeout.js" />
