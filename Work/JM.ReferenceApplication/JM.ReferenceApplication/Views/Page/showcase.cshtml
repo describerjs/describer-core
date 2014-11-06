@@ -65,7 +65,10 @@
 	</div>
 </section>
 
-@*@Html.Partial("Regions/AnimatedSvg", Model.Region<AnimatedSvg>("AnimatedSVG1"))*@
+
+<section class="section-onepage">
+	@Html.Partial("Regions/AnimatedSvg", Model.Region<AnimatedSvg>("AnimatedSVG1"))
+</section>	
 
 <div class="overlapping scroll-anim" data-jmname="frame-ani-by-scrolling|scrollControlTransition" data-jmdominit="true">
 	<div class="to-overlap twitter twitter-wing-down"></div>
