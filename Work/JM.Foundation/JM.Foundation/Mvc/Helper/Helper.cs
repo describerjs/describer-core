@@ -60,7 +60,7 @@ namespace JM.Foundation.Mvc.Helper
 		/// <returns>MvcHtmlString tag</returns>
 		public static MvcHtmlString Image(this HtmlHelper helper, ImageRegion image, object htmlAttributes, int width = 0, int height = 0)
 		{
-			if (image == null)
+			if (image == null || String.IsNullOrEmpty(image.Name))
 				return MvcHtmlString.Create(String.Empty);
 
 			TagBuilder tag = null;
