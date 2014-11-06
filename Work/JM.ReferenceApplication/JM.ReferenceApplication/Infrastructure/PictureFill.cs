@@ -3,12 +3,12 @@
 	public static class PictureFill
 	{
 		// Block
-		public const int BlockWidth = 400;
-		public const int BlockHeight = 200;
-		public const int BlockWidth_Tablet = 400;
-		public const int BlockHeight_Tablet = 200;
-		public const int BlockWidth_Mobile = 400;
-		public const int BlockHeight_Mobile = 200;
+		public const int BlockWidth = 300;
+		public const int BlockHeight = 300;
+		public const int BlockWidth_Tablet = 300;
+		public const int BlockHeight_Tablet = 300;
+		public const int BlockWidth_Mobile = 300;
+		public const int BlockHeight_Mobile = 300;
 
 		// Stageteaser
 		public const int StageTeaserWidth = 1920;
