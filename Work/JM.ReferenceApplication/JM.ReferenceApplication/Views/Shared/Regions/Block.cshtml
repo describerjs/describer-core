@@ -23,7 +23,7 @@
             <div class="block-figure">
                 @*<img src="@UI.Content(Model.Image.Id)" alt="@Model.Image.Description" />*@
                 @Html.Partial(
-                    "Image/_PictureFill_Block", Model.Image)
+                    "Image/_PictureFill_Block", PictureFillEffectModel.Get(Model))
             </div>
         }
 	    <div class="block-content">
