@@ -145,7 +145,7 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 		if ($.type(p_delta_offset) === 'number') {
 			_delta_offset = p_delta_offset;
 		}
-		$('body').scrollToTop($(this).offset().top + _delta_offset);
+		$('html, body').scrollToTop($(this).offset().top + _delta_offset);
 	};
 
 	$.fn.removeDotNetFallbackHiddenFields = function(){
@@ -165,7 +165,6 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 					$item.remove();
 				}
 			});
-
 		});
 	};
 
