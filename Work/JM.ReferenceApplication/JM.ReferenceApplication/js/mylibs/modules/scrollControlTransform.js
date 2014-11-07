@@ -110,8 +110,8 @@ define(['jquery', '_super', 'utils.helpers'], function ($, _super){
 			var _x_translate = (y_factor*this.containerWitdh).toString();
 			var _y_translate = '0';
 			var _z_translate = '0';
-			var _x_scale = (1-(y_factor/2)).toString();
-			var _y_scale = (1-(y_factor/2)).toString();
+			var _x_scale = (0.5 + (y_factor)).toString();
+			var _y_scale = (0.5 + (y_factor)).toString();
 			var _z_scale = '1';
 			var _x_rotate = (1-(y_factor/2)).toString();
 			var _y_rotate = '0';

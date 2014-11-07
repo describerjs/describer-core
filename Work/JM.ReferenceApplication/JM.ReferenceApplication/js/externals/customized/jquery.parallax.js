@@ -505,7 +505,8 @@
     }else if(first && secont){
 	    calc = -2*((wpo + wih - eot) / range)+1;
     }
-	if(portrait){
+
+	if(portrait && (this.gyromouseX || this.gyromouseY) && !this.desktop){
 	  if(this.scrollY) this.ix = calc;
 	  if(this.scrollX) this.iy = calc;
 	}else{
