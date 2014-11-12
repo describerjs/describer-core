@@ -1,0 +1,26 @@
+﻿@section head {
+<style>
+.demo-section { margin-bottom: 35rem; margin-top: 35rem; }
+.page { overflow: visible; }
+.page-main { min-height: 100rem; }
+.scroll-anim .twitter { background-image: url("/img/twitter-sprite.svg"); background-size: 400px 100px; height: 100px; width: 100px; }
+.scroll-anim .twitter-wing-down { background-position: 0 0; }
+.scroll-anim .twitter-wing-mid-up { background-position: 1000px 0; }
+.scroll-anim .twitter-wing-up { background-position: 200px 0; }
+.scroll-anim .twitter-wing-mid-down { background-position: 300px 0; }
+</style>
+}
+
+<h2 id="OnScrollAnimation">OnScrollAnimation (FrameAnimation)</h2>
+<div class="demo-section">
+    <div class="overlapping scroll-anim" data-jmname="frame-ani-by-scrolling|scrollControlTransition" data-jmdominit="true">
+        <div class="to-overlap twitter twitter-wing-down"></div>
+        <div class="to-overlap twitter twitter-wing-mid-up"></div>
+        <div class="to-overlap twitter twitter-wing-up"></div>
+        <div class="to-overlap twitter twitter-wing-mid-down"></div>
+        <!--<svg viewBox="0 0 100 100" class="icon shape-twitter-3">
+            <use xlink:href="#shape-twitter"></use>
+        </svg>
+        <img src="/img/twitter-sprite.svg" />-->
+    </div>
+</div>

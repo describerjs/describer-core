@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 300 200">
+    <g>
+        <line x1="100" y1="0" x2="100" y2="90" stroke="black"/>
+        <circle id="pendel" cx="100" cy="90" r="10"/>
+        <animateTransform attributeName="transform" type="rotate" values="0,100,0;70,100,0;0,100,0;-70,100,0;0,100,0"
+                          keySplines="0,0.5,0.5,1;0.5,0,1,0.5;0,0.5,0.5,1;0.5,0,1,0.5"
+                          calcMode="spline" begin="indefinite" dur="4s" repeatCount="indefinite"/>
+    </g>
+</svg>

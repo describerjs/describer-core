@@ -1,0 +1,18 @@
+﻿@section head {
+<style>
+.demo-section { margin-bottom: 3rem; }
+</style>
+}
+<h2 id="parallax">Parallax-Image (Gyroscope orientationSupport depth: 1.5)</h2>
+<div class="demo-section">
+    <div class="parallax" data-jmname="parallax-content-orientation" data-jmdominit="true">
+        <div class="parallax-inner layer" data-depth="1.5" style="margin: 0 -25%;">
+            <picture>
+                <source srcset="images/1.5/home-1920x-720y.jpg" media="(min-width: 60em)"></source>
+                <source srcset="images/1.5/home-1440x-540y.jpg" media="(min-width: 48em)"></source>
+                <source srcset="images/1.5/home-1152x-432y.jpg, /images/1.5/home-1152x-432y-x2.jpg 2x"></source>
+                <img srcset="images/1.5/home-1152x-432y.jpg, /images/1.5/home-1152x-432y-x2.jpg 2x" alt="" class="parallax-img" style="margin: -6.25% 0; width: 150%;">
+            </picture>
+        </div>
+    </div>
+</div>

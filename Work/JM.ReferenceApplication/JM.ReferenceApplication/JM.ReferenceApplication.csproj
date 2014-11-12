@@ -944,6 +944,21 @@
     <Content Include="Views\Shared\Image\_PictureFill_Block.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_EffectsAnimatedImage.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_EffectsStageTeaser.cshtml" />
+    <Content Include="Views\Home\Mydemo.cshtml" />
+    <Content Include="Views\Content\DemoJMUI.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Animation.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Templates.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_OnScrollAnimation_Bildanimation.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_OnScrollAnimation_FrameAnimation_And_Transform.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_OnScrollAnimation_Slide.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Template_Constrained.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_OnScrollAnimation_Fade.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_OnScrollAnimation_SVG.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Parallax_Gyroscope_1_1.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Parallax_Gyroscope_1_5.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Parallax_Scrolling_Y.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Parallax_Scrolling_Y_Orientation_X.cshtml" />
+    <Content Include="Views\Content\DemoJMUI_Template_Default.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Extensions\" />
