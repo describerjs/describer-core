@@ -944,7 +944,6 @@
     <Content Include="Views\Shared\Image\_PictureFill_Block.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_EffectsAnimatedImage.cshtml" />
     <Content Include="Views\Shared\Image\_PictureFill_EffectsStageTeaser.cshtml" />
-    <Content Include="Views\Home\Mydemo.cshtml" />
     <Content Include="Views\Content\DemoJMUI.cshtml" />
     <Content Include="Views\Content\DemoJMUI_Animation.cshtml" />
     <Content Include="Views\Content\DemoJMUI_Templates.cshtml" />
