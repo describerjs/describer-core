@@ -1,7 +1,6 @@
-﻿using System.Web.Mvc;
-using JM.Foundation.Mvc.Helper;
-using JM.ReferenceApplication.Infrastructure;
+﻿using JM.Foundation.Mvc.Helper;
 using Piranha.Models;
+using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.Controllers
 {
