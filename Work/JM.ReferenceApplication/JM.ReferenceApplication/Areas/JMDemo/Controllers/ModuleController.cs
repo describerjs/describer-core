@@ -31,19 +31,10 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		}
 
 		/// <summary>
-		/// Startseite für JM.Business.Kontakt
+		/// Startseite für Effekte-Demo
 		/// </summary>
 		/// <returns>View</returns>
-		public ActionResult JM_Business_Kontakt()
-		{
-			return View();
-		}
-
-		/// <summary>
-		/// Startseite für JM.Business
-		/// </summary>
-		/// <returns>View</returns>
-		public ActionResult JM_Business()
+		public ActionResult Effekte()
 		{
 			return View();
 		}

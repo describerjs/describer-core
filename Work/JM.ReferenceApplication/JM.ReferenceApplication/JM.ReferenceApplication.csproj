@@ -233,8 +233,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\JMDemo\Controllers\JM_Business_KontaktController.cs" />
-    <Compile Include="Areas\JMDemo\Controllers\JM_Business_Controller.cs" />
     <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
     <Compile Include="Areas\JMDemo\Controllers\Models\StringManagerModel.cs" />
@@ -276,7 +274,6 @@
     <Content Include="Areas\JMDemo\css\bootstrap.css" />
     <Content Include="Areas\JMDemo\css\bootstrap.min.css" />
     <Content Include="Areas\JMDemo\css\Site.css" />
-    <Content Include="Areas\JMDemo\img\JM.Business.Kontakt\DB-Schema.png" />
     <Content Include="Areas\JMDemo\js\bootstrap.js" />
     <Content Include="Areas\JMDemo\js\bootstrap.min.js" />
     <Content Include="App_Data\Config\JM.SiteConfig.config">
@@ -644,9 +641,7 @@
     <Content Include="js\require-css\video.css" />
     <Content Include="js\require-main.js" />
     <Content Include="robots.txt" />
-    <Content Include="App_Data\Config\JM.Business.config" />
     <Content Include="App_Data\autofac.config" />
-    <Content Include="App_Data\Config\JM.Business.Kontakt.config" />
     <Content Include="App_Data\Config\JM.Foundation.config">
       <SubType>Designer</SubType>
     </Content>
@@ -658,13 +653,6 @@
     <Content Include="Areas\JMDemo\Views\_ViewStart.cshtml" />
     <Content Include="Areas\JMDemo\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\JMDemo\Views\Start\Index.cshtml" />
-    <Content Include="Areas\JMDemo\Views\Module\JM_Business_Kontakt.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\Index.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\CreateRequest_Danke.cshtml" />
-    <Content Include="Areas\JMDemo\Views\Module\JM_Business.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreData.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreData_Danke.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\CreateRequest.cshtml" />
     <Content Include="Areas\Manager\Views\Web.config" />
     <Content Include="App_Data\Config\piranha.config" />
     <Content Include="Areas\JMDemo\Views\Module\JM_Foundation.cshtml" />
@@ -681,15 +669,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Error\DisplayError.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business\Index.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business\Important.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business\Lame.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business\Details.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business\ImportantModuleInfo.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business\ImportantConfiguredDeviceInfo.cshtml" />
     <Content Include="Views\Post\Index.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData.cshtml" />
-    <Content Include="Areas\JMDemo\Views\JM_Business_Kontakt\StoreFamilyData_Danke.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\MainJS.cshtml" />
     <Content Include="Views\Shared\Regions\StageTeaser.cshtml" />
@@ -986,8 +966,10 @@
     <Content Include="Views\Content\DemoJMUI_Parallax_Scrolling_Y.cshtml" />
     <Content Include="Views\Content\DemoJMUI_Parallax_Scrolling_Y_Orientation_X.cshtml" />
     <Content Include="Views\Content\DemoJMUI_Template_Default.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Module\Effekte.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\JMDemo\img\" />
     <Folder Include="Areas\Manager\Views\Extensions\" />
     <Folder Include="css\min\" />
   </ItemGroup>
@@ -998,20 +980,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.csproj">
-      <Project>{626a7bed-0264-4bb5-be59-bfb1ffc36fb2}</Project>
-      <Name>JM.Business.Kontakt.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JM.Business.Kontakt\JM.Business.Kontakt.csproj">
-      <Project>{01360c66-2965-407e-86ad-f82a194ddea7}</Project>
-      <Name>JM.Business.Kontakt</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JM.Business\JM.Business.csproj">
-      <Project>{34639888-0fe7-417c-82af-72a9a3d215b3}</Project>
-      <Name>JM.Business</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
