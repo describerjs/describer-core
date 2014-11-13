@@ -31,15 +31,6 @@ namespace JM.ReferenceApplication.Areas.JMDemo.Controllers
 		}
 
 		/// <summary>
-		/// Startseite für Effekte-Demo
-		/// </summary>
-		/// <returns>View</returns>
-		public ActionResult Effekte()
-		{
-			return View();
-		}
-
-		/// <summary>
 		/// Startseite für JM.Foundation
 		/// </summary>
 		/// <returns>View</returns>

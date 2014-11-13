@@ -101,30 +101,17 @@
 	<div class="page">
 		<header class="page-header" role="banner">
 			<a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
-			@{ Html.RenderAction("_Navigation", "Content", new { area = "" }); }
-			@*@Html.Partial("_LoginPartial")*@
+			@if (IsSectionDefined("navigation"))
+			{
+				@RenderSection("navigation", required: false)
+			}
+			else
+			{
+				Html.RenderAction("_Navigation", "Content", new { area = "" });
+			}
 		</header>
 		<main class="page-main" role="main">
 			@RenderBody()
-			@*<div class="togglebox">
-				<a class="tb-subject" data-jmname="togglebox">Features</a>
-				<div class="tb-content">
-					@PerformanceFeature.AriaRoles: @Html.FeatureEnabled(PerformanceFeature.AriaRoles)<br />
-					@PerformanceFeature.Favicons: @Html.FeatureEnabled(PerformanceFeature.Favicons)<br />
-					@PerformanceFeature.IE8: @Html.FeatureEnabled(PerformanceFeature.IE8)<br />
-					@PerformanceFeature.MicroData: @Html.FeatureEnabled(PerformanceFeature.MicroData)<br />
-					@PerformanceFeature.MicroFormats: @Html.FeatureEnabled(PerformanceFeature.MicroFormats)<br />
-					@PerformanceFeature.NoJS: @Html.FeatureEnabled(PerformanceFeature.NoJS)<br />
-					@PerformanceFeature.PerformanceA: @Html.FeatureEnabled(PerformanceFeature.PerformanceA)<br />
-					@PerformanceFeature.PerformanceB: @Html.FeatureEnabled(PerformanceFeature.PerformanceB)<br />
-					@PerformanceFeature.PerformanceC: @Html.FeatureEnabled(PerformanceFeature.PerformanceC)<br />
-					@PerformanceFeature.Prefetch: @Html.FeatureEnabled(PerformanceFeature.Prefetch)<br />
-					@PerformanceFeature.ProgressiveEnhancement: @Html.FeatureEnabled(PerformanceFeature.ProgressiveEnhancement)<br />
-					@PerformanceFeature.ResponsiveImages : @Html.FeatureEnabled(PerformanceFeature.ResponsiveImages)<br />
-					@PerformanceFeature.SpriteSheets: @Html.FeatureEnabled(PerformanceFeature.SpriteSheets)<br />
-					@PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br />
-				</div>
-			</div>*@
 		</main>
 		<footer class="page-footer" role="contentinfo">
 			<section class="h-card">
