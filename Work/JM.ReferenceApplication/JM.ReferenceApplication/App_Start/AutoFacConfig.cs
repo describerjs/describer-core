@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Autofac;
 using Autofac.Configuration;
-using Autofac.Extras.DynamicProxy2;
 using Autofac.Integration.Mvc;
 using JM.Foundation.ErrorHandling;
 
