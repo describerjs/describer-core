@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbViewModel.cs" />
+    <Compile Include="EnvironmentConsts.cs" />
     <Compile Include="EnvironmentTemplateSource.cs" />
     <Compile Include="FileRenderer.cs" />
     <Compile Include="FrmPrepareEnvironments.cs">

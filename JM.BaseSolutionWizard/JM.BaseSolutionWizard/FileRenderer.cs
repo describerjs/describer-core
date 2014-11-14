@@ -30,6 +30,7 @@ namespace JM.BaseSolutionWizard
                         {
                             DefaultConnectionString = en.StandardConnectionString,
                             PiranhaConnectionString = en.AdminConnectionString,
+                            EventTracingSqlSink = en.LoggingConnectionString,
                             //wenn nicht local config ist
                             IsRelease = !en.IsLocal
                         }

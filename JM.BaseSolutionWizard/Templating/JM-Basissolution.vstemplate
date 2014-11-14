@@ -27,7 +27,7 @@
   </TemplateContent>
 <WizardExtension>
     <Assembly>
-      JM.BaseSolutionWizard, Version=1.0.0.1, Culture=neutral, PublicKeyToken=79350b940fb8868c
+      JM.BaseSolutionWizard, Version=1.0.0.4, Culture=neutral, PublicKeyToken=79350b940fb8868c
     </Assembly>
     <FullClassName>JM.BaseSolutionWizard.InstallWizard</FullClassName>
   </WizardExtension>

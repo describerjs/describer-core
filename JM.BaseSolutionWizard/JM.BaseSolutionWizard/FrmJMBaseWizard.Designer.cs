@@ -33,10 +33,10 @@
             System.Windows.Forms.Label standardConnectionStringLabel;
             System.Windows.Forms.Label environmentNameLabel;
             System.Windows.Forms.Label isLocalLabel;
+            System.Windows.Forms.Label lblLoggingConnectionString;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJMBaseWizard));
             this.environmentViewModelBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.environmentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -52,13 +52,16 @@
             this.standardConnectionStringTextBox = new System.Windows.Forms.TextBox();
             this.environmentNameTextBox = new System.Windows.Forms.TextBox();
             this.isLocalCheckBox = new System.Windows.Forms.CheckBox();
+            this.txtLoggingConnectionString = new System.Windows.Forms.TextBox();
+            this.environmentViewModelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             adminConnectionStringLabel = new System.Windows.Forms.Label();
             standardConnectionStringLabel = new System.Windows.Forms.Label();
             environmentNameLabel = new System.Windows.Forms.Label();
             isLocalLabel = new System.Windows.Forms.Label();
+            lblLoggingConnectionString = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingNavigator)).BeginInit();
             this.environmentViewModelBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // adminConnectionStringLabel
@@ -91,16 +94,25 @@
             // isLocalLabel
             // 
             isLocalLabel.AutoSize = true;
-            isLocalLabel.Location = new System.Drawing.Point(12, 121);
+            isLocalLabel.Location = new System.Drawing.Point(12, 141);
             isLocalLabel.Name = "isLocalLabel";
             isLocalLabel.Size = new System.Drawing.Size(47, 13);
             isLocalLabel.TabIndex = 11;
             isLocalLabel.Text = "Is Local:";
             // 
+            // lblLoggingConnectionString
+            // 
+            lblLoggingConnectionString.AutoSize = true;
+            lblLoggingConnectionString.Location = new System.Drawing.Point(12, 121);
+            lblLoggingConnectionString.Name = "lblLoggingConnectionString";
+            lblLoggingConnectionString.Size = new System.Drawing.Size(135, 13);
+            lblLoggingConnectionString.TabIndex = 13;
+            lblLoggingConnectionString.Text = "Logging Connection String:";
+            // 
             // environmentViewModelBindingNavigator
             // 
             this.environmentViewModelBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.environmentViewModelBindingNavigator.BindingSource = this.environmentViewModelBindingSource;
+            this.environmentViewModelBindingNavigator.BindingSource = this.environmentViewModelBindingSource1;
             this.environmentViewModelBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.environmentViewModelBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
             this.environmentViewModelBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -138,7 +150,7 @@
             // 
             // environmentViewModelBindingSource
             // 
-            this.environmentViewModelBindingSource.DataSource = typeof(JM.BaseSolutionWizard.EnvironmentViewModel);
+            this.environmentViewModelBindingSource1.DataSource = typeof(JM.BaseSolutionWizard.EnvironmentViewModel);
             // 
             // bindingNavigatorCountItem
             // 
@@ -227,7 +239,7 @@
             // 
             // adminConnectionStringTextBox
             // 
-            this.adminConnectionStringTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource, "AdminConnectionString", true));
+            this.adminConnectionStringTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource1, "AdminConnectionString", true));
             this.adminConnectionStringTextBox.Location = new System.Drawing.Point(183, 66);
             this.adminConnectionStringTextBox.Name = "adminConnectionStringTextBox";
             this.adminConnectionStringTextBox.Size = new System.Drawing.Size(199, 20);
@@ -235,7 +247,7 @@
             // 
             // standardConnectionStringTextBox
             // 
-            this.standardConnectionStringTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource, "StandardConnectionString", true));
+            this.standardConnectionStringTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource1, "StandardConnectionString", true));
             this.standardConnectionStringTextBox.Location = new System.Drawing.Point(183, 92);
             this.standardConnectionStringTextBox.Name = "standardConnectionStringTextBox";
             this.standardConnectionStringTextBox.Size = new System.Drawing.Size(199, 20);
@@ -243,7 +255,7 @@
             // 
             // environmentNameTextBox
             // 
-            this.environmentNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource, "EnvironmentName", true));
+            this.environmentNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource1, "EnvironmentName", true));
             this.environmentNameTextBox.Location = new System.Drawing.Point(183, 40);
             this.environmentNameTextBox.Name = "environmentNameTextBox";
             this.environmentNameTextBox.Size = new System.Drawing.Size(199, 20);
@@ -251,18 +263,31 @@
             // 
             // isLocalCheckBox
             // 
-            this.isLocalCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.environmentViewModelBindingSource, "IsLocal", true));
-            this.isLocalCheckBox.Location = new System.Drawing.Point(183, 121);
+            this.isLocalCheckBox.Location = new System.Drawing.Point(183, 141);
             this.isLocalCheckBox.Name = "isLocalCheckBox";
             this.isLocalCheckBox.Size = new System.Drawing.Size(104, 24);
             this.isLocalCheckBox.TabIndex = 12;
             this.isLocalCheckBox.UseVisualStyleBackColor = true;
             // 
+            // txtLoggingConnectionString
+            // 
+            this.txtLoggingConnectionString.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.environmentViewModelBindingSource1, "LoggingConnectionString", true));
+            this.txtLoggingConnectionString.Location = new System.Drawing.Point(183, 118);
+            this.txtLoggingConnectionString.Name = "txtLoggingConnectionString";
+            this.txtLoggingConnectionString.Size = new System.Drawing.Size(199, 20);
+            this.txtLoggingConnectionString.TabIndex = 14;
+            // 
+            // environmentViewModelBindingSource1
+            // 
+            this.environmentViewModelBindingSource1.DataSource = typeof(JM.BaseSolutionWizard.EnvironmentViewModel);
+            // 
             // FrmJMBaseWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 160);
+            this.ClientSize = new System.Drawing.Size(394, 194);
+            this.Controls.Add(lblLoggingConnectionString);
+            this.Controls.Add(this.txtLoggingConnectionString);
             this.Controls.Add(isLocalLabel);
             this.Controls.Add(this.isLocalCheckBox);
             this.Controls.Add(environmentNameLabel);
@@ -277,7 +302,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingNavigator)).EndInit();
             this.environmentViewModelBindingNavigator.ResumeLayout(false);
             this.environmentViewModelBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.environmentViewModelBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,7 +310,6 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource environmentViewModelBindingSource;
         private System.Windows.Forms.BindingNavigator environmentViewModelBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
@@ -303,6 +327,8 @@
         private System.Windows.Forms.TextBox standardConnectionStringTextBox;
         private System.Windows.Forms.TextBox environmentNameTextBox;
         private System.Windows.Forms.CheckBox isLocalCheckBox;
+        private System.Windows.Forms.TextBox txtLoggingConnectionString;
+        private System.Windows.Forms.BindingSource environmentViewModelBindingSource1;
 
     }
 }

@@ -7,6 +7,7 @@ namespace JM.BaseSolutionWizard
         private string adminConnectionString = string.Empty;
         private string standardConnectionString = string.Empty;
         private string environmentName = string.Empty;
+        private string loggingConnectionString = string.Empty;
         private bool isLocal = false;
 
         public bool IsLocal
@@ -77,18 +78,27 @@ namespace JM.BaseSolutionWizard
             }
         }
 
+        public string LoggingConnectionString
+        {
+            get
+            {
+                return loggingConnectionString;
+            }
+            set
+            {
+                if (value != this.loggingConnectionString)
+                {
+                    OnPropertyChanged("LoggingConnectionString");
+                }
+
+                loggingConnectionString = value;
+            }
+        }
+
         private void OnPropertyChanged(string propName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
-        //public string RelativeConfigTranformFilePath
-        //{
-        //    get
-        //    {
-        //        return Path.Combine(EnvironmentName, )
-        //    }
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
