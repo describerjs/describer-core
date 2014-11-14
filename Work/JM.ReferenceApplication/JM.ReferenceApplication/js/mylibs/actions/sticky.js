@@ -1,5 +1,5 @@
 /*!
- * actions.sticky v0.9
+ * actions.sticky
  *
  * http://joinmedia.de/
  *
@@ -35,8 +35,9 @@ define(['jquery', '_super', 'fixedsticky'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$elem.fixedsticky();
+			this._finishing();
 		}
 
 		/*render: function(){

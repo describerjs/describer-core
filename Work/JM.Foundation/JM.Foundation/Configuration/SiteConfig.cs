@@ -18,5 +18,14 @@ namespace JM.Foundation.Configuration
 				return (Server)this["Server"];
 			}
 		}
+
+		/// <summary>
+		/// Konfiguration der verfügbaren Templates, und welches Template aktiv ist
+		/// </summary>
+		[ConfigurationProperty("Templates", IsRequired = true)]
+		public TemplateCollection Templates
+		{
+			get { return this["Templates"] as TemplateCollection; }
+		}
 	}
 }

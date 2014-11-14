@@ -1,5 +1,5 @@
 /*!
- * modules.dependentSelectionGroup v0.9
+ * modules.dependentSelectionGroup
  *
  * http://joinmedia.de/
  *
@@ -25,19 +25,22 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		onInitExec: function () {
+
 		},
 
 		options: {
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.$opposition = $(this.is('opposition'));
 			for(var i = 0, leni = this.$opposition.length; i < leni; i++){
 			    if(this.$opposition.eq(i).prop('checked')){
+				    jmHF.alert("bitte ändern in $(item).jmtrigger('change')");
 				    this.$opposition.eq(i).prop('checked', false).trigger('jmtrigger');
 			    }
 			}
+			this._finishing();
 		}
 	});
 

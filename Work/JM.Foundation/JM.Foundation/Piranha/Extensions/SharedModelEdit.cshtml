@@ -1,0 +1,9 @@
+﻿@using System.Web.Mvc.Html
+@model JM.Foundation.Piranha.SharedModelEdit
+
+@{
+	var folder = Model.Regions[Model.RegionID].Type.LastIndexOf('.') > -1 ? Model.Regions[Model.RegionID].Type.Substring(0, Model.Regions[Model.RegionID].Type.LastIndexOf('.')) : "";
+    folder = folder != "" ? folder + "/" : "" ;
+	var view = Model.Regions[Model.RegionID].Type.Substring(folder.Length);
+}
+@Html.EditorFor(m => Model.Regions[Model.RegionID].Body)

@@ -1,5 +1,5 @@
 /*!
- * modules.carousel v0.9
+ * modules.carousel
  *
  * http://joinmedia.de/
  *
@@ -32,11 +32,12 @@ define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var that = this;
 			require(['owl_carousel', 'overwritings.owl_carousel'], function(param1, param2){
 				that.indexCount = 0;
 				that.$elem.owlCarousel(that.getConfig());
+				that._finishing();
 			});
 		},
 
@@ -50,7 +51,7 @@ define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 				singleItem     : true,
 				autoPlay       : true,
 				stopOnHover    : true,
-				jmDelayTime    : (that.is('delay') !== '') ? parseInt(that.is('delay'), 10) : 2000,
+				jmDelayTime    : (that.is('animationsdelay') !== '') ? parseInt(that.is('animationsdelay'), 10) : 2000,
 				afterInit: function(){
 					that._setAllTeaserToVisible();
 					that._setCommentToPaginierung();

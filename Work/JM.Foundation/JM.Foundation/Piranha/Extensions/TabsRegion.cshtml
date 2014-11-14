@@ -12,7 +12,7 @@
 
 	if (Model.Tabs == null)
 	{
-		Model.Tabs = new List<TextRegion>();
+		Model.Tabs = new List<TextRegion> { new TextRegion() };
 	}
 	fieldString = @Html.GetFullHtmlFieldName(m => m.Tabs.FirstOrDefault().Title);
 	regionID = fieldString.Replace("Regions[", "").Split(']')[0];
@@ -82,5 +82,9 @@
         i++;
         j++;
     }
-    <li id="@String.Format("addTab_{0}", regionID)"><a class="btn" onclick="@String.Format("addTab_{0}();", regionID)">Neuen Reiter hinzufügen</a></li>
+	<li id="@String.Format("addTab_{0}", regionID)"><a class="btn" onclick="@String.Format("addTab_{0}();", regionID)">Neuen Reiter hinzufügen</a></li>
+	<li>
+        @Html.LabelFor(m => m.Hide, "Element verstecken")
+        <div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+    </li>
 </ul>

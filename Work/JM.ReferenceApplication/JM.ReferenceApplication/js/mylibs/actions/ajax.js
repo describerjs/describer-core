@@ -1,5 +1,5 @@
 /*!
- * actions.ajax v0.9
+ * actions.ajax
  *
  * http://joinmedia.de/
  *
@@ -56,7 +56,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
             }else{
                 this.$ani = $('<div class="loading-container"><div class="loading"></div></div>');
             }
-	        if(this.is('additionalloadertarget') !== ''){
+	        if(this.is('loaderTo') !== ''){
 		        this.$additionalloader = $('<div class="loading-container"><div class="loading"></div></div>');
 	        }
             
@@ -68,17 +68,9 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 
         },
 
-        render: function(){
-		    // !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
-		    if(eval(this.conditionSource)){
-			    window.cancelAnimationFrame(this.rAFRender);
-			    this._exec();
-		    }else{
-			    this.rAFRender = window.requestAnimationFrame(this.render.bind(this));
-		    }
-	    },
-
+	    // TODO Andreas bereinigen der _getData-Funktion Sonderfall $$ als neues Modul, welches von ajax abgeleitet wird.
         _getData: function(){
+	        // TODO Andreas ist doppelt siehe _super.js
 	        if(this.is('data').indexOf('this.') !== -1){
 		        return eval(this.is('data'));
 	        }
@@ -123,15 +115,18 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
             return q;
         },
 
-        _exec: function(){
+        _exec: function(e){
             var that = this;
-	        if(this.is('additionalloadertarget') !== ''){
-		        $(this.is('additionalloadertarget')).append(this.$additionalloader);
+	        if(this.is('loaderTo') !== ''){
+		        $(this.is('loaderTo')).append(this.$additionalloader);
 	        }
+	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
+	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
+	        // TODO Andreas  this.subObj_injection wird im modal verwendet. Bessere Lösung finden
 	        this.injection = this.subObj_injection || this.is('inject');
             $.ajax({
-                type: (that.is('method') !== '') ? ((that.is('method', 'post')) ? 'POST' : 'GET') : 'GET',
+                type: (that.is('type') !== '') ? ((that.is('type', 'post')) ? 'POST' : 'GET') : 'GET',
                 url: that._getUrl(),
                 data: that._getData(),
                 beforeSend: function (){
@@ -144,7 +139,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 
             }).fail(function () {
 	            that.$ani.remove();
-	            if(that.is('additionalloadertarget') !== ''){
+	            if(that.is('loaderTo') !== ''){
 		            that.$additionalloader.remove();
 	            }
             });
@@ -196,22 +191,21 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    }
 
 		    this.$destination[this.injection](this.data);
-		    //this.$destination[this.injection](this.data);
-		    setTimeout(function(){
-			    if($.type(that.data) !== 'string'){
-				    that.data
-					    .requirementsForJmPlugins()
-					    .triggerSelfexecObj()
-					    .picturefill();
-			    }
-			}, 200);
-		    if(this.is('afterexec') === 'remove'){
+		    if($.type(that.data) !== 'string'){
+			    this._finishing(this.data);
+		    }else{
+			    this._finishing();
+		    }
+
+		    // TODO Andreas bitte testen: Das Auskommentierte sollte jetzt durch die Angabe via 'callback' oblosate sein
+		    /*if(this.is('afterexec') === 'remove'){
 		        //this.$elem.parent().data('masonry').masonry( 'appended', that.data );
 			    this.$elem.remove();
-		    }
+		    }*/
 		    this.ajaxCompleteCallback();
 	    },
 
+	    // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Funktionsdefinition für erbende Plugins
 	    ajaxCompleteCallback: function(){
 
 	    }

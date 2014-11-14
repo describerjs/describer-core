@@ -1,0 +1,12 @@
+﻿@using System.Web.Mvc.Html
+@model Tile
+
+<li>
+	@Html.LabelFor(m => m.Content)
+	<div class="input">
+		@Html.TextAreaFor(m => m.Content, new { rows=8, cols=20, @class="editor"})
+	</div>
+</li>
+<li>
+	@Html.PartialFor("ImageRegion", m => m.Image)
+</li>

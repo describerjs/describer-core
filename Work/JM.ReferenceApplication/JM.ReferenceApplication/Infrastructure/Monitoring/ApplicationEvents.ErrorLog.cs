@@ -1,16 +1,33 @@
-﻿using JM.Foundation.ErrorHandling;
-using Microsoft.Diagnostics.Tracing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Diagnostics.Tracing;
 
 namespace JM.ReferenceApplication.Common.Monitoring
 {
     public partial class ApplicationEvents
     {
-        [Event(1, Level = EventLevel.Error, Task = Tasks.CriticalBusinessTask)]
+        [Event(104, Level = EventLevel.Error)]
+        public void PiranhaError(
+            string origin,
+            string message)
+        {
+            if (IsEnabled())
+            {
+                WriteEvent(104, origin, message);
+            }
+        }
+
+        [Event(105, Level = EventLevel.Error)]
+        public void PiranhaException(
+            string origin,
+            string message,
+            string exDetails)
+        {
+            if (IsEnabled())
+            {
+                WriteEvent(105, origin, message, exDetails);
+            }
+        }
+
+        [Event(101, Level = EventLevel.Error, Task = Tasks.CriticalBusinessTask)]
         protected override void FatalBusinessException(
             string message,
             string details, 
@@ -19,20 +36,20 @@ namespace JM.ReferenceApplication.Common.Monitoring
         {
             if (this.IsEnabled())
             {
-                WriteEvent(1, context, message, details, parameters);
+                WriteEvent(101, context, message, details, parameters);
             }
         }
 
-        [Event(2, Level = EventLevel.Error)]
+        [Event(102, Level = EventLevel.Error)]
         protected override void GenericException(string message, string details, string parameters)
         {
             if (IsEnabled())
             {
-                WriteEvent(2, message, details, parameters);
+                WriteEvent(102, message, details, parameters);
             }
         }
 
-        [Event(3, Level = EventLevel.Error)]
+        [Event(103, Level = EventLevel.Error)]
         protected override void BusinessException(
             string message,
             string details,
@@ -41,7 +58,7 @@ namespace JM.ReferenceApplication.Common.Monitoring
         {
             if (IsEnabled())
             {
-                WriteEvent(3, message, details, parameters);
+                WriteEvent(103, message, details, parameters);
             }
         }
     }

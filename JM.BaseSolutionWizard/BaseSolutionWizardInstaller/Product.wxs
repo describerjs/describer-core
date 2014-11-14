@@ -4,7 +4,7 @@
     Id="*" 
     Name="BaseSolutionWizard" 
     Language="1031" 
-    Version="1.0.0.1" 
+    Version="1.0.0.2" 
     Manufacturer="join.media" 
     UpgradeCode="90fe149f-bc81-4501-ad83-bd72dbb15962">
 		<Package 
@@ -50,7 +50,7 @@
     </ComponentGroup>
     <ComponentGroup Id="WizardAssembly" Directory="INSTALLFOLDER">
       <Component Id="BaseSolutionWizard" Guid="{605D90FB-EA73-44B0-9CA1-3CC4E498BD4B}">
-        <File Id="JM.BaseSolutionWizard.dll" DiskId="1" Vital="yes" KeyPath="yes" Source="$(var.SolutionDir)\JM.BaseSolutionWizard\bin\debug\JM.BaseSolutionWizard.dll" Assembly=".net"/>
+        <File Id="JM.BaseSolutionWizard.dll" DiskId="1" Vital="yes" KeyPath="yes" Source="$(var.SolutionDir)\JM.BaseSolutionWizard\bin\release\JM.BaseSolutionWizard.dll" Assembly=".net"/>
       </Component>
     </ComponentGroup>
 	</Fragment>

@@ -1,5 +1,5 @@
 /*!
- * modules.countdown v0.9
+ * modules.countdown
  *
  * http://joinmedia.de/
  *

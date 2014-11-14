@@ -1,5 +1,5 @@
 /*!
- * modules.form.formvalidate v0.9
+ * modules.form.formvalidate
  *
  * http://joinmedia.de/
  *
@@ -32,7 +32,7 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var that = this;
 			return this.$elem.validate({
 				onchange: function(element, event) {
@@ -91,7 +91,7 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 				errorElement: 'span',
 				submitHandler: function(form) {
 					$.doTimeout('submitTimer', 200, function () {
-						if (that.is('ajax', 'false')) {
+						if (that.is('submit', 'true')) {
 							if (that.$elem.attr('action').indexOf('_') !== -1) {
 								that.$elem.attr('action', that.$elem.attr('action').replace('_', ''));
 							}
@@ -121,6 +121,7 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 					jmGO.submit = false;
 				}
 			});
+			this._finishing();
 		},
 
 		checkValidation: function(e) {

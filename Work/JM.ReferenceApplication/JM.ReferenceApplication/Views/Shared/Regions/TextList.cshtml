@@ -1,0 +1,12 @@
+﻿@model TextListRegion
+
+
+@if(Model.TextList != null)
+{
+    foreach(var text in Model.TextList)
+    {
+        <section class="text-block" data-jmselector="equal-heights-children">
+           @MvcHtmlString.Create(text.Body)
+        </section>
+    }
+}

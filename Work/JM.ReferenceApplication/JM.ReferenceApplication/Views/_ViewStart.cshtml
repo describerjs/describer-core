@@ -1,3 +1,8 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	if (Configuration.HasActiveTemplate())
+	{
+		Layout = String.Format("~{0}/Views/Shared/_Layout.cshtml", Configuration.GetActiveTemplatePath());
+	}
 }

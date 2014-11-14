@@ -13,4 +13,5 @@ using Extension = Piranha.Extend.Extension;
 	public class TabsRegion : Extension
     {
 		public IList<TextRegion> Tabs { get; set; }
+		public bool Hide { get; set; }
     }

@@ -38,10 +38,10 @@ namespace WindowsFormsApplication1
 
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = @"webdb.dbserver.joinmedia.local\PROJEKTE",
+                DataSource = EnvironmentConsts.DefaultDataSource,
                 InitialCatalog = projectName,
-                UserID = "sa",
-                Password = "Join#media960",
+                UserID = EnvironmentConsts.DefaultUserID,
+                Password = EnvironmentConsts.DefaultPassword,
                 MultipleActiveResultSets = true
             };
 
@@ -53,7 +53,8 @@ namespace WindowsFormsApplication1
                         AdminConnectionString = builder.ConnectionString,
                         EnvironmentName = "Dev",
                         IsLocal = true,
-                        StandardConnectionString = builder.ConnectionString
+                        StandardConnectionString = builder.ConnectionString,
+                        LoggingConnectionString = EnvironmentConsts.DefaultLoggingDbConnectionString
                     }
                 };
         }
@@ -77,26 +78,33 @@ namespace WindowsFormsApplication1
 
         private void btnSaveEnvironemtns_Click(object sender, EventArgs e)
         {
-            WriteEnvironments();
-
-            var models = new List<DbViewModel>();
-
-            foreach (var environment in this.environments)
+            try
             {
-                models.Add(new DbViewModel(new SqlConnectionStringBuilder(environment.AdminConnectionString)));
-                if (environment.AdminConnectionString != environment.StandardConnectionString)
+                WriteEnvironments();
+
+                var models = new List<DbViewModel>();
+
+                foreach (var environment in this.environments)
                 {
-                    models.Add(new DbViewModel(new SqlConnectionStringBuilder(environment.StandardConnectionString), true));
+                    models.Add(new DbViewModel(new SqlConnectionStringBuilder(environment.AdminConnectionString)));
+                    if (environment.AdminConnectionString != environment.StandardConnectionString)
+                    {
+                        models.Add(new DbViewModel(new SqlConnectionStringBuilder(environment.StandardConnectionString), true));
+                    }
                 }
+
+                var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbInitialDataScript)
+                {
+                    DataSource = models
+                };
+
+                frm.ShowDialog();
+                this.Close();
             }
-
-            var frm = new FrmPrepareEnvironments(this.dbCreationScriptTemplate, this.dbInitialDataScript)
+            catch (Exception ex)
             {
-                DataSource = models
-            };
-
-            frm.ShowDialog();
-            this.Close();
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void WriteEnvironments()
@@ -121,7 +129,7 @@ namespace WindowsFormsApplication1
         {
             var fileName = localEnvironment.EnvironmentName + ".config";
             var transformationFile = Path.Combine(this.solutionRootPath, "Solution Files", "Environments", localEnvironment.EnvironmentName, fileName);
-            var targetFile = Path.Combine(this.solutionRootPath, this.projectName, "Web", this.projectName + ".Web", "web.config");
+            var targetFile = Path.Combine(this.solutionRootPath, "Web", this.projectName + ".Web", "web.config");
             var tempFilename = Path.GetTempFileName();
             ApplyTransform(transformationFile, tempFilename, targetFile);
 

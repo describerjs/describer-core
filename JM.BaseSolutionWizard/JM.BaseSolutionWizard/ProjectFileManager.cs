@@ -12,7 +12,7 @@ namespace JM.BaseSolutionWizard
         private readonly _DTE _dte;
         private readonly Dictionary<string, string> _replacementsDictionary;
         private const string PROJECTNAME = "$projectname$";
-        private const string SOLUTIONDIRECTORY = "$solutiondirectory$";
+        private const string SOLUTIONDIRECTORY = "$destinationdirectory$";
         private readonly string _templateDirectory;
 
         public ProjectFileManager(_DTE dte, Dictionary<string, string> replacementsDictionary, string templatePath)

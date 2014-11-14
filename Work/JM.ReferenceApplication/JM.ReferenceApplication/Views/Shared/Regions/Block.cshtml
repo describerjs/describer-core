@@ -1,0 +1,37 @@
+﻿@model Block
+
+@if (Model != null && !Model.Hide)
+{
+    @*//////////////////////////////////////////////////////////////////////////////////////
+    CODE *@
+    
+    var imageClass = string.Empty;
+    var anchor = string.Empty;
+	
+    if (Model != null)
+    {
+        imageClass = !String.IsNullOrEmpty(Model.ImageOrientation) ? String.Format("img-{0}", Model.ImageOrientation) : String.Empty;
+        anchor = String.IsNullOrEmpty(Model.Anchor) ? String.Empty : String.Format("id=\"{0}\"", Model.Anchor.ToLower().Replace(" ", ""));
+    }
+    
+    @*//////////////////////////////////////////////////////////////////////////////////////
+    HTML *@
+    
+    <section class="block @imageClass" @MvcHtmlString.Create(anchor) data-jmselector="equal-heights-children">
+        @if (Model.Image != null)
+        {
+            <div class="block-figure">
+                @*<img src="@UI.Content(Model.Image.Id)" alt="@Model.Image.Description" />*@
+                @Html.Partial(
+                    "Image/_PictureFill_Block", PictureFillEffectModel.Get(Model))
+            </div>
+        }
+	    <div class="block-content">
+		    @if (!String.IsNullOrEmpty(Model.Headline))
+		    {
+			    <h2>@Model.Headline</h2>
+		    }
+		    @MvcHtmlString.Create(Model.Content)
+	    </div>
+    </section>
+}

@@ -1,5 +1,5 @@
 /*!
- * modules.form.selectOptionExtractInGroup v0.9
+ * modules.form.selectOptionExtractInGroup
  *
  * http://joinmedia.de/
  *
@@ -33,7 +33,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			this.nextVal = this.$elem.val();
 			var tempOption;
 			var tempSelectionen = $(this.is('relatedTo')).find('option:selected');
@@ -46,6 +46,7 @@ define(['jquery', '_super'], function ($, _super){
 					this.$filterSelects.eq(i).find('option[value="'+tempSelectionen[j].value+'"]').not('option:selected').prop('disabled', true).hide();
 				}
 			}
+			this._finishing();
 		}
 
 	});

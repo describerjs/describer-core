@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Piranha.Extend;
+using Piranha.Extend.Regions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Piranha.Extend;
-using Piranha.Extend.Regions;
 using Extension = Piranha.Extend.Extension;
 
     [Export(typeof(IExtension))]
@@ -15,4 +13,5 @@ using Extension = Piranha.Extend.Extension;
     public class FaqRegion : Extension
     {
         public IList<TextRegion> Faqs { get; set; }
+		public bool Hide { get; set; }
     }

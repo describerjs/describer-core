@@ -1,8 +1,16 @@
-﻿
-@{
-    ViewBag.Title = "DisplayError";
+﻿@{
+	ViewBag.Title = "DisplayError";
 }
 
-<h2>Error @ViewBag.Code</h2>
-<pre>@ViewBag.Message</pre>
+<div class="jumbotron">
+	<h1 style="font-size: 539px; text-align: center;">@ViewBag.Code</h1>
+	<p class="lead">Das ist ein Fehler &mdash; tut uns sehr leid</p>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h2>Weitere Informationen</h2>
+		<pre>@ViewBag.Message</pre>
+	</div>
+</div>
 

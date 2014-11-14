@@ -1,5 +1,5 @@
 /*!
- * _config v0.9
+ * _config
  *
  * http://joinmedia.de/
  *
@@ -309,18 +309,32 @@ define(function(){
 
 		},{
 			jmname   : 'togglebox',
-			jmplugin: 'actions.toggle',
-			jmconfig : {
-				'event'    : 'click',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem.parent()[0]'
-			}
-		},
-		{
-			jmname   : 'accordionbox',
-			jmplugin: 'actions.remove|actions.toggle',
+			jmplugin: 'actions.ajax|actions.toggle',
 			jmconfig : [
+				{
+					'event'    : 'jmtrigger:open',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.tb-content\')[0]',
+					'condition': '($.trim(this.$elem.siblings(\'.tb-content\').html()).length) === 0'
+				},{
+					'event'    : 'click|jmtrigger:click',
+					'datatype' : 'class',
+					'data'     : 'show',
+					'relatedTo': 'this.$elem.parent()[0]',
+					'callback' : 'if(this.$elem.parent().hasClass(\'show\')) this.$elem.jmtrigger(\'open\')'
+				}
+			]
+		},{
+			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat. toggel um das geöffnete Element auch wieder schliessen zu können.
+			jmname   : 'accordionbox',
+			jmplugin: 'actions.ajax|actions.remove|actions.toggle',
+			jmconfig : [
+				{
+					'event'    : 'jmtrigger:makeajax',
+					'inject'   : 'html',
+					'relatedTo': 'this.$elem.siblings(\'.acc-panel\')[0]',
+					'condition': '$.type(this.configObj.url) !== \'undefined\''
+				},
 				{
 					'event'    : 'click',
 					'datatype' : 'class',
@@ -329,11 +343,11 @@ define(function(){
 					'condition': '!this.$elem.parent().hasClass(\'show\')'
 				},
 				{
-					'wait'      :'10',
 					'event'    : 'click',
 					'datatype' : 'class',
 					'data'     : 'show',
-					'relatedTo': 'this.$elem.parent()[0]'
+					'relatedTo': 'this.$elem.parent()[0]',
+					'callback' : 'if(this.$elem.parent().hasClass(\'show\') && (($.trim(this.$elem.siblings(\'.acc-panel\').html()).length) === 0)) this.$elem.jmtrigger(\'makeajax\')'
 				}
 			]
 		},{
@@ -355,14 +369,172 @@ define(function(){
 				'relatedTo': '$.makeArray($(\'[data-jmdomselector="\'+this.$elem.attr(\'name\')+\'"]\'))',
 				'data':'jmHF.escapeHtml(this.$elem.val())'
 			}
-		},{
-			jmname   : 'equalheights-not-mobile',
+		},
+		{
+			jmname: 'equalheights-not-mobile',
 			jmplugin: 'modules.equalheights',
-			jmconfig :{
-				'event'    : 'dominit',
+			jmconfig: {
+				'event': 'dominit',
 				// TODO Andreas & Daniel lösung finden für Modernizr.mq
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
+		},{
+			jmname: 'add-remove-show-on-view',
+			jmplugin: 'actions.add|actions.remove',
+			jmconfig: [{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
+				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset)'
+			},
+			{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
+				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
+			}]
+		},{
+			jmname: 'animation-start-on-view',
+			jmplugin: 'actions.add|actions.remove',
+			jmconfig: [{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
+				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset) && !this.$elem.hasClass(\'show\')',
+				'callback': 'this.animateTransformTag.beginElement()'
+			},{
+				'event': 'dominit|raf-nc',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
+				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height)) && this.$elem.hasClass(\'show\')',
+				'callback': 'this.animateTransformTag.endElement()'
+			}]
+		},{
+			jmname: 'frame-ani-by-scrolling',
+			jmplugin: 'modules.scrollControlFrames',
+			jmconfig: {
+				'event': 'dominit|raf-nc',
+				'loop': '20',
+				'execElemOffset':'0',
+				'execWindowScale': '1'
+			}
+		},{
+			jmname: 'scrollControlTransition',
+			jmplugin: 'modules.scrollControlTransform',
+			jmconfig: {
+				'event': 'dominit|raf-nc',
+				'cssProperty':'translate|scale',
+				'execElemOffsetX':'-200',
+				'execWindowScale': '1'
+			}
+		},
+		{
+			jmname   : 'back-to-top',
+			jmplugin: 'actions.scroll',
+			jmconfig : {
+				'event'    : 'click',
+				'scrollTo' : '.page'
+			}
+		},
+		{
+			jmname: 'parallax-content-orientation',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'orientation'
+			}
+		},
+		{
+			jmname: 'parallax-content-scrollY',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'scrollY'
+			}
+		},
+		{
+			jmname: 'parallax-content-scrollY-fallback',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'scrollY-fallback'
+			}
+		},
+		{
+			jmname: 'parallax-content-orientationX-scrollY',
+			jmplugin: 'modules.parallax',
+			jmconfig: {
+				'event': 'dominit',
+				'data' : 'orientationX-scrollY'
+			}
+		},
+		{
+			jmname   : 'test1',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show1',
+					'relatedTo': '.d'
+				}
+			]
+		},
+		{
+			jmname   : 'test2',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'class',
+					'data'     : 'show2',
+					'relatedTo': '.d'
+				}
+			]
 		}
 	];
 });

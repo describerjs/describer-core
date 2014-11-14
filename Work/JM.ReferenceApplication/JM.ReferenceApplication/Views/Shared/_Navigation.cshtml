@@ -3,21 +3,22 @@
 <nav class="nav" id="nav" role="navigation">
     <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 	<ul class="nav-items">
-		@foreach (var map in Model)
+		@foreach (var map in Model.Where(m => !m.IsHidden))
 		{
+			var hasSubNav = map.Pages != null && map.Pages.Any(m => !m.IsHidden);
 			<li class="nav-item menu-item">
-				<a href="@JMPiranhaHelper.GenerateUrl(map)" class="nav-link" data-jmname="nav-link" data-jmdominit="true">@(String.IsNullOrEmpty(map.NavigationTitle) ? map.Title : map.NavigationTitle)</a>
-				@if (map.Pages != null && map.Pages.Any())
+				<a href="@JMPiranhaHelper.GenerateUrl(map)" class="nav-link" @if (hasSubNav) { <text>data-jmname="nav-link" data-jmdominit="true"</text>}>@(String.IsNullOrEmpty(map.NavigationTitle) ? map.Title : map.NavigationTitle)</a>
+				@if (hasSubNav)
 				{
 					<div class="flyout">
-						@foreach (var sub in map.Pages)
+						@foreach (var sub in map.Pages.Where(m => !m.IsHidden))
 						{
 							<div class="flyout-group">
-								<div class="flyout-item"><a class="flyout-group-title" href="@JMPiranhaHelper.GenerateUrl(sub)">@(String.IsNullOrEmpty(sub.NavigationTitle) ? sub.Title : sub.NavigationTitle)</a></div>
-								@if (sub.Pages != null && sub.Pages.Any())
+								<div class="flyout-item"><a class="flyout-group-title" data-jmname="flyout-link" href="@JMPiranhaHelper.GenerateUrl(sub)">@(String.IsNullOrEmpty(sub.NavigationTitle) ? sub.Title : sub.NavigationTitle)</a></div>
+								@if (sub.Pages != null && sub.Pages.Any(m => !m.IsHidden))
 								{
 									<ul class="flyout-items">
-										@foreach (var subSub in sub.Pages)
+										@foreach (var subSub in sub.Pages.Where(m => !m.IsHidden))
 										{
 											<li class="flyout-item"><a class="flyout-link" href="@JMPiranhaHelper.GenerateUrl(subSub)">@(String.IsNullOrEmpty(subSub.NavigationTitle) ? subSub.Title : subSub.NavigationTitle)</a></li>
 										}
@@ -29,5 +30,130 @@
 				}
 			</li>
 		}
+        <li class="nav-item menu-item">
+			<a href="/Content/DemoJMUI#Text-Elemente" class="nav-link" data-jmname="nav-link" data-jmdominit="true">JMUI Text-Elemente</a>
+			<div class="flyout">
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#Text-Elemente-Heading">Heading</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#Text-Elemente-Text">Text</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#Text-Elemente-Listen">Listen</a></div>
+                    <!-- <ul class="flyout-items">
+                        <li class="flyout-item"><a class="flyout-link" href="#Text-Elemente-Listen-Bullet">Bullet List</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#Text-Elemente-Listen-Decimal">Decimal List</a></li>
+                    </ul> -->
+				</div>
+			</div>
+		</li>
+		<li class="nav-item menu-item">
+			<a href="/Content/DemoJMUI#UI-Elemente" class="nav-link" data-jmname="nav-link" data-jmdominit="true">JMUI UI-Elemente</a>
+			<div class="flyout">
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Accordion">Accordion</a></div>
+				</div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Back-To-Top">Back-To-Top</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Block">Block</a></div>
+                    <!-- <ul class="flyout-items">
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Default">Block Default</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Header">Block mit Header</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Links">Block mit Bild links</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Rechts">Block mit Bild rechts</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Oben">Block mit Bild oben</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Unten">Block mit Bild unten</a></li>
+                    </ul> -->
+                </div>
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Carousel">Carousel</a></div>
+				</div>
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Navigation">Navigation</a></div>
+				</div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Stage-Teaser">Stage-Teaser</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Tabs">Tabs</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Teaser">Teaser</a></div>
+                    <!-- <ul class="flyout-items">
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx1">Teaser x 1</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx2">Teaser x 2</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx3">Teaser x 3</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx4">Teaser x 4</a></li>
+                    </ul> -->
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Tiles">Tiles</a></div>
+                    <!-- <ul class="flyout-items">
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x2">Tiles 1x2</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x4">Tiles 1x4</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x6">Tiles 1x6</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-2x2">Tiles 2x2</a></li>
+                        <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-2x3">Tiles 2x3</a></li>
+                    </ul> -->
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#UI-Elemente-Togglebox">Togglebox</a></div>
+                </div>
+			</div>
+		</li>
+		<li class="nav-item menu-item">
+            <a href="/Content/DemoJMUI#SocialMedia" class="nav-link" data-jmname="nav-link" data-jmdominit="true">JMUI SocialMedia</a>
+            <div class="flyout">
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI#SocialMedia-Facebook">Facebook</a></div>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="/Content/DemoJMUI_Animation" class="nav-link" data-jmname="nav-link" data-jmdominit="true">JMUI Animationen</a>
+            <div class="flyout">
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_Parallax_Scrolling_Y">Demo-Parallax-Scrolling-Y</a></div>
+				</div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_Parallax_Scrolling_Y_Orientation_X">Demo-Parallax-Scrolling-Y-Orientation-X</a></div>
+                </div>
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_Parallax_Gyroscope_1_1">Demo-Parallax-Gyroscope-1.1</a></div>
+				</div>
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_Parallax_Gyroscope_1_5">Demo-Parallax-Gyroscope-1.5</a></div>
+				</div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_OnScrollAnimation_Fade">Demo-OnScroll-Animation-Fade</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_OnScrollAnimation_Slide">Demo-OnScroll-Animation-Slide</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_OnScrollAnimation_Bildanimation">Demo-OnScroll-Animation-Bildanimation</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_OnScrollAnimation_FrameAnimation_And_Transform">Demo-OnScroll-Animation-Frame-Animation-And-Transform</a></div>
+                </div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="link" href="/Content/DemoJMUI_OnScrollAnimation_SVG">Demo-OnScrollAnimation-SVG</a></div>
+                </div>
+			</div>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="/Content/DemoJMUI_Templates" class="nav-link" data-jmname="nav-link" data-jmdominit="true">JMUI Templates</a>
+            <div class="flyout">
+				<div class="flyout-group">
+					<div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_Template_Default">Demo-Template-Default</a></div>
+				</div>
+                <div class="flyout-group">
+                    <div class="flyout-item"><a class="flyout-group-title" href="/Content/DemoJMUI_Template_Constrained">Demo-Template-Constrained</a></div>
+                </div>
+            </div>  
+        </li>
 	</ul>
 </nav>

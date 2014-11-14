@@ -4,21 +4,21 @@ namespace JM.ReferenceApplication.Common.Monitoring
 {
     public partial class ApplicationEvents
     {
-        [Event(100, Level = EventLevel.Informational)]
+        [Event(1000, Level = EventLevel.Informational)]
         public void UserSignedIn(string userName)
         {
             if (IsEnabled())
             {
-                WriteEvent(100, userName);
+                WriteEvent(1000, userName);
             }
         }
 
-        [Event(101, Level = EventLevel.Informational)]
+        [Event(1001, Level = EventLevel.Informational)]
         public void UserSignedOut(string userName)
         {
             if (IsEnabled())
             {
-                WriteEvent(101, userName);
+                WriteEvent(1001, userName);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using JM.Foundation.DependencyInjection;
+using JM.Foundation.Mvc.ViewEngine;
 using JM.Foundation.Utils;
 using JM.ReferenceApplication.App_Start;
 using JM.ReferenceApplication.Common.Monitoring;
@@ -22,27 +23,35 @@ namespace JM.ReferenceApplication
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutoFacConfig.RegisterDependencyResolver();
+
+			// Unsere ViewEngine benutzen, um *Views automatisch aus den Template-Ordnern zu holen
+			ViewEngines.Engines.Insert(0, new TemplateAwareViewEngine());
+
+            var container = AutoFacConfig.RegisterDependencyResolver();
 
             // Information Disclosure: MVC-Header entfernen
             MvcHandler.DisableMvcResponseHeader = true;
-
+            
             // Eventlogging
-
-            // Startet das Event-Handling über EventSource
-            ApplicationEvents.Log.Initialize();
+            LoggingConfig.ConfigureLogging(container);
 
             // Logaufruf: Start der Application
             ApplicationEvents.Log.ApplicationStartup();
 
             // Um für Post-Actions keine Model in der Web.dll definieren zu müssen,
-            // wird ein eigener Modelbinder eingesetzt. Dieser erkennt über die AutoFac-Dependencyinjection
+            // wird ein eigener Modelbinder eingesetzt. Dieser erkennt über die AutoFac-Dependencyinje	ction
             // welche Klasse instanziiert werden muss und führt das aus. Somit können in PostActions
             // Interfaces als Actions übergeben werden.
             ModelBinders.Binders.DefaultBinder = new AbstractModelBinder(DependencyResolver.Current);
             
             HostingEnvironment
                 .RegisterVirtualPathProvider(new EmbeddedViewPathProvider(typeof(FaqRegion).Assembly));
+        }
+
+        protected void Application_End()
+        {
+            ApplicationEvents.Log.ApplicationStopped();
+            LoggingConfig.EndLogging();
         }
 
         /// <summary>

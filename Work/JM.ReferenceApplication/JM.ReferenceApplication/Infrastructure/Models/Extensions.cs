@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+using Piranha.Extend.Regions;
+using Piranha.Mvc;
+using WebGrease;
 
 namespace JM.ReferenceApplication.Infrastructure.Models
 {

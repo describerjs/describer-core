@@ -1,4 +1,5 @@
-﻿@using JM.Foundation.Mvc.Helper
+﻿@using System.Web.Mvc.Html
+@using JM.Foundation.Mvc.Helper
 @using Piranha.Extend.Regions
 @model FaqRegion
 @{
@@ -11,7 +12,7 @@
 
 	if (Model.Faqs == null)
 	{
-		Model.Faqs = new List<TextRegion>();
+		Model.Faqs = new List<TextRegion>() { new TextRegion() };
 	}
 	fieldString = @Html.GetFullHtmlFieldName(m => m.Faqs.FirstOrDefault());
 	regionID = fieldString.Replace("Regions[", "").Split(']')[0];
@@ -27,8 +28,8 @@
 		var id = faqID_@regionID + 1;
 		var index = faqIndex_@regionID;
 		var regionid = @regionID;
-		$("#addFaq_"+ regionid).before("<li class='faq_" + regionid + "_" + id + "'><label>Frage " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Faqs[" + index + "].Title' id='Question_" + regionid + "_" + id + "'></div><li class='faq_" + regionid + "_" + id + "'><label>Antwort:</label><div class='input'><textarea rows='8' name='Regions["+ regionid +"].Body.Faqs[" + index + "].Body' id='Answer_" + regionid + "_" + id + "' cols='20'></textarea></div></li><li class='faq_" + regionid + "_" + id + "'><a class='btn' data-remove-id='" + regionid + "_" + id + "' onclick='removeFaq_"+regionid+"(" + id + ")';'>Faq entfernen</a></li>");
-        
+		$("#addFaq_"+ regionid).before("<li class='faq_" + regionid + "_" + id + "'><label>Frage " + id + ":</label><div class='input'><input type='text' value='' name='Regions["+ regionid +"].Body.Faqs[" + index + "].Title' id='Question_" + regionid + "_" + id + "'></div><li class='faq_" + regionid + "_" + id + "'><label>Antwort:</label><div class='input'><textarea rows='8' name='Regions["+ regionid +"].Body.Faqs[" + index + "].Body' id='Answer_" + regionid + "_" + id + "' class='editor' cols='20'></textarea></div></li><li class='faq_" + regionid + "_" + id + "'><a class='btn' data-remove-id='" + regionid + "_" + id + "' onclick='removeFaq_"+regionid+"(" + id + ")';'>Faq entfernen</a></li>");
+		tinymce.EditorManager.execCommand('mceAddEditor', true, 'Answer_' + regionid+ "_"  + id);
 		faqID_@regionID++;
 		faqIndex_@regionID++;
 	}
@@ -70,12 +71,16 @@
         <li class="@String.Format("faq_{0}_{1}", regionID, j)">
             <label>Antwort:</label> 
             <div class="input">
-                <textarea rows="8" data-index="@i" name="Regions[@regionID].Body.Faqs[@i].Body" id="@String.Format("Answer_{0}_{1}", regionID, j)" cols="20">@faq.Body</textarea>
+                <textarea rows="8" data-index="@i" name="Regions[@regionID].Body.Faqs[@i].Body" id="@String.Format("Answer_{0}_{1}", regionID, j)" class="editor" cols="20">@faq.Body</textarea>
             </div>
         </li>
         <li class="@String.Format("faq_{0}_{1}", regionID, j)"><a class="btn" onclick="@String.Format("removeFaq_{0}({1});", regionID, j)">Faq entfernen</a></li>
         i++;
         j++;
     }
-    <li id="addFaq_@regionID"><a class="btn" onclick="@String.Format("addFaq_{0}();", regionID)">Neue Faq hinzufügen</a></li>
+	<li id="addFaq_@regionID"><a class="btn" onclick="@String.Format("addFaq_{0}();", regionID)">Neue Faq hinzufügen</a></li>
+	<li>
+        @Html.LabelFor(m => m.Hide, "Element verstecken")
+        <div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+    </li>
 </ul>

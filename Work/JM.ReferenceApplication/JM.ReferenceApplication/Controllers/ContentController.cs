@@ -1,5 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using JM.Foundation.Mvc.Helper;
 using Piranha.Models;
+using System.Web.Mvc;
 
 namespace JM.ReferenceApplication.Controllers
 {
@@ -37,7 +38,18 @@ namespace JM.ReferenceApplication.Controllers
 			return View("MainJS", null, id);
 		}
 
-		#endregion
+		/// <summary>
+		/// Speichert die ID eines ausgewählten Templates in der Session und leitet dann weiter
+		/// </summary>
+		/// <param name="key">ID des Templates</param>
+		/// <returns></returns>
+		public ActionResult SetTemplate(string key = "")
+		{
+			Configuration.SetActiveTemplateForSession(key);
+			return Redirect("/");
+		}
+
+        #endregion
 
 		#region PartialViews
 		
@@ -52,6 +64,15 @@ namespace JM.ReferenceApplication.Controllers
 			return PartialView(Sitemap.GetStructure());
 		}
 
+		/// <summary>
+		/// Gibt einen Partialview für das Umschalten von Templates zurück
+		/// </summary>
+		/// <returns></returns>
+		public PartialViewResult _StyleSwitcher()
+		{
+			return PartialView();
+		}
+		
 		#endregion
 	}
 }

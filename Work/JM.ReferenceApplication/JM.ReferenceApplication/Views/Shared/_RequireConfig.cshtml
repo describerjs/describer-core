@@ -16,6 +16,7 @@ require.config({
 		'jquery_ba-dotimeout'                              : buildPath+'externals/customized/jquery.ba-dotimeout',
 		'jquery_countdown'                                 : buildPath+'externals/customized/jquery.countdown',
 		'jquery_countdown-de'                              : buildPath+'externals/customized/jquery.countdown-de',
+		'jquery_parallax'                                  : buildPath+'externals/customized/jquery.parallax',
 		'jquery_plugin'                                    : buildPath+'externals/customized/jquery.plugin',
 		'jquery_validate'                                  : buildPath+'externals/customized/jquery.validate',
 		'owl_carousel'                                     : buildPath+'externals/customized/owl.carousel',
@@ -55,6 +56,9 @@ require.config({
 		'modules.form.selectOptionExtractInGroup'          : buildPath+'mylibs/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                        : buildPath+'mylibs/modules/form/submitbutton',
 		'modules.modal'                                    : buildPath+'mylibs/modules/modal',
+		'modules.parallax'                                 : buildPath+'mylibs/modules/parallax',
+		'modules.scrollControlFrames'                      : buildPath+'mylibs/modules/scrollControlFrames',
+		'modules.scrollControlTransform'                   : buildPath+'mylibs/modules/scrollControlTransform',
 		'modules.tablesort'                                : buildPath+'mylibs/modules/tablesort',
 		'modules.video'                                    : buildPath+'mylibs/modules/video',
 
@@ -81,9 +85,9 @@ require.config({
 		}
 	},
 	map: {
-		'*': {
-			'css': 'require-css/css.0c3213' // or whatever the path to require-css is
-		}
+	    '*': {
+	        'css': 'require-css/css' // or whatever the path to require-css is
+	    }
 	},
 	waitSeconds: 500
 });

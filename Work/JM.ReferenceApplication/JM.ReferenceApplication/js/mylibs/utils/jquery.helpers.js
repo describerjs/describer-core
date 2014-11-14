@@ -1,5 +1,5 @@
 /*!
- * utils.jquery_helpers v0.9
+ * utils.jquery_helpers
  *
  * http://joinmedia.de/
  *
@@ -49,12 +49,13 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 	};
 
 	// Wenn in den Selektion Element vorkommen, die umgehend Initialisiert werden sollen (ohne User-Events), werden die entsprechenden Funktionen angesprochen.
-	$.fn.triggerSelfexecObj = function (p_callback) {
+	$.fn.triggerSelfexecObj = function () {
 		this.each(function () {
 			var $elem = $(this);
 			$elem.find('[data-jmdominit="true"]').addBack('[data-jmdominit="true"]').each(function (index, item) {
 				$(item).trigger('dominit');
 			});
+			// TODO Andreas wird das noch gebraucht?
 			$elem.find('[data-jmsetelementwithjs]').addBack('[data-jmsetelementwithjs]').each(function (index, item) {
 				$(item).trigger('setelementwithjs');
 			});
@@ -63,9 +64,6 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 		/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
 			this.ie8BugfixForRadioAndCheckbox()
 		}*/
-		if ($.type(p_callback) !== 'undefined') {
-			p_callback.call(this);
-		}
 		return this;
 	};
 
@@ -87,6 +85,13 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 		})()
 	}*/
 
+	// Funktionswrapper um ein jmtrigger-Event mit event-type zu triggern.
+	$.fn.jmtrigger = function(p_event){
+		return this.each(function(){
+			$(this).trigger('jmtrigger', { 'event': p_event });
+
+		});
+	};
 
 	$.fn.picturefill = function(){
 		var _array = [];
@@ -140,7 +145,7 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 		if ($.type(p_delta_offset) === 'number') {
 			_delta_offset = p_delta_offset;
 		}
-		$('body').scrollToTop($(this).offset().top + _delta_offset);
+		$('html, body').scrollToTop($(this).offset().top + _delta_offset);
 	};
 
 	$.fn.removeDotNetFallbackHiddenFields = function(){
@@ -160,7 +165,6 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 					$item.remove();
 				}
 			});
-
 		});
 	};
 

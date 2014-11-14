@@ -1,5 +1,5 @@
 /*!
- * modules.equalheights v0.9
+ * modules.equalheights
  *
  * http://joinmedia.de/
  *
@@ -25,13 +25,14 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		onInitExec: function () {
+
 		},
 
 		options: {
 
 		},
 
-		_exec: function(){
+		_exec: function(e){
 			var vals = this.$elem.find('[data-jmselector="equal-heights-children"]');
 			vals.innerHeight();
 			//if (isMobile) return;
@@ -40,9 +41,11 @@ define(['jquery', '_super'], function ($, _super){
 			});
 			var max = Math.max.apply(null, heightsArray);
 			vals.height(max);
+			this._finishing();
 		}
 	});
 
 	$.plugin('modules.equalheights', equalheights);
 	return equalheights;
 });
+// TODO Andreas trigger neu, wenn das Device die Orientierung gewechselt hat.

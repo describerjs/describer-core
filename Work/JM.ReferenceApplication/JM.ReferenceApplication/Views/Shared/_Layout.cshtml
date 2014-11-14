@@ -27,7 +27,10 @@
     <meta name="msapplication-TileColor" content="#222222" />
     @if (HttpContext.Current.IsDebuggingEnabled)
     {
-        <script type="text/javascript" src="//d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" data-token="f0d48ad2c3b34824bebe43fa8851188d"></script>
+        <script src="/js/raven.js"></script>
+        <script>
+            Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
+        </script>
     }
 
     @Html.Partial("_basisJS")
@@ -53,7 +56,7 @@
     <script src="/js/externals/customized/modernizr.custom.js"></script>
     <script src="/js/externals/originalReferenceSource/matchmedia.js"></script>
     <script src="/js/externals/originalReferenceSource/picturefill.js"></script>
-    <script src="/js/externals/originalReferenceSource/require.2.1.11.js" data-main="/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")"></script>
+    <script src="/js/externals/originalReferenceSource/require.2.1.11.js" data-main="/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css" />
@@ -68,19 +71,19 @@
             addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
             addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
             addCSSToDOM('/css/style.css');
-            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")');
+            addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
         } else {
             addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
             addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
-            addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.40a9ae.js');
-            addCSSToDOM('/css/build/style.86d06a.css');
-            addJSToDOM('/js/build/externals/customized/require.2.1.11.17e342.js', 'data-main', '/Content/MainJS/@(Configuration.GetFrontEndCacheKey() + ".js")');
+            addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.b30289.js');
+            addCSSToDOM('/css/build/style.c73cbc.css');
+            addJSToDOM('/js/build/externals/customized/require.2.1.11.17e342.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
         }
     </script>
 
     <noscript>
-        <link rel="stylesheet" href="/css/build/style.86d06a.css" />
-        <link rel="stylesheet" href="/css/build/noscript.589281.css" />
+        <link rel="stylesheet" href="/css/build/style.c73cbc.css" />
+        <link rel="stylesheet" href="/css/build/noscript.4b086a.css" />
     </noscript>
     }
 
@@ -94,60 +97,45 @@
 </head>
 
 <body>
-    <div class="page">
-        <header class="page-header" role="banner">
-            <a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
-            @*<div class="fb-plugin" data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
-                <!-- comment in by JS <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fayyildiz.de&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;locale=de_DE&amp;appId=203789616307387" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: 130px; height:21px;" allowTransparency="true"></iframe>-->
-            </div>*@
-			@{ Html.RenderAction("_Navigation", "Content", new { area = "" }); }
-            @*@Html.Partial("_LoginPartial")*@
-        </header>
-        <main class="page-main" role="main">
-            @RenderBody()
-            <div class="togglebox">
-		        <a class="tb-subject" data-jmname="togglebox">Features</a>
-		        <div class="tb-content">
-			        @PerformanceFeature.AriaRoles: @Html.FeatureEnabled(PerformanceFeature.AriaRoles)<br />
-			        @PerformanceFeature.Favicons: @Html.FeatureEnabled(PerformanceFeature.Favicons)<br />
-			        @PerformanceFeature.IE8: @Html.FeatureEnabled(PerformanceFeature.IE8)<br />
-			        @PerformanceFeature.MicroData: @Html.FeatureEnabled(PerformanceFeature.MicroData)<br />
-			        @PerformanceFeature.MicroFormats: @Html.FeatureEnabled(PerformanceFeature.MicroFormats)<br />
-			        @PerformanceFeature.NoJS: @Html.FeatureEnabled(PerformanceFeature.NoJS)<br />
-			        @PerformanceFeature.PerformanceA: @Html.FeatureEnabled(PerformanceFeature.PerformanceA)<br />
-			        @PerformanceFeature.PerformanceB: @Html.FeatureEnabled(PerformanceFeature.PerformanceB)<br />
-			        @PerformanceFeature.PerformanceC: @Html.FeatureEnabled(PerformanceFeature.PerformanceC)<br />
-			        @PerformanceFeature.Prefetch: @Html.FeatureEnabled(PerformanceFeature.Prefetch)<br />
-			        @PerformanceFeature.ProgressiveEnhancement: @Html.FeatureEnabled(PerformanceFeature.ProgressiveEnhancement)<br />
-			        @PerformanceFeature.ResponsiveImages : @Html.FeatureEnabled(PerformanceFeature.ResponsiveImages)<br />
-			        @PerformanceFeature.SpriteSheets: @Html.FeatureEnabled(PerformanceFeature.SpriteSheets)<br />
-			        @PerformanceFeature.TouchSupport: @Html.FeatureEnabled(PerformanceFeature.TouchSupport)<br />
-		        </div>
-	        </div>
-        </main>
-        <footer class="page-footer" role="contentinfo">
-            <section class="h-card">
-                <div class="hc-section"><a class="u-url p-organization-name link" href="/">join.media GmbH &amp; Co. KG</a></div>
-                <address class="hc-section">
-                    <span class="p-street-address">Düsseldorfer Straße 269</span>
-                    <span class="p-locality">45481 Mülheim an der Ruhr</span>
-                    <span class="p-country-name">Deutschland</span>
-                </address>
-                <div class="hc-section">
-                    <a class="p-tel link" href="tel:+49208960320">Fon: +49 208 / 960 32 - 0</a>
-                    <span class="p-tel-fax">Fax: +49 208 / 960 32 - 10</span>
-                </div>
-                <div class="hc-section">
-                    <a class="u-email link" href="mailto:info@joinmedia.de">info@joinmedia.de</a>
-                    <a class="u-url link" href="http://www.joinmedia.de">www.joinmedia.de</a>
-                </div>
-            </section>
-            <div class="legal">
-                <a class="imprint link" href="#Impressum">Impressum</a>
-                <p class="copyright">&copy; Copyright @DateTime.Now.Year</p>
-            </div>
-	    </footer>
-    </div>
+	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
+	<div class="page">
+		<header class="page-header" role="banner">
+			<a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
+			@if (IsSectionDefined("navigation"))
+			{
+				@RenderSection("navigation", required: false)
+			}
+			else
+			{
+				Html.RenderAction("_Navigation", "Content", new { area = "" });
+			}
+		</header>
+		<main class="page-main" role="main">
+			@RenderBody()
+		</main>
+		<footer class="page-footer" role="contentinfo">
+			<section class="h-card">
+				<div class="hc-section"><a class="u-url p-organization-name link" href="/">join.media GmbH &amp; Co. KG</a></div>
+				<address class="hc-section">
+					<span class="p-street-address">Düsseldorfer Straße 269</span>
+					<span class="p-locality">45481 Mülheim an der Ruhr</span>
+					<span class="p-country-name">Deutschland</span>
+				</address>
+				<div class="hc-section">
+					<a class="p-tel link" href="tel:+49208960320">Fon: +49 208 / 960 32 - 0</a>
+					<span class="p-tel-fax">Fax: +49 208 / 960 32 - 10</span>
+				</div>
+				<div class="hc-section">
+					<a class="u-email link" href="mailto:info@joinmedia.de">info@joinmedia.de</a>
+					<a class="u-url link" href="http://www.joinmedia.de">www.joinmedia.de</a>
+				</div>
+			</section>
+			<div class="legal">
+				<a class="imprint link" href="#Impressum">Impressum</a>
+				<p class="copyright">&copy; Copyright @DateTime.Now.Year</p>
+			</div>
+		</footer>
+	</div>
 </body>
 
 </html>

@@ -1,0 +1,21 @@
+﻿@using System.Web.Mvc.Html
+@model AnimatedSvg
+
+<ul class="form">
+	<li>
+		<p>Das hier ausgewählte Bild sollte ein SVG-Bild sein. Wenn dieses eine Animation enthält, kann diese über einen der auswählbaren Trigger gestartet werden.</p>
+	</li>
+	<li>
+		@Html.PartialFor("ImageRegion", m => m.Image)
+	</li>
+	<li>
+		@Html.LabelFor(m => m.EffectTrigger, "Auslöser")
+		<p>Hier kann ein Auslöser für eine Animation definiert werden. Die Animation wird gestartet, wenn...</p>
+		<div class="input">@Html.DropDownListFor(m => m.EffectTrigger, Model.EffectTriggerSelection)</div>
+	</li>
+	<li>
+		@Html.LabelFor(m => m.Hide, "Verstecken")
+		<div class="input">@Html.CheckBoxFor(m => m.Hide)</div>
+		<p>Blendet das aktuelle Element vollständig aus</p>
+	</li>
+</ul>

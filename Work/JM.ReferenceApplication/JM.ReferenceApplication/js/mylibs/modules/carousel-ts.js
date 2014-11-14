@@ -1,5 +1,5 @@
 /*!
- * modules.carousel-ts v0.9
+ * modules.carousel-ts
  *
  * http://joinmedia.de/
  *

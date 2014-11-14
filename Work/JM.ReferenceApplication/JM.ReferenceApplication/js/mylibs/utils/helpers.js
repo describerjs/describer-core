@@ -1,5 +1,5 @@
 /*!
- * utils.helpers v0.9
+ * utils.helpers
  *
  * http://joinmedia.de/
  *
@@ -90,15 +90,13 @@ define(['jquery', '_config'], function($, _config){
 					case 'blur':
 					case 'focus':
 					case 'hover':
-						//alert('noregex');
-						break;
 					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/interval(.*)/))? _eventsArray[m] : undefined):
 						if(_dataJmnameElemente.eq(i).attr('data-jmdominit') !== 'true'){
 							console.group();
 							console.log('%cJM -> Das Element ...', 'color: red; font-style: italic');
 							console.log(_dataJmnameElemente.eq(i)[0]);
-							console.log('%c ... benötigt ein data-jmdominit="true" Attribut!', 'color: red; font-style: italic');
+							console.log('%c ... benötigt ein data-jmdominit="true" Attribut, da das event "'+_eventsArray[m]+'" im jmconfig-Obj angegeben wurde!', 'color: red; font-style: italic');
 							console.groupEnd();
 							jmHF.alert('Fehler: siehe Console! JM ->')
 						}
@@ -134,9 +132,9 @@ define(['jquery', '_config'], function($, _config){
 		return p_plugin;
 	};
 
-	jmHF.eventDelegationTrigger = function(e){
+	jmHF.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
-		jmHF.eventDelegationHepler($this, e);
+		jmHF.eventDelegationHepler($this, e, param);
 	};
 
 	jmHF.eventDelegationTriggerForATags = function(e){
@@ -161,10 +159,21 @@ define(['jquery', '_config'], function($, _config){
 		jmHF.eventDelegationHepler($this, e);
 	};
 
-	jmHF.eventDelegationHepler = function($this, e){
+	jmHF.eventDelegationHepler = function($this, e, param){
 		var _jmname = $this.attr('data-jmname').split('|');
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
-			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'plugin': jmHF.getJmPluginByJmName(_config, _jmname[i]), 'e': e });
+			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': jmHF.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
+		}
+	};
+
+	// gebt das complette Objekt für den übergebenen jmname aus der _config.js zurück ({jmname:...,jmplugin:...,jmconfig:...})
+	jmHF.getConfigObj = function(p_name){
+		var i = 0;
+		var _length = _config.length;
+		for(; i < _length; i++){
+			if(_config[i].jmname === p_name){
+				return _config[i];
+			}
 		}
 	};
 
@@ -178,18 +187,54 @@ define(['jquery', '_config'], function($, _config){
 		if($.type(Obj.$element) === 'undefined'){
 			return;
 		}
-		if($.type(Obj.plugin) === 'undefined'){
+		if($.type(Obj.configObj) === 'undefined'){
 			return;
 		}
-		_pluginArray = Obj.plugin.split('|');
+		_pluginArray = Obj.configObj.jmplugin.split('|');
 		for (var i = 0, leni = _pluginArray.length; i < leni; i++) {
 		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
 		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
 		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
 				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
-			jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
+			// event-Check for init plugin
+			if(jmHF.matchTriggerEventWithConfigEvents(Obj.e.type, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
+				jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
+			}
 		}
+	};
+
+	jmHF.matchTriggerEventWithConfigEvents = function(p_eventType, p_pluginConfigOjb){
+		//console.log(p_pluginConfigOjb);
+		// Erstelle ein Array aus der event-Value-Angabe aus dem config-Obj
+		var eventArray = p_pluginConfigOjb.event.split('|');
+		var _retrun = false;
+		// Durchlaufe das Event-Array
+		for(var i = 0, leni = eventArray.length; i < leni; i++){
+			if(eventArray[i] === p_eventType){
+				// return true if p_eventType === click || change
+				_retrun = true;
+			}else if(eventArray[i].split(':')[0] === p_eventType){
+				// return true if eventArray[i] contains jmtrigger
+				_retrun = true;
+			}else if('dominit' === p_eventType){
+				switch(eventArray[i]){
+					case 'dominit':
+					case 'raf':
+					case 'blur':
+					case 'focus':
+					case 'hover':
+					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
+					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
+						// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
+						_retrun = true;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		return _retrun;
 	};
 
 	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
@@ -229,11 +274,7 @@ define(['jquery', '_config'], function($, _config){
 
 			// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
 			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type(_elem[Obj.e.type]) !== 'undefined'){
-				_elem[Obj.e.type](Obj.e);
-			}
-			// wird mit dem Objekt ein Callback übergeben, wird dieser ausgeführt.
-			if($.type(Obj.callback) !== 'undefined'){
-				Obj.callback.call(this);
+				_elem[Obj.e.type](Obj.e, Obj.e_param);
 			}
 		});
 	};
@@ -268,6 +309,7 @@ define(['jquery', '_config'], function($, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
+					jmHF.alert("bitte ändern in $(item).jmtrigger('change')");
 					$(item).trigger('jmtrigger');
 				});
 			}
@@ -319,6 +361,53 @@ define(['jquery', '_config'], function($, _config){
 		return div.innerHTML;
 	};
 
+	jmHF.transformSupport = function(value) {
+		var element = document.createElement('div');
+		var propertySupport = false;
+		var propertyValue = null;
+		var featureSupport = false;
+		var cssProperty = null;
+		var jsProperty = null;
+		for (var i = 0, l = window.jmGO.vendors.length; i < l; i++) {
+			if (window.jmGO.vendors[i] !== null) {
+				cssProperty = window.jmGO.vendors[i][0] + 'transform';
+				jsProperty = window.jmGO.vendors[i][1] + 'Transform';
+			} else {
+				cssProperty = 'transform';
+				jsProperty = 'transform';
+			}
+			if (element.style[jsProperty] !== undefined) {
+				propertySupport = true;
+				break;
+			}
+		}
+		switch(value) {
+			case '2D':
+				featureSupport = propertySupport;
+				break;
+			case '3D':
+				if (propertySupport) {
+					var body = document.body || document.createElement('body');
+					var documentElement = document.documentElement;
+					var documentOverflow = documentElement.style.overflow;
+					if (!document.body) {
+						documentElement.style.overflow = 'hidden';
+						documentElement.appendChild(body);
+						body.style.overflow = 'hidden';
+						body.style.background = '';
+					}
+					body.appendChild(element);
+					element.style[jsProperty] = 'translate3d(1px,1px,1px)';
+					propertyValue = window.getComputedStyle(element).getPropertyValue(cssProperty);
+					featureSupport = propertyValue !== undefined && propertyValue.length > 0 && propertyValue !== "none";
+					documentElement.style.overflow = documentOverflow;
+					body.removeChild(element);
+				}
+				break;
+		}
+		return featureSupport;
+	};
+
 	if (!Function.prototype.bind) {
 		Function.prototype.bind = function (oThis) {
 			if (typeof this !== "function") {
@@ -342,6 +431,8 @@ define(['jquery', '_config'], function($, _config){
 			return fBound;
 		};
 	}
+
+	window.jmGO.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
 	window.jmGO.uuID = function() {};
 
@@ -386,6 +477,30 @@ define(['jquery', '_config'], function($, _config){
 		for (; i > 0; i >>>= 1, z += z) { if (i & 1) { str = z + str; } }
 		return str;
 	};
+
+	window.setGlobalOSVars = (function(){
+		window.ua = navigator.userAgent;
+
+		// determine OS
+		if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
+			window.userOS = 'iOS';
+			window.uaindex = ua.indexOf( 'OS ' );
+		}else if ( ua.match(/Android/i) ){
+			window.userOS = 'Android';
+			window.uaindex = ua.indexOf( 'Android ' );
+		}else{
+			window.userOS = 'unknown';
+		}
+
+		// determine version
+		if ( userOS === 'iOS'  &&  uaindex > -1 ){
+			window.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
+		}else if ( userOS === 'Android'  &&  uaindex > -1 ){
+			window.userOSver = ua.substr( uaindex + 8, 3 );
+		}else{
+			window.userOSver = 'unknown';
+		}
+	})();
 
 	// vim: et ts=2 sw=2
 

@@ -130,7 +130,7 @@
             </Sequence.Variables>
             <mtba:RunScript Arguments="[AdvancedBuildSettings.GetValue(Of String)(&quot;PreActionScriptArguments&quot;, String.Empty)]" DisplayName="Optionales Skript vor MSBuild ausführen" Enabled="True" FilePath="[AdvancedBuildSettings.GetValue(Of String)(&quot;PreActionScriptPath&quot;, String.Empty)]" sap2010:WorkflowViewState.IdRef="RunScript_1" />
             <mtba:RunMSBuild CleanBuild="[CleanBuild]" CommandLineArguments="[String.Format(&quot;/p:SkipInvalidConfigurations=true {0}&quot;, AdvancedBuildSettings.GetValue(Of String)(&quot;MSBuildArguments&quot;, String.Empty))]" ConfigurationsToBuild="[ConfigurationsToBuild]" DisplayName="MSBuild ausführen" Enabled="True" sap2010:WorkflowViewState.IdRef="RunMSBuild_1" MSBuildMultiProc="True" OutputLocation="[OutputLocation]" ProjectsToBuild="[ProjectsToBuild]" RestoreNuGetPackages="True" RunCodeAnalysis="[AdvancedBuildSettings.GetValue(Of String)(&quot;RunCodeAnalysis&quot;, &quot;AsConfigured&quot;)]" ToolPlatform="[AdvancedBuildSettings.GetValue(Of String)(&quot;MSBuildPlatform&quot;, &quot;Auto&quot;)]" Verbosity="Normal" />
-            <mtba:RunScript Arguments="[&quot;&quot;&quot;c:\b2\1\JM.Foundation\Integration Build\bin\_PublishedWebsites\JM.ReferenceApplication&quot;&quot;&quot;]" DisplayName="Run Grunt" Enabled="True" FilePath="[GruntCommandLine]" sap2010:WorkflowViewState.IdRef="RunScript_5" />
+            <mtba:RunScript Arguments="[&quot;&quot;&quot;c:\b2\1\JM.Foundation\Integration Build\bin\_PublishedWebsites\JM.ReferenceApplication&quot;&quot;&quot;]" DisplayName="Run Grunt" Enabled="False" FilePath="[GruntCommandLine]" sap2010:WorkflowViewState.IdRef="RunScript_5" />
             <mtba:RunScript Arguments="[AdvancedBuildSettings.GetValue(Of String)(&quot;PostActionScriptArguments&quot;, String.Empty)]" DisplayName="Optionales Skript nach MSBuild ausführen" Enabled="True" FilePath="[AdvancedBuildSettings.GetValue(Of String)(&quot;PostActionScriptPath&quot;, String.Empty)]" sap2010:WorkflowViewState.IdRef="RunScript_2" />
             <mtba:RunScript Arguments="[AdvancedTestSettings.GetValue(Of String)(&quot;PreActionScriptArguments&quot;, String.Empty)]" DisplayName="Optionales Skript vor Test Runner ausführen" Enabled="True" FilePath="[AdvancedTestSettings.GetValue(Of String)(&quot;PreActionScriptPath&quot;, String.Empty)]" sap2010:WorkflowViewState.IdRef="RunScript_3" />
             <mtba:RunAgileTestRunner ConfigurationsToTest="[ConfigurationsToBuild]" DisplayName="VS Test Runner ausführen" Enabled="[Not AdvancedTestSettings.GetValue(Of Boolean)(&quot;DisableTests&quot;, false)]" sap2010:WorkflowViewState.IdRef="RunAgileTestRunner_1" TestSpecs="[AutomatedTests]" />
@@ -152,14 +152,15 @@
           </Catch>
         </TryCatch.Catches>
         <TryCatch.Finally>
-          <Sequence DisplayName="Ausführen abschließender Aktionen für den Agent">
-            <mtbac:DropBinaries DestinationPath="{x:Null}" DisplayName="Binärdateien in Ablage kopieren" Enabled="True" />
-            <mtbac:ResetEnvironment DisplayName="Zurücksetzen der Umgebung" />
+          <Sequence DisplayName="Ausführen abschließender Aktionen für den Agent" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <mtbac:DropBinaries DestinationPath="{x:Null}" DisplayName="Binärdateien in Ablage kopieren" Enabled="True" sap2010:WorkflowViewState.IdRef="DropBinaries_1" />
+            <mtbwa:CopyDirectory Destination="\\radler\develop" sap2010:WorkflowViewState.IdRef="CopyDirectory_1" Source="[OutputLocation]" />
+            <mtbac:ResetEnvironment DisplayName="Zurücksetzen der Umgebung" sap2010:WorkflowViewState.IdRef="ResetEnvironment_1" />
           </Sequence>
         </TryCatch.Finally>
       </TryCatch>
     </mtbwa:AgentScope>
-    <sads:DebugSymbol.Symbol>d1BDOlxHaXRSZXBvc1xKTS5Gb3VuZGF0aW9uMlxCdWlsZHN5c3RlbVxCdWlsZFByb2Nlc3NcVGVtcGxhdGVzXEpNLkZvdW5kYXRpb24ueGFtbE4BjwwB3hABDAHCBwHkCgELAeMLAeoLAQoB+xQBghUBCQFiAZ4HAQgBwhQB3RQBBwH7EAGDFAEGAasVAbIVAQUBnRQBpBQBBAHhFgH1FwEDAYULAcQLAQJ3A6MBDgIBAXgFeLgBAgFdeQWhARgCAQJ4RXhaAgFeefgBedQCAgEHeYoBeesBAgEFeeUCeZMDAgEDegd6xgECAVl7B3vEAQIBU3wHfPYBAgFPfQegARICAQl6pgF6qwECAVx6M3o4AgFber4BesMBAgFaeyZ7OQIBV3tBe1UCAVV7jwF7lQECAVR81gF88wECAVF8igF8kAECAVB/C4sBFgIBE5sBC54BFgIBD5MBD5YBGgIBCoMBDYMB5AICAUmEAQ2EAeUFAgE2hQENhQGbAgIBMYYBDYYB5wICASuHAQ2HAeYCAgEliAENiAGtAgIBHokBDYkB6QICARiKAQ2KAbYBAgEUnAENnAF7AgERnQENnQFPAgEQlAERlAG0AQIBDJUBEZUBhAECAQuDAccBgwHNAQIBToMBJ4MBiAECAUyDAdcBgwGzAgIBSoQBwQOEAdQDAgFHhAGIA4QBjgMCAUaEAdoFhAHiBQIBRYQB8wSEAc8FAgFDhAGBBIQB5QQCAUGEAU2EAegBAgE/hAH/AYQBmAICAT2EAZ4DhAGwAwIBO4QBwQKEAccCAgE6hAEphAE3AgE4hAHqA4QB8AMCATeFAcYBhQHMAQIBNYUBJ4UBpQECATSFAdYBhQHqAQIBMoYByQGGAc8BAgEwhgEnhgGJAQIBLoYB2QGGAbYCAgEshwHKAYcB0AECASqHASeHAYcBAgEohwHaAYcBtQICASaIAZgCiAGqAgIBI4gBhAGIAdYBAgEhiAE7iAFUAgEfiQHMAYkB0gECAR2JASeJAYgBAgEbiQHcAYkBuAICARmKAaABigGzAQIBFooBU4oBWQIBFZwBcpwBeAIBEpQBZZQBdwIBDQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1BDOlxHaXRSZXBvc1xKTS5Gb3VuZGF0aW9uMlxCdWlsZHN5c3RlbVxCdWlsZFByb2Nlc3NcVGVtcGxhdGVzXEpNLkZvdW5kYXRpb24ueGFtbFEBjwwB3hABDAHCBwHkCgELAeMLAeoLAQoB+xQBghUBCQFiAZ4HAQgBwhQB3RQBBwH7EAGDFAEGAasVAbIVAQUBnRQBpBQBBAHhFgH1FwEDAYULAcQLAQJ3A6QBDgIBAXgFeLgBAgFheQWiARgCAQJ4RXhaAgFiefgBedQCAgEHeYoBeesBAgEFeeUCeZMDAgEDegd6xgECAV17B3vEAQIBV3wHfPYBAgFTfQehARICAQl6pgF6qwECAWB6M3o4AgFfer4BesMBAgFeeyZ7OQIBW3tBe1UCAVl7jwF7lQECAVh81gF88wECAVV8igF8kAECAVR/C4sBFgIBF5sBC58BFgIBD5MBD5YBGgIBCoMBDYMB5AICAU2EAQ2EAeUFAgE6hQENhQGcAgIBNYYBDYYB5wICAS+HAQ2HAeYCAgEpiAENiAGtAgIBIokBDYkB6QICARyKAQ2KAbYBAgEYnAENnAGsAQIBFZ0BDZ0BjwECARGeAQ2eAYQBAgEQlAERlAG0AQIBDJUBEZUBhAECAQuDAccBgwHNAQIBUoMBJ4MBiAECAVCDAdcBgwGzAgIBToQBwQOEAdQDAgFLhAGIA4QBjgMCAUqEAdoFhAHiBQIBSYQB8wSEAc8FAgFHhAGBBIQB5QQCAUWEAU2EAegBAgFDhAH/AYQBmAICAUGEAZ4DhAGwAwIBP4QBwQKEAccCAgE+hAEphAE3AgE8hAHqA4QB8AMCATuFAcYBhQHNAQIBOYUBJ4UBpQECATiFAdcBhQHrAQIBNoYByQGGAc8BAgE0hgEnhgGJAQIBMoYB2QGGAbYCAgEwhwHKAYcB0AECAS6HASeHAYcBAgEshwHaAYcBtQICASqIAZgCiAGqAgIBJ4gBhAGIAdYBAgEliAE7iAFUAgEjiQHMAYkB0gECASGJASeJAYgBAgEfiQHcAYkBuAICAR2KAaABigGzAQIBGooBU4oBWQIBGZwBcpwBeAIBFp0BLp0BQAIBFJ0Bep0BjAECARKUAWWUAXcCAQ0=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -191,23 +192,33 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="404,21">
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="404,281">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,911" />
-      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1221" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="462,1407">
+      <sap2010:ViewStateData Id="DropBinaries_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CopyDirectory_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ResetEnvironment_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,270">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1487">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,1381" />
+      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1691" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="462,1877">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1957">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>

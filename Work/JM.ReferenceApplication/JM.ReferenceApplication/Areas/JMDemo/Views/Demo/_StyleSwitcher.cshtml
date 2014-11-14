@@ -1,0 +1,18 @@
+﻿@using System.Linq;
+@{
+	var templates = (IEnumerable<Template>)ApplicationConfiguration.SiteConfig.Templates;
+	var currentTemplate = Configuration.GetActiveTemplateID();
+}
+
+<div id="styleswitcher" style="position: absolute; top: 0; right: 10px; font-size: 14px; padding: 5px; background: #F0F0F0; border-radius: 0 0 3px 3px;">
+	<b>StyleSwitcher</b>
+	<ul>
+		<li>kein Template (standard) @if("" == currentTemplate) {<i>aktiv</i>} else { <a href="/Content/SetTemplate?key="><i>wählen</i></a>}</li>
+		@foreach (var tpl in templates.ToList())
+		{
+			<li>
+				@tpl.Name @if(tpl.ID == currentTemplate) {<i>aktiv</i>} else {<a href="/Content/SetTemplate?key=@tpl.ID"><i>wählen</i></a> }
+			</li>
+		}
+	</ul>
+</div>		
