@@ -16,16 +16,6 @@
 
     <ProjectCollection>
 
-      <SolutionFolder Name="Modules">
-
-        <ProjectTemplateLink ProjectName="JM.Business">JM.Business\JM.Business.vstemplate</ProjectTemplateLink>
-
-        <ProjectTemplateLink ProjectName="JM.Business.Kontakt">JM.Business.Kontakt\JM.Business.Kontakt.vstemplate</ProjectTemplateLink>
-
-        <ProjectTemplateLink ProjectName="JM.Business.Kontakt.Contracts">JM.Business.Kontakt.Contracts\JM.Business.Kontakt.Contracts.vstemplate</ProjectTemplateLink>
-
-      </SolutionFolder>
-
       <SolutionFolder Name="Web">
 
         <ProjectTemplateLink ProjectName="$projectname$.Web">JM.Web\JM.Web.vstemplate</ProjectTemplateLink>
