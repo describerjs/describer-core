@@ -12,6 +12,7 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 	pathToJQuery = 'describer-core/libs/jquery-1.11.0';
 }
 require.config({
+	baseUrl: '/js',
 	paths      : {
 		// libs
 		'jquery'                                           : pathToJQuery,
@@ -39,7 +40,7 @@ require.config({
 
 require(['jquery', '_config'], function require_jquery($){
 	// need jquery
-	require([ 'core'], function require_helpers(){
+	require(['core'], function require_helpers(){
 		// DomReady
 		$(function domReady(){
 			var $body = $('body');

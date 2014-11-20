@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function ($, _config) {
+define(['jquery', '_config', 'core'], function ($, _config) {
 	'use strict';
 	return {
 		config : function(){
@@ -384,7 +384,7 @@ define(['jquery', '_config', 'utils.jquery_helpers', 'utils.helpers'], function 
 					p_$data
 						.requirementsForJmPlugins()
 						.triggerSelfexecObj()
-						.picturefill();
+						//.picturefill();
 					that._callback();
 				}, 200);
 				return;
