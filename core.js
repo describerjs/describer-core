@@ -579,17 +579,18 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		});
 	};
 
-	/*$.fn.picturefill = function(){
+	$.fn.picturefill = function(){
 		var _array = [];
 		this.each(function(){
 			var $elem = $(this);
 			_array = $.merge(_array, $elem.find('picture').addBack('picture').toArray());
 		});
-		// TODO Andreas entweder muss hier auf if _array.length > 0 gefragt werden oder ein try catch verwendet werden, da das Plugin nicht immer geladen ist.
-		picturefill( {
-			elements:_array
-		} );
-	};*/
+		try{
+			picturefill({
+				elements: _array
+			});
+		}catch(e){}
+	};
 
 	// tauschen von Tabellenspalten
 	$.fn.switchColumns = function ( col1, col2 ) {

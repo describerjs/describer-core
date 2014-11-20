@@ -107,6 +107,9 @@ require(['jquery', '_config'], function require_jquery($){
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
 			execDomReadyObject();
 
+			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
+			try{picturefill();}catch(e){}
+
 			if(window.debug){
 				jmHF.checkConfigJS();
 				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
