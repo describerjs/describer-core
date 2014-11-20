@@ -20,10 +20,6 @@
 
 .page-main {
 	@extend %page-element-default;
-
-	@include bp-l {
-		padding-top: $default-element-spacing;
-	}
 }
 
 
@@ -45,9 +41,59 @@
 	@extend .section;
 }
 
+.section-header {
+	height: 350px;
 
+	.parallax-img {
+		max-width: none;
+		width: 100%;
+	}
+}
 
+.section-header-content {
+	@include constrained;
+	@include element-stretch;
+}
 
+.joinmedia {
+	background-color: $color-white;
+	color: $color-black;
+}
+
+.services {
+	background-color: $color-blue-mid-dark;
+
+	.block {
+		&:nth-of-type(1) {
+			background-color: $color-blue-mid-dark;
+		}
+
+		&:nth-of-type(2) {
+			background-color: $color-blue-dark;
+		}
+
+		&:nth-of-type(3) {
+			background-color: $color-blue-base;
+		}
+
+		&:nth-of-type(4) {
+			background-color: $color-blue-x-dark;
+		}
+
+		&:nth-of-type(5) {
+			background-color: $color-blue-dark;
+		}
+
+		&:nth-of-type(6) {
+			background-color: $color-blue-base;
+		}
+	}
+}
+
+.customers {
+	background-color: $color-white;
+	color: $color-black;
+}
 
 /*------------------------------------*\
     $STAGE
@@ -55,16 +101,68 @@
 
 .stage {
 	@extend .section;
+	@include element-default;
+	background-color: $theme-stageteaser-bg;
+	margin-bottom: 0;
 
-	//
-	.stage-content {
-		/**/
+	@include bp-m {
+		height: 100vh;
 	}
+
+	.stage-content-inner {
+		@include clearfix;
+		@include constrained;
+	}
+
+	.stage-content-top {
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 25vh;
+	}
+
+	.stage-content-mid {
+		@include bp-m {
+			bottom: $space-triple + $space-half;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: auto;
+		}
+	}
+
+	.stage-content-bottom {
+		background-color: $theme-stageteaser-bg;
+		height: $space-triple;
+
+		@include bp-m {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: auto;
+		}
+
+
+		.stage-content-inner {
+			height: 100%;
+		}
+	}
+
+	& > .parallax {
+		height: 100vh;
+
+		.parallax-inner {
+
+		}
+
+		.parallax-img {
+			max-width: none;
+			width: 100%;
+		}
+	}
+	
 }
-
-
-
-
 
 /*------------------------------------*\
     

@@ -4,7 +4,8 @@
 
 .teaser {
 	@extend %element-default;
-	background-color: $theme-teaser-bg;
+	@include rgba($theme-teaser-bg, .3);
+	// background-color: $theme-teaser-bg;
 	color: inherit;
 	display: block;
 
@@ -57,9 +58,9 @@
 
 	// Footerbereich <footer>
 	.t-footer {
-		@include bp-m {
-			@include absolute('', '', $default-spacing, '');
-		}
+		// @include bp-m {
+		//	@include absolute('', '', $default-spacing, '');
+		// }
 	}
 
 	// Die einleitende Headline
@@ -74,16 +75,20 @@
 
 	// Innerer Container für "t-header", "t-main", "t-footer"
 	.t-inner {
-		@extend %element-inner-default;
+		// @extend %element-inner-default;
+		padding: 0.75rem 1rem;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		position: relative;
 
-		@include bp-m {
-			padding-bottom: $space-double;
-		}
+		// @include bp-m {
+		// 	padding-bottom: $space-double;
+		// }
 	}
 
 	// Umfasst den textlichen Inhalt
-	.t-main {
-		/**/
+	.t-content {
+		margin-bottom: $space;
 	}
 }
 

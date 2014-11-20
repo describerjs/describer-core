@@ -985,36 +985,112 @@ p:last-child {
 	$FADE
 \*------------------------------------*/
 .fade-in {
-  -moz-transition: opacity 0.6s linear;
-  -ms-transition: opacity 0.6s linear;
-  -o-transition: opacity 0.6s linear;
-  -webkit-transition: opacity 0.6s linear;
-  transition: opacity 0.6s linear;
-  opacity: 1;
+  -moz-transition: all 0.6s linear;
+  -ms-transition: all 0.6s linear;
+  -o-transition: all 0.6s linear;
+  -webkit-transition: all 0.6s linear;
+  transition: all 0.6s linear;
+  opacity: 0;
 }
 .fade-in.show {
   opacity: 1;
 }
 
+.fade-in-up {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  opacity: 0;
+  -moz-transition: all 0.6s linear;
+  -ms-transition: all 0.6s linear;
+  -o-transition: all 0.6s linear;
+  -webkit-transition: all 0.6s linear;
+  transition: all 0.6s linear;
+}
+.fade-in-up.show {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  opacity: 1;
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    -webkit-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@-moz-keyframes fadeInUp {
+  0% {
+    -webkit-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@-o-keyframes fadeInUp {
+  0% {
+    -webkit-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    -webkit-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
 /*------------------------------------*\
 	$SLIDE
 \*------------------------------------*/
-.slide-in {
-  -moz-transition: left 0.9s linear;
-  -ms-transition: left 0.9s linear;
-  -o-transition: left 0.9s linear;
-  -webkit-transition: left 0.9s linear;
-  transition: left 0.9s linear;
-  left: 0;
+.slide-in-left {
+  -moz-transition: all 0.9s linear;
+  -ms-transition: all 0.9s linear;
+  -o-transition: all 0.9s linear;
+  -webkit-transition: all 0.9s linear;
+  transition: all 0.9s linear;
+  left: -200%;
   position: relative;
 }
-.slide-in.show {
+.slide-in-left.show {
   left: 0;
+}
+
+.slide-in-right {
+  -moz-transition: all 0.9s linear;
+  -ms-transition: all 0.9s linear;
+  -o-transition: all 0.9s linear;
+  -webkit-transition: all 0.9s linear;
+  transition: all 0.9s linear;
+  right: -200%;
+  position: relative;
+}
+.slide-in-right.show {
+  right: 0;
 }
 
 /*------------------------------------*\
 	$SCROLL-ANIM
 \*------------------------------------*/
+.scroll-anim {
+  position: absolute;
+  z-index: 999;
+}
+
 /*------------------------------------*\
 	
 \*------------------------------------*/
@@ -1120,6 +1196,14 @@ p:last-child {
 }
 
 .section-header {
+  height: 350px;
+}
+.section-header .parallax-img {
+  max-width: none;
+  width: 100%;
+}
+
+.section-header-content {
   *zoom: 1;
   margin: 0 auto;
   max-width: 73em;
@@ -1132,11 +1216,11 @@ p:last-child {
   right: 0;
   top: 0;
 }
-.section-header:after, .section-header:before {
+.section-header-content:after, .section-header-content:before {
   content: "\0020";
   display: table;
 }
-.section-header:after {
+.section-header-content:after {
   clear: both;
 }
 
@@ -1165,6 +1249,11 @@ p:last-child {
 }
 .services .block:nth-of-type(6) {
   background-color: #389ea7;
+}
+
+.customers {
+  background-color: #ffffff;
+  color: #2c2c2c;
 }
 
 /*------------------------------------*\
@@ -1253,6 +1342,7 @@ p:last-child {
 }
 .stage > .parallax .parallax-img {
   max-width: none;
+  width: 100%;
 }
 
 /*------------------------------------*\

@@ -17,6 +17,12 @@
 
 .page-header {
 	@extend %page-element-default;
+	background: $theme-nav-bg;
+	margin: 0;
+	top: 0;
+	width: 100%;
+	position: fixed;
+	z-index: 999;
 }
 
 
@@ -28,13 +34,10 @@
 \*------------------------------------*/
 
 .logo {
-	@extend %element-inner-default;
-	@include column(8);
+	@include column(6);
+	//@extend %element-inner-default;
+	padding: $space-half $pad;
 	display: block;
-	padding: {
-		bottom: $space-half;
-		top: $space-half;
-	}
 	position: relative;
 	z-index: 1;
 

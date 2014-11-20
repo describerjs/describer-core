@@ -45,6 +45,8 @@
 
 .block {
 	@extend %element-default;
+	padding: $space-triple 0;
+	margin-bottom: 0;
 
 	.section & {
 		&:nth-of-type(1):nth-last-of-type(2),

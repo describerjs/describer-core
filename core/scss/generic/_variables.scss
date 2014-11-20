@@ -33,7 +33,33 @@ $theme-color-eta:		#666;
 $theme-color-theta:		#333;
 
 
+$color-orange-x-light:    #ff6611;
+$color-orange-light:      #ee5511;
+$color-orange-mid-light:  #e54c11;
+$color-orange-base:       #dd4411;
+$color-orange-mid-dark:   #c53d0f;
+$color-orange-dark:       #b13308;
+$color-orange-x-dark:     #9d2902;
 
+$color-blue-x-light:      #62d8e3;
+$color-blue-light:        #38c6d3;
+$color-blue-mid-light:    #38b2bd;
+$color-blue-base:         #389ea7;
+$color-blue-mid-dark:     #328C94;
+$color-blue-dark:         #207e87;
+$color-blue-x-dark:       #24939B;
+
+$color-grey-x-light:      #eee;
+$color-grey-light:        #ccc;
+$color-grey-mid-light:    #aaa;
+$color-grey-base:         #767676;
+$color-grey-mid-dark:     #555;
+$color-grey-dark:         #333;
+$color-grey-x-dark:       #111;
+
+$color-white:             #ffffff;
+$color-black:             #2c2c2c;
+$color-transparent:       transparent;
 
 
 /*------------------------------------*\
@@ -41,22 +67,22 @@ $theme-color-theta:		#333;
 \*------------------------------------*/
 
 // Main
-$theme-body-bg:					$theme-color-alpha;
-$theme-body-fg:					$theme-color-beta;
-$theme-headings-bg:				$theme-color-zero;
-$theme-headings-fg:				$theme-body-fg;
-$theme-page-bg:					$theme-color-alpha;
-$theme-page-fg:					$theme-color-beta;
-$theme-selection-bg:			$theme-color-beta;
-$theme-selection-fg:			$theme-color-alpha;
+$theme-body-bg:					$color-orange-base;
+$theme-body-fg:					$color-white;
+$theme-headings-bg:				$color-transparent;
+$theme-headings-fg:				$color-white;
+$theme-page-bg:					$color-orange-base;
+$theme-page-fg:					$color-white;
+$theme-selection-bg:			$color-orange-base;
+$theme-selection-fg:			$color-white;
 
 // Accordion
 $theme-accordion-bg:			$theme-color-delta;
-$theme-accordion-fg:			$theme-color-beta;
+$theme-accordion-fg:			$color-black;
 $theme-accordion-handle-bg:		$theme-color-zeta;
-$theme-accordion-handle-fg:		$theme-color-alpha;
+$theme-accordion-handle-fg:		$color-white;
 $theme-accordion-active-bg:		$theme-color-epsilon;
-$theme-accordion-active-fg:		$theme-color-beta;
+$theme-accordion-active-fg:		$color-black;
 
 // Back-To-Top
 $theme-backtotop-bg:			$theme-color-zero;
@@ -65,64 +91,65 @@ $theme-backtotop-active-bg:		$theme-color-zero;
 $theme-backtotop-active-fg:		$theme-color-zero;
 
 // Buttons
-$theme-btn-bg:					$theme-color-zeta;
-$theme-btn-fg:					$theme-color-eta;
-$theme-btn-active-bg:			$theme-color-delta;
-$theme-btn-active-fg:			$theme-color-epsilon;
-$theme-btn-disabled-bg:			$theme-color-eta;
-$theme-btn-disabled-fg:			$theme-color-theta;
-$theme-cta-bg:					$theme-color-beta;
-$theme-cta-fg:					$theme-color-alpha;
-$theme-cta-active-bg:			$theme-color-eta;
-$theme-cta-active-fg:			$theme-color-alpha;
+$theme-btn-bg:					$color-orange-base;
+$theme-btn-fg:					$color-white;
+$theme-btn-active-bg:			$color-orange-dark;
+$theme-btn-active-fg:			$color-white;
+$theme-btn-disabled-bg:			$color-grey-base;
+$theme-btn-disabled-fg:			$color-black;
+$theme-cta-bg:					$color-blue-base;
+$theme-cta-fg:					$color-white;
+$theme-cta-active-bg:			$color-blue-dark;
+$theme-cta-active-fg:			$color-white;
 
 // Links
-$theme-link-bg:					$theme-color-zero;
-$theme-link-fg:					$theme-color-zeta;
-$theme-link-hover-bg:			$theme-color-zero;
-$theme-link-hover-fg:			$theme-color-theta;
+$theme-link-bg:					$color-transparent;
+$theme-link-fg:					$color-white;
+$theme-link-hover-bg:			$color-transparent;
+$theme-link-hover-fg:			$color-white;
 
 // Navigation
-$theme-nav-bg:					$theme-color-delta;
-$theme-nav-fg:					$theme-color-beta;
+$theme-nav-bg:					$color-orange-base;
+$theme-nav-fg:					$color-white;
 $theme-nav-items-bg:			$theme-nav-bg;
 $theme-nav-items-fg:			$theme-nav-fg;
 $theme-nav-link-bg:				$theme-nav-items-bg;
 $theme-nav-link-fg:				$theme-nav-items-fg;
-$theme-nav-link-active-bg:		$theme-color-epsilon;
-$theme-nav-link-active-fg:		$theme-color-beta;
-$theme-flyout-bg:				$theme-nav-link-active-bg;
-$theme-flyout-fg:				$theme-nav-link-active-fg;
-$theme-flyout-link-bg:			$theme-nav-link-bg;
-$theme-flyout-link-fg:			$theme-nav-link-fg;
-$theme-flyout-link-active-bg:	$theme-color-theta;
-$theme-flyout-link-active-fg:	$theme-color-delta;
-$theme-flyout-group-bg:			$theme-color-eta;
-$theme-flyout-group-fg:			$theme-color-delta;
-$theme-flyout-group-active-bg:	$theme-flyout-link-active-bg;
-$theme-flyout-group-active-fg:	$theme-flyout-link-active-fg;
-$theme-menu-btn-bg:				$theme-color-alpha;
-$theme-menu-btn-fg:				$theme-color-beta;
-$theme-menu-item-bg:			$theme-color-delta;
+$theme-nav-link-active-bg:		$color-orange-dark;
+$theme-nav-link-active-fg:		$color-white;
+$theme-flyout-bg:				$color-grey-x-light;
+$theme-flyout-fg:				$color-black;
+$theme-flyout-link-bg:			$color-orange-base;
+$theme-flyout-link-fg:			$color-white;
+$theme-flyout-link-active-bg:	$color-orange-dark;
+$theme-flyout-link-active-fg:	$color-white;
+$theme-flyout-group-bg:			$color-orange-dark;
+$theme-flyout-group-fg:			$color-white;
+$theme-flyout-group-active-bg:	$color-orange-x-dark;
+$theme-flyout-group-active-fg:	$color-white;
+$theme-menu-btn-bg:				$color-black;
+$theme-menu-btn-fg:				$color-white;
+$theme-menu-item-bg:			$color-orange-base;
 
 // Tabs
-$theme-tabs-bg:					$theme-color-eta;
-$theme-tab-bg:					$theme-color-zeta;
-$theme-tab-fg:					$theme-color-alpha;
-$theme-tab-active-bg:			$theme-color-alpha;
-$theme-tab-active-fg:			$theme-color-beta;
-$theme-tab-hover-bg:			$theme-color-delta;
-$theme-tab-hover-fg:			$theme-color-beta;
-$theme-tab-content-bg:			$theme-color-alpha;
-$theme-tab-content-fg:			$theme-color-beta;
+$theme-tabs-bg:					$color-transparent;
+$theme-tab-bg:					$color-white;
+$theme-tab-fg:					$color-black;
+$theme-tab-active-bg:			$color-grey-dark;
+$theme-tab-active-fg:			$color-white;
+$theme-tab-hover-bg:			$color-blue-x-dark;
+$theme-tab-hover-fg:			$color-white;
+$theme-tab-content-bg:			$color-blue-dark;
+$theme-tab-content-fg:			$color-white;
 
 // Teaser
-$theme-teaser-bg:				$theme-color-gamma;
+$theme-teaser-bg:				$color-blue-mid-dark;
+$theme-stageteaser-bg:			$color-blue-mid-light;
 
 // Togglebox
-$theme-togglebox-bg:			$theme-color-delta;
-$theme-togglebox-fg:			$theme-color-beta;
-$theme-togglebox-content-bg:	$theme-color-alpha;
+$theme-togglebox-bg:			$color-white;
+$theme-togglebox-fg:			$color-black;
+$theme-togglebox-content-bg:	$color-orange-light;
 
 
 
@@ -133,7 +160,7 @@ $theme-togglebox-content-bg:	$theme-color-alpha;
 \*------------------------------------*/
 
 $font:			"Arial", sans-serif;
-$font-alpha:	"Roboto Condensed", $font;
+$font-alpha:	"Roboto", $font;
 $font-beta:		"Roboto Slab", $font;
 
 $font-btn:		$font-alpha;
@@ -168,7 +195,7 @@ $bp-xxl:	82em;
     $LAYOUT
 \*------------------------------------*/
 
-$layout-maxwidth:	80em;
+$layout-maxwidth:	73em;
 
 
 

@@ -50,6 +50,15 @@ $menu-btn-height: 2.5rem;
 	display: block;
 	font-family: $font-nav;
 	position: relative;
+
+	@include bp-l {
+		padding: {
+			bottom: $space-three-quarter;
+			left: $pad;
+			right: $pad;
+			top: $space-three-quarter;
+		}
+	}
 }
 
 %flyout-link {
@@ -78,8 +87,9 @@ $menu-btn-height: 2.5rem;
 	margin-bottom: 0;
 
 	@include bp-l {
+		@include column(8);
 		background-color: $theme-nav-bg;
-		clear: both;
+		// clear: both;
 		color: $theme-nav-fg;
 	}
 
@@ -92,6 +102,7 @@ $menu-btn-height: 2.5rem;
 
 		@include bp-l {
 			background-color: inherit;
+			float: right;
 			margin-top: 0;
 		}
 	}
