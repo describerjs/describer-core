@@ -142,10 +142,11 @@ define(['_config', 'jquery', 'utils.helpers', 'scrolltotop'], function(_config){
 
 	$.fn.scrollToMe = function(p_delta_offset){
 		var _delta_offset = 0;
+		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
 		if ($.type(p_delta_offset) === 'number') {
 			_delta_offset = p_delta_offset;
 		}
-		$('html, body').scrollToTop($(this).offset().top + _delta_offset);
+		$body.scrollToTop($(this).offset().top + _delta_offset);
 	};
 
 	$.fn.removeDotNetFallbackHiddenFields = function(){
