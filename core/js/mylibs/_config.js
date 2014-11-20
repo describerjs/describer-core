@@ -325,7 +325,7 @@ define(function(){
 				}
 			]
 		},{
-			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat. toggel um das geöffnete Element auch wieder schliessen zu können.
+			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat (noch zugeklapp ist). toggel um das geöffnete Element auch wieder schliessen zu können.
 			jmname   : 'accordionbox',
 			jmplugin: 'actions.ajax|actions.remove|actions.toggle',
 			jmconfig : [
@@ -474,6 +474,63 @@ define(function(){
 			jmconfig: {
 				'event': 'dominit',
 				'data' : 'orientationX-scrollY'
+			}
+		},
+		{
+			jmname: 'smoothscroll',
+			jmplugin: 'utils.scrollController',
+			jmconfig: {
+				'event': 'dominit'
+			}
+		},
+		{
+			jmname: 'videoplayer',
+			jmplugin: 'modules.videoplayer',
+			jmconfig: {
+				'event': 'dominit',
+				'url': '/videos/toystory',
+				//'url':'/videos/ISS',
+				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
+				/*'width': '1280',
+				'height': '720'*/
+				'width': '640',
+				'height': '360',
+				'autostart': '',
+				'preload':'auto',
+				'loop': 'loop',
+				'controls': 'controls'
+			}
+		},{
+			jmname: 'videoplayer-orientation',
+			jmplugin: 'modules.videoplayer',
+			jmconfig: {
+				'event': 'dominit',
+				'url':'/videos/ISS',
+				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
+				'width': '1280',
+				'height': '720'
+				/*'width': '853',
+				'height': '480'*/
+			}
+		},
+		{
+			jmname: 'videoplayer-bg',
+			jmplugin: 'modules.videoplayer',
+			jmconfig: {
+				'event': 'dominit',
+				'url':'/videos/ISS',
+				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
+				'width': '1280',
+				'height': '720'
+				/*'width': '853',
+				'height': '480'*/
+			}
+		},
+		{
+			jmname: 'videoplayer-control',
+			jmplugin: 'modules.videocontrol',
+			jmconfig: {
+				'event': 'dominit|raf-nc'
 			}
 		},
 		{

@@ -31,11 +31,18 @@ require.config({
 		'overwritings.jquery_validate'                     : 'externals/customized/overwritings/jquery.validate',
 		'overwritings.owl_carousel'                        : 'externals/customized/overwritings/owl.carousel',
 		'video'                                            : 'externals/customized/video',
-		'md5'                                              : 'externals/originalReferenceSource/md5',
-		'rAF'                                              : 'externals/originalReferenceSource/rAF',
 		'fastclick'                                        : 'externals/originalReferenceSource/fastclick',
 		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
 		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
+		'jquery_mousewheel'                                : 'externals/originalReferenceSource/jquery.mousewheel',
+		'jquery_smoothwheel'                               : 'externals/originalReferenceSource/jquery.smoothwheel',
+		'md5'                                              : 'externals/originalReferenceSource/md5',
+		'rAF'                                              : 'externals/originalReferenceSource/rAF',
+		'video_4_10_2'                                     : 'externals/originalReferenceSource/video.4.10.2',
+		'videojs-youtube'                                  : 'externals/originalReferenceSource/youtube',
+
+
+
 
 
 
@@ -71,9 +78,12 @@ require.config({
 		'modules.scrollControlTransform'                  : 'mylibs/modules/scrollControlTransform',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',
+		'modules.videocontrol'                              : 'mylibs/modules/videocontrol',
+		'modules.videoplayer'                              : 'mylibs/modules/videoplayer',
 
 		'utils.helpers'                                    : 'mylibs/utils/helpers',
 		'utils.jquery_helpers'                             : 'mylibs/utils/jquery.helpers',
+		'utils.scrollController'                            : 'mylibs/utils/scrollController',
 
 		'require-css.video'                                : 'require-css/video'
 	},
@@ -87,9 +97,9 @@ require.config({
 			//exports: 'rAF'
 		},
 		
-	    'video': {
+	    /*'video': {
             exports: '_VideoJS'
-        },
+        },*/
 		'fixedsticky': {
 			deps: ['fixedfixed']
 		}

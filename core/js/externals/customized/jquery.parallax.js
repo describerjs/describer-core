@@ -359,14 +359,14 @@
   Plugin.prototype.setPosition = function(element, x, y) {
     x += 'px';
     y += 'px';
-    if (this.transform3DSupport) {
+    /*if (this.transform3DSupport) {
       this.css(element, 'transform', 'translate3d('+x+','+y+',0)');
     } else if (this.transform2DSupport) {
       this.css(element, 'transform', 'translate('+x+','+y+')');
-    } else {
+    } else {*/
       element.style.left = x;
       element.style.top = y;
-    }
+    /*}*/
   };
 
   Plugin.prototype.onOrientationTimer = function(event) {
