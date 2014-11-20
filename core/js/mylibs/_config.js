@@ -477,13 +477,6 @@ define(function(){
 			}
 		},
 		{
-			jmname: 'smoothscroll',
-			jmplugin: 'utils.scrollController',
-			jmconfig: {
-				'event': 'dominit'
-			}
-		},
-		{
 			jmname: 'videoplayer',
 			jmplugin: 'modules.videoplayer',
 			jmconfig: {

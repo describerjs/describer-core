@@ -50,15 +50,15 @@ require.config({
 		// mylibs
 		'_config'                                          : 'mylibs/_config',
 		'_super'                                           : 'mylibs/_super',
-		'actions.add'                                      : 'mylibs/actions/add',
-		'actions.ajax'                                     : 'mylibs/actions/ajax',
-		'actions.link'                                     : 'mylibs/actions/link',
-		'actions.remove'                                   : 'mylibs/actions/remove',
-		'actions.scroll'                                   : 'mylibs/actions/scroll',
-		'actions.set'                                      : 'mylibs/actions/set',
-		'actions.sticky'                                   : 'mylibs/actions/sticky',
-		'actions.toggle'                                   : 'mylibs/actions/toggle',
-		'actions.trigger'                                  : 'mylibs/actions/trigger',
+		'actions.add'                                      : 'describer-core/actions/add',
+		'actions.ajax'                                     : 'describer-core/actions/ajax',
+		'actions.link'                                     : 'describer-core/actions/link',
+		'actions.remove'                                   : 'describer-core/actions/remove',
+		'actions.scroll'                                   : 'describer-core/actions/scroll',
+		'actions.set'                                      : 'describer-core/actions/set',
+/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
+		'actions.toggle'                                   : 'describer-core/actions/toggle',
+		'actions.trigger'                                  : 'describer-core/actions/trigger',
 
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
 		'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
@@ -83,7 +83,6 @@ require.config({
 
 		'utils.helpers'                                    : 'mylibs/utils/helpers',
 		'utils.jquery_helpers'                             : 'mylibs/utils/jquery.helpers',
-		'utils.scrollController'                            : 'mylibs/utils/scrollController',
 
 		'require-css.video'                                : 'require-css/video'
 	},
@@ -183,7 +182,7 @@ require(['jquery', '_config'], function require_jquery($){
 			execDomReadyObject();
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
-			picturefill();
+			try{picturefill();}catch(e){}
 
 			if(window.debug){
 				jmHF.checkConfigJS();
