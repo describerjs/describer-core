@@ -19,8 +19,6 @@
     $RESET
 \*------------------------------------*/
 /* Border-Box http:/paulirish.com/2012/box-sizing-border-box-ftw/ */
-@import url("//fonts.googleapis.com/css?family=Roboto+Slab");
-@import url("//fonts.googleapis.com/css?family=Roboto+Condensed");
 *,
 *:after,
 *:before {
@@ -339,7 +337,7 @@ h6, .h6 {
   clear: both;
 }
 
-.legal, .h-card, .accordion, .block, .nav, .stage-teaser, .tabs, .teaser, .tiles, .togglebox {
+.legal, .h-card, .headline, .accordion, .block, .nav, .stage-teaser, .tabs, .teaser, .tiles, .togglebox {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -349,28 +347,28 @@ h6, .h6 {
   display: block;
   position: relative;
 }
-.legal:after, .h-card:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .legal:before, .h-card:before, .accordion:before, .block:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before {
+.legal:after, .h-card:after, .headline:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .legal:before, .h-card:before, .headline:before, .accordion:before, .block:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before {
   content: "\0020";
   display: table;
 }
-.legal:after, .h-card:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after {
+.legal:after, .h-card:after, .headline:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after {
   clear: both;
 }
 
-.logo, .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab, .teaser .t-inner {
+.legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab {
   padding: 0.75rem 1rem;
   margin-left: 0 !important;
   margin-right: 0 !important;
   position: relative;
 }
 @media only screen and (min-width: 48em) {
-  .logo, .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab, .teaser .t-inner {
+  .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
-  .logo, .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab, .teaser .t-inner {
+  .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
@@ -549,6 +547,27 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
 /*------------------------------------*\
     $ROBOTO
 \*------------------------------------*/
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.eot");
+  src: url("/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.woff") format("woff"), url("/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.ttf") format("truetype"), url("/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.svg#roboto_slabregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("/fonts/roboto_light/Roboto-Light-webfont.eot");
+  src: url("/fonts/roboto_light/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/roboto_light/Roboto-Light-webfont.woff") format("woff"), url("/fonts/roboto_light/Roboto-Light-webfont.ttf") format("truetype"), url("/fonts/roboto_light/Roboto-Light-webfont.svg#robotolight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("/fonts/roboto_medium/Roboto-Medium-webfont.eot");
+  src: url("/fonts/roboto_medium/Roboto-Medium-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/roboto_medium/Roboto-Medium-webfont.woff") format("woff"), url("/fonts/roboto_medium/Roboto-Medium-webfont.ttf") format("truetype"), url("/fonts/roboto_medium/Roboto-Medium-webfont.svg#robotomedium") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -564,7 +583,7 @@ main > h1, main > .h1, main > h2, main > .h2, main > h3, main > .h3, main > h4, 
 label {
   cursor: pointer;
   display: block;
-  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
 }
 
 /*
@@ -629,7 +648,7 @@ input[type="search"]::-webkit-search-decoration {
 \*------------------------------------*/
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Roboto Slab", "Arial", sans-serif;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 /*------------------------------------*\
@@ -664,10 +683,10 @@ a {
   -o-transition: color 0.3s ease-in-out;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
-  color: #999;
+  color: #ffffff;
 }
 .link:focus, .link:hover {
-  color: #333;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -732,17 +751,20 @@ dd {
  * PAGE_WRAPPER........................Content Wrapper
 **/
 /*------------------------------------*\
+    $PLACEHOLDER
+\*------------------------------------*/
+/*------------------------------------*\
     $TEXT_SELECTION
 \*------------------------------------*/
 ::-moz-selection {
-  background: #000;
-  color: #fff;
+  background: #dd4411;
+  color: #ffffff;
   text-shadow: none;
 }
 
 ::selection {
-  background: #000;
-  color: #fff;
+  background: #dd4411;
+  color: #ffffff;
   text-shadow: none;
 }
 
@@ -750,9 +772,9 @@ dd {
     $HTML
 \*------------------------------------*/
 html {
-  background-color: #fff;
-  color: #000;
-  font: 100% "Roboto Condensed", "Arial", sans-serif;
+  background-color: #dd4411;
+  color: #ffffff;
+  font: 100% "Roboto", "Arial", sans-serif;
   font-weight: 100;
   line-height: 1.5em;
   -ms-text-size-adjust: 100%;
@@ -778,10 +800,8 @@ body {
     $PAGE_WRAPPER
 \*------------------------------------*/
 .page {
-  background-color: #fff;
-  color: #000;
-  margin: 0 auto;
-  max-width: 80em;
+  background-color: #dd4411;
+  color: #ffffff;
   overflow: hidden;
   width: 100%;
 }
@@ -789,7 +809,7 @@ body {
 .page-constrained {
   *zoom: 1;
   margin: 0 auto;
-  max-width: 80em;
+  max-width: 73em;
   position: relative;
   width: 100%;
   z-index: 1;
@@ -970,7 +990,7 @@ p:last-child {
   -o-transition: opacity 0.6s linear;
   -webkit-transition: opacity 0.6s linear;
   transition: opacity 0.6s linear;
-  opacity: 0;
+  opacity: 1;
 }
 .fade-in.show {
   opacity: 1;
@@ -985,7 +1005,7 @@ p:last-child {
   -o-transition: left 0.9s linear;
   -webkit-transition: left 0.9s linear;
   transition: left 0.9s linear;
-  left: -200%;
+  left: 0;
   position: relative;
 }
 .slide-in.show {
@@ -995,11 +1015,6 @@ p:last-child {
 /*------------------------------------*\
 	$SCROLL-ANIM
 \*------------------------------------*/
-.scroll-anim {
-  position: absolute;
-  z-index: 999;
-}
-
 /*------------------------------------*\
 	
 \*------------------------------------*/
@@ -1020,18 +1035,26 @@ p:last-child {
 /*------------------------------------*\
     <header>
 \*------------------------------------*/
+.page-header {
+  background: #dd4411;
+  margin: 0;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+}
+
 /*------------------------------------*\
     LOGO
 \*------------------------------------*/
 .logo {
-  width: 64.58333%;
+  width: 47.91667%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   clear: none;
   float: left;
+  padding: 0.75rem 1rem;
   display: block;
-  padding-bottom: 0.75rem;
-  padding-top: 0.75rem;
   position: relative;
   z-index: 1;
 }
@@ -1079,12 +1102,6 @@ p:last-child {
 /*------------------------------------*\
     $MAIN
 \*------------------------------------*/
-@media only screen and (min-width: 60em) {
-  .page-main {
-    padding-top: 1.5rem;
-  }
-}
-
 /*------------------------------------*\
     $SECTIONS
 \*------------------------------------*/
@@ -1102,11 +1119,140 @@ p:last-child {
   clear: both;
 }
 
+.section-header {
+  *zoom: 1;
+  margin: 0 auto;
+  max-width: 73em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.section-header:after, .section-header:before {
+  content: "\0020";
+  display: table;
+}
+.section-header:after {
+  clear: both;
+}
+
+.joinmedia {
+  background-color: #ffffff;
+  color: #2c2c2c;
+}
+
+.services {
+  background-color: #328C94;
+}
+.services .block:nth-of-type(1) {
+  background-color: #328C94;
+}
+.services .block:nth-of-type(2) {
+  background-color: #207e87;
+}
+.services .block:nth-of-type(3) {
+  background-color: #389ea7;
+}
+.services .block:nth-of-type(4) {
+  background-color: #24939B;
+}
+.services .block:nth-of-type(5) {
+  background-color: #207e87;
+}
+.services .block:nth-of-type(6) {
+  background-color: #389ea7;
+}
+
 /*------------------------------------*\
     $STAGE
 \*------------------------------------*/
-.stage .stage-content {
-  /**/
+.stage {
+  *zoom: 1;
+  width: 97.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  margin-bottom: 1.5rem;
+  clear: both;
+  display: block;
+  position: relative;
+  background-color: #38b2bd;
+  margin-bottom: 0;
+}
+.stage:after, .stage:before {
+  content: "\0020";
+  display: table;
+}
+.stage:after {
+  clear: both;
+}
+@media only screen and (min-width: 48em) {
+  .stage {
+    height: 100vh;
+  }
+}
+.stage .stage-content-inner {
+  *zoom: 1;
+  *zoom: 1;
+  margin: 0 auto;
+  max-width: 73em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.stage .stage-content-inner:after, .stage .stage-content-inner:before {
+  content: "\0020";
+  display: table;
+}
+.stage .stage-content-inner:after {
+  clear: both;
+}
+.stage .stage-content-inner:after, .stage .stage-content-inner:before {
+  content: "\0020";
+  display: table;
+}
+.stage .stage-content-inner:after {
+  clear: both;
+}
+.stage .stage-content-top {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 25vh;
+}
+@media only screen and (min-width: 48em) {
+  .stage .stage-content-mid {
+    bottom: 5.25rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: auto;
+  }
+}
+.stage .stage-content-bottom {
+  background-color: #38b2bd;
+  height: 4.5rem;
+}
+@media only screen and (min-width: 48em) {
+  .stage .stage-content-bottom {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: auto;
+  }
+}
+.stage .stage-content-bottom .stage-content-inner {
+  height: 100%;
+}
+.stage > .parallax {
+  height: 100vh;
+}
+.stage > .parallax .parallax-img {
+  max-width: none;
 }
 
 /*------------------------------------*\
@@ -1209,7 +1355,7 @@ p:last-child {
   user-select: none;
   cursor: pointer;
   display: block;
-  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   overflow: hidden;
   padding: 0.375rem 1rem;
   position: relative;
@@ -1228,20 +1374,20 @@ p:last-child {
 	$BTN
 \*------------------------------------*/
 .btn {
-  background-color: #999;
-  color: #666;
+  background-color: #dd4411;
+  color: #ffffff;
 }
 .btn:active, .btn:hover {
-  background-color: #ddd;
-  color: #aaa;
+  background-color: #b13308;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
 	$BTN-DISABLED
 \*------------------------------------*/
 .btn-disabled {
-  background-color: #666;
-  color: #333;
+  background-color: #767676;
+  color: #2c2c2c;
   cursor: default;
   pointer-events: none;
 }
@@ -1250,12 +1396,12 @@ p:last-child {
 	$CTA
 \*------------------------------------*/
 .cta {
-  background-color: #000;
-  color: #fff;
+  background-color: #389ea7;
+  color: #ffffff;
 }
 .cta:active, .cta:hover {
-  background-color: #666;
-  color: #fff;
+  background-color: #207e87;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -1316,6 +1462,29 @@ p:last-child {
 /*------------------------------------*\
     
 \*------------------------------------*/
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+.headline {
+  margin-bottom: 0;
+}
+.headline h1, .headline h2, .headline h3, .headline h4, .headline h5, .headline h6 {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #dd4411;
+  display: inline-block;
+  font-weight: bold;
+}
+.section-header .headline {
+  position: absolute;
+  bottom: 3rem;
+}
+
 /*------------------------------------*\
     $SOCIAL_MEDIA
 \*------------------------------------*/
@@ -1397,7 +1566,7 @@ p:last-child {
 **/
 .accordion {
   background-color: #ddd;
-  color: #000;
+  color: #2c2c2c;
 }
 .accordion .acc-group {
   /**/
@@ -1413,22 +1582,22 @@ p:last-child {
   -webkit-user-select: none;
   user-select: none;
   background-color: #999;
-  color: #fff;
+  color: #ffffff;
   display: block;
-  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   margin-bottom: 3px;
   position: relative;
 }
 .accordion .acc-handle:hover {
   background-color: #aaa;
-  color: #000;
+  color: #2c2c2c;
 }
 .accordion .acc-item {
   /**/
 }
 .accordion .show > .acc-handle {
   background-color: #aaa;
-  color: #000;
+  color: #2c2c2c;
 }
 
 /*------------------------------------*\
@@ -1438,25 +1607,29 @@ p:last-child {
     $BACK-TO-TOP
 \*------------------------------------*/
 .back-to-top {
-  -moz-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
-  -o-transform: translate3d(-50%, -50%, 0);
-  -webkit-transform: translate3d(-50%, -50%, 0);
-  transform: translate3d(-50%, -50%, 0);
-  position: absolute;
-  left: 50%;
-  top: 50%;
   -moz-transition: background-color 0.3s ease;
   -ms-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
-  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 1.5rem center;
+  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 50% 50%;
   color: #666;
-  display: inline-block;
-  margin: 0.75rem -0.75rem;
-  padding: 0.75rem 1.5rem 0.75rem 3rem;
+  display: block;
+  margin: 0 auto;
   position: relative;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+@media only screen and (min-width: 48em) {
+  .back-to-top {
+    -moz-transform: translateY(20%);
+    -ms-transform: translateY(20%);
+    -o-transform: translateY(20%);
+    -webkit-transform: translateY(20%);
+    transform: translateY(20%);
+  }
 }
 .back-to-top:active, .back-to-top:focus, .back-to-top:hover {
   text-decoration: underline;
@@ -1526,6 +1699,10 @@ p:last-child {
 /*------------------------------------*\
     $BLOCK
 \*------------------------------------*/
+.block {
+  padding: 4.5rem 0;
+  margin-bottom: 0;
+}
 @media only screen and (min-width: 48em) {
   .section .block:nth-of-type(1):nth-last-of-type(2), .section-onepage .block:nth-of-type(1):nth-last-of-type(2), .stage .block:nth-of-type(1):nth-last-of-type(2), .section .block:nth-of-type(2):nth-last-of-type(1), .section-onepage .block:nth-of-type(2):nth-last-of-type(1), .stage .block:nth-of-type(2):nth-last-of-type(1) {
     width: 47.91667%;
@@ -1620,7 +1797,7 @@ p:last-child {
 .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
   padding: 0.75rem 1rem;
   display: block;
-  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   position: relative;
 }
 @media only screen and (min-width: 48em) {
@@ -1635,14 +1812,22 @@ p:last-child {
     padding-right: 1.5rem;
   }
 }
+@media only screen and (min-width: 60em) {
+  .flyout .flyout-group-title, .flyout .flyout-link, .nav .nav-link {
+    padding-bottom: 1.125rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.125rem;
+  }
+}
 
 .flyout .flyout-group-title, .flyout .flyout-link {
-  background-color: #ddd;
-  color: #000;
+  background-color: #dd4411;
+  color: #ffffff;
 }
 .flyout .flyout-group-title:hover, .flyout .flyout-link:hover {
-  background-color: #333;
-  color: #ddd;
+  background-color: #b13308;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -1654,14 +1839,18 @@ p:last-child {
 }
 @media only screen and (min-width: 60em) {
   .nav {
-    background-color: #ddd;
-    clear: both;
-    color: #000;
+    width: 64.58333%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    clear: none;
+    float: left;
+    background-color: #dd4411;
+    color: #ffffff;
   }
 }
 .nav .nav-items {
   *zoom: 1;
-  background-color: #ddd;
+  background-color: #dd4411;
   clear: both;
   margin-top: 3.5rem;
 }
@@ -1675,6 +1864,7 @@ p:last-child {
 @media only screen and (min-width: 60em) {
   .nav .nav-items {
     background-color: inherit;
+    float: right;
     margin-top: 0;
   }
 }
@@ -1684,8 +1874,8 @@ p:last-child {
   -o-transition: background-color 0.15s linear;
   -webkit-transition: background-color 0.15s linear;
   transition: background-color 0.15s linear;
-  background-color: #ddd;
-  border-bottom: 1px solid #aaa;
+  background-color: #dd4411;
+  border-bottom: 1px solid #b13308;
   z-index: 1;
 }
 @media only screen and (min-width: 60em) {
@@ -1702,7 +1892,7 @@ p:last-child {
     -o-transition: bottom 0.15s linear, top 0.15s linear;
     -webkit-transition: bottom 0.15s linear, top 0.15s linear;
     transition: bottom 0.15s linear, top 0.15s linear;
-    background-color: #aaa;
+    background-color: #b13308;
     bottom: 0.75rem;
     top: 0.75rem;
     width: 1px;
@@ -1712,10 +1902,10 @@ p:last-child {
   }
 }
 .nav .nav-item:hover {
-  background-color: #aaa;
+  background-color: #b13308;
 }
 .nav .nav-item:hover .nav-link {
-  color: #000;
+  color: #ffffff;
 }
 @media only screen and (min-width: 60em) {
   .nav .nav-item:hover .flyout {
@@ -1729,7 +1919,7 @@ p:last-child {
   }
 }
 .nav .nav-link {
-  color: #000;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -1739,7 +1929,7 @@ p:last-child {
   position: absolute;
   top: 0.5rem;
   right: 1.04167%;
-  color: #000;
+  color: #ffffff;
   display: block;
   height: 2.5rem;
   line-height: 2.4rem;
@@ -1753,9 +1943,9 @@ p:last-child {
   }
 }
 .menu-btn:before, .menu-close-btn:before, .show-menu .menu-btn:before {
-  -moz-box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
-  -webkit-box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
-  box-shadow: 0 0 0 2px #000, 0 8px 0 2px #000, 0 16px 0 2px #000;
+  -moz-box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
+  -webkit-box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
+  box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
   content: "";
   display: block;
   position: absolute;
@@ -1779,7 +1969,7 @@ p:last-child {
   content: "";
   display: block;
   position: absolute;
-  background-color: #000;
+  background-color: #ffffff;
   height: 3px;
   left: .5rem;
   right: .5rem;
@@ -1844,7 +2034,7 @@ p:last-child {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   position: absolute;
-  background-color: #ddd;
+  background-color: #dd4411;
   clear: left;
   position: initial;
   width: 100%;
@@ -1866,7 +2056,7 @@ p:last-child {
   height: 0;
   opacity: 0;
   visibility: hidden;
-  background-color: #aaa;
+  background-color: #eee;
   z-index: 2;
 }
 .flyout:after, .flyout:before {
@@ -1906,8 +2096,8 @@ p:last-child {
 }
 .flyout .flyout-group-title {
   padding-left: 2rem;
-  background-color: #666;
-  color: #ddd;
+  background-color: #b13308;
+  color: #ffffff;
 }
 @media only screen and (min-width: 48em) {
   .flyout .flyout-group-title {
@@ -1941,8 +2131,8 @@ p:last-child {
 }
 @media only screen and (min-width: 60em) {
   .flyout .flyout-group-title:hover {
-    background-color: #333;
-    color: #ddd;
+    background-color: #9d2902;
+    color: #ffffff;
   }
 }
 @media only screen and (min-width: 60em) {
@@ -2662,7 +2852,7 @@ p:last-child {
   .stage-teaser .st-figure img {
     max-width: 100%;
     min-height: 500px;
-    min-width: 80em;
+    min-width: 73em;
   }
 }
 @media only screen and (min-width: 48em) {
@@ -2766,8 +2956,8 @@ p:last-child {
 	$TABS
 \*------------------------------------*/
 .tabs {
-  background-color: #666;
-  border: 1px solid #666;
+  background-color: transparent;
+  border: 1px solid transparent;
   border-top: 0;
   padding-top: 0.375rem;
 }
@@ -2776,9 +2966,9 @@ p:last-child {
   -o-transition: bottom 0.3s ease-out;
   -webkit-transition: bottom 0.3s ease-out;
   transition: bottom 0.3s ease-out;
-  background-color: #999;
+  background-color: #ffffff;
   bottom: -0.75rem;
-  color: #fff;
+  color: #2c2c2c;
   margin-left: 1px !important;
   margin-right: 0 !important;
   padding-bottom: 1.5rem;
@@ -2858,16 +3048,16 @@ p:last-child {
   }
 }
 .tabs > .tab:hover {
-  background-color: #ddd;
-  color: #000;
+  background-color: #24939B;
+  color: #ffffff;
 }
 .tabs > .tab:first-of-type {
   margin-left: 1.04167% !important;
 }
 .tabs > .tab-content {
-  background-color: #fff;
+  background-color: #207e87;
   clear: both;
-  color: #000;
+  color: #ffffff;
   display: none;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
@@ -2877,8 +3067,8 @@ p:last-child {
   display: none;
 }
 .tabs > .tab-control:checked + .tab {
-  background-color: #fff;
-  color: #000;
+  background-color: #333;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -2888,7 +3078,8 @@ p:last-child {
     $TEASER
 \*------------------------------------*/
 .teaser {
-  background-color: #f0f0f0;
+  background-color: #328C94;
+  background-color: rgba(50, 140, 148, 0.3);
   color: inherit;
   display: block;
 }
@@ -2949,25 +3140,20 @@ p:last-child {
 .teaser .t-figure {
   /**/
 }
-@media only screen and (min-width: 48em) {
-  .teaser .t-footer {
-    position: absolute;
-    bottom: 0.75rem;
-  }
-}
 .teaser .t-head {
   /**/
 }
 .teaser .t-header {
   /**/
 }
-@media only screen and (min-width: 48em) {
-  .teaser .t-inner {
-    padding-bottom: 3rem;
-  }
+.teaser .t-inner {
+  padding: 0.75rem 1rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative;
 }
-.teaser .t-main {
-  /**/
+.teaser .t-content {
+  margin-bottom: 1.5rem;
 }
 
 /*------------------------------------*\
@@ -2987,6 +3173,8 @@ p:last-child {
   margin-right: 1.04167%;
   clear: none;
   float: left;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
   /*background-color: #000;
   color: #fff;*/
   display: block;
@@ -3084,12 +3272,12 @@ p:last-child {
  *
 **/
 .togglebox .tb-subject {
-  background-color: #ddd;
-  color: #000;
-  font-family: "Roboto Condensed", "Arial", sans-serif;
+  background-color: #ffffff;
+  color: #2c2c2c;
+  font-family: "Roboto", "Arial", sans-serif;
 }
 .togglebox .tb-content {
-  background-color: #fff;
+  background-color: #ee5511;
 }
 
 /*------------------------------------*\
