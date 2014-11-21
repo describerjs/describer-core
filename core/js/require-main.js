@@ -48,8 +48,10 @@ require.config({
 
 
 		// mylibs
-		'_config'                                          : 'mylibs/_config',
-		'_super'                                           : 'mylibs/_super',
+		'_config'                                          : 'describer-config',
+		'core'                                             : 'describer-core/core',
+
+		'_super'                                           : 'describer-core/_super',
 		'actions.add'                                      : 'describer-core/actions/add',
 		'actions.ajax'                                     : 'describer-core/actions/ajax',
 		'actions.link'                                     : 'describer-core/actions/link',
@@ -81,8 +83,7 @@ require.config({
 		'modules.videocontrol'                              : 'mylibs/modules/videocontrol',
 		'modules.videoplayer'                              : 'mylibs/modules/videoplayer',
 
-		'utils.helpers'                                    : 'mylibs/utils/helpers',
-		'utils.jquery_helpers'                             : 'mylibs/utils/jquery.helpers',
+
 
 		'require-css.video'                                : 'require-css/video'
 	},
@@ -114,7 +115,7 @@ require.config({
 
 require(['jquery', '_config'], function require_jquery($){
 	// need jquery
-	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function require_helpers(){
+	require([ 'core', 'fastclick', 'jquery_ba-dotimeout'], function require_helpers(){
 		// DomReady
 		$(function domReady(){
 			var $body = $('body');
