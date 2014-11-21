@@ -1016,8 +1016,8 @@ p:last-child {
 
 @-webkit-keyframes fadeInUp {
   0% {
-    -webkit-transform: translate3d(0, 10%, 0);
-    transform: translate3d(0, 10%, 0);
+    -webkit-transform: translate3d(0, 5%, 0);
+    transform: translate3d(0, 5%, 0);
   }
   100% {
     -webkit-transform: none;
@@ -1026,8 +1026,8 @@ p:last-child {
 }
 @-moz-keyframes fadeInUp {
   0% {
-    -webkit-transform: translate3d(0, 10%, 0);
-    transform: translate3d(0, 10%, 0);
+    -webkit-transform: translate3d(0, 5%, 0);
+    transform: translate3d(0, 5%, 0);
   }
   100% {
     -webkit-transform: none;
@@ -1036,8 +1036,8 @@ p:last-child {
 }
 @-o-keyframes fadeInUp {
   0% {
-    -webkit-transform: translate3d(0, 10%, 0);
-    transform: translate3d(0, 10%, 0);
+    -webkit-transform: translate3d(0, 5%, 0);
+    transform: translate3d(0, 5%, 0);
   }
   100% {
     -webkit-transform: none;
@@ -1046,8 +1046,8 @@ p:last-child {
 }
 @keyframes fadeInUp {
   0% {
-    -webkit-transform: translate3d(0, 10%, 0);
-    transform: translate3d(0, 10%, 0);
+    -webkit-transform: translate3d(0, 5%, 0);
+    transform: translate3d(0, 5%, 0);
   }
   100% {
     -webkit-transform: none;
@@ -1195,9 +1195,6 @@ p:last-child {
   clear: both;
 }
 
-.section-header {
-  height: 350px;
-}
 .section-header .parallax-img {
   max-width: none;
   width: 100%;
@@ -1222,6 +1219,18 @@ p:last-child {
 }
 .section-header-content:after {
   clear: both;
+}
+
+.section-header-center {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.section-header-center-content {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .joinmedia {
@@ -1340,9 +1349,14 @@ p:last-child {
 .stage > .parallax {
   height: 100vh;
 }
+.stage > .parallax .parallax-inner {
+  height: 100%;
+}
 .stage > .parallax .parallax-img {
-  max-width: none;
+  background-size: cover;
   width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /*------------------------------------*\
@@ -1702,7 +1716,7 @@ p:last-child {
   -o-transition: background-color 0.3s ease;
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
-  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 50% 50%;
+  background: transparent url("/images/jm/arrow-down.png") no-repeat scroll 50% 50%;
   color: #666;
   display: block;
   margin: 0 auto;

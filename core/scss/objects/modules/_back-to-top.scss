@@ -4,7 +4,8 @@
 
 .back-to-top {
 	@include transition(background-color .3s ease);
-	background: $theme-backtotop-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 50% 50%;
+	// background: $theme-backtotop-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 50% 50%;
+	background: $theme-backtotop-bg url("/images/jm/arrow-down.png") no-repeat scroll 50% 50%;
 	color: $theme-backtotop-fg;
 	display: block;
 	margin: 0 auto;

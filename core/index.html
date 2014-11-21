@@ -382,7 +382,8 @@ window.onerror = function(message, url, linenumber) {
         <section class="stage">
             <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                 <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/hand-tablet.jpg" alt="Hand mit Tablet" class="parallax-img" style="margin: -6.25% 0;">
+                    <span style="background-image: url('/images/jm/fotos/tablet-kaffee.jpg');" class="parallax-img"></span>
+                    <!-- <img src="/images/jm/fotos/tablet-kaffee.jpg" alt="Hand mit Tablet und Kaffee" class="parallax-img" style="margin: -6.25% 0;"> -->
                 </div>
             </div>
 
@@ -543,6 +544,7 @@ window.onerror = function(message, url, linenumber) {
                             <img src="/images/jm/icons/speechbubbles-outline-white.svg" alt="Icon für Beratung sowie UX- und Web-Design">
                         </div>
                     </div>
+                </div>
             </article>
 
             <article class="block img-left">
@@ -601,22 +603,36 @@ window.onerror = function(message, url, linenumber) {
                         <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                             <h2>Kunden</h2>
                         </div>
-                        <ul class="tiles tiles-1x4">
-                            <li class="tile"><img src="/images/jm/logos/eplusgruppe.svg" alt="E-Plus Gruppe Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/base.svg" alt="Base Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/ayyildiz.svg" alt="Ay Yildiz Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/hidrostal.svg" alt="Hidrostal Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/cunda.svg" alt="C&amp;A Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/ferrero.svg" alt="Ferrero Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/lared.svg" alt="La Red Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/police.svg" alt="Police Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/mitsui.svg" alt="Mitsui Logo"></li>
-                            <li class="tile"><img src="/images/jm/logos/grey.svg" alt="Grey Logo"></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/konferenzraum-blur.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;">
+                    <!-- <img src="/images/jm/fotos/konferenzraum-blur.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;"> -->
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="//dummyimage.com/1600x960/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                        <source srcset="//dummyimage.com/1200x960/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                        <source srcset="//dummyimage.com/600x900/666/ddd.png&text=IMG"></source>
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="//dummyimage.com/600x900/666/ddd.png&text=IMG" src="//dummyimage.com/600x900/666/ddd.png&text=IMG" alt="IMG" class="parallax-img" /></source>
+                    </picture>
+                </div>
+                <div class="parallax-inner" data-depth="1">
+                    <div class="section-header-content">
+                        <div class="section-header-center">
+                            <ul class="tiles tiles-1x4 section-header-center-content">
+                                <li class="tile"><img src="/images/jm/logos/eplusgruppe.svg" alt="E-Plus Gruppe Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/base.svg" alt="Base Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/ayyildiz.svg" alt="Ay Yildiz Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/hidrostal.svg" alt="Hidrostal Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/cunda.svg" alt="C&amp;A Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/ferrero.svg" alt="Ferrero Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/lared.svg" alt="La Red Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/police.svg" alt="Police Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/mitsui.svg" alt="Mitsui Logo"></li>
+                                <li class="tile"><img src="/images/jm/logos/grey.svg" alt="Grey Logo"></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
