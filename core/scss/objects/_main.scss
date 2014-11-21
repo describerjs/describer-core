@@ -41,71 +41,95 @@
 	@extend .section;
 }
 
-.section-header {
-	// height: 350px;
 
-	.parallax-img {
-		max-width: none;
-		width: 100%;
+
+
+
+/*------------------------------------*\
+    $SECTION-COLORS
+\*------------------------------------*/
+
+.joinmedia {
+	background-color: $theme-section-joinmedia-bg;
+	color: $theme-section-joinmedia-fg;
+
+	.block{
+		.block-content {
+			& > h1, h2, h3, h4, h5, h6 {
+				border-color: $theme-section-joinmedia-fg;
+			}
+		}
 	}
 }
 
-.section-header-content {
-	@include constrained;
-	@include element-stretch;
-}
-
-.section-header-center {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: table;
-}
-
-.section-header-center-content {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.joinmedia {
-	background-color: $color-white;
-	color: $color-black;
-}
-
 .services {
-	background-color: $color-blue-mid-dark;
+	background-color: $theme-section-services-bg;
 
 	.block {
 		&:nth-of-type(1) {
-			background-color: $color-blue-mid-dark;
+			background-color: $theme-section-services-1-bg;
 		}
 
 		&:nth-of-type(2) {
-			background-color: $color-blue-dark;
+			background-color: $theme-section-services-2-bg;
 		}
 
 		&:nth-of-type(3) {
-			background-color: $color-blue-base;
+			background-color: $theme-section-services-3-bg;
 		}
 
 		&:nth-of-type(4) {
-			background-color: $color-blue-x-dark;
+			background-color: $theme-section-services-4-bg;
 		}
 
 		&:nth-of-type(5) {
-			background-color: $color-blue-dark;
+			background-color: $theme-section-services-5-bg;
 		}
 
 		&:nth-of-type(6) {
-			background-color: $color-blue-base;
+			background-color: $theme-section-services-6-bg;
 		}
 	}
 }
 
 .customers {
-	background-color: $color-white;
-	color: $color-black;
+	background-color: $theme-section-customers-bg;
+	color: $theme-section-customers-fg;
+
+	.block{
+		.block-content {
+			& > h1, h2, h3, h4, h5, h6 {
+				border-color: $theme-section-customers-fg;
+			}
+		}
+	}
 }
+
+.agency {
+	background-color: $theme-section-agency-bg;
+
+	.block {
+		&:nth-of-type(1) {
+			background-color: $theme-section-agency-1-bg;
+		}
+
+		&:nth-of-type(2) {
+			background-color: $theme-section-agency-2-bg;
+		}
+	}
+}
+
+.jobs {
+	background-color: $theme-section-jobs-bg;
+}
+
+.contact {
+	background-color: $theme-section-contact-bg;
+}
+
+
+
+
 
 /*------------------------------------*\
     $STAGE
@@ -134,9 +158,12 @@
 	}
 
 	.stage-content-mid {
+		margin-top: $space;
+
 		@include bp-m {
 			bottom: $space-triple + $space-half;
 			left: 0;
+			margin-top: 0;
 			position: absolute;
 			right: 0;
 			top: auto;
@@ -174,9 +201,12 @@
 			height: 100%; 
 			display: block;
 		}
-	}
-	
+	}	
 }
+
+
+
+
 
 /*------------------------------------*\
     

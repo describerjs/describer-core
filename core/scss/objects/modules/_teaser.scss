@@ -5,9 +5,11 @@
 .teaser {
 	@extend %element-default;
 	@include rgba($theme-teaser-bg, .3);
+	@include transition(all .3s ease-in-out);
 	// background-color: $theme-teaser-bg;
 	color: inherit;
 	display: block;
+	text-align: center;
 
 	&:first-of-type:last-of-type {
 		@include bp-m {
@@ -21,6 +23,12 @@
 				}
 			}
 		}
+	}
+
+	&:hover, 
+	&:active,
+	&:focus {
+		@include rgba($theme-teaser-bg, .5);
 	}
 
 	&:nth-of-type(1):nth-last-of-type(2),
@@ -88,7 +96,9 @@
 
 	// Umfasst den textlichen Inhalt
 	.t-content {
-		margin-bottom: $space;
+		// margin-bottom: $space;
+		border-top: 1px solid $theme-teaser-fg;
+		padding-top: $space-three-quarter;
 	}
 }
 

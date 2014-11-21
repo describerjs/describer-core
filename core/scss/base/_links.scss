@@ -31,7 +31,7 @@ a {
 \*------------------------------------*/
 
 .link {
-	@if $theme-link-bg != $theme-color-zero {
+	@if $theme-link-bg != $color-transparent {
 		@include transitions(	background-color $transition-duration $transition-function,
 								color $transition-duration $transition-function);
 		background-color: $theme-link-bg;
@@ -40,6 +40,7 @@ a {
 		@include transition(color $transition-duration $transition-function);
 		color: $theme-link-fg;
 	}
+	text-decoration: underline;
 
 	&:focus,
 	&:hover {
@@ -47,6 +48,7 @@ a {
 			background-color: $theme-link-hover-bg;
 		}
 		color: $theme-link-hover-fg;
+		text-decoration: none;
 	}
 }
 

@@ -123,6 +123,7 @@
  * .....indent.........................Left indention. Possible values: left, margin, padding (default)
  * APPEARANCE..........................Platform-Native Styling
  * FLEXBOX.............................Flex-Box default properties
+ * VERTICAL-CENTER.....................Vertically center elements
 **/
 /*------------------------------------*\
 	$CLEARFIX
@@ -188,6 +189,9 @@
 \*------------------------------------*/
 /*------------------------------------*\
 	$FLEXBOX
+\*------------------------------------*/
+/*------------------------------------*\
+	$VERICALLY-CENTER-ELEMENTS
 \*------------------------------------*/
 /*------------------------------------*\
 	

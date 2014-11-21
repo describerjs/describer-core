@@ -32,7 +32,6 @@ $theme-color-zeta:		#999;
 $theme-color-eta:		#666;
 $theme-color-theta:		#333;
 
-
 $color-orange-x-light:    #ff6611;
 $color-orange-light:      #ee5511;
 $color-orange-mid-light:  #e54c11;
@@ -41,13 +40,13 @@ $color-orange-mid-dark:   #c53d0f;
 $color-orange-dark:       #b13308;
 $color-orange-x-dark:     #9d2902;
 
-$color-blue-x-light:      #62d8e3;
-$color-blue-light:        #38c6d3;
-$color-blue-mid-light:    #38b2bd;
-$color-blue-base:         #389ea7;
-$color-blue-mid-dark:     #328C94;
-$color-blue-dark:         #207e87;
-$color-blue-x-dark:       #24939B;
+$color-blue-x-light:	  #38c6d3;
+$color-blue-light:		  #389ea7;
+$color-blue-mid-light:    #328890;
+$color-blue-base:	  	  #2e7e86;
+$color-blue-mid-dark:	  #396B71;
+$color-blue-dark:		  #2b5155;
+$color-blue-x-dark:		  #284245;
 
 $color-grey-x-light:      #eee;
 $color-grey-light:        #ccc;
@@ -144,6 +143,7 @@ $theme-tab-content-fg:			$color-white;
 
 // Teaser
 $theme-teaser-bg:				$color-blue-mid-dark;
+$theme-teaser-fg:				$color-white;
 $theme-stageteaser-bg:			$color-blue-mid-light;
 
 // Togglebox
@@ -151,7 +151,27 @@ $theme-togglebox-bg:			$color-white;
 $theme-togglebox-fg:			$color-black;
 $theme-togglebox-content-bg:	$color-orange-light;
 
+// Sections
+$theme-section-joinmedia-bg:	$color-white;
+$theme-section-joinmedia-fg:	$color-black;
+$theme-section-services-bg:		$color-blue-mid-dark;
+$theme-section-services-1-bg:	$color-blue-mid-dark;
+$theme-section-services-2-bg:	$color-blue-dark;
+$theme-section-services-3-bg:	$color-blue-x-dark;
+$theme-section-services-4-bg:	$color-blue-base;
+$theme-section-services-5-bg:	$color-blue-mid-dark;
+$theme-section-services-6-bg:	$color-blue-dark;
+$theme-section-customers-bg:	$color-white;
+$theme-section-customers-fg:	$color-black;
+$theme-section-agency-bg:		$color-orange-base;
+$theme-section-agency-1-bg:		$color-orange-base;
+$theme-section-agency-2-bg:		$color-grey-dark;
+$theme-section-jobs-bg:			$color-blue-light;
+$theme-section-contact-bg:		$color-orange-base;
 
+// Footer
+$theme-footer-bg:				$color-grey-dark;
+$theme-footer-fg:				$color-white;
 
 
 

@@ -45,8 +45,6 @@
 
 .block {
 	@extend %element-default;
-	padding: $space-triple 0;
-	margin-bottom: 0;
 
 	.section & {
 		&:nth-of-type(1):nth-last-of-type(2),
@@ -71,6 +69,11 @@
 	//
 	.block-content {
 		@extend %block-element;
+
+		& > h1, h2, h3, h4, h5, h6 {
+			border-bottom: 2px solid $theme-headings-fg;
+			padding-bottom: $space-quarter;
+		}
 	}
 
 	//
@@ -104,6 +107,10 @@
 			.block-content {
 				float: right;
 			}
+
+			.block-figure {
+				left: 0;
+			}
 		}
 	}
 
@@ -113,12 +120,40 @@
 		@include bp-m {
 			.block-figure {
 				float: right;
+				right: 0;
 			}
 		}
 	}
 
 	&.img-top {
 		@extend %img-direction-vertical;
+	}
+
+	&.img-center {
+		.block-figure {
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+
+		@include bp-m {
+			.block-figure {
+				height: 100%;
+				position: absolute;
+			}
+		}
+	}
+
+	.block-vertical-center {
+		@include bp-m {
+			@include vertical-center;
+		}
+	}
+	.block-vertical-center-inner {	
+		@include bp-m {
+			@include vertical-center-inner;
+		}
 	}
 }
 

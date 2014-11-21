@@ -29,7 +29,9 @@
 \*------------------------------------*/
 
 %row {
-	@include row;
+	@extend %element-default;
+	// @include row;
+	padding: 0 $pad-three-quarter;
 
 	.col {
 		@include column(12);

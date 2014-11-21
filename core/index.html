@@ -379,11 +379,10 @@ window.onerror = function(message, url, linenumber) {
 
     <main class="page-main" role="main">
         <!-- Stage Start -->
-        <section class="stage">
+        <section id="stage" class="stage">
             <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                 <div class="parallax-inner layer" data-depth="1.5">
                     <span style="background-image: url('/images/jm/fotos/tablet-kaffee.jpg');" class="parallax-img"></span>
-                    <!-- <img src="/images/jm/fotos/tablet-kaffee.jpg" alt="Hand mit Tablet und Kaffee" class="parallax-img" style="margin: -6.25% 0;"> -->
                 </div>
             </div>
 
@@ -398,7 +397,7 @@ window.onerror = function(message, url, linenumber) {
             <section class="stage-content-mid">
                 <h2 class="is-vishidden">Aktuelles</h2>
                 <div class="stage-content-inner slide-in-left fade-in" data-jmname="add-remove-show-on-view|equalheights-not-mobile" data-jmdominit="true">
-                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                    <a class="teaser" href="#customer" data-jmselector="equal-heights-children">
                         <div class="t-inner">
                             <header class="t-header">
                                 <h3 class="t-head">Relaunch von AYYILDIZ.de</h3>
@@ -406,13 +405,10 @@ window.onerror = function(message, url, linenumber) {
                             <div class="t-content">
                                 <p>join.media launcht responsiven Telekommunikations-Shop.</p>
                             </div>
-                            <footer class="t-footer">
-                                <span class="btn">Button</span>
-                            </footer>
                         </div>
                     </a>
 
-                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                    <a class="teaser" href="#customer" data-jmselector="equal-heights-children">
                         <div class="t-inner">
                             <header class="t-header">
                                 <h3 class="t-head">Launch von KALBINI-DUYUR.de</h3>
@@ -420,13 +416,10 @@ window.onerror = function(message, url, linenumber) {
                             <div class="t-content">
                                 <p>join.media launcht kalbini-duyur.de – sozial, responsiv und schnell.</p>
                             </div>
-                            <footer class="t-footer">
-                                <span class="btn">Button</span>
-                            </footer>
                         </div>
                     </a>
 
-                    <a class="teaser" href="#" data-jmselector="equal-heights-children">
+                    <a class="teaser" href="#customer" data-jmselector="equal-heights-children">
                         <div class="t-inner">
                             <header class="t-header">
                                 <h3 class="t-head">Lorem ipsum Dolore irure nulla</h3>
@@ -434,9 +427,6 @@ window.onerror = function(message, url, linenumber) {
                             <div class="t-content">
                                 <p>Velit laborum sunt quis ullamco lorem ipsum Enim dolor pariatur officia.</p>
                             </div>
-                            <footer class="t-footer">
-                                <span class="btn">Button</span>
-                            </footer>
                         </div>
                     </a>
                 </div>
@@ -451,24 +441,36 @@ window.onerror = function(message, url, linenumber) {
         <!-- Stage Ende -->
 
         <!-- join.media Start -->
-        <section class="joinmedia">
-            <div class="section-header parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h2>join.media</h2>
-                        </div>
+        <section id="joinmedia" class="joinmedia">
+            <div class="section-header">
+                <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+                    <div class="parallax-inner layer" data-depth="1.5">
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="/images/jm/section-header/joinmedia-2560-810.jpg" media="(min-width: 120em)" /></source>
+                            <source srcset="/images/jm/section-header/joinmedia-1920-810.jpg" media="(min-width: 80em)" /></source>
+                            <source srcset="/images/jm/section-header/joinmedia-1280-810.jpg" media="(min-width: 60em)" /></source>
+                            <source srcset="/images/jm/section-header/joinmedia-960-810.jpg" media="(min-width: 48em)" /></source>
+                            <source srcset="/images/jm/section-header/joinmedia-768-600.jpg"></source>
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="/images/jm/section-header/joinmedia-768-600.jpg" src="/images/jm/section-header/joinmedia-768-600.jpg" alt="IMG" class="parallax-img" style="margin: -6.25% 0;" /></source>
+                        </picture>
+                    </div>
+                    <div class="parallax-inner layer" data-depth="2">
+                        <img class="parallax-img" src="/images/jm/devicerow-outline-black.svg" />
                     </div>
                 </div>
-                <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/joinmedia-eingang-logo-mit-devices.jpg" alt="Eingang Logo" class="parallax-img" style="margin: -6.25% 0;">
+
+                <div class="sh-content">
+                    <div class="sh-headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                        <h2>join.media</h2>
+                    </div>
                 </div>
             </div>
 
-
-            <div class="block">
+            <div class="block with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <p>Wir unterstützen unsere Kunden in allen technischen Bereichen bei der Umsetzung von Internetprojekten.</p>
                         <p>Unter Verwendung aktuellster Technologien gliedern sich unsere Lösungen dabei hervorragend in die bestehenden Prozesse und technischen Umgebungen unserer Kunden ein.</p>
                         <p>Von uns erstellte Websites sind auf Wunsch responsiv für alle Endgeräte optimiert.</p>
@@ -481,23 +483,34 @@ window.onerror = function(message, url, linenumber) {
         <!-- join.media Ende -->
 
         <!-- Leistungen Start -->
-        <section class="services">
-            <div class="section-header parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h2>Leistungen</h2>
-                        </div>
+        <section id="services" class="services">
+            <div class="section-header">
+                <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+                    <div class="parallax-inner layer" data-depth="1.5">
+                        <!-- <img src="/images/jm/fotos/screenshot-header.jpg" alt="Screenshots" class="parallax-img" style="margin: -6.25% 0;"> -->
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="//dummyimage.com/2560x810/666/ddd.png&text=IMG" media="(min-width: 120em)" /></source>
+                            <source srcset="//dummyimage.com/1920x810/666/ddd.png&text=IMG" media="(min-width: 80em)" /></source>
+                            <source srcset="//dummyimage.com/1280x810/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                            <source srcset="//dummyimage.com/960x810/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                            <source srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG"></source>
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG" src="//dummyimage.com/768x600/666/ddd.png&text=IMG" alt="IMG" class="parallax-img" style="margin: -6.25% 0;" /></source>
+                        </picture>
                     </div>
                 </div>
-                <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/screenshot-header.jpg" alt="Screenshots" class="parallax-img" style="margin: -6.25% 0;">
+
+                <div class="sh-content">
+                    <div class="sh-headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                        <h2>Leistungen</h2>
+                    </div>
                 </div>
             </div>
 
-            <article class="block img-right">
+            <article class="block img-right img-center with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <h3>Applikations-Produktion</h3>
                         <p>join.media realisiert als technischer Partner die Umsetzung aller wichtigen Prozesse im Internet:</p>
                         <p>Unsere Websites integrieren sich auf Wunsch hervorragend in bestehende oder neue Umgebungen wie Content-Management-, Shop-, Warenwirtschafts- und CRM-Systeme.</p>
@@ -506,32 +519,36 @@ window.onerror = function(message, url, linenumber) {
                         <p>Dies alles leisten wir unter Berücksichtigung höchster Sicherheitsstandards, nach denen unsere Applikationen regelmäßig auditiert werden.</p>
                     </div>
                     <div class="block-figure">
-                        <div class="fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <img src="/images/jm/icons/code-outline-white.svg" alt="Icon für Applikations-Produktion">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/code-outline-white.svg" alt="Icon für Applikations-Produktion">
+                            </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left img-center with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <h3>Website-Produktion</h3>
                         <p>join.media plant und realisiert komplexe, responsive Websites im Marketing- und E-Commerce-Umfeld.</p>
                         <p>Hier können wir alle Maßnahmen moderner Webentwicklung leisten, auf Wunsch unter Berücksichtigung strategischer Vorgaben von Darstellungs- und Ladezeiten, was durch die Optimierung speziell für mobile Endgeräte hohe Conversion-Gewinne bringen kann.</p>
                         <p>Unser Leistungsangebot reicht hierbei vom responsiven Rebrush einer bestehenden Site über umfangreichen Beratung bezüglich sinnvoller Erweiterungs- und Optimierungsmaßnahmen bis zur Planung neuer Projekte.</p>
                     </div>
                     <div class="block-figure">
-                        <div class="fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <img src="/images/jm/icons/display-outline-white.svg" alt="Icon für Website-Produktion">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/display-outline-white.svg" alt="Icon für Website-Produktion">
+                            </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article class="block img-right">
+            <article class="block img-right img-center with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <h3>Beratung sowie UX- und Web-Design</h3>
                         <p>Auf Wunsch unterstützen wir unsere Partner durch unser Know-How in allen wichtigen Disziplinen der Website-Erstellung.</p>
                         <p>Gerne unterstützen wir bei der Strategie- und Konzeptentwicklung: Aufgrund der Analyse von Zielgruppe und Nutzerverhalten erstellen wir ein bedürfnisorientiertes Konzept unter Berücksichtigung optimaler Nutzerführung.</p>
@@ -540,54 +557,62 @@ window.onerror = function(message, url, linenumber) {
                         <p>Hierbei liegt der Fokus auf maximaler Usability auf den unterschiedlichsten Endgeräten: also der besten Darstellung nicht nur  auf Desktops, sondern auch auf Handys, Tablets und SmartTVs.</p>
                     </div>
                     <div class="block-figure">
-                        <div class="fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <img src="/images/jm/icons/speechbubbles-outline-white.svg" alt="Icon für Beratung sowie UX- und Web-Design">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/speechbubbles-outline-white.svg" alt="Icon für Beratung sowie UX- und Web-Design">
+                            </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left img-center with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <h3>Online-Marketing</h3>
                         <p>Um Ihre Website zum Erfolg zu führen, bedient join.media gemeinsam mit sorgfältig ausgewählten Partnern alle Kanäle, um den User zu bewerben und qualifiziert auf Ihre Webpräsenz zu lenken.</p>
                         <p>Ob Suchmaschinen&shy;marketing, Social Media Marketing oder Affiliate Marketing – join.media stellt Ihnen die Tools zur Verfügung, um die Wirtschaft&shy;lichkeit der einzelnen Maß&shy;nahmen laufend zu überwachen und zu optimieren.</p>
                     </div>
                     <div class="block-figure">
-                        <div class="fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <img src="/images/jm/icons/graph-outline-white.svg" alt="Icon für Online-Marketing">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/graph-outline-white.svg" alt="Icon für Online-Marketing">
+                            </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article class="block img-right">
+            <article class="block img-right img-center with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <h3>Qualitätssicherung</h3>
                         <p>Unser ausgeklügeltes, auf DIN EN ISO 9001 basierendes Qualitäts&shy;manage&shy;ment sorgt dafür, dass Ihre Website ausgiebigen Tests durch uns unter&shy;zogen wird. So stellen wir sicher, dass die Website in den verschieden&shy;sten Browsern auf verschiedenen Endgeräten bedienbar ist und sämtliche Entwicklungs&shy;ziele erreicht worden sind.</p>
                         <p>Darüber hinaus schützen wir Websites umfangreich gegen Phishing-, XSS-, und andere Angriffe.</p>
                     </div>
                     <div class="block-figure">
-                        <div class="fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <img src="/images/jm/icons/lock-outline-white.svg" alt="Icon für Qualitätssicherung">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/lock-outline-white.svg" alt="Icon für Qualitätssicherung">
+                            </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left img-center with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <h3>Betrieb</h3>
                         <p>Natürlich kümmern wir uns auch darum, Ihre Website sicher zu hosten, nach der Inbetrieb&shy;nahme technisch zu überwachen und den Traffic zu analysieren.</p>
                         <p>Zur technischen Überwachung gehört u.a., die Funktion aller Prozesse laufend automatisiert zu überprüfen. Tritt doch einmal unerwartet ein Fehler auf, werden Sie und wir sofort benach&shy;richtigt und es starten auto&shy;matische und manuelle Fehler&shy;behebungs&shy;prozesse – auf Wunsch mit einer Service-Verfügbarkeit rund um die Uhr.</p>
                         <p>Die Analyse des Traffics beinhaltet wiederum die Beobachtung der Konversionen und des Nutzer&shy;verhaltens, um schnellstmöglich auf sich änderndes Nutzer&shy;verhalten reagieren zu können oder proaktiv neue Erschließungs&shy;methoden zu testen.</p>
                     </div>
                     <div class="block-figure">
-                        <div class="fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <img src="/images/jm/icons/displaychecked-outline-white.svg" alt="Icon für Betrieb">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/displaychecked-outline-white.svg" alt="Icon für Betrieb">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -596,47 +621,47 @@ window.onerror = function(message, url, linenumber) {
         <!-- Leistungen Ende -->
 
         <!-- Kunden Start -->
-        <section class="customers">
-            <div class="section-header parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h2>Kunden</h2>
-                        </div>
+        <section id="customers" class="customers">
+            <div class="section-header">
+                <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+                    <div class="parallax-inner layer" data-depth="1.5">
+                        <!-- <img src="/images/jm/fotos/konferenzraum-blur.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;"> -->
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="//dummyimage.com/2560x810/666/ddd.png&text=IMG" media="(min-width: 120em)" /></source>
+                            <source srcset="//dummyimage.com/1920x810/666/ddd.png&text=IMG" media="(min-width: 80em)" /></source>
+                            <source srcset="//dummyimage.com/1280x810/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                            <source srcset="//dummyimage.com/960x810/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                            <source srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG"></source>
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG" src="//dummyimage.com/768x600/666/ddd.png&text=IMG" alt="IMG" class="parallax-img" style="margin: -6.25% 0;" /></source>
+                        </picture>
                     </div>
                 </div>
-                <div class="parallax-inner layer" data-depth="1.5">
-                    <!-- <img src="/images/jm/fotos/konferenzraum-blur.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;"> -->
-                    <picture>
-                        <!--[if IE 9]><video style="display: none;"><![endif]-->
-                        <source srcset="//dummyimage.com/1600x960/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
-                        <source srcset="//dummyimage.com/1200x960/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
-                        <source srcset="//dummyimage.com/600x900/666/ddd.png&text=IMG"></source>
-                        <!--[if IE 9]></video><![endif]-->
-                        <img srcset="//dummyimage.com/600x900/666/ddd.png&text=IMG" src="//dummyimage.com/600x900/666/ddd.png&text=IMG" alt="IMG" class="parallax-img" /></source>
-                    </picture>
-                </div>
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="section-header-center">
-                            <ul class="tiles tiles-1x4 section-header-center-content">
-                                <li class="tile"><img src="/images/jm/logos/eplusgruppe.svg" alt="E-Plus Gruppe Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/base.svg" alt="Base Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/ayyildiz.svg" alt="Ay Yildiz Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/hidrostal.svg" alt="Hidrostal Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/cunda.svg" alt="C&amp;A Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/ferrero.svg" alt="Ferrero Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/lared.svg" alt="La Red Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/police.svg" alt="Police Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/mitsui.svg" alt="Mitsui Logo"></li>
-                                <li class="tile"><img src="/images/jm/logos/grey.svg" alt="Grey Logo"></li>
-                            </ul>
-                        </div>
+
+                <div class="sh-content">
+                    <div class="sh-headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                        <h2>Kunden</h2>
                     </div>
+                </div>
+
+                <div class="sh-content-append-on-mobile">
+                    <ul class="tiles tiles-1x4">
+                        <li class="tile"><img src="/images/jm/logos/eplusgruppe.svg" alt="E-Plus Gruppe Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/base.svg" alt="Base Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/ayyildiz.svg" alt="Ay Yildiz Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/hidrostal.svg" alt="Hidrostal Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/cunda.svg" alt="C&amp;A Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/ferrero.svg" alt="Ferrero Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/lared.svg" alt="La Red Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/police.svg" alt="Police Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/mitsui.svg" alt="Mitsui Logo"></li>
+                        <li class="tile"><img src="/images/jm/logos/grey.svg" alt="Grey Logo"></li>
+                    </ul>
                 </div>
             </div>
 
-            <article class="block img-right">
+            <article class="block img-right with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-ayyildiz.png" alt="Screenshots vom AYYILDIZ Relaunch">
@@ -648,7 +673,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-kalbini-duyur.png" alt="Screenshots vom Kalbini Duyur Launch">
@@ -660,7 +685,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-right">
+            <article class="block img-right with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-knh.png" alt="Screenshots der Kindernothilfe SEA-Landingpage">
@@ -672,7 +697,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-base-mein-konto.png" alt="Screenshots vom BASE-ECC">
@@ -684,7 +709,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-right">
+            <article class="block img-right with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-fk-quiz.png" alt="Screenshots vom Freundeskreis und MachPlus">
@@ -696,7 +721,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-lederfabrikhotel.png" alt="Screenshots vom Lederfabrik Online-Auftritt">
@@ -708,7 +733,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-right">
+            <article class="block img-right with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-mein-eplus.png" alt="Screenshots von Mein E-Plus">
@@ -720,7 +745,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left with-pad">
                 <div class="page-constrained">
                     <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                         <img src="/images/jm/referenzen/showcase-seo-sea.png" alt="Screenshots der BASE SEO/SEA Landingpages">
@@ -735,21 +760,32 @@ window.onerror = function(message, url, linenumber) {
         <!-- Kunden Ende -->
 
         <!-- Agentur Start -->
-        <section class="agency">
-            <div class="section-header parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h2>Agentur</h2>
-                        </div>
+        <section id="agency" class="agency">
+            <div class="section-header">
+                <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+                    <div class="parallax-inner layer" data-depth="1.5">
+                        <!--  <img src="/images/jm/fotos/eingangsbereich.jpg" alt="Eingangsbereich" class="parallax-img" style="margin: -6.25% 0;"> -->
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="//dummyimage.com/2560x810/666/ddd.png&text=IMG" media="(min-width: 120em)" /></source>
+                            <source srcset="//dummyimage.com/1920x810/666/ddd.png&text=IMG" media="(min-width: 80em)" /></source>
+                            <source srcset="//dummyimage.com/1280x810/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                            <source srcset="//dummyimage.com/960x810/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                            <source srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG"></source>
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG" src="//dummyimage.com/768x600/666/ddd.png&text=IMG" alt="IMG" class="parallax-img" style="margin: -6.25% 0;" /></source>
+                        </picture>
                     </div>
                 </div>
-                <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/eingangsbereich.jpg" alt="Eingangsbereich" class="parallax-img" style="margin: -6.25% 0;">
+
+                <div class="sh-content">
+                    <div class="sh-headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                        <h2>Agentur</h2>
+                    </div>
                 </div>
             </div>
 
-            <article class="block img-right">
+            <article class="block img-right with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
                     <div class="block-content">
                         <h3>Einblick</h3>
@@ -765,7 +801,7 @@ window.onerror = function(message, url, linenumber) {
                 </div>
             </article>
 
-            <article class="block img-left">
+            <article class="block img-left with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="page-constrained">
                     <div class="block-content">
                         <h3>Team</h3>
@@ -785,34 +821,49 @@ window.onerror = function(message, url, linenumber) {
         <!-- Agentur Ende -->
 
         <!-- Jobs Start -->
-        <section class="jobs">
-            <div class="section-header parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h2>Jobs</h2>
-                        </div>
+        <section id="jobs" class="jobs">
+            <div class="section-header">
+                <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+                    <div class="parallax-inner layer" data-depth="1.5">
+                        <!--  <img src="/images/jm/fotos/konferenzraum-unten.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;"> -->
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="//dummyimage.com/2560x810/666/ddd.png&text=IMG" media="(min-width: 120em)" /></source>
+                            <source srcset="//dummyimage.com/1920x810/666/ddd.png&text=IMG" media="(min-width: 80em)" /></source>
+                            <source srcset="//dummyimage.com/1280x810/666/ddd.png&text=IMG" media="(min-width: 60em)" /></source>
+                            <source srcset="//dummyimage.com/960x810/666/ddd.png&text=IMG" media="(min-width: 48em)" /></source>
+                            <source srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG"></source>
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="//dummyimage.com/768x600/666/ddd.png&text=IMG" src="//dummyimage.com/768x600/666/ddd.png&text=IMG" alt="IMG" class="parallax-img" style="margin: -6.25% 0;" /></source>
+                        </picture>
                     </div>
                 </div>
-                <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/konferenzraum-unten.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;">
+
+                <div class="sh-content">
+                    <div class="sh-headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                        <h2>Jobs</h2>
+                    </div>
                 </div>
             </div>
 
-            <div class="block img-left">
-                <div class="page-constrained">
-                    <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+            <div class="block img-left img-center with-pad">
+                <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                    <div class="block-content">
                         <p>Arbeiten bei join.media heißt, sich mit den sich täglich ändernden Mög&shy;lich&shy;keiten und Anforderungen des Webs weiter zu entwickeln: Wir haben den Anspruch, alle wichtigen Ent&shy;wick&shy;lungen im Internet intensiv zu beobachten und mit&shy;zu&shy;gestalten.</p>
                         <p>Das bedeutet auch, im Team ständig über seinen fach&shy;lichen Teller&shy;rand hin&shy;aus&shy;zu&shy;schauen und Website-Design als Ganzes zu verstehen.</p>
                         <p>Wenn du dich bei uns bewirbst, er&shy;war&shy;ten wir, dass du den Willen hast, ein Spezialist in deinem Fach&shy;gebiet, mit einem aus&shy;geprägten Verständnis für die anderen an der Ent&shy;wicklung von Websites beteiligten Bereiche, zu werden.</p>
                     </div>
-                    <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                        <img src="/images/jm/icons/adduser-outline-white.svg" alt="Icon für Jobs">
+                    <div class="block-figure">
+                        <div class="block-vertical-center">
+                            <div class="block-vertical-center-inner">
+                                <img src="/images/jm/icons/adduser-outline-white.svg" alt="Icon für Jobs">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="page-constrained">
+            <div class="page-constrained with-pad-bottom">
                 <div class="tabs">
                     <input type="radio" id="tab1" name="tab" class="tab-control" checked />
                     <label for="tab1" class="tab">Internet - Redakteur (m/w) freiberuflich</label>
@@ -855,13 +906,13 @@ window.onerror = function(message, url, linenumber) {
                             <li>Eine Büroküche, in der man richtig kochen kann</li>
                         </ul>
 
-                        <p>Wenn du dich in einem jungen, dynamischen und internationalen Team wohlfühlst und auf der Suche nach einer neuen Heraus​forderung in einem abwechslungsreichen Tätigkeitsfeld mit spannenden Produkten bist, freuen wir uns, dich kennenzulernen. Schicke bitte deine Bewerbung unter Angabe deines Stunden- oder Tagessatzes ein​fach per E-Mail an: <a href="mailto:karriere@joinmedia.de">karriere@joinmedia.de</a>.</p>
-                        <p>Gerne kannst Du dich aber auch unter der Nummer <a href="tel:+492089603220">0208/96032-20</a> an Gunter wenden.</p>
+                        <p>Wenn du dich in einem jungen, dynamischen und internationalen Team wohlfühlst und auf der Suche nach einer neuen Heraus​forderung in einem abwechslungsreichen Tätigkeitsfeld mit spannenden Produkten bist, freuen wir uns, dich kennenzulernen. Schicke bitte deine Bewerbung unter Angabe deines Stunden- oder Tagessatzes ein​fach per E-Mail an: <a class="link" href="mailto:karriere@joinmedia.de">karriere@joinmedia.de</a>.</p>
+                        <p>Gerne kannst Du dich aber auch unter der Nummer <a class="link" href="tel:+492089603220">0208/96032-20</a> an Gunter wenden.</p>
                     </article>
                     <article class="tab-content">
                         <h3>Initiativbewerbung</h3>
                         <p>Begeistert dich das Internet und hast du bereits professionelle Erfahrungen mit der Konzeption, Gestaltung, Erstellung oder Pflege von Websites gemacht? Hast du Lust, diese Kenntnisse zu vertiefen und dich und join.media weiter zu entwickeln? Dann bist du bei uns genau richtig. Wir bieten dir ein abwechslungsreiches Tätigkeitsfeld mit spannenden Kunden und Projekten.</p>
-                        <p>Schicke deine Bewerbung einfach per E-Mail an <a href="mailto:karriere@joinmedia.de">karriere@joinmedia.de</a>. Gerne kannst du dich aber auch unter der Nummer <a href="tel:+492089603220">0208/96032-20</a> an Gunter wenden.</p>
+                        <p>Schicke deine Bewerbung einfach per E-Mail an <a class="link" href="mailto:karriere@joinmedia.de">karriere@joinmedia.de</a>. Gerne kannst du dich aber auch unter der Nummer <a class="link" href="tel:+492089603220">0208/96032-20</a> an Gunter wenden.</p>
                     </article>
                 </div>
             </div>
@@ -869,21 +920,18 @@ window.onerror = function(message, url, linenumber) {
         <!-- Jobs Ende -->
 
         <!-- Kontakt Start -->
-        <section class="contact">
-            <div class="section-header parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-                <div class="parallax-inner" data-depth="1">
-                    <div class="section-header-content">
-                        <div class="headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                            <h2>Kontakt</h2>
-                        </div>
+        <section id="contact" class="contact">
+            <div class="section-header">
+                <div id="map-canvas" class="sh-map"></div>
+
+                <div class="sh-content-map">
+                    <div class="sh-headline slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                        <h2>Kontakt</h2>
                     </div>
-                </div>
-                <div class="parallax-inner layer" data-depth="1.5">
-                    <img src="/images/jm/fotos/joinmedia-stifte.jpg" alt="Meeting" class="parallax-img" style="margin: -6.25% 0;">
                 </div>
             </div>
 
-            <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+            <div class="page-constrained with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="togglebox">
                     <a class="tb-subject" href="#" data-jmname="togglebox">So erreichen Sie uns</a>
                     <div class="tb-content">
@@ -893,23 +941,28 @@ window.onerror = function(message, url, linenumber) {
                     </div>
                 </div>
 
-                <div class="block">
-                    <div class="block-content">
-                        <div id="vcard-joinmedia" class="vcard org" itemscope itemtype="//schema.org/Corporation">
-                            <address>
-                                <p><span class="org" itemprop="name"><span class="fn">join.media</span> GmbH & Co. KG</span><br/>
+                <div class="row3">
+                    <div id="vcard-joinmedia" class="vcard org" itemscope itemtype="//schema.org/Corporation">
+                        <address>
+                            <div class="col">
+                                <span class="org" itemprop="name"><span class="fn">join.media</span> GmbH & Co. KG</span><br/>
                                 <span class="adr" itemprop="address">
                                     <span class="street-address">Düsseldorfer Straße 269</span><br/>
                                     <span class="postal-code">45481</span><span class="locality"> Mülheim an der Ruhr</span><br/>
                                     <span class="country-name">Deutschland</span>
-                                </span></p>
-                                <p><span>Ihr Ansprechpartner: Sönke Götzen</span><br/>
-                                <span class="tel"><span class="type">Fon: </span><a href="tel:+49208960320" itemprop="telephone">+49 (0) 208 / 960 32 - 0</a></span><br/>
-                                <span class="tel"><span class="type">Fax: </span><span itemprop="faxNumber">+49 (0) 208 / 960 32 - 10</span></span><br/>
-                                <span class="email"><a href="mailto:info@joinmedia.de" itemprop="email">info@joinmedia.de</a></span></p>
-                                <p>Bitte parken Sie auf dem Gelände von Autohaus Wolf und dem Lederfabrik-Hotel. Sie finden uns im 3. Obergeschoss des Backsteinbaus. Der Eingangsbereich liegt links neben dem Schornstein.</p>
-                            </address>
-                        </div>
+                                </span>
+                            </div>
+
+                            <div class="col">
+                                <div>Ihr Ansprechpartner: Sönke Götzen</div>
+                                <div class="tel"><span class="type">Fon: </span><a class="link" href="tel:+49208960320" itemprop="telephone">+49 (0) 208 / 960 32 - 0</a></div>
+                                <div class="tel"><span class="type">Fax: </span><span itemprop="faxNumber">+49 (0) 208 / 960 32 - 10</span></div>
+                                <div class="email"><a class="link" href="mailto:info@joinmedia.de" itemprop="email">info@joinmedia.de</a></div>
+                            </div>
+                        </address>
+                    </div>
+                    <div class="col">
+                        <p>Bitte parken Sie auf dem Gelände von Autohaus Wolf und dem Lederfabrik-Hotel. Sie finden uns im 3. Obergeschoss des Backsteinbaus. Der Eingangsbereich liegt links neben dem Schornstein.</p>
                     </div>
                 </div>
             </div>
@@ -926,7 +979,7 @@ window.onerror = function(message, url, linenumber) {
                 <div class="hc-section"><a class="u-email link" href="mailto:info@beispiel-ag.de">info@beispiel-ag.de</a> <a class="u-url link" href="http://www.beispiel-ag.de">www.beispiel-ag.de</a></div>
             </section> -->
             <div class="legal">
-                <a class="imprint link" href="$impressum$">Impressum</a>
+                <a class="imprint link" href="#/impressum">Impressum</a>
                 <p class="copyright">&copy; join.media GmbH & Co. KG</p>
             </div>
         </div>
@@ -940,8 +993,112 @@ window.onerror = function(message, url, linenumber) {
 
     ga('create', 'UA-7841854-2', 'auto');
     ga('send', 'pageview');
+</script>
+<script>
+    loadGoogleAPI();
+    function loadGoogleAPI() {
+        var script = document.createElement("script");
+        script.src = "//www.google.com/jsapi?key=AIzaSyB2oMRQW1_t9LYrErsj0G83xCvTtZiGoPI&callback=loadGoogleMaps";
+        document.getElementsByTagName("head")[0].appendChild(script);
+        // console.log("Google-Loader has been loaded, but not the Maps-API.");
+    }
 
+    function loadGoogleMaps() {    
+        google.load("maps", "3", {other_params:'sensor=false', callback: renderGoogleMaps});
+        // console.log("Maps-API has been loaded, ready to use.");
+    }
 
+    function renderGoogleMaps() {
+        var mapStyles=[
+          {
+            "featureType": "water",
+            "elementType": "All",
+            "stylers": [
+              { "visibility": "on" },
+              { "color": "#a0a0a0" }
+            ]
+          },{
+            "featureType": "landscape",
+            "elementType": "All",
+            "stylers": [
+              { "color": "#f2f2f2" }
+            ]
+          },{
+            "featureType": "road",
+            "elementType": "All",
+            "stylers": [
+              { "saturation": -100 },
+              { "lightness": 45 }
+            ]
+          },{
+            "featureType": "road.highway",
+            "elementType": "All",
+            "stylers": [
+              { "visibility": "simplified" }
+            ]
+          },{
+            "featureType": "road.arterial",
+            "elementType": "labels.icon",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#444444" }
+            ]
+          },{
+            "featureType": "transit",
+            "elementType": "All",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "poi",
+            "elementType": "All",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          }
+        ];
+
+        var mapOptions = {
+            center: new google.maps.LatLng(51.416553,6.869896),
+            zoom: 16,
+            disableDefaultUI: false,
+            scrollwheel: false,
+            draggable: true, // Disable on mobile
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        map.setOptions({styles: mapStyles});
+
+         var contentString = 
+            '<div class="maps-infowindow">'+
+                '<h3 style="margin: 0 0 0.5em 0; color: #dd4411;">join.media GmbH & Co. KG</h3>'+
+                '<div class="maps-bodycontent" style="color: #000;">'+
+                    'Düsseldorfer Straße 269<br/>45481 Mülheim an der Ruhr<br/>Deutschland' +
+                '</div>'+
+            '</div>';
+
+        var infoWindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var jmMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(51.4156,6.867623),
+            map: map,
+            title: "join.media",
+            icon: "/images/jm/marker.png"
+        });
+        jmMarker.setAnimation(google.maps.Animation.DROP);
+
+        google.maps.event.addListener(jmMarker, "click", function() {
+            infoWindow.open(map, jmMarker);
+        });
+    }
 </script>
 </body>
 

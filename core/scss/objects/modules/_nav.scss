@@ -118,19 +118,19 @@ $menu-btn-height: 2.5rem;
 			border-bottom: initial;
 			float: left;
 
-			&:before {
-				@include pseudo-element-default;
-				@include transitions(bottom .15s linear, top .15s linear);
-				background-color: $theme-nav-link-active-bg;
-				bottom: $default-spacing;
-				top: $default-spacing;
-				width: 1px;
-			}
+			// &:before {
+			// 	@include pseudo-element-default;
+			// 	@include transitions(bottom .15s linear, top .15s linear);
+			// 	background-color: $theme-nav-link-active-bg;
+			// 	bottom: $default-spacing;
+			// 	top: $default-spacing;
+			// 	width: 1px;
+			// }
 
 			&:first-child {
-				&:before {
-					background-color: inherit;
-				}
+				// &:before {
+				// 	background-color: inherit;
+				// }
 			}
 		}
 
@@ -146,12 +146,12 @@ $menu-btn-height: 2.5rem;
 					@include visibility(visible);
 				}
 
-				&+ .nav-item {
-					&:before {
-						bottom: 0;
-						top: 0;
-					}
-				}
+				// &+ .nav-item {
+				// 	&:before {
+				// 		bottom: 0;
+				// 		top: 0;
+				// 	}
+				// }
 			}
 		}
 	}

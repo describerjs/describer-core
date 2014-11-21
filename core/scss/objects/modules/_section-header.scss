@@ -1,0 +1,78 @@
+/*------------------------------------*\
+    $SECTION-HEADER
+\*------------------------------------*/
+
+$shp-height-s: 400px;
+$shp-height-m: 540px;
+
+.section-header {
+	position: relative;
+	
+	.sh-content {
+		@include constrained;
+		@include element-stretch;
+		height: $shp-height-s;
+
+		@include bp-m {
+			height: $shp-height-m;
+		}
+
+		&-append-on-mobile {
+			@include constrained;
+
+			@include bp-m {
+				@include element-stretch;
+				margin-top: $space-double;
+			}
+		}
+
+		&-map {
+			@include constrained;
+		}
+	}
+
+	.sh-headline {
+		@extend .headline;
+		bottom: $space-double;
+		padding-left: 1%;
+		position: absolute;
+		width: auto;
+	}
+
+	.sh-map {
+		height: $shp-height-s;
+		margin: 0 1.04167%;
+
+		@include bp-m {
+			height: $shp-height-m;
+		}
+	}
+
+	.sh-parallax {
+		@extend .parallax;
+		height: $shp-height-s;
+
+		@include bp-m {
+			height: $shp-height-m;
+		}
+
+		.parallax-img {
+			max-width: none;
+			// width: 100%;
+		}
+	}
+
+	.tiles {
+		&.tiles-1x4 {
+			.tile {
+				@include bp-s {
+					@include column(4);
+				}
+
+				@include bp-m {
+					@include column(3);
+				}
+			}
+		}
+	}
+}

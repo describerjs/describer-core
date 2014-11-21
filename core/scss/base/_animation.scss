@@ -79,7 +79,10 @@
 
 	// Prallax-Inner-Container
 	.parallax-inner {
-		/**/
+		&.has-content {
+			@include constrained;
+			@include element-stretch;
+		}
 	}
 }
 
@@ -102,17 +105,18 @@
 }
 
 .fade-in-up {
+	@include transition(all .6s linear);
 	-webkit-animation-duration: 1s;
 			animation-duration: 1s;
 	-webkit-animation-fill-mode: both;
 			animation-fill-mode: both;
-			opacity: 0;
-				@include transition(all .6s linear);
+	opacity: 0;
+	// opacity: 1;
 
 	&.show {
 		-webkit-animation-name: fadeInUp;
 				animation-name: fadeInUp;
-				opacity: 1;
+		opacity: 1;
 	}
 }
 
