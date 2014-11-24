@@ -49,13 +49,14 @@
     $SECTION-COLORS
 \*------------------------------------*/
 
-.joinmedia {
+.joinmedia,
+.impressum {
 	background-color: $theme-section-joinmedia-bg;
 	color: $theme-section-joinmedia-fg;
 
 	.block{
 		.block-content {
-			& > h1, h2, h3, h4, h5, h6 {
+			.headline-underlined {
 				border-color: $theme-section-joinmedia-fg;
 			}
 		}

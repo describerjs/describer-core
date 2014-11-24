@@ -154,6 +154,14 @@ $menu-btn-height: 2.5rem;
 				// }
 			}
 		}
+
+		&.active {
+			background-color: $theme-nav-link-active-bg;
+
+			.nav-link {
+				color: $theme-nav-link-active-fg;
+			}
+		}
 	}
 
 	.nav-link {

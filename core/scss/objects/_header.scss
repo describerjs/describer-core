@@ -34,7 +34,7 @@
 \*------------------------------------*/
 
 .logo {
-	@include column(6);
+	@include column(7);
 	//@extend %element-inner-default;
 	padding: $space-half $pad;
 	display: block;
@@ -42,7 +42,7 @@
 	z-index: 1;
 
 	@include bp-xs {
-		@include column(6);
+		@include column(7);
 	}
 
 	@include bp-s {

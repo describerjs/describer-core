@@ -20,3 +20,8 @@
 		font-weight: bold;
 	}
 }
+
+.headline-underlined {
+	border-bottom: 2px solid $theme-headings-fg;
+	padding-bottom: $space-quarter;
+}
