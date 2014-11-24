@@ -346,6 +346,9 @@ window.onerror = function(message, url, linenumber) {
 
     <link rel="stylesheet" href="/css/noscript.css" />
 </noscript>
+<style>
+    .nav .nav-item .activ { background-color:#b13308; }
+</style>
 </head>
 
 <body>
@@ -357,22 +360,22 @@ window.onerror = function(message, url, linenumber) {
                 <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
                 <ul class="nav-items">
                     <li class="nav-item menu-item">
-                        <a href="#joinmedia" class="nav-link" data-jmname="nav-link" data-jmdominit="true">join.media</a>
+                        <a href="#joinmedia" class="nav-link" data-jmname="anchor">join.media</a>
                     </li>
                     <li class="nav-item menu-item">
-                        <a href="#services" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Leistungen</a>
+                        <a href="#services" class="nav-link" data-jmname="anchor">Leistungen</a>
                     </li>
                     <li class="nav-item menu-item">
-                        <a href="#customers" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Kunden</a>
+                        <a href="#customers" class="nav-link" data-jmname="anchor">Kunden</a>
                     </li>
                     <li class="nav-item menu-item">
-                        <a href="#agency" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Agentur</a>
+                        <a href="#agency" class="nav-link" data-jmname="anchor">Agentur</a>
                     </li>
                     <li class="nav-item menu-item">
-                        <a href="#jobs" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Jobs</a>
+                        <a href="#jobs" class="nav-link" data-jmname="anchor">Jobs</a>
                     </li>
                     <li class="nav-item menu-item">
-                        <a href="#contact" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Kontakt</a>
+                        <a href="#contact" class="nav-link" data-jmname="anchor">Kontakt</a>
                     </li>
                 </ul>
             </nav>
@@ -381,7 +384,7 @@ window.onerror = function(message, url, linenumber) {
 
     <main class="page-main" role="main">
         <!-- Stage Start -->
-        <section id="stage" class="stage">
+        <section id="stage" class="stage" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                 <div class="parallax-inner layer" data-depth="1.5">
                     <span style="background-image: url('/images/jm/fotos/tablet-kaffee.jpg');" class="parallax-img"></span>
@@ -443,7 +446,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- Stage Ende -->
 
         <!-- join.media Start -->
-        <section id="joinmedia" class="joinmedia">
+        <section id="joinmedia" class="joinmedia" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="section-header">
                 <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner layer" data-depth="1.5">
@@ -485,7 +488,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- join.media Ende -->
 
         <!-- Leistungen Start -->
-        <section id="services" class="services">
+        <section id="services" class="services" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="section-header">
                 <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner layer" data-depth="1.6">
@@ -619,7 +622,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- Leistungen Ende -->
 
         <!-- Kunden Start -->
-        <section id="customers" class="customers">
+        <section id="customers" class="customers" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="section-header">
                 <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner layer" data-depth="1.5">
@@ -757,7 +760,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- Kunden Ende -->
 
         <!-- Agentur Start -->
-        <section id="agency" class="agency">
+        <section id="agency" class="agency" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="section-header">
                 <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner layer" data-depth="1.5">
@@ -817,7 +820,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- Agentur Ende -->
 
         <!-- Jobs Start -->
-        <section id="jobs" class="jobs">
+        <section id="jobs" class="jobs" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="section-header">
                 <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner layer" data-depth="1.5">
@@ -915,7 +918,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- Jobs Ende -->
 
         <!-- Kontakt Start -->
-        <section id="contact" class="contact">
+        <section id="contact" class="contact" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
             <div class="section-header">
                 <div id="map-canvas" class="sh-map"></div>
 
@@ -965,7 +968,7 @@ window.onerror = function(message, url, linenumber) {
         <!-- Kontakt Ende -->
     </main>
 
-    <footer class="page-footer" role="contentinfo">
+    <footer class="page-footer" role="contentinfo" data-jmname="set-related-navi-item-activ-on-view" data-jmdominit="true">
         <div class="page-constrained">
             <!-- <section class="h-card">
                 <div class="hc-section"><a class="u-url p-organization-name link" href="/">Beispiel-AG</a></div>
