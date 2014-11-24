@@ -1,0 +1,65 @@
+/*------------------------------------*\
+    $TILES
+\*------------------------------------*/
+
+.tiles {
+	@extend %element-default;
+	@include column(12);
+
+	.tile {
+		@include column(6);
+		/*background-color: #000;
+		color: #fff;*/
+		display: block;
+		margin-bottom: $dist;
+		text-align: center;
+	}
+
+	&.tiles-1x4 {
+		.tile {
+			@include bp-m {
+				@include column(4);
+			}
+
+			@include bp-l {
+				@include column(3);
+			}
+		}
+	}
+
+	&.tiles-1x6 {
+		.tile {
+			@include bp-m {
+				@include column(4);
+			}
+
+			@include bp-l {
+				@include column(2);
+			}
+		}
+	}
+
+	&.tiles-2x2 {
+		@include bp-m {
+			@include column(6);
+		}
+	}
+
+	&.tiles-2x3 {
+		@include bp-m {
+			@include column(6);
+
+			.tile {
+				@include column(4);
+			}
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

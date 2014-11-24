@@ -14,7 +14,7 @@
 		margin-right: 0 !important;
 		position: relative;
 		
-		@include rgba($theme-body-fg, .4);
+		@include rgba($theme-body-fg, .8);
 		color: $theme-body-bg;
 		display: inline-block;
 		font-weight: bold;

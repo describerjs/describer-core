@@ -1,0 +1,129 @@
+/*------------------------------------*\
+    $BLOCK
+\*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+%block-element {
+	@include element-nested-default;
+
+	@include bp-l {
+		@include column(8);
+	}
+}
+
+%img-direction-horizontal {
+	@include bp-m {
+		.block-content {
+			@include column(6);
+		}
+
+		.block-figure {
+			@include column(6);
+			margin-top: $default-inner-spacing;
+		}
+	}
+}
+
+%img-direction-vertical {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+    $BLOCK
+\*------------------------------------*/
+
+.block {
+	@extend %element-default;
+
+	.section & {
+		&:nth-of-type(1):nth-last-of-type(2),
+		&:nth-of-type(2):nth-last-of-type(1) {
+			@include bp-m {
+				@include column(6);
+				clear: none;
+
+				.block-content,
+				.block-figure,
+				.block-header {
+					@include column(12);
+				}
+			}
+
+			@include bp-l {
+				@include column(6);
+			}
+		}
+	}
+
+	//
+	.block-content {
+		@extend %block-element;
+	}
+
+	//
+	.block-figure {
+		@extend %block-element;
+		padding: {
+			bottom: 0;
+			top: 0;
+		}
+	}
+
+	//
+	.block-header {
+		@extend %block-element;
+	}
+
+	//
+	.block-head {
+		margin-bottom: 0;
+	}
+
+
+	&.img-bottom {
+		@extend %img-direction-vertical;
+	}
+	
+	&.img-left {
+		@extend %img-direction-horizontal;
+
+		@include bp-m {
+			.block-content {
+				float: right;
+			}
+		}
+	}
+
+	&.img-right {
+		@extend %img-direction-horizontal;
+
+		@include bp-m {
+			.block-figure {
+				float: right;
+			}
+		}
+	}
+
+	&.img-top {
+		@extend %img-direction-vertical;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

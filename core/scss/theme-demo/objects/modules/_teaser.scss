@@ -4,12 +4,9 @@
 
 .teaser {
 	@extend %element-default;
-	@include rgba($theme-teaser-bg, .3);
-	@include transition(all .3s ease-in-out);
-	// background-color: $theme-teaser-bg;
+	background-color: $theme-teaser-bg;
 	color: inherit;
 	display: block;
-	text-align: center;
 
 	&:first-of-type:last-of-type {
 		@include bp-m {
@@ -23,12 +20,6 @@
 				}
 			}
 		}
-	}
-
-	&:hover, 
-	&:active,
-	&:focus {
-		@include rgba($theme-teaser-bg, .5);
 	}
 
 	&:nth-of-type(1):nth-last-of-type(2),
@@ -66,9 +57,9 @@
 
 	// Footerbereich <footer>
 	.t-footer {
-		// @include bp-m {
-		//	@include absolute('', '', $default-spacing, '');
-		// }
+		@include bp-m {
+			@include absolute('', '', $default-spacing, '');
+		}
 	}
 
 	// Die einleitende Headline
@@ -83,22 +74,16 @@
 
 	// Innerer Container für "t-header", "t-main", "t-footer"
 	.t-inner {
-		// @extend %element-inner-default;
-		padding: 0.75rem 1rem;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		position: relative;
+		@extend %element-inner-default;
 
-		// @include bp-m {
-		// 	padding-bottom: $space-double;
-		// }
+		@include bp-m {
+			padding-bottom: $space-double;
+		}
 	}
 
 	// Umfasst den textlichen Inhalt
-	.t-content {
-		// margin-bottom: $space;
-		border-top: 1px solid $theme-teaser-fg;
-		padding-top: $space-three-quarter;
+	.t-main {
+		/**/
 	}
 }
 

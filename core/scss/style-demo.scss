@@ -1,0 +1,111 @@
+/*------------------------------------*\
+	$CONTENTS
+\*------------------------------------*/
+
+/**
+ * RESET...............................Set reset defaults
+ * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
+ * GLOBAL ELEMENTS.....................Establish global styles
+ * GLOBAL CLASSES......................Set reset defaults
+ * LAYOUT..............................Grid & Column Designs
+ * STRUCTURE...........................Page-Structure
+ * COMPONENTS/MODULES..................Build the Elements / Modules
+ * DEBUG...............................Debug Information
+**/
+
+
+
+
+
+
+/*------------------------------------*\
+    $THEME-DEMO
+\*------------------------------------*/
+
+	/*------------------------------------*\
+	    $GENERIC ELEMENTS
+	\*------------------------------------*/
+
+	@import "theme-demo/generic/reset";
+	@import "theme-demo/generic/generic-import";
+
+
+
+
+
+	/*------------------------------------*\
+	    $GLOBAL ELEMENTS
+	\*------------------------------------*/
+
+	@import "theme-demo/base/fonts";
+	@import "theme-demo/base/forms";
+	@import "theme-demo/base/headings";
+	@import "theme-demo/base/links";
+	@import "theme-demo/base/lists";
+	@import "theme-demo/base/main";
+	@import "theme-demo/base/media";
+	@import "theme-demo/base/text";
+	@import "theme-demo/base/global-classes";
+	@import "theme-demo/base/animation";
+
+
+
+
+
+	/*------------------------------------*\
+	    $LAYOUT
+	\*------------------------------------*/
+
+	/*@import "theme-demo/objects/layout";*/
+
+
+
+
+
+	/*------------------------------------*\
+	    $STRUCTURE
+	\*------------------------------------*/
+
+	@import "theme-demo/objects/header";
+	@import "theme-demo/objects/main";
+	@import "theme-demo/objects/footer";
+
+
+
+
+
+	/*------------------------------------*\
+	    $COMPONENTS/$MODULES
+	\*------------------------------------*/
+
+	@import "theme-demo/objects/buttons";
+	@import "theme-demo/objects/lists";
+	@import "theme-demo/objects/social-media";
+	@import "theme-demo/objects/modules/accordion";
+	@import "theme-demo/objects/modules/back-to-top";
+	@import "theme-demo/objects/modules/block";
+	@import "theme-demo/objects/modules/nav";
+	@import "theme-demo/objects/modules/owl-carousel";
+	@import "theme-demo/objects/modules/stage-teaser";
+	@import "theme-demo/objects/modules/tabs";
+	@import "theme-demo/objects/modules/teaser";
+	@import "theme-demo/objects/modules/tiles";
+	@import "theme-demo/objects/modules/togglebox";
+
+
+
+
+
+	/*------------------------------------*\
+	    $DEBUG
+	\*------------------------------------*/
+
+	/*@import "theme-demo/generic/debug";*/
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

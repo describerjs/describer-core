@@ -96,41 +96,5 @@
 
 
 /*------------------------------------*\
-    $HELPER
-\*------------------------------------*/
-
-.with-pad {
-	padding: $space 0;
-	margin-top: 0;
-	margin-bottom: 0;
-
-	@include bp-s {
-		padding-bottom: $space-triple;
-	}
-}
-
-.with-pad-bottom {
-	padding-bottom: $space;
-	margin-top: 0;
-	margin-bottom: 0;
-
-	@include bp-s {
-		padding-bottom: $space-triple;
-	}
-}
-
-.vertical-center {
-	@include vertical-center;
-}
-
-.vertical-center-inner {
-	@include vertical-center-inner;
-}
-
-
-
-
-
-/*------------------------------------*\
     
 \*------------------------------------*/

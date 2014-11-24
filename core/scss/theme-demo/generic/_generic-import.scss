@@ -20,8 +20,8 @@
     $ADD-ONS
 \*------------------------------------*/
 
-@import "generic/semantic-grid-system";
-@import "generic/sassaparilla-typeset";
+@import "semantic-grid-system";
+@import "sassaparilla-typeset";
 
 
 
@@ -31,10 +31,10 @@
     $GENERIC ELEMENTS
 \*------------------------------------*/
 
-@import "generic/variables";
-@import "generic/functions";
-@import "generic/mixins";
-@import "generic/placeholder";
+@import "variables";
+@import "functions";
+@import "mixins";
+@import "placeholder";
 
 
 

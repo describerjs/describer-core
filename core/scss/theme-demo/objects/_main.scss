@@ -1,0 +1,71 @@
+/*------------------------------------*\
+    $MAIN_CONTENT_AREA
+\*------------------------------------*/
+
+/**
+ * MAIN................................HTML <main> Section
+ * SECTIONS............................Content-Container/Column-Wrapper
+ * .....section........................Regular
+ * .....section-onepage................OnePager
+ * STAGE...............................Intro-Element
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+
+.page-main {
+	@extend %page-element-default;
+
+	@include bp-l {
+		padding-top: $default-element-spacing;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SECTIONS
+\*------------------------------------*/
+
+.section {
+	@include clearfix;
+	clear: both;
+	overflow: hidden;
+	position: relative;
+}
+
+.section-onepage {
+	@extend .section;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $STAGE
+\*------------------------------------*/
+
+.stage {
+	@extend .section;
+
+	//
+	.stage-content {
+		/**/
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
