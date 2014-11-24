@@ -100,15 +100,23 @@
 \*------------------------------------*/
 
 .with-pad {
-	padding: $space-triple 0;
+	padding: $space 0;
 	margin-top: 0;
 	margin-bottom: 0;
+
+	@include bp-s {
+		padding-bottom: $space-triple;
+	}
 }
 
 .with-pad-bottom {
-	padding-bottom: $space-triple;
+	padding-bottom: $space;
 	margin-top: 0;
 	margin-bottom: 0;
+
+	@include bp-s {
+		padding-bottom: $space-triple;
+	}
 }
 
 .vertical-center {

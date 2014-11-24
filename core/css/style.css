@@ -962,15 +962,25 @@ p:last-child {
     $HELPER
 \*------------------------------------*/
 .with-pad {
-  padding: 4.5rem 0;
+  padding: 1.5rem 0;
   margin-top: 0;
   margin-bottom: 0;
 }
+@media only screen and (min-width: 29.75em) {
+  .with-pad {
+    padding-bottom: 4.5rem;
+  }
+}
 
 .with-pad-bottom {
-  padding-bottom: 4.5rem;
+  padding-bottom: 1.5rem;
   margin-top: 0;
   margin-bottom: 0;
+}
+@media only screen and (min-width: 29.75em) {
+  .with-pad-bottom {
+    padding-bottom: 4.5rem;
+  }
 }
 
 .vertical-center {
@@ -1369,7 +1379,7 @@ p:last-child {
     LOGO
 \*------------------------------------*/
 .logo {
-  width: 47.91667%;
+  width: 56.25%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   clear: none;
@@ -1381,7 +1391,7 @@ p:last-child {
 }
 @media only screen and (min-width: 22em) {
   .logo {
-    width: 47.91667%;
+    width: 56.25%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -1443,11 +1453,13 @@ p:last-child {
 /*------------------------------------*\
     $SECTION-COLORS
 \*------------------------------------*/
-.joinmedia {
+.joinmedia,
+.impressum {
   background-color: #ffffff;
   color: #2c2c2c;
 }
-.joinmedia .block .block-content > h1, .joinmedia .block .block-content h2, .joinmedia .block .block-content h3, .joinmedia .block .block-content h4, .joinmedia .block .block-content h5, .joinmedia .block .block-content h6 {
+.joinmedia .block .block-content .headline-underlined,
+.impressum .block .block-content .headline-underlined {
   border-color: #2c2c2c;
 }
 
@@ -1824,6 +1836,11 @@ p:last-child {
   font-weight: bold;
 }
 
+.headline-underlined {
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 0.375rem;
+}
+
 /*------------------------------------*\
     $SOCIAL_MEDIA
 \*------------------------------------*/
@@ -1946,6 +1963,31 @@ p:last-child {
     $BACK-TO-TOP
 \*------------------------------------*/
 .back-to-top {
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 1.5rem center;
+  color: #666;
+  display: inline-block;
+  margin: 0.75rem -0.75rem;
+  padding: 0.75rem 1.5rem 0.75rem 3rem;
+  position: relative;
+}
+.back-to-top:active, .back-to-top:focus, .back-to-top:hover {
+  text-decoration: underline;
+}
+
+.go-down {
   -moz-transition: background-color 0.3s ease;
   -ms-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
@@ -1962,7 +2004,7 @@ p:last-child {
   height: 50px;
 }
 @media only screen and (min-width: 48em) {
-  .back-to-top {
+  .go-down {
     -moz-transform: translateY(20%);
     -ms-transform: translateY(20%);
     -o-transform: translateY(20%);
@@ -1970,7 +2012,7 @@ p:last-child {
     transform: translateY(20%);
   }
 }
-.back-to-top:active, .back-to-top:focus, .back-to-top:hover {
+.go-down:active, .go-down:focus, .go-down:hover {
   text-decoration: underline;
 }
 
@@ -2074,10 +2116,6 @@ p:last-child {
     float: left;
   }
 }
-.block .block-content > h1, .block .block-content h2, .block .block-content h3, .block .block-content h4, .block .block-content h5, .block .block-content h6 {
-  border-bottom: 2px solid #ffffff;
-  padding-bottom: 0.375rem;
-}
 .block .block-figure {
   padding-bottom: 0;
   padding-top: 0;
@@ -2102,6 +2140,7 @@ p:last-child {
 .block.img-center .block-figure img {
   display: block;
   margin: 0 auto;
+  max-width: 310px;
 }
 @media only screen and (min-width: 48em) {
   .block.img-center .block-figure {
@@ -2263,6 +2302,12 @@ p:last-child {
     opacity: 1;
     visibility: visible;
   }
+}
+.nav .nav-item.active {
+  background-color: #b13308;
+}
+.nav .nav-item.active .nav-link {
+  color: #ffffff;
 }
 .nav .nav-link {
   color: #ffffff;
@@ -3727,6 +3772,7 @@ p:last-child {
   }
 }
 .section-header .sh-parallax {
+  background: #284245;
   height: 400px;
 }
 @media only screen and (min-width: 48em) {

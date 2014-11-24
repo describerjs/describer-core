@@ -3,8 +3,30 @@
 \*------------------------------------*/
 
 .back-to-top {
+	@include centered;
 	@include transition(background-color .3s ease);
-	// background: $theme-backtotop-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 50% 50%;
+	background: $theme-backtotop-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll ($default-inner-padding) center;
+	color: $theme-backtotop-fg;
+	display: inline-block;
+	margin: $default-spacing 0 -($default-spacing);
+	padding: $default-spacing $default-inner-padding $default-spacing ($default-inner-padding * 2);
+	position: relative;
+
+	&:active,
+	&:focus,
+	&:hover {
+		@if $theme-backtotop-active-bg != $theme-color-zero {
+			background-color: $theme-backtotop-active-bg;
+		}
+		@if $theme-backtotop-active-fg != $theme-color-zero {
+			color: $theme-backtotop-active-fg;
+		}
+		text-decoration: underline;
+	}
+}
+
+.go-down {
+	@include transition(background-color .3s ease);
 	background: $theme-backtotop-bg url("/images/jm/arrow-down.png") no-repeat scroll 50% 50%;
 	color: $theme-backtotop-fg;
 	display: block;
@@ -31,8 +53,6 @@
 		text-decoration: underline;
 	}
 }
-
-
 
 
 
