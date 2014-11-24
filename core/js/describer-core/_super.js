@@ -331,7 +331,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 			this.cAF = this.getPartOf('event', 'raf').split('raf')[1] !== '-nc';
 			//this.everyRAF = (!this.cAF) ? this.getPartOf('event', 'raf').split('-nc-')[1] : '1';
-			this.everyRAF = '10';
+			this.everyRAF = (5+ Math.ceil(Math.random()*10)).toString();
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
 			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
