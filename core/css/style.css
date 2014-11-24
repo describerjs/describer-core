@@ -1532,7 +1532,7 @@ p:last-child {
 }
 @media only screen and (min-width: 48em) {
   .stage {
-    height: 100vh;
+    height: 1000px;
   }
 }
 .stage .stage-content-inner {
@@ -1562,7 +1562,7 @@ p:last-child {
   left: 0;
   position: absolute;
   right: 0;
-  top: 25vh;
+  top: 250px;
 }
 .stage .stage-content-mid {
   margin-top: 1.5rem;
@@ -1594,7 +1594,7 @@ p:last-child {
   height: 100%;
 }
 .stage > .parallax, .section-header .stage > .sh-parallax {
-  height: 100vh;
+  height: 1000px;
 }
 .stage > .parallax .parallax-inner, .section-header .stage > .sh-parallax .parallax-inner {
   height: 100%;

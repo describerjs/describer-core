@@ -143,7 +143,9 @@
 	margin-bottom: 0;
 
 	@include bp-m {
-		height: 100vh;
+		// height: 100vh;
+		// TODO: ipad unterstützt vh nicht
+		height: 1000px;
 	}
 
 	.stage-content-inner {
@@ -155,7 +157,9 @@
 		left: 0;
 		position: absolute;
 		right: 0;
-		top: 25vh;
+		// top: 25vh;
+		// TODO:
+		top: 250px;
 	}
 
 	.stage-content-mid {
@@ -190,7 +194,9 @@
 	}
 
 	& > .parallax {
-		height: 100vh;
+		// height: 100vh;
+		// TODO:
+		height: 1000px;
 
 		.parallax-inner {
 			height: 100%;
