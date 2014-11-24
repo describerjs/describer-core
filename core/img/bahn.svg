@@ -1,5 +1,6 @@
 <svg width="800" height="350" viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink">
+    <script type="text/ecmascript" xlink:href="http://www.codedread.com/lib/smil.user.js"/>
   <circle id="circle" r="20" cx="100" cy="100" fill="tomato" />
 
   <animateMotion

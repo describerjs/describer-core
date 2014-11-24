@@ -31,27 +31,36 @@ require.config({
 		'overwritings.jquery_validate'                     : 'externals/customized/overwritings/jquery.validate',
 		'overwritings.owl_carousel'                        : 'externals/customized/overwritings/owl.carousel',
 		'video'                                            : 'externals/customized/video',
-		'md5'                                              : 'externals/originalReferenceSource/md5',
-		'rAF'                                              : 'externals/originalReferenceSource/rAF',
 		'fastclick'                                        : 'externals/originalReferenceSource/fastclick',
 		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
 		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
+		'jquery_mousewheel'                                : 'externals/originalReferenceSource/jquery.mousewheel',
+		'jquery_smoothwheel'                               : 'externals/originalReferenceSource/jquery.smoothwheel',
+		'md5'                                              : 'externals/originalReferenceSource/md5',
+		'rAF'                                              : 'externals/originalReferenceSource/rAF',
+		'video_4_10_2'                                     : 'externals/originalReferenceSource/video.4.10.2',
+		'videojs-youtube'                                  : 'externals/originalReferenceSource/youtube',
+
+
+
 
 
 
 
 		// mylibs
-		'_config'                                          : 'mylibs/_config',
-		'_super'                                           : 'mylibs/_super',
-		'actions.add'                                      : 'mylibs/actions/add',
-		'actions.ajax'                                     : 'mylibs/actions/ajax',
-		'actions.link'                                     : 'mylibs/actions/link',
-		'actions.remove'                                   : 'mylibs/actions/remove',
-		'actions.scroll'                                   : 'mylibs/actions/scroll',
-		'actions.set'                                      : 'mylibs/actions/set',
-		'actions.sticky'                                   : 'mylibs/actions/sticky',
-		'actions.toggle'                                   : 'mylibs/actions/toggle',
-		'actions.trigger'                                  : 'mylibs/actions/trigger',
+		'_config'                                          : 'describer-config',
+		'core'                                             : 'describer-core/core',
+
+		'_super'                                           : 'describer-core/_super',
+		'actions.add'                                      : 'describer-core/actions/add',
+		'actions.ajax'                                     : 'describer-core/actions/ajax',
+		'actions.link'                                     : 'describer-core/actions/link',
+		'actions.remove'                                   : 'describer-core/actions/remove',
+		'actions.scroll'                                   : 'describer-core/actions/scroll',
+		'actions.set'                                      : 'describer-core/actions/set',
+/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
+		'actions.toggle'                                   : 'describer-core/actions/toggle',
+		'actions.trigger'                                  : 'describer-core/actions/trigger',
 
 		'modules.carousel'                                 : 'mylibs/modules/carousel',
 		'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
@@ -71,9 +80,10 @@ require.config({
 		'modules.scrollControlTransform'                  : 'mylibs/modules/scrollControlTransform',
 		'modules.tablesort'                                : 'mylibs/modules/tablesort',
 		'modules.video'                                    : 'mylibs/modules/video',
+		'modules.videocontrol'                              : 'mylibs/modules/videocontrol',
+		'modules.videoplayer'                              : 'mylibs/modules/videoplayer',
 
-		'utils.helpers'                                    : 'mylibs/utils/helpers',
-		'utils.jquery_helpers'                             : 'mylibs/utils/jquery.helpers',
+
 
 		'require-css.video'                                : 'require-css/video'
 	},
@@ -87,9 +97,9 @@ require.config({
 			//exports: 'rAF'
 		},
 		
-	    'video': {
+	    /*'video': {
             exports: '_VideoJS'
-        },
+        },*/
 		'fixedsticky': {
 			deps: ['fixedfixed']
 		}
@@ -105,7 +115,7 @@ require.config({
 
 require(['jquery', '_config'], function require_jquery($){
 	// need jquery
-	require([ 'utils.jquery_helpers', 'utils.helpers', 'fastclick', 'jquery_ba-dotimeout'], function require_helpers(){
+	require([ 'core', 'fastclick', 'jquery_ba-dotimeout'], function require_helpers(){
 		// DomReady
 		$(function domReady(){
 			var $body = $('body');
@@ -173,7 +183,7 @@ require(['jquery', '_config'], function require_jquery($){
 			execDomReadyObject();
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
-			picturefill();
+			try{picturefill();}catch(e){}
 
 			if(window.debug){
 				jmHF.checkConfigJS();

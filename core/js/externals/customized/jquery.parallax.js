@@ -359,14 +359,14 @@
   Plugin.prototype.setPosition = function(element, x, y) {
     x += 'px';
     y += 'px';
-    if (this.transform3DSupport) {
+    /*if (this.transform3DSupport) {
       this.css(element, 'transform', 'translate3d('+x+','+y+',0)');
     } else if (this.transform2DSupport) {
       this.css(element, 'transform', 'translate('+x+','+y+')');
-    } else {
+    } else {*/
       element.style.left = x;
       element.style.top = y;
-    }
+    /*}*/
   };
 
   Plugin.prototype.onOrientationTimer = function(event) {
@@ -492,12 +492,12 @@
   Plugin.prototype.onRAF = function() {
 	var calc;
     var eot = $(this.element).offset().top;
-    var wih = window.innerHeight;
-    var wpo = window.pageYOffset;
+    var wih = jmGO.rafObj.innerHeight;
+    var wpo = jmGO.rafObj.pageYOffset;
     var first = wpo + wih  > eot;
     var secont = wpo < eot + this.eh;
     var range = wih + this.eh;
-	var portrait = wih > window.innerWidth;
+	var portrait = wih > jmGO.rafObj.innerWidth;
     if(first && ! secont){
 	    calc = 0;
     }else if(!first && secont){
