@@ -322,7 +322,9 @@ window.onerror = function(message, url, linenumber) {
         addJSToDOM('/js/externals/customized/modernizr.custom.js');
         addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
         addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
-        addCSSToDOM('/css/style.css');
+        // addCSSToDOM('/css/style.css');
+        addCSSToDOM('/css/style-demo.css');
+        // addCSSToDOM('/css/style-joinmedia.css');
         // addCSSToDOM('/css/ayyildiz.css');
         addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/require-main.js');
     } else {
@@ -348,9 +350,9 @@ window.onerror = function(message, url, linenumber) {
 
 <body>
 <div class="page">
-	<header class="page-header" role="banner">
-		<a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=DEMO" alt="DEMO" /></a>
-		<nav class="nav" id="navi" role="navigation">
+    <header class="page-header" role="banner">
+        <a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=DEMO" alt="DEMO" /></a>
+        <nav class="nav" id="navi" role="navigation">
             <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
             <ul class="nav-items">
                 <li class="nav-item menu-item">
@@ -364,6 +366,10 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#Text-Elemente-Listen">Listen</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#Text-Elemente-Listen-Bullet">Bullet List</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#Text-Elemente-Listen-Decimal">Decimal List</a></li>
+                            </ul> -->
                         </div>
                     </div>
                 </li>
@@ -378,6 +384,14 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Block">Block</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Default">Block Default</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Header">Block mit Header</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Links">Block mit Bild links</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Rechts">Block mit Bild rechts</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Oben">Block mit Bild oben</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Block-Bild-Unten">Block mit Bild unten</a></li>
+                            </ul> -->
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Carousel">Carousel</a></div>
@@ -393,9 +407,22 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Teaser">Teaser</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx1">Teaser x 1</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx2">Teaser x 2</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx3">Teaser x 3</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Teaserx4">Teaser x 4</a></li>
+                            </ul> -->
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Tiles">Tiles</a></div>
+                            <!-- <ul class="flyout-items">
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x2">Tiles 1x2</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x4">Tiles 1x4</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-1x6">Tiles 1x6</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-2x2">Tiles 2x2</a></li>
+                                <li class="flyout-item"><a class="flyout-link" href="#UI-Elemente-Tiles-2x3">Tiles 2x3</a></li>
+                            </ul> -->
                         </div>
                         <div class="flyout-group">
                             <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Togglebox">Togglebox</a></div>
@@ -410,9 +437,25 @@ window.onerror = function(message, url, linenumber) {
                         </div>
                     </div>
                 </li>
+                <li class="nav-item menu-item">
+                    <a href="Demo-Animation.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Animationen</a>
+                </li>
+                <li class="nav-item menu-item">
+                    <a href="Demo-Templates.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Templates</a>
+                </li>
+                <li class="nav-item menu-item">
+                    <a href="Demo-Videos.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Videos</a>
+                    <div class="flyout">
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="Demo-Video-parallax.html">Parallax Video</a></div>
+                            <div class="flyout-item"><a class="flyout-group-title" href="Demo-Video-Background.html">Background Video</a></div>
+                            <div class="flyout-item"><a class="flyout-group-title" href="Demo-Video-Start-On-View.html">Start On View Video</a></div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </nav>
-	</header>
+    </header>
 	<main class="page-main" role="main">
         <h2 id="Prallax-Image">Animation-Demo</h2>
         <div class="demo-section">

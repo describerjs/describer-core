@@ -1,0 +1,72 @@
+/*------------------------------------*\
+	$DEBUG
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * DEBUG...............................Debug Styling
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+
+$IsDevServer: true;
+
+
+
+
+
+/*------------------------------------*\
+	$DEBUG
+\*------------------------------------*/
+
+@if IsDevServer == true {
+	body {
+		background-color: rgba(0,0,0, .75);
+		
+		&:before {
+			@include absolute(0, 0, '', 0);
+			@include as-heading__medium;
+			background-color: rgba(0,0,0, .75);
+			border-bottom: 1px solid $theme-color-alpha;
+			color: $theme-color-alpha;
+			content: "Breakpoint: 0";
+			position: fixed;
+			text-align: center;
+			z-index: 100000000000;
+
+			@include bp-xs {
+				content: "Breakpoint: XS";
+			}
+
+			@include bp-s {
+				content: "Breakpoint: S";
+			}
+
+			@include bp-m {
+				content: "Breakpoint: M";
+			}
+
+			@include bp-l {
+				content: "Breakpoint: L";
+			}
+
+			@include bp-xl {
+				content: "Breakpoint: XL";
+			}
+
+			@include bp-xxl {
+				content: "Breakpoint: XXL";
+			}
+		}
+	}
+
+	.page {
+		@include baseline-grid;
+	}
+}

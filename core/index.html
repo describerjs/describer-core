@@ -232,7 +232,9 @@ else
         addJSToDOM('/js/externals/customized/modernizr.custom.js');
         addJSToDOM('/js/externals/vendor/matchmedia.js');
         addJSToDOM('/js/externals/originalReferenceSource/picturefill2.js');
-        addCSSToDOM('/css/style.css');
+        // addCSSToDOM('/css/style.css');
+        addCSSToDOM('/css/style-demo.css');
+        // addCSSToDOM('/css/style-joinmedia.css');
         addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/require-main.js');
     } else {
         addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
@@ -268,21 +270,21 @@ else
 
 <body>
 <div class="body">
-	<header role="banner">
-		$header$
-		<form role="search">
-			<input type="search" name="search" />
-		</form>
-		<nav role="navigation">
-			$navigation$
-		</nav>
-	</header>
-	<main role="main">
-		$main-content$
-	</main>
-	<footer role="contentinfo">
-		$footer$
-	</footer>
+    <header role="banner">
+        $header$
+        <form role="search">
+            <input type="search" name="search" />
+        </form>
+        <nav role="navigation">
+            $navigation$
+        </nav>
+    </header>
+    <main role="main">
+        $main-content$
+    </main>
+    <footer role="contentinfo">
+        $footer$
+    </footer>
 </div>
 </body>
 

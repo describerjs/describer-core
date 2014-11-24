@@ -1,0 +1,281 @@
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+
+/**
+ * COLORS..............................Diverse Farbwerte
+ * THEME...............................Direkte Farbzuweisung an Elemente
+ * ......bg = background
+ * ......fg = foreground
+ * TYPO................................Typo/Webfonts/etc.
+ * BREAKPOINTS.........................Breakpoints Definitionen
+ * LAYOUT..............................Layout-Spezifische Angaben
+ * SPACING.............................Abstände definieren
+ * TRANSITIONS.........................Eigenschaften für Transitions
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $COLORS
+\*------------------------------------*/
+
+$theme-color-zero:		transparent;
+$theme-color-alpha:		#fff;
+$theme-color-beta:		#000;
+$theme-color-gamma:		#f0f0f0;
+$theme-color-delta:		#ddd;
+$theme-color-epsilon:	#aaa;
+$theme-color-zeta:		#999;
+$theme-color-eta:		#666;
+$theme-color-theta:		#333;
+
+$color-orange-x-light:    #ff6611;
+$color-orange-light:      #ee5511;
+$color-orange-mid-light:  #e54c11;
+$color-orange-base:       #dd4411;
+$color-orange-mid-dark:   #c53d0f;
+$color-orange-dark:       #b13308;
+$color-orange-x-dark:     #9d2902;
+
+$color-blue-x-light:	  #38c6d3;
+$color-blue-light:		  #389ea7;
+$color-blue-mid-light:    #328890;
+$color-blue-base:	  	  #2e7e86;
+$color-blue-mid-dark:	  #396B71;
+$color-blue-dark:		  #2b5155;
+$color-blue-x-dark:		  #284245;
+
+$color-grey-x-light:      #eee;
+$color-grey-light:        #ccc;
+$color-grey-mid-light:    #aaa;
+$color-grey-base:         #767676;
+$color-grey-mid-dark:     #555;
+$color-grey-dark:         #333;
+$color-grey-x-dark:       #111;
+
+$color-white:             #ffffff;
+$color-black:             #2c2c2c;
+$color-transparent:       transparent;
+
+
+/*------------------------------------*\
+    $THEME
+\*------------------------------------*/
+
+// Main
+$theme-body-bg:					$color-orange-base;
+$theme-body-fg:					$color-white;
+$theme-headings-bg:				$color-transparent;
+$theme-headings-fg:				$color-white;
+$theme-page-bg:					$color-orange-base;
+$theme-page-fg:					$color-white;
+$theme-selection-bg:			$color-orange-base;
+$theme-selection-fg:			$color-white;
+
+// Accordion
+$theme-accordion-bg:			$theme-color-delta;
+$theme-accordion-fg:			$color-black;
+$theme-accordion-handle-bg:		$theme-color-zeta;
+$theme-accordion-handle-fg:		$color-white;
+$theme-accordion-active-bg:		$theme-color-epsilon;
+$theme-accordion-active-fg:		$color-black;
+
+// Back-To-Top
+$theme-backtotop-bg:			$theme-color-zero;
+$theme-backtotop-fg:			$theme-color-eta;
+$theme-backtotop-active-bg:		$theme-color-zero;
+$theme-backtotop-active-fg:		$theme-color-zero;
+
+// Buttons
+$theme-btn-bg:					$color-orange-base;
+$theme-btn-fg:					$color-white;
+$theme-btn-active-bg:			$color-orange-dark;
+$theme-btn-active-fg:			$color-white;
+$theme-btn-disabled-bg:			$color-grey-base;
+$theme-btn-disabled-fg:			$color-black;
+$theme-cta-bg:					$color-blue-base;
+$theme-cta-fg:					$color-white;
+$theme-cta-active-bg:			$color-blue-dark;
+$theme-cta-active-fg:			$color-white;
+
+// Links
+$theme-link-bg:					$color-transparent;
+$theme-link-fg:					$color-white;
+$theme-link-hover-bg:			$color-transparent;
+$theme-link-hover-fg:			$color-white;
+
+// Navigation
+$theme-nav-bg:					$color-orange-base;
+$theme-nav-fg:					$color-white;
+$theme-nav-items-bg:			$theme-nav-bg;
+$theme-nav-items-fg:			$theme-nav-fg;
+$theme-nav-link-bg:				$theme-nav-items-bg;
+$theme-nav-link-fg:				$theme-nav-items-fg;
+$theme-nav-link-active-bg:		$color-orange-dark;
+$theme-nav-link-active-fg:		$color-white;
+$theme-flyout-bg:				$color-grey-x-light;
+$theme-flyout-fg:				$color-black;
+$theme-flyout-link-bg:			$color-orange-base;
+$theme-flyout-link-fg:			$color-white;
+$theme-flyout-link-active-bg:	$color-orange-dark;
+$theme-flyout-link-active-fg:	$color-white;
+$theme-flyout-group-bg:			$color-orange-dark;
+$theme-flyout-group-fg:			$color-white;
+$theme-flyout-group-active-bg:	$color-orange-x-dark;
+$theme-flyout-group-active-fg:	$color-white;
+$theme-menu-btn-bg:				$color-black;
+$theme-menu-btn-fg:				$color-white;
+$theme-menu-item-bg:			$color-orange-base;
+
+// Tabs
+$theme-tabs-bg:					$color-transparent;
+$theme-tab-bg:					$color-white;
+$theme-tab-fg:					$color-black;
+$theme-tab-active-bg:			$color-grey-dark;
+$theme-tab-active-fg:			$color-white;
+$theme-tab-hover-bg:			$color-blue-x-dark;
+$theme-tab-hover-fg:			$color-white;
+$theme-tab-content-bg:			$color-blue-dark;
+$theme-tab-content-fg:			$color-white;
+
+// Teaser
+$theme-teaser-bg:				$color-blue-mid-dark;
+$theme-teaser-fg:				$color-white;
+$theme-stageteaser-bg:			$color-blue-mid-light;
+
+// Togglebox
+$theme-togglebox-bg:			$color-white;
+$theme-togglebox-fg:			$color-black;
+$theme-togglebox-content-bg:	$color-orange-light;
+
+// Sections
+$theme-section-joinmedia-bg:	$color-white;
+$theme-section-joinmedia-fg:	$color-black;
+$theme-section-services-bg:		$color-blue-mid-dark;
+$theme-section-services-1-bg:	$color-blue-mid-dark;
+$theme-section-services-2-bg:	$color-blue-dark;
+$theme-section-services-3-bg:	$color-blue-x-dark;
+$theme-section-services-4-bg:	$color-blue-base;
+$theme-section-services-5-bg:	$color-blue-mid-dark;
+$theme-section-services-6-bg:	$color-blue-dark;
+$theme-section-customers-bg:	$color-white;
+$theme-section-customers-fg:	$color-black;
+$theme-section-agency-bg:		$color-orange-base;
+$theme-section-agency-1-bg:		$color-orange-base;
+$theme-section-agency-2-bg:		$color-grey-dark;
+$theme-section-jobs-bg:			$color-blue-light;
+$theme-section-contact-bg:		$color-orange-base;
+
+// Footer
+$theme-footer-bg:				$color-grey-dark;
+$theme-footer-fg:				$color-white;
+
+
+
+/*------------------------------------*\
+    $TYPO
+\*------------------------------------*/
+
+$font:			"Arial", sans-serif;
+$font-alpha:	"Roboto", $font;
+$font-beta:		"Roboto Slab", $font;
+
+$font-btn:		$font-alpha;
+$font-heading:	$font-beta;
+$font-main:		$font-alpha;
+$font-nav:		$font-alpha;
+
+
+
+
+
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+
+$bp-small:	22em;
+$bp-med:	48em;
+$bp-large:	60em;
+
+$bp-xs:		$bp-small;
+$bp-s:		29.75em;
+$bp-m:		$bp-med;
+$bp-l:		$bp-large;
+$bp-xl:		73em;
+$bp-xxl:	82em;
+
+
+
+
+
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+
+$layout-maxwidth:	73em;
+
+
+
+
+
+/*------------------------------------*\
+    $SPACING
+\*------------------------------------*/
+
+// Distance calculated by Grid
+$dist:						$total-width * (($gutter-width * .5) / gridsystem-width($columns));
+
+// Preferably Top & Bottom
+$space:						rhythm(1, $browser-default-font-size);
+$space-and-half:			rhythm(1.5, $browser-default-font-size);
+$space-double:				rhythm(2, $browser-default-font-size);
+$space-triple:				rhythm(3, $browser-default-font-size);
+$space-quad:				rhythm(4, $browser-default-font-size);
+$space-half:				rhythm(.5, $browser-default-font-size);
+$space-quarter:				rhythm(.25, $browser-default-font-size);
+$space-three-quarter:		$space-half + $space-quarter;
+
+// Preferably Left & Right
+$pad:						1rem;
+$pad-and-half:				$pad * 1.5;
+$pad-double:				$pad * 2;
+$pad-triple:				$pad * 3;
+$pad-quad:					$pad * 4;
+$pad-half:					$pad / 2;
+$pad-quarter:				$pad / 4;
+$pad-three-quarter:			$pad-half + $pad-quarter;
+
+// Defaults
+$default-spacing:			$space-half;
+$default-inner-spacing:		$space-quarter;
+$default-element-spacing:	$space;
+$default-padding:			$pad;
+$default-inner-padding:		$pad-and-half;
+
+
+$dist-s: $pad;
+$dist-m: $pad;
+$dist-l: $pad-and-half;
+
+
+
+
+
+/*------------------------------------*\
+	$TRANSITIONS
+\*------------------------------------*/
+
+$transition-delay:		0;
+$transition-duration:	.3s;
+$transition-function:	ease-in-out;
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

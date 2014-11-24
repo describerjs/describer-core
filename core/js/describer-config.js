@@ -160,6 +160,26 @@ define(function(){
 				}
 			]
 		},{
+			jmname: 'set-related-navi-item-activ-on-view',
+			jmplugin: 'actions.add|actions.remove',
+			jmconfig: [{
+				'event': 'raf-nc',
+				'datatype' : 'class',
+				'data'     : 'activ',
+				'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
+				//'condition': '!jmHF.hasClass(this.relatedTo[0], \'activ\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)'
+				'condition': 'false'
+			},
+				{
+					'event': 'raf-nc',
+					'datatype' : 'class',
+					'data'     : 'activ',
+					'relatedTo': '$(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\')[0]',
+					'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
+					/*'condition': 'jmHF.hasClass(this.relatedTo[0], \'activ\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'*/
+					'condition': 'false'
+				}]
+		},{
 			jmname   : 'menu-close',
 			jmplugin: 'actions.remove',
 			jmconfig : {
@@ -382,39 +402,39 @@ define(function(){
 			jmname: 'add-remove-show-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
-				'event': 'dominit|raf-nc',
+				'event': 'raf-nc',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
-				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset)'
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
+				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)'
 			},
 			{
-				'event': 'dominit|raf-nc',
+				'event': 'raf-nc',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.4',
-				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
+				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
+				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
 			}]
 		},{
 			jmname: 'animation-start-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
-				'event': 'dominit|raf-nc',
+				'event': 'raf-nc',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset) && !this.$elem.hasClass(\'show\')',
+				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)',
 				'callback': 'this.animateTransformTag.beginElement()'
 			},{
-				'event': 'dominit|raf-nc',
+				'event': 'raf-nc',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height)) && this.$elem.hasClass(\'show\')',
+				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
 				'callback': 'this.animateTransformTag.endElement()'
 			}]
 		},{
@@ -527,6 +547,14 @@ define(function(){
 			jmplugin: 'modules.videocontrol',
 			jmconfig: {
 				'event': 'dominit|raf-nc'
+			}
+		},
+		{
+			jmname: 'anchor',
+			jmplugin: 'actions.scroll',
+			jmconfig: {
+				'event': 'click',
+				'scrollTo': 'this.$elem.attr(\'href\')'
 			}
 		},
 		{

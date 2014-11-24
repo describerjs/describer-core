@@ -1,0 +1,47 @@
+{
+    "debug": false,
+    "lintScripts": false,
+    "preprocessorLocations": [
+        "scss"
+    ],
+    "preprocessorScriptOutput": null,
+    "preprocessorStyleOutput": "css",
+    "projectName": "Project Name",
+    "projectDescription": "Project Description",
+    "publishedId": null,
+    "serverHostname": null,
+    "serverPort": null,
+    "templateDirectory": "templates",
+    "templateDefaultLayout": "layout",
+    "templateDefaultPage": "index",
+    "type": "simple",
+    "useCompass": true,
+    "simpleModePartnerServer": "http://jmui.dev/",
+    "simpleModeFileTypes": null,
+    "modelSource": null,
+    "domain": null,
+    "convertHtml": {
+        "path": null,
+        "extension": ".html",
+        "ignoreUrls": null,
+        "relativePaths": false,
+        "default": null
+    },
+    "followLeader": true,
+    "routes": null,
+    "customRuby": false,
+    "customRubyPath": null,
+    "remoteDebugPort": 0,
+    "optimiseImages": false,
+    "password": null,
+    "ignoreDir": [
+        "node_modules"
+    ],
+    "customTodos": null,
+    "autoPrefixer": null,
+    "sass": null,
+    "sitemap": false,
+    "less": null,
+    "optimiseSVG": true,
+    "reload": 0
+}

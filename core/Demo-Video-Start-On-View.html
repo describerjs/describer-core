@@ -321,7 +321,9 @@ checkLocalStorageByTimestamp();
         addJSToDOM('/js/externals/customized/modernizr.custom.js');
         addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
         addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
-        addCSSToDOM('/css/style.css');
+        // addCSSToDOM('/css/style.css');
+        addCSSToDOM('/css/style-demo.css');
+        // addCSSToDOM('/css/style-joinmedia.css');
         // addCSSToDOM('/css/ayyildiz.css');
         addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/require-main.js');
     } else {
@@ -439,6 +441,16 @@ checkLocalStorageByTimestamp();
                 </li>
                 <li class="nav-item menu-item">
                     <a href="Demo-Templates.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Templates</a>
+                </li>
+                <li class="nav-item menu-item">
+                    <a href="Demo-Videos.html" class="nav-link" data-jmname="nav-link" data-jmdominit="true">Videos</a>
+                    <div class="flyout">
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="Demo-Video-parallax.html">Parallax Video</a></div>
+                            <div class="flyout-item"><a class="flyout-group-title" href="Demo-Video-Background.html">Background Video</a></div>
+                            <div class="flyout-item"><a class="flyout-group-title" href="Demo-Video-Start-On-View.html">Start On View Video</a></div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </nav>

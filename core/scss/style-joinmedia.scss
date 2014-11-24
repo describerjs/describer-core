@@ -1,0 +1,112 @@
+/*------------------------------------*\
+	$CONTENTS
+\*------------------------------------*/
+
+/**
+ * RESET...............................Set reset defaults
+ * GENERIC ELEMENTS....................Variables, Mixins, Placeholder, etc.
+ * GLOBAL ELEMENTS.....................Establish global styles
+ * GLOBAL CLASSES......................Set reset defaults
+ * LAYOUT..............................Grid & Column Designs
+ * STRUCTURE...........................Page-Structure
+ * COMPONENTS/MODULES..................Build the Elements / Modules
+ * DEBUG...............................Debug Information
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $THEME-JOINMEDIA
+\*------------------------------------*/
+
+	/*------------------------------------*\
+	    $GENERIC ELEMENTS
+	\*------------------------------------*/
+
+	@import "theme-joinmedia/generic/reset";
+	@import "theme-joinmedia/generic/generic-import";
+
+
+
+
+
+	/*------------------------------------*\
+	    $GLOBAL ELEMENTS
+	\*------------------------------------*/
+
+	@import "theme-joinmedia/base/fonts";
+	@import "theme-joinmedia/base/forms";
+	@import "theme-joinmedia/base/headings";
+	@import "theme-joinmedia/base/links";
+	@import "theme-joinmedia/base/lists";
+	@import "theme-joinmedia/base/main";
+	@import "theme-joinmedia/base/media";
+	@import "theme-joinmedia/base/text";
+	@import "theme-joinmedia/base/global-classes";
+	@import "theme-joinmedia/base/animation";
+
+
+
+
+
+	/*------------------------------------*\
+	    $LAYOUT
+	\*------------------------------------*/
+
+	@import "theme-joinmedia/objects/layout";
+
+
+
+
+
+	/*------------------------------------*\
+	    $STRUCTURE
+	\*------------------------------------*/
+
+	@import "theme-joinmedia/objects/header";
+	@import "theme-joinmedia/objects/main";
+	@import "theme-joinmedia/objects/footer";
+
+
+
+
+
+	/*------------------------------------*\
+	    $COMPONENTS/$MODULES
+	\*------------------------------------*/
+
+	@import "theme-joinmedia/objects/buttons";
+	@import "theme-joinmedia/objects/lists";
+	@import "theme-joinmedia/objects/headings";
+	@import "theme-joinmedia/objects/social-media";
+	@import "theme-joinmedia/objects/modules/accordion";
+	@import "theme-joinmedia/objects/modules/back-to-top";
+	@import "theme-joinmedia/objects/modules/block";
+	@import "theme-joinmedia/objects/modules/nav";
+	@import "theme-joinmedia/objects/modules/owl-carousel";
+	@import "theme-joinmedia/objects/modules/stage-teaser";
+	@import "theme-joinmedia/objects/modules/tabs";
+	@import "theme-joinmedia/objects/modules/teaser";
+	@import "theme-joinmedia/objects/modules/tiles";
+	@import "theme-joinmedia/objects/modules/togglebox";
+	@import "theme-joinmedia/objects/modules/section-header";
+
+
+
+
+
+	/*------------------------------------*\
+	    $DEBUG
+	\*------------------------------------*/
+
+	/*@import "theme-joinmedia/generic/debug";*/
+
+
+
+
+
+/*------------------------------------*\
+	    
+\*------------------------------------*/

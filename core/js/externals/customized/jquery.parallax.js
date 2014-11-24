@@ -492,12 +492,12 @@
   Plugin.prototype.onRAF = function() {
 	var calc;
     var eot = $(this.element).offset().top;
-    var wih = window.innerHeight;
-    var wpo = window.pageYOffset;
+    var wih = jmGO.rafObj.innerHeight;
+    var wpo = jmGO.rafObj.pageYOffset;
     var first = wpo + wih  > eot;
     var secont = wpo < eot + this.eh;
     var range = wih + this.eh;
-	var portrait = wih > window.innerWidth;
+	var portrait = wih > jmGO.rafObj.innerWidth;
     if(first && ! secont){
 	    calc = 0;
     }else if(!first && secont){
