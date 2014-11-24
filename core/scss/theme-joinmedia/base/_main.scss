@@ -89,10 +89,13 @@ body {
 .page {
 	background-color: $theme-page-bg;
 	color: $theme-page-fg;
-	// margin: 0 auto;
-	// max-width: $layout-maxwidth;
 	overflow: hidden;
 	width: 100%;
+
+	&.constrained {
+		margin: 0 auto;
+		max-width: $layout-maxwidth;
+	}
 }
 
 .page-constrained {

@@ -783,10 +783,12 @@ body {
 .page {
   background-color: #fff;
   color: #000;
-  margin: 0 auto;
-  max-width: 80em;
   overflow: hidden;
   width: 100%;
+}
+.page.constrained {
+  margin: 0 auto;
+  max-width: 80em;
 }
 
 .page-constrained {

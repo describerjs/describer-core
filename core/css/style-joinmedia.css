@@ -821,6 +821,10 @@ body {
   overflow: hidden;
   width: 100%;
 }
+.page.constrained {
+  margin: 0 auto;
+  max-width: 73em;
+}
 
 .page-constrained {
   *zoom: 1;
