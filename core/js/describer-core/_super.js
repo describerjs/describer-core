@@ -158,6 +158,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 		},
 
+		getRelatedToElem: function(){
+			return (this.relatedTo) ? this.relatedTo : this.relatedTo = ((this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem);
+		},
+
 		// gibt je nach parameter das aktuelle oder gespeicherte configObj zurück. Es wird hier aus Performancegründen ein ConfigObj gespeichert.
 		_getConfigObjArray: function(p_now){
 			// returnt das initConfigObj wenn es exsistiert und n_now gleich false ist

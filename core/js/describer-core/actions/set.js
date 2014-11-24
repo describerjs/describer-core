@@ -33,7 +33,7 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_exec: function(e){
-			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
+			this.$destination = this.getRelatedToElem();
 			this.data = this.is('data');
 			switch(this.is('datatype')){
 				/*case 'class':
