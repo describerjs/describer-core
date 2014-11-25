@@ -30,54 +30,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 					$.smoothwheel();
 				});
 			}
-			/*var that = this;
-			this.$body = $('body');
-			this.lastY = this.$body.scrollTop();
-			this.initialY = this.$body.scrollTop();
-			window.requestAnimationFrame(this.maraf.bind(this));
-			require(['jquery_mousewheel'], function(){
-				$(window).on('mousewheel', function(event) {
-					event.preventDefault();
-					that.targetY = window.pageYOffset - (event.deltaY*event.deltaFactor);
-					that.delta = that.targetY - that.initialY;
-					*//*
-					$body.trigger('jmstop');
-					event.preventDefault();
-					$body.scrollToTop(window.pageYOffset - (event.deltaY*event.deltaFactor), 500);*//*
-					*//*$('html, body').stop().animate({
-						scrollTop: window.pageYOffset - (event.deltaY*event.deltaFactor)
-					}, 300);*//*
-					//console.log(event.deltaX, event.deltaY, event.deltaFactor);
-				});
-			});*/
 		},
-
-		/*maraf: function(){
-			if(!this.start){
-				this.start = this.now;
-			}
-			var t = Math.min(1, Math.max((this.now - this.start) / 500, 0));
-			// calculate the new scrollTop position (don't forget to smooth)
-			var y = Math.round(this.$body.scrollTop() + this.delta * this.smooth(t));
-			// bracket scrollTop so we're never over-scrolling
-			if(this.delta > 0 && y > this.targetY){
-				y = this.targetY;
-			}
-			if(this.delta < 0 && y < this.targetY){
-				y = this.targetY;;
-			}
-			// only actually set scrollTop if there was a change fromt he last frame
-			if(this.lastY != y){
-				this.$body.scrollTop(y);
-			}
-			this.lastY = y;
-
-			this.maraf();
-		},
-
-		smooth: function(pos){
-			return (-.5 * (Math.cos(Math.PI*pos) -1));
-		},*/
 
 		options: {
 
