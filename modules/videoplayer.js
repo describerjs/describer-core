@@ -68,7 +68,7 @@ define(['jquery', '_super', 'video_4_10_2', 'css!require-css.video'], function($
 			}
 			require(['videojs-youtube'], function () {
 				// If your video tag is empty (no space or new line before the closing tag), it will create a glitch with Safari. Instead of writing <video ...></video>, you should write <video ...> </video>.
-				that.$elem.prepend('<video src="" id="'+ that.ID +'" class="video-js vjs-default-skin" width="'+ (that.is('width') * scalefactor)+'px" height="'+(that.is('height') * scalefactor) +'px" '+ that.is('loop') + ' ' + that.is('controls')+' ' + this.is('autoplay') +' preload="'+that.is('preload')+'"></video>');
+				that.$elem.prepend('<video src="" id="'+ that.ID +'" class="video-js vjs-default-skin" width="'+ (that.is('width') * scalefactor)+'px" height="'+(that.is('height') * scalefactor) +'px" '+ that.is('loop') + ' ' + that.is('controls')+' ' + that.is('autoplay') +' preload="'+that.is('preload')+'"></video>');
 				//that.$elem.prepend('<video src="" id="'+ that.ID +'" class="video-js vjs-default-skin" style="width: 100%; height:100%; position:absolute" controls preload="none"></video>');
 				window.videojs(that.ID, { 'techOrder': ['youtube'], 'src': that.is('url') }).ready(function() {
 					if(that.is('controls') !== 'controls'){
