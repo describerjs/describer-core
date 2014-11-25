@@ -47,7 +47,7 @@ define(['jquery', '_super'], function ($, _super){
 		        }
 		        this.currentstate = this.newstate;
 	        }
-	        this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
+	        this.$destination = this.getRelatedToElem();
 		    switch(this.is('datatype')){
 				case 'class':
 					window.requestAnimationFrame(this._toggleClass.bind(this));

@@ -34,11 +34,20 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_exec: function(e){
+<<<<<<< HEAD
 			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
 			this.data = (this.is('data') !== '') ? this.is('data') : this._getOutcommendHtml();
 			switch(this.is('datatype')){
 				case 'class':
 					window.requestAnimationFrame(this._addClass.bind(this));
+=======
+			this.$destination = this.getRelatedToElem();
+			this.data = (this.is('data') !== '') ? this.is('data') : this._getOutcommendHtml();
+			switch(this.is('datatype')){
+				case 'class':
+					this._addClass();
+					//window.requestAnimationFrame(this._addClass.bind(this));
+>>>>>>> develop
 					break;
 				case 'style':
 					window.requestAnimationFrame(this._addStyle.bind(this));
@@ -83,7 +92,10 @@ define(['jquery', '_super'], function ($, _super){
 
 		_addClass: function(){
 			this.$destination.addClass(this.data);
+<<<<<<< HEAD
 			console.log('finish');
+=======
+>>>>>>> develop
 			this._finishing();
 		},
 

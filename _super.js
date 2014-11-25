@@ -158,6 +158,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 		},
 
+		getRelatedToElem: function(){
+			return (this.relatedTo) ? this.relatedTo : this.relatedTo = ((this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem);
+		},
+
 		// gibt je nach parameter das aktuelle oder gespeicherte configObj zurück. Es wird hier aus Performancegründen ein ConfigObj gespeichert.
 		_getConfigObjArray: function(p_now){
 			// returnt das initConfigObj wenn es exsistiert und n_now gleich false ist
@@ -304,24 +308,67 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_raf: function(){
+			if(!window.jmGO.rafRenderObj){
+				window.jmGO.countRAF = 0;
+				window.jmGO.rafRenderObj = {
+					countProperties: function(){
+						var count = 0;
+						for(var property in this){
+							if(this.hasOwnProperty(property)){
+								count += 1;
+							}
+						}
+						return count;
+					}
+				};
+			}
+			if(!window.jmGO.rafObj){
+				window.jmGO.rafObj = {
+					pageYOffset: window.pageYOffset,
+					innerHeight: window.innerHeight
+				};
+				window.jmGO.raf = window.requestAnimationFrame(this._rafObjRender.bind(this));
+			}
+			this.cAF = this.getPartOf('event', 'raf').split('raf')[1] !== '-nc';
+			//this.everyRAF = (!this.cAF) ? this.getPartOf('event', 'raf').split('-nc-')[1] : '1';
+			this.everyRAF = (5+ Math.ceil(Math.random()*10)).toString();
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
 			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
-			this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			//this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			window.counterss = 0;
+			//console.log(this.$elem);
+			window.jmGO.rafRenderObj['func_' + window.jmGO.rafRenderObj.countProperties()] = this._render.bind(this);
+		},
+
+		_rafObjRender: function(){
+			window.jmGO.rafObj.pageYOffset = window.pageYOffset;
+			window.jmGO.rafObj.innerHeight = window.innerHeight;
+			window.jmGO.countRAF = window.jmGO.countRAF +1;
+			if(window.jmGO.countRAF === 1000){
+				window.jmGO.countRAF = 0;
+			}
+			for(var property in window.jmGO.rafRenderObj){
+				if(window.jmGO.rafRenderObj.hasOwnProperty(property) && ('countProperties' !== property)){
+					window.jmGO.rafRenderObj[property]();
+				}
+			}
+			window.jmGO.raf = window.requestAnimationFrame(this._rafObjRender.bind(this));
 		},
 
 		_render: function(){
-			// !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
-			var _rafStringArray = this.getPartOf('event', 'raf').split('raf');
-			if(eval(this.conditionSource)){
-				if(_rafStringArray[1] !== '-nc'){
-					window.cancelAnimationFrame(this.rAFRender);
+			if((window.jmGO.countRAF % parseFloat(this.everyRAF)) === 0){
+				if(eval(this.conditionSource)){
+					if(this.cAF){
+						window.cancelAnimationFrame(this.rAFRender);
+					}
+					this._exec();
 				}
-				this._exec();
-				this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
-			}else{
 				this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
 			}
+			// !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
+
+
 		},
 
 		_execWait: function(e){

@@ -75,10 +75,10 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			for(var m = 0, lenm = _eventsArray.length; m < lenm; m++){
 				switch(_eventsArray[m]){
 					case 'dominit':
-					case 'raf':
 					case 'blur':
 					case 'focus':
 					case 'hover':
+					case ((_eventsArray[m].match(/raf(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/interval(.*)/))? _eventsArray[m] : undefined):
 						if(_dataJmnameElemente.eq(i).attr('data-jmdominit') !== 'true'){
@@ -209,10 +209,10 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			}else if('dominit' === p_eventType){
 				switch(eventArray[i]){
 					case 'dominit':
-					case 'raf':
 					case 'blur':
 					case 'focus':
 					case 'hover':
+					case ((eventArray[i].match(/raf(.*)/))? eventArray[i] : undefined):
 					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
 					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
 						// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
@@ -330,6 +330,10 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	// Auslesen der Scrollposition des Browsers
 	jmHF.getScrollPos = function(){
 		return ($.type(window.pageYOffset) === "number") ? window.pageYOffset : document.documentElement.scrollTop;
+	};
+
+	jmHF.hasClass = function(elem, selector){
+		return (" " + elem.className + " ").replace(/[\t\r\n\f]/g, " ").indexOf(" " + selector + " ") >= 0
 	};
 
 	jmHF.replaceSVGForOldBrowser = function(){

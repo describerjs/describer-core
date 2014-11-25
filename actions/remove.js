@@ -34,10 +34,11 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_exec: function(e){
-			this.$destination = (this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem;
+			this.$destination = this.getRelatedToElem();
 			switch(this.is('datatype')){
 				case 'class':
-					window.requestAnimationFrame(this._removeClass.bind(this));
+					this._removeClass();
+					//window.requestAnimationFrame(this._removeClass.bind(this));
 					break;
 				case 'html':
 					window.requestAnimationFrame(this._removeHtml.bind(this));

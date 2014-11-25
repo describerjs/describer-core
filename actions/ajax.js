@@ -121,6 +121,10 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		        $(this.is('loaderTo')).append(this.$additionalloader);
 	        }
 	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
+<<<<<<< HEAD
+=======
+	        // TODO Andreas in den anderen actions wird nun auch this.$destination = this.getRelatedToElem(); verwendet. Bitte verallgemeinern
+>>>>>>> develop
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
 	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
 	        // TODO Andreas  this.subObj_injection wird im modal verwendet. Bessere Lösung finden
