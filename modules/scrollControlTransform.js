@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'utils.helpers'], function ($, _super){
+define(['jquery', '_super', 'core'], function ($, _super){
 	'use strict';
 	var scrollControlTransform = $.extend({}, _super, {
 		init: function (options, elem) {
