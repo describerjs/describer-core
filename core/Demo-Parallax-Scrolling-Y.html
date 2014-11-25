@@ -318,19 +318,19 @@ window.onerror = function(message, url, linenumber) {
 </script>
 <script>
     if (window.loadUnminifyVersion) {
-        addJSToDOM('/js/externals/customized/modernizr.custom.js');
-        addJSToDOM('/js/externals/originalReferenceSource/matchmedia.js');
-        addJSToDOM('/js/externals/originalReferenceSource/picturefill.js');
+        addJSToDOM('/js/describer-core/libs/modernizr.custom.js');
+        addJSToDOM('/js/describer-core/libs/matchmedia.js');
+        addJSToDOM('/js/describer-more/plugins/picturefill.js');
         // addCSSToDOM('/css/style.css');
-        addCSSToDOM('/css/style-demo.css');
-        // addCSSToDOM('/css/style-joinmedia.css');
+        // addCSSToDOM('/css/style-demo.css');
+        addCSSToDOM('/css/style-joinmedia.css');
         // addCSSToDOM('/css/ayyildiz.css');
-        addJSToDOM('/js/externals/customized/require.2.1.11.js', 'data-main', '/js/require-main.js');
+        addJSToDOM('/js/describer-core/libs/require.2.1.11.js', 'data-main', '/js/require-main.js');
     } else {
-        addJSToDOM('/js/build/externals/customized/modernizr.custom.6966b8.js');
-        addJSToDOM('/js/build/externals/originalReferenceSource/matchmedia.05942b.js');
-        addJSToDOM('/js/build/externals/originalReferenceSource/picturefill.b30289.js');
-        addJSToDOM('/js/build/externals/customized/require.2.1.11.42fa63.js', 'data-main', '/js/build/require-main.7314fe.js');
+        addJSToDOM('/js/build/describer-core/libs/modernizr.custom.6966b8.js');
+        addJSToDOM('/js/build/describer-core/libs/matchmedia.05942b.js');
+        addJSToDOM('/js/build/describer-more/plugins/picturefill.b30289.js');
+        addJSToDOM('/js/build/describer-localStorage/require.2.1.11-localStorage.42fa63.js', 'data-main', '/js/build/require-main.7314fe.js');
         addCSSToDOM('/css/build/style.c73cbc.css');
     }
 </script>

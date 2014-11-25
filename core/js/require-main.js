@@ -59,39 +59,35 @@ require.config({
 		'modules.videocontrol'                              : 'describer-more/modules/videocontrol',
 		'modules.videoplayer'                               : 'describer-more/modules/videoplayer',
 
+		// untouched externel
+		'jquery_canvasResize'                               : 'describer-more/plugins/jquery.canvasResize',
+		'fastclick'                                         : 'describer-more/plugins/fastclick',
+		'fixedfixed'                                        : 'describer-more/plugins/fixedfixed',
+		'fixedsticky'                                       : 'describer-more/plugins/fixedsticky',
+		'jquery_mousewheel'                                 : 'describer-more/plugins/jquery.mousewheel',
+		'jquery_smoothwheel'                                : 'describer-more/plugins/jquery.smoothwheel',
+		'md5'                                               : 'describer-more/plugins/md5',
+		'video_4_10_2'                                      : 'describer-more/plugins/video.4.10.2',
+		'videojs-youtube'                                   : 'describer-more/plugins/youtube',
 
+		// customized externel
+		'jquery_autocomplete'                               : 'describer-more/plugins/customized/jquery.autocomplete',
+		'jquery_ba-dotimeout'                               : 'describer-more/plugins/customized/jquery.ba-dotimeout',
+		'jquery_countdown'                                  : 'describer-more/plugins/customized/jquery.countdown',
+		'jquery_countdown-de'                               : 'describer-more/plugins/customized/jquery.countdown-de',
+		'jquery_exif'                                       : 'describer-more/plugins/customized/jquery.exif',
+		'jquery_parallax'                                   : 'describer-more/plugins/customized/jquery.parallax',
+		'jquery_plugin'                                     : 'describer-more/plugins/customized/jquery.plugin',
+		'jquery_validate'                                   : 'describer-more/plugins/customized/jquery.validate',
+		'owl_carousel'                                      : 'describer-more/plugins/customized/owl.carousel',
+		'video'                                             : 'describer-more/plugins/customized/video',
 
-		'jquery_autocomplete'                              : 'externals/customized/jquery.autocomplete',
-		'jquery_ba-dotimeout'                              : 'externals/customized/jquery.ba-dotimeout',
-		'jquery_countdown'                                 : 'externals/customized/jquery.countdown',
-		'jquery_countdown-de'                              : 'externals/customized/jquery.countdown-de',
-		'jquery_exif'                                      : 'externals/customized/jquery.exif',
-		'jquery_parallax'                                  : 'externals/customized/jquery.parallax',
-		'jquery_plugin'                                    : 'externals/customized/jquery.plugin',
-		'jquery_validate'                                  : 'externals/customized/jquery.validate',
-		'owl_carousel'                                     : 'externals/customized/owl.carousel',
-		'overwritings.jquery_validate'                     : 'externals/customized/overwritings/jquery.validate',
-		'overwritings.owl_carousel'                        : 'externals/customized/overwritings/owl.carousel',
-		'video'                                            : 'externals/customized/video',
-		'jquery_canvasResize'                              : 'externals/originalReferenceSource/jquery.canvasResize',
-		'fastclick'                                        : 'externals/originalReferenceSource/fastclick',
-		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
-		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
-		'jquery_mousewheel'                                : 'externals/originalReferenceSource/jquery.mousewheel',
-		'jquery_smoothwheel'                               : 'externals/originalReferenceSource/jquery.smoothwheel',
-		'md5'                                              : 'externals/originalReferenceSource/md5',
-		'video_4_10_2'                                     : 'externals/originalReferenceSource/video.4.10.2',
-		'videojs-youtube'                                  : 'externals/originalReferenceSource/youtube',
+		// overwritings externel
+		'overwritings.jquery_validate'                      : 'describer-more/plugins/overwritings/jquery.validate',
+		'overwritings.owl_carousel'                         : 'describer-more/plugins/overwritings/owl.carousel',
 
-
-
-
-
-
-
-
-
-		'require-css.video'                                : 'require-css/video'
+		// CSS for components
+		'require-css.video'                                 : 'describer-more/require-css/video'
 	},
 	shim: {
 		'jquery_canvasResize': {
@@ -115,7 +111,7 @@ require.config({
 	},
 	map: {
 	    '*': {
-	        'css': 'require-css/css' // or whatever the path to require-css is
+	        'css': 'describer-more/require-css/css' // or whatever the path to require-css is
 	    }
 	},
 	waitSeconds: 500
