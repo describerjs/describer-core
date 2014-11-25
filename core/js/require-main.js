@@ -17,7 +17,7 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 }
 require.config({
 	paths      : {
-		// externals
+		// ******************* describer-core ******************************
 		'jquery'                                            : pathToJQuery,
 		'scrolltotop'                                       : 'describer-core/libs/scrolltotop',
 		'rAF'                                               : 'describer-core/libs/rAF',
@@ -37,6 +37,9 @@ require.config({
 		'actions.toggle'                                    : 'describer-core/actions/toggle',
 		'actions.trigger'                                   : 'describer-core/actions/trigger',
 
+
+
+		// ******************* describer-more ******************************
 		'modules.carousel'                                  : 'describer-more/modules/carousel',
 		'modules.carousel-ts'                               : 'describer-more/modules/carousel-ts',
 
