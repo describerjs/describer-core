@@ -83,7 +83,6 @@ define(['jquery', '_super'], function ($, _super){
 
 		_addClass: function(){
 			this.$destination.addClass(this.data);
-			console.log('finish');
 			this._finishing();
 		},
 

@@ -407,7 +407,7 @@ define(function(){
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
 				'condition': '((window.pageYOffset + window.innerHeight) > this.eot + this.offset) && !this.$elem.hasClass(\'show\')',
-				'callback': 'this.animateTransformTag.beginElement()'
+				'callback': 'try{this.animateTransformTag.beginElement()}catch(e){}'
 			},{
 				'event': 'dominit|raf-nc',
 				'datatype' : 'class',
@@ -415,7 +415,7 @@ define(function(){
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
 				'condition': '(!((window.pageYOffset + window.innerHeight) > this.eot + this.offset)) && (window.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height)) && this.$elem.hasClass(\'show\')',
-				'callback': 'this.animateTransformTag.endElement()'
+				'callback': 'try{this.animateTransformTag.endElement()}catch(e){}'
 			}]
 		},{
 			jmname: 'frame-ani-by-scrolling',
@@ -524,6 +524,22 @@ define(function(){
 			jmplugin: 'modules.videocontrol',
 			jmconfig: {
 				'event': 'dominit|raf-nc'
+			}
+		},
+		{
+			jmname: 'fotoupload',
+			jmplugin: 'modules.fotoupload',
+			jmconfig: {
+				'event': 'dominit',
+				'condition': 'Modernizr.filereader'
+			}
+		},
+        {
+			jmname   : 'form',
+			jmplugin: 'modules.form.formvalidate',
+			jmconfig : {
+				'event'  : 'dominit',
+				'ajax'  : 'false'
 			}
 		},
 		{

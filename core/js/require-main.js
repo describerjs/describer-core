@@ -11,19 +11,61 @@
  */
 var pathToJQuery;
 if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
-	pathToJQuery = 'externals/originalReferenceSource/jquery-2.1.0';
+	pathToJQuery = 'describer-core/libs/jquery-2.1.0';
 }else{
-	pathToJQuery = 'externals/originalReferenceSource/jquery-1.11.0';
+	pathToJQuery = 'describer-core/libs/jquery-1.11.0';
 }
 require.config({
 	paths      : {
 		// externals
-		'jquery'                                           : pathToJQuery,
-		'scrolltotop'                                      : 'externals/customized/scrolltotop',
+		'jquery'                                            : pathToJQuery,
+		'scrolltotop'                                       : 'describer-core/libs/scrolltotop',
+		'rAF'                                               : 'describer-core/libs/rAF',
+
+		// mylibs
+		'_config'                                           : 'describer-config',
+		'core'                                              : 'describer-core/core',
+
+		'_super'                                            : 'describer-core/_super',
+		'actions.add'                                       : 'describer-core/actions/add',
+		'actions.ajax'                                      : 'describer-core/actions/ajax',
+		'actions.link'                                      : 'describer-core/actions/link',
+		'actions.remove'                                    : 'describer-core/actions/remove',
+		'actions.scroll'                                    : 'describer-core/actions/scroll',
+		'actions.set'                                       : 'describer-core/actions/set',
+		/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
+		'actions.toggle'                                    : 'describer-core/actions/toggle',
+		'actions.trigger'                                   : 'describer-core/actions/trigger',
+
+		'modules.carousel'                                  : 'describer-more/modules/carousel',
+		'modules.carousel-ts'                               : 'describer-more/modules/carousel-ts',
+
+		/*'modules.carousel-ts'                              : 'empty',*/
+		'modules.countdown'                                 : 'describer-more/modules/countdown',
+		'modules.dependentSelectionGroup'                   : 'describer-more/modules/dependentSelectionGroup',
+		'modules.equalheights'                              : 'describer-more/modules/equalheights',
+		'modules.form.autocomplete'                         : 'describer-more/modules/form/autocomplete',
+		'modules.form.formvalidate'                         : 'describer-more/modules/form/formvalidate',
+		'modules.form.formvalidate-addon'                   : 'describer-more/modules/form/formvalidate-addon',
+		'modules.form.selectOptionExtractInGroup'           : 'describer-more/modules/form/selectOptionExtractInGroup',
+		'modules.form.submitbutton'                         : 'describer-more/modules/form/submitbutton',
+		'modules.fotoupload'                                : 'describer-more/modules/fotoupload',
+		'modules.modal'                                     : 'describer-more/modules/modal',
+		'modules.parallax'                                  : 'describer-more/modules/parallax',
+		'modules.scrollControlFrames'                       : 'describer-more/modules/scrollControlFrames',
+		'modules.scrollControlTransform'                    : 'describer-more/modules/scrollControlTransform',
+		'modules.tablesort'                                 : 'describer-more/modules/tablesort',
+		'modules.video'                                     : 'describer-more/modules/video',
+		'modules.videocontrol'                              : 'describer-more/modules/videocontrol',
+		'modules.videoplayer'                               : 'describer-more/modules/videoplayer',
+
+
+
 		'jquery_autocomplete'                              : 'externals/customized/jquery.autocomplete',
 		'jquery_ba-dotimeout'                              : 'externals/customized/jquery.ba-dotimeout',
 		'jquery_countdown'                                 : 'externals/customized/jquery.countdown',
 		'jquery_countdown-de'                              : 'externals/customized/jquery.countdown-de',
+		'jquery_exif'                                      : 'externals/customized/jquery.exif',
 		'jquery_parallax'                                  : 'externals/customized/jquery.parallax',
 		'jquery_plugin'                                    : 'externals/customized/jquery.plugin',
 		'jquery_validate'                                  : 'externals/customized/jquery.validate',
@@ -31,13 +73,13 @@ require.config({
 		'overwritings.jquery_validate'                     : 'externals/customized/overwritings/jquery.validate',
 		'overwritings.owl_carousel'                        : 'externals/customized/overwritings/owl.carousel',
 		'video'                                            : 'externals/customized/video',
+		'jquery_canvasResize'                              : 'externals/originalReferenceSource/jquery.canvasResize',
 		'fastclick'                                        : 'externals/originalReferenceSource/fastclick',
 		'fixedfixed'                                       : 'externals/originalReferenceSource/fixedfixed',
 		'fixedsticky'                                      : 'externals/originalReferenceSource/fixedsticky',
 		'jquery_mousewheel'                                : 'externals/originalReferenceSource/jquery.mousewheel',
 		'jquery_smoothwheel'                               : 'externals/originalReferenceSource/jquery.smoothwheel',
 		'md5'                                              : 'externals/originalReferenceSource/md5',
-		'rAF'                                              : 'externals/originalReferenceSource/rAF',
 		'video_4_10_2'                                     : 'externals/originalReferenceSource/video.4.10.2',
 		'videojs-youtube'                                  : 'externals/originalReferenceSource/youtube',
 
@@ -47,47 +89,14 @@ require.config({
 
 
 
-		// mylibs
-		'_config'                                          : 'describer-config',
-		'core'                                             : 'describer-core/core',
-
-		'_super'                                           : 'describer-core/_super',
-		'actions.add'                                      : 'describer-core/actions/add',
-		'actions.ajax'                                     : 'describer-core/actions/ajax',
-		'actions.link'                                     : 'describer-core/actions/link',
-		'actions.remove'                                   : 'describer-core/actions/remove',
-		'actions.scroll'                                   : 'describer-core/actions/scroll',
-		'actions.set'                                      : 'describer-core/actions/set',
-/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
-		'actions.toggle'                                   : 'describer-core/actions/toggle',
-		'actions.trigger'                                  : 'describer-core/actions/trigger',
-
-		'modules.carousel'                                 : 'mylibs/modules/carousel',
-		'modules.carousel-ts'                              : 'mylibs/modules/carousel-ts',
-
-		/*'modules.carousel-ts'                              : 'empty',*/
-		'modules.countdown'                                : 'mylibs/modules/countdown',
-		'modules.dependentSelectionGroup'                  : 'mylibs/modules/dependentSelectionGroup',
-		'modules.equalheights'                             : 'mylibs/modules/equalheights',
-		'modules.form.autocomplete'                        : 'mylibs/modules/form/autocomplete',
-		'modules.form.formvalidate'                        : 'mylibs/modules/form/formvalidate',
-		'modules.form.formvalidate-addon'                  : 'mylibs/modules/form/formvalidate-addon',
-		'modules.form.selectOptionExtractInGroup'          : 'mylibs/modules/form/selectOptionExtractInGroup',
-		'modules.form.submitbutton'                        : 'mylibs/modules/form/submitbutton',
-		'modules.modal'                                    : 'mylibs/modules/modal',
-		'modules.parallax'                                 : 'mylibs/modules/parallax',
-		'modules.scrollControlFrames'                      : 'mylibs/modules/scrollControlFrames',
-		'modules.scrollControlTransform'                  : 'mylibs/modules/scrollControlTransform',
-		'modules.tablesort'                                : 'mylibs/modules/tablesort',
-		'modules.video'                                    : 'mylibs/modules/video',
-		'modules.videocontrol'                              : 'mylibs/modules/videocontrol',
-		'modules.videoplayer'                              : 'mylibs/modules/videoplayer',
-
 
 
 		'require-css.video'                                : 'require-css/video'
 	},
 	shim: {
+		'jquery_canvasResize': {
+			deps: ['jquery_exif', 'jquery']
+		},
 		'fastclick': {
 			//These script dependencies should be loaded before loading
 			//backbone.js

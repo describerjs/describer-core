@@ -78,6 +78,7 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_exec: function(e){
+			// TODO Andreas add muted
 			var pageYOffset;
 			if(this.elemDoesExist()){
 				if(this.$elem.children().hasClass('vjs-playing')){ // this.$elem.children().hasClass('vjs-playing') //!window.videojs(this.getElementID()).paused()
