@@ -1,3 +1,3 @@
 describer-localStorage
 ======================
-only for using with versioning files!!
+only for using with versioning files!!!
