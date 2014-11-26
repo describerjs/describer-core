@@ -1831,6 +1831,8 @@ var requirejs, require, define;
      * @param {String} moduleName the name of the module.
      * @param {Object} url the URL to the module.
      */
+
+    // this Funtion was changed by aotten77
     req.load = function (context, moduleName, url) {
         var config = (context && context.config) || {},
 			node,
