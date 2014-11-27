@@ -311,11 +311,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(!window.dcRAF.execObj){
 				this._rafCreateObjects();
 			}
-
 			// raf-100ms-one
-			this.cAF = this.getPartOf('event', 'raf').indexOf('-one');
-			this.renderDelay = this.getPartOf('event', 'raf').replace('raf-', '').replace('-one', '').replace('ms', '');
-			this.renderDelay = (this.renderDelay !== '') ? parseInt(this.renderDelay, 10) + Math.ceil(Math.random()*parseInt(this.renderDelay, 10)/4) : 0;
+			this.cAF = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
+			this.renderDelay = this.getPartOf('event', 'raf').replace('raf-', '').replace('-one', '').replace('ms', '').replace('raf', '');
+			this.renderDelay = (this.renderDelay !== '') ? parseInt(this.renderDelay, 10) + Math.ceil(Math.random()*parseInt(this.renderDelay, 10)/4) : 1;
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
 			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
