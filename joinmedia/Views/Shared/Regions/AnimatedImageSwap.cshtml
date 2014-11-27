@@ -1,0 +1,20 @@
+﻿@model AnimatedImageSwap
+
+@if (Model != null && !Model.Hide)
+{
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	CODE *@
+
+	//
+	
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	HTML *@
+	<div class="overlapping">
+		<div class="overlapped">
+			@Html.Image(Model.Image1)
+		</div>
+		<div class="to-overlap" data-jmdominit="true" data-jmname="add-remove-show-on-view">
+			@Html.Image(Model.Image2)
+		</div>
+	</div>
+}

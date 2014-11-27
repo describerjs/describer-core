@@ -1,0 +1,12 @@
+﻿@using JM.Foundation.Mvc.Helper
+<div class="row">
+	<h1>JMTools FE Administration.</h1>
+	<p>Der Front-End Cachekey wurde aktualisiert:</p>
+	<table class="table-striped table">
+		<tr>
+			<td>Alter Key:</td><td>@Configuration.GetFrontEndCacheKey()</td>
+		</tr>
+		<tr><td>Neuer Key:</td><td>@Configuration.UpdateFrontEndCacheKey()</td></tr>
+	</table>
+</div>
+

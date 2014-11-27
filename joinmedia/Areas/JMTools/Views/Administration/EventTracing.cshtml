@@ -1,0 +1,121 @@
+﻿@using joinmedia.Areas.JMTools.Models
+@model List<Trace>
+
+@section scripts
+{
+<script>
+    jQuery(function ($) {
+        var asc = "asc";
+        var desc = "desc";
+        var currentAction = "showing";
+        var currentSearch = "";
+
+        $("#showall").click(function () {
+            currentAction = "showing";
+            $.ajax({
+                url: "/jmtools/administration/GetAllTraces",
+                type: "POST",
+                data: currentSearch,
+                dataType: "html",
+                success: function (result) {
+                    initTable(result);
+                }
+            });
+        });
+
+        $("#searchBtn").click(function () {
+            var searchText = $("#search").val();
+            var name = $("#properties option:selected").val();
+            currentSearch = "name=" + name + "&text=" + searchText;
+            currentAction = "searching";
+
+            $.ajax({
+                url: "/jmtools/administration/SearchTraces",
+                type: "POST",
+                data: currentSearch,
+                dataType: "html",
+                success: function(result) {
+                    initTable(result);
+                }
+            });
+        });
+
+        $(document).on("click", "#clearResults", function () {
+	    	$("#table-update").html("");
+	    });
+		
+        var initTable = function (htmlResult) {
+            $("#table-update").html(htmlResult);
+            addSortEvents();
+        };
+
+        var addSortEvents = function () {
+            $("th").click(function() {
+                var sorting = $(this).data("sort");
+                var sortBy = $(this).attr('id');
+                var query = "sort=" + sorting + "&sortBy=" + sortBy;
+                if (currentAction == "searching") {
+                    query = query + "&" + currentSearch;
+                }
+                $.ajax({
+                    url: "/jmtools/administration/SortTraces",
+                    type: "POST",
+                    data: query,
+                    dataType: "html",
+                    success: function(result) {
+                        initTable(result);
+                        var head = $("#" + sortBy);
+                        if (sorting == asc) {
+                            head.data("sort", desc);
+                        } else {
+                            head.data("sort", asc);
+                        }
+                    }
+                });
+            });
+        };
+    });
+</script>
+}
+@section css{
+    <style type="text/css">
+        .container
+        {
+            max-width: 1830px;
+        }
+       th
+        {
+            cursor: pointer;
+        }
+    </style>
+}
+
+<div class="row">
+    <h1>JMTools EventTracing</h1>
+</div>
+<div class="row" id="update-panel">
+	<div class="col-sm-12">
+		<div class="filter form-horizontal">
+			<div class="form-group">
+				<label for="search" class="col-sm-1">Suche nach</label>
+				<input type="text" class="form-control" id="search" placeholder="Suchbegriff">
+			</div>
+			<div class="form-group">
+				<label for="properties" class="col-sm-1">Suche in </label>
+				<select id="properties" class="form-control">
+					@foreach (var property in typeof(Trace).GetProperties().Skip(1))
+					{
+						<option value="@property.Name">@property.Name</option>
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-1">
+					<button type="button" class="btn btn-sm btn-default" id="showall">Alle anzeigen</button>
+					<button type="button" class="btn btn-sm btn-default btn-primary" value="Suchen" id="searchBtn">Suche</button>
+				</div>
+			</div>
+		</div>    
+		<div id="table-update"></div>
+	</div>
+</div>

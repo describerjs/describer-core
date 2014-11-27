@@ -1,0 +1,24 @@
+﻿@model Tiles
+
+@{
+	var tilingCssClass = !String.IsNullOrEmpty(Model.Tiling) ? String.Format("tiles-{0}", Model.Tiling) : String.Empty;
+}
+
+@if(Model != null && Model.Elements.Any() && !Model.Hide)
+{
+	<ul class="tiles @tilingCssClass">
+		@foreach (var tile in Model.Elements)
+		{
+			<li class="tile">
+				@if (tile.Image != null)
+				{
+					<img src="@UI.Content(tile.Image.Id)" alt="@tile.Image.Description"/>
+				}
+				@if (!String.IsNullOrEmpty(tile.Content))
+				{
+					@MvcHtmlString.Create(tile.Content)
+				}
+			</li>
+		}
+	</ul>
+}

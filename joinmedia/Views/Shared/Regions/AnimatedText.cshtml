@@ -1,0 +1,23 @@
+﻿@model AnimatedText
+
+@if (Model != null && !Model.Hide)
+{
+    @*//////////////////////////////////////////////////////////////////////////////////////
+    CODE *@
+
+	var hasEffect = !String.IsNullOrEmpty(Model.TextEffect);
+    
+    @*//////////////////////////////////////////////////////////////////////////////////////
+    HTML *@
+    
+	if (hasEffect)
+	{
+		<div class="@Model.TextEffect" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+			@MvcHtmlString.Create(Model.Content)
+		</div>
+	}
+	else
+	{
+		@MvcHtmlString.Create(Model.Content)
+	}
+}

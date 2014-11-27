@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D2F14C47-2896-40BF-81B2-54DA23685B91}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>joinmedia</RootNamespace>
+    <AssemblyName>joinmedia</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <NuGetPackageImportStamp>c6195aa1</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.Configuration.3.3.0\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.4\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc5.3.3.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JM.Foundation">
+      <HintPath>..\packages\JM.Foundation.1.0.0.115\lib\net45\JM.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.0.26.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.0.26\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EventSourceSynced.EnterpriseLibrary.SemanticLogging.1.1.1401-eventsourcesync10160\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EventSourceSynced.EnterpriseLibrary.SemanticLogging.Database.1.1.1401-eventsourcesync10160\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Piranha">
+      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\Piranha.dll</HintPath>
+    </Reference>
+    <Reference Include="Piranha.Mvc">
+      <HintPath>..\packages\PiranhaCMS.Mvc.2.2.2\lib\net45\Piranha.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc">
+      <HintPath>..\packages\PiranhaCMS.Core.2.2.2\lib\net45\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoFacConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\EmailService.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\LoggingConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SmsService.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\DemoController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\ModuleController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\StartController.cs" />
+    <Compile Include="Areas\JMDemo\Controllers\Models\StringManagerModel.cs" />
+    <Compile Include="Areas\JMDemo\JMDemoAreaRegistration.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Areas\JMTools\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\JMTools\JMToolsAreaRegistration.cs" />
+    <Compile Include="Areas\JMTools\Models\Traces.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ContentController.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Controllers\EtwLogProvider.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Models\Extensions.cs" />
+    <Compile Include="Infrastructure\Models\PictureFillEffectModel.cs" />
+    <Compile Include="Infrastructure\Models\UploadModel.cs" />
+    <Compile Include="Infrastructure\Monitoring\ApplicationEvents.Category.cs" />
+    <Compile Include="Infrastructure\Monitoring\ApplicationEvents.cs" />
+    <Compile Include="Infrastructure\Monitoring\ApplicationEvents.ErrorLog.cs" />
+    <Compile Include="Infrastructure\Monitoring\ApplicationEvents.GenerelEvents.cs" />
+    <Compile Include="Infrastructure\Monitoring\ApplicationEvents._Events.cs" />
+    <Compile Include="Infrastructure\Monitoring\RequestTracerModule.cs" />
+    <Compile Include="Infrastructure\PictureFill.cs" />
+    <Compile Include="Infrastructure\UploadManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Cache\Content\index.html" />
+    <Content Include="App_Data\Cache\index.html" />
+    <Content Include="App_Data\Cache\Uploads\index.html" />
+    <Content Include="App_Data\Content\index.html" />
+    <Content Include="App_Data\Uploads\index.html" />
+    <Content Include="Areas\JMDemo\css\bootstrap.css" />
+    <Content Include="Areas\JMDemo\css\bootstrap.min.css" />
+    <Content Include="Areas\JMDemo\css\Site.css" />
+    <Content Include="Areas\JMDemo\img\1.1\home-1056x-396y.jpg" />
+    <Content Include="Areas\JMDemo\img\1.1\home-1408x-528y.jpg" />
+    <Content Include="Areas\JMDemo\img\1.1\home-844x-317y-x2.jpg" />
+    <Content Include="Areas\JMDemo\img\1.1\home-844x-317y.jpg" />
+    <Content Include="Areas\JMDemo\img\1.5\home-1152x-432y-x2.jpg" />
+    <Content Include="Areas\JMDemo\img\1.5\home-1152x-432y.jpg" />
+    <Content Include="Areas\JMDemo\img\1.5\home-1440x-540y.jpg" />
+    <Content Include="Areas\JMDemo\img\1.5\home-1920x-720y.jpg" />
+    <Content Include="Areas\JMDemo\img\1\home-1280x-480y.jpg" />
+    <Content Include="Areas\JMDemo\img\1\home-768x-288y-x2.jpg" />
+    <Content Include="Areas\JMDemo\img\1\home-768x-288y.jpg" />
+    <Content Include="Areas\JMDemo\img\1\home-960x-360y.jpg" />
+    <Content Include="Areas\JMDemo\img\animation-static.gif" />
+    <Content Include="Areas\JMDemo\img\animation.gif" />
+    <Content Include="Areas\JMDemo\img\dot.png" />
+    <Content Include="Areas\JMDemo\img\firstBG.jpg" />
+    <Content Include="Areas\JMDemo\img\schuh-1200x-600y.jpg" />
+    <Content Include="Areas\JMDemo\img\schuh-1600x-800y.jpg" />
+    <Content Include="Areas\JMDemo\img\schuh-800x-400y.jpg" />
+    <Content Include="Areas\JMDemo\img\schuh-880x-440y.jpg" />
+    <Content Include="Areas\JMDemo\img\secondBG.jpg" />
+    <Content Include="Areas\JMDemo\img\thirdBG.jpg" />
+    <Content Include="Areas\JMDemo\img\trainers.png" />
+    <Content Include="Areas\JMDemo\js\bootstrap.js" />
+    <Content Include="Areas\JMDemo\js\bootstrap.min.js" />
+    <Content Include="App_Data\Config\JM.SiteConfig.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Areas\JMDemo\js\jquery-1.10.2.intellisense.js" />
+    <Content Include="Areas\JMDemo\js\jquery-1.10.2.js" />
+    <Content Include="Areas\JMDemo\js\jquery-1.10.2.min.js" />
+    <None Include="Areas\JMDemo\js\jquery.validate-vsdoc.js" />
+    <Content Include="Areas\JMDemo\js\jquery.validate.js" />
+    <Content Include="Areas\JMDemo\js\jquery.validate.min.js" />
+    <Content Include="Areas\JMDemo\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Areas\JMDemo\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Areas\JMDemo\js\modernizr-2.6.2.js" />
+    <Content Include="Areas\JMDemo\js\respond.js" />
+    <Content Include="Areas\JMDemo\js\respond.min.js" />
+    <Content Include="Areas\JMDemo\js\_references.js" />
+    <Content Include="Areas\Manager\Content\Css\Editor.css" />
+    <Content Include="Content\images\1.1\home-1056x-396y.jpg" />
+    <Content Include="Content\images\1.1\home-1408x-528y.jpg" />
+    <Content Include="Content\images\1.1\home-844x-317y-x2.jpg" />
+    <Content Include="Content\images\1.1\home-844x-317y.jpg" />
+    <Content Include="Content\images\1.5\home-1152x-432y-x2.jpg" />
+    <Content Include="Content\images\1.5\home-1152x-432y.jpg" />
+    <Content Include="Content\images\1.5\home-1440x-540y.jpg" />
+    <Content Include="Content\images\1.5\home-1920x-720y.jpg" />
+    <Content Include="Content\images\1\home-1280x-480y.jpg" />
+    <Content Include="Content\images\1\home-768x-288y-x2.jpg" />
+    <Content Include="Content\images\1\home-768x-288y.jpg" />
+    <Content Include="Content\images\1\home-960x-360y.jpg" />
+    <Content Include="Content\images\animation-static.gif" />
+    <Content Include="Content\images\animation.gif" />
+    <Content Include="Content\images\dot.png" />
+    <Content Include="Content\images\firstBG.jpg" />
+    <Content Include="Content\images\schuh-1200x-600y.jpg" />
+    <Content Include="Content\images\schuh-1600x-800y.jpg" />
+    <Content Include="Content\images\schuh-800x-400y.jpg" />
+    <Content Include="Content\images\schuh-880x-440y.jpg" />
+    <Content Include="Content\images\secondBG.jpg" />
+    <Content Include="Content\images\thirdBG.jpg" />
+    <Content Include="Content\images\trainers.png" />
+    <Content Include="Content\img\joinmedia.png" />
+    <Content Include="css\noscript.css" />
+    <Content Include="css\style-demo.css" />
+    <Content Include="css\style-joinmedia.css" />
+    <Content Include="css\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\robotoslab_bold\RobotoSlab-Bold-webfont.svg" />
+    <Content Include="fonts\robotoslab_regular\RobotoSlab-Regular-webfont.svg" />
+    <Content Include="fonts\roboto_light\Roboto-Light-webfont.svg" />
+    <Content Include="fonts\roboto_medium\Roboto-Medium-webfont.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="GruntFile.js" />
+    <Content Include="images\jm\arrow-down.png" />
+    <Content Include="images\jm\devicerow-outline-black.svg" />
+    <Content Include="images\jm\fotos\devicelab.jpg" />
+    <Content Include="images\jm\fotos\eingangsbereich.jpg" />
+    <Content Include="images\jm\fotos\hand-tablet.jpg" />
+    <Content Include="images\jm\fotos\joinmedia-eingang-logo-mit-devices.jpg" />
+    <Content Include="images\jm\fotos\joinmedia-eingang-logo-schmal.jpg" />
+    <Content Include="images\jm\fotos\joinmedia-eingang-logo.jpg" />
+    <Content Include="images\jm\fotos\joinmedia-leistungen.jpg" />
+    <Content Include="images\jm\fotos\joinmedia-stifte.jpg" />
+    <Content Include="images\jm\fotos\konferenzraum-blur.jpg" />
+    <Content Include="images\jm\fotos\konferenzraum-unten.jpg" />
+    <Content Include="images\jm\fotos\konferenzraum.jpg" />
+    <Content Include="images\jm\fotos\meeting.jpg" />
+    <Content Include="images\jm\fotos\screenshot-header.jpg" />
+    <Content Include="images\jm\fotos\tablet-kaffee.jpg" />
+    <Content Include="images\jm\icons\adduser-outline-white.svg" />
+    <Content Include="images\jm\icons\code-outline-white.svg" />
+    <Content Include="images\jm\icons\desktop-check.png" />
+    <Content Include="images\jm\icons\devices-outline-white.svg" />
+    <Content Include="images\jm\icons\display-outline-white.svg" />
+    <Content Include="images\jm\icons\displaychecked-outline-white.svg" />
+    <Content Include="images\jm\icons\graph-outline-white.svg" />
+    <Content Include="images\jm\icons\laptop-check.png" />
+    <Content Include="images\jm\icons\lock-outline-white.svg" />
+    <Content Include="images\jm\icons\mobile-check.png" />
+    <Content Include="images\jm\icons\speechbubbles-outline-white.svg" />
+    <Content Include="images\jm\icons\tablet-check.png" />
+    <Content Include="images\jm\joinmedia.svg" />
+    <Content Include="images\jm\logos\ayyildiz.svg" />
+    <Content Include="images\jm\logos\base.svg" />
+    <Content Include="images\jm\logos\cunda.svg" />
+    <Content Include="images\jm\logos\eplusgruppe.svg" />
+    <Content Include="images\jm\logos\ferrero.svg" />
+    <Content Include="images\jm\logos\grey.svg" />
+    <Content Include="images\jm\logos\hidrostal.svg" />
+    <Content Include="images\jm\logos\lared.svg" />
+    <Content Include="images\jm\logos\mitsui.svg" />
+    <Content Include="images\jm\logos\police.svg" />
+    <Content Include="images\jm\marker.png" />
+    <Content Include="images\jm\referenzen\showcase-ayyildiz-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-ayyildiz.png" />
+    <Content Include="images\jm\referenzen\showcase-base-mein-konto-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-base-mein-konto.png" />
+    <Content Include="images\jm\referenzen\showcase-fk-quiz-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-fk-quiz.png" />
+    <Content Include="images\jm\referenzen\showcase-kalbini-duyur-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-kalbini-duyur.png" />
+    <Content Include="images\jm\referenzen\showcase-knh-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-knh.png" />
+    <Content Include="images\jm\referenzen\showcase-lederfabrikhotel-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-lederfabrikhotel.png" />
+    <Content Include="images\jm\referenzen\showcase-mein-eplus-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-mein-eplus.png" />
+    <Content Include="images\jm\referenzen\showcase-seo-sea-pagina.png" />
+    <Content Include="images\jm\referenzen\showcase-seo-sea.png" />
+    <Content Include="images\jm\section-header\agentur-1280-810.jpg" />
+    <Content Include="images\jm\section-header\agentur-1920-810.jpg" />
+    <Content Include="images\jm\section-header\agentur-2560-810.jpg" />
+    <Content Include="images\jm\section-header\agentur-768-600.jpg" />
+    <Content Include="images\jm\section-header\agentur-960-810.jpg" />
+    <Content Include="images\jm\section-header\factor\leistungen-1.png" />
+    <Content Include="images\jm\section-header\factor\leistungen-2.png" />
+    <Content Include="images\jm\section-header\factor\leistungen-3.png" />
+    <Content Include="images\jm\section-header\jobs-1280-810.jpg" />
+    <Content Include="images\jm\section-header\jobs-1920-810.jpg" />
+    <Content Include="images\jm\section-header\jobs-2560-810.jpg" />
+    <Content Include="images\jm\section-header\jobs-768-600.jpg" />
+    <Content Include="images\jm\section-header\jobs-960-810.jpg" />
+    <Content Include="images\jm\section-header\joinmedia-1280-810.jpg" />
+    <Content Include="images\jm\section-header\joinmedia-1920-810.jpg" />
+    <Content Include="images\jm\section-header\joinmedia-2560-810.jpg" />
+    <Content Include="images\jm\section-header\joinmedia-768-600.jpg" />
+    <Content Include="images\jm\section-header\joinmedia-960-810.jpg" />
+    <Content Include="images\jm\section-header\kunden-1280-810.jpg" />
+    <Content Include="images\jm\section-header\kunden-1920-810.jpg" />
+    <Content Include="images\jm\section-header\kunden-2560-810.jpg" />
+    <Content Include="images\jm\section-header\kunden-768-600.jpg" />
+    <Content Include="images\jm\section-header\kunden-960-810.jpg" />
+    <Content Include="images\jm\section-header\leistungen-1.png" />
+    <Content Include="images\jm\section-header\leistungen-1280-810.jpg" />
+    <Content Include="images\jm\section-header\leistungen-1920-810.jpg" />
+    <Content Include="images\jm\section-header\leistungen-2.png" />
+    <Content Include="images\jm\section-header\leistungen-2560-810.jpg" />
+    <Content Include="images\jm\section-header\leistungen-3.png" />
+    <Content Include="images\jm\section-header\leistungen-768-600.jpg" />
+    <Content Include="images\jm\section-header\leistungen-960-810.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo.svg" />
+    <Content Include="js\describer-config.js" />
+    <Content Include="js\describer-core\actions\add.js" />
+    <Content Include="js\describer-core\actions\ajax.js" />
+    <Content Include="js\describer-core\actions\link.js" />
+    <Content Include="js\describer-core\actions\remove.js" />
+    <Content Include="js\describer-core\actions\scroll.js" />
+    <Content Include="js\describer-core\actions\set.js" />
+    <Content Include="js\describer-core\actions\toggle.js" />
+    <Content Include="js\describer-core\actions\trigger.js" />
+    <Content Include="js\describer-core\core.js" />
+    <Content Include="js\describer-core\libs\jquery-1.11.0.js" />
+    <Content Include="js\describer-core\libs\jquery-2.1.0.js" />
+    <Content Include="js\describer-core\libs\jquery.onDomOrAjaxReady.js" />
+    <Content Include="js\describer-core\libs\matchmedia.js" />
+    <Content Include="js\describer-core\libs\modernizr.custom.js" />
+    <Content Include="js\describer-core\libs\rAF.js" />
+    <Content Include="js\describer-core\libs\require.2.1.11.js" />
+    <Content Include="js\describer-core\libs\scrolltotop.js" />
+    <Content Include="js\describer-core\_super.js" />
+    <Content Include="js\describer-more\modules\carousel-ts.js" />
+    <Content Include="js\describer-more\modules\carousel.js" />
+    <Content Include="js\describer-more\modules\countdown.js" />
+    <Content Include="js\describer-more\modules\dependentSelectionGroup.js" />
+    <Content Include="js\describer-more\modules\equalheights.js" />
+    <Content Include="js\describer-more\modules\form\autocomplete.js" />
+    <Content Include="js\describer-more\modules\form\formvalidate-addon.js" />
+    <Content Include="js\describer-more\modules\form\formvalidate.js" />
+    <Content Include="js\describer-more\modules\form\selectOptionExtractInGroup.js" />
+    <Content Include="js\describer-more\modules\form\submitbutton.js" />
+    <Content Include="js\describer-more\modules\fotoupload.js" />
+    <Content Include="js\describer-more\modules\modal.js" />
+    <Content Include="js\describer-more\modules\parallax.js" />
+    <Content Include="js\describer-more\modules\scrollControlFrames.js" />
+    <Content Include="js\describer-more\modules\scrollControlTransform.js" />
+    <Content Include="js\describer-more\modules\tablesort.js" />
+    <Content Include="js\describer-more\modules\video.js" />
+    <Content Include="js\describer-more\modules\videoControl.js" />
+    <Content Include="js\describer-more\modules\videoplayer.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.autocomplete.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.ba-dotimeout.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.countdown-de.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.countdown.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.exif.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.parallax.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.plugin.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.validate.js" />
+    <Content Include="js\describer-more\plugins\customized\modernizr.custom.js" />
+    <Content Include="js\describer-more\plugins\customized\owl.carousel.js" />
+    <Content Include="js\describer-more\plugins\customized\require.2.1.11.js" />
+    <Content Include="js\describer-more\plugins\customized\scrolltotop.js" />
+    <Content Include="js\describer-more\plugins\customized\video.js" />
+    <Content Include="js\describer-more\plugins\fastclick.js" />
+    <Content Include="js\describer-more\plugins\fixedfixed.js" />
+    <Content Include="js\describer-more\plugins\fixedsticky.js" />
+    <Content Include="js\describer-more\plugins\jquery.canvasResize.js" />
+    <Content Include="js\describer-more\plugins\jquery.exif.js" />
+    <Content Include="js\describer-more\plugins\jquery.mousewheel.js" />
+    <Content Include="js\describer-more\plugins\jquery.parallax.js" />
+    <Content Include="js\describer-more\plugins\jquery.smoothwheel.js" />
+    <Content Include="js\describer-more\plugins\jquery.validate.js" />
+    <Content Include="js\describer-more\plugins\md5.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\fastclick.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\fixedfixed.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\fixedsticky.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\jquery.canvasResize.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\jquery.exif.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\jquery.mousewheel.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\jquery.parallax.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\jquery.smoothwheel.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\jquery.validate.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\md5.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\owl.carousel.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\picturefill.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\uuid.core.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\video.4.10.2.js" />
+    <Content Include="js\describer-more\plugins\originalReferenceSource\youtube.js" />
+    <Content Include="js\describer-more\plugins\overwritings\jquery.validate.js" />
+    <Content Include="js\describer-more\plugins\overwritings\owl.carousel.js" />
+    <Content Include="js\describer-more\plugins\owl.carousel.js" />
+    <Content Include="js\describer-more\plugins\picturefill.js" />
+    <Content Include="js\describer-more\plugins\uuid.core.js" />
+    <Content Include="js\describer-more\plugins\video.4.10.2.js" />
+    <Content Include="js\describer-more\plugins\youtube.js" />
+    <Content Include="js\describer-more\require-css\css.js" />
+    <Content Include="js\describer-more\require-css\font\vjs.svg" />
+    <Content Include="js\describer-more\require-css\video.css" />
+    <Content Include="js\empty.js" />
+    <Content Include="js\raven-jm.js" />
+    <Content Include="js\raven.js" />
+    <Content Include="js\require-main.js" />
+    <Content Include="robots.txt" />
+    <Content Include="App_Data\autofac.config" />
+    <Content Include="App_Data\Config\JM.Foundation.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\JMTools\Views\web.config" />
+    <Content Include="Areas\JMTools\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\JMTools\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\JMTools\Views\Administration\Index.cshtml" />
+    <Content Include="Areas\JMDemo\Views\web.config" />
+    <Content Include="Areas\JMDemo\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Start\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Web.config" />
+    <Content Include="App_Data\Config\piranha.config" />
+    <Content Include="Areas\JMDemo\Views\Module\JM_Foundation.cshtml" />
+    <Content Include="Areas\JMDemo\js\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\Regions\Togglebox.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Error\DisplayError.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\MainJS.cshtml" />
+    <Content Include="Views\Shared\Regions\StageTeaser.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_StageTeaser.cshtml" />
+    <Content Include="Views\Shared\Regions\Teaser.cshtml" />
+    <Content Include="Views\Shared\Regions\Accordion.cshtml" />
+    <Content Include="Views\Shared\Regions\TextBlock.cshtml" />
+    <Content Include="Views\Shared\_LocalStorageJS.cshtml" />
+    <Content Include="Views\Shared\_RequireConfigVersion.cshtml" />
+    <Content Include="Views\Shared\_RequireConfig.cshtml" />
+    <Content Include="Views\Shared\Regions\Tabs.cshtml" />
+    <Content Include="package.json" />
+    <Content Include="Views\Shared\Regions\Faq.cshtml" />
+    <Content Include="Views\Shared\_BasisJS.cshtml" />
+    <Content Include="Views\Shared\Regions\Carousel.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_Teaser.cshtml" />
+    <Content Include="Areas\JMTools\Views\Administration\UpdateFrontEndCacheKey.cshtml" />
+    <Content Include="Views\Shared\Regions\TextList.cshtml" />
+    <Content Include="Areas\JMTools\Views\Administration\EventTracing.cshtml" />
+    <Content Include="Areas\JMTools\Views\Shared\_TracesTable.cshtml" />
+    <Content Include="template\Web.config" />
+    <Content Include="Views\Page\demo.cshtml" />
+    <Content Include="Views\Shared\Regions\Block.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_Effects.cshtml" />
+    <Content Include="Views\Shared\Regions\Tiles.cshtml" />
+    <Content Include="Views\Shared\Regions\AnimatedText.cshtml" />
+    <Content Include="Views\Shared\Regions\AnimatedImageSwap.cshtml" />
+    <Content Include="Views\Shared\Regions\AnimatedSvg.cshtml" />
+    <Content Include="Views\Shared\Regions\AnimatedImage.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_Block.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_EffectsAnimatedImage.cshtml" />
+    <Content Include="Views\Shared\Image\_PictureFill_EffectsStageTeaser.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Templates.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Animation.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_OnScrollAnimation_Bildanimation.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_OnScrollAnimation_Fade.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_OnScrollAnimation_FrameAnimation_And_Transform.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_OnScrollAnimation_Slide.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_OnScrollAnimation_SVG.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Parallax_Gyroscope_1_1.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Parallax_Gyroscope_1_5.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Parallax_Scrolling_Y.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Parallax_Scrolling_Y_Orientation_X.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Template_Constrained.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\JMUI_Template_Default.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\_StyleSwitcher.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\Index.cshtml" />
+    <Content Include="Areas\JMDemo\Views\Demo\_Navigation.cshtml" />
+    <Content Include="Views\Shared\Regions\YoutubeVideo.cshtml" />
+    <Content Include="Views\Shared\Content\_Upload.cshtml" />
+    <Content Include="Views\Shared\Content\_UploadDone.cshtml" />
+    <Content Include="Views\Content\UploadFile.cshtml" />
+    <Content Include="js\describer-core\README.md" />
+    <Content Include="fonts\robotoslab_bold\RobotoSlab-Bold-webfont.eot" />
+    <Content Include="fonts\robotoslab_bold\RobotoSlab-Bold-webfont.ttf" />
+    <Content Include="fonts\robotoslab_bold\RobotoSlab-Bold-webfont.woff" />
+    <Content Include="fonts\robotoslab_regular\RobotoSlab-Regular-webfont.eot" />
+    <Content Include="fonts\robotoslab_regular\RobotoSlab-Regular-webfont.ttf" />
+    <Content Include="fonts\robotoslab_regular\RobotoSlab-Regular-webfont.woff" />
+    <Content Include="fonts\roboto_light\Roboto-Light-webfont.eot" />
+    <Content Include="fonts\roboto_light\Roboto-Light-webfont.ttf" />
+    <Content Include="fonts\roboto_light\Roboto-Light-webfont.woff" />
+    <Content Include="fonts\roboto_medium\Roboto-Medium-webfont.eot" />
+    <Content Include="fonts\roboto_medium\Roboto-Medium-webfont.ttf" />
+    <Content Include="fonts\roboto_medium\Roboto-Medium-webfont.woff" />
+    <Content Include="js\describer-more\require-css\font\vjs.eot" />
+    <Content Include="js\describer-more\require-css\font\vjs.ttf" />
+    <Content Include="js\describer-more\require-css\font\vjs.woff" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Manager\Views\Extensions\" />
+    <Folder Include="css\min\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" />
+  <Import Project="..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

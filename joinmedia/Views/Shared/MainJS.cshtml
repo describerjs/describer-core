@@ -1,0 +1,165 @@
+﻿@model string
+
+@{
+	// Kein Layout benutzen
+	Layout = null;
+	// MIME-Type setzen
+	Response.ContentType = "application/javascript";
+}
+
+@*////////////////////////////////////////////////////////////
+// In diesem View wird die MainJS anhand der übergebenen Version
+// und den in der Webconfig festgelegten Feature/Performanceeinstellungen
+// dynamisch erzeugt.
+////////////////////////////////////////////////////////////*@
+
+window.mainjsversion = '@Model';
+window.mainjs_domin = '@ApplicationConfiguration.SiteConfig.Server.PrimaryDomain';
+window.mainjs_features = [];
+
+@if (Html.FeatureEnabled(PerformanceFeature.AriaRoles))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.AriaRoles")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.Favicons))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.Favicons")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.IE8))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.IE8")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.MicroData))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.MicroData")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.MicroFormats))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.MicroFormats")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.NoJS))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.NoJS")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.PerformanceA))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.PerformanceA")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.PerformanceB))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.PerformanceB")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.PerformanceC))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.PerformanceC")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.Prefetch))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.Prefetch")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.ProgressiveEnhancement))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.ProgressiveEnhancement")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.ResponsiveImages))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.ResponsiveImages")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.SpriteSheets))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.SpriteSheets")</text>
+}
+@if (Html.FeatureEnabled(PerformanceFeature.TouchSupport))
+{
+	<text>window.mainjs_features.push("@PerformanceFeature.TouchSupport")</text>
+}
+
+@if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
+{
+	@Html.Partial("_requireConfig")
+}
+else
+{
+	@Html.Partial("_requireConfigVersion")
+}
+
+require(['jquery', '_config'], function($, _config){
+	// need jquery
+	require([ 'core', 'fastclick', 'jquery_ba-dotimeout'], function(){
+		// DomReady
+		$(function(){
+
+			var $body = $('body');
+
+
+			// -----------------------------------------------------
+			// --------------- User Events -------------------------
+			// -----------------------------------------------------
+
+			//---------------- Listener for focus, change, blur, checkValidation -------------------------------------
+
+
+			// Jedes Input(ausgenommen type="submit"), texarea und select feuert ein Event "checkValidation" wenn focus, change oder blur getriggert wird.
+			$body.on(   'blur ' +
+						'change ' +
+						'focus ' +
+						'checkValidation', 'form[data-jmname="form"]', jmHF.eventDelegationTrigger);
+
+			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
+			$body.on('change',  'select[data-jmname], ' +
+								'textarea[data-jmname]'+
+								'input[data-jmname]:not(input[type="radio"][data-jmname])', jmHF.eventDelegationTrigger);
+
+			// Change-Listenerinput[type="radio"]
+			$body.on('change',  'input[type="radio"][data-jmname]', jmHF.eventDelegationTriggerForRadios);
+
+
+			//---------------- Listener for click --------------------------------------------------------
+
+			$body.on('click', '[data-jmname]:not(label[data-jmname], a[data-jmname], form[data-jmname])', jmHF.eventDelegationTrigger);
+
+			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
+
+			$body.on('click', 'label[data-jmname]', jmHF.eventDelegationTriggerForLabels);
+
+
+
+			// -----------------------------------------------------
+			// --------------- generische Events -------------------
+			// -----------------------------------------------------
+
+
+			$body.on('dominit', '[data-jmname]', jmHF.eventDelegationTrigger);
+
+			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
+			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);
+
+            
+            // -----------------------------------------------------
+			// -------- ausführen von Domready-Funktionen ----------
+			// -----------------------------------------------------
+
+			// läde die auf der Seite benötigten JS-Module
+			$body.requirementsForJmPlugins();
+
+			// Initialisiert die Elemente, die mit dem Attribut data-jmdominit="true" versehen sind
+			$body.triggerSelfexecObj();
+
+			// Externe Lib. Sie wird verwendet, um ein delay von 300ms bei Klick auf Touch-Devices zu unterdrücken.
+			// Die Verzögerung entsteht durch das warte des Device auf einen evtl. doppleClick, der ein Zoomen in die Seite auslöst.
+			// Touchstart -> Klick
+			//FastClick.attach(document.body);
+
+			// Führt die im DomReadyObject hinterlegten Funktionen aus
+			execDomReadyObject();
+
+			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
+			try{picturefill();}catch(e){}
+
+			if(window.debug){
+				jmHF.checkConfigJS();
+				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
+			}
+		});
+	});
+});

@@ -1,0 +1,11 @@
+﻿@model ToggleBox
+
+@if (Model != null && !Model.Hide)
+{
+	<div class="togglebox">
+		<a class="tb-subject" data-jmname="togglebox">@Model.Headline</a>
+		<div class="tb-content">
+			@MvcHtmlString.Create(Model.Content)
+		</div>
+	</div>
+}

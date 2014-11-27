@@ -1,0 +1,112 @@
+﻿var pathToJQuery;
+var buildPath = (window.loadUnminifyVersion) ? '' : 'build/';
+if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
+	pathToJQuery = buildPath+'describer-core/libs/jquery-2.1.0';
+}else{
+	pathToJQuery = buildPath+'describer-core/libs/jquery-1.11.0';
+}
+require.config({
+	baseUrl: '/js',
+	paths      : {
+		// ******************* describer-core ******************************
+		'jquery'                                            : pathToJQuery,
+		'scrolltotop'                                       : buildPath+'describer-core/libs/scrolltotop',
+		'rAF'                                               : buildPath+'describer-core/libs/rAF',
+
+		// mylibs
+		'_config'                                           : buildPath+'describer-config',
+		'core'                                              : buildPath+'describer-core/core',
+
+		'_super'                                            : buildPath+'describer-core/_super',
+		'actions.add'                                       : buildPath+'describer-core/actions/add',
+		'actions.ajax'                                      : buildPath+'describer-core/actions/ajax',
+		'actions.link'                                      : buildPath+'describer-core/actions/link',
+		'actions.remove'                                    : buildPath+'describer-core/actions/remove',
+		'actions.scroll'                                    : buildPath+'describer-core/actions/scroll',
+		'actions.set'                                       : buildPath+'describer-core/actions/set',
+		/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
+		'actions.toggle'                                    : buildPath+'describer-core/actions/toggle',
+		'actions.trigger'                                   : buildPath+'describer-core/actions/trigger',
+
+
+
+		// ******************* describer-more ******************************
+		'modules.carousel'                                  : buildPath+'describer-more/modules/carousel',
+		'modules.carousel-ts'                               : buildPath+'describer-more/modules/carousel-ts',
+
+		/*'modules.carousel-ts'                              : 'empty',*/
+		'modules.countdown'                                 : buildPath+'describer-more/modules/countdown',
+		'modules.dependentSelectionGroup'                   : buildPath+'describer-more/modules/dependentSelectionGroup',
+		'modules.equalheights'                              : buildPath+'describer-more/modules/equalheights',
+		'modules.form.autocomplete'                         : buildPath+'describer-more/modules/form/autocomplete',
+		'modules.form.formvalidate'                         : buildPath+'describer-more/modules/form/formvalidate',
+		'modules.form.formvalidate-addon'                   : buildPath+'describer-more/modules/form/formvalidate-addon',
+		'modules.form.selectOptionExtractInGroup'           : buildPath+'describer-more/modules/form/selectOptionExtractInGroup',
+		'modules.form.submitbutton'                         : buildPath+'describer-more/modules/form/submitbutton',
+		'modules.fotoupload'                                : buildPath+'describer-more/modules/fotoupload',
+		'modules.modal'                                     : buildPath+'describer-more/modules/modal',
+		'modules.parallax'                                  : buildPath+'describer-more/modules/parallax',
+		'modules.scrollControlFrames'                       : buildPath+'describer-more/modules/scrollControlFrames',
+		'modules.scrollControlTransform'                    : buildPath+'describer-more/modules/scrollControlTransform',
+		'modules.tablesort'                                 : buildPath+'describer-more/modules/tablesort',
+		'modules.video'                                     : buildPath+'describer-more/modules/video',
+		'modules.videocontrol'                              : buildPath+'describer-more/modules/videocontrol',
+		'modules.videoplayer'                               : buildPath+'describer-more/modules/videoplayer',
+
+		// untouched externel
+		'jquery_canvasResize'                               : buildPath+'describer-more/plugins/jquery.canvasResize',
+		'fastclick'                                         : buildPath+'describer-more/plugins/fastclick',
+		'fixedfixed'                                        : buildPath+'describer-more/plugins/fixedfixed',
+		'fixedsticky'                                       : buildPath+'describer-more/plugins/fixedsticky',
+		'jquery_mousewheel'                                 : buildPath+'describer-more/plugins/jquery.mousewheel',
+		'jquery_smoothwheel'                                : buildPath+'describer-more/plugins/jquery.smoothwheel',
+		'md5'                                               : buildPath+'describer-more/plugins/md5',
+		'video_4_10_2'                                      : buildPath+'describer-more/plugins/video.4.10.2',
+		'videojs-youtube'                                   : buildPath+'describer-more/plugins/youtube',
+
+		// customized externel
+		'jquery_autocomplete'                               : buildPath+'describer-more/plugins/customized/jquery.autocomplete',
+		'jquery_ba-dotimeout'                               : buildPath+'describer-more/plugins/customized/jquery.ba-dotimeout',
+		'jquery_countdown'                                  : buildPath+'describer-more/plugins/customized/jquery.countdown',
+		'jquery_countdown-de'                               : buildPath+'describer-more/plugins/customized/jquery.countdown-de',
+		'jquery_exif'                                       : buildPath+'describer-more/plugins/customized/jquery.exif',
+		'jquery_parallax'                                   : buildPath+'describer-more/plugins/customized/jquery.parallax',
+		'jquery_plugin'                                     : buildPath+'describer-more/plugins/customized/jquery.plugin',
+		'jquery_validate'                                   : buildPath+'describer-more/plugins/customized/jquery.validate',
+		'owl_carousel'                                      : buildPath+'describer-more/plugins/customized/owl.carousel',
+		'video'                                             : buildPath+'describer-more/plugins/customized/video',
+
+		// overwritings externel
+		'overwritings.jquery_validate'                      : buildPath+'describer-more/plugins/overwritings/jquery.validate',
+		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel',
+
+		// CSS for components
+		'require-css.video'                                 : buildPath+'describer-more/require-css/video'
+	},
+	shim: {
+		'jquery_canvasResize': {
+			deps: ['jquery_exif', 'jquery']
+		},
+		'fastclick': {
+			//These script dependencies should be loaded before loading
+			//backbone.js
+			//deps   : ['underscore', 'jquery'],
+			//Once loaded, use the global 'Backbone' as the
+			//module value.
+			//exports: 'rAF'
+		},
+
+		'video': {
+			exports: '_VideoJS'
+		},
+		'fixedsticky': {
+			deps: ['fixedfixed']
+		}
+	},
+	map: {
+	    '*': {
+		    'css': 'describer-more/require-css/css' // or whatever the path to require-css is
+	    }
+	},
+	waitSeconds: 500
+});

@@ -1,0 +1,33 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section navigation {
+	@Html.Partial("_Navigation")
+}
+
+@section head {
+<style>
+.demo-section { margin-bottom: 35rem; margin-top: 35rem; }
+.demo-section > .block { background-color: #f0f0f0; margin-bottom: 0; padding-bottom: 1rem; padding-top: 1rem; 
+	-moz-transition:    background-color .3s ease;
+	-ms-transition:     background-color .3s ease;
+	-o-transition:      background-color .3s ease;
+	-webkit-transition: background-color .3s ease;
+	transition:         background-color .3s ease;
+}
+.demo-section > .block:hover { background-color: #f9f9f9; }
+.demo-section > .togglebox { margin-bottom: 3px; }
+.demo-section > .togglebox.show > .tb-content { border: 1px solid #ddd; padding: 1rem 0 0; }
+#UI-Elemente-Navigation + .togglebox.show .tb-content { overflow: visible; padding-bottom: 1rem; }
+</style>
+}
+<h2 id="OnScrollAnimation">OnScrollAnimation (Bildanimation)</h2>
+<div class="demo-section">
+	<div class="block">
+		<div class="overlapping">
+			<div class="overlapped"><img src="/Areas/JMDemo/img/animation-static.gif" alt="" /></div>
+			<div class="to-overlap" data-jmname="add-remove-show-on-view" data-jmdominit="true"><img src="/Areas/JMDemo/img/animation.gif" alt="" /></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model Carousel
+
+@if (Model != null && !Model.Hide)
+{
+    @*//////////////////////////////////////////////////////////////////////////////////////
+    CODE *@
+
+    @*//////////////////////////////////////////////////////////////////////////////////////
+    HTML *@
+
+	<div data-jmname="carousel" data-jmdominit="true">
+		
+		@foreach (var item in Model.Elements)
+		{
+			<div class="stage-teaser">
+				@if (item.Image != null)
+				{
+					@Html.Partial("Image/_PictureFill_Teaser", item.Image)
+				}
+				@MvcHtmlString.Create(item.Content)
+			</div>
+		}
+	</div>
+}

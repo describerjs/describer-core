@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="de">
+
+<head>
+    <title>@Site.SiteTitle | @Page.Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="$description$" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+	
+	@*////////////////////////////////////////////////////////////
+	// Favicons je nach Featureeinstellung
+	////////////////////////////////////////////////////////////*@
+	@if(Html.FeatureEnabled(PerformanceFeature.Favicons))
+	{
+		<link rel="shortcut icon" href="/favicon/favicon.ico" />
+		<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+		<link rel="apple-touch-icon" href="/favicon/apple-touch-icon-72x72.png" sizes="72x72" />
+		<link rel="apple-touch-icon" href="/favicon/apple-touch-icon-114x114.png" sizes="114x114" />
+		<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-144x144-precomposed.png" sizes="144x144" />
+		<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-114x114-precomposed.png" sizes="114x114" />
+		<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-72x72-precomposed.png" sizes="72x72" />
+		<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-57x57-precomposed.png" />
+	}
+	
+	<meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
+    <meta name="msapplication-TileColor" content="#222222" />
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script src="/js/raven.js"></script>
+        <script>
+            Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
+        </script>
+    }
+
+    @Html.Partial("_basisJS")
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+    <script>
+        window.debug = true;
+    </script>
+    }
+    else
+    {
+    <script>
+        window.debug = false;
+    </script>
+    }
+    @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
+    {
+    <script>
+        window.UseLocalStorage = false;
+        window.loadUnminifyVersion = true;
+    </script>
+
+    <script src="/js/describer-core/libs/modernizr.custom.js"></script>
+    <script src="/js/describer-core/libs/matchmedia.js"></script>
+    <script src="/js/describer-more/plugins/picturefill.js"></script>
+    <script src="/js/describer-core/libs/require.2.1.11.js" data-main="/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    }
+    else
+    {
+    @Html.Partial("_localStorageJS")
+    <script>
+        if (window.loadUnminifyVersion) {
+            addJSToDOM('/js/describer-core/libs/modernizr.custom.js');
+            addJSToDOM('/js/describer-core/libs/matchmedia.js');
+            addJSToDOM('/js/describer-more/plugins/picturefill.js');
+            addCSSToDOM('/css/style.css');
+            // addCSSToDOM('/css/style-demo.css');
+            //addCSSToDOM('/css/style-joinmedia.css');
+            // addCSSToDOM('/css/ayyildiz.css');
+            addJSToDOM('/js/describer-core/libs/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
+        } else {
+            addJSToDOM('/js/build/describer-core/libs/modernizr.custom.6966b8.js');
+            addJSToDOM('/js/build/describer-core/libs/matchmedia.05942b.js');
+            addJSToDOM('/js/build/describer-more/plugins/picturefill.b30289.js');
+            addCSSToDOM('/css/build/style.c73cbc.css');
+            addJSToDOM('/js/build/describer-localStorage/require.2.1.11-localStorage.42fa63.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
+        }
+    </script>
+
+    <noscript>
+        <link rel="stylesheet" href="/css/build/style.c73cbc.css" />
+        <link rel="stylesheet" href="/css/build/noscript.4b086a.css" />
+    </noscript>
+    }
+
+
+
+
+	@*////////////////////////////////////////////////////////////
+	// Section für das hinzufügen von HEAD-Elementen aus Views
+	////////////////////////////////////////////////////////////*@
+	@RenderSection("head", required: false)
+</head>
+
+<body>
+	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
+	<div class="page">
+		<header class="page-header" role="banner">
+			<a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
+			@if (IsSectionDefined("navigation"))
+			{
+				@RenderSection("navigation", required: false)
+			}
+			else
+			{
+				Html.RenderAction("_Navigation", "Content", new { area = "" });
+			}
+		</header>
+		<main class="page-main" role="main">
+			@RenderBody()
+		</main>
+		<footer class="page-footer" role="contentinfo">
+			<section class="h-card">
+				<div class="hc-section"><a class="u-url p-organization-name link" href="/">join.media GmbH &amp; Co. KG</a></div>
+				<address class="hc-section">
+					<span class="p-street-address">Düsseldorfer Straße 269</span>
+					<span class="p-locality">45481 Mülheim an der Ruhr</span>
+					<span class="p-country-name">Deutschland</span>
+				</address>
+				<div class="hc-section">
+					<a class="p-tel link" href="tel:+49208960320">Fon: +49 208 / 960 32 - 0</a>
+					<span class="p-tel-fax">Fax: +49 208 / 960 32 - 10</span>
+				</div>
+				<div class="hc-section">
+					<a class="u-email link" href="mailto:info@joinmedia.de">info@joinmedia.de</a>
+					<a class="u-url link" href="http://www.joinmedia.de">www.joinmedia.de</a>
+				</div>
+			</section>
+			<div class="legal">
+				<a class="imprint link" href="#Impressum">Impressum</a>
+				<p class="copyright">&copy; Copyright @DateTime.Now.Year</p>
+			</div>
+		</footer>
+	</div>
+</body>
+
+</html>

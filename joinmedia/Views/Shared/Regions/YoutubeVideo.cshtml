@@ -1,0 +1,15 @@
+﻿@model YoutubeVideo
+
+@if (Model != null && !Model.Hide)
+{
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	CODE *@
+	
+	@*//////////////////////////////////////////////////////////////////////////////////////
+	HTML *@
+	
+	<div>
+		<h2>Youtube Video</h2>
+        <div data-jmname="videoplayer|videoplayer-control" data-jmconfig="{ 'videoplayer' : { 'url': '@Model.VideoUrl' }}" data-jmdominit="true"></div>
+	</div>
+}

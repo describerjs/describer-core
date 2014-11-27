@@ -1,0 +1,9 @@
+﻿@model Piranha.Extend.Regions.TextRegion
+
+@if (Model != null)
+{
+	<section class="text-block" data-jmselector="equal-heights-children">
+		<h2>@Model.Title</h2>
+		<p>@Model.Body.Replace(Environment.NewLine, "<br/>")</p>
+	</section>
+}
