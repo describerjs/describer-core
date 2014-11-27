@@ -3,6 +3,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	// Globales Objekt
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
+	window.dcRAF = window.dcRAF || {};
 
 	jmHF.alert = function(p_data){
 		if(window.debug){

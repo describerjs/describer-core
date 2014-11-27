@@ -163,7 +163,7 @@ define(function(){
 			jmname: 'set-related-navi-item-activ-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
-				'event': 'raf-nc',
+				'event': 'raf-10',
 				'datatype' : 'class',
 				'data'     : 'activ',
 				'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
@@ -171,7 +171,7 @@ define(function(){
 				'condition': 'false'
 			},
 				{
-					'event': 'raf-nc',
+					'event': 'raf-10',
 					'datatype' : 'class',
 					'data'     : 'activ',
 					'relatedTo': '$(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\')[0]',
@@ -402,46 +402,46 @@ define(function(){
 			jmname: 'add-remove-show-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
-				'event': 'raf-nc',
+				'event': 'raf-6',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)'
+				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)'
 			},
 			{
-				'event': 'raf-nc',
+				'event': 'raf-6',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
+				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)) && (window.dcRAF.domObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
 			}]
 		},{
 			jmname: 'animation-start-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
-				'event': 'raf-nc',
+				'event': 'raf-6',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)',
+				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)',
 				'callback': 'this.animateTransformTag.beginElement()'
 			},{
-				'event': 'raf-nc',
+				'event': 'raf-6',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
 				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
+				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)) && (window.dcRAF.domObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
 				'callback': 'this.animateTransformTag.endElement()'
 			}]
 		},{
 			jmname: 'frame-ani-by-scrolling',
 			jmplugin: 'modules.scrollControlFrames',
 			jmconfig: {
-				'event': 'dominit|raf-nc',
+				'event': 'dominit|raf',
 				'loop': '20',
 				'execElemOffset':'0',
 				'execWindowScale': '1'
@@ -450,7 +450,7 @@ define(function(){
 			jmname: 'scrollControlTransition',
 			jmplugin: 'modules.scrollControlTransform',
 			jmconfig: {
-				'event': 'dominit|raf-nc',
+				'event': 'dominit|raf',
 				'cssProperty':'translate|scale',
 				'execElemOffsetX':'-200',
 				'execWindowScale': '1'
@@ -549,7 +549,7 @@ define(function(){
 			jmname: 'videoplayer-control',
 			jmplugin: 'modules.videocontrol',
 			jmconfig: {
-				'event': 'dominit|raf-nc'
+				'event': 'dominit|raf'// raf -> raf-one
 			}
 		},
 		{
