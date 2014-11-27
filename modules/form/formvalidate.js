@@ -90,6 +90,9 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 				},
 				errorElement: 'span',
 				submitHandler: function(form) {
+					var canvas = that.$elem.find('.form-upload-canvas');
+					canvas.prepend('<div class="fieupload-layer-js" style="width: 1%; height: 100%; position:absolute; background-color: #fff; opacity: 0.5"></div>');
+					var progresslayer = canvas.find('.fieupload-layer-js');
 					$.doTimeout('submitTimer', 200, function () {
 						if (that.is('submit', 'true')) {
 							if (that.$elem.attr('action').indexOf('_') !== -1) {
@@ -101,8 +104,33 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 						$.ajax({
 							type: 'POST',
 							url: that._getUrl(),
+							/*xhr: function(){
+								var xhr = new window.XMLHttpRequest();
+								var layer = that.$elem.find('.form-upload-canvas').prepend('<div style="width: 1%; height: 100%; position:absolute; background-color: #fff; opacity: 0.5"></div>');
+								xhr.upload.addEventListener("progress", function(evt){
+									if (evt.lengthComputable) {
+										var percentComplete = (evt.loaded / evt.total)*100;
+										layer.css('width', percentComplete+'%');
+										//
+										console.log(evt.loaded);
+										//Do something with upload progress
+									}
+								}, false);
+							},*/
+							progressUpload: function(evt) {
+								if (evt.lengthComputable) {
+									var percent = parseInt( (evt.loaded / evt.total * 100), 10);
+									progresslayer.css('width', parseInt( (evt.loaded / evt.total * 100), 10) + '%');
+									//console.log("Loaded " + parseInt( (evt.loaded / evt.total * 100), 10) + "%");
+									//console.log(progresslayer);
+								}
+								else {
+									//console.log("Length not computable.");
+								}
+							},
 							beforeSend: function (xhr) {
 								//that.addSpinner(target);
+
 							},
 							data: that.$elem.serialize()
 						}).done(function (p_data) {
