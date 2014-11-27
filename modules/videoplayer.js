@@ -50,7 +50,7 @@ define(['jquery', '_super', 'video_4_10_2', 'css!require-css.video'], function($
 				'<source src="'+this.is('url')+'.webm" type="video/webm" />'+
 				'<source src="'+this.is('url')+'.ogv" type="video/ogg" />'+
 				'</video>');*/
-			this.$elem.prepend('<video class="video-js vjs-default-skin" width="'+ (this.is('width') * scalefactor)+'px" height="'+(this.is('height') * scalefactor) +'px" '+ this.is('loop') + ' ' + this.is('controls')+' ' + this.is('autoplay') +' preload="'+this.is('preload')+'" poster="'+this.is('url')+'.jpg'+randomVal+'">'+
+			this.$elem.prepend('<video class="video-js vjs-default-skin" width="'+ (this.is('width') * scalefactor)+'" height="'+(this.is('height') * scalefactor) +'" '+ this.is('loop') + ' ' + this.is('controls')+' ' + this.is('autoplay') +' preload="'+this.is('preload')+'" poster="'+this.is('url')+'.jpg'+randomVal+'">'+
 				'<source src="'+this.is('url')+'.mp4" type="video/mp4" />'+
 				'<source src="'+this.is('url')+'.webm" type="video/webm" />'+
 				'<source src="'+this.is('url')+'.ogv" type="video/ogg" />'+
@@ -68,7 +68,7 @@ define(['jquery', '_super', 'video_4_10_2', 'css!require-css.video'], function($
 			}
 			require(['videojs-youtube'], function () {
 				// If your video tag is empty (no space or new line before the closing tag), it will create a glitch with Safari. Instead of writing <video ...></video>, you should write <video ...> </video>.
-				that.$elem.prepend('<video src="" id="'+ that.ID +'" class="video-js vjs-default-skin" width="'+ (that.is('width') * scalefactor)+'px" height="'+(that.is('height') * scalefactor) +'px" '+ that.is('loop') + ' ' + that.is('controls')+' ' + that.is('autoplay') +' preload="'+that.is('preload')+'"></video>');
+				that.$elem.prepend('<video src="" id="'+ that.ID +'" class="video-js vjs-default-skin" width="'+ (that.is('width') * scalefactor)+'" height="'+(that.is('height') * scalefactor) +'" '+ that.is('loop') + ' ' + that.is('controls')+' ' + that.is('autoplay') +' preload="'+that.is('preload')+'"></video>');
 				//that.$elem.prepend('<video src="" id="'+ that.ID +'" class="video-js vjs-default-skin" style="width: 100%; height:100%; position:absolute" controls preload="none"></video>');
 				window.videojs(that.ID, { 'techOrder': ['youtube'], 'src': that.is('url') }).ready(function() {
 					if(that.is('controls') !== 'controls'){
