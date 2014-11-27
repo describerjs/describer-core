@@ -132,6 +132,15 @@ define(function(){
 				'relatedTo': '#nav'
 			}
 		},{
+			jmname   : 'nav-demo',
+			jmplugin: 'actions.toggle',
+			jmconfig : {
+				'event'    : 'click',
+				'datatype' : 'class',
+				'data'     : 'show-menu',
+				'relatedTo': '#nav-demo'
+			}
+		},{
 			jmname   : 'nav-link',
 			jmplugin: 'actions.remove_1|actions.remove_2|actions.add|actions.link',
 			jmconfig : [
@@ -212,7 +221,6 @@ define(function(){
 				'datatype': 'html',
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 60em)\')'
 			}
-
 		},{
 			jmname   : 'modal',
 			jmplugin: 'modules.modal',

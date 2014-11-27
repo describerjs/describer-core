@@ -132,6 +132,15 @@ define(function(){
 				'relatedTo': '#nav'
 			}
 		},{
+			jmname   : 'nav-demo',
+			jmplugin: 'actions.toggle',
+			jmconfig : {
+				'event'    : 'click',
+				'datatype' : 'class',
+				'data'     : 'show-menu',
+				'relatedTo': '#nav-demo'
+			}
+		},{
 			jmname   : 'nav-link',
 			jmplugin: 'actions.remove_1|actions.remove_2|actions.add|actions.link',
 			jmconfig : [
@@ -194,6 +203,15 @@ define(function(){
 			}
 
 		},{
+			jmname   : 'show-html-comment',
+			jmplugin: 'actions.add',
+			jmconfig : {
+				'event'   : 'dominit',
+				'datatype': 'html'
+			}
+
+		},
+		{
 			jmname   : 'modal',
 			jmplugin: 'modules.modal',
 			jmconfig : {
