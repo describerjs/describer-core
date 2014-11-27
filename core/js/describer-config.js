@@ -537,7 +537,10 @@ define(function(){
 				'url':'/videos/ISS',
 				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
 				'width': '1280',
-				'height': '720'
+				'height': '720',
+				'autoplay': 'autoplay',
+				'preload':'auto',
+				'loop': 'loop'
 				/*'width': '853',
 				'height': '480'*/
 			}

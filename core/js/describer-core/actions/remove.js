@@ -37,8 +37,7 @@ define(['jquery', '_super'], function ($, _super){
 			this.$destination = this.getRelatedToElem();
 			switch(this.is('datatype')){
 				case 'class':
-					this._removeClass();
-					//window.requestAnimationFrame(this._removeClass.bind(this));
+					window.requestAnimationFrame(this._removeClass.bind(this));
 					break;
 				case 'html':
 					window.requestAnimationFrame(this._removeHtml.bind(this));

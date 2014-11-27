@@ -38,8 +38,7 @@ define(['jquery', '_super'], function ($, _super){
 			this.data = (this.is('data') !== '') ? this.is('data') : this._getOutcommendHtml();
 			switch(this.is('datatype')){
 				case 'class':
-					this._addClass();
-					//window.requestAnimationFrame(this._addClass.bind(this));
+					window.requestAnimationFrame(this._addClass.bind(this));
 					break;
 				case 'style':
 					window.requestAnimationFrame(this._addStyle.bind(this));
