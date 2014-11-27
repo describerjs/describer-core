@@ -1,0 +1,216 @@
+/*------------------------------------*\
+    $MAIN_CONTENT_AREA
+\*------------------------------------*/
+
+/**
+ * MAIN................................HTML <main> Section
+ * SECTIONS............................Content-Container/Column-Wrapper
+ * .....section........................Regular
+ * .....section-onepage................OnePager
+ * STAGE...............................Intro-Element
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+
+.page-main {
+	@extend %page-element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SECTIONS
+\*------------------------------------*/
+
+.section {
+	@include clearfix;
+	clear: both;
+	overflow: hidden;
+	position: relative;
+}
+
+.section-onepage {
+	@extend .section;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SECTION-COLORS
+\*------------------------------------*/
+
+.joinmedia,
+.impressum {
+	background-color: $theme-section-joinmedia-bg;
+	color: $theme-section-joinmedia-fg;
+
+	.block{
+		.block-content {
+			.headline-underlined {
+				border-color: $theme-section-joinmedia-fg;
+			}
+		}
+	}
+}
+
+.services {
+	background-color: $theme-section-services-bg;
+
+	.block {
+		&:nth-of-type(1) {
+			background-color: $theme-section-services-1-bg;
+		}
+
+		&:nth-of-type(2) {
+			background-color: $theme-section-services-2-bg;
+		}
+
+		&:nth-of-type(3) {
+			background-color: $theme-section-services-3-bg;
+		}
+
+		&:nth-of-type(4) {
+			background-color: $theme-section-services-4-bg;
+		}
+
+		&:nth-of-type(5) {
+			background-color: $theme-section-services-5-bg;
+		}
+
+		&:nth-of-type(6) {
+			background-color: $theme-section-services-6-bg;
+		}
+	}
+}
+
+.customers {
+	background-color: $theme-section-customers-bg;
+	color: $theme-section-customers-fg;
+
+	.block{
+		.block-content {
+			& > h1, h2, h3, h4, h5, h6 {
+				border-color: $theme-section-customers-fg;
+			}
+		}
+	}
+}
+
+.agency {
+	background-color: $theme-section-agency-bg;
+
+	.block {
+		&:nth-of-type(1) {
+			background-color: $theme-section-agency-1-bg;
+		}
+
+		&:nth-of-type(2) {
+			background-color: $theme-section-agency-2-bg;
+		}
+	}
+}
+
+.jobs {
+	background-color: $theme-section-jobs-bg;
+}
+
+.contact {
+	background-color: $theme-section-contact-bg;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $STAGE
+\*------------------------------------*/
+
+.stage {
+	@extend .section;
+	@include element-default;
+	background-color: $theme-stageteaser-bg;
+	margin-bottom: 0;
+	overflow: visible;
+
+	@include bp-m {
+		height: 1000px;
+	}
+
+	.stage-content-inner {
+		@include clearfix;
+		@include constrained;
+	}
+
+	.stage-content-top {
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 250px;
+	}
+
+	.stage-content-mid {
+		margin-top: $space;
+
+		@include bp-m {
+			bottom: $space-triple + $space-half;
+			left: 0;
+			margin-top: 0;
+			position: absolute;
+			right: 0;
+			top: auto;
+		}
+	}
+
+	.stage-content-bottom {
+		background-color: $theme-stageteaser-bg;
+		height: $space-triple;
+
+		@include bp-m {
+			// bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: auto;
+			z-index: 1;
+		}
+
+
+		.stage-content-inner {
+			height: 100%;
+		}
+	}
+
+	& > .parallax {
+		height: 1000px;
+
+		.parallax-inner {
+			height: 100%;
+		}
+
+		.parallax-img {
+			background-size: cover; 
+			width: 100%; 
+			height: 100%; 
+			display: block;
+		}
+	}	
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

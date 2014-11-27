@@ -1,0 +1,64 @@
+/*------------------------------------*\
+    $HEADER_SECTION
+\*------------------------------------*/
+
+/**
+ * .page-header........................HTML <header> Section
+ * .logo...............................Site-Logo
+**/
+
+
+
+
+
+/*------------------------------------*\
+    <header>
+\*------------------------------------*/
+
+.page-header {
+	@extend %page-element-default;
+	background: $theme-nav-bg;
+	margin: 0;
+	top: 0;
+	width: 100%;
+	position: fixed;
+	z-index: 999;
+}
+
+
+
+
+
+/*------------------------------------*\
+    LOGO
+\*------------------------------------*/
+
+.logo {
+	@include column(7);
+	//@extend %element-inner-default;
+	padding: $space-half $pad;
+	display: block;
+	position: relative;
+	z-index: 1;
+
+	@include bp-xs {
+		@include column(7);
+	}
+
+	@include bp-s {
+		@include column(5);
+	}
+
+	@include bp-m {
+		@include column(4);
+
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

@@ -1,0 +1,67 @@
+/*------------------------------------*\
+    $TOGGLEBOX
+\*------------------------------------*/
+
+/**
+ * Ein-/Auf-/Zuklapp Element
+ *
+	<div class="togglebox">
+		<a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+		<div class="tb-content">
+			$togglecontent$
+		</div>
+	</div>
+ *
+ * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
+ * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
+ *
+ * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
+ * Beschreibt den Titel der Togglebox bzw. den Link.
+ * data-jmname="togglebox" weist das javascript an, das <div class="togglebox"> um die Klasse "show" zu erweitern
+ * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
+ *
+ * <div class="tb-content">
+ * Alles was zum Content der Togglebox gehört wird hier eingefügt.
+ *
+**/
+
+
+
+
+
+.togglebox {
+	@extend %element-default;
+
+	// Der verantwortliche Link zum öffnen des Toggles "tb-content".
+	.tb-subject {
+		@extend %toggle-subject;
+		background-color: $theme-togglebox-bg;
+		color: $theme-togglebox-fg;
+		font-family: $font-btn;
+	}
+
+	// Der eigentliche Content.
+	.tb-content {
+		@extend %toggle-content;
+		background-color: $theme-togglebox-content-bg;
+	}
+
+	// "togglebox" wird mit "show" erweitert und interagiert entsprechend.
+	&.show {
+		&> .tb-content {
+			@extend %toggle-content-visible;
+		}
+
+		&> .tb-subject {
+			@extend %toggle-subject-visible;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

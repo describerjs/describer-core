@@ -1,0 +1,174 @@
+/*------------------------------------*\
+	$ANIMATION
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....Mixin animation
+ * .....Mixin keyframes
+ * PARALLAX............................Container Properties for Parallax Elements
+ * .....parallax-img...................Parallax-Image
+ * .....parallax-inner.................Parallax-Image Container Element
+ * FADE................................Fade Properties
+ * .....fade-in........................Element Fade-In
+ * SLIDE...............................Slide Properties
+ * .....slide-in.......................Element Slide-In/Out
+ * SCROLL-ANIM.........................Scroll-Animation
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+
+@mixin animation($animate...) {
+	$max:			length($animate);
+	$animations:	'';
+
+	@for $i from 1 through $max {
+		$animations: #{$animations + nth($animate, $i)};
+
+		@if $i < $max {
+			$animations: #{$animations + ", "};
+		}
+	}
+	
+	-moz-animation:    $animations;
+	-o-animation:      $animations;
+	-webkit-animation: $animations;
+	animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+
+	@keyframes #{$animationName} {
+		@content;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$PARALLAX
+\*------------------------------------*/
+
+.parallax {
+	overflow: hidden;
+	position: relative;
+
+	// Parallax-Image
+	.parallax-img {
+		/**/
+	}
+
+	// Prallax-Inner-Container
+	.parallax-inner {
+		&.has-content {
+			@include constrained;
+			@include element-stretch;
+		}
+	}
+}
+
+
+/*------------------------------------*\
+	$FADE
+\*------------------------------------*/
+
+.fade-in {
+	@include transition(all .6s linear);
+	opacity: 0;
+	// opacity: 1;
+
+	&.show {
+		opacity: 1;
+	}
+}
+
+.fade-in-up {
+	@include transition(all .6s linear);
+	-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+	opacity: 0;
+	// opacity: 1;
+
+	&.show {
+		-webkit-animation-name: fadeInUp;
+				animation-name: fadeInUp;
+		opacity: 1;
+	}
+}
+
+@include keyframes(fadeInUp) {
+	0% {
+    -webkit-transform: translate3d(0, 5%, 0);
+            transform: translate3d(0, 5%, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+/*------------------------------------*\
+	$SLIDE
+\*------------------------------------*/
+
+.slide-in-left {
+	@include transition(all .9s linear);
+	left: -200%;
+	// left: 0;
+	position: relative;
+
+	&.show {
+		left: 0;
+	}
+}
+
+.slide-in-right {
+	@include transition(all .9s linear);
+	right: -200%;
+	// right: 0;
+	position: relative;
+
+	&.show {
+		right: 0;
+	}
+}
+
+
+
+/*------------------------------------*\
+	$SCROLL-ANIM
+\*------------------------------------*/
+
+.scroll-anim {
+	position: absolute;
+	z-index: 999;
+}
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

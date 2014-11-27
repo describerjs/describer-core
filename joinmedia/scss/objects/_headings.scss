@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+
+.headline {
+	@extend %element-default;
+	margin-bottom: 0;
+
+	h1, h2, h3, h4, h5, h6 {
+		// @extend %element-inner-default;
+		padding: 0.75rem 1rem;
+		margin-bottom: 0;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		position: relative;
+		
+		@include rgba($theme-body-fg, .8);
+		color: $theme-body-bg;
+		display: inline-block;
+		font-weight: bold;
+	}
+}
+
+.headline-underlined {
+	border-bottom: 2px solid $theme-headings-fg;
+	padding-bottom: $space-quarter;
+}

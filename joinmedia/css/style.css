@@ -13,9 +13,6 @@
  * DEBUG...............................Debug Information
 **/
 /*------------------------------------*\
-    $THEME-JOINMEDIA
-\*------------------------------------*/
-/*------------------------------------*\
     $GENERIC ELEMENTS
 \*------------------------------------*/
 /*------------------------------------*\
@@ -821,6 +818,10 @@ body {
   overflow: hidden;
   width: 100%;
 }
+.page.constrained {
+  margin: 0 auto;
+  max-width: 73em;
+}
 
 .page-constrained {
   *zoom: 1;
@@ -1518,6 +1519,7 @@ p:last-child {
   position: relative;
   background-color: #328890;
   margin-bottom: 0;
+  overflow: visible;
 }
 .stage:after, .stage:before {
   content: "\0020";
@@ -1528,7 +1530,7 @@ p:last-child {
 }
 @media only screen and (min-width: 48em) {
   .stage {
-    height: 100vh;
+    height: 1000px;
   }
 }
 .stage .stage-content-inner {
@@ -1558,7 +1560,7 @@ p:last-child {
   left: 0;
   position: absolute;
   right: 0;
-  top: 25vh;
+  top: 250px;
 }
 .stage .stage-content-mid {
   margin-top: 1.5rem;
@@ -1579,18 +1581,18 @@ p:last-child {
 }
 @media only screen and (min-width: 48em) {
   .stage .stage-content-bottom {
-    bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
     top: auto;
+    z-index: 1;
   }
 }
 .stage .stage-content-bottom .stage-content-inner {
   height: 100%;
 }
 .stage > .parallax, .section-header .stage > .sh-parallax {
-  height: 100vh;
+  height: 1000px;
 }
 .stage > .parallax .parallax-inner, .section-header .stage > .sh-parallax .parallax-inner {
   height: 100%;
@@ -1843,9 +1845,6 @@ p:last-child {
 /*------------------------------------*\
     $FB_PLUGIN
 \*------------------------------------*/
-.fb-plugin {
-  display: none;
-}
 @media only screen and (min-width: 60em) {
   .fb-plugin {
     padding: 0.75rem 1rem;
@@ -1969,8 +1968,8 @@ p:last-child {
   -o-transition: background-color 0.3s ease;
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
-  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll 1.5rem center;
-  color: #666;
+  background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNJREFUeNpi/P//PwMagAkwIgsy4VCEzkZRiGwSI7piJjzWoShmwuUmdMVMeBShKAYIMACM9wwJjXMH3AAAAABJRU5ErkJggg==") no-repeat scroll 1.5rem center;
+  color: #ffffff;
   display: inline-block;
   margin: 0.75rem -0.75rem;
   padding: 0.75rem 1.5rem 0.75rem 3rem;
@@ -1986,8 +1985,8 @@ p:last-child {
   -o-transition: background-color 0.3s ease;
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
-  background: transparent url("/images/jm/arrow-down.png") no-repeat scroll 50% 50%;
-  color: #666;
+  background: transparent url("/img/arrow-down.png") no-repeat scroll 50% 50%;
+  color: #ffffff;
   display: block;
   margin: 0 auto;
   position: relative;
@@ -3798,7 +3797,7 @@ p:last-child {
 /*------------------------------------*\
     $DEBUG
 \*------------------------------------*/
-/*@import "theme-joinmedia/generic/debug";*/
+/*@import "generic/debug";*/
 /*------------------------------------*\
-	    
+    
 \*------------------------------------*/
