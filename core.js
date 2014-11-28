@@ -48,6 +48,26 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
+	// extend the ajax-function with the progressUpload and progress funktions
+	jmHF.addXhrProgressEvent = function() {
+		var originalXhr = $.ajaxSettings.xhr;
+		$.ajaxSetup({
+			progress: function() { /*console.log("standard progress callback");*/ },
+			progressUpload: function() { /*console.log("standard upload progress callback");*/ },
+			xhr: function() {
+				var req = originalXhr(), that = this;
+				if (req.upload) {
+					if (typeof req.upload.addEventListener == "function") {
+						req.upload.addEventListener("progress", function(evt) {
+							that.progressUpload(evt);
+						},false);
+					}
+				}
+				return req;
+			}
+		});
+	};
+
 	jmHF.checkJmNameElementenOnNecessaryDominitAttribut = function(){
 		var _dataJmnameElemente = $('[data-jmname]');
 		for(var i = 0, leni = _dataJmnameElemente.length; i < leni; i++){
@@ -660,5 +680,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			});
 		});
 	};
+
 
 });
