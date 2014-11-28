@@ -108,6 +108,9 @@
     this.vx = 0;
     this.vy = 0;
 
+	this.tempXArray = [];
+	this.tempYArray = []    ;
+
     // Callbacks
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onDeviceOrientation = this.onDeviceOrientation.bind(this);
@@ -414,6 +417,11 @@
       var layer = this.$layers[i];
       var xOffset = this.vx * depth * (this.invertX ? -1 : 1);
       var yOffset = this.vy * depth * (this.invertY ? -1 : 1);
+	  if((this.tempXArray[i] !== xOffset) || this.tempYArray[i] !== yOffset){
+		this.setPosition(layer, xOffset, yOffset);
+	  }
+	  this.tempXArray[i] = xOffset;
+	  this.tempYArray[i] = yOffset;
       this.setPosition(layer, xOffset, yOffset);
     }
     this.raf = requestAnimationFrame(this.onAnimationFrame);
@@ -490,7 +498,7 @@
   };
 
   Plugin.prototype.onRAF = function() {
-	var calc;
+    var calc;
     var eot = $(this.element).offset().top;
     var wih = window.dcRAF.domObj.innerHeight;
     var wpo = window.dcRAF.domObj.pageYOffset;
