@@ -48,6 +48,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
+	jmHF.contains = function(a, obj){
+		var i = a.length;
+		while (i--) {
+			if (a[i] === obj) {
+				return true;
+			}
+		}
+		return false;
+	};
+
 	// extend the ajax-function with the progressUpload and progress funktions
 	jmHF.addXhrProgressEvent = function() {
 		var originalXhr = $.ajaxSettings.xhr;
