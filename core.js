@@ -302,7 +302,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
-		var _jmpluginString = jmHF.getJmPluginByJmName(_config, jmname);
+		var _configObj = jmHF.getConfigObj(jmname);
+		var _jmpluginString = _configObj.jmplugin;
 		if($.type(_jmpluginString) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
 			return;
@@ -310,11 +311,18 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
-				require([_requirePlugin], function(){});
+				jmHF.requirePluginAndDependencies(_requirePlugin, _configObj, index);
 			});
 		}else{
 			_requirePlugin = jmHF.returnRequireLoadPlugin(_jmpluginString);
-			require([_requirePlugin], function(){});
+			jmHF.requirePluginAndDependencies(_requirePlugin, _configObj);
+		}
+	};
+
+	jmHF.requirePluginAndDependencies = function(fileref, _configObj, index){
+		require([fileref], function(){});
+		if(fileref === 'actions.apply'){
+			($.type(index) !== 'undefined') ? require([_configObj.jmconfig[index].require], function(){}) : require([_configObj.jmconfig.require], function(){});
 		}
 	};
 
@@ -336,7 +344,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.getJmPluginByJmName = function(p_config, p_name){
+	/*jmHF.getJmPluginByJmName = function(p_config, p_name){
 		var i = 0;
 		var _length = p_config.length;
 		for(; i < _length; i++){
@@ -344,7 +352,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				return p_config[i].jmplugin;
 			}
 		}
-	};
+	};*/
 
 	// gibt die Höhe des Browserfenster wieder
 	jmHF.getClientHeight = function () {
