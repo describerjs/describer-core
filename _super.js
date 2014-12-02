@@ -17,7 +17,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.myPos = this.pos;
 			this.myJmName = this.jmname;
 			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
-			this.localScope();
+			this.initExec();
 			this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
@@ -151,10 +151,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			return _return || '';
 		},
 
-		localScope: function(){
+		initExec: function(){
 			this.configObj = this._getConfigObjArray();
-			if($.type(this.configObj['localScope']) !== 'undefined'){
-				new Function('"use strict";'+ this.configObj['localScope']).call(this);
+			if($.type(this.configObj['init']) !== 'undefined'){
+				new Function('"use strict";'+ this.configObj['init']).call(this);
 			}
 		},
 
@@ -308,7 +308,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_raf: function(){
-			if(!window.dcRAF.execObj){
+			if(!window.dc.execRafObj){
 				this._rafCreateObjects();
 			}
 			// raf-100ms-one
@@ -321,11 +321,12 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			//this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
 			//console.log(this.$elem);
 			//window.jmGO.rafRenderObj['func_' + window.jmGO.rafRenderObj.countProperties()] = this._render.bind(this);
-			window.dcRAF.execObj['func_' + window.dcRAF.execObj.countProperties()] = this._render.bind(this);
+			window.dc.execRafObj['func_' + window.dc.execRafObj.countProperties()] = this._render.bind(this);
 		},
 
 		_rafCreateObjects: function(){
-			window.dcRAF.execObj = {
+			var that = this;
+			window.dc.execRafObj = {
 				countProperties: function(){
 					var count = 0;
 					for(var property in this){
@@ -336,35 +337,61 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					return count;
 				}
 			};
-			window.dcRAF.domObj = {
+			window.dc.win = {
 				pageYOffset: null,
 				innerHeight: null,
-				counter: 0
+				innerWidth: null,
+				counter: 0,
+				avgRAF: null
 			};
-			this._rafGlobalRender()
+
+			this._rafGlobalRender();
+			this.thempCountedFrames = 0;
+			this.$acount = $('#counter');
+			setInterval(function(){
+				if(window.dc.win.counter < that.thempCountedFrames){
+					that.thempCountedFrames = that.thempCountedFrames + 100001;
+				}
+				window.dc.win.avgRAF = (window.dc.win.counter - that.thempCountedFrames)/2;
+				that.$acount.text(window.dc.win.avgRAF);
+				that.thempCountedFrames = window.dc.win.counter;
+			}, 2000);
 		},
 
 		_rafGlobalRender: function(){
 			// !!!!!  every rAF  !!!!!
-			window.dcRAF.domObj.pageYOffset     = window.pageYOffset;
-			window.dcRAF.domObj.innerHeight     = window.innerHeight;
-			window.dcRAF.domObj.innerWidth      = window.innerWidth;
-			window.dcRAF.domObj.counter         = window.dcRAF.domObj.counter+1;
 
-			if(window.dcRAF.domObj.counter === 10001){
-				window.dcRAF.domObj.counter = 1;
+
+			/*this.dcRAF.interval = 1000/60;
+			this.dcRAF.now = new Date().getTime();
+			this.dcRAF.delta = this.dcRAF.now - this.dcRAF.then;
+
+			this.dcRAF.then = now - (this.dcRAF.delta % this.dcRAF.interval);
+
+			// calculate the frames per second
+			this.dcRAF.frames = 1000/(time-this.dcRAF.oldtime);
+			this.dcRAF.oldtime = time;*/
+
+
+			window.dc.win.pageYOffset     = window.pageYOffset;
+			window.dc.win.innerHeight     = window.innerHeight;
+			window.dc.win.innerWidth      = window.innerWidth;
+			window.dc.win.counter         = window.dc.win.counter+1;
+
+			if(window.dc.win.counter === 100001){
+				window.dc.win.counter = 1;
 			}
 
-			for(var property in window.dcRAF.execObj){
-				if(window.dcRAF.execObj.hasOwnProperty(property) && ('countProperties' !== property)){
-					window.dcRAF.execObj[property]();
+			for(var property in window.dc.execRafObj){
+				if(window.dc.execRafObj.hasOwnProperty(property) && ('countProperties' !== property)){
+					window.dc.execRafObj[property]();
 				}
 			}
-			window.dcRAF.raf = window.requestAnimationFrame(this._rafGlobalRender.bind(this));
+			window.dc.raf = window.requestAnimationFrame(this._rafGlobalRender.bind(this));
 		},
 
 		_render: function(){
-			if((window.dcRAF.domObj.counter % this.renderDelay) !== 0){
+			if((window.dc.win.counter % this.renderDelay) !== 0){
 				return;
 			}
 			if(eval(this.conditionSource)){
