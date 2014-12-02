@@ -109,6 +109,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 					case 'blur':
 					case 'focus':
 					case 'hover':
+					case 'init-by-perf':
 					case ((_eventsArray[m].match(/raf(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/interval(.*)/))? _eventsArray[m] : undefined):
@@ -243,6 +244,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 					case 'blur':
 					case 'focus':
 					case 'hover':
+					case 'init-by-perf':
 					case ((eventArray[i].match(/raf(.*)/))? eventArray[i] : undefined):
 					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
 					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
