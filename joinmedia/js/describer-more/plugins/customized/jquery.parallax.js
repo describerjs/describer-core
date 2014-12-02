@@ -209,7 +209,7 @@
   Plugin.prototype.updateLayers = function() {
 
     // Cache Layer Elements
-    this.$layers = this.$context.find('.layer');
+    this.$layers = this.$context.find('[data-depth]');
     this.depths = [];
 
     // Configure Layer Styles
