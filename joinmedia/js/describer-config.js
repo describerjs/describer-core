@@ -184,6 +184,15 @@ define(function(){
 				'onlyTopOfElem': 'true'
 			}
 		},{
+			jmname: 'add-remove-show-on-view-not-mobile',
+			jmplugin: 'modules.onView',
+			jmconfig: {
+				'event': 'raf-6',
+				'relatedTo': 'this.$elem[0]',
+				'onlyTopOfElem': 'true',
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			}
+		},{
 			jmname   : 'menu-close',
 			jmplugin: 'actions.remove',
 			jmconfig : {
