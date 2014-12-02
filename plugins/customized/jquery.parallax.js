@@ -445,7 +445,7 @@
 		  y = -1 - (y +1)
 	  }
       // Detect Orientation Change
-      var portrait = window.innerHeight > window.innerWidth;
+      var portrait = window.dc.win.innerHeight > window.dc.win.innerWidth;
       if (this.portrait !== portrait) {
         this.portrait = portrait;
         this.calibrationFlag = true;
@@ -500,12 +500,12 @@
   Plugin.prototype.onRAF = function() {
     var calc;
     var eot = $(this.element).offset().top;
-    var wih = window.dcRAF.domObj.innerHeight;
-    var wpo = window.dcRAF.domObj.pageYOffset;
+    var wih = window.dc.win.innerHeight;
+    var wpo = window.dc.win.pageYOffset;
     var first = wpo + wih  > eot;
     var secont = wpo < eot + this.eh;
     var range = wih + this.eh;
-	var portrait = wih > window.dcRAF.innerWidth;
+	var portrait = wih > window.dc.win.innerWidth;
     if(first && ! secont){
 	    calc = 0;
     }else if(!first && secont){

@@ -38,8 +38,8 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_exec: function(e){
-			var _viewportTop = window.dcRAF.domObj.pageYOffset;
-			var _viewportBottom = _viewportTop + window.dcRAF.domObj.innerHeight;
+			var _viewportTop = window.dc.win.pageYOffset;
+			var _viewportBottom = _viewportTop + window.dc.win.innerHeight;
 			if(jmHF.hasClass(this.$destination[0], 'show')){
 				if((!(_viewportBottom > this.eot + this.offset)) && (_viewportTop < (this.eot + ((this.dynamic) ? this.$elem[0].getBoundingClientRect().height : this.elemHeight)))){
 					this.$destination.removeClass('show');
