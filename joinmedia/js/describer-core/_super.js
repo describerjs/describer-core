@@ -49,12 +49,15 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			//
 			if(this.partOf('event', 'raf')) this._raf();
 			if(this.partOf('event', 'interval')) this._interval(e);
+			if(this.includes('event', 'init-by-perf')) this._initByPerf(e);
 
 			// init Event-Listener auf this.$elem
-			if(this.includes('event', 'blur')) this.$elem.on('blur', this._blur.bind(this));
-			if(this.includes('event', 'focus')) this.$elem.on('focus', this._focus.bind(this));
-			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._hover.bind(this));
 			if(this.partOf('event', 'keyup')) this.$elem.on('keyup', this._keyup.bind(this));
+
+			if(this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
+
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -349,12 +352,25 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.thempCountedFrames = 0;
 			this.$acount = $('#counter');
 			setInterval(function(){
+				var _obj;
 				if(window.dc.win.counter < that.thempCountedFrames){
 					that.thempCountedFrames = that.thempCountedFrames + 100001;
 				}
 				window.dc.win.avgRAF = (window.dc.win.counter - that.thempCountedFrames)/2;
 				that.$acount.text(window.dc.win.avgRAF);
 				that.thempCountedFrames = window.dc.win.counter;
+				if(!window.dc.onHoldArrayExecuted && window.dc.win.avgRAF > 30){
+					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
+						_obj = window.dc.onHoldArray[i].obj;
+						if(!_obj.exec){
+							_obj.exec = true;
+							_obj._execWaitAfterCondition();
+							return;
+						}else if((leni -1) === i){
+							window.dc.onHoldArrayExecuted = true;
+						}
+					}
+				}
 			}, 2000);
 		},
 
@@ -388,6 +404,22 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				}
 			}
 			window.dc.raf = window.requestAnimationFrame(this._rafGlobalRender.bind(this));
+		},
+
+		_initByPerf: function(e){
+			var _obj;
+			if(Modernizr.mq('only screen and (min-width : 60em)')){
+				this._execWaitAfterCondition();
+				return;
+			}
+			window.dc.onHoldArray = window.dc.onHoldArray || [];
+			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
+			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
+			_obj = window.dc.onHoldArray[0].obj;
+			if(!_obj.exec){
+				_obj.exec = true;
+				_obj._execWaitAfterCondition();
+			}
 		},
 
 		_render: function(){
@@ -431,19 +463,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
 		},
 
-		_hover: function(e){
-			if(this.isCondition()){
-				this._execWait(e);
-			}
-		},
-
-		_blur: function(e){
-			if(this.isCondition()){
-				this._execWait(e);
-			}
-		},
-
-		_focus: function(e){
+		_execWaitAfterCondition: function(e){
 			if(this.isCondition()){
 				this._execWait(e);
 			}
