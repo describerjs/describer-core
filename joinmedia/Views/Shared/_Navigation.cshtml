@@ -1,6 +1,6 @@
 ﻿@model  List<Piranha.Models.Sitemap>
 
-<nav class="nav" id="nav" role="navigation">
+@*<nav class="nav" id="nav" role="navigation">
     <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
 	<ul class="nav-items">
 		@foreach (var map in Model.Where(m => !m.IsHidden))
@@ -31,4 +31,28 @@
 			</li>
 		}
 	</ul>
+</nav>*@
+
+<nav class="nav" id="nav" role="navigation">
+    <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+    <ul class="nav-items">
+        <li class="nav-item menu-item">
+            <a href="#joinmedia" class="nav-link" data-jmname="anchor">join.media</a>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="#services" class="nav-link" data-jmname="anchor">Leistungen</a>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="#customers" class="nav-link" data-jmname="anchor">Kunden</a>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="#agency" class="nav-link" data-jmname="anchor">Agentur</a>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="#jobs" class="nav-link" data-jmname="anchor">Jobs</a>
+        </li>
+        <li class="nav-item menu-item">
+            <a href="#contact" class="nav-link" data-jmname="anchor">Kontakt</a>
+        </li>
+    </ul>
 </nav>
