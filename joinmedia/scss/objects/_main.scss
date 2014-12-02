@@ -153,10 +153,11 @@
 	}
 
 	.stage-content-top {
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 250px;
+		@include absolute($space-triple, 0, '', 0);
+
+		@include bp-m {
+			top: 250px;
+		}
 	}
 
 	.stage-content-mid {

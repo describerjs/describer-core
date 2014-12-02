@@ -675,6 +675,7 @@
     <Content Include="scss\objects\_social-media.scss" />
     <Content Include="scss\style.scss" />
     <Content Include="mixture.json" />
+    <Content Include="Views\Page\Impressum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

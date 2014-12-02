@@ -96,9 +96,9 @@
 
 	// Umfasst den textlichen Inhalt
 	.t-content {
-		// margin-bottom: $space;
 		border-top: 1px solid $theme-teaser-fg;
-		padding-top: $space-three-quarter;
+		margin-top: $space-half;
+		padding-top: $space-half;
 	}
 }
 

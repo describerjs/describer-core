@@ -156,6 +156,22 @@ $rem-with-px-fallback               : true;                                     
 %as-heading__small 				{ @include as-heading__small; } 	
 %as-heading__smallest			{ @include as-heading__smallest; } 	
 
+@mixin as-heading-mobile__headline           { @include baseline-grid('typo'); @include adjust-font-size-to($gamma); }
+@mixin as-heading-mobile__largest            { @include baseline-grid('typo'); @include adjust-font-size-to($delta); }
+@mixin as-heading-mobile__large              { @include baseline-grid('typo'); @include adjust-font-size-to($epsilon); }
+@mixin as-heading-mobile__medium             { @include baseline-grid('typo'); @include adjust-font-size-to($zeta); }
+@mixin as-heading-mobile__normal             { @include baseline-grid('typo'); @include adjust-font-size-to($eta); }
+@mixin as-heading-mobile__small              { @include baseline-grid('typo'); @include adjust-font-size-to($theta); }
+@mixin as-heading-mobile__smallest           { @include baseline-grid('typo'); @include adjust-font-size-to($iota); }
+
+%as-heading-mobile__headline           { @include as-heading-mobile__headline; } 
+%as-heading-mobile__largest            { @include as-heading-mobile__largest; }
+%as-heading-mobile__large              { @include as-heading-mobile__large; }     
+%as-heading-mobile__medium             { @include as-heading-mobile__medium; }    
+%as-heading-mobile__normal             { @include as-heading-mobile__normal; }    
+%as-heading-mobile__small              { @include as-heading-mobile__small; }     
+%as-heading-mobile__smallest           { @include as-heading-mobile__smallest; }  
+
 %as-blockquote                  { @include as-blockquote; }
 %as-list                        { @include as-para; }
 %as-para                        { @include as-para; }
@@ -172,6 +188,14 @@ $rem-with-px-fallback               : true;                                     
 @mixin as-heading__normal--typeset            { margin-bottom: rhythm(.5, $epsilon); }
 @mixin as-heading__small--typeset             { margin-bottom: rhythm(.25, $zeta); }
 @mixin as-heading__smallest--typeset          { margin-bottom: rhythm(0, $eta); }
+
+@mixin as-heading-mobile__headline--typeset          { margin-bottom: rhythm(1.5, $alpha); }
+@mixin as-heading-mobile__largest--typeset           { margin-bottom: rhythm(1.25, $beta); }
+@mixin as-heading-mobile__large--typeset             { margin-bottom: rhythm(1, $gamma); }
+@mixin as-heading-mobile__medium--typeset            { margin-bottom: rhythm(.75, $delta); }
+@mixin as-heading-mobile__normal--typeset            { margin-bottom: rhythm(.5, $epsilon); }
+@mixin as-heading-mobile__small--typeset             { margin-bottom: rhythm(.25, $zeta); }
+@mixin as-heading-mobile__smallest--typeset          { margin-bottom: rhythm(0, $eta); }
     
     
 // Set rhythm for paragraphs and lists
@@ -191,6 +215,14 @@ $rem-with-px-fallback               : true;                                     
 %as-heading__normal--typeset            { @include as-heading__normal--typeset; }      
 %as-heading__small--typeset             { @include as-heading__small--typeset; }     
 %as-heading__smallest--typeset          { @include as-heading__smallest--typeset; }  
+
+%as-heading-mobile__headline--typeset          { @include as-heading-mobile__headline--typeset; } 
+%as-heading-mobile__largest--typeset           { @include as-heading-mobile__largest--typeset; }     
+%as-heading-mobile__large--typeset             { @include as-heading-mobile__large--typeset; }    
+%as-heading-mobile__medium--typeset            { @include as-heading-mobile__medium--typeset; }    
+%as-heading-mobile__normal--typeset            { @include as-heading-mobile__normal--typeset; }      
+%as-heading-mobile__small--typeset             { @include as-heading-mobile__small--typeset; }     
+%as-heading-mobile__smallest--typeset          { @include as-heading-mobile__smallest--typeset; }  
     
     
 // Set rhythm for paragraphs and lists

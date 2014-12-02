@@ -36,7 +36,7 @@
 .logo {
 	@include column(7);
 	//@extend %element-inner-default;
-	padding: $space-half $pad;
+	padding: $space-three-quarter $pad $space-half;
 	display: block;
 	position: relative;
 	z-index: 1;

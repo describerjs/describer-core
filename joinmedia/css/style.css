@@ -60,43 +60,43 @@ picture {
     $ADD-ONS
 \*------------------------------------*/
 h1, .h1 {
-  font-size: 36px;
-  font-size: 2.25rem;
-  line-height: 48px;
-  line-height: 3rem;
-}
-
-h2, .h2 {
-  font-size: 32px;
-  font-size: 2rem;
-  line-height: 36px;
-  line-height: 2.25rem;
-}
-
-h3, .h3 {
   font-size: 28px;
   font-size: 1.75rem;
   line-height: 36px;
   line-height: 2.25rem;
 }
 
-h4, .h4 {
+h2, .h2 {
   font-size: 24px;
   font-size: 1.5rem;
   line-height: 36px;
   line-height: 2.25rem;
 }
 
-h5, .h5 {
+h3, .h3 {
   font-size: 20px;
   font-size: 1.25rem;
   line-height: 24px;
   line-height: 1.5rem;
 }
 
-h6, .h6 {
+h4, .h4 {
   font-size: 16px;
   font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+}
+
+h5, .h5 {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+}
+
+h6, .h6 {
+  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 24px;
   line-height: 1.5rem;
 }
@@ -150,8 +150,8 @@ h6, .h6 {
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
- * SPACING.............................Abst├ñnde definieren
- * TRANSITIONS.........................Eigenschaften f├╝r Transitions
+ * SPACING.............................Abstände definieren
+ * TRANSITIONS.........................Eigenschaften für Transitions
 **/
 /*------------------------------------*\
     $COLORS
@@ -665,6 +665,66 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 /*------------------------------------*\
     $HEADINGS
 \*------------------------------------*/
+@media only screen and (min-width: 48em) {
+  h1, .h1 {
+    font-size: 36px;
+    font-size: 2.25rem;
+    line-height: 48px;
+    line-height: 3rem;
+    margin-bottom: 1.875rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  h2, .h2 {
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 36px;
+    line-height: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  h3, .h3 {
+    font-size: 28px;
+    font-size: 1.75rem;
+    line-height: 36px;
+    line-height: 2.25rem;
+    margin-bottom: 1.125rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  h4, .h4 {
+    font-size: 24px;
+    font-size: 1.5rem;
+    line-height: 36px;
+    line-height: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  h5, .h5 {
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 24px;
+    line-height: 1.5rem;
+    margin-bottom: 0.375rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  h6, .h6 {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 24px;
+    line-height: 1.5rem;
+    margin-bottom: 0rem;
+  }
+}
+
 /*------------------------------------*\
     
 \*------------------------------------*/
@@ -694,11 +754,11 @@ a {
   -o-transition: color 0.3s ease-in-out;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
-  color: #ffffff;
+  color: #dd4411;
   text-decoration: underline;
 }
 .link:focus, .link:hover {
-  color: #ffffff;
+  color: #dd4411;
   text-decoration: none;
 }
 
@@ -771,13 +831,13 @@ dd {
 \*------------------------------------*/
 ::-moz-selection {
   background: #dd4411;
-  color: #ffffff;
+  color: white;
   text-shadow: none;
 }
 
 ::selection {
   background: #dd4411;
-  color: #ffffff;
+  color: white;
   text-shadow: none;
 }
 
@@ -786,7 +846,7 @@ dd {
 \*------------------------------------*/
 html {
   background-color: #dd4411;
-  color: #ffffff;
+  color: white;
   font: 100% "Roboto", "Arial", sans-serif;
   font-weight: 100;
   line-height: 1.5em;
@@ -814,7 +874,7 @@ body {
 \*------------------------------------*/
 .page {
   background-color: #dd4411;
-  color: #ffffff;
+  color: white;
   overflow: hidden;
   width: 100%;
 }
@@ -966,15 +1026,21 @@ p:last-child {
     $HELPER
 \*------------------------------------*/
 .with-pad {
-  padding: 4.5rem 0;
-  margin-top: 0;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
   margin-bottom: 0;
+  margin-top: 0;
+}
+@media only screen and (min-width: 48em) {
+  .with-pad {
+    padding: 4.5rem 0;
+  }
 }
 
 .with-pad-bottom {
   padding-bottom: 4.5rem;
-  margin-top: 0;
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .vertical-center {
@@ -1045,16 +1111,18 @@ p:last-child {
 /*------------------------------------*\
 	$FADE
 \*------------------------------------*/
-.fade-in {
-  -moz-transition: all 0.6s linear;
-  -ms-transition: all 0.6s linear;
-  -o-transition: all 0.6s linear;
-  -webkit-transition: all 0.6s linear;
-  transition: all 0.6s linear;
-  opacity: 0;
-}
-.fade-in.show {
-  opacity: 1;
+@media only screen and (min-width: 48em) {
+  .fade-in {
+    -moz-transition: all 0.6s linear;
+    -ms-transition: all 0.6s linear;
+    -o-transition: all 0.6s linear;
+    -webkit-transition: all 0.6s linear;
+    transition: all 0.6s linear;
+    opacity: 0;
+  }
+  .fade-in.show {
+    opacity: 1;
+  }
 }
 
 .fade-in-up {
@@ -1077,40 +1145,68 @@ p:last-child {
 
 @-webkit-keyframes fadeInUp {
   0% {
+    -moz-transform: translate3d(0, 5%, 0);
+    -ms-transform: translate3d(0, 5%, 0);
+    -o-transform: translate3d(0, 5%, 0);
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
+
   100% {
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
     -webkit-transform: none;
     transform: none;
   }
 }
 @-moz-keyframes fadeInUp {
   0% {
+    -moz-transform: translate3d(0, 5%, 0);
+    -ms-transform: translate3d(0, 5%, 0);
+    -o-transform: translate3d(0, 5%, 0);
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
+
   100% {
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
     -webkit-transform: none;
     transform: none;
   }
 }
 @-o-keyframes fadeInUp {
   0% {
+    -moz-transform: translate3d(0, 5%, 0);
+    -ms-transform: translate3d(0, 5%, 0);
+    -o-transform: translate3d(0, 5%, 0);
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
+
   100% {
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
     -webkit-transform: none;
     transform: none;
   }
 }
 @keyframes fadeInUp {
   0% {
+    -moz-transform: translate3d(0, 5%, 0);
+    -ms-transform: translate3d(0, 5%, 0);
+    -o-transform: translate3d(0, 5%, 0);
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
+
   100% {
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
     -webkit-transform: none;
     transform: none;
   }
@@ -1118,30 +1214,48 @@ p:last-child {
 /*------------------------------------*\
 	$SLIDE
 \*------------------------------------*/
-.slide-in-left {
-  -moz-transition: all 0.9s linear;
-  -ms-transition: all 0.9s linear;
-  -o-transition: all 0.9s linear;
-  -webkit-transition: all 0.9s linear;
-  transition: all 0.9s linear;
-  left: -200%;
-  position: relative;
-}
-.slide-in-left.show {
-  left: 0;
+@media only screen and (min-width: 48em) {
+  .slide-in-left {
+    -moz-transition: -moz-transform 0.6s linear;
+    -ms-transition: -ms-transform 0.6s linear;
+    -o-transition: -o-transform 0.6s linear;
+    -webkit-transition: -webkit-transform 0.6s linear;
+    transition: transform 0.6s linear;
+    -moz-transform: translate3d(-200%, 0, 0);
+    -ms-transform: translate3d(-200%, 0, 0);
+    -o-transform: translate3d(-200%, 0, 0);
+    -webkit-transform: translate3d(-200%, 0, 0);
+    transform: translate3d(-200%, 0, 0);
+  }
+  .slide-in-left.show {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.slide-in-right {
-  -moz-transition: all 0.9s linear;
-  -ms-transition: all 0.9s linear;
-  -o-transition: all 0.9s linear;
-  -webkit-transition: all 0.9s linear;
-  transition: all 0.9s linear;
-  right: -200%;
-  position: relative;
-}
-.slide-in-right.show {
-  right: 0;
+@media only screen and (min-width: 48em) {
+  .slide-in-right {
+    -moz-transition: -moz-transform 0.6s linear;
+    -ms-transition: -ms-transform 0.6s linear;
+    -o-transition: -o-transform 0.6s linear;
+    -webkit-transition: -webkit-transform 0.6s linear;
+    transition: transform 0.6s linear;
+    -moz-transform: translate3d(200%, 0, 0);
+    -ms-transform: translate3d(200%, 0, 0);
+    -o-transform: translate3d(200%, 0, 0);
+    -webkit-transform: translate3d(200%, 0, 0);
+    transform: translate3d(200%, 0, 0);
+  }
+  .slide-in-right.show {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 /*------------------------------------*\
@@ -1378,7 +1492,7 @@ p:last-child {
   margin-right: 1.04167%;
   clear: none;
   float: left;
-  padding: 0.75rem 1rem;
+  padding: 1.125rem 1rem 0.75rem;
   display: block;
   position: relative;
   z-index: 1;
@@ -1449,7 +1563,7 @@ p:last-child {
 \*------------------------------------*/
 .joinmedia,
 .impressum {
-  background-color: #ffffff;
+  background-color: white;
   color: #2c2c2c;
 }
 .joinmedia .block .block-content .headline-underlined,
@@ -1458,10 +1572,10 @@ p:last-child {
 }
 
 .services {
-  background-color: #396B71;
+  background-color: #396b71;
 }
 .services .block:nth-of-type(1) {
-  background-color: #396B71;
+  background-color: #396b71;
 }
 .services .block:nth-of-type(2) {
   background-color: #2b5155;
@@ -1473,14 +1587,14 @@ p:last-child {
   background-color: #2e7e86;
 }
 .services .block:nth-of-type(5) {
-  background-color: #396B71;
+  background-color: #396b71;
 }
 .services .block:nth-of-type(6) {
   background-color: #2b5155;
 }
 
 .customers {
-  background-color: #ffffff;
+  background-color: white;
   color: #2c2c2c;
 }
 .customers .block .block-content > h1, .customers .block .block-content h2, .customers .block .block-content h3, .customers .block .block-content h4, .customers .block .block-content h5, .customers .block .block-content h6 {
@@ -1494,7 +1608,7 @@ p:last-child {
   background-color: #dd4411;
 }
 .agency .block:nth-of-type(2) {
-  background-color: #333;
+  background-color: #333333;
 }
 
 .jobs {
@@ -1557,10 +1671,15 @@ p:last-child {
   clear: both;
 }
 .stage .stage-content-top {
-  left: 0;
   position: absolute;
+  top: 4.5rem;
   right: 0;
-  top: 250px;
+  left: 0;
+}
+@media only screen and (min-width: 48em) {
+  .stage .stage-content-top {
+    top: 250px;
+  }
 }
 .stage .stage-content-mid {
   margin-top: 1.5rem;
@@ -1621,8 +1740,8 @@ p:last-child {
     $FOOTER
 \*------------------------------------*/
 .page-footer {
-  background-color: #333;
-  color: #ffffff;
+  background-color: #333333;
+  color: white;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
 }
@@ -1725,11 +1844,11 @@ p:last-child {
 \*------------------------------------*/
 .btn {
   background-color: #dd4411;
-  color: #ffffff;
+  color: white;
 }
 .btn:active, .btn:hover {
   background-color: #b13308;
-  color: #ffffff;
+  color: white;
 }
 
 /*------------------------------------*\
@@ -1747,11 +1866,11 @@ p:last-child {
 \*------------------------------------*/
 .cta {
   background-color: #2e7e86;
-  color: #ffffff;
+  color: white;
 }
 .cta:active, .cta:hover {
   background-color: #2b5155;
-  color: #ffffff;
+  color: white;
 }
 
 /*------------------------------------*\
@@ -1824,7 +1943,7 @@ p:last-child {
   margin-left: 0 !important;
   margin-right: 0 !important;
   position: relative;
-  background-color: #ffffff;
+  background-color: white;
   background-color: rgba(255, 255, 255, 0.8);
   color: #dd4411;
   display: inline-block;
@@ -1832,7 +1951,7 @@ p:last-child {
 }
 
 .headline-underlined {
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid white;
   padding-bottom: 0.375rem;
 }
 
@@ -1913,7 +2032,7 @@ p:last-child {
  *
 **/
 .accordion {
-  background-color: #ddd;
+  background-color: #dddddd;
   color: #2c2c2c;
 }
 .accordion .acc-group {
@@ -1929,22 +2048,22 @@ p:last-child {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  background-color: #999;
-  color: #ffffff;
+  background-color: #999999;
+  color: white;
   display: block;
   font-family: "Roboto", "Arial", sans-serif;
   margin-bottom: 3px;
   position: relative;
 }
 .accordion .acc-handle:hover {
-  background-color: #aaa;
+  background-color: #aaaaaa;
   color: #2c2c2c;
 }
 .accordion .acc-item {
   /**/
 }
 .accordion .show > .acc-handle {
-  background-color: #aaa;
+  background-color: #aaaaaa;
   color: #2c2c2c;
 }
 
@@ -1969,7 +2088,7 @@ p:last-child {
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNJREFUeNpi/P//PwMagAkwIgsy4VCEzkZRiGwSI7piJjzWoShmwuUmdMVMeBShKAYIMACM9wwJjXMH3AAAAABJRU5ErkJggg==") no-repeat scroll 1.5rem center;
-  color: #ffffff;
+  color: white;
   display: inline-block;
   margin: 0.75rem -0.75rem;
   padding: 0.75rem 1.5rem 0.75rem 3rem;
@@ -1986,11 +2105,11 @@ p:last-child {
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   background: transparent url("/img/arrow-down.png") no-repeat scroll 50% 50%;
-  color: #ffffff;
+  color: white;
   display: block;
   margin: 0 auto;
   position: relative;
-  border: 1px solid #ffffff;
+  border: 1px solid white;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -2169,7 +2288,7 @@ p:last-child {
  *
 **/
 /**
- * Navigation mit Menu-Button f├╝r mobile Darstellung
+ * Navigation mit Menu-Button für mobile Darstellung
  *
 	<nav class="nav" id="nav" role="navigation">
 		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
@@ -2221,11 +2340,11 @@ p:last-child {
 
 .flyout .flyout-group-title, .flyout .flyout-link {
   background-color: #dd4411;
-  color: #ffffff;
+  color: white;
 }
 .flyout .flyout-group-title:hover, .flyout .flyout-link:hover {
   background-color: #b13308;
-  color: #ffffff;
+  color: white;
 }
 
 /*------------------------------------*\
@@ -2243,7 +2362,7 @@ p:last-child {
     clear: none;
     float: left;
     background-color: #dd4411;
-    color: #ffffff;
+    color: white;
   }
 }
 .nav .nav-items {
@@ -2286,7 +2405,7 @@ p:last-child {
   background-color: #b13308;
 }
 .nav .nav-item:hover .nav-link {
-  color: #ffffff;
+  color: white;
 }
 @media only screen and (min-width: 60em) {
   .nav .nav-item:hover .flyout {
@@ -2299,10 +2418,10 @@ p:last-child {
   background-color: #b13308;
 }
 .nav .nav-item.active .nav-link {
-  color: #ffffff;
+  color: white;
 }
 .nav .nav-link {
-  color: #ffffff;
+  color: white;
 }
 
 /*------------------------------------*\
@@ -2312,7 +2431,7 @@ p:last-child {
   position: absolute;
   top: 0.5rem;
   right: 1.04167%;
-  color: #ffffff;
+  color: white;
   display: block;
   height: 2.5rem;
   line-height: 2.4rem;
@@ -2326,9 +2445,9 @@ p:last-child {
   }
 }
 .menu-btn:before, .menu-close-btn:before, .show-menu .menu-btn:before {
-  -moz-box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
-  -webkit-box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
-  box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
+  -moz-box-shadow: 0 0 0 2px white, 0 8px 0 2px white, 0 16px 0 2px white;
+  -webkit-box-shadow: 0 0 0 2px white, 0 8px 0 2px white, 0 16px 0 2px white;
+  box-shadow: 0 0 0 2px white, 0 8px 0 2px white, 0 16px 0 2px white;
   content: "";
   display: block;
   position: absolute;
@@ -2352,7 +2471,7 @@ p:last-child {
   content: "";
   display: block;
   position: absolute;
-  background-color: #ffffff;
+  background-color: white;
   height: 3px;
   left: .5rem;
   right: .5rem;
@@ -2439,7 +2558,7 @@ p:last-child {
   height: 0;
   opacity: 0;
   visibility: hidden;
-  background-color: #eee;
+  background-color: #eeeeee;
   z-index: 2;
 }
 .flyout:after, .flyout:before {
@@ -2480,7 +2599,7 @@ p:last-child {
 .flyout .flyout-group-title {
   padding-left: 2rem;
   background-color: #b13308;
-  color: #ffffff;
+  color: white;
 }
 @media only screen and (min-width: 48em) {
   .flyout .flyout-group-title {
@@ -2515,7 +2634,7 @@ p:last-child {
 @media only screen and (min-width: 60em) {
   .flyout .flyout-group-title:hover {
     background-color: #9d2902;
-    color: #ffffff;
+    color: white;
   }
 }
 @media only screen and (min-width: 60em) {
@@ -2888,6 +3007,7 @@ p:last-child {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -2896,6 +3016,7 @@ p:last-child {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -2904,6 +3025,7 @@ p:last-child {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -2912,6 +3034,7 @@ p:last-child {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -2920,6 +3043,7 @@ p:last-child {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -2928,6 +3052,7 @@ p:last-child {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -2937,10 +3062,12 @@ p:last-child {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
+
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
   }
+
   100% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
@@ -2951,10 +3078,12 @@ p:last-child {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
+
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
   }
+
   100% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
@@ -2965,10 +3094,12 @@ p:last-child {
     opacity: .5;
     transform: translateZ(-500px);
   }
+
   75% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
   }
+
   100% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
@@ -2979,10 +3110,12 @@ p:last-child {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(200%);
   }
+
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: translateZ(0) translateX(0);
@@ -2993,10 +3126,12 @@ p:last-child {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(200%);
   }
+
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
+
   100% {
     opacity: 1;
     -moz-transform: translateZ(0) translateX(0);
@@ -3007,10 +3142,12 @@ p:last-child {
     opacity: .5;
     transform: translateZ(-500px) translateX(200%);
   }
+
   75% {
     opacity: .5;
     transform: translateZ(-500px);
   }
+
   100% {
     opacity: 1;
     transform: translateZ(0) translateX(0);
@@ -3179,9 +3316,9 @@ p:last-child {
  * "stage-teaser-head" ist die Headline.
  * "stage-teaser-content" umfasst den restlichen Inhalt.
  *
- * Die img-H├Âhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
- * $stage-teaser-img-height:	195px;	// img-H├Âhe-S
- * $stage-teaser-img-height-m:	468px;	// img-H├Âhe-M
+ * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-Höhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
  *
 	<div class="stage-teaser">
     </div>
@@ -3190,7 +3327,7 @@ p:last-child {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
-/*$stage-teaser-img-height:	197px;	// img-H├Âhe-S*/
+/*$stage-teaser-img-height:	197px;	// img-Höhe-S*/
 /*------------------------------------*\
     $STAGE-TEASER
 \*------------------------------------*/
@@ -3272,7 +3409,7 @@ p:last-child {
     margin-right: 1.04167%;
     clear: none;
     float: left;
-    background-color: #fff;
+    background-color: white;
     background-color: rgba(255, 255, 255, 0.75);
     margin: 1.5rem 1.5rem;
     padding: 1.5rem 1.5rem 4.5rem;
@@ -3349,7 +3486,7 @@ p:last-child {
   -o-transition: bottom 0.3s ease-out;
   -webkit-transition: bottom 0.3s ease-out;
   transition: bottom 0.3s ease-out;
-  background-color: #ffffff;
+  background-color: white;
   bottom: -0.75rem;
   color: #2c2c2c;
   margin-left: 1px !important;
@@ -3432,7 +3569,7 @@ p:last-child {
 }
 .tabs > .tab:hover {
   background-color: #284245;
-  color: #ffffff;
+  color: white;
 }
 .tabs > .tab:first-of-type {
   margin-left: 1.04167% !important;
@@ -3440,7 +3577,7 @@ p:last-child {
 .tabs > .tab-content {
   background-color: #2b5155;
   clear: both;
-  color: #ffffff;
+  color: white;
   display: none;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
@@ -3450,8 +3587,8 @@ p:last-child {
   display: none;
 }
 .tabs > .tab-control:checked + .tab {
-  background-color: #333;
-  color: #ffffff;
+  background-color: #333333;
+  color: white;
 }
 
 /*------------------------------------*\
@@ -3461,7 +3598,7 @@ p:last-child {
     $TEASER
 \*------------------------------------*/
 .teaser {
-  background-color: #396B71;
+  background-color: #396b71;
   background-color: rgba(57, 107, 113, 0.8);
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -3490,7 +3627,7 @@ p:last-child {
   }
 }
 .teaser:hover, .teaser:active, .teaser:focus {
-  background-color: #396B71;
+  background-color: #396b71;
   background-color: rgba(57, 107, 113, 0.9);
 }
 @media only screen and (min-width: 48em) {
@@ -3545,8 +3682,9 @@ p:last-child {
   position: relative;
 }
 .teaser .t-content {
-  border-top: 1px solid #ffffff;
-  padding-top: 1.125rem;
+  border-top: 1px solid white;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
 }
 
 /*------------------------------------*\
@@ -3566,7 +3704,7 @@ p:last-child {
   margin-right: 1.04167%;
   clear: none;
   float: left;
-  background-color: #fff;
+  background-color: white;
   background-color: rgba(255, 255, 255, 0.4);
   /*background-color: #000;
   color: #fff;*/
@@ -3652,7 +3790,7 @@ p:last-child {
 		</div>
 	</div>
  *
- * Die Togglebox wird mit einem umschlie├ƒenden <div class="togglebox"> eingeleitet.
+ * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
  * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
  *
  * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
@@ -3661,11 +3799,11 @@ p:last-child {
  * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
  *
  * <div class="tb-content">
- * Alles was zum Content der Togglebox geh├Ârt wird hier eingef├╝gt.
+ * Alles was zum Content der Togglebox gehört wird hier eingefügt.
  *
 **/
 .togglebox .tb-subject {
-  background-color: #ffffff;
+  background-color: white;
   color: #2c2c2c;
   font-family: "Roboto", "Arial", sans-serif;
 }

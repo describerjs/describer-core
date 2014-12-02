@@ -92,12 +92,13 @@
 \*------------------------------------*/
 
 .fade-in {
-	@include transition(all .6s linear);
-	opacity: 0;
-	// opacity: 1;
+	@include bp-m {
+		@include transition(all .6s linear);
+		opacity: 0;
 
-	&.show {
-		opacity: 1;
+		&.show {
+			opacity: 1;
+		}
 	}
 }
 
@@ -108,7 +109,6 @@
 	-webkit-animation-fill-mode: both;
 			animation-fill-mode: both;
 	opacity: 0;
-	// opacity: 1;
 
 	&.show {
 		-webkit-animation-name: fadeInUp;
@@ -119,14 +119,12 @@
 
 @include keyframes(fadeInUp) {
 	0% {
-    -webkit-transform: translate3d(0, 5%, 0);
-            transform: translate3d(0, 5%, 0);
-  }
+		@include transform(translate3d(0, 5%, 0));
+	}
 
-  100% {
-    -webkit-transform: none;
-            transform: none;
-  }
+	100% {
+		@include transform(none);
+	}
 }
 
 /*------------------------------------*\
@@ -134,24 +132,24 @@
 \*------------------------------------*/
 
 .slide-in-left {
-	@include transition(all .9s linear);
-	left: -200%;
-	// left: 0;
-	position: relative;
+	@include bp-m {
+		@include transform-transition(.6s linear);
+		@include transform(translate3d(-200%, 0, 0));
 
-	&.show {
-		left: 0;
+		&.show {
+			@include transform(translate3d(0, 0, 0));
+		}
 	}
 }
 
 .slide-in-right {
-	@include transition(all .9s linear);
-	right: -200%;
-	// right: 0;
-	position: relative;
+	@include bp-m {
+		@include transform-transition(.6s linear);
+		@include transform(translate3d(200%, 0, 0));
 
-	&.show {
-		right: 0;
+		&.show {
+			@include transform(translate3d(0, 0, 0));
+		}
 	}
 }
 

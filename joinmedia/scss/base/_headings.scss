@@ -39,38 +39,68 @@
 
 h1, .h1 {
 	@extend %heading;
-	@extend %as-heading__largest;
-	@extend %as-heading__largest--typeset;
+	@extend %as-heading-mobile__largest;
+	@extend %as-heading-mobile__largest--typeset;
+
+	@include bp-m {
+		@include as-heading__largest;
+		@include as-heading__largest--typeset;
+	}
 }
 
 h2, .h2 {
 	@extend %heading;
-	@extend %as-heading__large;
-	@extend %as-heading__large--typeset;
+	@extend %as-heading-mobile__large;
+	@extend %as-heading-mobile__large--typeset;
+
+	@include bp-m {
+		@include as-heading__large;
+		@include as-heading__large--typeset;
+	}
 }
 
 h3, .h3 {
 	@extend %heading;
-	@extend %as-heading__medium;
-	@extend %as-heading__medium--typeset;
+	@extend %as-heading-mobile__medium;
+	@extend %as-heading-mobile__medium--typeset;
+
+	@include bp-m {
+		@include as-heading__medium;
+		@include as-heading__medium--typeset;
+	}
 }
 
 h4, .h4 {
 	@extend %heading;
-	@extend %as-heading__normal;
-	@extend %as-heading__normal--typeset;
+	@extend %as-heading-mobile__normal;
+	@extend %as-heading-mobile__normal--typeset;
+
+	@include bp-m {
+		@include as-heading__normal;
+		@include as-heading__normal--typeset;
+	}
 }
 
 h5, .h5 {
 	@extend %heading;
-	@extend %as-heading__small;
-	@extend %as-heading__small--typeset;
+	@extend %as-heading-mobile__small;
+	@extend %as-heading-mobile__small--typeset;
+
+	@include bp-m {
+		@include as-heading__small;
+		@include as-heading__small--typeset;
+	}
 }
 
 h6, .h6 {
 	@extend %heading;
-	@extend %as-heading__smallest;
-	@extend %as-heading__smallest--typeset;
+	@extend %as-heading-mobile__smallest;
+	@extend %as-heading-mobile__smallest--typeset;
+
+	@include bp-m {
+		@include as-heading__smallest;
+		@include as-heading__smallest--typeset;
+	}
 }
 
 
