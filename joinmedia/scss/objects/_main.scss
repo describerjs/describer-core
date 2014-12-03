@@ -161,15 +161,11 @@
 	}
 
 	.stage-content-mid {
-		margin-top: $space;
+		margin-top: $space-quarter;
 
 		@include bp-m {
-			bottom: $space-triple + $space-half;
-			left: 0;
+			@include absolute(auto, 0, $space-triple + $space-half, 0);
 			margin-top: 0;
-			position: absolute;
-			right: 0;
-			top: auto;
 		}
 	}
 
@@ -178,21 +174,16 @@
 		height: $space-triple;
 
 		@include bp-m {
-			// bottom: 0;
-			left: 0;
-			position: absolute;
-			right: 0;
-			top: auto;
+			@include absolute(auto, 0, '', 0);
 			z-index: 1;
 		}
-
 
 		.stage-content-inner {
 			height: 100%;
 		}
 	}
 
-	& > .parallax {
+	.stage-bg {
 		height: 1000px;
 
 		.parallax-inner {
@@ -200,10 +191,31 @@
 		}
 
 		.parallax-img {
-			background-size: cover; 
-			width: 100%; 
-			height: 100%; 
-			display: block;
+			//background-image: url("/img/fotos/tablet-kaffee.jpg");
+			background-image: url("/img/section-header/stage-480-315.jpg");
+			background-size: cover;
+			height: 100%;
+			width: 100%;
+
+			@media only screen and (min-width: 48em) {
+				background-image: url("/img/section-header/stage-768-504.jpg");
+			}
+
+			@media only screen and (min-width: 60em) {
+				background-image: url("/img/section-header/stage-1024-672.jpg");
+			}
+
+			@media only screen and (min-width: 80em) {
+				background-image: url("/img/section-header/stage-1600-1050.jpg");
+			}
+
+			@media only screen and (min-width: 80em) {
+				background-image: url("/img/section-header/stage-1600-1050.jpg");
+			}
+
+			@media only screen and (min-width: 120em) {
+				background-image: url("/img/section-header/stage-2560-1680.jpg");
+			}
 		}
 	}	
 }

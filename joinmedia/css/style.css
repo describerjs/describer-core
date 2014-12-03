@@ -1113,11 +1113,11 @@ p:last-child {
 \*------------------------------------*/
 @media only screen and (min-width: 48em) {
   .fade-in {
-    -moz-transition: all 0.6s linear;
-    -ms-transition: all 0.6s linear;
-    -o-transition: all 0.6s linear;
-    -webkit-transition: all 0.6s linear;
-    transition: all 0.6s linear;
+    -moz-transition: opacity 0.6s linear;
+    -ms-transition: opacity 0.6s linear;
+    -o-transition: opacity 0.6s linear;
+    -webkit-transition: opacity 0.6s linear;
+    transition: opacity 0.6s linear;
     opacity: 0;
   }
   .fade-in.show {
@@ -1126,11 +1126,11 @@ p:last-child {
 }
 
 .fade-in-up {
-  -moz-transition: all 0.6s linear;
-  -ms-transition: all 0.6s linear;
-  -o-transition: all 0.6s linear;
-  -webkit-transition: all 0.6s linear;
-  transition: all 0.6s linear;
+  -moz-transition: opacity 0.6s linear;
+  -ms-transition: opacity 0.6s linear;
+  -o-transition: opacity 0.6s linear;
+  -webkit-transition: opacity 0.6s linear;
+  transition: opacity 0.6s linear;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
@@ -1682,16 +1682,16 @@ p:last-child {
   }
 }
 .stage .stage-content-mid {
-  margin-top: 1.5rem;
+  margin-top: 0.375rem;
 }
 @media only screen and (min-width: 48em) {
   .stage .stage-content-mid {
+    position: absolute;
+    top: auto;
+    right: 0;
     bottom: 5.25rem;
     left: 0;
     margin-top: 0;
-    position: absolute;
-    right: 0;
-    top: auto;
   }
 }
 .stage .stage-content-bottom {
@@ -1700,27 +1700,52 @@ p:last-child {
 }
 @media only screen and (min-width: 48em) {
   .stage .stage-content-bottom {
-    left: 0;
     position: absolute;
-    right: 0;
     top: auto;
+    right: 0;
+    left: 0;
     z-index: 1;
   }
 }
 .stage .stage-content-bottom .stage-content-inner {
   height: 100%;
 }
-.stage > .parallax, .section-header .stage > .sh-parallax {
+.stage .stage-bg {
   height: 1000px;
 }
-.stage > .parallax .parallax-inner, .section-header .stage > .sh-parallax .parallax-inner {
+.stage .stage-bg .parallax-inner {
   height: 100%;
 }
-.stage > .parallax .parallax-img, .section-header .stage > .sh-parallax .parallax-img {
+.stage .stage-bg .parallax-img {
+  background-image: url("/img/section-header/stage-480-315.jpg");
   background-size: cover;
-  width: 100%;
   height: 100%;
-  display: block;
+  width: 100%;
+}
+@media only screen and (min-width: 48em) {
+  .stage .stage-bg .parallax-img {
+    background-image: url("/img/section-header/stage-768-504.jpg");
+  }
+}
+@media only screen and (min-width: 60em) {
+  .stage .stage-bg .parallax-img {
+    background-image: url("/img/section-header/stage-1024-672.jpg");
+  }
+}
+@media only screen and (min-width: 80em) {
+  .stage .stage-bg .parallax-img {
+    background-image: url("/img/section-header/stage-1600-1050.jpg");
+  }
+}
+@media only screen and (min-width: 80em) {
+  .stage .stage-bg .parallax-img {
+    background-image: url("/img/section-header/stage-1600-1050.jpg");
+  }
+}
+@media only screen and (min-width: 120em) {
+  .stage .stage-bg .parallax-img {
+    background-image: url("/img/section-header/stage-2560-1680.jpg");
+  }
 }
 
 /*------------------------------------*\
@@ -2191,6 +2216,18 @@ p:last-child {
 /*------------------------------------*\
     $BLOCK
 \*------------------------------------*/
+.block {
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+@media only screen and (min-width: 48em) {
+  .block {
+    padding-bottom: 4.5rem;
+    padding-top: 4.5rem;
+  }
+}
 @media only screen and (min-width: 48em) {
   .section .block:nth-of-type(1):nth-last-of-type(2), .section-onepage .block:nth-of-type(1):nth-last-of-type(2), .stage .block:nth-of-type(1):nth-last-of-type(2), .section .block:nth-of-type(2):nth-last-of-type(1), .section-onepage .block:nth-of-type(2):nth-last-of-type(1), .stage .block:nth-of-type(2):nth-last-of-type(1) {
     width: 47.91667%;
@@ -3600,10 +3637,6 @@ p:last-child {
 .teaser {
   background-color: #396b71;
   background-color: rgba(57, 107, 113, 0.8);
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   color: inherit;
   display: block;
   text-align: center;

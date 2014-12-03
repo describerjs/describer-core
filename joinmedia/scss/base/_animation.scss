@@ -93,7 +93,7 @@
 
 .fade-in {
 	@include bp-m {
-		@include transition(all .6s linear);
+		@include transition(opacity .6s linear);
 		opacity: 0;
 
 		&.show {
@@ -103,7 +103,7 @@
 }
 
 .fade-in-up {
-	@include transition(all .6s linear);
+	@include transition(opacity .6s linear);
 	-webkit-animation-duration: 1s;
 			animation-duration: 1s;
 	-webkit-animation-fill-mode: both;

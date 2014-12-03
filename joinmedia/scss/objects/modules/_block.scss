@@ -45,6 +45,21 @@
 
 .block {
 	@extend %element-default;
+	padding: {
+		bottom: $space-half;
+		top: $space-half;
+	}
+	margin: {
+		bottom: 0;
+		top: 0;
+	}
+
+	@include bp-m {
+		padding: {
+			bottom: $space-triple;
+			top: $space-triple;
+		}
+	}
 
 	.section & {
 		&:nth-of-type(1):nth-last-of-type(2),
