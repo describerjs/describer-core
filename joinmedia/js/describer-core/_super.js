@@ -31,6 +31,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
 		},
 
+		// wird vom Body-Listener für 'change' aufgerufen
+		orientationchange: function(e){
+			if(this.includes('event', 'orientationchange') && this.isCondition()) this._execWait(e);
+		},
+
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
 		jmtrigger: function(e, e_param){
 			if($.type(e_param) === 'undefined'){
@@ -57,7 +62,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
-
+			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -344,6 +349,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				pageYOffset: null,
 				innerHeight: null,
 				innerWidth: null,
+				outerHeight: null,
 				counter: 0,
 				avgRAF: null
 			};
@@ -359,7 +365,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				window.dc.win.avgRAF = (window.dc.win.counter - that.thempCountedFrames)/2;
 				that.$acount.text(window.dc.win.avgRAF);
 				that.thempCountedFrames = window.dc.win.counter;
-				if(!window.dc.onHoldArrayExecuted && window.dc.win.avgRAF > 30){
+				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgRAF > 30){
 					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
 						_obj = window.dc.onHoldArray[i].obj;
 						if(!_obj.exec){
@@ -388,9 +394,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.dcRAF.frames = 1000/(time-this.dcRAF.oldtime);
 			this.dcRAF.oldtime = time;*/
 
-
 			window.dc.win.pageYOffset     = window.pageYOffset;
-			window.dc.win.innerHeight     = window.innerHeight;
+			window.dc.win.innerHeight     = (window.dc.orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
 			window.dc.win.innerWidth      = window.innerWidth;
 			window.dc.win.counter         = window.dc.win.counter+1;
 
@@ -403,6 +408,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					window.dc.execRafObj[property]();
 				}
 			}
+			window.dc.orientation_old = window.dc.orientation;
 			window.dc.raf = window.requestAnimationFrame(this._rafGlobalRender.bind(this));
 		},
 
@@ -411,6 +417,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(Modernizr.mq('only screen and (min-width : 60em)')){
 				this._execWaitAfterCondition();
 				return;
+			}
+			if(!window.dc.execRafObj){
+				this._rafCreateObjects();
 			}
 			window.dc.onHoldArray = window.dc.onHoldArray || [];
 			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;

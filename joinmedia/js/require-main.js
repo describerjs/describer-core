@@ -174,7 +174,7 @@ require(['jquery', '_config'], function require_jquery($){
 			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);
 
 
-
+			$(window).on('resize', jmHF.checkOrientation);
 			// -----------------------------------------------------
 			// -------- ausführen von Domready-Funktionen ----------
 			// -----------------------------------------------------

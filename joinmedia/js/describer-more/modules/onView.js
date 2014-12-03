@@ -25,16 +25,20 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		onInitExec: function () {
+			this.setProperties();
+		},
+
+		options: {
+
+		},
+
+		setProperties: function(){
 			this.eot = this.$elem.offset().top;
 			this.offset = 0;//window.innerHeight * 0.2;
 			this.elemHeight = this.$elem[0].getBoundingClientRect().height;
 			this.dynamic = (this.is('heigth') === 'dynamic');
 			this.$destination = this.getRelatedToElem();
 			this.onlyTopOfElem = (this.is('onlyTopOfElem') === 'true');
-		},
-
-		options: {
-
 		},
 
 		_exec: function(e){

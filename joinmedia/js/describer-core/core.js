@@ -1,9 +1,12 @@
 define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
+	var $body = $('body');
+
 	// Globales Objekt
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
 	window.dc = window.dc || {};
+	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
 
 	jmHF.alert = function(p_data){
 		if(window.debug){
@@ -32,6 +35,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			$.doTimeout('jmHF.warn', 200, function(){
 				jmHF.alert('Warnung! siehe Console JM ->');
 			});
+		}
+	};
+
+	jmHF.checkOrientation = function(){
+		if(window.dc.orientation === 'w' && (window.innerHeight > window.innerWidth)){
+			window.dc.orientation = 'p';
+			$body.trigger('dc-orientationchange');
+		}else if(window.dc.orientation === 'p' && (window.innerHeight < window.innerWidth)){
+			window.dc.orientation = 'w';
+			$body.trigger('dc-orientationchange');
 		}
 	};
 
@@ -106,6 +119,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			for(var m = 0, lenm = _eventsArray.length; m < lenm; m++){
 				switch(_eventsArray[m]){
 					case 'dominit':
+					case 'dc-orientationchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
@@ -241,6 +255,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			}else if('dominit' === p_eventType){
 				switch(eventArray[i]){
 					case 'dominit':
+					case 'dc-orientationchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':

@@ -134,7 +134,8 @@ require(['jquery', '_config'], function($, _config){
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
 			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);
 
-            
+            $(window).on('resize', jmHF.checkOrientation);
+
             // -----------------------------------------------------
 			// -------- ausführen von Domready-Funktionen ----------
 			// -----------------------------------------------------
