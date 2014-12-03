@@ -184,6 +184,7 @@ $menu-btn-height: 2.5rem;
 	@include hide-on-desktop;
 	color: $theme-menu-btn-fg;
 	display: block;
+	font-family: $font-nav;
 	height: $menu-btn-height;
 	line-height: $menu-btn-height - .1;
 	text-indent: -($menu-btn-height);

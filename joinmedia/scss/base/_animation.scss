@@ -117,9 +117,34 @@
 	}
 }
 
+.fade-in-left {
+	@include transition(opacity .6s linear);
+	-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+	opacity: 0;
+
+	&.show {
+		-webkit-animation-name: fadeInLeft;
+				animation-name: fadeInLeft;
+		opacity: 1;
+	}
+}
+
 @include keyframes(fadeInUp) {
 	0% {
 		@include transform(translate3d(0, 5%, 0));
+	}
+
+	100% {
+		@include transform(none);
+	}
+}
+
+@include keyframes(fadeInLeft) {
+	0% {
+		@include transform(translate3d(-5%, 0, 0));
 	}
 
 	100% {
