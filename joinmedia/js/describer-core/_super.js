@@ -350,34 +350,45 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				innerHeight: null,
 				innerWidth: null,
 				outerHeight: null,
+				startTime: Date.now(),
 				counter: 0,
-				avgRAF: null
+				rafs: null,
+				avgrafs: null
 			};
-
+			
 			this._rafGlobalRender();
 			this.thempCountedFrames = 0;
-			this.$acount = $('#counter');
+			if(window.debug){
+				$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span><span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 1/?</span></div>');
+				this.$acount = $('#fps-counter');
+				this.$initByPerfCounter = $('#init-by-perf-counter');
+			}
+
 			setInterval(function(){
 				var _obj;
 				if(window.dc.win.counter < that.thempCountedFrames){
-					that.thempCountedFrames = that.thempCountedFrames + 100001;
+					that.thempCountedFrames = that.thempCountedFrames + 100000001;
 				}
-				window.dc.win.avgRAF = (window.dc.win.counter - that.thempCountedFrames)/2;
-				that.$acount.text(window.dc.win.avgRAF);
+				window.dc.win.rafs = window.dc.win.counter - that.thempCountedFrames;
+				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
+				if(window.debug){
+					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+				}
 				that.thempCountedFrames = window.dc.win.counter;
-				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgRAF > 30){
+				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 35){
 					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
 						_obj = window.dc.onHoldArray[i].obj;
 						if(!_obj.exec){
 							_obj.exec = true;
 							_obj._execWaitAfterCondition();
+							that.$initByPerfCounter.text(' init-fx: '+(i+1)+'/'+leni);
 							return;
 						}else if((leni -1) === i){
 							window.dc.onHoldArrayExecuted = true;
 						}
 					}
 				}
-			}, 2000);
+			}, 1000);
 		},
 
 		_rafGlobalRender: function(){
@@ -399,7 +410,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			window.dc.win.innerWidth      = window.innerWidth;
 			window.dc.win.counter         = window.dc.win.counter+1;
 
-			if(window.dc.win.counter === 100001){
+			if(window.dc.win.counter === 100000001){
 				window.dc.win.counter = 1;
 			}
 

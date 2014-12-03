@@ -123,7 +123,7 @@ define(function(){
 
 	return [
 		{
-			jmname   : 'nav',
+			jmname   : 'nav-toggle',
 			jmplugin: 'actions.toggle',
 			jmconfig : {
 				'event'    : 'click',
