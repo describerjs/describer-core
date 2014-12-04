@@ -87,6 +87,9 @@
 }
 
 
+
+
+
 /*------------------------------------*\
 	$FADE
 \*------------------------------------*/
@@ -103,32 +106,28 @@
 }
 
 .fade-in-up {
-	@include transition(opacity .6s linear);
-	-webkit-animation-duration: 1s;
-			animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
-			animation-fill-mode: both;
-	opacity: 0;
+	@include bp-m {
+		@include transition(opacity .6s linear);
+		opacity: 0;
 
-	&.show {
-		-webkit-animation-name: fadeInUp;
-				animation-name: fadeInUp;
-		opacity: 1;
+		&.show {
+			@include animation('fadeInUp 1s both');
+			/*-webkit-animation-name: fadeInUp;
+					animation-name: fadeInUp;*/
+			opacity: 1;
+		}
 	}
 }
 
 .fade-in-left {
-	@include transition(opacity .6s linear);
-	-webkit-animation-duration: 1s;
-			animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
-			animation-fill-mode: both;
-	opacity: 0;
+	@include bp-m {
+		@include transition(opacity .6s linear);
+		opacity: 0;
 
-	&.show {
-		-webkit-animation-name: fadeInLeft;
-				animation-name: fadeInLeft;
-		opacity: 1;
+		&.show {
+			@include animation('fadeInLeft 1s both');
+			opacity: 1;
+		}
 	}
 }
 
@@ -151,6 +150,10 @@
 		@include transform(none);
 	}
 }
+
+
+
+
 
 /*------------------------------------*\
 	$SLIDE
@@ -180,6 +183,8 @@
 
 
 
+
+
 /*------------------------------------*\
 	$SCROLL-ANIM
 \*------------------------------------*/
@@ -188,6 +193,7 @@
 	position: absolute;
 	z-index: 999;
 }
+
 
 
 

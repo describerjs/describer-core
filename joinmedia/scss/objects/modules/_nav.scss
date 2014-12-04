@@ -89,7 +89,6 @@ $menu-btn-height: 2.5rem;
 	@include bp-l {
 		@include column(8);
 		background-color: $theme-nav-bg;
-		// clear: both;
 		color: $theme-nav-fg;
 	}
 
@@ -117,21 +116,6 @@ $menu-btn-height: 2.5rem;
 		@include bp-l {
 			border-bottom: initial;
 			float: left;
-
-			// &:before {
-			// 	@include pseudo-element-default;
-			// 	@include transitions(bottom .15s linear, top .15s linear);
-			// 	background-color: $theme-nav-link-active-bg;
-			// 	bottom: $default-spacing;
-			// 	top: $default-spacing;
-			// 	width: 1px;
-			// }
-
-			&:first-child {
-				// &:before {
-				// 	background-color: inherit;
-				// }
-			}
 		}
 
 		&:hover {
@@ -145,17 +129,10 @@ $menu-btn-height: 2.5rem;
 				.flyout {
 					@include visibility(visible);
 				}
-
-				// &+ .nav-item {
-				// 	&:before {
-				// 		bottom: 0;
-				// 		top: 0;
-				// 	}
-				// }
 			}
 		}
 
-		&.active {
+		&.show {
 			background-color: $theme-nav-link-active-bg;
 
 			.nav-link {

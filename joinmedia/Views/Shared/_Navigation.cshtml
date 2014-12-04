@@ -1,13 +1,13 @@
 ﻿@model  List<Piranha.Models.Sitemap>
 
 @*<nav class="nav" id="nav" role="navigation">
-    <a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+    <a class="menu-btn" href="#nav" data-jmname="nav">Menu</a>
 	<ul class="nav-items">
 		@foreach (var map in Model.Where(m => !m.IsHidden))
 		{
 			var hasSubNav = map.Pages != null && map.Pages.Any(m => !m.IsHidden);
 			<li class="nav-item menu-item">
-				<a href="@JMPiranhaHelper.GenerateUrl(map)" class="nav-link" @if (hasSubNav) { <text>data-jmname="nav-link" data-jmdominit="true"</text>}>@(String.IsNullOrEmpty(map.NavigationTitle) ? map.Title : map.NavigationTitle)</a>
+				<a class="nav-link" href="@JMPiranhaHelper.GenerateUrl(map)" @if (hasSubNav) { <text>data-jmname="nav-link" data-jmdominit="true"</text>}>@(String.IsNullOrEmpty(map.NavigationTitle) ? map.Title : map.NavigationTitle)</a>
 				@if (hasSubNav)
 				{
 					<div class="flyout">
@@ -34,25 +34,25 @@
 </nav>*@
 
 <nav class="nav" id="nav" role="navigation">
-    <a href="#nav" class="menu-btn" data-jmname="nav-toggle">Menu</a>
+    <a class="menu-btn" href="#nav" data-jmname="nav-toggle">Menu</a>
     <ul class="nav-items">
         <li class="nav-item menu-item">
-            <a href="#joinmedia" class="nav-link" data-jmname="anchor|nav-toggle">join.media</a>
+            <a class="nav-link" href="#joinmedia" data-jmname="anchor|nav-toggle">join.media</a>
         </li>
         <li class="nav-item menu-item">
-            <a href="#services" class="nav-link" data-jmname="anchor|nav-toggle">Leistungen</a>
+            <a class="nav-link" href="#services" data-jmname="anchor|nav-toggle">Leistungen</a>
         </li>
         <li class="nav-item menu-item">
-            <a href="#customers" class="nav-link" data-jmname="anchor|nav-toggle">Kunden</a>
+            <a class="nav-link" href="#customers" data-jmname="anchor|nav-toggle">Kunden</a>
         </li>
         <li class="nav-item menu-item">
-            <a href="#agency" class="nav-link" data-jmname="anchor|nav-toggle">Agentur</a>
+            <a class="nav-link" href="#agency" data-jmname="anchor|nav-toggle">Agentur</a>
         </li>
         <li class="nav-item menu-item">
-            <a href="#jobs" class="nav-link" data-jmname="anchor|nav-toggle">Jobs</a>
+            <a class="nav-link" href="#jobs" data-jmname="anchor|nav-toggle">Jobs</a>
         </li>
         <li class="nav-item menu-item">
-            <a href="#contact" class="nav-link" data-jmname="anchor|nav-toggle">Kontakt</a>
+            <a class="nav-link" href="#contact" data-jmname="anchor|nav-toggle">Kontakt</a>
         </li>
     </ul>
 </nav>
