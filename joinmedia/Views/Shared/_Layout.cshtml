@@ -101,27 +101,27 @@
 <body>
 	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
 	<div class="page">
-        <header class="page-header" role="banner">
-            <div class="page-constrained">
-              <a class="logo" href="/">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/joinmedia.svg" type="image/svg+xml" />
-                    <source srcset="/img/joinmedia.png" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/joinmedia.png" src="/img/joinmedia.png" alt="join.media Logo" width="180" height="27" />
-                </picture>
-              </a>
-              @if (IsSectionDefined("navigation"))
-			    {
-				    @RenderSection("navigation", required: false)
-			    }
-			    else
-			    {
-				    Html.RenderAction("_Navigation", "Content", new { area = "" });
-			    }
-            </div>
-        </header>
+    <header class="page-header" role="banner">
+      <div class="page-constrained">
+        <a class="logo" href="/">
+          <picture>
+              <!--[if IE 9]><video style="display: none;"><![endif]-->
+              <source srcset="/img/joinmedia.svg" type="image/svg+xml" />
+              <source srcset="/img/joinmedia.png" />
+              <!--[if IE 9]></video><![endif]-->
+              <img srcset="/img/joinmedia.png" alt="join.media Logo" width="180" height="27" />
+          </picture>
+        </a>
+        @if (IsSectionDefined("navigation"))
+        {
+    	    @RenderSection("navigation", required: false)
+        }
+        else
+        {
+    	    Html.RenderAction("_Navigation", "Content", new { area = "" });
+        }
+      </div>
+    </header>
 		<main class="page-main" role="main">
 			@RenderBody()
 		</main>

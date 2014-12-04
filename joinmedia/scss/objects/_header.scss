@@ -17,11 +17,9 @@
 
 .page-header {
 	@extend %page-element-default;
-	background: $theme-nav-bg;
-	margin: 0;
-	top: 0;
-	width: 100%;
+	background-color: $theme-nav-bg;
 	position: fixed;
+	top: 0;
 	z-index: 999;
 }
 
@@ -35,9 +33,8 @@
 
 .logo {
 	@include column(7);
-	//@extend %element-inner-default;
-	padding: $space-three-quarter $pad $space-half;
 	display: block;
+	padding: $space-three-quarter $pad $space-half;
 	position: relative;
 	z-index: 1;
 
@@ -51,7 +48,6 @@
 
 	@include bp-m {
 		@include column(4);
-
 	}
 }
 
