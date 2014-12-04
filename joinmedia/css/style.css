@@ -1561,11 +1561,9 @@ p:last-child {
     <header>
 \*------------------------------------*/
 .page-header {
-  background: #dd4411;
-  margin: 0;
-  top: 0;
-  width: 100%;
+  background-color: #dd4411;
   position: fixed;
+  top: 0;
   z-index: 999;
 }
 
@@ -1578,8 +1576,8 @@ p:last-child {
   margin-right: 1.04167%;
   clear: none;
   float: left;
-  padding: 1.125rem 1rem 0.75rem;
   display: block;
+  padding: 1.125rem 1rem 0.75rem;
   position: relative;
   z-index: 1;
 }
