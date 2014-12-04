@@ -102,9 +102,8 @@
           <picture>
               <!--[if IE 9]><video style="display: none;"><![endif]-->
               <source srcset="/img/joinmedia.svg" type="image/svg+xml" />
-              <source srcset="/img/joinmedia.png" />
               <!--[if IE 9]></video><![endif]-->
-              <img srcset="/img/joinmedia.png" alt="join.media Logo" width="180" height="27" />
+              <img srcset="/img/joinmedia.png" alt="join.media Logo" />
           </picture>
         </a>
         @if (IsSectionDefined("navigation"))
@@ -125,7 +124,7 @@
                 <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
                 <div class="legal">
                     <a class="imprint link" href="/Impressum">Impressum</a>
-                    <p class="copyright">&copy; @DateTime.Now.Year join.media GmbH & Co. KG</p>
+                    <p class="copyright">&copy; @DateTime.Now.Year join.media GmbH &amp; Co. KG</p>
                 </div>
             </div>
         </footer>

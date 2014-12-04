@@ -32,7 +32,7 @@
 \*------------------------------------*/
 
 .logo {
-	@include column(7);
+	@include column(8);
 	display: block;
 	padding: $space-three-quarter $pad $space-half;
 	position: relative;
@@ -43,11 +43,11 @@
 	}
 
 	@include bp-s {
-		@include column(5);
+		@include column(3);
 	}
 
 	@include bp-m {
-		@include column(4);
+		@include column(2.5);
 	}
 }
 

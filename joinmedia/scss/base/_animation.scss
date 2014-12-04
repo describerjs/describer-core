@@ -112,8 +112,6 @@
 
 		&.show {
 			@include animation('fadeInUp 1s both');
-			/*-webkit-animation-name: fadeInUp;
-					animation-name: fadeInUp;*/
 			opacity: 1;
 		}
 	}

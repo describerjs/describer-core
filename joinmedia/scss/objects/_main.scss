@@ -49,8 +49,8 @@
     $SECTION-COLORS
 \*------------------------------------*/
 
-.joinmedia,
-.impressum {
+#joinmedia,
+#impressum {
 	background-color: $theme-section-joinmedia-bg;
 	color: $theme-section-joinmedia-fg;
 
@@ -63,7 +63,7 @@
 	}
 }
 
-.services {
+#services {
 	background-color: $theme-section-services-bg;
 
 	.block {
@@ -93,7 +93,7 @@
 	}
 }
 
-.customers {
+#customers {
 	background-color: $theme-section-customers-bg;
 	color: $theme-section-customers-fg;
 
@@ -106,7 +106,7 @@
 	}
 }
 
-.agency {
+#agency {
 	background-color: $theme-section-agency-bg;
 
 	.block {
@@ -120,11 +120,11 @@
 	}
 }
 
-.jobs {
+#jobs {
 	background-color: $theme-section-jobs-bg;
 }
 
-.contact {
+#contact {
 	background-color: $theme-section-contact-bg;
 }
 
@@ -145,6 +145,7 @@
 
 	@include bp-m {
 		height: 1000px;
+		height: 100vh;
 	}
 
 	.stage-content-inner {
@@ -153,19 +154,18 @@
 	}
 
 	.stage-content-top {
-		@include absolute($space-triple, 0, '', 0);
+		@include absolute($space-triple * 2, 0, '', 0);
 
 		@include bp-m {
-			top: 250px;
+			top: $space-quad * 2;
 		}
 	}
 
 	.stage-content-mid {
-		margin-top: $space-quarter;
+		margin: $space-quarter 0 $space-half;
 
 		@include bp-m {
-			@include absolute(auto, 0, $space-triple + $space-half, 0);
-			margin-top: 0;
+			@include absolute('', 0, ($space-quad * 2), 0);
 		}
 	}
 
@@ -174,7 +174,7 @@
 		height: $space-triple;
 
 		@include bp-m {
-			@include absolute(auto, 0, '', 0);
+			@include absolute('', 0, 0, 0);
 			z-index: 1;
 		}
 
@@ -203,10 +203,6 @@
 
 			@media only screen and (min-width: 60em) {
 				background-image: url("/img/section-header/stage-1024-672.jpg");
-			}
-
-			@media only screen and (min-width: 80em) {
-				background-image: url("/img/section-header/stage-1600-1050.jpg");
 			}
 
 			@media only screen and (min-width: 80em) {
