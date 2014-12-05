@@ -9,7 +9,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
 
 	$(window).on('hashchange', function() {
-		alert('asdf');
+		$body.trigger('dc-hashchange');
 		//work with -> window.location.hash = '#joinmedi';
 	});
 
@@ -125,6 +125,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				switch(_eventsArray[m]){
 					case 'dominit':
 					case 'dc-orientationchange':
+					case 'dc-hashchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
@@ -174,6 +175,13 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	jmHF.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
+		jmHF.eventDelegationHepler($this, e, param);
+	};
+
+	jmHF.eventDelegationTriggerForDomInit = function(e, param){
+		var $this = $(this);//$(e.target);//
+		e.stopPropagation();
+		e.preventDefault();
 		jmHF.eventDelegationHepler($this, e, param);
 	};
 
@@ -261,6 +269,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				switch(eventArray[i]){
 					case 'dominit':
 					case 'dc-orientationchange':
+					case 'dc-hashchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
