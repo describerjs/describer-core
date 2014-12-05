@@ -8,6 +8,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	window.dc = window.dc || {};
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
 
+	$(window).on('hashchange', function() {
+		alert('asdf');
+		//work with -> window.location.hash = '#joinmedi';
+	});
+
 	jmHF.alert = function(p_data){
 		if(window.debug){
 			window.alert(p_data);
