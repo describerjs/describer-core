@@ -66,11 +66,9 @@ $color-transparent:       transparent;
 \*------------------------------------*/
 
 // Main
-$theme-body-bg:					$color-orange-base;
+$theme-body-bg:					$color-blue-mid-light;
 $theme-body-fg:					$color-white;
-$theme-headings-bg:				$color-transparent;
-$theme-headings-fg:				$color-white;
-$theme-page-bg:					$color-orange-base;
+$theme-page-bg:					$color-blue-mid-light;
 $theme-page-fg:					$color-white;
 $theme-selection-bg:			$color-orange-base;
 $theme-selection-fg:			$color-white;
@@ -101,6 +99,12 @@ $theme-cta-fg:					$color-white;
 $theme-cta-active-bg:			$color-blue-dark;
 $theme-cta-active-fg:			$color-white;
 
+// Headings
+$theme-headings-bg:				$color-transparent;
+$theme-headings-fg:				$color-white;
+$theme-principal-bg:			$color-white;
+$theme-principal-fg:			$color-orange-base;
+
 // Links
 $theme-link-bg:					$color-transparent;
 $theme-link-fg:					$color-orange-base;
@@ -129,6 +133,9 @@ $theme-flyout-group-active-fg:	$color-white;
 $theme-menu-btn-bg:				$color-black;
 $theme-menu-btn-fg:				$color-white;
 $theme-menu-item-bg:			$color-orange-base;
+
+// Stage
+$theme-stage-bg:				$color-blue-mid-light;
 
 // Tabs
 $theme-tabs-bg:					$color-transparent;
@@ -215,7 +222,8 @@ $bp-xxl:	82em;
     $LAYOUT
 \*------------------------------------*/
 
-$layout-maxwidth:	73em;
+$layout-header-height:	3.75rem;
+$layout-maxwidth:		73em;
 
 
 

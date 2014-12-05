@@ -80,17 +80,15 @@
 
 	// Innerer Container für "t-header", "t-main", "t-footer"
 	.t-inner {
-		padding: 0.75rem 1rem;
 		margin-left: 0 !important;
 		margin-right: 0 !important;
+		padding: 0.75rem 1rem;
 		position: relative;
 	}
 
 	// Umfasst den textlichen Inhalt
 	.t-content {
-		border-top: 1px solid $theme-teaser-fg;
 		margin-top: $space-half;
-		padding-top: $space-half;
 	}
 }
 

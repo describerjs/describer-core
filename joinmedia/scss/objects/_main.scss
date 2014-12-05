@@ -56,7 +56,7 @@
 
 	.block{
 		.block-content {
-			.headline-underlined {
+			h3 {
 				border-color: $theme-section-joinmedia-fg;
 			}
 		}
@@ -138,82 +138,46 @@
 
 .stage {
 	@extend .section;
-	@include element-default;
-	background-color: $theme-stageteaser-bg;
-	margin-bottom: 0;
-	overflow: visible;
-
-	@include bp-m {
-		height: 1000px;
-		height: 100vh;
-	}
-
-	.stage-content-inner {
-		@include clearfix;
-		@include constrained;
-	}
-
-	.stage-content-top {
-		@include absolute($space-triple * 2, 0, '', 0);
-
-		@include bp-m {
-			top: $space-quad * 2;
-		}
-	}
-
-	.stage-content-mid {
-		margin: $space-quarter 0 $space-half;
-
-		@include bp-m {
-			@include absolute('', 0, ($space-quad * 2), 0);
-		}
-	}
-
-	.stage-content-bottom {
-		background-color: $theme-stageteaser-bg;
-		height: $space-triple;
-
-		@include bp-m {
-			@include absolute('', 0, 0, 0);
-			z-index: 1;
-		}
-
-		.stage-content-inner {
-			height: 100%;
-		}
-	}
+	background-color: $theme-stage-bg;
 
 	.stage-bg {
 		height: 1000px;
+		height: 100vh;
+		position: relative;
+	}
 
-		.parallax-inner {
-			height: 100%;
+	.stage-footer {
+		background-color: $theme-stage-bg;
+		padding: {
+			bottom: $space-half;
+			top: $space-half;
 		}
 
-		.parallax-img {
-			//background-image: url("/img/fotos/tablet-kaffee.jpg");
-			background-image: url("/img/section-header/stage-480-315.jpg");
-			background-size: cover;
-			height: 100%;
-			width: 100%;
-
-			@media only screen and (min-width: 48em) {
-				background-image: url("/img/section-header/stage-768-504.jpg");
-			}
-
-			@media only screen and (min-width: 60em) {
-				background-image: url("/img/section-header/stage-1024-672.jpg");
-			}
-
-			@media only screen and (min-width: 80em) {
-				background-image: url("/img/section-header/stage-1600-1050.jpg");
-			}
-
-			@media only screen and (min-width: 120em) {
-				background-image: url("/img/section-header/stage-2560-1680.jpg");
-			}
+		@include bp-m {
+			@include absolute('', 0, 0, 0);
 		}
-	}	
+	}
+
+	.stage-header {
+		@include constrained;
+		@include absolute(15%, 0, '', 0);
+
+		@include bp-m {
+			top: 20%;
+		}
+	}
+
+	.stage-main {
+		@include constrained;
+
+		@include bp-m {
+			@include absolute('', 0, 15%, 0);
+		}
+
+		@include bp-l {
+			@include absolute('', 0, 25%, 0);
+		}
+	}
 }
 
 

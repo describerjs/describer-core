@@ -6,6 +6,9 @@
  * JS/NOJS.............................JS/NOJS Elements
  * .....js-element
  * .....nojs-element
+ * COVER...............................Stretch Element
+ * .....cover-img (stretch all images)
+ * .....parallax override (stretch all parallax elements)
  * OVERLAPPING.........................Overlapping Elements
  * .....overlapped
  * .....to-overlap
@@ -31,6 +34,33 @@
 // NO-JS
 .nojs-element {
 	display: none;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $COVER
+\*------------------------------------*/
+
+.cover {
+	@include element-stretch;
+	height: 100%;
+	width: 100%;
+
+	.cover-img {
+		max-width: none;
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.parallax,
+	.parallax-img,
+	.parallax-inner {
+		height: inherit;
+		width: inherit;
+	}
 }
 
 

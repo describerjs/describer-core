@@ -27,6 +27,23 @@
 		family: $font-heading;
 		weight: bold;
 	}
+
+	// Führende Headline (hinterlegt)
+	.principal {
+		display: block;
+		margin: 0 $dist-s;
+			
+		@include bp-m {
+			@include rgba($theme-principal-bg, .8);
+			color: $theme-principal-fg;
+			clear: left;
+			float: left;
+			line-height: 1;
+			margin: 0 0 3px;
+			padding: $pad-three-quarter $pad;
+			white-space: nowrap;
+		}
+	}
 }
 
 
@@ -63,6 +80,8 @@ h3, .h3 {
 	@extend %heading;
 	@extend %as-heading-mobile__medium;
 	@extend %as-heading-mobile__medium--typeset;
+	border-bottom: 2px solid $theme-headings-fg;
+	padding-bottom: $space-quarter;
 
 	@include bp-m {
 		@include as-heading__medium;

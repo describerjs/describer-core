@@ -341,7 +341,7 @@ h6, .h6 {
   clear: both;
 }
 
-.row, .row2, .row3, .row4, .row5, .row6, .legal, .h-card, .headline, .section-header .sh-headline, .accordion, .block, .nav, .stage-teaser, .tabs, .teaser, .tiles, .togglebox {
+.row, .row2, .row3, .row4, .row5, .row6, .legal, .h-card, .accordion, .block, .nav, .stage-teaser, .tabs, .teaser, .tiles, .togglebox, .section-header .sh-headline {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -351,11 +351,11 @@ h6, .h6 {
   display: block;
   position: relative;
 }
-.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .headline:after, .section-header .sh-headline:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .row:before, .row2:before, .row3:before, .row4:before, .row5:before, .row6:before, .legal:before, .h-card:before, .headline:before, .section-header .sh-headline:before, .accordion:before, .block:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before {
+.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header .sh-headline:after, .row:before, .row2:before, .row3:before, .row4:before, .row5:before, .row6:before, .legal:before, .h-card:before, .accordion:before, .block:before, .nav:before, .stage-teaser:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before, .section-header .sh-headline:before {
   content: "\0020";
   display: table;
 }
-.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .headline:after, .section-header .sh-headline:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after {
+.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .accordion:after, .block:after, .nav:after, .stage-teaser:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header .sh-headline:after {
   clear: both;
 }
 
@@ -661,6 +661,23 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Roboto Slab", "Arial", sans-serif;
   font-weight: bold;
 }
+h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3 .principal, h4 .principal, .h4 .principal, h5 .principal, .h5 .principal, h6 .principal, .h6 .principal {
+  display: block;
+  margin: 0 1rem;
+}
+@media only screen and (min-width: 48em) {
+  h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3 .principal, h4 .principal, .h4 .principal, h5 .principal, .h5 .principal, h6 .principal, .h6 .principal {
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #dd4411;
+    clear: left;
+    float: left;
+    line-height: 1;
+    margin: 0 0 3px;
+    padding: 0.75rem 1rem;
+    white-space: nowrap;
+  }
+}
 
 /*------------------------------------*\
     $HEADINGS
@@ -685,6 +702,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   }
 }
 
+h3, .h3 {
+  border-bottom: 2px solid white;
+  padding-bottom: 0.375rem;
+}
 @media only screen and (min-width: 48em) {
   h3, .h3 {
     font-size: 28px;
@@ -845,7 +866,7 @@ dd {
     $HTML
 \*------------------------------------*/
 html {
-  background-color: #dd4411;
+  background-color: #328890;
   color: white;
   font: 100% "Roboto", "Arial", sans-serif;
   font-weight: 100;
@@ -873,7 +894,7 @@ body {
     $PAGE_WRAPPER
 \*------------------------------------*/
 .page {
-  background-color: #dd4411;
+  background-color: #328890;
   color: white;
   overflow: hidden;
   width: 100%;
@@ -961,6 +982,9 @@ p:last-child {
  * JS/NOJS.............................JS/NOJS Elements
  * .....js-element
  * .....nojs-element
+ * COVER...............................Stretch Element
+ * .....cover-img (stretch all images)
+ * .....parallax override (stretch all parallax elements)
  * OVERLAPPING.........................Overlapping Elements
  * .....overlapped
  * .....to-overlap
@@ -978,6 +1002,30 @@ p:last-child {
 
 .nojs-element {
   display: none;
+}
+
+/*------------------------------------*\
+    $COVER
+\*------------------------------------*/
+.cover {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.cover .cover-img {
+  max-width: none;
+  min-height: 100%;
+  min-width: 100%;
+}
+.cover .parallax, .cover .section-header .sh-parallax, .section-header .cover .sh-parallax,
+.cover .parallax-img,
+.cover .parallax-inner {
+  height: inherit;
+  width: inherit;
 }
 
 /*------------------------------------*\
@@ -1562,6 +1610,7 @@ p:last-child {
 \*------------------------------------*/
 .page-header {
   background-color: #dd4411;
+  height: 3.75rem;
   position: fixed;
   top: 0;
   z-index: 999;
@@ -1571,19 +1620,33 @@ p:last-child {
     LOGO
 \*------------------------------------*/
 .logo {
-  width: 64.58333%;
+  width: 56.25%;
   margin-left: 1.04167%;
   margin-right: 1.04167%;
   clear: none;
   float: left;
+  padding: 0.75rem 1rem;
   display: block;
-  padding: 1.125rem 1rem 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-top: 1.125rem;
   position: relative;
   z-index: 1;
 }
+@media only screen and (min-width: 48em) {
+  .logo {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .logo {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
 @media only screen and (min-width: 22em) {
   .logo {
-    width: 56.25%;
+    width: 47.91667%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -1592,7 +1655,7 @@ p:last-child {
 }
 @media only screen and (min-width: 29.75em) {
   .logo {
-    width: 22.91667%;
+    width: 31.25%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -1650,8 +1713,8 @@ p:last-child {
   background-color: white;
   color: #2c2c2c;
 }
-#joinmedia .block .block-content .headline-underlined,
-#impressum .block .block-content .headline-underlined {
+#joinmedia .block .block-content h3,
+#impressum .block .block-content h3 {
   border-color: #2c2c2c;
 }
 
@@ -1707,33 +1770,51 @@ p:last-child {
     $STAGE
 \*------------------------------------*/
 .stage {
-  *zoom: 1;
-  width: 97.91667%;
-  margin-left: 1.04167%;
-  margin-right: 1.04167%;
-  margin-bottom: 1.5rem;
-  clear: both;
-  display: block;
-  position: relative;
   background-color: #328890;
-  margin-bottom: 0;
-  overflow: visible;
 }
-.stage:after, .stage:before {
+.stage .stage-bg {
+  height: 1000px;
+  height: 100vh;
+  position: relative;
+}
+.stage .stage-footer {
+  background-color: #328890;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+}
+@media only screen and (min-width: 48em) {
+  .stage .stage-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+.stage .stage-header {
+  *zoom: 1;
+  margin: 0 auto;
+  max-width: 73em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 15%;
+  right: 0;
+  left: 0;
+}
+.stage .stage-header:after, .stage .stage-header:before {
   content: "\0020";
   display: table;
 }
-.stage:after {
+.stage .stage-header:after {
   clear: both;
 }
 @media only screen and (min-width: 48em) {
-  .stage {
-    height: 1000px;
-    height: 100vh;
+  .stage .stage-header {
+    top: 20%;
   }
 }
-.stage .stage-content-inner {
-  *zoom: 1;
+.stage .stage-main {
   *zoom: 1;
   margin: 0 auto;
   max-width: 73em;
@@ -1741,88 +1822,27 @@ p:last-child {
   width: 100%;
   z-index: 1;
 }
-.stage .stage-content-inner:after, .stage .stage-content-inner:before {
+.stage .stage-main:after, .stage .stage-main:before {
   content: "\0020";
   display: table;
 }
-.stage .stage-content-inner:after {
+.stage .stage-main:after {
   clear: both;
 }
-.stage .stage-content-inner:after, .stage .stage-content-inner:before {
-  content: "\0020";
-  display: table;
-}
-.stage .stage-content-inner:after {
-  clear: both;
-}
-.stage .stage-content-top {
-  position: absolute;
-  top: 9rem;
-  right: 0;
-  left: 0;
-}
 @media only screen and (min-width: 48em) {
-  .stage .stage-content-top {
-    top: 12rem;
-  }
-}
-.stage .stage-content-mid {
-  margin: 0.375rem 0 0.75rem;
-}
-@media only screen and (min-width: 48em) {
-  .stage .stage-content-mid {
+  .stage .stage-main {
     position: absolute;
     right: 0;
-    bottom: 12rem;
+    bottom: 15%;
     left: 0;
-  }
-}
-.stage .stage-content-bottom {
-  background-color: #328890;
-  height: 4.5rem;
-}
-@media only screen and (min-width: 48em) {
-  .stage .stage-content-bottom {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-  }
-}
-.stage .stage-content-bottom .stage-content-inner {
-  height: 100%;
-}
-.stage .stage-bg {
-  height: 1000px;
-}
-.stage .stage-bg .parallax-inner {
-  height: 100%;
-}
-.stage .stage-bg .parallax-img {
-  background-image: url("/img/section-header/stage-480-315.jpg");
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}
-@media only screen and (min-width: 48em) {
-  .stage .stage-bg .parallax-img {
-    background-image: url("/img/section-header/stage-768-504.jpg");
   }
 }
 @media only screen and (min-width: 60em) {
-  .stage .stage-bg .parallax-img {
-    background-image: url("/img/section-header/stage-1024-672.jpg");
-  }
-}
-@media only screen and (min-width: 80em) {
-  .stage .stage-bg .parallax-img {
-    background-image: url("/img/section-header/stage-1600-1050.jpg");
-  }
-}
-@media only screen and (min-width: 120em) {
-  .stage .stage-bg .parallax-img {
-    background-image: url("/img/section-header/stage-2560-1680.jpg");
+  .stage .stage-main {
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+    left: 0;
   }
 }
 
@@ -2035,30 +2055,6 @@ p:last-child {
     
 \*------------------------------------*/
 /*------------------------------------*\
-    $HEADINGS
-\*------------------------------------*/
-.headline, .section-header .sh-headline {
-  margin-bottom: 0;
-}
-.headline h1, .section-header .sh-headline h1, .headline h2, .section-header .sh-headline h2, .headline h3, .section-header .sh-headline h3, .headline h4, .section-header .sh-headline h4, .headline h5, .section-header .sh-headline h5, .headline h6, .section-header .sh-headline h6 {
-  padding: 0.75rem 1rem;
-  margin-bottom: 0;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  position: relative;
-  background-color: white;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #dd4411;
-  display: inline-block;
-  font-weight: bold;
-}
-
-.headline-underlined {
-  border-bottom: 2px solid white;
-  padding-bottom: 0.375rem;
-}
-
-/*------------------------------------*\
     $SOCIAL_MEDIA
 \*------------------------------------*/
 /**
@@ -2234,11 +2230,7 @@ p:last-child {
 }
 @media only screen and (min-width: 48em) {
   .go-down {
-    -moz-transform: translateY(20%);
-    -ms-transform: translateY(20%);
-    -o-transform: translateY(20%);
-    -webkit-transform: translateY(20%);
-    transform: translateY(20%);
+    /*@include transform(translateY(20%));	*/
   }
 }
 .go-down:active, .go-down:focus, .go-down:hover {
@@ -2487,7 +2479,7 @@ p:last-child {
 }
 @media only screen and (min-width: 60em) {
   .nav {
-    width: 64.58333%;
+    width: 77.08333%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -3808,15 +3800,13 @@ p:last-child {
   /**/
 }
 .teaser .t-inner {
-  padding: 0.75rem 1rem;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  padding: 0.75rem 1rem;
   position: relative;
 }
 .teaser .t-content {
-  border-top: 1px solid white;
   margin-top: 0.75rem;
-  padding-top: 0.75rem;
 }
 
 /*------------------------------------*\
@@ -4020,9 +4010,22 @@ p:last-child {
 }
 .section-header .sh-headline {
   bottom: 3rem;
+  margin-bottom: 0;
   padding-left: 1%;
   position: absolute;
   width: auto;
+}
+.section-header .sh-headline h1, .section-header .sh-headline h2, .section-header .sh-headline h3, .section-header .sh-headline h4, .section-header .sh-headline h5, .section-header .sh-headline h6 {
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #328890;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0.75rem 1rem;
+  position: relative;
 }
 .section-header .sh-map {
   height: 400px;

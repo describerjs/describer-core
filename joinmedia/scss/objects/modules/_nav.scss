@@ -87,7 +87,7 @@ $menu-btn-height: 2.5rem;
 	margin-bottom: 0;
 
 	@include bp-l {
-		@include column(8);
+		@include column(9.5);
 		background-color: $theme-nav-bg;
 		color: $theme-nav-fg;
 	}

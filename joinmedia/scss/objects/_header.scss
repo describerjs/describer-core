@@ -18,6 +18,7 @@
 .page-header {
 	@extend %page-element-default;
 	background-color: $theme-nav-bg;
+	height: $layout-header-height;
 	position: fixed;
 	top: 0;
 	z-index: 999;
@@ -32,18 +33,22 @@
 \*------------------------------------*/
 
 .logo {
-	@include column(8);
+	@include column(7);
+	@include element-indent;
 	display: block;
-	padding: $space-three-quarter $pad $space-half;
+	padding: {
+		bottom: $space-half;
+		top: $space-three-quarter;
+	}
 	position: relative;
 	z-index: 1;
 
 	@include bp-xs {
-		@include column(7);
+		@include column(6);
 	}
 
 	@include bp-s {
-		@include column(3);
+		@include column(4);
 	}
 
 	@include bp-m {
