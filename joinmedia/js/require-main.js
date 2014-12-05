@@ -168,7 +168,7 @@ require(['jquery', '_config'], function require_jquery($){
 			// -----------------------------------------------------
 
 
-			$body.on('dominit', '[data-jmname]', jmHF.eventDelegationTrigger);
+			$body.on('dominit', '[data-jmname]', jmHF.eventDelegationTriggerForDomInit);
 
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
 			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);

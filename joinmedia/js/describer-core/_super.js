@@ -31,11 +31,6 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
 		},
 
-		// wird vom Body-Listener für 'change' aufgerufen
-		orientationchange: function(e){
-			if(this.includes('event', 'orientationchange') && this.isCondition()) this._execWait(e);
-		},
-
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
 		jmtrigger: function(e, e_param){
 			if($.type(e_param) === 'undefined'){
@@ -49,6 +44,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
 		dominit: function(e){
+			var that = this;
 			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 			//
@@ -63,6 +59,13 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'dc-hashchange')){
+				console.log('dc-hashchange');
+				console.log(this.$elem);
+				this.$elem.closest('body').on('dc-hashchange', function(){
+					that._execWaitAfterCondition();
+				});
+			}
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.

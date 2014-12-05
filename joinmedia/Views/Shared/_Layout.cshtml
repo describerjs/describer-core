@@ -27,10 +27,10 @@
     <meta name="msapplication-TileColor" content="#222222" />
     @if (HttpContext.Current.IsDebuggingEnabled)
     {
-        <script src="/js/raven.js"></script>
+       <!-- <script src="/js/raven.js"></script>
         <script>
             Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
-        </script>
+        </script>-->
     }
 
     @Html.Partial("_basisJS")

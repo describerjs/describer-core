@@ -13,14 +13,20 @@ define(function(){
 	return [
 		{
 			jmname   : 'mobile-none',
-			jmplugin: 'actions.add',
-			jmconfig : {
-				'event'    : 'dominit',
+			jmplugin: 'actions.add_1|actions.add_2',
+			jmconfig : [{
+				'event'    : 'dominit|dc-hashchange',
 				'datatype' : 'style',
 				'data'     : 'display:none',
 				'relatedTo': 'this.$elem[0]',
 				'condition': 'Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))'
-			}
+			},{
+				'event'    : 'dominit|dc-hashchange',
+				'datatype' : 'style',
+				'data'     : 'display:block',
+				'relatedTo': 'this.$elem[0]',
+				'condition': 'Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))'
+			}]
 		},{
 			jmname   : 'nav-toggle',
 			jmplugin: 'actions.toggle',
@@ -465,12 +471,15 @@ define(function(){
 		},
 		{
 			jmname: 'anchor',
-			jmplugin: 'actions.scroll',
-			jmconfig: {
+			jmplugin: 'actions.scroll|actions.link',
+			jmconfig: [{
 				'event': 'click',
 				'scrollTo': 'this.$elem.attr(\'href\')',
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
-			}
+			},{
+				'event': 'click',
+				'scrollTo': 'this.$elem.attr(\'href\')'
+			}]
 		},
 		{
 			jmname   : 'test1',
