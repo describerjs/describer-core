@@ -369,7 +369,7 @@ define(function(){
 			jmname: 'parallax-content-orientation',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
-				'event': 'dominit',
+				'event': 'init-by-perf',
 				'data' : 'orientation'
 			}
 		},
@@ -377,7 +377,7 @@ define(function(){
 			jmname: 'parallax-content-scrollY',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
-				'event': 'dominit',
+				'event': 'init-by-perf',
 				'data' : 'scrollY'
 			}
 		},
@@ -385,7 +385,7 @@ define(function(){
 			jmname: 'parallax-content-scrollY-fallback',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
-				'event': 'dominit',
+				'event': 'init-by-perf',
 				'data' : 'scrollY-fallback'
 			}
 		},
@@ -393,7 +393,7 @@ define(function(){
 			jmname: 'parallax-content-orientationX-scrollY',
 			jmplugin: 'modules.parallax',
 			jmconfig: {
-				'event': 'dominit',
+				'event': 'init-by-perf',
 				'data' : 'orientationX-scrollY'
 			}
 		},
