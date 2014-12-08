@@ -68,7 +68,7 @@ $shp-height-m: 540px;
 
 	.sh-parallax {
 		@extend .parallax;
-		background: $color-blue-x-dark;
+		background: $color-white;
 		height: $shp-height-s;
 
 		@include bp-m {
