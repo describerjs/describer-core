@@ -23,6 +23,10 @@ define(['jquery', '_super', 'jquery_canvasResize'], function($, _super){
 		},
 
 		_exec: function(){
+			// TODO Andreas filereader-test implementation
+			/*Modernizr.addTest('filereader', function () {
+				return !!(window.File && window.FileList && window.FileReader);
+			});*/
 			var $inputFileElem = this.$elem.siblings('input[type="file"]');
             this.$elem.on('click', function (e) {
                 $inputFileElem.trigger('click');

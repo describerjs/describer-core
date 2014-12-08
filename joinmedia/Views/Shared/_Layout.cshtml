@@ -95,10 +95,10 @@
 
 <body>
 	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
-	<div class="page">
+	<div class="page" style="padding-top: 3.75rem;">
     <header class="page-header" role="banner">
       <div class="page-constrained">
-        <a class="logo" href="/">
+        <a class="logo" href="/#">
           <picture>
               <!--[if IE 9]><video style="display: none;"><![endif]-->
               <source srcset="/img/joinmedia.svg" type="image/svg+xml" />
@@ -121,7 +121,7 @@
 		</main>
         <footer class="page-footer" role="contentinfo">
             <div class="page-constrained">
-                <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
+                <a class="back-to-top" href="#" data-jmname="back-to-top" data-jmdominit="true">Zurück nach oben</a>
                 <div class="legal">
                     <a class="imprint link" href="/Impressum">Impressum</a>
                     <p class="copyright">&copy; @DateTime.Now.Year join.media GmbH &amp; Co. KG</p>

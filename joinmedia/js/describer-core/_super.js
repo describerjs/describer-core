@@ -59,13 +59,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
-			if(this.includes('event', 'dc-hashchange')){
-				console.log('dc-hashchange');
-				console.log(this.$elem);
-				this.$elem.closest('body').on('dc-hashchange', function(){
-					that._execWaitAfterCondition();
-				});
-			}
+			if(this.includes('event', 'dc-hashchange')) this.$elem.closest('body').on('dc-hashchange', this._execWaitAfterCondition.bind(this));
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -384,7 +378,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
-				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 35){
+				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 60){
 					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
 						_obj = window.dc.onHoldArray[i].obj;
 						if(!_obj.exec){
@@ -436,7 +430,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_initByPerf: function(e){
 			var _obj;
-			if(Modernizr.mq('only screen and (min-width : 60em)')){
+			if(window.dc.sectionpager || Modernizr.mq('only screen and (min-width : 60em)')){
 				this._execWaitAfterCondition();
 				return;
 			}
@@ -455,6 +449,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_render: function(){
 			if((window.dc.win.counter % this.renderDelay) !== 0){
+				return;
+			}
+			if(this.$elem.offsetHeight === 0){
 				return;
 			}
 			if(eval(this.conditionSource)){
