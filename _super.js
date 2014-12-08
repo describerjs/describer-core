@@ -366,9 +366,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		_applyPerfPluginsOnInterval: function(){
 			var that = this;
 			if(window.debug){
-				$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span><span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 1/?</span></div>');
+				$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span></div>');
 				this.$acount = $('#fps-counter');
-				this.$initByPerfCounter = $('#init-by-perf-counter');
+
 			}
 			setInterval(function(){
 				var _obj;
@@ -379,6 +379,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
 				if(window.debug){
 					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+				}
+				if(window.debug && window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
+					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 1/?</span>');
+					that.$initByPerfCounter = $('#init-by-perf-counter');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
 				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 35){
