@@ -59,6 +59,11 @@ $shp-height-m: 540px;
 		@include bp-m {
 			height: $shp-height-m;
 		}
+
+		img {
+			// Fix gegen verzerrte Google Maps Controls
+			max-width: none;
+		}
 	}
 
 	.sh-parallax {

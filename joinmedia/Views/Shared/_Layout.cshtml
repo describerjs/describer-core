@@ -222,7 +222,7 @@
             map.setOptions({ styles: mapStyles });
 
             var contentString =
-               '<div class="maps-infowindow">' +
+               '<div class="maps-infowindow" style="min-height: 170px;">' +
                    '<h3 style="margin: 0 0 0.5em 0; color: #dd4411;">join.media GmbH & Co. KG</h3>' +
                    '<div class="maps-bodycontent" style="color: #000;">' +
                        'Düsseldorfer Straße 269<br/>45481 Mülheim an der Ruhr<br/>Deutschland' +
@@ -237,7 +237,7 @@
                 position: new google.maps.LatLng(51.4156, 6.867623),
                 map: map,
                 title: "join.media",
-                icon: "/images/jm/marker.png"
+                icon: "/img/marker.png"
             });
             jmMarker.setAnimation(google.maps.Animation.DROP);
 

@@ -150,8 +150,8 @@ h6, .h6 {
  * TYPO................................Typo/Webfonts/etc.
  * BREAKPOINTS.........................Breakpoints Definitionen
  * LAYOUT..............................Layout-Spezifische Angaben
- * SPACING.............................Abstände definieren
- * TRANSITIONS.........................Eigenschaften für Transitions
+ * SPACING.............................Abst├ñnde definieren
+ * TRANSITIONS.........................Eigenschaften f├╝r Transitions
 **/
 /*------------------------------------*\
     $COLORS
@@ -667,7 +667,7 @@ h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3
 }
 @media only screen and (min-width: 48em) {
   h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3 .principal, h4 .principal, .h4 .principal, h5 .principal, .h5 .principal, h6 .principal, .h6 .principal {
-    background-color: white;
+    background-color: #ffffff;
     background-color: rgba(255, 255, 255, 0.8);
     color: #dd4411;
     clear: left;
@@ -703,7 +703,7 @@ h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3
 }
 
 h3, .h3 {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #ffffff;
   padding-bottom: 0.375rem;
 }
 @media only screen and (min-width: 48em) {
@@ -852,13 +852,13 @@ dd {
 \*------------------------------------*/
 ::-moz-selection {
   background: #dd4411;
-  color: white;
+  color: #ffffff;
   text-shadow: none;
 }
 
 ::selection {
   background: #dd4411;
-  color: white;
+  color: #ffffff;
   text-shadow: none;
 }
 
@@ -867,7 +867,7 @@ dd {
 \*------------------------------------*/
 html {
   background-color: #328890;
-  color: white;
+  color: #ffffff;
   font: 100% "Roboto", "Arial", sans-serif;
   font-weight: 100;
   line-height: 1.5em;
@@ -895,7 +895,7 @@ body {
 \*------------------------------------*/
 .page {
   background-color: #328890;
-  color: white;
+  color: #ffffff;
   overflow: hidden;
   width: 100%;
 }
@@ -1217,7 +1217,6 @@ p:last-child {
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1234,7 +1233,6 @@ p:last-child {
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1251,7 +1249,6 @@ p:last-child {
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1268,7 +1265,6 @@ p:last-child {
     -webkit-transform: translate3d(0, 5%, 0);
     transform: translate3d(0, 5%, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1285,7 +1281,6 @@ p:last-child {
     -webkit-transform: translate3d(-5%, 0, 0);
     transform: translate3d(-5%, 0, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1302,7 +1297,6 @@ p:last-child {
     -webkit-transform: translate3d(-5%, 0, 0);
     transform: translate3d(-5%, 0, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1319,7 +1313,6 @@ p:last-child {
     -webkit-transform: translate3d(-5%, 0, 0);
     transform: translate3d(-5%, 0, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1336,7 +1329,6 @@ p:last-child {
     -webkit-transform: translate3d(-5%, 0, 0);
     transform: translate3d(-5%, 0, 0);
   }
-
   100% {
     -moz-transform: none;
     -ms-transform: none;
@@ -1710,7 +1702,7 @@ p:last-child {
 \*------------------------------------*/
 #joinmedia,
 #impressum {
-  background-color: white;
+  background-color: #ffffff;
   color: #2c2c2c;
 }
 #joinmedia .block .block-content h3,
@@ -1719,10 +1711,10 @@ p:last-child {
 }
 
 #services {
-  background-color: #396b71;
+  background-color: #396B71;
 }
 #services .block:nth-of-type(1) {
-  background-color: #396b71;
+  background-color: #396B71;
 }
 #services .block:nth-of-type(2) {
   background-color: #2b5155;
@@ -1734,14 +1726,14 @@ p:last-child {
   background-color: #2e7e86;
 }
 #services .block:nth-of-type(5) {
-  background-color: #396b71;
+  background-color: #396B71;
 }
 #services .block:nth-of-type(6) {
   background-color: #2b5155;
 }
 
 #customers {
-  background-color: white;
+  background-color: #ffffff;
   color: #2c2c2c;
 }
 #customers .block .block-content > h1, #customers .block .block-content h2, #customers .block .block-content h3, #customers .block .block-content h4, #customers .block .block-content h5, #customers .block .block-content h6 {
@@ -1755,7 +1747,7 @@ p:last-child {
   background-color: #dd4411;
 }
 #agency .block:nth-of-type(2) {
-  background-color: #333333;
+  background-color: #333;
 }
 
 #jobs {
@@ -1863,8 +1855,8 @@ p:last-child {
     $FOOTER
 \*------------------------------------*/
 .page-footer {
-  background-color: #333333;
-  color: white;
+  background-color: #333;
+  color: #ffffff;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
 }
@@ -1967,11 +1959,11 @@ p:last-child {
 \*------------------------------------*/
 .btn {
   background-color: #dd4411;
-  color: white;
+  color: #ffffff;
 }
 .btn:active, .btn:hover {
   background-color: #b13308;
-  color: white;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -1989,11 +1981,11 @@ p:last-child {
 \*------------------------------------*/
 .cta {
   background-color: #2e7e86;
-  color: white;
+  color: #ffffff;
 }
 .cta:active, .cta:hover {
   background-color: #2b5155;
-  color: white;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -2131,7 +2123,7 @@ p:last-child {
  *
 **/
 .accordion {
-  background-color: #dddddd;
+  background-color: #ddd;
   color: #2c2c2c;
 }
 .accordion .acc-group {
@@ -2147,22 +2139,22 @@ p:last-child {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  background-color: #999999;
-  color: white;
+  background-color: #999;
+  color: #ffffff;
   display: block;
   font-family: "Roboto", "Arial", sans-serif;
   margin-bottom: 3px;
   position: relative;
 }
 .accordion .acc-handle:hover {
-  background-color: #aaaaaa;
+  background-color: #aaa;
   color: #2c2c2c;
 }
 .accordion .acc-item {
   /**/
 }
 .accordion .show > .acc-handle {
-  background-color: #aaaaaa;
+  background-color: #aaa;
   color: #2c2c2c;
 }
 
@@ -2191,7 +2183,7 @@ p:last-child {
   -webkit-transition: -webkit-transform 0.6s;
   transition: transform 0.6s;
   background: #dd4411 url("data:image/png;base64,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") no-repeat scroll center center;
-  border: 3px solid white;
+  border: 3px solid #ffffff;
   border-radius: 55px;
   display: block;
   height: 55px;
@@ -2219,9 +2211,9 @@ p:last-child {
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   background: #dd4411 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAANCAYAAABGkiVgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHdJREFUeNpi+P//PwMU+wMxIxKfFMwI1Q/mwwQ7/kPAdDIMZoTq+w81hwHmQmRAisHIBsJAAC4JYgzGqY+gAlINRA5TUgwmqI6BRA1EWUyK15iIDSJSIuEasWFOauwSlToYyE02+PSRmsCJyhikZMUIYnMaQIABAO3Fe0Vp6olEAAAAAElFTkSuQmCC") no-repeat scroll 50% 50%;
-  border: 1px solid white;
+  border: 1px solid #ffffff;
   border-radius: 50%;
-  color: white;
+  color: #ffffff;
   display: block;
   height: 50px;
   margin: 0 auto;
@@ -2411,7 +2403,7 @@ p:last-child {
  *
 **/
 /**
- * Navigation mit Menu-Button für mobile Darstellung
+ * Navigation mit Menu-Button f├╝r mobile Darstellung
  *
 	<nav class="nav" id="nav" role="navigation">
 		<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
@@ -2463,11 +2455,11 @@ p:last-child {
 
 .flyout .flyout-group-title, .flyout .flyout-link {
   background-color: #dd4411;
-  color: white;
+  color: #ffffff;
 }
 .flyout .flyout-group-title:hover, .flyout .flyout-link:hover {
   background-color: #b13308;
-  color: white;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -2485,7 +2477,7 @@ p:last-child {
     clear: none;
     float: left;
     background-color: #dd4411;
-    color: white;
+    color: #ffffff;
   }
 }
 .nav .nav-items {
@@ -2528,7 +2520,7 @@ p:last-child {
   background-color: #b13308;
 }
 .nav .nav-item:hover .nav-link {
-  color: white;
+  color: #ffffff;
 }
 @media only screen and (min-width: 60em) {
   .nav .nav-item:hover .flyout {
@@ -2541,10 +2533,10 @@ p:last-child {
   background-color: #b13308;
 }
 .nav .nav-item.show .nav-link {
-  color: white;
+  color: #ffffff;
 }
 .nav .nav-link {
-  color: white;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -2554,7 +2546,7 @@ p:last-child {
   position: absolute;
   top: 0.5rem;
   right: 1.04167%;
-  color: white;
+  color: #ffffff;
   display: block;
   font-family: "Roboto Slab", "Arial", sans-serif;
   height: 2.5rem;
@@ -2569,9 +2561,9 @@ p:last-child {
   }
 }
 .menu-btn:before, .menu-close-btn:before, .show-menu .menu-btn:before {
-  -moz-box-shadow: 0 0 0 2px white, 0 8px 0 2px white, 0 16px 0 2px white;
-  -webkit-box-shadow: 0 0 0 2px white, 0 8px 0 2px white, 0 16px 0 2px white;
-  box-shadow: 0 0 0 2px white, 0 8px 0 2px white, 0 16px 0 2px white;
+  -moz-box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
+  -webkit-box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
+  box-shadow: 0 0 0 2px #ffffff, 0 8px 0 2px #ffffff, 0 16px 0 2px #ffffff;
   content: "";
   display: block;
   position: absolute;
@@ -2595,7 +2587,7 @@ p:last-child {
   content: "";
   display: block;
   position: absolute;
-  background-color: white;
+  background-color: #ffffff;
   height: 3px;
   left: .5rem;
   right: .5rem;
@@ -2682,7 +2674,7 @@ p:last-child {
   height: 0;
   opacity: 0;
   visibility: hidden;
-  background-color: #eeeeee;
+  background-color: #eee;
   z-index: 2;
 }
 .flyout:after, .flyout:before {
@@ -2723,7 +2715,7 @@ p:last-child {
 .flyout .flyout-group-title {
   padding-left: 2rem;
   background-color: #b13308;
-  color: white;
+  color: #ffffff;
 }
 @media only screen and (min-width: 48em) {
   .flyout .flyout-group-title {
@@ -2758,7 +2750,7 @@ p:last-child {
 @media only screen and (min-width: 60em) {
   .flyout .flyout-group-title:hover {
     background-color: #9d2902;
-    color: white;
+    color: #ffffff;
   }
 }
 @media only screen and (min-width: 60em) {
@@ -3131,7 +3123,6 @@ p:last-child {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
@@ -3140,7 +3131,6 @@ p:last-child {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
@@ -3149,7 +3139,6 @@ p:last-child {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
@@ -3158,7 +3147,6 @@ p:last-child {
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
@@ -3167,7 +3155,6 @@ p:last-child {
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
@@ -3176,7 +3163,6 @@ p:last-child {
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
@@ -3186,12 +3172,10 @@ p:last-child {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
-
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
   }
-
   100% {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(-200%);
@@ -3202,12 +3186,10 @@ p:last-child {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
-
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
   }
-
   100% {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(-200%);
@@ -3218,12 +3200,10 @@ p:last-child {
     opacity: .5;
     transform: translateZ(-500px);
   }
-
   75% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
   }
-
   100% {
     opacity: .5;
     transform: translateZ(-500px) translateX(-200%);
@@ -3234,12 +3214,10 @@ p:last-child {
     opacity: .5;
     -webkit-transform: translateZ(-500px) translateX(200%);
   }
-
   75% {
     opacity: .5;
     -webkit-transform: translateZ(-500px);
   }
-
   100% {
     opacity: 1;
     -webkit-transform: translateZ(0) translateX(0);
@@ -3250,12 +3228,10 @@ p:last-child {
     opacity: .5;
     -moz-transform: translateZ(-500px) translateX(200%);
   }
-
   75% {
     opacity: .5;
     -moz-transform: translateZ(-500px);
   }
-
   100% {
     opacity: 1;
     -moz-transform: translateZ(0) translateX(0);
@@ -3266,12 +3242,10 @@ p:last-child {
     opacity: .5;
     transform: translateZ(-500px) translateX(200%);
   }
-
   75% {
     opacity: .5;
     transform: translateZ(-500px);
   }
-
   100% {
     opacity: 1;
     transform: translateZ(0) translateX(0);
@@ -3440,9 +3414,9 @@ p:last-child {
  * "stage-teaser-head" ist die Headline.
  * "stage-teaser-content" umfasst den restlichen Inhalt.
  *
- * Die img-Höhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
- * $stage-teaser-img-height:	195px;	// img-Höhe-S
- * $stage-teaser-img-height-m:	468px;	// img-Höhe-M
+ * Die img-H├Âhe muss festgesetzt werden, weil "stage-teaser" ebenfalls als "carousel" angezeigt werden kann.
+ * $stage-teaser-img-height:	195px;	// img-H├Âhe-S
+ * $stage-teaser-img-height-m:	468px;	// img-H├Âhe-M
  *
 	<div class="stage-teaser">
     </div>
@@ -3451,7 +3425,7 @@ p:last-child {
 /*------------------------------------*\
     $GENERIC
 \*------------------------------------*/
-/*$stage-teaser-img-height:	197px;	// img-Höhe-S*/
+/*$stage-teaser-img-height:	197px;	// img-H├Âhe-S*/
 /*------------------------------------*\
     $STAGE-TEASER
 \*------------------------------------*/
@@ -3533,7 +3507,7 @@ p:last-child {
     margin-right: 1.04167%;
     clear: none;
     float: left;
-    background-color: white;
+    background-color: #fff;
     background-color: rgba(255, 255, 255, 0.75);
     margin: 1.5rem 1.5rem;
     padding: 1.5rem 1.5rem 4.5rem;
@@ -3610,7 +3584,7 @@ p:last-child {
   -o-transition: bottom 0.3s ease-out;
   -webkit-transition: bottom 0.3s ease-out;
   transition: bottom 0.3s ease-out;
-  background-color: white;
+  background-color: #ffffff;
   bottom: -0.75rem;
   color: #2c2c2c;
   margin-left: 1px !important;
@@ -3693,7 +3667,7 @@ p:last-child {
 }
 .tabs > .tab:hover {
   background-color: #284245;
-  color: white;
+  color: #ffffff;
 }
 .tabs > .tab:first-of-type {
   margin-left: 1.04167% !important;
@@ -3701,7 +3675,7 @@ p:last-child {
 .tabs > .tab-content {
   background-color: #2b5155;
   clear: both;
-  color: white;
+  color: #ffffff;
   display: none;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
@@ -3711,8 +3685,8 @@ p:last-child {
   display: none;
 }
 .tabs > .tab-control:checked + .tab {
-  background-color: #333333;
-  color: white;
+  background-color: #333;
+  color: #ffffff;
 }
 
 /*------------------------------------*\
@@ -3722,7 +3696,7 @@ p:last-child {
     $TEASER
 \*------------------------------------*/
 .teaser {
-  background-color: #396b71;
+  background-color: #396B71;
   background-color: rgba(57, 107, 113, 0.8);
   color: inherit;
   display: block;
@@ -3748,7 +3722,7 @@ p:last-child {
   }
 }
 .teaser:hover, .teaser:active, .teaser:focus {
-  background-color: #396b71;
+  background-color: #396B71;
   background-color: rgba(57, 107, 113, 0.9);
 }
 @media only screen and (min-width: 48em) {
@@ -3826,7 +3800,7 @@ p:last-child {
   margin-right: 1.04167%;
   clear: none;
   float: left;
-  background-color: white;
+  background-color: #fff;
   background-color: rgba(255, 255, 255, 0.4);
   /*background-color: #000;
   color: #fff;*/
@@ -3912,7 +3886,7 @@ p:last-child {
 		</div>
 	</div>
  *
- * Die Togglebox wird mit einem umschließenden <div class="togglebox"> eingeleitet.
+ * Die Togglebox wird mit einem umschlie├ƒenden <div class="togglebox"> eingeleitet.
  * Innerhalb <div class="togglebox"> liegen auf gleicher Ebene zwei Elemente:
  *
  * <a class="tb-subject" data-jmname="togglebox">$toggletitle$</a>
@@ -3921,11 +3895,11 @@ p:last-child {
  * und somit den Inhalt zu <div class="tb-content"> ein- bzw. auszublenden.
  *
  * <div class="tb-content">
- * Alles was zum Content der Togglebox gehört wird hier eingefügt.
+ * Alles was zum Content der Togglebox geh├Ârt wird hier eingef├╝gt.
  *
 **/
 .togglebox .tb-subject {
-  background-color: white;
+  background-color: #ffffff;
   color: #2c2c2c;
   font-family: "Roboto", "Arial", sans-serif;
 }
@@ -4016,7 +3990,7 @@ p:last-child {
   width: auto;
 }
 .section-header .sh-headline h1, .section-header .sh-headline h2, .section-header .sh-headline h3, .section-header .sh-headline h4, .section-header .sh-headline h5, .section-header .sh-headline h6 {
-  background-color: white;
+  background-color: #ffffff;
   background-color: rgba(255, 255, 255, 0.8);
   color: #328890;
   display: inline-block;
@@ -4035,6 +4009,9 @@ p:last-child {
   .section-header .sh-map {
     height: 540px;
   }
+}
+.section-header .sh-map img {
+  max-width: none;
 }
 .section-header .sh-parallax {
   background: #284245;
