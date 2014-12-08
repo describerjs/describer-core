@@ -37,7 +37,9 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		getElemOffsetTop: function(){
-			return (this.eot) ? this.eot : this.eot = this.$elem.offset().top;
+			// TODO Andreas hier nochmal checken.
+			return this.$elem.offset().top;
+			//return (this.eot) ? this.eot : this.eot = this.$elem.offset().top;
 		},
 
 		elemDoesExist: function(){

@@ -1,0 +1,68 @@
+/*------------------------------------*\
+    $FONTS
+\*------------------------------------*/
+
+/**
+ * ROBOTO..............................Roboto Google Webfont
+ * .....ROBOTO-SLAB			- http://www.google.com/fonts/specimen/Roboto+Slab
+ * .....ROBOTO-CONDENSED	- http://www.google.com/fonts/specimen/Roboto+Condensed
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $ROBOTO
+\*------------------------------------*/
+
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.eot');
+	src: url('/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.woff') format('woff'),
+			 url('/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.ttf') format('truetype'),
+			 url('/fonts/robotoslab_regular/RobotoSlab-Regular-webfont.svg#roboto_slabregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('/fonts/robotoslab_bold/RobotoSlab-Bold-webfont.eot');
+	src: url('/fonts/robotoslab_bold/RobotoSlab-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('/fonts/robotoslab_bold/RobotoSlab-Bold-webfont.woff') format('woff'),
+			 url('/fonts/robotoslab_bold/RobotoSlab-Bold-webfont.ttf') format('truetype'),
+			 url('/fonts/robotoslab_bold/RobotoSlab-Bold-webfont.svg#roboto_slabregular') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('/fonts/roboto_light/Roboto-Light-webfont.eot');
+	src: url('/fonts/roboto_light/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('/fonts/roboto_light/Roboto-Light-webfont.woff') format('woff'),
+			 url('/fonts/roboto_light/Roboto-Light-webfont.ttf') format('truetype'),
+			 url('/fonts/roboto_light/Roboto-Light-webfont.svg#robotolight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+		font-family: 'Roboto';
+		src: url('/fonts/roboto_medium/Roboto-Medium-webfont.eot');
+		src: url('/fonts/roboto_medium/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+				 url('/fonts/roboto_medium/Roboto-Medium-webfont.woff') format('woff'),
+				 url('/fonts/roboto_medium/Roboto-Medium-webfont.ttf') format('truetype'),
+				 url('/fonts/roboto_medium/Roboto-Medium-webfont.svg#robotomedium') format('svg');
+		font-weight: bold;
+		font-style: normal;
+}
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

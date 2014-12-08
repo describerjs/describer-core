@@ -17,7 +17,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.myPos = this.pos;
 			this.myJmName = this.jmname;
 			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
-			this.localScope();
+			this.initExec();
 			this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
@@ -29,6 +29,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		// wird vom Body-Listener für 'change' aufgerufen
 		change: function(e){
 			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
+		},
+
+		// wird vom Body-Listener für 'change' aufgerufen
+		orientationchange: function(e){
+			if(this.includes('event', 'orientationchange') && this.isCondition()) this._execWait(e);
 		},
 
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
@@ -49,12 +54,15 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			//
 			if(this.partOf('event', 'raf')) this._raf();
 			if(this.partOf('event', 'interval')) this._interval(e);
+			if(this.includes('event', 'init-by-perf')) this._initByPerf(e);
 
 			// init Event-Listener auf this.$elem
-			if(this.includes('event', 'blur')) this.$elem.on('blur', this._blur.bind(this));
-			if(this.includes('event', 'focus')) this.$elem.on('focus', this._focus.bind(this));
-			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._hover.bind(this));
 			if(this.partOf('event', 'keyup')) this.$elem.on('keyup', this._keyup.bind(this));
+
+			if(this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -151,10 +159,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			return _return || '';
 		},
 
-		localScope: function(){
+		initExec: function(){
 			this.configObj = this._getConfigObjArray();
-			if($.type(this.configObj['localScope']) !== 'undefined'){
-				new Function('"use strict";'+ this.configObj['localScope']).call(this);
+			if($.type(this.configObj['init']) !== 'undefined'){
+				new Function('"use strict";'+ this.configObj['init']).call(this);
 			}
 		},
 
@@ -308,64 +316,157 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_raf: function(){
-			if(!window.jmGO.rafRenderObj){
-				window.jmGO.countRAF = 0;
-				window.jmGO.rafRenderObj = {
-					countProperties: function(){
-						var count = 0;
-						for(var property in this){
-							if(this.hasOwnProperty(property)){
-								count += 1;
-							}
-						}
-						return count;
-					}
-				};
+			if(!window.dc.execRafObj){
+				this._rafCreateObjects();
 			}
-			if(!window.jmGO.rafObj){
-				window.jmGO.rafObj = {
-					pageYOffset: window.pageYOffset,
-					innerHeight: window.innerHeight
-				};
-				window.jmGO.raf = window.requestAnimationFrame(this._rafObjRender.bind(this));
-			}
-			this.cAF = this.getPartOf('event', 'raf').split('raf')[1] !== '-nc';
-			//this.everyRAF = (!this.cAF) ? this.getPartOf('event', 'raf').split('-nc-')[1] : '1';
-			this.everyRAF = (5+ Math.ceil(Math.random()*10)).toString();
+			// raf-100ms-one
+			this.cAF = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
+			this.renderDelay = this.getPartOf('event', 'raf').replace('raf-', '').replace('-one', '').replace('ms', '').replace('raf', '');
+			this.renderDelay = (this.renderDelay !== '') ? parseInt(this.renderDelay, 10) + Math.ceil(Math.random()*parseInt(this.renderDelay, 10)/4) : 1;
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
 			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
 			//this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
-			window.counterss = 0;
 			//console.log(this.$elem);
-			window.jmGO.rafRenderObj['func_' + window.jmGO.rafRenderObj.countProperties()] = this._render.bind(this);
+			//window.jmGO.rafRenderObj['func_' + window.jmGO.rafRenderObj.countProperties()] = this._render.bind(this);
+			window.dc.execRafObj['func_' + window.dc.execRafObj.countProperties()] = this._render.bind(this);
 		},
 
-		_rafObjRender: function(){
-			window.jmGO.rafObj.pageYOffset = window.pageYOffset;
-			window.jmGO.rafObj.innerHeight = window.innerHeight;
-			window.jmGO.countRAF = window.jmGO.countRAF +1;
-			if(window.jmGO.countRAF === 1000){
-				window.jmGO.countRAF = 0;
+		_rafCreateObjects: function(){
+			window.dc.execRafObj = {
+				countProperties: function(){
+					var count = 0;
+					for(var property in this){
+						if(this.hasOwnProperty(property) && this.property !== null){
+							count += 1;
+						}
+					}
+					return count;
+				}
+			};
+			window.dc.win = {
+				pageYOffset: null,
+				innerHeight: null,
+				innerWidth: null,
+				outerHeight: null,
+				startTime: Date.now(),
+				counter: 0,
+				rafs: null,
+				avgrafs: null
+			};
+
+			this._rafGlobalRender();
+			this.thempCountedFrames = 0;
+			if(Modernizr.mq('only screen and (min-width : 60em)')){
+				return;
 			}
-			for(var property in window.jmGO.rafRenderObj){
-				if(window.jmGO.rafRenderObj.hasOwnProperty(property) && ('countProperties' !== property)){
-					window.jmGO.rafRenderObj[property]();
+			this._applyPerfPluginsOnInterval();
+		},
+
+		_applyPerfPluginsOnInterval: function(){
+			var that = this;
+			if(window.debug){
+				$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span></div>');
+				this.$acount = $('#fps-counter');
+
+			}
+			setInterval(function(){
+				var _obj;
+				if(window.dc.win.counter < that.thempCountedFrames){
+					that.thempCountedFrames = that.thempCountedFrames + 100000001;
+				}
+				window.dc.win.rafs = window.dc.win.counter - that.thempCountedFrames;
+				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
+				if(window.debug){
+					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+				}
+				if(window.debug && window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
+					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 1/?</span>');
+					that.$initByPerfCounter = $('#init-by-perf-counter');
+				}
+				that.thempCountedFrames = window.dc.win.counter;
+				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 35){
+					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
+						_obj = window.dc.onHoldArray[i].obj;
+						if(!_obj.exec){
+							_obj.exec = true;
+							_obj._execWaitAfterCondition();
+							if(window.debug){
+								that.$initByPerfCounter.text(' init-fx: '+(i+1)+'/'+leni);
+							}
+							return;
+						}else if((leni -1) === i){
+							window.dc.onHoldArrayExecuted = true;
+						}
+					}
+				}
+			}, 1000);
+		},
+
+		_rafGlobalRender: function(){
+			// !!!!!  every rAF  !!!!!
+
+
+			/*this.dcRAF.interval = 1000/60;
+			this.dcRAF.now = new Date().getTime();
+			this.dcRAF.delta = this.dcRAF.now - this.dcRAF.then;
+
+			this.dcRAF.then = now - (this.dcRAF.delta % this.dcRAF.interval);
+
+			// calculate the frames per second
+			this.dcRAF.frames = 1000/(time-this.dcRAF.oldtime);
+			this.dcRAF.oldtime = time;*/
+
+			window.dc.win.pageYOffset     = window.pageYOffset;
+			window.dc.win.innerHeight     = (window.dc.orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
+			window.dc.win.innerWidth      = window.innerWidth;
+			window.dc.win.counter         = window.dc.win.counter+1;
+
+			if(window.dc.win.counter === 100000001){
+				window.dc.win.counter = 1;
+			}
+
+			for(var property in window.dc.execRafObj){
+				if(window.dc.execRafObj.hasOwnProperty(property) && ('countProperties' !== property)){
+					window.dc.execRafObj[property]();
 				}
 			}
-			window.jmGO.raf = window.requestAnimationFrame(this._rafObjRender.bind(this));
+			window.dc.orientation_old = window.dc.orientation;
+			window.dc.raf = window.requestAnimationFrame(this._rafGlobalRender.bind(this));
+		},
+
+		_initByPerf: function(e){
+			var _obj;
+			if(Modernizr.mq('only screen and (min-width : 60em)')){
+				this._execWaitAfterCondition();
+				return;
+			}
+			if(!window.dc.execRafObj){
+				this._rafCreateObjects();
+			}
+			window.dc.onHoldArray = window.dc.onHoldArray || [];
+			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
+			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
+			_obj = window.dc.onHoldArray[0].obj;
+			if(!_obj.exec){
+				_obj.exec = true;
+				_obj._execWaitAfterCondition();
+			}
 		},
 
 		_render: function(){
-			if((window.jmGO.countRAF % parseFloat(this.everyRAF)) === 0){
-				if(eval(this.conditionSource)){
-					if(this.cAF){
-						window.cancelAnimationFrame(this.rAFRender);
-					}
-					this._exec();
-				}
-				this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
+			if((window.dc.win.counter % this.renderDelay) !== 0){
+				return;
 			}
+			if(eval(this.conditionSource)){
+				if(this.cAF){
+					window.cancelAnimationFrame(this.rAFRender);
+				}
+				this._exec();
+			}
+
+
+				//this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
 			// !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
 
 
@@ -394,19 +495,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
 		},
 
-		_hover: function(e){
-			if(this.isCondition()){
-				this._execWait(e);
-			}
-		},
-
-		_blur: function(e){
-			if(this.isCondition()){
-				this._execWait(e);
-			}
-		},
-
-		_focus: function(e){
+		_execWaitAfterCondition: function(e){
 			if(this.isCondition()){
 				this._execWait(e);
 			}

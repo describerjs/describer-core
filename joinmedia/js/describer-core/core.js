@@ -1,8 +1,12 @@
 define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
+	var $body = $('body');
+
 	// Globales Objekt
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
+	window.dc = window.dc || {};
+	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
 
 	jmHF.alert = function(p_data){
 		if(window.debug){
@@ -34,6 +38,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
+	jmHF.checkOrientation = function(){
+		if(window.dc.orientation === 'w' && (window.innerHeight > window.innerWidth)){
+			window.dc.orientation = 'p';
+			$body.trigger('dc-orientationchange');
+		}else if(window.dc.orientation === 'p' && (window.innerHeight < window.innerWidth)){
+			window.dc.orientation = 'w';
+			$body.trigger('dc-orientationchange');
+		}
+	};
+
 	jmHF.checkConfigJS = function(){
 		for(var i = 0, leni = _config.length; i < leni; i++){
 			var _jmpluginLength = _config[i].jmplugin.split('|').length;
@@ -45,6 +59,36 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				});
 			}
 		}
+	};
+
+	jmHF.contains = function(a, obj){
+		var i = a.length;
+		while (i--) {
+			if (a[i] === obj) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	// extend the ajax-function with the progressUpload and progress funktions
+	jmHF.addXhrProgressEvent = function() {
+		var originalXhr = $.ajaxSettings.xhr;
+		$.ajaxSetup({
+			progress: function() { /*console.log("standard progress callback");*/ },
+			progressUpload: function() { /*console.log("standard upload progress callback");*/ },
+			xhr: function() {
+				var req = originalXhr(), that = this;
+				if (req.upload) {
+					if (typeof req.upload.addEventListener == "function") {
+						req.upload.addEventListener("progress", function(evt) {
+							that.progressUpload(evt);
+						},false);
+					}
+				}
+				return req;
+			}
+		});
 	};
 
 	jmHF.checkJmNameElementenOnNecessaryDominitAttribut = function(){
@@ -75,9 +119,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			for(var m = 0, lenm = _eventsArray.length; m < lenm; m++){
 				switch(_eventsArray[m]){
 					case 'dominit':
+					case 'dc-orientationchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
+					case 'init-by-perf':
 					case ((_eventsArray[m].match(/raf(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/interval(.*)/))? _eventsArray[m] : undefined):
@@ -209,9 +255,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			}else if('dominit' === p_eventType){
 				switch(eventArray[i]){
 					case 'dominit':
+					case 'dc-orientationchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
+					case 'init-by-perf':
 					case ((eventArray[i].match(/raf(.*)/))? eventArray[i] : undefined):
 					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
 					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
@@ -271,7 +319,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
-		var _jmpluginString = jmHF.getJmPluginByJmName(_config, jmname);
+		var _configObj = jmHF.getConfigObj(jmname);
+		var _jmpluginString = _configObj.jmplugin;
 		if($.type(_jmpluginString) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
 			return;
@@ -279,11 +328,18 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
-				require([_requirePlugin], function(){});
+				jmHF.requirePluginAndDependencies(_requirePlugin, _configObj, index);
 			});
 		}else{
 			_requirePlugin = jmHF.returnRequireLoadPlugin(_jmpluginString);
-			require([_requirePlugin], function(){});
+			jmHF.requirePluginAndDependencies(_requirePlugin, _configObj);
+		}
+	};
+
+	jmHF.requirePluginAndDependencies = function(fileref, _configObj, index){
+		require([fileref], function(){});
+		if(fileref === 'actions.apply'){
+			($.type(index) !== 'undefined') ? require([_configObj.jmconfig[index].require], function(){}) : require([_configObj.jmconfig.require], function(){});
 		}
 	};
 
@@ -305,7 +361,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.getJmPluginByJmName = function(p_config, p_name){
+	/*jmHF.getJmPluginByJmName = function(p_config, p_name){
 		var i = 0;
 		var _length = p_config.length;
 		for(; i < _length; i++){
@@ -313,7 +369,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				return p_config[i].jmplugin;
 			}
 		}
-	};
+	};*/
 
 	// gibt die Höhe des Browserfenster wieder
 	jmHF.getClientHeight = function () {
@@ -659,5 +715,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			});
 		});
 	};
+
 
 });

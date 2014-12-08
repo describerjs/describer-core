@@ -1,0 +1,169 @@
+/*------------------------------------*\
+    $GLOBAL CLASSES
+\*------------------------------------*/
+
+/**
+ * JS/NOJS.............................JS/NOJS Elements
+ * .....js-element
+ * .....nojs-element
+ * COVER...............................Stretch Element
+ * .....cover-img (stretch all images)
+ * .....parallax override (stretch all parallax elements)
+ * OVERLAPPING.........................Overlapping Elements
+ * .....overlapped
+ * .....to-overlap
+ * VISIBILITY/DISPLAY..................Visibility/Display Stats of Elements
+ * .....is-hidden
+ * .....is-visible
+ * .....is-vishidden
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $JS/NOJS
+\*------------------------------------*/
+
+// JS
+.js-element {
+	/**/
+}
+
+// NO-JS
+.nojs-element {
+	display: none;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $COVER
+\*------------------------------------*/
+
+.cover {
+	@include element-stretch;
+	height: 100%;
+	width: 100%;
+
+	.cover-img {
+		max-width: none;
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.parallax,
+	.parallax-img,
+	.parallax-inner {
+		height: inherit;
+		width: inherit;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $OVERLAPPING
+\*------------------------------------*/
+
+.overlapping {
+	position: relative;
+
+	//
+	.overlapped {
+		/**/
+	}
+
+	//
+	.to-overlap {
+		@include absolute(0, '', '', 0);
+		visibility: hidden;
+
+		&.show {
+			visibility: visible;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $VISIBILITY/DISPLAY
+\*------------------------------------*/
+
+// Default Hidden
+.is-hidden {
+	display: none;
+	visibility: hidden;
+}
+
+// Default Visible
+.is-visible {
+	display: block;
+	visibility: visible;
+}
+
+// Completely remove from the flow but leave available to screen readers.
+.is-vishidden {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $HELPER
+\*------------------------------------*/
+
+.with-pad {
+	padding: {
+		bottom: $space-half;
+		top: $space-half;
+	}
+	margin: {
+		bottom: 0;
+		top: 0;
+	}
+
+	@include bp-m {
+		padding: $space-triple 0;
+	}
+}
+
+.with-pad-bottom {
+	padding-bottom: $space-triple;
+	margin: {
+		bottom: 0;
+		top: 0;
+	}
+}
+
+.vertical-center {
+	@include vertical-center;
+}
+
+.vertical-center-inner {
+	@include vertical-center-inner;
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

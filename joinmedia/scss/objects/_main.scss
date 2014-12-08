@@ -1,0 +1,189 @@
+/*------------------------------------*\
+    $MAIN_CONTENT_AREA
+\*------------------------------------*/
+
+/**
+ * MAIN................................HTML <main> Section
+ * SECTIONS............................Content-Container/Column-Wrapper
+ * .....section........................Regular
+ * .....section-onepage................OnePager
+ * STAGE...............................Intro-Element
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+
+.page-main {
+	@extend %page-element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SECTIONS
+\*------------------------------------*/
+
+.section {
+	@include clearfix;
+	clear: both;
+	overflow: hidden;
+	position: relative;
+}
+
+.section-onepage {
+	@extend .section;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SECTION-COLORS
+\*------------------------------------*/
+
+#joinmedia,
+#impressum {
+	background-color: $theme-section-joinmedia-bg;
+	color: $theme-section-joinmedia-fg;
+
+	.block{
+		.block-content {
+			h3 {
+				border-color: $theme-section-joinmedia-fg;
+			}
+		}
+	}
+}
+
+#services {
+	background-color: $theme-section-services-bg;
+
+	.block {
+		&:nth-of-type(1) {
+			background-color: $theme-section-services-1-bg;
+		}
+
+		&:nth-of-type(2) {
+			background-color: $theme-section-services-2-bg;
+		}
+
+		&:nth-of-type(3) {
+			background-color: $theme-section-services-3-bg;
+		}
+
+		&:nth-of-type(4) {
+			background-color: $theme-section-services-4-bg;
+		}
+
+		&:nth-of-type(5) {
+			background-color: $theme-section-services-5-bg;
+		}
+
+		&:nth-of-type(6) {
+			background-color: $theme-section-services-6-bg;
+		}
+	}
+}
+
+#customers {
+	background-color: $theme-section-customers-bg;
+	color: $theme-section-customers-fg;
+
+	.block{
+		.block-content {
+			& > h1, h2, h3, h4, h5, h6 {
+				border-color: $theme-section-customers-fg;
+			}
+		}
+	}
+}
+
+#agency {
+	background-color: $theme-section-agency-bg;
+
+	.block {
+		&:nth-of-type(1) {
+			background-color: $theme-section-agency-1-bg;
+		}
+
+		&:nth-of-type(2) {
+			background-color: $theme-section-agency-2-bg;
+		}
+	}
+}
+
+#jobs {
+	background-color: $theme-section-jobs-bg;
+}
+
+#contact {
+	background-color: $theme-section-contact-bg;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $STAGE
+\*------------------------------------*/
+
+.stage {
+	@extend .section;
+	background-color: $theme-stage-bg;
+
+	.stage-bg {
+		height: 1000px;
+		height: 100vh;
+		position: relative;
+	}
+
+	.stage-footer {
+		background-color: $theme-stage-bg;
+		padding: {
+			bottom: $space-half;
+			top: $space-half;
+		}
+
+		@include bp-m {
+			@include absolute('', 0, 0, 0);
+		}
+	}
+
+	.stage-header {
+		@include constrained;
+		@include absolute(15%, 0, '', 0);
+
+		@include bp-m {
+			top: 20%;
+		}
+	}
+
+	.stage-main {
+		@include constrained;
+
+		@include bp-m {
+			@include absolute('', 0, 15%, 0);
+		}
+
+		@include bp-l {
+			@include absolute('', 0, 25%, 0);
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

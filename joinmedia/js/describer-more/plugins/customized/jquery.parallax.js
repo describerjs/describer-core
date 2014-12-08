@@ -108,6 +108,9 @@
     this.vx = 0;
     this.vy = 0;
 
+	this.tempXArray = [];
+	this.tempYArray = []    ;
+
     // Callbacks
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onDeviceOrientation = this.onDeviceOrientation.bind(this);
@@ -206,7 +209,7 @@
   Plugin.prototype.updateLayers = function() {
 
     // Cache Layer Elements
-    this.$layers = this.$context.find('.layer');
+    this.$layers = this.$context.find('[data-depth]');
     this.depths = [];
 
     // Configure Layer Styles
@@ -414,6 +417,11 @@
       var layer = this.$layers[i];
       var xOffset = this.vx * depth * (this.invertX ? -1 : 1);
       var yOffset = this.vy * depth * (this.invertY ? -1 : 1);
+	  if((this.tempXArray[i] !== xOffset) || this.tempYArray[i] !== yOffset){
+		this.setPosition(layer, xOffset, yOffset);
+	  }
+	  this.tempXArray[i] = xOffset;
+	  this.tempYArray[i] = yOffset;
       this.setPosition(layer, xOffset, yOffset);
     }
     this.raf = requestAnimationFrame(this.onAnimationFrame);
@@ -437,7 +445,7 @@
 		  y = -1 - (y +1)
 	  }
       // Detect Orientation Change
-      var portrait = window.innerHeight > window.innerWidth;
+      var portrait = window.dc.win.innerHeight > window.dc.win.innerWidth;
       if (this.portrait !== portrait) {
         this.portrait = portrait;
         this.calibrationFlag = true;
@@ -490,14 +498,14 @@
   };
 
   Plugin.prototype.onRAF = function() {
-	var calc;
+    var calc;
     var eot = $(this.element).offset().top;
-    var wih = jmGO.rafObj.innerHeight;
-    var wpo = jmGO.rafObj.pageYOffset;
+    var wih = window.dc.win.innerHeight;
+    var wpo = window.dc.win.pageYOffset;
     var first = wpo + wih  > eot;
     var secont = wpo < eot + this.eh;
     var range = wih + this.eh;
-	var portrait = wih > jmGO.rafObj.innerWidth;
+	var portrait = wih > window.dc.win.innerWidth;
     if(first && ! secont){
 	    calc = 0;
     }else if(!first && secont){
