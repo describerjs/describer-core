@@ -12,6 +12,26 @@
 define(function(){
 	return [
 		{
+			jmname   : 'section-toggle',
+			jmplugin: 'actions.add_1|actions.add_2',
+			jmconfig : [{
+				'event'     : 'dominit|dc-hashchange',
+				'wait'      : '1000',
+				'datatype'  : 'style',
+				'data'      : 'display:none',
+				'relatedTo' : 'this.$elem[0]',
+				'condition' : 'window.dc.sectionpager && (this.$elem[0].offsetHeight !== 0) && Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
+				'callback'  : '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0); this.$elem.find(\'[class*="JSINIT-"]\').each(function(index, item){ $(item).removePlugins(); });'
+			},{
+				'event'    : 'dominit|dc-hashchange',
+				'datatype' : 'style',
+				'data'     : 'display:block',
+				'relatedTo': 'this.$elem[0]',
+				'condition': 'window.dc.sectionpager && (this.$elem[0].offsetHeight === 0) && Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
+				'callback' : 'this.$elem.find(\'[data-jmdominit="true"]\').each(function(index, item){ $(item).trigger(\'dominit\'); });',
+				'scrollTo' : 'this.$elem[0]'
+			}]
+		},{
 			jmname   : 'nav-toggle',
 			jmplugin: 'actions.toggle',
 			jmconfig : {
@@ -308,7 +328,7 @@ define(function(){
 			jmplugin: 'actions.exec',
 			jmconfig: {
 				'event': 'dominit|dc-orientationchange',
-				'exec': 'this.$elem.css(\'height\', Math.max(document.documentElement.clientHeight, window.innerHeight || 0))',
+				'exec': 'this.$elem.css(\'height\', Math.max(document.documentElement.clientHeight, window.innerHeight || 0))'
 			}
 		},/*{
 			jmname: 'animation-start-on-view',
@@ -351,11 +371,17 @@ define(function(){
 		},
 		{
 			jmname   : 'back-to-top',
-			jmplugin: 'actions.scroll',
-			jmconfig : {
+			jmplugin: 'actions.scroll|actions.add',
+			jmconfig : [{
 				'event'    : 'click',
 				'scrollTo' : '.page'
-			}
+			}, {
+				'event'     : 'dominit',
+				'datatype'  : 'style',
+				'data'      : 'display:none',
+				'relatedTo' : 'this.$elem[0]',
+				'condition' : 'window.dc.sectionpager'
+			}]
 		},
 		{
 			jmname   : 'layout-boundary',
@@ -455,11 +481,16 @@ define(function(){
 		},
 		{
 			jmname: 'anchor',
-			jmplugin: 'actions.scroll',
-			jmconfig: {
+			jmplugin: 'actions.scroll|actions.link',
+			jmconfig: [{
 				'event': 'click',
-				'scrollTo': 'this.$elem.attr(\'href\')'
-			}
+				'scrollTo': 'this.$elem.attr(\'href\')',
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			},{
+				/*'wait': '100',*/
+				'event': 'click'/*,
+				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)'*/
+			}]
 		},
 		{
 			jmname   : 'test1',

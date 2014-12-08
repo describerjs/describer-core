@@ -27,10 +27,10 @@
     <meta name="msapplication-TileColor" content="#222222" />
     @if (HttpContext.Current.IsDebuggingEnabled)
     {
-        <script src="/js/raven.js"></script>
+       <!-- <script src="/js/raven.js"></script>
         <script>
             Raven.config('https://bef491e5f678465fbf3975a322eb9a19@app.getsentry.com/30654').install();
-        </script>
+        </script>-->
     }
 
     @Html.Partial("_basisJS")
@@ -95,10 +95,10 @@
 
 <body>
 	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
-	<div class="page">
+	<div class="page" style="padding-top: 3.75rem;">
     <header class="page-header" role="banner">
       <div class="page-constrained">
-        <a class="logo" href="/">
+        <a class="logo" href="/#">
           <picture>
               <!--[if IE 9]><video style="display: none;"><![endif]-->
               <source srcset="/img/joinmedia.svg" type="image/svg+xml" />
@@ -121,7 +121,7 @@
 		</main>
         <footer class="page-footer" role="contentinfo">
             <div class="page-constrained">
-                <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
+                <a class="back-to-top" href="#" data-jmname="back-to-top" data-jmdominit="true">Zurück nach oben</a>
                 <div class="legal">
                     <a class="imprint link" href="/Impressum">Impressum</a>
                     <p class="copyright">&copy; @DateTime.Now.Year join.media GmbH &amp; Co. KG</p>

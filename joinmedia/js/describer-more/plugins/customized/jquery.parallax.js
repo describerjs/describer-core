@@ -498,6 +498,10 @@
   };
 
   Plugin.prototype.onRAF = function() {
+	  if(this.element.offsetHeight === 0){
+		  this.myraf = requestAnimationFrame(this.onRAF);
+		  return;
+	  }
     var calc;
     var eot = $(this.element).offset().top;
     var wih = window.dc.win.innerHeight;
@@ -521,8 +525,8 @@
 	  if(this.scrollY) this.iy = calc;
 	  if(this.scrollX) this.ix = calc;
 	}
+	  this.myraf = requestAnimationFrame(this.onRAF);
 
-    this.myraf = requestAnimationFrame(this.onRAF);
   };
 
   var API = {
