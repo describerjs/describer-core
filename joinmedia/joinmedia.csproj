@@ -476,6 +476,7 @@
     <Content Include="js\describer-more\plugins\customized\jquery.exif.js" />
     <Content Include="js\describer-more\plugins\customized\jquery.parallax.js" />
     <Content Include="js\describer-more\plugins\customized\jquery.plugin.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.smoothwheel.js" />
     <Content Include="js\describer-more\plugins\customized\jquery.validate.js" />
     <Content Include="js\describer-more\plugins\customized\modernizr.custom.js" />
     <Content Include="js\describer-more\plugins\customized\owl.carousel.js" />
