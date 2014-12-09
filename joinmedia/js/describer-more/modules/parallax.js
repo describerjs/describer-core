@@ -30,6 +30,8 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 					$.smoothwheel();
 				});
 			}
+			//window.dc.onHoldArray = window.dc.onHoldArray || [];
+			//window.dc.onHoldArray.push({});
 		},
 
 		options: {
@@ -37,6 +39,10 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 		},
 
 		_exec: function(e){
+			if((window.userOS === 'Android') && (window.userOSver < 3)){
+				return;
+			}
+			//return;
 			switch(this.is('data')){
 				case 'orientation':
 					this.$elem.parallax({

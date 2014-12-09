@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', 'form.formvalidate-addon'], function ($, _super){
+define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', 'modules.form.formvalidate-addon'], function ($, _super){
 	'use strict';
 	var formvalidate = $.extend({}, _super, {
 		init: function (options, elem) {
@@ -101,8 +101,22 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 						$.ajax({
 							type: 'POST',
 							url: that._getUrl(),
-							beforeSend: function (xhr) {
+							progressUpload: function(e) {
+								if (e.lengthComputable) {
+									that.progresslayer.css('width', parseInt( (e.loaded / e.total * 100), 10) + '%');
+									//console.log("Loaded " + parseInt( (e.loaded / e.total * 100), 10) + "%");
+									//console.log(progresslayer);
+								}
+								else {
+									//console.log("Length not computable.");
+								}
+							},
+							beforeSend: function () {
 								//that.addSpinner(target);
+								if(that.$elem.find('.form-upload-canvas').doesExist()){
+									that.canvas = that.$elem.find('.form-upload-canvas').prepend('<div class="fotouploadprogresslayer" style="width: 0; height: 100%; position:absolute; background-color: #fff; opacity: 0.5"></div>');
+									that.progresslayer = that.canvas.find('.fotouploadprogresslayer');
+								}
 							},
 							data: that.$elem.serialize()
 						}).done(function (p_data) {

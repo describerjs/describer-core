@@ -36,6 +36,7 @@ define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
 			var that = this;
 			require(['owl_carousel', 'overwritings.owl_carousel'], function(param1, param2){
 				that.indexCount = 0;
+				// um den interval zu stoppen -> window.clearInterval($('[data-jmname="carousel"]').data('owlCarousel').autoPlayInterval)
 				that.$elem.owlCarousel(that.getConfig());
 				that._finishing();
 			});

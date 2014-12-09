@@ -2,7 +2,7 @@
 <html class="no-js" lang="de">
 
 <head>
-    <title>@Site.SiteTitle | @Page.Title</title>
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="$description$" />
@@ -71,9 +71,6 @@
             addJSToDOM('/js/describer-core/libs/matchmedia.js');
             addJSToDOM('/js/describer-more/plugins/picturefill.js');
             addCSSToDOM('/css/style.css');
-            // addCSSToDOM('/css/style-demo.css');
-            //addCSSToDOM('/css/style-joinmedia.css');
-            // addCSSToDOM('/css/ayyildiz.css');
             addJSToDOM('/js/describer-core/libs/require.2.1.11.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
         } else {
             addJSToDOM('/js/build/describer-core/libs/modernizr.custom.6966b8.js');
@@ -90,9 +87,6 @@
     </noscript>
     }
 
-
-
-
 	@*////////////////////////////////////////////////////////////
 	// Section für das hinzufügen von HEAD-Elementen aus Views
 	////////////////////////////////////////////////////////////*@
@@ -102,43 +96,156 @@
 <body>
 	@*@{ Html.RenderAction("_StyleSwitcher", "Content", new { area = "" }); }*@
 	<div class="page">
-		<header class="page-header" role="banner">
-			<a class="logo" href="/"><img src="/img/logo.svg" width="293" height="42" alt="Logo" /></a>
-			@if (IsSectionDefined("navigation"))
-			{
-				@RenderSection("navigation", required: false)
-			}
-			else
-			{
-				Html.RenderAction("_Navigation", "Content", new { area = "" });
-			}
-		</header>
+    <header class="page-header" role="banner">
+      <div class="page-constrained">
+        <a class="logo" href="/">
+          <picture>
+              <!--[if IE 9]><video style="display: none;"><![endif]-->
+              <source srcset="/img/joinmedia.svg" type="image/svg+xml" />
+              <!--[if IE 9]></video><![endif]-->
+              <img srcset="/img/joinmedia.png" alt="join.media Logo" />
+          </picture>
+        </a>
+        @if (IsSectionDefined("navigation"))
+        {
+    	    @RenderSection("navigation", required: false)
+        }
+        else
+        {
+    	    Html.RenderAction("_Navigation", "Content", new { area = "" });
+        }
+      </div>
+    </header>
 		<main class="page-main" role="main">
 			@RenderBody()
 		</main>
-		<footer class="page-footer" role="contentinfo">
-			<section class="h-card">
-				<div class="hc-section"><a class="u-url p-organization-name link" href="/">join.media GmbH &amp; Co. KG</a></div>
-				<address class="hc-section">
-					<span class="p-street-address">Düsseldorfer Straße 269</span>
-					<span class="p-locality">45481 Mülheim an der Ruhr</span>
-					<span class="p-country-name">Deutschland</span>
-				</address>
-				<div class="hc-section">
-					<a class="p-tel link" href="tel:+49208960320">Fon: +49 208 / 960 32 - 0</a>
-					<span class="p-tel-fax">Fax: +49 208 / 960 32 - 10</span>
-				</div>
-				<div class="hc-section">
-					<a class="u-email link" href="mailto:info@joinmedia.de">info@joinmedia.de</a>
-					<a class="u-url link" href="http://www.joinmedia.de">www.joinmedia.de</a>
-				</div>
-			</section>
-			<div class="legal">
-				<a class="imprint link" href="#Impressum">Impressum</a>
-				<p class="copyright">&copy; Copyright @DateTime.Now.Year</p>
-			</div>
-		</footer>
+        <footer class="page-footer" role="contentinfo">
+            <div class="page-constrained">
+                <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
+                <div class="legal">
+                    <a class="imprint link" href="/Impressum">Impressum</a>
+                    <p class="copyright">&copy; @DateTime.Now.Year join.media GmbH &amp; Co. KG</p>
+                </div>
+            </div>
+        </footer>
 	</div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-7841854-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script>
+        loadGoogleAPI();
+        function loadGoogleAPI() {
+            var script = document.createElement("script");
+            script.src = "//www.google.com/jsapi?key=AIzaSyB2oMRQW1_t9LYrErsj0G83xCvTtZiGoPI&callback=loadGoogleMaps";
+            document.getElementsByTagName("head")[0].appendChild(script);
+            // console.log("Google-Loader has been loaded, but not the Maps-API.");
+        }
+
+        function loadGoogleMaps() {
+            google.load("maps", "3", { other_params: 'sensor=false', callback: renderGoogleMaps });
+            // console.log("Maps-API has been loaded, ready to use.");
+        }
+
+        function renderGoogleMaps() {
+            var mapStyles = [
+              {
+                  "featureType": "water",
+                  "elementType": "All",
+                  "stylers": [
+                    { "visibility": "on" },
+                    { "color": "#a0a0a0" }
+                  ]
+              }, {
+                  "featureType": "landscape",
+                  "elementType": "All",
+                  "stylers": [
+                    { "color": "#f2f2f2" }
+                  ]
+              }, {
+                  "featureType": "road",
+                  "elementType": "All",
+                  "stylers": [
+                    { "saturation": -100 },
+                    { "lightness": 45 }
+                  ]
+              }, {
+                  "featureType": "road.highway",
+                  "elementType": "All",
+                  "stylers": [
+                    { "visibility": "simplified" }
+                  ]
+              }, {
+                  "featureType": "road.arterial",
+                  "elementType": "labels.icon",
+                  "stylers": [
+                    { "visibility": "off" }
+                  ]
+              }, {
+                  "featureType": "administrative",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    { "color": "#444444" }
+                  ]
+              }, {
+                  "featureType": "transit",
+                  "elementType": "All",
+                  "stylers": [
+                    { "visibility": "off" }
+                  ]
+              }, {
+                  "featureType": "poi",
+                  "elementType": "All",
+                  "stylers": [
+                    { "visibility": "off" }
+                  ]
+              }
+            ];
+
+            var mapOptions = {
+                center: new google.maps.LatLng(51.416553, 6.869896),
+                zoom: 16,
+                disableDefaultUI: false,
+                scrollwheel: false,
+                draggable: true, // Disable on mobile
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            map.setOptions({ styles: mapStyles });
+
+            var contentString =
+               '<div class="maps-infowindow" style="min-height: 170px;">' +
+                   '<h3 style="margin: 0 0 0.5em 0; color: #dd4411;">join.media GmbH & Co. KG</h3>' +
+                   '<div class="maps-bodycontent" style="color: #000;">' +
+                       'Düsseldorfer Straße 269<br/>45481 Mülheim an der Ruhr<br/>Deutschland' +
+                   '</div>' +
+               '</div>';
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var jmMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(51.4156, 6.867623),
+                map: map,
+                title: "join.media",
+                icon: "/img/marker.png"
+            });
+            jmMarker.setAnimation(google.maps.Animation.DROP);
+
+            google.maps.event.addListener(jmMarker, "click", function () {
+                infoWindow.open(map, jmMarker);
+            });
+        }
+    </script>
 </body>
 
 </html>

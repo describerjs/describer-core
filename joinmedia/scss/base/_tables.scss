@@ -1,0 +1,92 @@
+/*------------------------------------*\
+    $TABLES
+\*------------------------------------*/
+
+/**
+ * GENERIC..............................Variables/Placeholder
+ * Table-Width..........................Set table width to 100%
+ * TABLE................................Basic Styling for <table> ELement
+ * COL..................................Equal widths to each column
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+// Table aufspannen
+$table-width: 100%;
+
+
+
+
+
+/*------------------------------------*\
+    $TABLE
+\*------------------------------------*/
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: $table-width;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $COL
+\*------------------------------------*/
+
+col {
+	&:nth-child(1):nth-last-child(1) {
+		width: $table-width;
+	}
+
+	&:nth-child(1):nth-last-child(2),
+	&:nth-child(2):nth-last-child(1) {
+		width: ($table-width / 2);
+	}
+
+	&:nth-child(1):nth-last-child(3),
+	&:nth-child(2):nth-last-child(2),
+	&:nth-child(3):nth-last-child(1) {
+		width: ($table-width / 3);
+	}
+
+	&:nth-child(1):nth-last-child(4),
+	&:nth-child(2):nth-last-child(3),
+	&:nth-child(3):nth-last-child(2),
+	&:nth-child(4):nth-last-child(1) {
+		width: ($table-width / 4);
+	}
+
+	&:nth-child(1):nth-last-child(5),
+	&:nth-child(2):nth-last-child(4),
+	&:nth-child(3):nth-last-child(3),
+	&:nth-child(4):nth-last-child(2),
+	&:nth-child(5):nth-last-child(1) {
+		width: ($table-width / 5);
+	}
+
+	&:nth-child(1):nth-last-child(6),
+	&:nth-child(2):nth-last-child(5),
+	&:nth-child(3):nth-last-child(4),
+	&:nth-child(4):nth-last-child(3),
+	&:nth-child(5):nth-last-child(2),
+	&:nth-child(6):nth-last-child(1) {
+		width: ($table-width / 6);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

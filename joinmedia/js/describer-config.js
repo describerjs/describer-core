@@ -1,5 +1,5 @@
 /*!
- * _config
+ * describer-config
  *
  * http://joinmedia.de/
  *
@@ -10,126 +10,25 @@
  * Released under the MIT license
  */
 define(function(){
-
-	// !!!!!!!!!!!!!!!!!!!!!! **************** im HTML **************** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//
-	//   Anwender der Module im HTML
-	//  ____________________________
-	//
-	//   in MVC:
-	//
-	//   Hinzufügen des Attributs data_jmname
-	//
-	//   Bsp.: data_jmname="filterpanel"
-	//
-	//   in HTML:
-	//
-	//   Hinzufügen des Attributs data-jmname
-	//
-	//   Bsp.: data-jmname="filterpanel"
-	//
-	//
-	//
-	//
-	//
-	//    ** Überschreiben der Default-Konfiguration (Default-Konfiguration befindet sich in der _config.js) des Moduls
-	//  __________________________________________________________________________________________________________________
-	//
-	//
-	//    1 X data-jmname
-	//
-	//
-	//    MVC
-	// Bsp.: data_jmname="filterpanel", data_jmconfig="{ \"relatedTo\": \"[name='AystarOptionSelectionModel.OptionAyDeSmart']\" }"
-	//
-	//    HTML
-	// Bsp.: data-jmname="filterpanel" data-jmconfig="{ 'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')' }"
-	//
-	//
-	//
-	//
-	//
-	//   2.... X data-jmname
-	//
-	//   // TODO Andreas bitte testen evtl. falsche Angabe es müsste hier mit Komma getrennt und im Array definiert sein....
-	//
-	//    MVC
-	// Bsp.: data_jmname="autocomplete-plz|sync-val", data_jmconfig="{ \"relatedTo\": \"[name='AystarOptionSelectionModel.OptionAyDeSmart']\" }|{ \"relatedTo\": \"[name='AystarOptionSelectionModel.OptionAyDeSmart']\" }"
-	//
-	//    HTML
-	// Bsp.: data-jmname="autocomplete-plz|sync-val", data-jmconfig="{ 'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')' }|{ 'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')' }"
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//   ** besteht das Modul aus mehreren Plugins (jmplugin), dann werden die data-config-Objekte in einem Array gelistet.
-	//  _______________________________________________________________________________________________________________________
-	//
-	//  //TODO Andreas Beispiele for MVC und HTML müssen noch richtig aufgeliste und getestet werde.
-	//    MVC
-	// Bsp.: data_jmname="flyout-link", data_jmconfig="[{ \"relatedTo\": \"[name='AystarOptionSelectionModel.OptionAyDeSmart']\" }|{ \"relatedTo\": \"[name='AystarOptionSelectionModel.OptionAyDeSmart']\" }"
-	//
-	//    HTML
-	// Bsp.: data-jmname="autocomplete-plz", data-jmconfig="[{ 'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')' }|{ 'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')' }"
-	//
-	//  Richtig -> Bsp.: data-jmname="nav-link" data-jmconfig="[{'event':'click','datatype':'class','data':'show1'},{'event':'click','datatype':'class','data':'show','relatedTo':'this.$elem.next()[0]', 'condition': 'Modernizr.mq(\'only screen and (max-width : 50em)\')'}]"
-	//
-	//
-	//
-	// !!!!!!!!!!!!!!!!!!!!!! ************************++********* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-	// !!!!!!!!!!!!!!!!!!!!!! ************************** in _config.js  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//
-	//   1 X data-jmplugin
-	//
-	//	    {
-	//          jmname   : 'nav',
-	//          jmplugin: 'actions.toggle',
-	//          jmconfig : {
-	//              'event'    : 'click',
-	//              'datatype' : 'class',
-	//              'data'     : 'show-menu',
-	//              'relatedTo': '#nav'
-	//          }
-	//	    }
-	//
-	//
-	//   2... X data-jmplugin
-	//
-	//      {
-	//          jmname   : 'flyout-link',
-    //          jmplugin: 'actions.add|actions.link',
-	//          jmconfig : [
-	//              {
-	//                  'event'    : 'click',
-	//                  'datatype' : 'class',
-	//                  'data'     : 'show',
-	//                  'relatedTo': 'this.$elem.parent()[0]',
-	//                  'condition': 'Modernizr.mq(\'only screen and (max-width : 50em)\')'
-	//              },
-	//              {
-	//                  'event'    : 'click',
-	//                  'condition': 'Modernizr.mq(\'only screen and (min-width : 50em)\') || this.$elem.parent().hasClass(\'show\')'
-	//              }
-	//          ]
-	//       }
-	//
-	//
-	// !!!!!!!!!!!!!!!!!!!!!! ************************++********* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 	return [
 		{
-			jmname   : 'nav',
+			jmname   : 'nav-toggle',
 			jmplugin: 'actions.toggle',
 			jmconfig : {
 				'event'    : 'click',
 				'datatype' : 'class',
 				'data'     : 'show-menu',
-				'relatedTo': '#nav'
+				'relatedTo': '#nav',
+				'condition': 'Modernizr.mq(\'only screen and (max-width : 60em)\')'
+			}
+		},{
+			jmname   : 'nav-demo',
+			jmplugin: 'actions.toggle',
+			jmconfig : {
+				'event'    : 'click',
+				'datatype' : 'class',
+				'data'     : 'show-menu',
+				'relatedTo': '#nav-demo'
 			}
 		},{
 			jmname   : 'nav-link',
@@ -161,24 +60,30 @@ define(function(){
 			]
 		},{
 			jmname: 'set-related-navi-item-activ-on-view',
-			jmplugin: 'actions.add|actions.remove',
-			jmconfig: [{
-				'event': 'raf-nc',
-				'datatype' : 'class',
-				'data'     : 'activ',
-				'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-				//'condition': '!jmHF.hasClass(this.relatedTo[0], \'activ\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)'
-				'condition': 'false'
-			},
-				{
-					'event': 'raf-nc',
-					'datatype' : 'class',
-					'data'     : 'activ',
-					'relatedTo': '$(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\')[0]',
-					'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-					/*'condition': 'jmHF.hasClass(this.relatedTo[0], \'activ\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'*/
-					'condition': 'false'
-				}]
+			jmplugin: 'modules.onView',
+			jmconfig: {
+				'event': 'raf-6',
+				'relatedTo': '$(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\').parent()[0]',
+				'offsetBottom': '-100px',
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 60em)\')'
+			}
+		},{
+			jmname: 'add-remove-show-on-view',
+			jmplugin: 'modules.onView',
+			jmconfig: {
+				'event': 'raf-6',
+				'relatedTo': 'this.$elem[0]',
+				'onlyTopOfElem': 'true'
+			}
+		},{
+			jmname: 'add-remove-show-on-view-not-mobile',
+			jmplugin: 'modules.onView',
+			jmconfig: {
+				'event': 'raf-6',
+				'relatedTo': 'this.$elem[0]',
+				'onlyTopOfElem': 'true',
+				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+			}
 		},{
 			jmname   : 'menu-close',
 			jmplugin: 'actions.remove',
@@ -399,49 +304,37 @@ define(function(){
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},{
-			jmname: 'add-remove-show-on-view',
-			jmplugin: 'actions.add|actions.remove',
-			jmconfig: [{
-				'event': 'raf-nc',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)'
-			},
-			{
-				'event': 'raf-nc',
-				'datatype' : 'class',
-				'data'     : 'show',
-				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
-			}]
-		},{
+			jmname: 'set-viewport-height',
+			jmplugin: 'actions.exec',
+			jmconfig: {
+				'event': 'dominit|dc-orientationchange',
+				'exec': 'this.$elem.css(\'height\', Math.max(document.documentElement.clientHeight, window.innerHeight || 0))',
+			}
+		},/*{
 			jmname: 'animation-start-on-view',
 			jmplugin: 'actions.add|actions.remove',
 			jmconfig: [{
-				'event': 'raf-nc',
+				'event': 'raf-6',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)',
+				'init': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
+				'condition': '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)',
 				'callback': 'this.animateTransformTag.beginElement()'
 			},{
-				'event': 'raf-nc',
+				'event': 'raf-6',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
+				'init': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
+				'condition': 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)) && (window.dc.win.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
 				'callback': 'this.animateTransformTag.endElement()'
 			}]
-		},{
+		},*/{
 			jmname: 'frame-ani-by-scrolling',
 			jmplugin: 'modules.scrollControlFrames',
 			jmconfig: {
-				'event': 'dominit|raf-nc',
+				'event': 'dominit|raf',
 				'loop': '20',
 				'execElemOffset':'0',
 				'execWindowScale': '1'
@@ -450,7 +343,7 @@ define(function(){
 			jmname: 'scrollControlTransition',
 			jmplugin: 'modules.scrollControlTransform',
 			jmconfig: {
-				'event': 'dominit|raf-nc',
+				'event': 'dominit|raf',
 				'cssProperty':'translate|scale',
 				'execElemOffsetX':'-200',
 				'execWindowScale': '1'
@@ -462,6 +355,14 @@ define(function(){
 			jmconfig : {
 				'event'    : 'click',
 				'scrollTo' : '.page'
+			}
+		},
+		{
+			jmname   : 'layout-boundary',
+			jmplugin: 'actions.exec',
+			jmconfig : {
+				'event'    : 'dominit',
+				'exec' : 'this.$elem.css({ \'display\': \'block\', \'height\': this.$elem.outerHeight(), \'width\': this.$elem.outerWidth(), \'overflow\': \'hidden\', \'margin\': \'0\' });'
 			}
 		},
 		{
@@ -506,10 +407,10 @@ define(function(){
 				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
 				/*'width': '1280',
 				'height': '720'*/
-				'width': '640',
-				'height': '360',
-				'autoplay': 'autoplay',
-				'preload':'auto',
+				'width': '100%',
+				'height': 'auto',
+				//'autoplay': 'autoplay',
+				//'preload':'auto',
 				'loop': 'loop',
 				'controls': 'controls'
 			}
@@ -520,8 +421,8 @@ define(function(){
 				'event': 'dominit',
 				'url':'/videos/ISS',
 				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
-				'width': '1280',
-				'height': '720',
+				'width': '100%',
+				'height': 'auto',
 				'autoplay': 'autoplay',
 				'preload':'auto',
 				'loop': 'loop'
@@ -535,18 +436,21 @@ define(function(){
 			jmconfig: {
 				'event': 'dominit',
 				'url':'/videos/ISS',
-				//'url': 'https://www.youtube.com/watch?v=UE8yHySiJ4A',
-				'width': '1280',
-				'height': '720'
-				/*'width': '853',
-				'height': '480'*/
+				// 'url': 'https://www.youtube.com/watch?v=FG0fTKAqZ5g',
+				'width': '100%',
+				'height': 'auto',
+				'autoplay': 'autoplay',
+				'preload':'auto',
+				'loop': 'loop'
+				// 'width': '853',
+				// 'height': '480'
 			}
 		},
 		{
 			jmname: 'videoplayer-control',
 			jmplugin: 'modules.videocontrol',
 			jmconfig: {
-				'event': 'dominit|raf-nc'
+				'event': 'dominit|raf'// raf -> raf-one
 			}
 		},
 		{

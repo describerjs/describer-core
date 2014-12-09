@@ -1,0 +1,121 @@
+/*------------------------------------*\
+    $FOOTER_SECTION
+\*------------------------------------*/
+
+/**
+ * $FOOTER.............................HTML <footer> Section
+ * $LEGAL..............................Legal Information
+ * .....Copyright
+ * .....Imprint
+ * $HCARD..............................h-card Microformats
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $FOOTER
+\*------------------------------------*/
+
+.page-footer {
+	@extend %page-element-default;
+	background-color: $theme-footer-bg;
+	color: $theme-footer-fg;
+	padding: {
+		bottom: $default-spacing;
+		top: $default-spacing;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $LEGAL
+\*------------------------------------*/
+
+.legal {
+	@extend %element-default;
+
+	.copyright {
+		@extend %element-inner-default;
+		@include column(7);
+		text-align: right;
+	}
+
+	.imprint {
+		@extend %element-inner-default;
+		@include column(5);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $HCARD
+\*------------------------------------*/
+
+%hcard-element {
+	display: block;
+}
+
+.h-card {
+	@extend %element-default;
+
+	.u-url {
+		@extend %hcard-element;
+	}
+
+	.p-organization-name {
+		@extend %hcard-element;
+	}
+
+	.p-street-address {
+		@extend %hcard-element;
+	}
+
+	.p-locality {
+		@extend %hcard-element;
+	}
+
+	.p-country-name {
+		@extend %hcard-element;
+	}
+
+	.p-tel {
+		@extend %hcard-element;
+	}
+
+	.p-tel-fax {
+		@extend %hcard-element;
+	}
+
+	.u-email {
+		@extend %hcard-element;
+	}
+
+	.hc-section {
+		@extend %element-inner-default;
+
+		@include bp-m {
+			@include column(4);
+		}
+
+		@include bp-l {
+			@include column(3);
+		}
+	}
+}
+
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

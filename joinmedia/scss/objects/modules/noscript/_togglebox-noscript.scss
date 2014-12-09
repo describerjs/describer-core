@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    $TOGGLEBOX-NOSCRIPT
+\*------------------------------------*/
+
+.togglebox {
+	// Kein Javascript, dann alle Toggleboxen geöffnet.
+	.tb-content {
+		@extend %toggle-content-visible;
+	}
+}
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

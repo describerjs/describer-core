@@ -1,0 +1,131 @@
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * HEADINGS............................<h1>-<h6>
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+%heading {
+	@extend %element-text-default;
+	@if $theme-headings-bg != $theme-color-zero {
+		background-color: $theme-headings-bg;
+	}
+	@if $theme-headings-fg != $theme-body-fg {
+		color: $theme-headings-fg;
+	}
+	font: {
+		family: $font-heading;
+		weight: bold;
+	}
+
+	// Führende Headline (hinterlegt)
+	.principal {
+		display: block;
+		margin: 0 $dist-s;
+			
+		@include bp-m {
+			@include rgba($theme-principal-bg, .8);
+			color: $theme-principal-fg;
+			clear: left;
+			float: left;
+			line-height: 1;
+			margin: 0 0 3px;
+			padding: $pad-three-quarter $pad;
+			white-space: nowrap;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+
+h1, .h1 {
+	@extend %heading;
+	@extend %as-heading-mobile__largest;
+	@extend %as-heading-mobile__largest--typeset;
+
+	@include bp-m {
+		@include as-heading__largest;
+		@include as-heading__largest--typeset;
+	}
+}
+
+h2, .h2 {
+	@extend %heading;
+	@extend %as-heading-mobile__large;
+	@extend %as-heading-mobile__large--typeset;
+
+	@include bp-m {
+		@include as-heading__large;
+		@include as-heading__large--typeset;
+	}
+}
+
+h3, .h3 {
+	@extend %heading;
+	@extend %as-heading-mobile__medium;
+	@extend %as-heading-mobile__medium--typeset;
+	border-bottom: 2px solid $theme-headings-fg;
+	padding-bottom: $space-quarter;
+
+	@include bp-m {
+		@include as-heading__medium;
+		@include as-heading__medium--typeset;
+	}
+}
+
+h4, .h4 {
+	@extend %heading;
+	@extend %as-heading-mobile__normal;
+	@extend %as-heading-mobile__normal--typeset;
+
+	@include bp-m {
+		@include as-heading__normal;
+		@include as-heading__normal--typeset;
+	}
+}
+
+h5, .h5 {
+	@extend %heading;
+	@extend %as-heading-mobile__small;
+	@extend %as-heading-mobile__small--typeset;
+
+	@include bp-m {
+		@include as-heading__small;
+		@include as-heading__small--typeset;
+	}
+}
+
+h6, .h6 {
+	@extend %heading;
+	@extend %as-heading-mobile__smallest;
+	@extend %as-heading-mobile__smallest--typeset;
+
+	@include bp-m {
+		@include as-heading__smallest;
+		@include as-heading__smallest--typeset;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
