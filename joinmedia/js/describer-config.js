@@ -20,14 +20,14 @@ define(function(){
 				'datatype'  : 'style',
 				'data'      : 'display:none',
 				'relatedTo' : 'this.$elem[0]',
-				'condition' : 'window.dc.sectionpager && (this.$elem[0].offsetHeight !== 0) && Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
+				'condition' : '(window.dc.perf === 1) && (this.$elem[0].offsetHeight !== 0) && Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
 				'callback'  : '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0); this.$elem.find(\'[class*="JSINIT-"]\').each(function(index, item){ $(item).removePlugins(); });'
 			},{
 				'event'    : 'dominit|dc-hashchange',
 				'datatype' : 'style',
 				'data'     : 'display:block',
 				'relatedTo': 'this.$elem[0]',
-				'condition': 'window.dc.sectionpager && (this.$elem[0].offsetHeight === 0) && Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
+				'condition': '(window.dc.perf === 1) && (this.$elem[0].offsetHeight === 0) && Modernizr.mq(\'only screen and (max-width : 46.8em)\') && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
 				'callback' : 'this.$elem.find(\'[data-jmdominit="true"]\').each(function(index, item){ $(item).trigger(\'dominit\'); });',
 				'scrollTo' : 'this.$elem[0]'
 			}]
@@ -380,7 +380,7 @@ define(function(){
 				'datatype'  : 'style',
 				'data'      : 'display:none',
 				'relatedTo' : 'this.$elem[0]',
-				'condition' : 'window.dc.sectionpager'
+				'condition' : '(window.dc.perf === 1) '
 			}]
 		},
 		{
@@ -489,7 +489,7 @@ define(function(){
 				'wait': '100',
 				'event': 'click',
 				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)',
-				'condition': 'window.dc.sectionpager'
+				'condition': '(window.dc.perf === 1) '
 			}]
 		},
 		/*{
@@ -515,7 +515,7 @@ define(function(){
 				'event': 'dominit',
 				'datatype': 'style',
 				'data':'display:block',
-				'condition': 'window.dc.sectionpager'
+				'condition': '(window.dc.perf === 1) '
 			}]
 		},
 		{

@@ -678,6 +678,9 @@
     <Content Include="mixture.json" />
     <Content Include="Views\Page\Impressum.cshtml" />
     <Content Include="Views\Page\sections-example.cshtml" />
+    <Content Include="Views\Page\v1.cshtml" />
+    <Content Include="Views\Page\v2.cshtml" />
+    <Content Include="Views\Page\v3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

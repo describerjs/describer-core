@@ -368,8 +368,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				this.$acount = $('#fps-counter');
 
 			}
+			if(window.dc.perf < 3){
+				window.dc.clearInterval = true
+			}
 			setTimeout(function(){
-				clearInterval(intervalID);
+				(window.debug) ? window.dc.clearInterval = true : clearInterval(intervalID);
 			}, 15000);
 			intervalID = setInterval(function(){
 				var _obj;
@@ -381,11 +384,20 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				if(window.debug){
 					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
 				}
-				if(window.debug && window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
+				if(window.debug && (window.dc.onHoldArray || (window.dc.perf === 1)) && $.type(that.$initByPerfCounter) === 'undefined'){
 					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
 					that.$initByPerfCounter = $('#init-by-perf-counter');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
+				if(window.dc.perf === 1){
+					that.$initByPerfCounter.text(' init-fx: all ');
+				}
+				if(window.dc.perf === 2){
+					that.$initByPerfCounter.text(' init-fx: 2 ');
+				}
+				if(window.dc.clearInterval){
+					return;
+				}
 				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 45){
 					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
 						_obj = window.dc.onHoldArray[i].obj;
@@ -438,7 +450,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_initByPerf: function(e){
 			var _obj;
-			if(window.dc.sectionpager || Modernizr.mq('only screen and (min-width : 60em)')){
+			if((window.dc.perf === 1) || Modernizr.mq('only screen and (min-width : 60em)')){
 				this._execWaitAfterCondition();
 				return;
 			}
