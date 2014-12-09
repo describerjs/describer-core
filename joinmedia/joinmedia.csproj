@@ -476,6 +476,7 @@
     <Content Include="js\describer-more\plugins\customized\jquery.exif.js" />
     <Content Include="js\describer-more\plugins\customized\jquery.parallax.js" />
     <Content Include="js\describer-more\plugins\customized\jquery.plugin.js" />
+    <Content Include="js\describer-more\plugins\customized\jquery.smoothwheel.js" />
     <Content Include="js\describer-more\plugins\customized\jquery.validate.js" />
     <Content Include="js\describer-more\plugins\customized\modernizr.custom.js" />
     <Content Include="js\describer-more\plugins\customized\owl.carousel.js" />
@@ -676,6 +677,7 @@
     <Content Include="scss\style.scss" />
     <Content Include="mixture.json" />
     <Content Include="Views\Page\Impressum.cshtml" />
+    <Content Include="Views\Page\sections-example.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

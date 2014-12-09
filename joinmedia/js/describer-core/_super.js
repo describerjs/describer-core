@@ -31,11 +31,6 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
 		},
 
-		// wird vom Body-Listener für 'change' aufgerufen
-		orientationchange: function(e){
-			if(this.includes('event', 'orientationchange') && this.isCondition()) this._execWait(e);
-		},
-
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
 		jmtrigger: function(e, e_param){
 			if($.type(e_param) === 'undefined'){
@@ -49,6 +44,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
 		dominit: function(e){
+			var that = this;
 			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 			//
@@ -63,6 +59,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'dc-hashchange')) this.$elem.closest('body').on('dc-hashchange', this._execWaitAfterCondition.bind(this));
 		},
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
@@ -365,12 +362,16 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_applyPerfPluginsOnInterval: function(){
 			var that = this;
+			var intervalID;
 			if(window.debug){
 				$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span></div>');
 				this.$acount = $('#fps-counter');
 
 			}
-			setInterval(function(){
+			setTimeout(function(){
+				clearInterval(intervalID);
+			}, 15000);
+			intervalID = setInterval(function(){
 				var _obj;
 				if(window.dc.win.counter < that.thempCountedFrames){
 					that.thempCountedFrames = that.thempCountedFrames + 100000001;
@@ -381,11 +382,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
 				}
 				if(window.debug && window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
-					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 1/?</span>');
+					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
 					that.$initByPerfCounter = $('#init-by-perf-counter');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
-				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 35){
+				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 45){
 					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
 						_obj = window.dc.onHoldArray[i].obj;
 						if(!_obj.exec){
@@ -437,7 +438,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_initByPerf: function(e){
 			var _obj;
-			if(Modernizr.mq('only screen and (min-width : 60em)')){
+			if(window.dc.sectionpager || Modernizr.mq('only screen and (min-width : 60em)')){
 				this._execWaitAfterCondition();
 				return;
 			}
@@ -452,10 +453,19 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				_obj.exec = true;
 				_obj._execWaitAfterCondition();
 			}
+			if(window.dc.onHoldArray[1] && !window.dc.onHoldArray[1].obj.exec){
+				_obj = window.dc.onHoldArray[1].obj;
+				_obj.exec = true;
+				_obj._execWaitAfterCondition();
+			}
+
 		},
 
 		_render: function(){
 			if((window.dc.win.counter % this.renderDelay) !== 0){
+				return;
+			}
+			if(this.$elem.offsetHeight === 0){
 				return;
 			}
 			if(eval(this.conditionSource)){
