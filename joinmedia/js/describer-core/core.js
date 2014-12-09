@@ -3,11 +3,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	var $body = $('body');
 
 	// Globales Objekt
+	//alert(navigator.userAgent);
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
 	window.dc = window.dc || {};
-	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
-	window.dc.sectionpager = window.dc.sectionpager || false;
+
 
 	$(window).on('hashchange', function() {
 		$body.trigger('dc-hashchange');
@@ -42,6 +42,28 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				jmHF.alert('Warnung! siehe Console JM ->');
 			});
 		}
+	};
+
+	jmHF.devicePerfForParallax = function(){
+		var android_major, android_minor;
+		if(window.userOS === 'Android'){
+			android_major = parseInt(window.userOSver.split('.')[0], 10);
+			android_minor = parseInt(window.userOSver.split('.')[1], 10);
+			switch(android_major){
+				case 2:
+					return 'low';
+				case 3:
+					return 'low';
+				case 4:
+					return (android_minor < 4) ?  'low' : 'middel';
+				default:
+					return 'middel';
+			}
+		}
+		if(window.userOS === 'iOS'){
+			return 'height';
+		}
+		return 'height';
 	};
 
 	jmHF.checkOrientation = function(){
@@ -566,6 +588,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	})();
 
+
 	// Object.create support test, and fallback for browsers without it
 	if(typeof Object.create !== "function"){
 		Object.create = function(o){  // http://eloquentjavascript.net/ -> function clone(object) {...}
@@ -756,6 +779,18 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			.removeData();
 	};
 
-
+	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+	//window.dc.sectiontoggle = window.dc.sectiontoggle || (jmHF.devicePerfForParallax() === 'low');
+	switch(jmHF.devicePerfForParallax()){
+		case 'low':
+			window.dc.perf = window.dc.perf || 1;
+			break;
+		case 'middel':
+			window.dc.perf = window.dc.perf || 2;
+			break;
+		case 'height':
+			window.dc.perf = window.dc.perf || 3;
+			break;
+	}
 
 });
