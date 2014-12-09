@@ -479,27 +479,27 @@ define(function(){
 				'event': 'dominit|raf'// raf -> raf-one
 			}
 		},
-		/*{
+		{
 			jmname: 'anchor',
 			jmplugin: 'actions.scroll|actions.link',
 			jmconfig: [{
 				'event': 'click',
-				'scrollTo': 'this.$elem.attr(\'href\')',
-				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+				'scrollTo': 'this.$elem.attr(\'href\')'
 			},{
-				*//*'wait': '100',*//*
-				'event': 'click'*//*,
-				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)'*//*
+				'wait': '100',
+				'event': 'click',
+				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)',
+				'condition': 'window.dc.sectionpager'
 			}]
-		},*/
-		{
+		},
+		/*{
 			jmname: 'anchor',
 			jmplugin: 'actions.scroll',
 			jmconfig: {
 				'event': 'click',
 				'scrollTo': 'this.$elem.attr(\'href\')'
 			}
-		},
+		},*/
 		{
 			jmname: 'section-toggle-anchor',
 			jmplugin: 'actions.scroll|actions.link|actions.add',
