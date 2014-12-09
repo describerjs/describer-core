@@ -1,0 +1,42 @@
+/*------------------------------------*\
+    $GOOGLE_MAPS
+\*------------------------------------*/
+
+#map-canvas {
+	@extend %element-default;
+	height: 250px;
+
+	@include bp-m {
+		height: $shp-height-m;
+	}
+
+	img {
+		// Fix gegen verzerrte Google Maps Controls
+		max-width: none;
+	}
+}
+
+.maps-infowindow {
+	min-height: 140px;
+
+	.maps-iw-head {
+		background-color: $theme-section-header-bg;
+		color: $theme-section-header-fg;
+		font: {
+			family: $font-heading;
+			weight: bold;
+		}
+	}
+
+	.maps-iw-main {
+		color: $color-black;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

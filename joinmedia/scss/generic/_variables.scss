@@ -104,12 +104,18 @@ $theme-headings-bg:				$color-transparent;
 $theme-headings-fg:				$color-white;
 $theme-principal-bg:			$color-white;
 $theme-principal-fg:			$color-orange-base;
+$theme-section-header-bg:		$color-white;
+$theme-section-header-fg:		$color-orange-base;
 
 // Links
 $theme-link-bg:					$color-transparent;
 $theme-link-fg:					$color-orange-base;
 $theme-link-hover-bg:			$color-transparent;
 $theme-link-hover-fg:			$color-orange-base;
+$theme-link-inverted-bg:		$color-transparent;
+$theme-link-inverted-fg:		$color-white;
+$theme-link-inverted-hover-bg:	$color-transparent;
+$theme-link-inverted-hover-fg:	$color-white;
 
 // Navigation
 $theme-nav-bg:					$color-orange-base;
@@ -136,6 +142,10 @@ $theme-menu-item-bg:			$color-orange-base;
 
 // Stage
 $theme-stage-bg:				$color-blue-mid-light;
+
+// Section-Header
+$shp-height-s:					400px;
+$shp-height-m:					540px;
 
 // Tabs
 $theme-tabs-bg:					$color-transparent;
