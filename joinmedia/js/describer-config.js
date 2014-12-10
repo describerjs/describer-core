@@ -479,19 +479,19 @@ define(function(){
 				'event': 'dominit|raf'// raf -> raf-one
 			}
 		},
-		{
-			jmname: 'anchor',
+		/*{
+			jmname: 'anchor-old',
 			jmplugin: 'actions.scroll|actions.link',
 			jmconfig: [{
 				'event': 'click',
 				'scrollTo': 'this.$elem.attr(\'href\')'
 			},{
-				'wait': '100',
+				'wait': '1000',
 				'event': 'click',
 				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)',
-				'condition': '(window.dc.perf === 1) '
+				'condition': '(window.dc.perf === 1)'
 			}]
-		},
+		},*/
 		/*{
 			jmname: 'anchor',
 			jmplugin: 'actions.scroll',
@@ -500,22 +500,55 @@ define(function(){
 				'scrollTo': 'this.$elem.attr(\'href\')'
 			}
 		},*/
-		{
+		/*{
 			jmname: 'section-toggle-anchor',
 			jmplugin: 'actions.scroll|actions.link|actions.add',
 			jmconfig: [{
 				'event': 'click',
 				'scrollTo': 'this.$elem.attr(\'href\')',
-				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
+				'condition': '(window.dc.perf !== 1)'
 			},{
-				/*'wait': '100',*/
-				'event': 'click'/*,
-				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)'*/
+				*//*'wait': '100',*//*
+				'event': 'click'*//*,
+				'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)'*//*
 			},{
 				'event': 'dominit',
 				'datatype': 'style',
 				'data':'display:block',
-				'condition': '(window.dc.perf === 1) '
+				'condition': '(window.dc.perf === 1)'
+			}]
+		},*/
+		{
+			jmname: 'anchor',
+			jmplugin: 'actions.scroll|actions.link',
+			jmconfig: [{
+				'event': 'click',
+				'scrollTo': 'this.$elem.attr(\'href\')',
+				'condition': '(window.dc.perf !== 1)'
+			},{
+				/*'wait': '1000',*/
+				'event': 'click',
+				/*'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)',*/
+				'condition': '(window.dc.perf === 1)'
+			}]
+		},
+		{
+			jmname: 'anchor-visible-on-perf1',
+			jmplugin: 'actions.scroll|actions.link|actions.add',
+			jmconfig: [{
+				'event': 'click',
+				'scrollTo': 'this.$elem.attr(\'href\')',
+				'condition': '(window.dc.perf !== 1)'
+			},{
+				/*'wait': '1000',*/
+				'event': 'click',
+				/*'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)',*/
+				'condition': '(window.dc.perf === 1)'
+			},{
+				'event': 'dominit',
+				'datatype': 'style',
+				'data':'display:block',
+				'condition': '(window.dc.perf === 1)'
 			}]
 		},
 		{

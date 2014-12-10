@@ -7,7 +7,12 @@ ViewBag.Title = Model.Page.Title;
     window.dc.perf = 2;
 </script>
 <style>
-    a[data-jmname*="section-toggle-anchor"] { display: none; }
+    .go-up {
+        top: 60px;
+        position: relative;
+        z-index: 99;
+    }
+    a[data-jmname*="anchor-visible-on-perf1"] { display: none; }
 </style>
 <!-- Stage Start -->
 <section class="stage" id="stage" data-jmname="section-toggle" data-jmdominit="true">
@@ -69,15 +74,14 @@ ViewBag.Title = Model.Page.Title;
         </a>
     </div>
     <div class="stage-footer">
-    	<a class="go-down" href="#joinmedia" data-jmname="anchor"></a>
-    	<!-- <a class="go-down" href="#joinmedia" data-jmname="section-toggle-anchor" data-jmdominit="true"></a> -->
+        <a class="go-down" href="#joinmedia" data-jmname="anchor"></a>
     </div>
 </section>
 <!-- Stage Ende -->
 
 <!-- join.media Start -->
 <section id="joinmedia" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#stage" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#stage" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
         <div class="sh-content">
             <div class="sh-headline fade-in-left" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
@@ -118,13 +122,13 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </div>
-    <a class="go-down" href="#services" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#services" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- join.media Ende -->
 
 <!-- Leistungen Start -->
 <section id="services" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#joinmedia" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#joinmedia" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
         <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
@@ -302,13 +306,13 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </article>
-    <a class="go-down" href="#customers" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#customers" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Leistungen Ende -->
 
 <!-- Kunden Start -->
 <section id="customers" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-<a class="go-up" href="#services" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+<a class="go-up" href="#services" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 <div class="section-header">
     <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
         <div class="parallax-inner" data-depth="1.5">
@@ -511,13 +515,13 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </div>
 </article>
-<a class="go-down" href="#agency" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+<a class="go-down" href="#agency" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Kunden Ende -->
 
 <!-- Agentur Start -->
 <section id="agency" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#customers" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#customers" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
         <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
@@ -572,13 +576,13 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </article>
-    <a class="go-down" href="#jobs" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#jobs" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Agentur Ende -->
 
 <!-- Jobs Start -->
 <section id="jobs" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#agency" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#agency" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
         <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
@@ -676,13 +680,13 @@ ViewBag.Title = Model.Page.Title;
             </article>
         </div>
     </div>
-    <a class="go-down" href="#contact" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#contact" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Jobs Ende -->
 
 <!-- Kontakt Start -->
 <section id="contact" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#jobs" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#jobs" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
         <div id="map-canvas"></div>
 
