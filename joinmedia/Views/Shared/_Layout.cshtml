@@ -49,7 +49,10 @@
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
     <script>
-        if(window.location.href.indexOf('debug') !== -1){
+        if(window.location.href.indexOf('debug=true') !== -1){
+            window.debug = true;
+        }
+        if(window.location.href.indexOf('debug=false') !== -1){
             window.debug = false;
         }
         window.UseLocalStorage = false;
@@ -79,14 +82,14 @@
             addJSToDOM('/js/build/describer-core/libs/modernizr.custom.6966b8.js');
             addJSToDOM('/js/build/describer-core/libs/matchmedia.05942b.js');
             addJSToDOM('/js/build/describer-more/plugins/picturefill.b30289.js');
-            addCSSToDOM('/css/build/style.c73cbc.css');
+            addCSSToDOM('/css/build/style.9c1d40.css');
             addJSToDOM('/js/build/describer-localStorage/require.2.1.11-localStorage.42fa63.js', 'data-main', '/Content/MainJS/require-main-@(Configuration.GetFrontEndCacheKey() + ".js")');
         }
     </script>
 
     <noscript>
-        <link rel="stylesheet" href="/css/build/style.c73cbc.css" />
-        <link rel="stylesheet" href="/css/build/noscript.4b086a.css" />
+        <link rel="stylesheet" href="/css/build/style.9c1d40.css" />
+        <link rel="stylesheet" href="/css/build/noscript.589f05.css" />
     </noscript>
     }
 
