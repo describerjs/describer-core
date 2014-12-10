@@ -4,10 +4,11 @@ ViewBag.Title = Model.Page.Title;
 }
 <style>
     .go-up {
-        top: 62px;
-        z-index: 90;
+        top: 60px;
+        position: relative;
+        z-index: 99;
     }
-    a[data-jmname*="section-toggle-anchor"] { display: none; }
+    a[data-jmname*="anchor-visible-on-perf1"] { display: none; }
 </style>
 <!-- Stage Start -->
 <section class="stage" id="stage" data-jmname="section-toggle" data-jmdominit="true">
@@ -35,7 +36,7 @@ ViewBag.Title = Model.Page.Title;
 
     <div class="stage-main fade-in-up" data-jmname="add-remove-show-on-view-not-mobile|equalheights-not-mobile" data-jmdominit="true">
         <h2 class="is-vishidden">Aktuelles</h2>
-        <a class="teaser" href="#customers" data-jmname="anchor">
+        <a class="teaser" href="#customers-ay-yildiz" data-jmname="anchor">
             <div class="t-inner">
                 <header class="t-header" data-jmselector="equal-heights-children">
                     <h3 class="t-head">Relaunch von AYYILDIZ.de</h3>
@@ -46,7 +47,7 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </a>
 
-        <a class="teaser" href="#customers" data-jmname="anchor">
+        <a class="teaser" href="#customers-kalbini-duyur" data-jmname="anchor">
             <div class="t-inner">
                 <header class="t-header" data-jmselector="equal-heights-children">
                     <h3 class="t-head">Launch von KALBINI-DUYUR.de</h3>
@@ -57,7 +58,7 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </a>
 
-        <a class="teaser" href="#customers" data-jmname="anchor">
+        <a class="teaser" href="#customers-base-landingpages" data-jmname="anchor">
             <div class="t-inner">
                 <header class="t-header" data-jmselector="equal-heights-children">
                     <h3 class="t-head">BASE<br />Landingpages</h3>
@@ -68,20 +69,22 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </a>
     </div>
-    <div class="stage-footer"><a class="go-down" href="#joinmedia" data-jmname="section-toggle-anchor" data-jmdominit="true"></a></div>
+    <div class="stage-footer">
+    	<a class="go-down" href="#joinmedia" data-jmname="anchor"></a>
+    </div>
 </section>
 <!-- Stage Ende -->
 
 <!-- join.media Start -->
 <section id="joinmedia" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#stage" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#stage" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
         <div class="sh-content">
             <div class="sh-headline fade-in-left" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
                 <h2>join.media</h2>
             </div>
         </div>
-        <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -93,12 +96,12 @@ ViewBag.Title = Model.Page.Title;
                     <img srcset="/img/section-header/joinmedia-768-600.jpg" alt="Logo im Eingangsbereich" class="parallax-img" style="margin: -6.25% 0;" />
                 </picture>
             </div>
-            <div class="parallax-inner" data-depth="2.5">
+            <div class="parallax-inner" data-depth="1.8">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
                     <source srcset="/img/icons/devices_outlines.svg" type="image/svg+xml" />
                     <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/icons/devices_outlines.png" alt="Device Lab" class="parallax-img" style="margin: -37.5% 0;" />
+                    <img srcset="/img/icons/devices_outlines.png" alt="Device Lab" class="parallax-img" />
                 </picture>
             </div>
         </div>
@@ -115,18 +118,42 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </div>
-    <a class="go-down" href="#services" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#services" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- join.media Ende -->
 
 <!-- Leistungen Start -->
 <section id="services" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#joinmedia" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#joinmedia" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-            <div class="parallax-inner" data-depth="1.6"><img src="/img/section-header/leistungen-1.png" alt="Leistungen Lederfabrik Hotel" class="parallax-img" /></div>
-            <div class="parallax-inner" data-depth="2.0"><img src="/img/section-header/leistungen-2.png" alt="Leistungen BASE" class="parallax-img" /></div>
-            <div class="parallax-inner" data-depth="1.2"><img src="/img/section-header/leistungen-3.png" alt="Leistungen AY YILDIZ" class="parallax-img" /></div>
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+            <div class="parallax-inner" data-depth="1.5">
+                <!-- <img src="/img/section-header/leistungen-1.png" alt="Leistungen Lederfabrik Hotel" class="parallax-img" /> -->
+                <picture>
+                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                    <source srcset="/img/section-header/leistungen-lederfabrikhotel-2016-756.png" media="(min-width: 48em)" />
+                    <!--[if IE 9]></video><![endif]-->
+                    <img srcset="/img/section-header/leistungen-lederfabrikhotel-665-249.png" alt="" class="parallax-img" />
+                </picture>
+            </div>
+            <div class="parallax-inner" data-depth="2">
+                <!-- <img src="/img/section-header/leistungen-2.png" alt="Leistungen BASE" class="parallax-img" /> -->
+                <picture>
+                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                    <source srcset="/img/section-header/leistungen-base-landingpages-2112-792.png" media="(min-width: 48em)" />
+                    <!--[if IE 9]></video><![endif]-->
+                    <img srcset="/img/section-header/leistungen-base-landingpages-697-261.png" alt="" class="parallax-img" />
+                </picture>
+            </div>
+            <div class="parallax-inner" data-depth="2.5">
+                <!-- <img src="/img/section-header/leistungen-3.png" alt="Leistungen AY YILDIZ" class="parallax-img" /> -->
+                <picture>
+                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                    <source srcset="/img/section-header/leistungen-ayyildiz-2208-828.png" media="(min-width: 48em)" />
+                    <!--[if IE 9]></video><![endif]-->
+                    <img srcset="/img/section-header/leistungen-ayyildiz-729-273.png" alt="" class="parallax-img" />
+                </picture>
+            </div>
         </div>
 
         <div class="sh-content">
@@ -275,15 +302,15 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </article>
-    <a class="go-down" href="#customers" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#customers" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Leistungen Ende -->
 
 <!-- Kunden Start -->
 <section id="customers" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#services" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#services" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -389,7 +416,7 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </div>
 
-    <article class="block img-right">
+    <article class="block img-right" id="customers-ay-yildiz">
         <div class="page-constrained">
             <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <img src="/img/referenzen/showcase-ayyildiz.png" alt="Screenshots vom AYYILDIZ Relaunch">
@@ -401,7 +428,7 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </article>
 
-    <article class="block img-left">
+    <article class="block img-left" id="customers-kalbini-duyur">
         <div class="page-constrained">
             <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <img src="/img/referenzen/showcase-kalbini-duyur.png" alt="Screenshots vom Kalbini Duyur Launch">
@@ -473,7 +500,7 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </article>
 
-    <article class="block img-left">
+    <article class="block img-left" id="customers-base-landingpages">
         <div class="page-constrained">
             <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <img src="/img/referenzen/showcase-seo-sea.png" alt="Screenshots der BASE SEO/SEA Landingpages">
@@ -484,15 +511,15 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </article>
-    <a class="go-down" href="#agency" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#agency" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Kunden Ende -->
 
 <!-- Agentur Start -->
 <section id="agency" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#customers" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#customers" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -545,15 +572,15 @@ ViewBag.Title = Model.Page.Title;
             </div>
         </div>
     </article>
-    <a class="go-down" href="#jobs" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#jobs" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Agentur Ende -->
 
 <!-- Jobs Start -->
 <section id="jobs" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#agency" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#agency" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <div class="sh-parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
             <div class="parallax-inner" data-depth="1.5">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -596,7 +623,7 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </div>
 
-    <div class="page-constrained with-pad-bottom">
+    <div class="page-constrained">
         <div class="tabs">
             <input type="radio" id="tab1" name="tab" class="tab-control" checked />
             <label for="tab1" class="tab">Internet - Redakteur (m/w) freiberuflich</label>
@@ -649,15 +676,15 @@ ViewBag.Title = Model.Page.Title;
             </article>
         </div>
     </div>
-    <a class="go-down" href="#contact" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-down" href="#contact" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Jobs Ende -->
 
 <!-- Kontakt Start -->
 <section id="contact" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-    <a class="go-up" href="#jobs" data-jmname="section-toggle-anchor" data-jmdominit="true"></a>
+    <a class="go-up" href="#jobs" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <div id="map-canvas" class="sh-map"></div>
+        <div id="map-canvas"></div>
 
         <div class="sh-content-map">
             <div class="sh-headline fade-in-left" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
@@ -666,7 +693,7 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </div>
 
-    <div class="page-constrained with-pad fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+    <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
         <div class="togglebox">
             <a class="tb-subject" href="#" data-jmname="togglebox">So erreichen Sie uns</a>
             <div class="tb-content">
@@ -690,9 +717,9 @@ ViewBag.Title = Model.Page.Title;
 
                     <div class="col">
                         <div>Ihr Ansprechpartner: Sönke Götzen</div>
-                        <div class="tel"><span class="type">Fon: </span><a class="link" href="tel:+49208960320" itemprop="telephone">+49 (0) 208 / 960 32 - 0</a></div>
+                        <div class="tel"><span class="type">Fon: </span><a href="tel:+49208960320" itemprop="telephone">+49 (0) 208 / 960 32 - 0</a></div>
                         <div class="tel"><span class="type">Fax: </span><span itemprop="faxNumber">+49 (0) 208 / 960 32 - 10</span></div>
-                        <div class="email"><a class="link" href="mailto:info@joinmedia.de" itemprop="email">info@joinmedia.de</a></div>
+                        <div class="email"><a href="mailto:info@joinmedia.de" itemprop="email">info@joinmedia.de</a></div>
                     </div>
                 </address>
             </div>

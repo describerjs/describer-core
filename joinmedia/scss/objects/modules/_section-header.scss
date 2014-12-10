@@ -2,9 +2,6 @@
     $SECTION-HEADER
 \*------------------------------------*/
 
-$shp-height-s: 400px;
-$shp-height-m: 540px;
-
 .section-header {
 	position: relative;
 	
@@ -40,8 +37,8 @@ $shp-height-m: 540px;
 		width: auto;
 
 		h1, h2, h3, h4, h5, h6 {
-			@include rgba($theme-body-fg, .8);
-			color: $theme-body-bg;
+			@include rgba($theme-section-header-bg, .8);
+			color: $theme-section-header-fg;
 			display: inline-block;
 			font-weight: bold;
 			margin-bottom: 0;
@@ -52,22 +49,7 @@ $shp-height-m: 540px;
 		}
 	}
 
-	.sh-map {
-		height: $shp-height-s;
-		margin: 0 1.04167%;
-
-		@include bp-m {
-			height: $shp-height-m;
-		}
-
-		img {
-			// Fix gegen verzerrte Google Maps Controls
-			max-width: none;
-		}
-	}
-
-	.sh-parallax {
-		@extend .parallax;
+	.parallax {
 		background: $color-white;
 		height: $shp-height-s;
 
@@ -75,10 +57,14 @@ $shp-height-m: 540px;
 			height: $shp-height-m;
 		}
 
-		.parallax-img {
-			max-width: none;
-			// width: 100%;
+		&> .parallax-inner {
+			&:first-child {
+				.parallax-img {
+					max-width: none;
+				}
+			}
 		}
+
 	}
 
 	.tiles {

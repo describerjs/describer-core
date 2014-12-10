@@ -48,6 +48,7 @@
 	.imprint {
 		@extend %element-inner-default;
 		@include column(5);
+		color: inherit;
 	}
 }
 

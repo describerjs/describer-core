@@ -222,11 +222,9 @@
             map.setOptions({ styles: mapStyles });
 
             var contentString =
-               '<div class="maps-infowindow" style="min-height: 170px;">' +
-                   '<h3 style="margin: 0 0 0.5em 0; color: #dd4411;">join.media GmbH & Co. KG</h3>' +
-                   '<div class="maps-bodycontent" style="color: #000;">' +
-                       'Düsseldorfer Straße 269<br/>45481 Mülheim an der Ruhr<br/>Deutschland' +
-                   '</div>' +
+               '<div class="maps-infowindow">' +
+                   '<h4 class="maps-iw-head">join.media GmbH &amp; Co. KG</h4>' +
+                   '<p class="maps-iw-main">Düsseldorfer Straße 269<br />45481 Mülheim an der Ruhr<br />Deutschland</p>' +
                '</div>';
 
             var infoWindow = new google.maps.InfoWindow({

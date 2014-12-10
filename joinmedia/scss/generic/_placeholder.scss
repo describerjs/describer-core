@@ -61,55 +61,17 @@
 
 %toggle-subject {
 	@extend %element-nested-default;
-	@include indent(padding, 2.5);
 	@include user-select;
 	display: block;
 	position: relative;
-
-	/*&:after {
-		@include pseudo-element-default;
-		@include transform-transition(.3s ease);
-		@include vertical-align(absolute);
-		border: $pad-half solid transparent;
-		border-left-color: rgba(0, 0, 0, .4);
-		height: 0;
-		right: $dist/2;
-		width: 0;
-	}*/
-
-	&:before {
-		@include indent(left);
-		@include pseudo-element-default;
-		@include transition(background-image .3s ease);
-		@include vertical-align(absolute);
-		/*border: $pad-half solid transparent;
-		border-left-color: rgba(0, 0, 0, .4);
-		height: 0;
-		width: 0;*/
-
-		background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHUlEQVQYlWNgwAT/oZggoKPC/0Ri4hUOoGeIUggAhKAj3f1GC0EAAAAASUVORK5CYII=") no-repeat scroll 0 0;
-		height: 10px;
-		width: 10px;
-	}
 }
 
 %toggle-subject-visible {
-	/*&:after {
-		@include transform(rotate(90deg));
-		border-left-color: transparent;
-		border-top-color: rgba(0, 0, 0, .4);
-		right: $pad-three-quarter;
-		top: 60%;
-	}*/
-
-	&:before {
-		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFElEQVQYlWNgGBrgP5GYeIWDHQAA2JUT7a+Ikh8AAAAASUVORK5CYII=");
-	}
+	/**/
 }
 
 %toggle-content {
 	@include transitions(height .3s ease, opacity .3s ease);
-	/*display: none;*/
 	height: 0;
 	opacity: 0;
 	overflow: hidden;
@@ -117,7 +79,6 @@
 
 %toggle-content-visible {
 	@extend %element-nested-default;
-	/*display: block;*/
 	height: auto;
 	min-height: $default-padding;
 	opacity: 1;

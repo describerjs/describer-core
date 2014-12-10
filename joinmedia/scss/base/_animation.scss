@@ -74,15 +74,13 @@
 
 	// Parallax-Image
 	.parallax-img {
-		/**/
+		display: block;
+		margin: 0 auto;
 	}
 
 	// Prallax-Inner-Container
 	.parallax-inner {
-		&.has-content {
-			@include constrained;
-			@include element-stretch;
-		}
+		@include element-stretch;
 	}
 }
 
