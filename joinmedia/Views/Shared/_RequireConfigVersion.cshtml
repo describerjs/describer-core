@@ -1,69 +1,95 @@
 ﻿var pathToJQuery;
 var buildPath = (window.loadUnminifyVersion) ? '' : 'build/';
 if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
-	pathToJQuery = buildPath+'externals/originalReferenceSource/jquery-2.1.0.min.86482b';
+	pathToJQuery = buildPath+'describer-core/libs/jquery-2.1.0.b1ffa7';
 }else{
-	pathToJQuery = buildPath+'externals/originalReferenceSource/jquery-1.11.0.min.d7d7ea';
+	pathToJQuery = buildPath+'describer-core/libs/jquery-1.11.0.d2166e';
 }
 require.config({
 	baseUrl: '/js',
 	paths      : {
-
-		// externals
-		'jquery'                                           : pathToJQuery,
-		'scrolltotop'                                      : buildPath+'externals/customized/scrolltotop.b08575',
-		'jquery_autocomplete'                              : buildPath+'externals/customized/jquery.autocomplete.f69d17',
-		'jquery_ba-dotimeout'                              : buildPath+'externals/customized/jquery.ba-dotimeout.5af41c',
-		'jquery_countdown'                                 : buildPath+'externals/customized/jquery.countdown.5dea9a',
-		'jquery_countdown-de'                              : buildPath+'externals/customized/jquery.countdown-de.a422f0',
-		'jquery_plugin'                                    : buildPath+'externals/customized/jquery.plugin.29555f',
-		'jquery_validate'                                  : buildPath+'externals/customized/jquery.validate.7fefca',
-		'owl_carousel'                                     : buildPath+'externals/customized/owl.carousel.6a3984',
-		'overwritings.jquery_validate'                     : buildPath+'externals/customized/overwritings/jquery.validate.f22f2b',
-		'overwritings.owl_carousel'                        : buildPath+'externals/customized/overwritings/owl.carousel.c3ef50',
-		'video'                                            : buildPath+'externals/customized/video.a0736b',
-		'md5'                                              : buildPath+'externals/originalReferenceSource/md5.ea27c6',
-		'rAF'                                              : buildPath+'externals/originalReferenceSource/rAF.1ad539',
-		'fastclick'                                        : buildPath+'externals/originalReferenceSource/fastclick.49c6ef',
-		'fixedfixed'                                       : buildPath+'externals/originalReferenceSource/fixedfixed.8ae1a6',
-		'fixedsticky'                                      : buildPath+'externals/originalReferenceSource/fixedsticky.87fdf5',
-
-
-
+		// ******************* describer-core ******************************
+		'jquery'                                            : pathToJQuery,
+		'scrolltotop'                                       : buildPath+'describer-core/libs/scrolltotop.b08575',
+		'rAF'                                               : buildPath+'describer-core/libs/rAF.1ad539',
 
 		// mylibs
-		'_config'                                          : buildPath+'mylibs/_config.888958',
-		'_super'                                           : buildPath+'mylibs/_super.685db6',
-		'actions.add'                                      : buildPath+'mylibs/actions/add.2ed18c',
-		'actions.ajax'                                     : buildPath+'mylibs/actions/ajax.a87f67',
-		'actions.link'                                     : buildPath+'mylibs/actions/link.99144d',
-		'actions.remove'                                   : buildPath+'mylibs/actions/remove.1daf39',
-		'actions.scroll'                                   : buildPath+'mylibs/actions/scroll.7d5663',
-		'actions.set'                                      : buildPath+'mylibs/actions/set.73e8a9',
-		'actions.sticky'                                   : buildPath+'mylibs/actions/sticky.eea339',
-		'actions.toggle'                                   : buildPath+'mylibs/actions/toggle.ea3ae0',
-		'actions.trigger'                                  : buildPath+'mylibs/actions/trigger.8806d2',
+		'_config'                                           : buildPath+'describer-config.e5d5eb',
+		'core'                                              : buildPath+'describer-core/core.04cb0b',
 
-		'modules.carousel'                                 : buildPath+'mylibs/modules/carousel.4381f9',
-		'modules.carousel-ts'                              : buildPath+'empty',
-		'modules.countdown'                                : buildPath+'mylibs/modules/countdown.618b24',
-		'modules.dependentSelectionGroup'                  : buildPath+'mylibs/modules/dependentSelectionGroup.c97cac',
-		'modules.equalheights'                             : buildPath+'mylibs/modules/equalheights.093308',
-		'modules.form.autocomplete'                        : buildPath+'mylibs/modules/form/autocomplete.9d98e0',
-		'modules.form.formvalidate'                        : buildPath+'mylibs/modules/form/formvalidate.97bb5c',
-        'modules.form.formvalidate-addon'                  : buildPath+'mylibs/modules/form/formvalidate-addon.bb7de8',
-		'modules.form.selectOptionExtractInGroup'          : buildPath+'mylibs/modules/form/selectOptionExtractInGroup.f6b6d3',
-		'modules.form.submitbutton'                        : buildPath+'mylibs/modules/form/submitbutton.0dfe81',
-		'modules.modal'                                    : buildPath+'mylibs/modules/modal.4411a9',
-		'modules.tablesort'                                : buildPath+'mylibs/modules/tablesort.0139ae',
-		'modules.video'                                    : buildPath+'mylibs/modules/video.22266d',
+		'_super'                                            : buildPath+'describer-core/_super.4c5222',
+		'actions.add'                                       : buildPath+'describer-core/actions/add.98a413',
+		'actions.ajax'                                      : buildPath+'describer-core/actions/ajax.e1ae8c',
+        'actions.apply'                                     : buildPath+'describer-core/actions/apply.6eaa03',
+		'actions.exec'                                      : buildPath+'describer-core/actions/exec.292ac8',
+		'actions.link'                                      : buildPath+'describer-core/actions/link.aa9d42',
+		'actions.remove'                                    : buildPath+'describer-core/actions/remove.504c1f',
+		'actions.scroll'                                    : buildPath+'describer-core/actions/scroll.f4bde8',
+		'actions.set'                                       : buildPath+'describer-core/actions/set.fbc06d',
+		/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
+		'actions.toggle'                                    : buildPath+'describer-core/actions/toggle.313419',
+		'actions.trigger'                                   : buildPath+'describer-core/actions/trigger.e0da3f',
 
-		'utils.helpers'                                    : buildPath+'mylibs/utils/helpers.fd91f7',
-		'utils.jquery_helpers'                             : buildPath+'mylibs/utils/jquery.helpers.31b3ee',
 
-		'require-css.video'                                : buildPath+'require-css/video.d3fadb'
+
+		// ******************* describer-more ******************************
+		'modules.carousel'                                  : buildPath+'describer-more/modules/carousel.616a9c',
+		'modules.carousel-ts'                               : buildPath+'empty',
+
+		/*'modules.carousel-ts'                              : 'empty',*/
+		'modules.countdown'                                 : buildPath+'describer-more/modules/countdown.618b24',
+		'modules.dependentSelectionGroup'                   : buildPath+'describer-more/modules/dependentSelectionGroup.d219cb',
+		'modules.equalheights'                              : buildPath+'describer-more/modules/equalheights.39c5ce',
+		'modules.form.autocomplete'                         : buildPath+'describer-more/modules/form/autocomplete.e2faf8',
+		'modules.form.formvalidate'                         : buildPath+'describer-more/modules/form/formvalidate.fd1d5a',
+		'modules.form.formvalidate-addon'                   : buildPath+'describer-more/modules/form/formvalidate-addon.bb7de8',
+		'modules.form.selectOptionExtractInGroup'           : buildPath+'describer-more/modules/form/selectOptionExtractInGroup.b8aff8',
+		'modules.form.submitbutton'                         : buildPath+'describer-more/modules/form/submitbutton.db6aef',
+		'modules.fotoupload'                                : buildPath+'describer-more/modules/fotoupload.9caf6b',
+		'modules.modal'                                     : buildPath+'describer-more/modules/modal.a9ffbb',
+        'modules.onView'                                    : buildPath+'describer-more/modules/onView.93559b',
+		'modules.parallax'                                  : buildPath+'describer-more/modules/parallax.bbb40f',
+		'modules.scrollControlFrames'                       : buildPath+'describer-more/modules/scrollControlFrames.880314',
+		'modules.scrollControlTransform'                    : buildPath+'describer-more/modules/scrollControlTransform.5cb87d',
+		'modules.tablesort'                                 : buildPath+'describer-more/modules/tablesort.4d87ee',
+		'modules.video'                                     : buildPath+'describer-more/modules/video.f72636',
+		'modules.videocontrol'                              : buildPath+'empty',
+		'modules.videoplayer'                               : buildPath+'describer-more/modules/videoplayer.efa88d',
+
+		// untouched externel
+		'jquery_canvasResize'                               : buildPath+'describer-more/plugins/jquery.canvasResize.75435e',
+		'fastclick'                                         : buildPath+'describer-more/plugins/fastclick.49c6ef',
+		'fixedfixed'                                        : buildPath+'describer-more/plugins/fixedfixed.8ae1a6',
+		'fixedsticky'                                       : buildPath+'describer-more/plugins/fixedsticky.87fdf5',
+		'jquery_mousewheel'                                 : buildPath+'describer-more/plugins/jquery.mousewheel.8df398',
+		'md5'                                               : buildPath+'describer-more/plugins/md5.ea27c6',
+		'video_4_10_2'                                      : buildPath+'describer-more/plugins/video.4.10.2.5c604a',
+		'videojs-youtube'                                   : buildPath+'describer-more/plugins/youtube.407acf',
+
+		// customized externel
+		'jquery_autocomplete'                               : buildPath+'describer-more/plugins/customized/jquery.autocomplete.ccf05a',
+		'jquery_ba-dotimeout'                               : buildPath+'describer-more/plugins/customized/jquery.ba-dotimeout.5af41c',
+		'jquery_countdown'                                  : buildPath+'describer-more/plugins/customized/jquery.countdown.5dea9a',
+		'jquery_countdown-de'                               : buildPath+'describer-more/plugins/customized/jquery.countdown-de.a422f0',
+		'jquery_exif'                                       : buildPath+'describer-more/plugins/customized/jquery.exif.2da176',
+        'jquery_smoothwheel'                                : buildPath+'describer-more/plugins/customized/jquery.smoothwheel.b95f7b',
+		'jquery_parallax'                                   : buildPath+'describer-more/plugins/customized/jquery.parallax.cb2faa',
+		'jquery_plugin'                                     : buildPath+'describer-more/plugins/customized/jquery.plugin.29555f',
+		'jquery_validate'                                   : buildPath+'describer-more/plugins/customized/jquery.validate.7fefca',
+		'owl_carousel'                                      : buildPath+'describer-more/plugins/customized/owl.carousel.6a3984',
+		'video'                                             : buildPath+'describer-more/plugins/customized/video.a0736b',
+
+		// overwritings externel
+		'overwritings.jquery_validate'                      : buildPath+'describer-more/plugins/overwritings/jquery.validate.f22f2b',
+		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel.c3ef50',
+
+		// CSS for components
+		'require-css.video'                                 : buildPath+'describer-more/require-css/video.240ff7'
 	},
 	shim: {
+		'jquery_canvasResize': {
+			deps: ['jquery_exif', 'jquery']
+		},
 		'fastclick': {
 			//These script dependencies should be loaded before loading
 			//backbone.js
@@ -81,9 +107,9 @@ require.config({
 		}
 	},
 	map: {
-		'*': {
-			'css': 'require-css/css.0c3213' // or whatever the path to require-css is
-		}
+	    '*': {
+		    'css': 'describer-more/require-css/css.0c3213' // or whatever the path to require-css is
+	    }
 	},
 	waitSeconds: 500
 });
