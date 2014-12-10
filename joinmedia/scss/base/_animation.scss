@@ -82,6 +82,12 @@
 	.parallax-inner {
 		@include element-stretch;
 	}
+
+	//
+	.parallax-layer {
+		@include element-stretch;
+		@include vertical-align(absolute);
+	}
 }
 
 
