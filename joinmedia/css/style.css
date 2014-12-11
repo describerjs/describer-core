@@ -1059,6 +1059,20 @@ p:last-child {
   right: 0;
   top: 0;
 }
+.parallax .parallax-layer {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+}
 
 /*------------------------------------*\
 	$FADE
@@ -3726,8 +3740,6 @@ p:last-child {
   display: inline-block;
   font-weight: bold;
   margin-bottom: 0;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
   padding: 0.75rem 1rem;
   position: relative;
 }
@@ -3740,7 +3752,7 @@ p:last-child {
     height: 540px;
   }
 }
-.section-header .parallax > .parallax-inner:first-child .parallax-img {
+.section-header .parallax .parallax-inner .parallax-img {
   max-width: none;
 }
 @media only screen and (min-width: 29.75em) {
