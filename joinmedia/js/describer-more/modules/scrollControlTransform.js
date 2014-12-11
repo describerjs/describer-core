@@ -28,8 +28,8 @@ define(['jquery', '_super', 'core'], function ($, _super){
 			this.frames = this.$elem.children().length;
 			this.$children = this.$elem.children();
 			this.loop = parseInt(this.is('loop'), 10) || 1;
-			this.execElemOffset = parseInt(this.is('execElemOffset'), 10) || 0;
-			this.execWindowScale = parseFloat(this.is('execWindowScale')) || 0;
+			this.actionOffsetTop = parseInt(this.is('actionOffsetTop'), 10) || 0;
+			this.actionRangeScale = parseFloat(this.is('actionRangeScale')) || 0;
 			this.transform2DSupport = jmHF.transformSupport('2D');
 			this.transform3DSupport = jmHF.transformSupport('3D');
 			this.propertyCache = {};
@@ -45,15 +45,15 @@ define(['jquery', '_super', 'core'], function ($, _super){
 		},
 
 		_exec: function(e){
-			var eot = this.$elem.offset().top+this.execElemOffset;
+			var eot = this.$elem.offset().top+this.actionOffsetTop;
 			var wih = window.innerHeight || document.documentElement.clientHeight;
 			var wpo = window.pageYOffset || document.body.scrollTop; // ie8 Fallback
 			var first = wpo > eot - wih;
-			var second = wpo + wih < eot + this.$elem[0].getBoundingClientRect().height + wih*this.execWindowScale;
-			var range = (wih + this.$elem[0].getBoundingClientRect().height)*this.execWindowScale;
+			var second = wpo + wih < eot + this.$elem[0].getBoundingClientRect().height + wih*this.actionRangeScale;
+			var range = (wih + this.$elem[0].getBoundingClientRect().height)*this.actionRangeScale;
 			var y_factor;
 			if(first && second){
-				y_factor = ((wpo + (wih*this.execWindowScale) - eot) / range);
+				y_factor = ((wpo + (wih*this.actionRangeScale) - eot) / range);
 				y_factor = y_factor*this.loop - Math.floor(y_factor*this.loop);
 			}
 			if(first && !second){

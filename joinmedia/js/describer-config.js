@@ -356,8 +356,8 @@ define(function(){
 			jmconfig: {
 				'event': 'dominit|raf',
 				'loop': '20',
-				'execElemOffset':'0',
-				'execWindowScale': '1'
+				'actionOffsetTop':'0',
+				'actionRangeScale': '1'
 			}
 		},{
 			jmname: 'scrollControlTransition',
@@ -365,8 +365,8 @@ define(function(){
 			jmconfig: {
 				'event': 'dominit|raf',
 				'cssProperty':'translate|scale',
-				'execElemOffsetX':'-200',
-				'execWindowScale': '1'
+				'actionOffsetTop':'-200',
+				'actionRangeScale': '1'
 			}
 		},
 		{
@@ -404,7 +404,9 @@ define(function(){
 			jmplugin: 'modules.parallax',
 			jmconfig: {
 				'event': 'init-by-perf',
-				'data' : 'scrollY'
+				'data' : 'scrollY'/*,
+				'actionOffsetTop': '0',
+				'actionOffsetBottom': '0'*/
 			}
 		},
 		{

@@ -48,7 +48,9 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 					this.$elem.parallax({
 						limitY: 40,
 						gyromouseX: true,
-						gyromouseY: true
+						gyromouseY: true,
+						actionOffsetTop: this.is('actionOffsetTop'),
+						actionOffsetBottom: this.is('actionOffsetBottom')
 					});
 					break;
 				case 'scrollY':
@@ -56,12 +58,16 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 						// Fallback für <iOS8
 						this.$elem.parallax({
 							limitY: 40,
-							gyromouseY: true
+							gyromouseY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom')
 						});
 					}else{
 						this.$elem.parallax({
 							frictionY: 1,
-							scrollY: true
+							scrollY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom')
 						});
 					}
 					break;
@@ -69,7 +75,9 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 					// Fallback für <iOS8
 					this.$elem.parallax({
 						limitY: 40,
-						gyromouseY: true
+						gyromouseY: true,
+						actionOffsetTop: this.is('actionOffsetTop'),
+						actionOffsetBottom: this.is('actionOffsetBottom')
 					});
 					break;
 				case 'orientationX-scrollY':
@@ -78,13 +86,17 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 						this.$elem.parallax({
 							limitY: 40,
 							gyromouseX: true,
-							gyromouseY: true
+							gyromouseY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom')
 						});
 					}else{
 						this.$elem.parallax({
 							gyromouseX: true,
 							frictionY: 1,
-							scrollY: true
+							scrollY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom')
 						});
 					}
 					break;

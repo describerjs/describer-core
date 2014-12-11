@@ -49,7 +49,6 @@ define(['jquery', '_super'], function ($, _super){
 			this.offsetTop = (this.is('offsetTop') !== '') ? parseInt(this.is('offsetTop').replace('px', ''), 10) : 0;//window.innerHeight * 0.2;
 			this.offsetBottom = (this.is('offsetBottom') !== '') ? parseInt(this.is('offsetBottom').replace('px', ''), 10) : 0;//window.innerHeight * 0.2;
 			this.elemHeight = this.$elem[0].getBoundingClientRect().height;
-			this.dynamic = (this.is('heigth') === 'dynamic');
 			this.$destination = this.getRelatedToElem();
 			this.onlyTopOfElem = (this.is('onlyTopOfElem') === 'true');
 		},
@@ -68,7 +67,7 @@ define(['jquery', '_super'], function ($, _super){
 						this._finishing();
 					}*/
 				}else{
-					if((_viewportBottom < this.eot + this.offsetTop) || (_viewportTop > (this.eot + ((this.dynamic) ? this.$elem[0].getBoundingClientRect().height : this.elemHeight) + this.offsetBottom))){
+					if((_viewportBottom < this.eot + this.offsetTop) || (_viewportTop > (this.eot + this.elemHeight + this.offsetBottom))){
 						this.$destination.removeClass('show');
 						this._finishing();
 					}
@@ -81,7 +80,7 @@ define(['jquery', '_super'], function ($, _super){
 						this._finishing();
 					}
 				}else{
-					if((_viewportBottom > this.eot + this.offsetTop) && (_viewportTop < (this.eot + ((this.dynamic) ? this.$elem[0].getBoundingClientRect().height : this.elemHeight) + this.offsetBottom))){
+					if((_viewportBottom > this.eot + this.offsetTop) && (_viewportTop < (this.eot + this.elemHeight + this.offsetBottom))){
 						this.$destination.addClass('show');
 						this._finishing();
 					}
