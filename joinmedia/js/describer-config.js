@@ -105,6 +105,21 @@ define(function(){
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},{
+			jmname: 'add-remove-show-on-view-not-ios7',
+			jmplugin: 'actions.add|modules.onView',
+			jmconfig: [{
+				'event'    : 'dominit',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'condition': '(window.userOS === \'OS\' && parseInt(window.userOSver.split(\'.\'))< 8)'
+			},{
+				'event': 'raf-6',
+				'relatedTo': 'this.$elem[0]',
+				'onlyTopOfElem': 'true',
+				'condition': '!(window.userOS === \'OS\' && parseInt(window.userOSver.split(\'.\'))< 8)'
+			}]
+		},{
 			jmname   : 'menu-close',
 			jmplugin: 'actions.remove',
 			jmconfig : {
