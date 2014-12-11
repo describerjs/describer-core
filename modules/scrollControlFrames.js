@@ -28,8 +28,8 @@ define(['jquery', '_super'], function ($, _super){
 			this.frames = this.$elem.children().length;
 			this.$children = this.$elem.children();
 			this.loop = parseInt(this.is('loop'), 10) || 1;
-			this.execElemOffset = parseInt(this.is('execElemOffset'), 10) || 0;
-			this.execWindowScale = parseFloat(this.is('execWindowScale')) || 0;
+			this.actionOffsetTop = parseInt(this.is('actionOffsetTop'), 10) || 0;
+			this.actionRangeScale = parseFloat(this.is('actionRangeScale')) || 0;
 		},
 
 		options: {
@@ -38,14 +38,14 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(e){
 
-			var eot = this.$elem.offset().top+this.execElemOffset;
+			var eot = this.$elem.offset().top+this.actionOffsetTop;
 			var wih = window.innerHeight;
 			var wpo = window.pageYOffset;
 			var first = wpo > eot - wih;
-			var second = wpo + wih < eot + this.$elem[0].getBoundingClientRect().height + wih*this.execWindowScale;
-			var range = (wih + this.$elem[0].getBoundingClientRect().height)*this.execWindowScale;
+			var second = wpo + wih < eot + this.$elem[0].getBoundingClientRect().height + wih*this.actionRangeScale;
+			var range = (wih + this.$elem[0].getBoundingClientRect().height)*this.actionRangeScale;
 			if(first && second){
-				this.iy = ((wpo + (wih*this.execWindowScale) - eot) / range);
+				this.iy = ((wpo + (wih*this.actionRangeScale) - eot) / range);
 				this.iy = this.iy*this.loop - Math.floor(this.iy*this.loop);
 			}
 			if(first && ! second){
