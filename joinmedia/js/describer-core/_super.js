@@ -346,12 +346,13 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				innerHeight: null,
 				innerWidth: null,
 				outerHeight: null,
+				documentHeight: null,
 				startTime: Date.now(),
 				counter: 0,
 				rafs: null,
 				avgrafs: null
 			};
-
+			alert(document.body.offsetHeight);
 			this._rafGlobalRender();
 			this.thempCountedFrames = 0;
 			if(Modernizr.mq('only screen and (min-width : 60em)')){
@@ -429,11 +430,15 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			// calculate the frames per second
 			this.dcRAF.frames = 1000/(time-this.dcRAF.oldtime);
 			this.dcRAF.oldtime = time;*/
+			if(window.dc.win.documentHeight && window.dc.win.documentHeight !== document.body.offsetHeight){
+				$('body').trigger('dc-documentHeightChange');
+			}
 
 			window.dc.win.pageYOffset     = window.pageYOffset;
 			window.dc.win.innerHeight     = (window.dc.orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
 			window.dc.win.innerWidth      = window.innerWidth;
 			window.dc.win.counter         = window.dc.win.counter+1;
+			window.dc.win.documentHeight  = document.body.offsetHeight;
 
 			if(window.dc.win.counter === 100000001){
 				window.dc.win.counter = 1;
