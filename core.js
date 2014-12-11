@@ -44,26 +44,24 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.devicePerfForParallax = function(){
-		var android_major, android_minor;
+	jmHF.setDevicePerfForParallax = function(){
 		if(window.userOS === 'Android'){
-			android_major = parseInt(window.userOSver.split('.')[0], 10);
-			android_minor = parseInt(window.userOSver.split('.')[1], 10);
-			switch(android_major){
-				case 2:
-					return 'low';
-				case 3:
-					return 'low';
-				case 4:
-					return (android_minor < 4) ?  'low' : 'middel';
+			switch(true){
+				case /LG-D855/i.test(navigator.userAgent):
+					window.dc.perf = window.dc.perf || 1;
+					break;
 				default:
-					return 'middel';
+					window.dc.perf = window.dc.perf || 0;
 			}
+		}else if(window.userOS === 'iOS'){
+			/*if(parseInt(window.userOSver.split('.')[0], 10)){
+
+			}*/
+
+			window.dc.perf = window.dc.perf || 3;
+		}else{
+			window.dc.perf = window.dc.perf || 3;
 		}
-		if(window.userOS === 'iOS'){
-			return 'height';
-		}
-		return 'height';
 	};
 
 	jmHF.checkOrientation = function(){
@@ -780,17 +778,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
-	//window.dc.sectiontoggle = window.dc.sectiontoggle || (jmHF.devicePerfForParallax() === 'low');
-	switch(jmHF.devicePerfForParallax()){
-		case 'low':
-			window.dc.perf = window.dc.perf || 1;
-			break;
-		case 'middel':
-			window.dc.perf = window.dc.perf || 2;
-			break;
-		case 'height':
-			window.dc.perf = window.dc.perf || 3;
-			break;
-	}
+	jmHF.setDevicePerfForParallax();
 
 });
