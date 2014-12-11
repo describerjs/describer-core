@@ -355,11 +355,12 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
 		var _configObj = jmHF.getConfigObj(jmname);
-		var _jmpluginString = _configObj.jmplugin;
-		if($.type(_jmpluginString) === 'undefined'){
+		var _jmpluginString;
+		if($.type(_configObj) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
 			return;
 		}
+		_jmpluginString = _configObj.jmplugin;
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
