@@ -31,7 +31,6 @@
 	// Führende Headline (hinterlegt)
 	.principal {
 		display: block;
-		margin: 0 $dist-s;
 			
 		@include bp-m {
 			@include rgba($theme-principal-bg, .8);
@@ -39,8 +38,8 @@
 			clear: left;
 			float: left;
 			line-height: 1;
-			margin: 0 0 3px;
-			padding: $pad-three-quarter $pad;
+			margin-bottom: 3px;
+			padding: $space-half $pad;
 			white-space: nowrap;
 		}
 	}

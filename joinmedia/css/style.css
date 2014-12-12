@@ -341,7 +341,7 @@ h6, .h6 {
   clear: both;
 }
 
-.row, .row2, .row3, .row4, .row5, .row6, .legal, .h-card, .block, #map-canvas, .nav, .tabs, .teaser, .tiles, .togglebox, .section-header .sh-headline {
+.row, .row2, .row3, .row4, .row5, .row6, .legal, .h-card, .block, .nav, .tabs, .teaser, .tiles, .togglebox, .section-header {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -351,11 +351,11 @@ h6, .h6 {
   display: block;
   position: relative;
 }
-.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .block:after, #map-canvas:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header .sh-headline:after, .row:before, .row2:before, .row3:before, .row4:before, .row5:before, .row6:before, .legal:before, .h-card:before, .block:before, #map-canvas:before, .nav:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before, .section-header .sh-headline:before {
+.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .block:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header:after, .row:before, .row2:before, .row3:before, .row4:before, .row5:before, .row6:before, .legal:before, .h-card:before, .block:before, .nav:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before, .section-header:before {
   content: "\0020";
   display: table;
 }
-.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .block:after, #map-canvas:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header .sh-headline:after {
+.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .block:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header:after {
   clear: both;
 }
 
@@ -596,7 +596,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3 .principal, h4 .principal, .h4 .principal, h5 .principal, .h5 .principal, h6 .principal, .h6 .principal {
   display: block;
-  margin: 0 1rem;
 }
 @media only screen and (min-width: 48em) {
   h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3 .principal, h4 .principal, .h4 .principal, h5 .principal, .h5 .principal, h6 .principal, .h6 .principal {
@@ -606,7 +605,7 @@ h1 .principal, .h1 .principal, h2 .principal, .h2 .principal, h3 .principal, .h3
     clear: left;
     float: left;
     line-height: 1;
-    margin: 0 0 3px;
+    margin-bottom: 3px;
     padding: 0.75rem 1rem;
     white-space: nowrap;
   }
@@ -1589,6 +1588,12 @@ p:last-child {
     float: left;
   }
 }
+@media only screen and (min-width: 73em) {
+  .logo {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 
 /*------------------------------------*\
     
@@ -1692,17 +1697,37 @@ p:last-child {
     $STAGE
 \*------------------------------------*/
 .stage {
+  *zoom: 1;
+  width: 97.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  margin-bottom: 1.5rem;
+  clear: both;
+  display: block;
+  position: relative;
   background-color: #328890;
+  margin-bottom: 0;
+  margin-top: -3.75rem;
+}
+.stage:after, .stage:before {
+  content: "\0020";
+  display: table;
+}
+.stage:after {
+  clear: both;
 }
 .stage .stage-bg {
   height: 1000px;
   height: 100vh;
   position: relative;
 }
+.stage .stage-bg .parallax-img {
+  height: 150%;
+}
 .stage .stage-footer {
   background-color: #328890;
-  padding-bottom: 0.75rem;
-  padding-top: 0.75rem;
+  padding-bottom: 0.375rem;
+  padding-top: 0.375rem;
 }
 @media only screen and (min-width: 48em) {
   .stage .stage-footer {
@@ -1713,59 +1738,93 @@ p:last-child {
   }
 }
 .stage .stage-header {
-  *zoom: 1;
-  margin: 0 auto;
-  max-width: 73em;
+  width: 97.91667%;
+  margin-left: 1.04167%;
+  margin-right: 1.04167%;
+  padding: 0.75rem 1rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   position: relative;
-  width: 100%;
-  z-index: 1;
   position: absolute;
   top: 15%;
   right: 0;
   left: 0;
 }
-.stage .stage-header:after, .stage .stage-header:before {
-  content: "\0020";
-  display: table;
-}
-.stage .stage-header:after {
-  clear: both;
-}
 @media only screen and (min-width: 48em) {
   .stage .stage-header {
-    top: 20%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
-.stage .stage-main {
-  *zoom: 1;
-  margin: 0 auto;
-  max-width: 73em;
-  position: relative;
-  width: 100%;
-  z-index: 1;
+@media only screen and (min-width: 60em) {
+  .stage .stage-header {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
-.stage .stage-main:after, .stage .stage-main:before {
-  content: "\0020";
-  display: table;
+@media only screen and (min-width: 73em) {
+  .stage .stage-header {
+    left: 1.75rem;
+  }
 }
-.stage .stage-main:after {
-  clear: both;
+@media only screen and (min-width: 73em) and (min-width: 48em) {
+  .stage .stage-header {
+    left: 1.75rem;
+  }
 }
+@media only screen and (min-width: 73em) and (min-width: 60em) {
+  .stage .stage-header {
+    left: 2.625rem;
+  }
+}
+
 @media only screen and (min-width: 48em) {
   .stage .stage-main {
+    width: 97.91667%;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
     position: absolute;
     right: 0;
-    bottom: 15%;
+    bottom: 10%;
     left: 0;
   }
 }
 @media only screen and (min-width: 60em) {
   .stage .stage-main {
-    position: absolute;
-    right: 0;
-    bottom: 25%;
-    left: 0;
+    padding-left: 0.2rem;
+    bottom: 15%;
   }
+}
+@media only screen and (min-width: 60em) and (min-width: 48em) {
+  .stage .stage-main {
+    padding-left: 0.2rem;
+  }
+}
+@media only screen and (min-width: 60em) and (min-width: 60em) {
+  .stage .stage-main {
+    padding-left: 0.3rem;
+  }
+}
+
+@media only screen and (min-width: 73em) {
+  .stage .stage-main {
+    padding-left: 1rem;
+    bottom: 25%;
+  }
+}
+@media only screen and (min-width: 73em) and (min-width: 48em) {
+  .stage .stage-main {
+    padding-left: 1rem;
+  }
+}
+@media only screen and (min-width: 73em) and (min-width: 60em) {
+  .stage .stage-main {
+    padding-left: 1.5rem;
+  }
+}
+
+.stage .go-down {
+  display: block;
 }
 
 /*------------------------------------*\
@@ -2043,6 +2102,7 @@ p:last-child {
   margin: 0 auto;
   text-indent: -1000em;
   width: 3.5rem;
+  display: none;
 }
 .go-down:active, .go-down:focus, .go-down:hover {
   -moz-transform: scale(1);
@@ -2062,6 +2122,7 @@ p:last-child {
   top: 0.375rem;
   right: 0;
   left: 0;
+  display: none;
   z-index: 99;
 }
 
@@ -2130,10 +2191,9 @@ p:last-child {
     $BLOCK
 \*------------------------------------*/
 .block {
+  margin-bottom: 0;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
-  margin-bottom: 0;
-  margin-top: 0;
 }
 @media only screen and (min-width: 48em) {
   .block {
@@ -2233,7 +2293,12 @@ p:last-child {
 #map-canvas {
   height: 250px;
 }
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 60em) {
+  #map-canvas {
+    height: 400px;
+  }
+}
+@media only screen and (min-width: 73em) {
   #map-canvas {
     height: 540px;
   }
@@ -3450,6 +3515,10 @@ p:last-child {
 .teaser {
   background-color: #396b71;
   background-color: rgba(57, 107, 113, 0.8);
+  -moz-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
   color: inherit;
   display: block;
   margin-bottom: 0.375rem;
@@ -3669,9 +3738,6 @@ p:last-child {
 /*------------------------------------*\
     $SECTION-HEADER
 \*------------------------------------*/
-.section-header {
-  position: relative;
-}
 .section-header .sh-content {
   *zoom: 1;
   margin: 0 auto;
@@ -3739,21 +3805,49 @@ p:last-child {
   clear: both;
 }
 .section-header .sh-headline {
+  padding: 0.75rem 1rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative;
+  position: absolute;
   bottom: 3rem;
   margin-bottom: 0;
-  padding-left: 1%;
-  position: absolute;
   width: auto;
+}
+@media only screen and (min-width: 48em) {
+  .section-header .sh-headline {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .section-header .sh-headline {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 .section-header .sh-headline h1, .section-header .sh-headline h2, .section-header .sh-headline h3, .section-header .sh-headline h4, .section-header .sh-headline h5, .section-header .sh-headline h6 {
   background-color: white;
   background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 1rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative;
   color: #dd4411;
   display: inline-block;
   font-weight: bold;
-  margin-bottom: 0;
-  padding: 0.75rem 1rem;
-  position: relative;
+}
+@media only screen and (min-width: 48em) {
+  .section-header .sh-headline h1, .section-header .sh-headline h2, .section-header .sh-headline h3, .section-header .sh-headline h4, .section-header .sh-headline h5, .section-header .sh-headline h6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (min-width: 60em) {
+  .section-header .sh-headline h1, .section-header .sh-headline h2, .section-header .sh-headline h3, .section-header .sh-headline h4, .section-header .sh-headline h5, .section-header .sh-headline h6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 .section-header .parallax {
   background: white;

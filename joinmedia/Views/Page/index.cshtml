@@ -1,22 +1,15 @@
 ﻿@model Piranha.Models.PageModel
 @{
-ViewBag.Title = Model.Page.Title;
+    ViewBag.Title = Model.Page.Title;
 }
-<style>
-    .go-up {
-        top: 60px;
-        position: relative;
-        z-index: 99;
-    }
-    a[data-jmname*="anchor-visible-on-perf1"] { display: none; }
-</style>
+
 <!-- Stage Start -->
 <section class="stage" id="stage" data-jmname="section-toggle" data-jmdominit="true">
     <div class="stage-bg" data-jmname="set-viewport-height" data-jmdominit="true">
         <div class="cover">
             <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                 <div class="parallax-inner" data-depth="1.5">
-                    <picture class="parallax-img" style="height:150%;">
+                    <picture class="parallax-img">
                         <!--[if IE 9]><video style="display: none;"><![endif]-->
                         <source srcset="/img/section-header/stage-2560-1680.jpg" media="(min-width: 120em)" />
                         <source srcset="/img/section-header/stage-1600-1050.jpg" media="(min-width: 80em)" />
@@ -30,11 +23,14 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </div>
 
-    <div class="stage-header fade-in-up" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
-        <h1><span class="principal">Erfolgreiche Technologien</span> <span class="principal">für die Umsetzung</span> <span class="principal">Ihres Internet-Projektes</span></h1>
+    <div class="stage-header">
+        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
+            <h1><span class="principal">Erfolgreiche Technologien</span> <span class="principal">für die Umsetzung</span> <span class="principal">Ihres Internet-Projektes</span></h1>
+        </div>
     </div>
 
-    <div class="stage-main fade-in-up" data-jmname="add-remove-show-on-view-not-mobile|equalheights-not-mobile" data-jmdominit="true">
+    <div class="stage-main">
+        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view-not-mobile|equalheights-not-mobile" data-jmdominit="true">
         <h2 class="is-vishidden">Aktuelles</h2>
         <a class="teaser" href="#customers-ay-yildiz" data-jmname="anchor">
             <div class="t-inner">
@@ -68,6 +64,7 @@ ViewBag.Title = Model.Page.Title;
                 </div>
             </div>
         </a>
+        </div>
     </div>
     <div class="stage-footer">
     	<a class="go-down" href="#joinmedia" data-jmname="anchor"></a>
@@ -455,7 +452,7 @@ ViewBag.Title = Model.Page.Title;
                 <img src="/img/referenzen/showcase-base-mein-konto.png" alt="Screenshots vom BASE-ECC">
             </div>
             <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-                <h3>Base mein Konto</h3>
+                <h3>BASE Mein Konto</h3>
                 <p>Das BASE-ECC (Electronic Customer Care) ist ein umfangreicher Online Service, der den BASE-Kunden die Möglichkeit bietet, ihre Verträge komfortabel zu verwalten und ihre Rechnungen online abzurufen. Eine kontext-sensitive Teaseraussteuerung erzeugt eine individuell passende Angebotsdarstellung. Die mobile Version bietet eine optimale Zugänglichkeit auch für Smartphone-User.</p>
             </div>
         </div>
@@ -546,7 +543,14 @@ ViewBag.Title = Model.Page.Title;
             <div class="block-figure">
                 <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner" data-depth="2">
-                        <img src="/img/fotos/devicelab.jpg" alt="Device Lab" class="parallax-img" style="margin: -10% 0;" />
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="/img/fotos/devicelab-1600-1067.jpg" media="(min-width: 80em)" />
+                            <source srcset="/img/fotos/devicelab-1280-854.jpg" media="(min-width: 60em)" />
+                            <source srcset="/img/fotos/devicelab-960-641.jpg" media="(min-width: 48em)" />
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="/img/fotos/devicelab-768-513.jpg" alt="" class="parallax-img" style="margin: -10% 0;" />
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -563,7 +567,14 @@ ViewBag.Title = Model.Page.Title;
             <div class="block-figure">
                 <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner" data-depth="2">
-                        <img src="/img/fotos/meeting.jpg" alt="Meeting" class="parallax-img" style="margin: -10% 0;" />
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="/img/fotos/meeting-1600-1067.jpg" media="(min-width: 80em)" />
+                            <source srcset="/img/fotos/meeting-1280-854.jpg" media="(min-width: 60em)" />
+                            <source srcset="/img/fotos/meeting-960-641.jpg" media="(min-width: 48em)" />
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="/img/fotos/meeting-768-513.jpg" alt="" class="parallax-img" style="margin: -10% 0;" />
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -681,7 +692,7 @@ ViewBag.Title = Model.Page.Title;
 <section id="contact" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
     <a class="go-up" href="#jobs" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <!-- <div id="map-canvas"></div> -->
+        <div id="map-canvas"></div>
 
         <div class="sh-content-map">
             <div class="sh-headline fade-in-left" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">

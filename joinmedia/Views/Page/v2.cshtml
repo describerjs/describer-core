@@ -2,25 +2,21 @@
 @{
 ViewBag.Title = Model.Page.Title;
 }
-<script>
-    window.dc = window.dc || {};
-    window.dc.perf = 2;
-</script>
-<style>
-    .go-up {
-        top: 60px;
-        position: relative;
-        z-index: 99;
-    }
-    a[data-jmname*="anchor-visible-on-perf1"] { display: none; }
-</style>
+
+@section head {
+    <script>
+        window.dc = window.dc || {};
+        window.dc.perf = 2;
+    </script>
+}
+
 <!-- Stage Start -->
 <section class="stage" id="stage" data-jmname="section-toggle" data-jmdominit="true">
     <div class="stage-bg" data-jmname="set-viewport-height" data-jmdominit="true">
         <div class="cover">
             <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                 <div class="parallax-inner" data-depth="1.5">
-                    <picture class="parallax-img" style="height:150%;">
+                    <picture class="parallax-img">
                         <!--[if IE 9]><video style="display: none;"><![endif]-->
                         <source srcset="/img/section-header/stage-2560-1680.jpg" media="(min-width: 120em)" />
                         <source srcset="/img/section-header/stage-1600-1050.jpg" media="(min-width: 80em)" />
@@ -34,11 +30,14 @@ ViewBag.Title = Model.Page.Title;
         </div>
     </div>
 
-    <div class="stage-header fade-in-up" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
-        <h1><span class="principal">Erfolgreiche Technologien</span> <span class="principal">für die Umsetzung</span> <span class="principal">Ihres Internet-Projektes</span></h1>
+    <div class="stage-header">
+        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
+            <h1><span class="principal">Erfolgreiche Technologien</span> <span class="principal">für die Umsetzung</span> <span class="principal">Ihres Internet-Projektes</span></h1>
+        </div>
     </div>
 
-    <div class="stage-main fade-in-up" data-jmname="add-remove-show-on-view-not-mobile|equalheights-not-mobile" data-jmdominit="true">
+    <div class="stage-main">
+        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view-not-mobile|equalheights-not-mobile" data-jmdominit="true">
         <h2 class="is-vishidden">Aktuelles</h2>
         <a class="teaser" href="#customers-ay-yildiz" data-jmname="anchor">
             <div class="t-inner">
@@ -72,6 +71,7 @@ ViewBag.Title = Model.Page.Title;
                 </div>
             </div>
         </a>
+        </div>
     </div>
     <div class="stage-footer">
         <a class="go-down" href="#joinmedia" data-jmname="anchor"></a>
@@ -100,7 +100,7 @@ ViewBag.Title = Model.Page.Title;
                     <img srcset="/img/section-header/joinmedia-768-600.jpg" alt="Logo im Eingangsbereich" class="parallax-img" style="margin: -6.25% 0;" />
                 </picture>
             </div>
-            <div class="parallax-inner" data-depth="1.8">
+            <div class="parallax-layer" data-depth="1.8">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
                     <source srcset="/img/icons/devices_outlines.svg" type="image/svg+xml" />
@@ -130,32 +130,29 @@ ViewBag.Title = Model.Page.Title;
 <section id="services" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
     <a class="go-up" href="#joinmedia" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
     <div class="section-header">
-        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-            <div class="parallax-inner" data-depth="1.5">
-                <!-- <img src="/img/section-header/leistungen-1.png" alt="Leistungen Lederfabrik Hotel" class="parallax-img" /> -->
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmconfig="{ 'actionOffsetTop': '60%', 'actionOffsetBottom': '150%', 'animationRange': '-1.18' }" data-jmdominit="true">
+            <div class="parallax-layer" data-depth="1.6">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/section-header/leistungen-lederfabrikhotel-2016-756.png" media="(min-width: 48em)" />
+                    <source srcset="/img/section-header/screen1.png" media="(min-width: 48em)" />
                     <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/section-header/leistungen-lederfabrikhotel-665-249.png" alt="" class="parallax-img" />
+                    <img srcset="/img/section-header/screen1s.png" alt="" class="parallax-img" />
                 </picture>
             </div>
-            <div class="parallax-inner" data-depth="2">
-                <!-- <img src="/img/section-header/leistungen-2.png" alt="Leistungen BASE" class="parallax-img" /> -->
+            <div class="parallax-layer" data-depth="0.4">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/section-header/leistungen-base-landingpages-2112-792.png" media="(min-width: 48em)" />
+                    <source srcset="/img/section-header/screen2.png" media="(min-width: 48em)" />
                     <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/section-header/leistungen-base-landingpages-697-261.png" alt="" class="parallax-img" />
+                    <img srcset="/img/section-header/screen2s.png" alt="" class="parallax-img" />
                 </picture>
             </div>
-            <div class="parallax-inner" data-depth="2.5">
-                <!-- <img src="/img/section-header/leistungen-3.png" alt="Leistungen AY YILDIZ" class="parallax-img" /> -->
+            <div class="parallax-layer" data-depth="-0.8">
                 <picture>
                     <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/section-header/leistungen-ayyildiz-2208-828.png" media="(min-width: 48em)" />
+                    <source srcset="/img/section-header/screen3.png" media="(min-width: 48em)" />
                     <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/section-header/leistungen-ayyildiz-729-273.png" alt="" class="parallax-img" />
+                    <img srcset="/img/section-header/screen3s.png" alt="" class="parallax-img" />
                 </picture>
             </div>
         </div>
@@ -168,8 +165,8 @@ ViewBag.Title = Model.Page.Title;
     </div>
 
     <article class="block img-right img-center">
-        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <div class="block-figure">
+        <div class="page-constrained">
+            <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="block-vertical-center">
                     <div class="block-vertical-center-inner">
                         <picture>
@@ -181,7 +178,7 @@ ViewBag.Title = Model.Page.Title;
                     </div>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view-not-ios7" data-jmdominit="true">
                 <h3>Applikations-Produktion</h3>
                 <p>join.media realisiert als technischer Partner die Umsetzung aller wichtigen Prozesse im Internet:</p>
                 <p>Unsere Websites integrieren sich auf Wunsch hervorragend in bestehende oder neue Umgebungen wie Content-Management-, Shop-, Warenwirtschafts- und CRM-Systeme.</p>
@@ -193,8 +190,8 @@ ViewBag.Title = Model.Page.Title;
     </article>
 
     <article class="block img-left img-center">
-        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <div class="block-figure">
+        <div class="page-constrained">
+            <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="block-vertical-center">
                     <div class="block-vertical-center-inner">
                         <picture>
@@ -206,7 +203,7 @@ ViewBag.Title = Model.Page.Title;
                     </div>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view-not-ios7" data-jmdominit="true">
                 <h3>Website-Produktion</h3>
                 <p>join.media plant und realisiert komplexe, responsive Websites im Marketing- und E-Commerce-Umfeld.</p>
                 <p>Hier können wir alle Maßnahmen moderner Webentwicklung leisten, auf Wunsch unter Berücksichtigung strategischer Vorgaben von Darstellungs- und Ladezeiten, was durch die Optimierung speziell für mobile Endgeräte hohe Conversion-Gewinne bringen kann.</p>
@@ -216,8 +213,8 @@ ViewBag.Title = Model.Page.Title;
     </article>
 
     <article class="block img-right img-center">
-        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <div class="block-figure">
+        <div class="page-constrained">
+            <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="block-vertical-center">
                     <div class="block-vertical-center-inner">
                         <picture>
@@ -229,7 +226,7 @@ ViewBag.Title = Model.Page.Title;
                     </div>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view-not-ios7" data-jmdominit="true">
                 <h3>Beratung sowie UX- und Web-Design</h3>
                 <p>Auf Wunsch unterstützen wir unsere Partner durch unser Know-How in allen wichtigen Disziplinen der Website-Erstellung.</p>
                 <p>Gerne unterstützen wir bei der Strategie- und Konzeptentwicklung: Aufgrund der Analyse von Zielgruppe und Nutzerverhalten erstellen wir ein bedürfnisorientiertes Konzept unter Berücksichtigung optimaler Nutzerführung.</p>
@@ -241,8 +238,8 @@ ViewBag.Title = Model.Page.Title;
     </article>
 
     <article class="block img-left img-center">
-        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <div class="block-figure">
+        <div class="page-constrained">
+            <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="block-vertical-center">
                     <div class="block-vertical-center-inner">
                         <picture>
@@ -254,7 +251,7 @@ ViewBag.Title = Model.Page.Title;
                     </div>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view-not-ios7" data-jmdominit="true">
                 <h3>Online-Marketing</h3>
                 <p>Um Ihre Website zum Erfolg zu führen, bedient join.media gemeinsam mit sorgfältig ausgewählten Partnern alle Kanäle, um den User zu bewerben und qualifiziert auf Ihre Webpräsenz zu lenken.</p>
                 <p>Ob Suchmaschinen&shy;marketing, Social Media Marketing oder Affiliate Marketing – join.media stellt Ihnen die Tools zur Verfügung, um die Wirtschaft&shy;lichkeit der einzelnen Maß&shy;nahmen laufend zu überwachen und zu optimieren.</p>
@@ -263,8 +260,8 @@ ViewBag.Title = Model.Page.Title;
     </article>
 
     <article class="block img-right img-center">
-        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <div class="block-figure">
+        <div class="page-constrained">
+            <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="block-vertical-center">
                     <div class="block-vertical-center-inner">
                         <picture>
@@ -276,7 +273,7 @@ ViewBag.Title = Model.Page.Title;
                     </div>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view-not-ios7" data-jmdominit="true">
                 <h3>Qualitätssicherung</h3>
                 <p>Unser ausgeklügeltes, auf DIN EN ISO 9001 basierendes Qualitäts&shy;manage&shy;ment sorgt dafür, dass Ihre Website ausgiebigen Tests durch uns unter&shy;zogen wird. So stellen wir sicher, dass die Website in den verschieden&shy;sten Browsern auf verschiedenen Endgeräten bedienbar ist und sämtliche Entwicklungs&shy;ziele erreicht worden sind.</p>
                 <p>Darüber hinaus schützen wir Websites umfangreich gegen Phishing-, XSS-, und andere Angriffe.</p>
@@ -285,8 +282,8 @@ ViewBag.Title = Model.Page.Title;
     </article>
 
     <article class="block img-left img-center">
-        <div class="page-constrained fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <div class="block-figure">
+        <div class="page-constrained">
+            <div class="block-figure fade-in-up" data-jmname="add-remove-show-on-view" data-jmdominit="true">
                 <div class="block-vertical-center">
                     <div class="block-vertical-center-inner">
                         <picture>
@@ -298,7 +295,7 @@ ViewBag.Title = Model.Page.Title;
                     </div>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content fade-in-up" data-jmname="add-remove-show-on-view-not-ios7" data-jmdominit="true">
                 <h3>Betrieb</h3>
                 <p>Natürlich kümmern wir uns auch darum, Ihre Website sicher zu hosten, nach der Inbetrieb&shy;nahme technisch zu überwachen und den Traffic zu analysieren.</p>
                 <p>Zur technischen Überwachung gehört u.a., die Funktion aller Prozesse laufend automatisiert zu überprüfen. Tritt doch einmal unerwartet ein Fehler auf, werden Sie und wir sofort benach&shy;richtigt und es starten auto&shy;matische und manuelle Fehler&shy;behebungs&shy;prozesse – auf Wunsch mit einer Service-Verfügbarkeit rund um die Uhr.</p>
@@ -312,210 +309,210 @@ ViewBag.Title = Model.Page.Title;
 
 <!-- Kunden Start -->
 <section id="customers" data-jmname="section-toggle|set-related-navi-item-activ-on-view" data-jmdominit="true">
-<a class="go-up" href="#services" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
-<div class="section-header">
-    <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
-        <div class="parallax-inner" data-depth="1.5">
-            <picture>
-                <!--[if IE 9]><video style="display: none;"><![endif]-->
-                <source srcset="/img/section-header/kunden-2560-810.jpg" media="(min-width: 120em)" />
-                <source srcset="/img/section-header/kunden-1920-810.jpg" media="(min-width: 80em)" />
-                <source srcset="/img/section-header/kunden-1280-810.jpg" media="(min-width: 60em)" />
-                <source srcset="/img/section-header/kunden-960-810.jpg" media="(min-width: 48em)" />
-                <!--[if IE 9]></video><![endif]-->
-                <img srcset="/img/section-header/kunden-768-600.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;" />
-            </picture>
+    <a class="go-up" href="#services" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
+    <div class="section-header">
+        <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
+            <div class="parallax-inner" data-depth="1.5">
+                <picture>
+                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                    <source srcset="/img/section-header/kunden-2560-810.jpg" media="(min-width: 120em)" />
+                    <source srcset="/img/section-header/kunden-1920-810.jpg" media="(min-width: 80em)" />
+                    <source srcset="/img/section-header/kunden-1280-810.jpg" media="(min-width: 60em)" />
+                    <source srcset="/img/section-header/kunden-960-810.jpg" media="(min-width: 48em)" />
+                    <!--[if IE 9]></video><![endif]-->
+                    <img srcset="/img/section-header/kunden-768-600.jpg" alt="Konferenzraum" class="parallax-img" style="margin: -6.25% 0;" />
+                </picture>
+            </div>
+        </div>
+
+        <div class="sh-content">
+            <div class="sh-headline fade-in-left" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
+                <h2>Kunden</h2>
+            </div>
+        </div>
+
+        <div class="sh-content-append-on-mobile">
+            <ul class="tiles tiles-1x4">
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/eplusgruppe.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/eplusgruppe.png" alt="E-Plus Gruppe Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/base.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/base.png" alt="Base Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/ayyildiz.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/ayyildiz.png" alt="Ay Yildiz Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/hidrostal.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/hidrostal.png" alt="Hidrostal Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/cunda.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/cunda.png" alt="C&amp;A Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/ferrero.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/ferrero.png" alt="Ferrero Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/lared.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/lared.png" alt="La Red Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/police.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/police.png" alt="Police Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/mitsui.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/mitsui.png" alt="Mitsui Logo" />
+                    </picture>
+                </li>
+                <li class="tile">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                        <source srcset="/img/logos/grey.svg" type="image/svg+xml" />
+                        <!--[if IE 9]></video><![endif]-->
+                        <img srcset="/img/logos/grey.png" alt="Grey Logo" />
+                    </picture>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div class="sh-content">
-        <div class="sh-headline fade-in-left" data-jmname="add-remove-show-on-view-not-mobile" data-jmdominit="true">
-            <h2>Kunden</h2>
+    <article class="block img-right" id="customers-ay-yildiz">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-ayyildiz.png" alt="Screenshots vom AYYILDIZ Relaunch">
+            </div>
+            <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>join.media launcht responsiven Telko-Shop</h3>
+                <p>Zusammen mit AY YILDIZ ist die neue Unternehmens-Website entwickelt worden. Die Website der großen Ethno-Mobilfunk-Marke wurde komplett responsiv mit Fokus auf maximale Conversion-Optimierung umgesetzt und erzielt Bestnoten in der Geschwindigkeits-Analyse.</p>
+            </div>
         </div>
-    </div>
+    </article>
 
-    <div class="sh-content-append-on-mobile">
-        <ul class="tiles tiles-1x4">
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/eplusgruppe.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/eplusgruppe.png" alt="E-Plus Gruppe Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/base.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/base.png" alt="Base Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/ayyildiz.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/ayyildiz.png" alt="Ay Yildiz Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/hidrostal.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/hidrostal.png" alt="Hidrostal Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/cunda.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/cunda.png" alt="C&amp;A Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/ferrero.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/ferrero.png" alt="Ferrero Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/lared.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/lared.png" alt="La Red Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/police.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/police.png" alt="Police Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/mitsui.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/mitsui.png" alt="Mitsui Logo" />
-                </picture>
-            </li>
-            <li class="tile">
-                <picture>
-                    <!--[if IE 9]><video style="display: none;"><![endif]-->
-                    <source srcset="/img/logos/grey.svg" type="image/svg+xml" />
-                    <!--[if IE 9]></video><![endif]-->
-                    <img srcset="/img/logos/grey.png" alt="Grey Logo" />
-                </picture>
-            </li>
-        </ul>
-    </div>
-</div>
+    <article class="block img-left" id="customers-kalbini-duyur">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-kalbini-duyur.png" alt="Screenshots vom Kalbini Duyur Launch">
+            </div>
+            <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>join.media launcht kalbini-duyur.de – sozial, responsiv und schnell.</h3>
+                <p>In Zusammenarbeit mit AY YILDIZ hat die responsive Kampagnenseite „Kalbini Duyur (Lass Dein Herz sprechen) - weil Du was zu sagen hast" gelauncht. Über 3500 Fans haben sich beworben, um zu den neuen Werbestars von AY YILDIZ zu gehören.</p>
+            </div>
+        </div>
+    </article>
 
-<article class="block img-right" id="customers-ay-yildiz">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-ayyildiz.png" alt="Screenshots vom AYYILDIZ Relaunch">
+    <article class="block img-right">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-knh.png" alt="Screenshots der Kindernothilfe SEA-Landingpage">
+            </div>
+            <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>Kindernothilfe</h3>
+                <p>Im Rahmen des Online Fundraising-Programms der Kindernothilfe wurde von join.media eine responsive SEA-Landingpage realisiert, über die eine Patenschaft zu notleidenden Kindern angemeldet oder Spenden überwiesen werden konnten.</p>
+            </div>
         </div>
-        <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>join.media launcht responsiven Telko-Shop</h3>
-            <p>Zusammen mit AY YILDIZ ist die neue Unternehmens-Website entwickelt worden. Die Website der großen Ethno-Mobilfunk-Marke wurde komplett responsiv mit Fokus auf maximale Conversion-Optimierung umgesetzt und erzielt Bestnoten in der Geschwindigkeits-Analyse.</p>
-        </div>
-    </div>
-</article>
+    </article>
 
-<article class="block img-left" id="customers-kalbini-duyur">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-kalbini-duyur.png" alt="Screenshots vom Kalbini Duyur Launch">
+    <article class="block img-left">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-base-mein-konto.png" alt="Screenshots vom BASE-ECC">
+            </div>
+            <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>BASE Mein Konto</h3>
+                <p>Das BASE-ECC (Electronic Customer Care) ist ein umfangreicher Online Service, der den BASE-Kunden die Möglichkeit bietet, ihre Verträge komfortabel zu verwalten und ihre Rechnungen online abzurufen. Eine kontext-sensitive Teaseraussteuerung erzeugt eine individuell passende Angebotsdarstellung. Die mobile Version bietet eine optimale Zugänglichkeit auch für Smartphone-User.</p>
+            </div>
         </div>
-        <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>join.media launcht kalbini-duyur.de – sozial, responsiv und schnell.</h3>
-            <p>In Zusammenarbeit mit AY YILDIZ hat die responsive Kampagnenseite „Kalbini Duyur (Lass Dein Herz sprechen) - weil Du was zu sagen hast" gelauncht. Über 3500 Fans haben sich beworben, um zu den neuen Werbestars von AY YILDIZ zu gehören.</p>
-        </div>
-    </div>
-</article>
+    </article>
 
-<article class="block img-right">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-knh.png" alt="Screenshots der Kindernothilfe SEA-Landingpage">
+    <article class="block img-right">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-fk-quiz.png" alt="Screenshots vom Freundeskreis und MachPlus">
+            </div>
+            <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>Freundeskreis und MachPlus</h3>
+                <p>Für die Bestandskunden-Marketingmaßnahme „Freundeskreis“ wurden exklusiv für BASE-Kunden regelmäßig verschiedene Online-Gewinnspiele realisiert. Hierbei wurde der Community-Charakter durch kommunikative Aspekte und Interaktionsmöglichkeiten hervorgehoben und direkt in die Kundenbindung investiert.</p>
+            </div>
         </div>
-        <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>Kindernothilfe</h3>
-            <p>Im Rahmen des Online Fundraising-Programms der Kindernothilfe wurde von join.media eine responsive SEA-Landingpage realisiert, über die eine Patenschaft zu notleidenden Kindern angemeldet oder Spenden überwiesen werden konnten.</p>
-        </div>
-    </div>
-</article>
+    </article>
 
-<article class="block img-left">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-base-mein-konto.png" alt="Screenshots vom BASE-ECC">
+    <article class="block img-left">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-lederfabrikhotel.png" alt="Screenshots vom Lederfabrik Online-Auftritt">
+            </div>
+            <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>Lederfabrik</h3>
+                <p>Das Hotel Lederfabrik in Mülheim hat mit einem attraktiven One-Pager einen repräsentativen und zeitgemäßen Online-Auftritt erhalten. Zugänglichkeit für Suchmaschinen und die Optimierung auf relevante Suchbegriffe erleichtern die Auffindbarkeit der Seite im Netz. Buchungsanfragen können direkt online getätigt werden.</p>
+            </div>
         </div>
-        <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>Base mein Konto</h3>
-            <p>Das BASE-ECC (Electronic Customer Care) ist ein umfangreicher Online Service, der den BASE-Kunden die Möglichkeit bietet, ihre Verträge komfortabel zu verwalten und ihre Rechnungen online abzurufen. Eine kontext-sensitive Teaseraussteuerung erzeugt eine individuell passende Angebotsdarstellung. Die mobile Version bietet eine optimale Zugänglichkeit auch für Smartphone-User.</p>
-        </div>
-    </div>
-</article>
+    </article>
 
-<article class="block img-right">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-fk-quiz.png" alt="Screenshots vom Freundeskreis und MachPlus">
+    <article class="block img-right">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-mein-eplus.png" alt="Screenshots von Mein E-Plus">
+            </div>
+            <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>Mein E-Plus</h3>
+                <p>Mit dem Online-Service „Mein E-Plus“ wird dem Mobilfunkkunden die Möglichkeit geboten, Konto- und Tarif-Angelegenheiten online zu verwalten. Die mobile Version bietet einen komfortablen Zugang zu dem Angebot für mobile Endgeräte.</p>
+            </div>
         </div>
-        <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>Freundeskreis und MachPlus</h3>
-            <p>Für die Bestandskunden-Marketingmaßnahme „Freundeskreis“ wurden exklusiv für BASE-Kunden regelmäßig verschiedene Online-Gewinnspiele realisiert. Hierbei wurde der Community-Charakter durch kommunikative Aspekte und Interaktionsmöglichkeiten hervorgehoben und direkt in die Kundenbindung investiert.</p>
-        </div>
-    </div>
-</article>
+    </article>
 
-<article class="block img-left">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-lederfabrikhotel.png" alt="Screenshots vom Lederfabrik Online-Auftritt">
+    <article class="block img-left" id="customers-base-landingpages">
+        <div class="page-constrained">
+            <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <img src="/img/referenzen/showcase-seo-sea.png" alt="Screenshots der BASE SEO/SEA Landingpages">
+            </div>
+            <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
+                <h3>SEO/SEA Landingpage</h3>
+                <p>Für Online-Kampagnen der Marke BASE wurde hier ein Tool entwickelt, mit dem SEO- und SEA-optimierte Landingpages redaktionell „on the fly“ aufgesetzt werden können. Dies bietet dem Online Marketing Management die Möglichkeit, kostengünstig und schnell Angebote im Web prominent zu lancieren. Durch die Verwendung von zentralem Content ist die begleitende Pflege minimal.</p>
+            </div>
         </div>
-        <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>Lederfabrik</h3>
-            <p>Das Hotel Lederfabrik in Mülheim hat mit einem attraktiven One-Pager einen repräsentativen und zeitgemäßen Online-Auftritt erhalten. Zugänglichkeit für Suchmaschinen und die Optimierung auf relevante Suchbegriffe erleichtern die Auffindbarkeit der Seite im Netz. Buchungsanfragen können direkt online getätigt werden.</p>
-        </div>
-    </div>
-</article>
-
-<article class="block img-right">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-mein-eplus.png" alt="Screenshots von Mein E-Plus">
-        </div>
-        <div class="block-content slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>Mein E-Plus</h3>
-            <p>Mit dem Online-Service „Mein E-Plus“ wird dem Mobilfunkkunden die Möglichkeit geboten, Konto- und Tarif-Angelegenheiten online zu verwalten. Die mobile Version bietet einen komfortablen Zugang zu dem Angebot für mobile Endgeräte.</p>
-        </div>
-    </div>
-</article>
-
-<article class="block img-left" id="customers-base-landingpages">
-    <div class="page-constrained">
-        <div class="block-figure slide-in-left fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <img src="/img/referenzen/showcase-seo-sea.png" alt="Screenshots der BASE SEO/SEA Landingpages">
-        </div>
-        <div class="block-content slide-in-right fade-in" data-jmname="add-remove-show-on-view" data-jmdominit="true">
-            <h3>SEO/SEA Landingpage</h3>
-            <p>Für Online-Kampagnen der Marke BASE wurde hier ein Tool entwickelt, mit dem SEO- und SEA-optimierte Landingpages redaktionell „on the fly“ aufgesetzt werden können. Dies bietet dem Online Marketing Management die Möglichkeit, kostengünstig und schnell Angebote im Web prominent zu lancieren. Durch die Verwendung von zentralem Content ist die begleitende Pflege minimal.</p>
-        </div>
-    </div>
-</article>
-<a class="go-down" href="#agency" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
+    </article>
+    <a class="go-down" href="#agency" data-jmname="anchor-visible-on-perf1" data-jmdominit="true"></a>
 </section>
 <!-- Kunden Ende -->
 
@@ -553,7 +550,14 @@ ViewBag.Title = Model.Page.Title;
             <div class="block-figure">
                 <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner" data-depth="2">
-                        <img src="/img/fotos/devicelab.jpg" alt="Device Lab" class="parallax-img" style="margin: -10% 0;" />
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="/img/fotos/devicelab-1600-1067.jpg" media="(min-width: 80em)" />
+                            <source srcset="/img/fotos/devicelab-1280-854.jpg" media="(min-width: 60em)" />
+                            <source srcset="/img/fotos/devicelab-960-641.jpg" media="(min-width: 48em)" />
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="/img/fotos/devicelab-768-513.jpg" alt="" class="parallax-img" style="margin: -10% 0;" />
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -570,7 +574,14 @@ ViewBag.Title = Model.Page.Title;
             <div class="block-figure">
                 <div class="parallax" data-jmname="parallax-content-scrollY" data-jmdominit="true">
                     <div class="parallax-inner" data-depth="2">
-                        <img src="/img/fotos/meeting.jpg" alt="Meeting" class="parallax-img" style="margin: -10% 0;" />
+                        <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="/img/fotos/meeting-1600-1067.jpg" media="(min-width: 80em)" />
+                            <source srcset="/img/fotos/meeting-1280-854.jpg" media="(min-width: 60em)" />
+                            <source srcset="/img/fotos/meeting-960-641.jpg" media="(min-width: 48em)" />
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="/img/fotos/meeting-768-513.jpg" alt="" class="parallax-img" style="margin: -10% 0;" />
+                        </picture>
                     </div>
                 </div>
             </div>

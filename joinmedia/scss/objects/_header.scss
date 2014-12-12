@@ -54,6 +54,13 @@
 	@include bp-m {
 		@include column(2.5);
 	}
+
+	@include bp-xl {
+		margin: {
+			left: 0;
+			right: 0;
+		}
+	}
 }
 
 

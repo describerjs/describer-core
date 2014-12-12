@@ -45,13 +45,10 @@
 
 .block {
 	@extend %element-default;
+	margin-bottom: 0;
 	padding: {
 		bottom: $space-half;
 		top: $space-half;
-	}
-	margin: {
-		bottom: 0;
-		top: 0;
 	}
 
 	@include bp-m {
