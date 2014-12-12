@@ -45,6 +45,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	jmHF.setDevicePerfForParallax = function(){
+		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
+			window.dc.perf = window.dc.perf || 3;
+			return;
+		}*/
+
 		if(window.userOS === 'Android'){
 			switch(true){
 				case /LG-D855/i.test(navigator.userAgent):
@@ -780,5 +785,4 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
 	jmHF.setDevicePerfForParallax();
-
 });

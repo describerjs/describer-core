@@ -28,6 +28,7 @@ define(['jquery', '_super'], function ($, _super){
 			this.setProperties();
 			this.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
 			$(window).on('resize', this.checkOrientation.bind(this));
+			$('body').on('dc-documentHeightChange', this.setProperties.bind(this));
 		},
 
 		options: {

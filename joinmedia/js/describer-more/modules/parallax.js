@@ -48,9 +48,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 					this.$elem.parallax({
 						limitY: 40,
 						gyromouseX: true,
-						gyromouseY: true,
-						actionOffsetTop: this.is('actionOffsetTop'),
-						actionOffsetBottom: this.is('actionOffsetBottom')
+						gyromouseY: true
 					});
 					break;
 				case 'scrollY':
@@ -60,14 +58,16 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							limitY: 40,
 							gyromouseY: true,
 							actionOffsetTop: this.is('actionOffsetTop'),
-							actionOffsetBottom: this.is('actionOffsetBottom')
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}else{
 						this.$elem.parallax({
 							frictionY: 1,
 							scrollY: true,
 							actionOffsetTop: this.is('actionOffsetTop'),
-							actionOffsetBottom: this.is('actionOffsetBottom')
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}
 					break;
@@ -77,7 +77,8 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 						limitY: 40,
 						gyromouseY: true,
 						actionOffsetTop: this.is('actionOffsetTop'),
-						actionOffsetBottom: this.is('actionOffsetBottom')
+						actionOffsetBottom: this.is('actionOffsetBottom'),
+						animationRange: this.is('animationRange')
 					});
 					break;
 				case 'orientationX-scrollY':
@@ -88,7 +89,8 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							gyromouseX: true,
 							gyromouseY: true,
 							actionOffsetTop: this.is('actionOffsetTop'),
-							actionOffsetBottom: this.is('actionOffsetBottom')
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}else{
 						this.$elem.parallax({
@@ -96,7 +98,8 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							frictionY: 1,
 							scrollY: true,
 							actionOffsetTop: this.is('actionOffsetTop'),
-							actionOffsetBottom: this.is('actionOffsetBottom')
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}
 					break;
