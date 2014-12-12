@@ -189,7 +189,7 @@
   Plugin.prototype.aot = null;
   Plugin.prototype.aob = null;
   Plugin.prototype.eot = null;
-
+  Plugin.prototype.animationRange = null;
 
   Plugin.prototype.initialise = function() {
 
@@ -216,6 +216,7 @@
 	  this.aot = (this.actionOffsetTop !== '') ? (parseInt(this.actionOffsetTop.split('%')[0], 10)/100) : 0;
 	  this.aob = (this.actionOffsetBottom !== '') ? (parseInt(this.actionOffsetBottom.split('%')[0], 10)/100) : 0;
 	  this.eot = $(this.element).offset().top;
+	  this.animationRange = (this.animationRange !== '') ? (parseInt(this.animationRange, 10)) : 0;
   };
 
   Plugin.prototype.updateLayers = function() {
@@ -510,6 +511,8 @@
   };
 
   Plugin.prototype.onRAF = function() {
+	  // 1 -> ab 0% - 50% Parallax-Range Ani von Center - Top
+	  // -1 -> ab 50% - 100% Parallax-Range Ani von Bottom - Center
 	  if(this.element.offsetHeight === 0){
 		  this.myraf = requestAnimationFrame(this.onRAF);
 		  return;
@@ -526,7 +529,11 @@
 	  }else{
 		  calc = -2*((_viewportBottom - this.eot) / range)+1;
 	  }
-
+	  calc = calc + this.animationRange;//rangeStart  rangeStop
+	  calc =  (calc > 1) ? 1 : calc;
+	  calc =  (calc < -1) ? -1 : calc;
+	  //console.log(calc);
+//0.5 - -0.7 calc
     /*var eot = $(this.element).offset().top;
     var wih = window.dc.win.innerHeight;
     var wpo = window.dc.win.pageYOffset;
