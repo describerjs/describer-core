@@ -39,7 +39,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 		},
 
 		_exec: function(e){
-			if((window.userOS === 'Android') && (window.userOSver < 3)){
+			if(window.dc.perf === 0){
 				return;
 			}
 			//return;

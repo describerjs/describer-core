@@ -112,12 +112,12 @@ define(function(){
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'condition': '(window.userOS === \'OS\' && parseInt(window.userOSver.split(\'.\'))< 8)'
+				'condition': '(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8)'
 			},{
 				'event': 'raf-6',
 				'relatedTo': 'this.$elem[0]',
 				'onlyTopOfElem': 'true',
-				'condition': '!(window.userOS === \'OS\' && parseInt(window.userOSver.split(\'.\'))< 8)'
+				'condition': '!(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8)'
 			}]
 		},{
 			jmname   : 'menu-close',

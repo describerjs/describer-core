@@ -49,12 +49,6 @@
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
     <script>
-        if(window.location.href.indexOf('debug=true') !== -1){
-            window.debug = true;
-        }
-        if(window.location.href.indexOf('debug=false') !== -1){
-            window.debug = false;
-        }
         window.UseLocalStorage = false;
         window.loadUnminifyVersion = true;
     </script>
