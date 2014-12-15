@@ -99,37 +99,31 @@
 \*------------------------------------*/
 
 .fade-in {
-	@include bp-m {
-		@include transition(opacity .6s linear);
-		opacity: 0;
+	@include transition(opacity .6s linear);
+	opacity: 0;
 
-		&.show {
-			opacity: 1;
-		}
+	&.show {
+		opacity: 1;
 	}
 }
 
 .fade-in-up {
-	@include bp-m {
-		@include transition(opacity .6s linear);
-		opacity: 0;
+	@include transition(opacity .6s linear);
+	opacity: 0;
 
-		&.show {
-			@include animation('fadeInUp 1s both');
-			opacity: 1;
-		}
+	&.show {
+		@include animation('fadeInUp 1s both');
+		opacity: 1;
 	}
 }
 
 .fade-in-left {
-	@include bp-m {
-		@include transition(opacity .6s linear);
-		opacity: 0;
+	@include transition(opacity .6s linear);
+	opacity: 0;
 
-		&.show {
-			@include animation('fadeInLeft 1s both');
-			opacity: 1;
-		}
+	&.show {
+		@include animation('fadeInLeft 1s both');
+		opacity: 1;
 	}
 }
 
@@ -162,24 +156,20 @@
 \*------------------------------------*/
 
 .slide-in-left {
-	@include bp-m {
-		@include transform-transition(.6s linear);
-		@include transform(translate3d(-200%, 0, 0));
+	@include transform-transition(.6s linear);
+	@include transform(translate3d(-200%, 0, 0));
 
-		&.show {
-			@include transform(translate3d(0, 0, 0));
-		}
+	&.show {
+		@include transform(translate3d(0, 0, 0));
 	}
 }
 
 .slide-in-right {
-	@include bp-m {
-		@include transform-transition(.6s linear);
-		@include transform(translate3d(200%, 0, 0));
+	@include transform-transition(.6s linear);
+	@include transform(translate3d(200%, 0, 0));
 
-		&.show {
-			@include transform(translate3d(0, 0, 0));
-		}
+	&.show {
+		@include transform(translate3d(0, 0, 0));
 	}
 }
 

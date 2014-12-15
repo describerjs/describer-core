@@ -1076,54 +1076,48 @@ p:last-child {
 /*------------------------------------*\
 	$FADE
 \*------------------------------------*/
-@media only screen and (min-width: 48em) {
-  .fade-in {
-    -moz-transition: opacity 0.6s linear;
-    -ms-transition: opacity 0.6s linear;
-    -o-transition: opacity 0.6s linear;
-    -webkit-transition: opacity 0.6s linear;
-    transition: opacity 0.6s linear;
-    opacity: 0;
-  }
-  .fade-in.show {
-    opacity: 1;
-  }
+.fade-in {
+  -moz-transition: opacity 0.6s linear;
+  -ms-transition: opacity 0.6s linear;
+  -o-transition: opacity 0.6s linear;
+  -webkit-transition: opacity 0.6s linear;
+  transition: opacity 0.6s linear;
+  opacity: 0;
+}
+.fade-in.show {
+  opacity: 1;
 }
 
-@media only screen and (min-width: 48em) {
-  .fade-in-up {
-    -moz-transition: opacity 0.6s linear;
-    -ms-transition: opacity 0.6s linear;
-    -o-transition: opacity 0.6s linear;
-    -webkit-transition: opacity 0.6s linear;
-    transition: opacity 0.6s linear;
-    opacity: 0;
-  }
-  .fade-in-up.show {
-    -moz-animation: fadeInUp 1s both;
-    -o-animation: fadeInUp 1s both;
-    -webkit-animation: fadeInUp 1s both;
-    animation: fadeInUp 1s both;
-    opacity: 1;
-  }
+.fade-in-up {
+  -moz-transition: opacity 0.6s linear;
+  -ms-transition: opacity 0.6s linear;
+  -o-transition: opacity 0.6s linear;
+  -webkit-transition: opacity 0.6s linear;
+  transition: opacity 0.6s linear;
+  opacity: 0;
+}
+.fade-in-up.show {
+  -moz-animation: fadeInUp 1s both;
+  -o-animation: fadeInUp 1s both;
+  -webkit-animation: fadeInUp 1s both;
+  animation: fadeInUp 1s both;
+  opacity: 1;
 }
 
-@media only screen and (min-width: 48em) {
-  .fade-in-left {
-    -moz-transition: opacity 0.6s linear;
-    -ms-transition: opacity 0.6s linear;
-    -o-transition: opacity 0.6s linear;
-    -webkit-transition: opacity 0.6s linear;
-    transition: opacity 0.6s linear;
-    opacity: 0;
-  }
-  .fade-in-left.show {
-    -moz-animation: fadeInLeft 1s both;
-    -o-animation: fadeInLeft 1s both;
-    -webkit-animation: fadeInLeft 1s both;
-    animation: fadeInLeft 1s both;
-    opacity: 1;
-  }
+.fade-in-left {
+  -moz-transition: opacity 0.6s linear;
+  -ms-transition: opacity 0.6s linear;
+  -o-transition: opacity 0.6s linear;
+  -webkit-transition: opacity 0.6s linear;
+  transition: opacity 0.6s linear;
+  opacity: 0;
+}
+.fade-in-left.show {
+  -moz-animation: fadeInLeft 1s both;
+  -o-animation: fadeInLeft 1s both;
+  -webkit-animation: fadeInLeft 1s both;
+  animation: fadeInLeft 1s both;
+  opacity: 1;
 }
 
 @-webkit-keyframes fadeInUp {
@@ -1265,48 +1259,44 @@ p:last-child {
 /*------------------------------------*\
 	$SLIDE
 \*------------------------------------*/
-@media only screen and (min-width: 48em) {
-  .slide-in-left {
-    -moz-transition: -moz-transform 0.6s linear;
-    -ms-transition: -ms-transform 0.6s linear;
-    -o-transition: -o-transform 0.6s linear;
-    -webkit-transition: -webkit-transform 0.6s linear;
-    transition: transform 0.6s linear;
-    -moz-transform: translate3d(-200%, 0, 0);
-    -ms-transform: translate3d(-200%, 0, 0);
-    -o-transform: translate3d(-200%, 0, 0);
-    -webkit-transform: translate3d(-200%, 0, 0);
-    transform: translate3d(-200%, 0, 0);
-  }
-  .slide-in-left.show {
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+.slide-in-left {
+  -moz-transition: -moz-transform 0.6s linear;
+  -ms-transition: -ms-transform 0.6s linear;
+  -o-transition: -o-transform 0.6s linear;
+  -webkit-transition: -webkit-transform 0.6s linear;
+  transition: transform 0.6s linear;
+  -moz-transform: translate3d(-200%, 0, 0);
+  -ms-transform: translate3d(-200%, 0, 0);
+  -o-transform: translate3d(-200%, 0, 0);
+  -webkit-transform: translate3d(-200%, 0, 0);
+  transform: translate3d(-200%, 0, 0);
+}
+.slide-in-left.show {
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
-@media only screen and (min-width: 48em) {
-  .slide-in-right {
-    -moz-transition: -moz-transform 0.6s linear;
-    -ms-transition: -ms-transform 0.6s linear;
-    -o-transition: -o-transform 0.6s linear;
-    -webkit-transition: -webkit-transform 0.6s linear;
-    transition: transform 0.6s linear;
-    -moz-transform: translate3d(200%, 0, 0);
-    -ms-transform: translate3d(200%, 0, 0);
-    -o-transform: translate3d(200%, 0, 0);
-    -webkit-transform: translate3d(200%, 0, 0);
-    transform: translate3d(200%, 0, 0);
-  }
-  .slide-in-right.show {
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+.slide-in-right {
+  -moz-transition: -moz-transform 0.6s linear;
+  -ms-transition: -ms-transform 0.6s linear;
+  -o-transition: -o-transform 0.6s linear;
+  -webkit-transition: -webkit-transform 0.6s linear;
+  transition: transform 0.6s linear;
+  -moz-transform: translate3d(200%, 0, 0);
+  -ms-transform: translate3d(200%, 0, 0);
+  -o-transform: translate3d(200%, 0, 0);
+  -webkit-transform: translate3d(200%, 0, 0);
+  transform: translate3d(200%, 0, 0);
+}
+.slide-in-right.show {
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 /*------------------------------------*\
