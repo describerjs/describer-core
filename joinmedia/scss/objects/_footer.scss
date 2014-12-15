@@ -64,7 +64,7 @@
 	display: block;
 }
 
-.h-card {
+.card {
 	@extend %element-default;
 
 	.u-url {
@@ -99,19 +99,14 @@
 		@extend %hcard-element;
 	}
 
-	.hc-section {
+	.vc-section {
 		@extend %element-inner-default;
 
 		@include bp-m {
 			@include column(4);
 		}
-
-		@include bp-l {
-			@include column(3);
-		}
 	}
 }
-
 
 
 

@@ -26,12 +26,12 @@
 		background: $theme-backtotop-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAANCAYAAABGkiVgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHdJREFUeNpi+P//PwMU+wMxIxKfFMwI1Q/mwwQ7/kPAdDIMZoTq+w81hwHmQmRAisHIBsJAAC4JYgzGqY+gAlINRA5TUgwmqI6BRA1EWUyK15iIDSJSIuEasWFOauwSlToYyE02+PSRmsCJyhikZMUIYnMaQIABAO3Fe0Vp6olEAAAAAElFTkSuQmCC") no-repeat scroll 50% 50%;
 	}
 	border: 3px solid $theme-backtotop-fg;
-	border-radius: 55px;
+	border-radius: 50%;
 	display: block;
-	height: 55px;
+	height: 3.5rem;
 	margin: 0 auto;
 	text-indent: -1000em;
-	width: 55px;
+	width: 3.5rem;
 
 	&:active,
 	&:focus,
@@ -46,6 +46,8 @@
 		text-decoration: underline;
 	}
 }
+
+
 
 
 
@@ -67,6 +69,7 @@
 
 .go-down {
 	@include back-to-top(down);
+	display: none;
 }
 
 
@@ -79,6 +82,9 @@
 
 .go-up {
 	@extend .back-to-top;
+	@include absolute($space-quarter, 0, '', 0);
+	display: none;
+	z-index: 99;
 }
 
 

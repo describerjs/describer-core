@@ -5,6 +5,7 @@
 .teaser {
 	@extend %element-default;
 	@include rgba($theme-teaser-bg, .8);
+	@include transition(background-color $transition-duration $transition-function);
 	color: inherit;
 	display: block;
 	margin-bottom: $space-quarter;

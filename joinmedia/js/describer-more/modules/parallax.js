@@ -39,7 +39,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 		},
 
 		_exec: function(e){
-			if((window.userOS === 'Android') && (window.userOSver < 3)){
+			if(window.dc.perf === 0){
 				return;
 			}
 			//return;
@@ -56,12 +56,18 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 						// Fallback für <iOS8
 						this.$elem.parallax({
 							limitY: 40,
-							gyromouseY: true
+							gyromouseY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}else{
 						this.$elem.parallax({
 							frictionY: 1,
-							scrollY: true
+							scrollY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}
 					break;
@@ -69,7 +75,10 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 					// Fallback für <iOS8
 					this.$elem.parallax({
 						limitY: 40,
-						gyromouseY: true
+						gyromouseY: true,
+						actionOffsetTop: this.is('actionOffsetTop'),
+						actionOffsetBottom: this.is('actionOffsetBottom'),
+						animationRange: this.is('animationRange')
 					});
 					break;
 				case 'orientationX-scrollY':
@@ -78,13 +87,19 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 						this.$elem.parallax({
 							limitY: 40,
 							gyromouseX: true,
-							gyromouseY: true
+							gyromouseY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}else{
 						this.$elem.parallax({
 							gyromouseX: true,
 							frictionY: 1,
-							scrollY: true
+							scrollY: true,
+							actionOffsetTop: this.is('actionOffsetTop'),
+							actionOffsetBottom: this.is('actionOffsetBottom'),
+							animationRange: this.is('animationRange')
 						});
 					}
 					break;

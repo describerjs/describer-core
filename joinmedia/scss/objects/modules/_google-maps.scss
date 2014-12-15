@@ -3,10 +3,13 @@
 \*------------------------------------*/
 
 #map-canvas {
-	@extend %element-default;
 	height: 250px;
 
-	@include bp-m {
+	@include bp-l {
+		height: 400px;
+	}
+
+	@include bp-xl {
 		height: $shp-height-m;
 	}
 

@@ -20,6 +20,7 @@
 
 .page-main {
 	@extend %page-element-default;
+	margin-top: $layout-header-height;
 }
 
 
@@ -138,19 +139,28 @@
 
 .stage {
 	@extend .section;
+	@include element-default;
 	background-color: $theme-stage-bg;
+	margin: {
+		bottom: 0;
+		top: -($layout-header-height);
+	}
 
 	.stage-bg {
 		height: 1000px;
 		height: 100vh;
 		position: relative;
+
+		.parallax-img {
+			height: 150%;
+		}
 	}
 
 	.stage-footer {
 		background-color: $theme-stage-bg;
 		padding: {
-			bottom: $space-half;
-			top: $space-half;
+			bottom: $space-quarter;
+			top: $space-quarter;
 		}
 
 		@include bp-m {
@@ -159,24 +169,34 @@
 	}
 
 	.stage-header {
-		@include constrained;
+		@include column(12);
+		@include element-inner-default;
 		@include absolute(15%, 0, '', 0);
 
-		@include bp-m {
-			top: 20%;
+		@include bp-xl {
+			@include indent(left, 1.75);
 		}
 	}
 
 	.stage-main {
-		@include constrained;
-
 		@include bp-m {
-			@include absolute('', 0, 15%, 0);
+			@include column(12);
+			@include absolute('', 0, 10%, 0);
 		}
 
 		@include bp-l {
-			@include absolute('', 0, 25%, 0);
+			@include indent(padding, .2);
+			bottom: 15%;
 		}
+
+		@include bp-xl {
+			@include indent(padding, 1);
+			bottom: 25%;
+		}
+	}
+
+	.go-down {
+		display: block;
 	}
 }
 

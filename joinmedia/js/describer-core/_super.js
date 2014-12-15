@@ -21,6 +21,20 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
+		initExec: function(){
+			this.configObj = this._getConfigObjArray();
+			if($.type(this.configObj['init']) !== 'undefined'){
+				new Function('"use strict";'+ this.configObj['init']).call(this);
+			}
+		},
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  Event-Functions Begin  ********************************************************
+
 		// wird vom Body-Listener für 'click' aufgerufen
 		click: function(e){
 			if(this.includes('event', 'click') && this.isCondition()) this._execWait(e);
@@ -61,6 +75,15 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'dc-hashchange')) this.$elem.closest('body').on('dc-hashchange', this._execWaitAfterCondition.bind(this));
 		},
+
+// *********************************  Event-Functions End    ********************************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  Helper-Functions for ConfigObject Begin  **************************************
 
 		// gibt je nach parameter ein bool oder einen string zurück. Siehe unten.
 		is : function(p_dataAttr, p_value, p_now){
@@ -156,16 +179,149 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			return _return || '';
 		},
 
-		initExec: function(){
-			this.configObj = this._getConfigObjArray();
-			if($.type(this.configObj['init']) !== 'undefined'){
-				new Function('"use strict";'+ this.configObj['init']).call(this);
+// *********************************  Helper-Functions for ConfigObject End    **************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  Eventhandler-Functions Begin  *************************************************
+
+		_interval : function(e){
+			var that = this;
+			setInterval(function(){
+				if(that.isCondition()) that._execWait(e);
+				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
+			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
+		},
+
+		_keyup: function(e){
+			if(this.isCondition()){
+				if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
+					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
+				}else{
+					this._execWait.bind(this, e)
+				}
 			}
 		},
 
-		getRelatedToElem: function(){
-			return (this.relatedTo) ? this.relatedTo : this.relatedTo = ((this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem);
+		_raf: function(){
+			if(!window.dc.singleton){
+				this._singelton();
+			}
+
+			// raf-100ms-one
+			this.cAF = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
+			this.renderDelay = this._getRenderDelay();
+			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
+			this.conditionSource = this.isCondition('source');
+			window.dc.execRafObj['func_' + window.dc.execRafObj.countProperties()] = this._render.bind(this);
+
 		},
+
+		_initByPerf: function(e){
+			var _initByPerfCounter = 2;
+			if(window.dc.perf === 0){
+				return;
+			}
+			if(window.dc.perf === 1 || window.dc.perf === 4){
+				this._execWaitAfterCondition();
+				return;
+			}
+
+			if(!window.dc.win){
+				this._createRAFObjects();
+			}
+
+			window.dc.onHoldArray = window.dc.onHoldArray || [];
+			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
+			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
+			for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
+				if(_initByPerfCounter > i){
+					this._applyOnHoldPlugin(i);
+				}
+			}
+
+			if($.type(window.intervalIDForOnHoldPlugins) === 'undefined'){
+				window.intervalIDForOnHoldPlugins = setInterval(this._intervalForApplyOnHoldPlugins.bind(this), 1000);
+				setTimeout(function(){
+					clearInterval(window.intervalIDForOnHoldPlugins);
+				}, 15000);
+			}
+		},
+
+		_execWaitAfterCondition: function(e){
+			if(this.isCondition()){
+				this._execWait(e);
+			}
+		},
+
+		_execWait: function(e){
+			var that = this;
+			if(this.is('wait') === ''){
+				this._exec(e);
+				return;
+			}
+			if(this.is('wait') === 'raf'){
+				window.requestAnimationFrame(this._exec.bind(this, e));
+				return;
+			}
+			if(this.is('wait') !== ''){
+				setTimeout(function(){ that._exec(e); }, parseInt(this.is('wait'), 10));
+			}
+		},
+
+// *********************************  Eventhandler-Functions End    *************************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  Eventhandler-Helper-Functions Begin  ******************************************
+
+		_getRenderDelay: function(){
+			var _filteredRafString = this.getPartOf('event', 'raf').replace('raf-', '').replace('-one', '').replace('ms', '').replace('raf', '');
+			return (_filteredRafString !== '') ? parseInt(_filteredRafString, 10) + Math.ceil(Math.random() * parseInt(_filteredRafString, 10)/4) : 1;
+		},
+
+		_applyOnHoldPlugin: function(index){
+			var _obj = window.dc.onHoldArray[index].obj;
+			if(!_obj.exec){
+				_obj.exec = true;
+				_obj._execWaitAfterCondition();
+			}
+		},
+
+		_intervalForApplyOnHoldPlugins: function(){
+			var _obj;
+			if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 45){
+				for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
+					_obj = window.dc.onHoldArray[i].obj;
+					if(!_obj.exec){
+						_obj.exec = true;
+						_obj._execWaitAfterCondition();
+						if(window.dc.debugview){
+							$('#init-by-perf-counter').text(' init-fx: '+(i+1)+'/'+leni);
+						}
+						return;
+					}else if((leni -1) === i){
+						window.dc.onHoldArrayExecuted = true;
+					}
+				}
+			}
+		},
+
+// *********************************  Eventhandler-Helper-Functions End    ******************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  ConfigObject-Functions Begin  *************************************************
+
 
 		// gibt je nach parameter das aktuelle oder gespeicherte configObj zurück. Es wird hier aus Performancegründen ein ConfigObj gespeichert.
 		_getConfigObjArray: function(p_now){
@@ -312,24 +468,38 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			return this.staticObj;
 		},
 
-		_raf: function(){
-			if(!window.dc.execRafObj){
-				this._rafCreateObjects();
+
+// *********************************  ConfigObject-Functions End    *************************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  Global-Singelton-Functions Begin  *********************************************
+
+		_singelton: function(){
+			window.dc.singleton = true;
+			this._createRAFObjects();
+			if(window.dc.debugview){
+				this.thempCountedFrames = 0;
+				this._applyRAFDeveloperView();
 			}
-			// raf-100ms-one
-			this.cAF = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
-			this.renderDelay = this.getPartOf('event', 'raf').replace('raf-', '').replace('-one', '').replace('ms', '').replace('raf', '');
-			this.renderDelay = (this.renderDelay !== '') ? parseInt(this.renderDelay, 10) + Math.ceil(Math.random()*parseInt(this.renderDelay, 10)/4) : 1;
-			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
-			this.conditionSource = this.isCondition('source');
-			// Ausführen der Funktion render auf dem nächsten requestAnimationFrame und speichern der Referenz.
-			//this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
-			//console.log(this.$elem);
-			//window.jmGO.rafRenderObj['func_' + window.jmGO.rafRenderObj.countProperties()] = this._render.bind(this);
-			window.dc.execRafObj['func_' + window.dc.execRafObj.countProperties()] = this._render.bind(this);
+			this._everyRAF();
 		},
 
-		_rafCreateObjects: function(){
+		_createRAFObjects: function(){
+			window.dc.win = {
+				pageYOffset: null,
+				innerHeight: null,
+				innerWidth: null,
+				outerHeight: null,
+				documentHeight: null,
+				startTime: Date.now(),
+				counter: 0,
+				rafs: null,
+				avgrafs: null
+			};
 			window.dc.execRafObj = {
 				countProperties: function(){
 					var count = 0;
@@ -341,99 +511,50 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					return count;
 				}
 			};
-			window.dc.win = {
-				pageYOffset: null,
-				innerHeight: null,
-				innerWidth: null,
-				outerHeight: null,
-				startTime: Date.now(),
-				counter: 0,
-				rafs: null,
-				avgrafs: null
-			};
-
-			this._rafGlobalRender();
-			this.thempCountedFrames = 0;
-			if(Modernizr.mq('only screen and (min-width : 60em)')){
-				return;
-			}
-			this._applyPerfPluginsOnInterval();
 		},
 
-		_applyPerfPluginsOnInterval: function(){
+		_applyRAFDeveloperView: function(){
 			var that = this;
-			var intervalID;
-			if(window.debug){
-				$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span></div>');
-				this.$acount = $('#fps-counter');
 
-			}
-			if(window.dc.perf < 3){
-				window.dc.clearInterval = true
-			}
-			setTimeout(function(){
-				(window.debug) ? window.dc.clearInterval = true : clearInterval(intervalID);
-			}, 15000);
-			intervalID = setInterval(function(){
-				var _obj;
+			$('body').append('<div style="position: fixed; color:#eee; font-weight: bold; bottom: 0; left: 0; background-color:rgba(0,0,0,.2); padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 2rem; width: 100%; z-index: 9999"><span style="padding: 1rem; float: left; background-color: rgba(30,30,30,.8)" id="fps-counter" >avg: --- fps | now: --- fps</span></div>');
+			this.$acount = $('#fps-counter');
+
+			setInterval(function(){
 				if(window.dc.win.counter < that.thempCountedFrames){
-					that.thempCountedFrames = that.thempCountedFrames + 100000001;
+					this.thempCountedFrames = this.thempCountedFrames + 100000001;
 				}
-				window.dc.win.rafs = window.dc.win.counter - that.thempCountedFrames;
+				window.dc.win.rafs = window.dc.win.counter - this.thempCountedFrames;
 				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
-				if(window.debug){
-					that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
-				}
-				if(window.debug && (window.dc.onHoldArray || (window.dc.perf === 1)) && $.type(that.$initByPerfCounter) === 'undefined'){
-					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
-					that.$initByPerfCounter = $('#init-by-perf-counter');
+
+				this.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+
+				if(window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
+					this.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
+					this.$initByPerfCounter = $('#init-by-perf-counter');
+					if(window.dc.perf === 1) this.$initByPerfCounter.text(' init-fx: all ');
+					if(window.dc.perf === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
-				if(window.dc.perf === 1){
-					that.$initByPerfCounter.text(' init-fx: all ');
-				}
-				if(window.dc.perf === 2){
-					that.$initByPerfCounter.text(' init-fx: 2 ');
-				}
-				if(window.dc.clearInterval){
-					return;
-				}
-				if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 45){
-					for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
-						_obj = window.dc.onHoldArray[i].obj;
-						if(!_obj.exec){
-							_obj.exec = true;
-							_obj._execWaitAfterCondition();
-							if(window.debug){
-								that.$initByPerfCounter.text(' init-fx: '+(i+1)+'/'+leni);
-							}
-							return;
-						}else if((leni -1) === i){
-							window.dc.onHoldArrayExecuted = true;
-						}
-					}
-				}
-			}, 1000);
+			}.bind(this), 1000);
 		},
 
-		_rafGlobalRender: function(){
-			// !!!!!  every rAF  !!!!!
+// *********************************  Global-Singelton-Functions End    *********************************************
 
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
 
-			/*this.dcRAF.interval = 1000/60;
-			this.dcRAF.now = new Date().getTime();
-			this.dcRAF.delta = this.dcRAF.now - this.dcRAF.then;
+// *********************************  raf-Functions HOT-CODE Begin  *************************************************
 
-			this.dcRAF.then = now - (this.dcRAF.delta % this.dcRAF.interval);
-
-			// calculate the frames per second
-			this.dcRAF.frames = 1000/(time-this.dcRAF.oldtime);
-			this.dcRAF.oldtime = time;*/
+		_everyRAF: function(){
+			var _oldDocumentHeight = window.dc.win.documentHeight || document.body.offsetHeight;
 
 			window.dc.win.pageYOffset     = window.pageYOffset;
 			window.dc.win.innerHeight     = (window.dc.orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
 			window.dc.win.innerWidth      = window.innerWidth;
 			window.dc.win.counter         = window.dc.win.counter+1;
+			window.dc.win.documentHeight  = document.body.offsetHeight;
 
 			if(window.dc.win.counter === 100000001){
 				window.dc.win.counter = 1;
@@ -445,32 +566,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				}
 			}
 			window.dc.orientation_old = window.dc.orientation;
-			window.dc.raf = window.requestAnimationFrame(this._rafGlobalRender.bind(this));
-		},
-
-		_initByPerf: function(e){
-			var _obj;
-			if((window.dc.perf === 1) || Modernizr.mq('only screen and (min-width : 60em)')){
-				this._execWaitAfterCondition();
-				return;
+			window.dc.raf = window.requestAnimationFrame(this._everyRAF.bind(this));
+			if(_oldDocumentHeight !== window.dc.win.documentHeight){
+				$('body').trigger('dc-documentHeightChange');
 			}
-			if(!window.dc.execRafObj){
-				this._rafCreateObjects();
-			}
-			window.dc.onHoldArray = window.dc.onHoldArray || [];
-			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
-			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
-			_obj = window.dc.onHoldArray[0].obj;
-			if(!_obj.exec){
-				_obj.exec = true;
-				_obj._execWaitAfterCondition();
-			}
-			if(window.dc.onHoldArray[1] && !window.dc.onHoldArray[1].obj.exec){
-				_obj = window.dc.onHoldArray[1].obj;
-				_obj.exec = true;
-				_obj._execWaitAfterCondition();
-			}
-
 		},
 
 		_render: function(){
@@ -480,60 +579,24 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.$elem.offsetHeight === 0){
 				return;
 			}
-			if(eval(this.conditionSource)){
-				if(this.cAF){
-					window.cancelAnimationFrame(this.rAFRender);
-				}
+			if(eval(this.conditionSource) && !this.cAF){
 				this._exec();
 			}
-
-
-				//this.rAFRender = window.requestAnimationFrame(this._render.bind(this));
-			// !!!!! this.$elem.offset().top === 0 after remove/delet this element !!!!!
-
-
 		},
 
-		_execWait: function(e){
-			var that = this;
-			if(this.is('wait') === ''){
-				this._exec(e);
-				return;
-			}
-			if(this.is('wait') === 'raf'){
-				window.requestAnimationFrame(this._exec.bind(this, e));
-				return;
-			}
-			if(this.is('wait') !== ''){
-				setTimeout(function(){ that._exec(e); }, parseInt(this.is('wait'), 10));
-			}
+// *********************************  raf-Functions HOT-CODE End    *************************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  Common-Functions use by actions Begin  ****************************************
+
+		getRelatedToElem: function(){
+			return (this.relatedTo) ? this.relatedTo : this.relatedTo = ((this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem);
 		},
 
-		_interval : function(e){
-			var that = this;
-			setInterval(function(){
-				if(that.isCondition()) that._execWait(e);
-				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
-			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
-		},
-
-		_execWaitAfterCondition: function(e){
-			if(this.isCondition()){
-				this._execWait(e);
-			}
-		},
-
-		_keyup: function(e){
-			if(this.isCondition()){
-				if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
-					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
-				}else{
-					this._execWait.bind(this, e)
-				}
-			}
-		},
-
-		// ************** allgemein benutzbare Funktionen **************
 		_finishing: function(p_$data){
 			var that = this;
 			this._scrollTo();
@@ -542,7 +605,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					p_$data
 						.requirementsForJmPlugins()
 						.triggerSelfexecObj()
-						//.picturefill();
+						.picturefill();
 					that._callback();
 				}, 200);
 				return;
@@ -559,6 +622,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		_callback: function(){
 			if($.type(this.is('callback') !== 'undefined')) eval(this.is('callback'));
 		}
+
+// *********************************  Common-Functions use by actions End    ****************************************
 	};
 });
 

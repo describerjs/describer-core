@@ -105,6 +105,21 @@ define(function(){
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},{
+			jmname: 'add-remove-show-on-view-with-fallback',
+			jmplugin: 'actions.add|modules.onView',
+			jmconfig: [{
+				'event'    : 'dominit',
+				'datatype' : 'class',
+				'data'     : 'show',
+				'relatedTo': 'this.$elem[0]',
+				'condition': '(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf === 0'
+			},{
+				'event': 'raf-6',
+				'relatedTo': 'this.$elem[0]',
+				'onlyTopOfElem': 'true',
+				'condition': '!((window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf === 0)'
+			}]
+		},{
 			jmname   : 'menu-close',
 			jmplugin: 'actions.remove',
 			jmconfig : {
@@ -356,8 +371,8 @@ define(function(){
 			jmconfig: {
 				'event': 'dominit|raf',
 				'loop': '20',
-				'execElemOffset':'0',
-				'execWindowScale': '1'
+				'actionOffsetTop':'0',
+				'actionRangeScale': '1'
 			}
 		},{
 			jmname: 'scrollControlTransition',
@@ -365,8 +380,8 @@ define(function(){
 			jmconfig: {
 				'event': 'dominit|raf',
 				'cssProperty':'translate|scale',
-				'execElemOffsetX':'-200',
-				'execWindowScale': '1'
+				'actionOffsetTop':'-200',
+				'actionRangeScale': '1'
 			}
 		},
 		{
@@ -404,7 +419,9 @@ define(function(){
 			jmplugin: 'modules.parallax',
 			jmconfig: {
 				'event': 'init-by-perf',
-				'data' : 'scrollY'
+				'data' : 'scrollY'/*,
+				'actionOffsetTop': '0',
+				'actionOffsetBottom': '0'*/
 			}
 		},
 		{

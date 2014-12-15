@@ -8,7 +8,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	window.jmGO = window.jmGO || {};
 	window.dc = window.dc || {};
 
-
 	$(window).on('hashchange', function() {
 		$body.trigger('dc-hashchange');
 		//work with -> window.location.hash = '#joinmedi';
@@ -44,26 +43,32 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.devicePerfForParallax = function(){
-		var android_major, android_minor;
+	jmHF.setDevicePerfForParallax = function(){
+		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
+			window.dc.perf = window.dc.perf || 3;
+			return;
+		}*/
+		alert(navigator.userAgent);
 		if(window.userOS === 'Android'){
-			android_major = parseInt(window.userOSver.split('.')[0], 10);
-			android_minor = parseInt(window.userOSver.split('.')[1], 10);
-			switch(android_major){
-				case 2:
-					return 'low';
-				case 3:
-					return 'low';
-				case 4:
-					return (android_minor < 4) ?  'low' : 'middel';
+			switch(true){
+				case /LG-D855/i.test(navigator.userAgent):      // LG G3
+				/*case /GT-I9300/i.test(navigator.userAgent):
+				case /GT-I9505/i.test(navigator.userAgent):*/
+					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+					break;
 				default:
-					return 'middel';
+					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
 			}
+		}else if(window.userOS === 'iOS'){
+			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
+				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 3;
+			}else{
+				// iPad 1/ 2/ iPad Mini
+				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+			}
+		}else{
+			window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 4;
 		}
-		if(window.userOS === 'iOS'){
-			return 'height';
-		}
-		return 'height';
 	};
 
 	jmHF.checkOrientation = function(){
@@ -357,11 +362,12 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
 		var _configObj = jmHF.getConfigObj(jmname);
-		var _jmpluginString = _configObj.jmplugin;
-		if($.type(_jmpluginString) === 'undefined'){
+		var _jmpluginString;
+		if($.type(_configObj) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
 			return;
 		}
+		_jmpluginString = _configObj.jmplugin;
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
@@ -725,6 +731,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return $(this).length > 0;
 	};
 
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
+		}
+		else{
+			return results[1] || 0;
+		}
+	};
+
 	$.fn.scrollToMe = function(p_delta_offset){
 		var _delta_offset = 0;
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
@@ -780,17 +796,12 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
-	//window.dc.sectiontoggle = window.dc.sectiontoggle || (jmHF.devicePerfForParallax() === 'low');
-	switch(jmHF.devicePerfForParallax()){
-		case 'low':
-			window.dc.perf = window.dc.perf || 1;
-			break;
-		case 'middel':
-			window.dc.perf = window.dc.perf || 2;
-			break;
-		case 'height':
-			window.dc.perf = window.dc.perf || 3;
-			break;
-	}
 
+	if(window.location.href.indexOf('debugview=true') !== -1){
+		window.dc.debugview = true;
+	}
+	if($.urlParam('perf') !== null){
+		window.dc.perf = parseInt($.urlParam('perf'), 10);
+	}
+	jmHF.setDevicePerfForParallax();
 });

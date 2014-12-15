@@ -49,12 +49,6 @@
     @if (!Html.FeatureEnabled(PerformanceFeature.PerformanceA) || HttpContext.Current.IsDebuggingEnabled)
     {
     <script>
-        if(window.location.href.indexOf('debug=true') !== -1){
-            window.debug = true;
-        }
-        if(window.location.href.indexOf('debug=false') !== -1){
-            window.debug = false;
-        }
         window.UseLocalStorage = false;
         window.loadUnminifyVersion = true;
     </script>
@@ -216,7 +210,7 @@
             ];
 
             var mapOptions = {
-                center: new google.maps.LatLng(51.416553, 6.869896),
+                center: new google.maps.LatLng(51.4156, 6.867623),
                 zoom: 16,
                 disableDefaultUI: false,
                 scrollwheel: false,
