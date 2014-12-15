@@ -48,6 +48,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			window.dc.perf = window.dc.perf || 3;
 			return;
 		}*/
+		alert(navigator.userAgent);
 		if(window.userOS === 'Android'){
 			switch(true){
 				case /LG-D855/i.test(navigator.userAgent):      // LG G3
