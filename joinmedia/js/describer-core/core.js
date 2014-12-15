@@ -812,5 +812,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	if($.urlParam('perf') !== null){
 		window.dc.perf = parseInt($.urlParam('perf'), 10);
 	}
+	if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
+		alert(navigator.userAgent);
+	}
 	jmHF.setDevicePerfForParallax();
 });
