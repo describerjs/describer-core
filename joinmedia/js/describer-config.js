@@ -105,19 +105,19 @@ define(function(){
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},{
-			jmname: 'add-remove-show-on-view-not-ios7',
+			jmname: 'add-remove-show-on-view-with-fallback',
 			jmplugin: 'actions.add|modules.onView',
 			jmconfig: [{
 				'event'    : 'dominit',
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'condition': '(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8)'
+				'condition': '(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf === 0'
 			},{
 				'event': 'raf-6',
 				'relatedTo': 'this.$elem[0]',
 				'onlyTopOfElem': 'true',
-				'condition': '!(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8)'
+				'condition': '!((window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf === 0)'
 			}]
 		},{
 			jmname   : 'menu-close',
