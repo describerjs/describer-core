@@ -186,12 +186,13 @@
 
 		@include bp-l {
 			@include indent(padding, .2);
-			bottom: 15%;
+			/*bottom: 15%;*/
+			top: 60%;
 		}
 
 		@include bp-xl {
 			@include indent(padding, 1);
-			bottom: 25%;
+			/*bottom: 25%;*/
 		}
 	}
 

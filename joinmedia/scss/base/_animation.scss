@@ -80,7 +80,8 @@
 
 	// Prallax-Inner-Container
 	.parallax-inner {
-		@include element-stretch;
+		//@include element-stretch;
+		position: relative;
 	}
 
 	//
