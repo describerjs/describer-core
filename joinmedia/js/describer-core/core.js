@@ -48,7 +48,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			window.dc.perf = window.dc.perf || 3;
 			return;
 		}*/
-		alert(navigator.userAgent);
+		//alert(navigator.userAgent);
 		if(window.userOS === 'Android'){
 			switch(true){
 				case /LG-D855/i.test(navigator.userAgent):      // LG G3
@@ -811,6 +811,9 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	}
 	if($.urlParam('perf') !== null){
 		window.dc.perf = parseInt($.urlParam('perf'), 10);
+	}
+	if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
+		alert(navigator.userAgent);
 	}
 	jmHF.setDevicePerfForParallax();
 });
