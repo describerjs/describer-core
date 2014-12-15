@@ -112,12 +112,12 @@ define(function(){
 				'datatype' : 'class',
 				'data'     : 'show',
 				'relatedTo': 'this.$elem[0]',
-				'condition': '(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf === 0'
+				'condition': '(window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf <= 1'
 			},{
 				'event': 'raf-6',
 				'relatedTo': 'this.$elem[0]',
 				'onlyTopOfElem': 'true',
-				'condition': '!((window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf === 0)'
+				'condition': '!((window.userOS === \'iOS\' && parseInt(window.userOSver.split(\'.\'), 10)< 8) || window.dc.perf <= 1)'
 			}]
 		},{
 			jmname   : 'menu-close',

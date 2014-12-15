@@ -52,8 +52,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		if(window.userOS === 'Android'){
 			switch(true){
 				case /LG-D855/i.test(navigator.userAgent):      // LG G3
-				/*case /GT-I9300/i.test(navigator.userAgent):
-				case /GT-I9505/i.test(navigator.userAgent):*/
+				case /Nexus 7/i.test(navigator.userAgent):      // Nexus 7
+				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
+				case /GT-N7100/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
 					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
 					break;
 				default:
@@ -63,8 +66,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
 				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 3;
 			}else{
-				// iPad 1/ 2/ iPad Mini
-				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+				switch(true){
+					case /iPhone/i.test(navigator.userAgent):
+						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
+						break;
+					default:
+						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+						break;
+				}
 			}
 		}else{
 			window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 4;
