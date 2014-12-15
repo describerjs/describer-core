@@ -341,7 +341,7 @@ h6, .h6 {
   clear: both;
 }
 
-.row, .row2, .row3, .row4, .row5, .row6, .legal, .h-card, .block, .nav, .tabs, .teaser, .tiles, .togglebox, .section-header {
+.legal, .card, .block, .nav, .tabs, .teaser, .tiles, .togglebox, .section-header {
   *zoom: 1;
   width: 97.91667%;
   margin-left: 1.04167%;
@@ -351,34 +351,34 @@ h6, .h6 {
   display: block;
   position: relative;
 }
-.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .block:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header:after, .row:before, .row2:before, .row3:before, .row4:before, .row5:before, .row6:before, .legal:before, .h-card:before, .block:before, .nav:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before, .section-header:before {
+.legal:after, .card:after, .block:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header:after, .legal:before, .card:before, .block:before, .nav:before, .tabs:before, .teaser:before, .tiles:before, .togglebox:before, .section-header:before {
   content: "\0020";
   display: table;
 }
-.row:after, .row2:after, .row3:after, .row4:after, .row5:after, .row6:after, .legal:after, .h-card:after, .block:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header:after {
+.legal:after, .card:after, .block:after, .nav:after, .tabs:after, .teaser:after, .tiles:after, .togglebox:after, .section-header:after {
   clear: both;
 }
 
-.legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab {
+.legal .copyright, .legal .imprint, .card .vc-section, .tabs > .tab {
   padding: 0.75rem 1rem;
   margin-left: 0 !important;
   margin-right: 0 !important;
   position: relative;
 }
 @media only screen and (min-width: 48em) {
-  .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab {
+  .legal .copyright, .legal .imprint, .card .vc-section, .tabs > .tab {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
-  .legal .copyright, .legal .imprint, .h-card .hc-section, .tabs > .tab {
+  .legal .copyright, .legal .imprint, .card .vc-section, .tabs > .tab {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
-.togglebox .tb-subject, .togglebox.show > .tb-content, .tabs > .tab-content {
+.togglebox .tb-subject, .togglebox.show > .tb-content, .tabs > .tab-content, .togglebox {
   padding: 0.75rem 1rem;
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -387,13 +387,13 @@ h6, .h6 {
   padding-top: 0.375rem;
 }
 @media only screen and (min-width: 48em) {
-  .togglebox .tb-subject, .togglebox.show > .tb-content, .tabs > .tab-content {
+  .togglebox .tb-subject, .togglebox.show > .tb-content, .tabs > .tab-content, .togglebox {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 60em) {
-  .togglebox .tb-subject, .togglebox.show > .tb-content, .tabs > .tab-content {
+  .togglebox .tb-subject, .togglebox.show > .tb-content, .tabs > .tab-content, .togglebox {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
@@ -1323,195 +1323,7 @@ p:last-child {
 /*------------------------------------*\
     $LAYOUT
 \*------------------------------------*/
-/*------------------------------------*\
-    $LAYOUT
-\*------------------------------------*/
-/**
- * Grid-Column..........................Grid-System Column
- * Grid-Row.............................Grid-System Row
- * Grid-System..........................Using the Grid-System
-**/
-/*------------------------------------*\
-    $GRID_COLUMN
-\*------------------------------------*/
-.col {
-  width: 97.91667%;
-  margin-left: 1.04167%;
-  margin-right: 1.04167%;
-}
-
-/*------------------------------------*\
-    $GRID_ROW
-\*------------------------------------*/
-.row, .row2, .row3, .row4, .row5, .row6 {
-  padding: 0 0.75rem;
-}
-.row .col, .row2 .col, .row3 .col, .row4 .col, .row5 .col, .row6 .col {
-  width: 97.91667%;
-  margin-left: 1.04167%;
-  margin-right: 1.04167%;
-}
-
-/*------------------------------------*\
-    $GRID_SYSTEM
-\*------------------------------------*/
-@media only screen and (min-width: 48em) {
-  .col-2 {
-    width: 47.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-    clear: none;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .col-2 {
-    width: 47.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  .col-3 {
-    width: 47.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-    clear: none;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .col-3 {
-    width: 31.25%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  .col-4 {
-    width: 31.25%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-    clear: none;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .col-4 {
-    width: 22.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-/*------------------------------------*\
-    
-\*------------------------------------*/
-@media only screen and (min-width: 48em) {
-  .row2 .col {
-    width: 97.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .row2 .col {
-    width: 47.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  .row3 .col {
-    width: 97.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .row3 .col {
-    width: 31.25%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  .row4 .col {
-    width: 47.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .row4 .col {
-    width: 22.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  .row5 .col {
-    width: 31.25%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .row5 .col {
-    width: 17.91667%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  .row6 .col {
-    width: 31.25%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .row6 .col {
-    width: 14.58333%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-
-/*------------------------------------*\
-    
-\*------------------------------------*/
+/*@import "objects/layout";*/
 /*------------------------------------*\
     $STRUCTURE
 \*------------------------------------*/
@@ -1873,22 +1685,13 @@ p:last-child {
 /*------------------------------------*\
     $HCARD
 \*------------------------------------*/
-.h-card .u-url, .h-card .p-organization-name, .h-card .p-street-address, .h-card .p-locality, .h-card .p-country-name, .h-card .p-tel, .h-card .p-tel-fax, .h-card .u-email {
+.card .u-url, .card .p-organization-name, .card .p-street-address, .card .p-locality, .card .p-country-name, .card .p-tel, .card .p-tel-fax, .card .u-email {
   display: block;
 }
 
 @media only screen and (min-width: 48em) {
-  .h-card .hc-section {
+  .card .vc-section {
     width: 31.25%;
-    margin-left: 1.04167%;
-    margin-right: 1.04167%;
-    clear: none;
-    float: left;
-  }
-}
-@media only screen and (min-width: 60em) {
-  .h-card .hc-section {
-    width: 22.91667%;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
     clear: none;
@@ -3720,8 +3523,7 @@ p:last-child {
  *
 **/
 .togglebox {
-  margin-bottom: 1.125rem;
-  margin-top: 0.375rem;
+  margin-top: 0.75rem;
 }
 .togglebox .tb-subject {
   background-color: white;

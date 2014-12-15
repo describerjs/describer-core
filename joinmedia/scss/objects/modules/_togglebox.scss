@@ -31,10 +31,8 @@
 
 .togglebox {
 	@extend %element-default;
-	margin: {
-		bottom: $space-three-quarter;
-		top: $space-quarter;
-	}
+	@extend %element-nested-default;
+	margin-top: $space-half;
 
 	// Der verantwortliche Link zum öffnen des Toggles "tb-content".
 	.tb-subject {
