@@ -8,7 +8,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	window.jmGO = window.jmGO || {};
 	window.dc = window.dc || {};
 
-
 	$(window).on('hashchange', function() {
 		$body.trigger('dc-hashchange');
 		//work with -> window.location.hash = '#joinmedi';
@@ -49,23 +48,25 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			window.dc.perf = window.dc.perf || 3;
 			return;
 		}*/
-
 		if(window.userOS === 'Android'){
 			switch(true){
-				case /LG-D855/i.test(navigator.userAgent):
-					window.dc.perf = window.dc.perf || 1;
+				case /LG-D855/i.test(navigator.userAgent):      // LG G3
+				/*case /GT-I9300/i.test(navigator.userAgent):
+				case /GT-I9505/i.test(navigator.userAgent):*/
+					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
 					break;
 				default:
-					window.dc.perf = window.dc.perf || 0;
+					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
 			}
 		}else if(window.userOS === 'iOS'){
-			/*if(parseInt(window.userOSver.split('.')[0], 10)){
-
-			}*/
-
-			window.dc.perf = window.dc.perf || 3;
+			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
+				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 3;
+			}else{
+				// iPad 1/ 2/ iPad Mini
+				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+			}
 		}else{
-			window.dc.perf = window.dc.perf || 3;
+			window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 4;
 		}
 	};
 
@@ -729,6 +730,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return $(this).length > 0;
 	};
 
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
+		}
+		else{
+			return results[1] || 0;
+		}
+	};
+
 	$.fn.scrollToMe = function(p_delta_offset){
 		var _delta_offset = 0;
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
@@ -784,5 +795,12 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+
+	if(window.location.href.indexOf('debugview=true') !== -1){
+		window.dc.debugview = true;
+	}
+	if($.urlParam('perf') !== null){
+		window.dc.perf = parseInt($.urlParam('perf'), 10);
+	}
 	jmHF.setDevicePerfForParallax();
 });

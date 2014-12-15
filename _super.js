@@ -225,7 +225,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(window.dc.perf === 0){
 				return;
 			}
-			if(window.dc.perf === 1 || window.dc.perf === 3){
+			if(window.dc.perf === 1 || window.dc.perf === 4){
 				this._execWaitAfterCondition();
 				return;
 			}
@@ -238,17 +238,17 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
 			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
 			for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
-				if(_initByPerfCounter > leni){
-					this._applyOnHoldPlugin(leni);
+				if(_initByPerfCounter > i){
+					this._applyOnHoldPlugin(i);
 				}
-
 			}
 
-			var intervalID = setInterval(this._intervalForApplyOnHoldPlugins, 1000);
-			setTimeout(function(){
-				clearInterval(intervalID);
-			}, 15000);
-
+			if($.type(window.intervalIDForOnHoldPlugins) === 'undefined'){
+				window.intervalIDForOnHoldPlugins = setInterval(this._intervalForApplyOnHoldPlugins.bind(this), 1000);
+				setTimeout(function(){
+					clearInterval(window.intervalIDForOnHoldPlugins);
+				}, 15000);
+			}
 		},
 
 		_execWaitAfterCondition: function(e){
@@ -302,8 +302,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					if(!_obj.exec){
 						_obj.exec = true;
 						_obj._execWaitAfterCondition();
-						if(window.debug){
-							this.$initByPerfCounter.text(' init-fx: '+(i+1)+'/'+leni);
+						if(window.dc.debugview){
+							$('#init-by-perf-counter').text(' init-fx: '+(i+1)+'/'+leni);
 						}
 						return;
 					}else if((leni -1) === i){
@@ -481,7 +481,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		_singelton: function(){
 			window.dc.singleton = true;
 			this._createRAFObjects();
-			if(window.debug){
+			if(window.dc.debugview){
 				this.thempCountedFrames = 0;
 				this._applyRAFDeveloperView();
 			}
@@ -521,21 +521,21 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 			setInterval(function(){
 				if(window.dc.win.counter < that.thempCountedFrames){
-					that.thempCountedFrames = that.thempCountedFrames + 100000001;
+					this.thempCountedFrames = this.thempCountedFrames + 100000001;
 				}
-				window.dc.win.rafs = window.dc.win.counter - that.thempCountedFrames;
+				window.dc.win.rafs = window.dc.win.counter - this.thempCountedFrames;
 				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
 
-				that.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+				this.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
 
 				if(window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
-					that.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
-					that.$initByPerfCounter = $('#init-by-perf-counter');
-					if(window.dc.perf === 1) that.$initByPerfCounter.text(' init-fx: all ');
-					if(window.dc.perf === 2) that.$initByPerfCounter.text(' init-fx: 2 ');
+					this.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
+					this.$initByPerfCounter = $('#init-by-perf-counter');
+					if(window.dc.perf === 1) this.$initByPerfCounter.text(' init-fx: all ');
+					if(window.dc.perf === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
-			}, 1000);
+			}.bind(this), 1000);
 		},
 
 // *********************************  Global-Singelton-Functions End    *********************************************
