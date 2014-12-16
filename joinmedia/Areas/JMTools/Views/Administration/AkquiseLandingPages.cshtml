@@ -1,0 +1,14 @@
+﻿@model List<joinmedia.Areas.JMTools.Models.PageInfo>
+<h2>Akquise LandingPages</h2>
+<table class="table table-striped">
+	@foreach (var page in Model.OrderByDescending(m => m.CreatedAt)) 
+	{
+		<tr>
+			<th>@page.Name</th>
+			<td>@page.LiveUrl</td>
+			<td><a href="@page.PreviewUrl" target="_blank">Preview</a></td>
+			<td>@page.CreatedAt.ToShortDateString() @page.CreatedAt.ToShortTimeString()</td>
+		</tr>
+	}
+</table>
+

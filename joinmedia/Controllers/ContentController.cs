@@ -1,9 +1,13 @@
 ﻿using System;
-using JM.Foundation.Mvc.Helper;
+using System.Linq;
+using System.Web;
+using JM.Foundation.Utils;
 using joinmedia.Infrastructure;
+using joinmedia.Infrastructure.LandingPage;
 using joinmedia.Infrastructure.Models;
 using Piranha.Models;
 using System.Web.Mvc;
+using Configuration = JM.Foundation.Mvc.Helper.Configuration;
 
 namespace joinmedia.Controllers
 {
@@ -79,6 +83,30 @@ namespace joinmedia.Controllers
 		public PartialViewResult _StyleSwitcher()
 		{
 			return PartialView();
+		}
+
+		public ActionResult LandingPage(string id)
+		{
+			var isPreview = RequestParameter.ReadGet("preview", "0") == "1";
+			var lpHandler = new LandingPageHandler();
+			var model = LandingPageHandler.LandingPages.FirstOrDefault(m => m.Key == id).Value;
+
+			if(model == null)
+			{	
+				throw new HttpException(404, "Not found");
+			}
+
+			model.IsPreview = isPreview;
+
+			if (!isPreview && CurrentRequest.IsRealVisitor)
+			{
+				lpHandler.SendNotificationEmail(string.Empty, string.Empty, string.Format("http://www.joinmedia.de/{0}?preview=1", id));
+				lpHandler.TrackRealVisitor(id);
+			}
+
+			Response.AddHeader("X-Robots-Tag", "noindex, nofollow");
+
+			return View(model);
 		}
 
 		[HttpPost]
