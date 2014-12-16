@@ -22,6 +22,8 @@
 	@extend %page-element-default;
 
 	&> section {
+		@include clearfix;
+		clear: both;
 		padding-top: $layout-header-height;
 		position: relative;
 	}
@@ -162,10 +164,6 @@
 
 	.stage-footer {
 		background-color: $theme-stage-bg;
-		padding: {
-			bottom: $space-quarter;
-			top: $space-quarter;
-		}
 
 		@include bp-m {
 			@include absolute('', 0, 0, 0);
@@ -179,6 +177,7 @@
 
 		@include bp-xl {
 			@include indent(left, 1.75);
+			top: 25%;
 		}
 	}
 
@@ -190,13 +189,11 @@
 
 		@include bp-l {
 			@include indent(padding, .2);
-			/*bottom: 15%;*/
 			top: 60%;
 		}
 
 		@include bp-xl {
 			@include indent(padding, 1);
-			/*bottom: 25%;*/
 		}
 	}
 

@@ -69,8 +69,11 @@
 
 .go-down {
 	@include back-to-top(down);
-	/*@include absolute('', 0, $space-quarter, 0);*/
 	display: none;
+	margin: {
+		bottom: $space-quarter;
+		top: $space-quarter;
+	}
 }
 
 
