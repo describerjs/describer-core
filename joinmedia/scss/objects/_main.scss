@@ -20,7 +20,11 @@
 
 .page-main {
 	@extend %page-element-default;
-	margin-top: $layout-header-height;
+
+	&> section {
+		padding-top: $layout-header-height;
+		position: relative;
+	}
 }
 
 

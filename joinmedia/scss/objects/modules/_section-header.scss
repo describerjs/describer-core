@@ -4,6 +4,7 @@
 
 .section-header {
 	@extend %element-default;
+	margin-top: -($layout-header-height);
 	
 	.sh-content {
 		@include constrained;

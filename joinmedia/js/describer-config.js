@@ -21,14 +21,14 @@ define(function(){
 				'data'      : 'display:none',
 				'relatedTo' : 'this.$elem[0]',
 				'condition' : '(window.dc.perf === 1) && (this.$elem[0].offsetHeight !== 0) && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
-				'callback'  : '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0); this.$elem.find(\'[class*="JSINIT-"]\').each(function(index, item){ $(item).removePlugins(); });'
+				'callback'  : 'window.dc.sectionchange = false; (navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0); this.$elem.find(\'[class*="JSINIT-"]\').not(\'[data-jmname="anchor-visible-on-perf1"]\').each(function(index, item){ $(item).removePlugins(); });'
 			},{
 				'event'    : 'dominit|dc-hashchange',
 				'datatype' : 'style',
 				'data'     : 'display:block',
 				'relatedTo': 'this.$elem[0]',
 				'condition': '(window.dc.perf === 1) && (this.$elem[0].offsetHeight === 0) && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
-				'callback' : 'this.$elem.find(\'[data-jmdominit="true"]\').each(function(index, item){ $(item).trigger(\'dominit\'); });',
+				'callback' : 'window.dc.sectionchange = true; this.$elem.find(\'[data-jmdominit="true"]\').not(\'[data-jmname="anchor-visible-on-perf1"]\').each(function(index, item){ $(item).trigger(\'dominit\'); });',
 				'scrollTo' : 'this.$elem[0]'
 			}]
 		},{
