@@ -83,6 +83,7 @@
     this.ey = 0;
     this.ew = 0;
     this.eh = 0;
+	this.initElemHeight = null;
 
     // Element Center
     this.ecx = 0;
@@ -186,6 +187,10 @@
   Plugin.prototype.transform2DSupport = Plugin.prototype.transformSupport('2D');
   Plugin.prototype.transform3DSupport = Plugin.prototype.transformSupport('3D');
   Plugin.prototype.propertyCache = {};
+  Plugin.prototype.aot = null;
+  Plugin.prototype.aob = null;
+  Plugin.prototype.eot = null;
+  Plugin.prototype.animationRange = null;
 
   Plugin.prototype.initialise = function() {
 
@@ -196,14 +201,23 @@
       });
     }
 
-    // Hardware Accelerate Context
+	// Hardware Accelerate Context
     this.accelerate(this.$context);
 
     // Setup
+	$('body').on('dc-documentHeightChange', this.setProperties.bind(this));
+	this.setProperties();
     this.updateLayers();
     this.updateDimensions();
     this.enable();
     this.queueCalibration(this.calibrationDelay);
+  };
+
+  Plugin.prototype.setProperties = function() {
+	  this.aot = (this.actionOffsetTop !== '') ? (parseInt(this.actionOffsetTop.split('%')[0], 10)/100) : 0;
+	  this.aob = (this.actionOffsetBottom !== '') ? (parseInt(this.actionOffsetBottom.split('%')[0], 10)/100) : 0;
+	  this.eot = $(this.element).offset().top;
+	  this.animationRange = (this.animationRange !== '') ? (parseInt(this.animationRange, 10)) : 0;
   };
 
   Plugin.prototype.updateLayers = function() {
@@ -498,21 +512,61 @@
   };
 
   Plugin.prototype.onRAF = function() {
-    var calc;
-    var eot = $(this.element).offset().top;
+	  var _viewportTopTemp;
+	  var _viewportBottomTemp;
+	  var _rangeTemp;
+	  // 1 -> ab 0% - 50% Parallax-Range Ani von Center - Top
+	  // -1 -> ab 50% - 100% Parallax-Range Ani von Bottom - Center
+	  if(this.element.offsetHeight === 0){
+		  this.myraf = requestAnimationFrame(this.onRAF);
+		  return;
+	  }
+	  var calc;
+
+	  var _viewportTop = window.dc.win.pageYOffset - (window.dc.win.innerHeight * this.aob);
+
+	  var _viewportBottom = window.dc.win.pageYOffset + window.dc.win.innerHeight - (window.dc.win.innerHeight * this.aot);
+
+	  var range = _viewportBottom - _viewportTop + this.eh;
+
+	  var portrait = window.dc.win.innerHeight > window.dc.win.innerWidth;
+	  if(window.dc.perf === 1 && window.dc.sectionchanging){
+		  _viewportTopTemp = - (window.dc.win.innerHeight * this.aob);
+		  _viewportBottomTemp = window.dc.win.innerHeight - (window.dc.win.innerHeight * this.aot);
+		  _rangeTemp = _viewportBottomTemp - _viewportTopTemp + this.element.offsetHeight;
+		  this.initElemHeight = this.initElemHeight ||  this.eh;
+		  calc = -2*((_viewportBottomTemp) / _rangeTemp)+1;
+	  }else{
+		  if(_viewportBottom < this.eot){
+			  calc = 1;
+		  }else if(_viewportTop > this.eot + this.eh){
+			  calc = -1;
+		  }else{
+			  calc = -2*((_viewportBottom  - this.eot) / range)+1;
+		  }
+	  }
+	  calc = calc + this.animationRange;//rangeStart  rangeStop
+	  calc = (calc > 1) ? 1 : calc;
+	  calc = (calc < -1) ? -1 : calc;
+	  console.log(calc); // -0.32750462867722696
+
+
+	  //console.log(calc);
+//0.5 - -0.7 calc
+    /*var eot = $(this.element).offset().top;
     var wih = window.dc.win.innerHeight;
     var wpo = window.dc.win.pageYOffset;
-    var first = wpo + wih  > eot;
+    var first = wpo + window.dc.win.innerHeight  > eot;
     var secont = wpo < eot + this.eh;
     var range = wih + this.eh;
-	var portrait = wih > window.dc.win.innerWidth;
+	var portrait = window.dc.win.innerHeight > window.dc.win.innerWidth;
     if(first && ! secont){
 	    calc = 0;
     }else if(!first && secont){
 	    calc = 1;
     }else if(first && secont){
 	    calc = -2*((wpo + wih - eot) / range)+1;
-    }
+    }*/
 
 	if(portrait && (this.gyromouseX || this.gyromouseY) && !this.desktop){
 	  if(this.scrollY) this.ix = calc;
@@ -521,8 +575,8 @@
 	  if(this.scrollY) this.iy = calc;
 	  if(this.scrollX) this.ix = calc;
 	}
+	  this.myraf = requestAnimationFrame(this.onRAF);
 
-    this.myraf = requestAnimationFrame(this.onRAF);
   };
 
   var API = {
