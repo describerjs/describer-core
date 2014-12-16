@@ -1411,6 +1411,7 @@ p:last-child {
 \*------------------------------------*/
 .page-main > section {
   padding-top: 3.75rem;
+  position: relative;
 }
 
 /*------------------------------------*\
