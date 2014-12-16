@@ -512,6 +512,9 @@
   };
 
   Plugin.prototype.onRAF = function() {
+	  var _viewportTopTemp;
+	  var _viewportBottomTemp;
+	  var _rangeTemp;
 	  // 1 -> ab 0% - 50% Parallax-Range Ani von Center - Top
 	  // -1 -> ab 50% - 100% Parallax-Range Ani von Bottom - Center
 	  if(this.element.offsetHeight === 0){
@@ -521,12 +524,18 @@
 	  var calc;
 
 	  var _viewportTop = window.dc.win.pageYOffset - (window.dc.win.innerHeight * this.aob);
+
 	  var _viewportBottom = window.dc.win.pageYOffset + window.dc.win.innerHeight - (window.dc.win.innerHeight * this.aot);
+
 	  var range = _viewportBottom - _viewportTop + this.eh;
+
 	  var portrait = window.dc.win.innerHeight > window.dc.win.innerWidth;
-	  if(window.dc.perf === 1 && window.dc.sectionchange){
+	  if(window.dc.perf === 1 && window.dc.sectionchanging){
+		  _viewportTopTemp = - (window.dc.win.innerHeight * this.aob);
+		  _viewportBottomTemp = window.dc.win.innerHeight - (window.dc.win.innerHeight * this.aot);
+		  _rangeTemp = _viewportBottomTemp - _viewportTopTemp + this.element.offsetHeight;
 		  this.initElemHeight = this.initElemHeight ||  this.eh;
-		  calc = -2*((window.dc.win.innerHeight ) / (window.dc.win.innerHeight + this.element.offsetHeight))+1;
+		  calc = -2*((_viewportBottomTemp) / _rangeTemp)+1;
 	  }else{
 		  if(_viewportBottom < this.eot){
 			  calc = 1;
@@ -535,10 +544,11 @@
 		  }else{
 			  calc = -2*((_viewportBottom  - this.eot) / range)+1;
 		  }
-		  calc = calc + this.animationRange;//rangeStart  rangeStop
-		  calc = (calc > 1) ? 1 : calc;
-		  calc = (calc < -1) ? -1 : calc;
 	  }
+	  calc = calc + this.animationRange;//rangeStart  rangeStop
+	  calc = (calc > 1) ? 1 : calc;
+	  calc = (calc < -1) ? -1 : calc;
+	  console.log(calc); // -0.32750462867722696
 
 
 	  //console.log(calc);
