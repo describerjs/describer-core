@@ -83,6 +83,7 @@
     this.ey = 0;
     this.ew = 0;
     this.eh = 0;
+	this.initElemHeight = null;
 
     // Element Center
     this.ecx = 0;
@@ -518,20 +519,28 @@
 		  return;
 	  }
 	  var calc;
+
 	  var _viewportTop = window.dc.win.pageYOffset - (window.dc.win.innerHeight * this.aob);
 	  var _viewportBottom = window.dc.win.pageYOffset + window.dc.win.innerHeight - (window.dc.win.innerHeight * this.aot);
 	  var range = _viewportBottom - _viewportTop + this.eh;
 	  var portrait = window.dc.win.innerHeight > window.dc.win.innerWidth;
-	  if(_viewportBottom < this.eot){
-		  calc = 1;
-	  }else if(_viewportTop > this.eot + this.eh){
-		  calc = -1;
+	  if(window.dc.perf === 1 && window.dc.sectionchange){
+		  this.initElemHeight = this.initElemHeight ||  this.eh;
+		  calc = -2*((window.dc.win.innerHeight ) / (window.dc.win.innerHeight + this.element.offsetHeight))+1;
 	  }else{
-		  calc = -2*((_viewportBottom - this.eot) / range)+1;
+		  if(_viewportBottom < this.eot){
+			  calc = 1;
+		  }else if(_viewportTop > this.eot + this.eh){
+			  calc = -1;
+		  }else{
+			  calc = -2*((_viewportBottom  - this.eot) / range)+1;
+		  }
+		  calc = calc + this.animationRange;//rangeStart  rangeStop
+		  calc = (calc > 1) ? 1 : calc;
+		  calc = (calc < -1) ? -1 : calc;
 	  }
-	  calc = calc + this.animationRange;//rangeStart  rangeStop
-	  calc =  (calc > 1) ? 1 : calc;
-	  calc =  (calc < -1) ? -1 : calc;
+
+
 	  //console.log(calc);
 //0.5 - -0.7 calc
     /*var eot = $(this.element).offset().top;
