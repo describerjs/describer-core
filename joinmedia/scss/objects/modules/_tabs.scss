@@ -75,6 +75,10 @@ $tabs_i:	1;
 	background-color: $theme-tabs-bg;
 	border: 1px solid $theme-tabs-bg;
 	border-top: 0;
+	margin: {
+		bottom: $space-half;
+		top: $space-half;
+	}
 	padding-top: $default-inner-spacing;
 
 	// Ein Tab <label>
