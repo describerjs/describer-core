@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using joinmedia.Infrastructure;
 
 namespace joinmedia
 {
@@ -24,6 +25,14 @@ namespace joinmedia
 					url: "PiranhaModel/{action}/{id}",
 					defaults: new { controller = "PiranhaModel", action = "Index", id = UrlParameter.Optional },
 					namespaces: new[] { "JM.Foundation.Piranha.Controller" });
+
+			routes
+				.MapRoute(
+					name: "LandingPage",
+					url: "{id}",
+					defaults: new { controller = "Content", action = "LandingPage", id = UrlParameter.Optional },
+					constraints:new { id = new LandingPageConstraint()},
+					namespaces: new[] { "joinmedia.Controllers" });
 
 			routes
 				.MapRoute(

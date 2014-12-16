@@ -5,6 +5,7 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 using JM.Foundation.Mvc.Filter;
 using joinmedia.Areas.JMTools.Models;
+using joinmedia.Infrastructure.LandingPage;
 
 namespace joinmedia.Areas.JMTools.Controllers
 {
@@ -47,6 +48,29 @@ namespace joinmedia.Areas.JMTools.Controllers
 		public ActionResult EventTracing()
 		{
 			return View(getAllTraces());
+		}
+
+		public ActionResult AkquiseLandingPages()
+		{
+			var pages = LandingPageHandler.LandingPages;
+			var keys = pages.Keys;
+			var model = new List<PageInfo>();
+
+			foreach (var key in keys)
+			{
+				var c = pages[key];
+				model.Add(new PageInfo
+				{
+					Name = c.PageTitle,
+					LiveUrl = string.Format("http://www.joinmedia.de/{0}", c.Deeplink),
+					PreviewUrl = string.Format("/{0}?preview=1", c.Deeplink),
+					CreatedAt = c.CreatedAt
+				});
+
+			}
+			model = model.OrderBy(item => item.Name).ToList();
+
+			return View(model);
 		}
 
 
