@@ -3,10 +3,15 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	var $body = $('body');
 
 	// Globales Objekt
+	//alert(navigator.userAgent);
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
 	window.dc = window.dc || {};
-	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+
+	$(window).on('hashchange', function() {
+		$body.trigger('dc-hashchange');
+		//work with -> window.location.hash = '#joinmedi';
+	});
 
 	jmHF.alert = function(p_data){
 		if(window.debug){
@@ -35,6 +40,43 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			$.doTimeout('jmHF.warn', 200, function(){
 				jmHF.alert('Warnung! siehe Console JM ->');
 			});
+		}
+	};
+
+	jmHF.setDevicePerfForParallax = function(){
+		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
+			window.dc.perf = window.dc.perf || 3;
+			return;
+		}*/
+		//alert(navigator.userAgent);
+		if(window.userOS === 'Android'){
+			switch(true){
+				case /LG-D855/i.test(navigator.userAgent):      // LG G3
+				case /Nexus 7/i.test(navigator.userAgent):      // Nexus 7
+				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
+				case /GT-N7100/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
+					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+					break;
+				default:
+					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
+			}
+		}else if(window.userOS === 'iOS'){
+			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
+				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 3;
+			}else{
+				switch(true){
+					case /iPhone/i.test(navigator.userAgent):
+						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
+						break;
+					default:
+						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+						break;
+				}
+			}
+		}else{
+			window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 4;
 		}
 	};
 
@@ -120,6 +162,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				switch(_eventsArray[m]){
 					case 'dominit':
 					case 'dc-orientationchange':
+					case 'dc-hashchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
@@ -169,6 +212,13 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	jmHF.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
+		jmHF.eventDelegationHepler($this, e, param);
+	};
+
+	jmHF.eventDelegationTriggerForDomInit = function(e, param){
+		var $this = $(this);//$(e.target);//
+		e.stopPropagation();
+		e.preventDefault();
 		jmHF.eventDelegationHepler($this, e, param);
 	};
 
@@ -256,6 +306,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				switch(eventArray[i]){
 					case 'dominit':
 					case 'dc-orientationchange':
+					case 'dc-hashchange':
 					case 'blur':
 					case 'focus':
 					case 'hover':
@@ -320,11 +371,12 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
 		var _configObj = jmHF.getConfigObj(jmname);
-		var _jmpluginString = _configObj.jmplugin;
-		if($.type(_jmpluginString) === 'undefined'){
+		var _jmpluginString;
+		if($.type(_configObj) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
 			return;
 		}
+		_jmpluginString = _configObj.jmplugin;
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
@@ -551,6 +603,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	})();
 
+
 	// Object.create support test, and fallback for browsers without it
 	if(typeof Object.create !== "function"){
 		Object.create = function(o){  // http://eloquentjavascript.net/ -> function clone(object) {...}
@@ -687,6 +740,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return $(this).length > 0;
 	};
 
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
+		}
+		else{
+			return results[1] || 0;
+		}
+	};
+
 	$.fn.scrollToMe = function(p_delta_offset){
 		var _delta_offset = 0;
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
@@ -716,5 +779,41 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		});
 	};
 
+	$.fn.removeClassRegExp = function (regexp) {
+		if(regexp && (typeof regexp==='string' || typeof regexp==='object')) {
+			regexp = typeof regexp === 'string' ? regexp = new RegExp(regexp) : regexp;
+			$(this).each(function () {
+				$(this).removeClass(function(i,c) {
+					var classes = [];
+					$.each(c.split(' '), function(i,c) {
+						if(regexp.test(c)) { classes.push(c); }
+					});
+					return classes.join(' ');
+				});
+			});
+		}
+		return this;
+	};
 
+	$.fn.removePlugins = function () {
+		this.off('keyup', '**')
+			.off('blur', '**')
+			.off('focus', '**')
+			.off('mouseover', '**')
+			.removeClassRegExp(/^JSINIT-/)
+			.removeData();
+	};
+
+	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+
+	if(window.location.href.indexOf('debugview=true') !== -1){
+		window.dc.debugview = true;
+	}
+	if($.urlParam('perf') !== null){
+		window.dc.perf = parseInt($.urlParam('perf'), 10);
+	}
+	if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
+		alert(navigator.userAgent);
+	}
+	jmHF.setDevicePerfForParallax();
 });
