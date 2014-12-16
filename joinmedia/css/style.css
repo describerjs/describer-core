@@ -1409,8 +1409,8 @@ p:last-child {
 /*------------------------------------*\
     $MAIN
 \*------------------------------------*/
-.page-main {
-  margin-top: 3.75rem;
+.page-main > section {
+  padding-top: 3.75rem;
 }
 
 /*------------------------------------*\
@@ -1892,6 +1892,7 @@ p:last-child {
   margin: 0 auto;
   text-indent: -1000em;
   width: 3.5rem;
+  /*@include absolute('', 0, $space-quarter, 0);*/
   display: none;
 }
 .go-down:active, .go-down:focus, .go-down:hover {
@@ -1909,7 +1910,7 @@ p:last-child {
 \*------------------------------------*/
 .go-up {
   position: absolute;
-  top: 0.375rem;
+  top: 4.125rem;
   right: 0;
   left: 0;
   display: none;
@@ -3527,6 +3528,9 @@ p:last-child {
 /*------------------------------------*\
     $SECTION-HEADER
 \*------------------------------------*/
+.section-header {
+  margin-top: -3.75rem;
+}
 .section-header .sh-content {
   *zoom: 1;
   margin: 0 auto;
