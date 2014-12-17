@@ -537,16 +537,18 @@ define(function(){
 		},*/
 		{
 			jmname: 'anchor',
-			jmplugin: 'actions.scroll|actions.link',
+			jmplugin: 'actions.scroll|actions.link_1|actions.link_2',
 			jmconfig: [{
 				'event': 'click',
 				'scrollTo': 'this.$elem.attr(\'href\')',
-				'condition': '(window.dc.perf !== 1)'
+				'condition': '(window.dc.perf !== 1) && (window.location.href.indexOf(\'Impressum\') === -1)'
 			},{
-				/*'wait': '1000',*/
 				'event': 'click',
-				/*'callback': '(navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0)',*/
-				'condition': '(window.dc.perf === 1)'
+				'condition': '(window.dc.perf === 1) && (window.location.href.indexOf(\'Impressum\') === -1)'
+			},{
+				'event': 'click',
+				'prefix': '/',
+				'condition': 'window.location.href.indexOf(\'Impressum\') !== -1'
 			}]
 		},
 		{

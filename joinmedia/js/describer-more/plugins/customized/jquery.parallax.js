@@ -548,7 +548,7 @@
 	  calc = calc + this.animationRange;//rangeStart  rangeStop
 	  calc = (calc > 1) ? 1 : calc;
 	  calc = (calc < -1) ? -1 : calc;
-	  console.log(calc); // -0.32750462867722696
+	  //console.log(calc); // -0.32750462867722696
 
 
 	  //console.log(calc);
