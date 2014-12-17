@@ -28,6 +28,14 @@ namespace joinmedia
 
 			routes
 				.MapRoute(
+					name: "LandingPageAjaxHandler",
+					url: "_Handler",
+					defaults: new { controller = "Content", action = "_Handler" },
+					constraints: new { id = new LandingPageConstraint() },
+					namespaces: new[] { "joinmedia.Controllers" });
+
+			routes
+				.MapRoute(
 					name: "LandingPage",
 					url: "{id}",
 					defaults: new { controller = "Content", action = "LandingPage", id = UrlParameter.Optional },

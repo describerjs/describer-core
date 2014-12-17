@@ -10,6 +10,9 @@ namespace joinmedia.Infrastructure
 		{
 			var lpKey = values[parameterName] as string;
 
+			if (lpKey == null)
+				return false;
+
 			return LandingPageHandler.LandingPages.ContainsKey(lpKey);
 		}
 	}

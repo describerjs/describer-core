@@ -80,7 +80,7 @@ $(document).ready(function() {
             // Erste E-Mail senden
             if(!buttonPressed) {
                 var mailParameter = '?kontakt=' + landingpage + '&message=Button wurde gedrückt.';
-                $.post('/handler/Kontakt.ashx' + mailParameter);
+                $.post('/Handler/_Update' + mailParameter);
                 console.log(mailParameter);
                 buttonPressed = true;
             }
@@ -92,7 +92,7 @@ $(document).ready(function() {
 
             // Zweite E-Mail senden
             if(inputNameValue !== '' && inputMailTelValue !== '') {
-                $.post('/handler/Kontakt.ashx' + mailParameter);
+            	$.post('/Handler/_Update' + mailParameter);
                 console.log(mailParameter);
                 toggleModal(modalName, marginTop);
             }
@@ -102,7 +102,7 @@ $(document).ready(function() {
 
             // Dritte E-Mail senden
             if(inputTerminwunschValue !== '') {
-                $.post('/handler/Kontakt.ashx' + mailParameter);
+            	$.post('/Handler/_Update' + mailParameter);
                 console.log(mailParameter);
                 toggleModal(modalName, marginTop);
             }
