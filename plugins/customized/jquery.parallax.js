@@ -34,7 +34,11 @@
 	gyromouseX: false,
 	gyromouseY: false,
 	scrollX: false,
-	scrollY: false
+	scrollY: false,
+	actionOffsetTop: '',
+	actionOffsetBottom: '',
+	animationRange: ''
+
   };
 
   function Plugin(element, options) {
@@ -190,7 +194,6 @@
   Plugin.prototype.aot = null;
   Plugin.prototype.aob = null;
   Plugin.prototype.eot = null;
-  Plugin.prototype.animationRange = null;
 
   Plugin.prototype.initialise = function() {
 
