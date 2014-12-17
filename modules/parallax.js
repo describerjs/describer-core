@@ -42,6 +42,9 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 			if(window.dc.perf === 0){
 				return;
 			}
+			if(!window.dc.singleton){
+				this._singelton();
+			}
 			//return;
 			switch(this.is('data')){
 				case 'orientation':
