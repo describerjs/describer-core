@@ -157,3 +157,5 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 joinmedia/node_modules/
+deploy/
+joinmedia/Properties/PublishProfiles/local deploy.pubxml
