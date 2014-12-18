@@ -42,9 +42,6 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 			if(window.dc.perf === 0){
 				return;
 			}
-			if(!window.dc.singleton){
-				this._singelton();
-			}
 			//return;
 			switch(this.is('data')){
 				case 'orientation':
@@ -65,6 +62,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							animationRange: this.is('animationRange')
 						});
 					}else{
+						this._rafInit();
 						this.$elem.parallax({
 							frictionY: 1,
 							scrollY: true,
@@ -96,6 +94,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							animationRange: this.is('animationRange')
 						});
 					}else{
+						this._rafInit();
 						this.$elem.parallax({
 							gyromouseX: true,
 							frictionY: 1,

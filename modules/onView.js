@@ -55,6 +55,7 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_exec: function(e){
+			this._rafInit();
 			var _viewportTop = window.dc.win.pageYOffset;
 			var _viewportBottom = _viewportTop + window.dc.win.innerHeight;
 			if(jmHF.hasClass(this.$destination[0], 'show')){
