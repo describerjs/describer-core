@@ -17,6 +17,7 @@
 
 		&-append-on-mobile {
 			@include constrained;
+			margin-top: $space;
 
 			@include bp-m {
 				@include element-stretch;
@@ -31,9 +32,13 @@
 
 	.sh-headline {
 		@include element-inner-default;
-		@include absolute('', '', $space-double, '');
+		@include absolute('', '', 0, '');
 		margin-bottom: 0;
 		width: auto;
+
+		@include bp-m {
+			bottom: $space-double;
+		}
 
 		h1, h2, h3, h4, h5, h6 {
 			@include rgba($theme-section-header-bg, .8);

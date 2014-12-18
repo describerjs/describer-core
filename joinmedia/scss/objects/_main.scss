@@ -164,6 +164,7 @@
 
 	.stage-footer {
 		background-color: $theme-stage-bg;
+		z-index: 1;
 
 		@include bp-m {
 			@include absolute('', 0, 0, 0);
@@ -175,6 +176,10 @@
 		@include element-inner-default;
 		@include absolute(15%, 0, '', 0);
 
+		@include bp-l {
+			top: 20%;
+		}
+
 		@include bp-xl {
 			@include indent(left, 1.75);
 			top: 25%;
@@ -182,6 +187,8 @@
 	}
 
 	.stage-main {
+		margin-top: $dist;
+
 		@include bp-m {
 			@include column(12);
 			@include absolute('', 0, 10%, 0);
@@ -189,11 +196,12 @@
 
 		@include bp-l {
 			@include indent(padding, .2);
-			top: 60%;
+			top: 55%;
 		}
 
 		@include bp-xl {
 			@include indent(padding, 1);
+			top: 60%;
 		}
 	}
 

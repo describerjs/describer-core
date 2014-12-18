@@ -80,7 +80,7 @@ h3, .h3 {
 	@extend %as-heading-mobile__medium;
 	@extend %as-heading-mobile__medium--typeset;
 	border-bottom: 2px solid $theme-headings-fg;
-	padding-bottom: $space-quarter;
+	padding-bottom: $space-half;
 
 	@include bp-m {
 		@include as-heading__medium;
