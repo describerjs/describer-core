@@ -223,7 +223,9 @@ $menu-btn-height: 2.5rem;
 	}
 	
 	@include bp-l {
+		@include move(0);
 		float: left;
+		position: initial;
 	}
 
 	// Innerhalb des "menu-item" wird die "flyout" getoggled.
