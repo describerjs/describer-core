@@ -352,6 +352,14 @@
     <Content Include="css\noscript.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="favicon\apple-touch-icon-114x114-precomposed.png" />
+    <Content Include="favicon\apple-touch-icon-114x114.png" />
+    <Content Include="favicon\apple-touch-icon-144x144-precomposed.png" />
+    <Content Include="favicon\apple-touch-icon-57x57-precomposed.png" />
+    <Content Include="favicon\apple-touch-icon-72x72-precomposed.png" />
+    <Content Include="favicon\apple-touch-icon-72x72.png" />
+    <Content Include="favicon\apple-touch-icon.png" />
+    <Content Include="favicon\favicon.ico" />
     <Content Include="fonts\robotoslab_bold\RobotoSlab-Bold-webfont.svg" />
     <Content Include="fonts\robotoslab_regular\RobotoSlab-Regular-webfont.svg" />
     <Content Include="fonts\roboto_light\Roboto-Light-webfont.svg" />
