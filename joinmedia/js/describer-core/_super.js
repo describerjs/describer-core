@@ -110,6 +110,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				// andernfalls wird nur der String zurückgegeben.
 				case 'relatedTo':
 				case 'scrollTo':
+				case 'scrollToOffset':
 				case 'data':
 				case 'loaderTo':
 					// return String or Dom-Element/e
