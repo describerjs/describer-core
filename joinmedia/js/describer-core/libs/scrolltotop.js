@@ -6,7 +6,8 @@ define(['jquery', 'rAF'], function ($) {
 
 	$.fn.scrollToTop = function(position){
 		var $this = this;
-		var targetY = position || 0;
+		var $body = $('body');
+		var targetY = Math.round(position) || 0;
 		var initialY = $this.scrollTop();
 		var lastY = initialY;
 		var delta = targetY - initialY;// duration in ms, make it a bit shorter for short distances
@@ -26,9 +27,6 @@ define(['jquery', 'rAF'], function ($) {
 		if(scrollToTopInProgress){
 			return;
 		}
-		if(delta == 0){
-			return;
-		}
 
 		// quint ease-in-out smoothing, from
 		// https://github.com/madrobby/scripty2/blob/master/src/effects/transitions/penner.js#L127-L136
@@ -42,6 +40,7 @@ define(['jquery', 'rAF'], function ($) {
 		function abort(){
 			$this.off('touchstart', cancelScroll);
 			scrollToTopInProgress = false;
+			$body.trigger('dc-scrollEnd');
 		}
 
 		// when there's a touch detected while scrolling is in progress, abort
