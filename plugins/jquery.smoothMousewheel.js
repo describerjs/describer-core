@@ -1,23 +1,15 @@
 /*!
- * jQuery Smoothwheel Plugin v1.0
+ * jQuery SmoothMousewheel Plugin v1.0
  *
  * Copyright (c) 2014 Andreas Otten (aotten77)
  * Released under the MIT license
  */
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else {
-        // Browser globals
-        factory(jQuery);
-    }
-}(function ($) {
-	$.smoothwheel = function(options){
-		if(window.smoothwheel || navigator.platform.toLowerCase().indexOf('win') === -1 || navigator.userAgent.toLowerCase().indexOf('firefox') === 0 ) return;
-		window.smoothwheel = true;
+(function ($) {
+	$.smoothMousewheel = function(options){
+		if(window.smoothMousewheel || navigator.platform.toLowerCase().indexOf('win') === -1 || navigator.userAgent.toLowerCase().indexOf('firefox') === 0 ) return;
+		window.smoothMousewheel = true;
 		var opt = $.extend({
-			friction: 0.15,
+			friction: 0.2,
 			deltaSteps: 100
 		}, options);
 
@@ -34,7 +26,7 @@
 		var _onAnimationFrame = function(){
 			viewY += (scrollToY - viewY) * opt.friction;
 			window.scrollTo(scrollToX, Math.round(viewY));
-			if((window.dc.win.pageYOffset || window.pageYOffset) !== scrollToY){
+			if(window.pageYOffset !== scrollToY){
 				raf = requestAnimationFrame(_onAnimationFrame);
 			}else{
 				scrollwheel = false;
@@ -60,4 +52,4 @@
 			return false;
 		});
 	};
-}));
+})(jQuery);
