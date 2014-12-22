@@ -72,9 +72,14 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
-			if(this.includes('event', 'dc-orientationchange')) this.$elem.closest('body').on('dc-orientationchange', this._execWaitAfterCondition.bind(this));
-			if(this.includes('event', 'dc-hashchange')) this.$elem.closest('body').on('dc-hashchange', this._execWaitAfterCondition.bind(this));
+			// dynamic dc-eventlistener on body
+			if(this.startsWith('event', 'dc-')){
+				for(var i = 0, leni = this.dcEvents.length; i < leni; i++){
+					this.$elem.closest('body').on(this.dcEvents[i], this._execWaitAfterCondition.bind(this));
+				}
+			}
 		},
+
 
 // *********************************  Event-Functions End    ********************************************************
 
@@ -144,6 +149,27 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			// gibt true zurück, wenn der hinterlegte Sting von p_dataAttr p_value enthält. Andernfalls wird false zurückgegeben.
 			// return Bool
 			return($.type(this.configObj[p_dataAttr]) !== 'undefined' && $.inArray(p_value, this.configObj[p_dataAttr].split('|')) !== -1);
+		},
+
+		// gibt den aktuellen bool zurück. Siehe includes-funktion.
+		startsWithNow: function(p_dataAttr, p_value){
+			this.startsWith(p_dataAttr, p_value, true);
+		},
+
+		startsWith: function(p_dataAttr, p_value, p_now){
+			var that = this;
+			this.configObj = this._getConfigObjArray(p_now);
+			// gibt true zurück, wenn (p_dataAttr === p_value) ist, andernfalls wird false zurückgegeben.
+			// return Bool
+			return($.type(this.configObj[p_dataAttr]) !== 'undefined' && ($.inArray(true, $.map(this.configObj[p_dataAttr].split('|'), function(s) {
+				if(/^dc-/i.test(s)){
+					that.dcEvents = that.dcEvents || [];
+					if(that.dcEvents[s]) return true;
+					that.dcEvents.push(s);
+					return true;
+				}
+				return false;
+			}))) !== -1);
 		},
 
 		// gibt den aktuellen bool zurück. Siehe includes-funktion.
