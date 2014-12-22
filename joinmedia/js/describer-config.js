@@ -13,23 +13,43 @@ define(function(){
 	return [
 		{
 			jmname   : 'section-toggle',
-			jmplugin: 'actions.add_1|actions.add_2',
+			jmplugin: 'actions.exec|actions.add_1|actions.add_2|actions.add_3|actions.scroll_1|actions.scroll_2',
 			jmconfig : [{
-				'event'     : 'dominit|dc-hashchange',
-				'wait'      : '1000',
+				'event'     : 'dc-hashchange',
+				'exec' : 'window.scrollBy(window.pageYOffset,0);',
+				'condition' : '(window.dc.perf === 1)'
+			},{
+				'event'     : 'dominit',
 				'datatype'  : 'style',
 				'data'      : 'display:none',
 				'relatedTo' : 'this.$elem[0]',
-				'condition' : '(window.dc.perf === 1) && (this.$elem[0].offsetHeight !== 0) && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
+				'condition' : '(window.dc.perf === 1) && (this.$elem[0].offsetHeight !== 0) && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))|| (this.$elem.find(window.location.hash).doesExist())))',
 				'callback'  : 'window.dc.sectionchanging = false; (navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0); this.$elem.find(\'[class*="JSINIT-"]\').not(\'[data-jmname="anchor-visible-on-perf1"]\').each(function(index, item){ $(item).removePlugins(); });'
+			},{
+				'event'     : 'dc-scrollEnd',
+				'datatype'  : 'style',
+				'data'      : 'display:none',
+				'relatedTo' : 'this.$elem[0]',
+				'condition' : '(window.dc.perf === 1) && (this.$elem[0].offsetHeight !== 0) && (!((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))|| (this.$elem.find(window.location.hash).doesExist())))',
+				'callback'  : 'window.dc.sectionchanging = false; (navigator.userAgent.indexOf(\'AppleWebKit\') !== -1) ? $(\'body\').scrollTop(0) : $(\'html\').scrollTop(0); this.$elem.jmtrigger(\'scrollNow\'); this.$elem.find(\'[class*="JSINIT-"]\').not(\'[data-jmname="anchor-visible-on-perf1"]\').each(function(index, item){ $(item).removePlugins(); });'
 			},{
 				'event'    : 'dominit|dc-hashchange',
 				'datatype' : 'style',
 				'data'     : 'display:block',
 				'relatedTo': 'this.$elem[0]',
-				'condition': '(window.dc.perf === 1) && (this.$elem[0].offsetHeight === 0) && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\'))))',
-				'callback' : 'window.dc.sectionchanging = true; this.$elem.find(\'[data-jmdominit="true"]\').not(\'[data-jmname="anchor-visible-on-perf1"]\').each(function(index, item){ $(item).trigger(\'dominit\'); });',
-				'scrollTo' : 'this.$elem[0]'
+				'condition': '(window.dc.perf === 1) && (this.$elem[0].offsetHeight === 0) && (((window.location.hash === \'\' && this.$elem.attr(\'id\') === \'stage\') || (window.location.hash === \'#\'+this.$elem.attr(\'id\')) || (this.$elem.find(window.location.hash).doesExist())))',
+				'callback' : 'if(window.location.hash === \'#\'+this.$elem.attr(\'id\')){this.$elem.jmtrigger(\'scrollNow\');}else{$(\'body\').trigger(\'dc-scrollEnd\')} window.dc.sectionchanging = true; this.$elem.find(\'[data-jmdominit="true"]\').not(\'[data-jmname="anchor-visible-on-perf1"]\').each(function(index, item){ $(item).trigger(\'dominit\'); });'
+			},{
+				'event'    : 'dominit',
+				'wait'     : '1000',
+				'scrollTo' : 'this.$elem.closest(\'body\').find(window.location.hash)[0]',
+				'scrollToOffset' : '-(this.$elem.closest(\'body\').find(\'.page-header\').height())',
+				'condition': '(window.dc.perf === 1) && (this.$elem.find(window.location.hash).doesExist())'
+			},{
+				'event'    : 'jmtrigger:scrollNow',
+				'scrollTo' : 'this.$elem.closest(\'body\').find(window.location.hash)[0]',
+				'scrollToOffset' : '-((this.$elem.find(window.location.hash).doesExist()) ? this.$elem.closest(\'body\').find(\'.page-header\').height() : 0)',
+				'condition': '(window.dc.perf === 1)'
 			}]
 		},{
 			jmname   : 'nav-toggle',
