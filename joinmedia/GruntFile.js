@@ -78,7 +78,7 @@ module.exports = function(grunt){
 	grunt.registerTask('task_step1', function(){
 		grunt.initConfig({
 			clean: {
-				clean: ["css/build/", "js/build/"]
+				clean: ["css/main/min", "js/build/"]
 			},
 			uglify: {
 				build : {
@@ -91,8 +91,8 @@ module.exports = function(grunt){
 			cssmin: {
 				compress: {
 					files: {
-						'css/build/style.css': ['css/style.css'],
-						'css/build/noscript.css': ['css/noscript.css'],
+						'css/main/min/style.css': ['css/main/style.css'],
+						'css/main/min/noscript.css': ['css/main/noscript.css'],
 						'js/build/describer-more/require-css/video.css': ['js/describer-more/require-css/video.css']
 					}
 				}
@@ -125,7 +125,7 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			revisions: {
 				rename: {
-					src: ['js/build/**', 'css/build/**', '!js/build/empty.js'],
+					src: ['js/build/**', 'css/main/min/**', '!js/build/empty.js'],
 					dest: ''
 				}
 			}
@@ -220,10 +220,10 @@ module.exports = function(grunt){
 					src: ['Views/Shared/_Layout.cshtml'],             // source files array (supports minimatch)
 					dest: 'Views/Shared/_Layout.cshtml',             // destination directory or file
 					replacements: [{
-						from: /css\/build\/style(.*?)\.css/g,          // string replacement
+						from: /css\/main\/min\/style(.*?)\.css/g,          // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
 							var _filename = '';
-							grunt.file.recurse('css/build', callback);
+							grunt.file.recurse('css/main/min', callback);
 							function callback(abspath, rootdir, subdir, filename) {
 								var str = filename;
 								var patt = new RegExp(/^style.(.*)/g);
@@ -234,14 +234,14 @@ module.exports = function(grunt){
 								}
 
 							}
-							return "css/build/" + _filename;
+							return "css/main/min/" + _filename;
 						}
 					},
 						{
-							from: /css\/build\/noscript(.*?)\.css/g,          // string replacement
+							from: /css\/main\/min\/noscript(.*?)\.css/g,          // string replacement
 							to: function(matchedWord, index, fullText, regexMatches){
 								var _filename = '';
-								grunt.file.recurse('css/build', callback);
+								grunt.file.recurse('css/main/min', callback);
 								function callback(abspath, rootdir, subdir, filename) {
 									var str = filename;
 									var patt = new RegExp(/^noscript.(.*)/g);
@@ -252,7 +252,7 @@ module.exports = function(grunt){
 									}
 
 								}
-								return "css/build/" + _filename;
+								return "css/main/min/" + _filename;
 							}
 						},
 						{
@@ -509,4 +509,227 @@ module.exports = function(grunt){
 	//// ******************* mac Task for Image-Optim ***********************
 
 	//grunt.registerTask('default_imageoptim', ['task_imageoptim', 'imageoptim' ]);
+
+
+
+
+	// ******************* Akquise Tasks ****************************
+	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-rename');
+
+	grunt.initConfig({
+
+		clean: {
+			main: {
+				src: ['css/main']
+			},
+			akquise_lp: {
+				src: ['css/akquise-lp', 'js/akquise-lp/dist']
+			},
+		},
+
+		concat: {
+			akquise_lp: {
+				src: [
+					'js/akquise-lp/libs/matchMedia.js', 
+					'js/akquise-lp/libs/matchMedia.addListener.js', 
+					'js/akquise-lp/libs/jquery-2.1.1.js', 
+					'js/akquise-lp/libs/jquery.kinetic.js', 
+					'js/akquise-lp/libs/enquire.js', 
+					'js/akquise-lp/libs/picturefill.js', 
+					'js/akquise-lp/akquise-lp.js'
+					],
+				dest: 'js/akquise-lp/dist/akquise-lp.js',
+			}
+		},
+
+		uglify: {
+			akquise_lp: {
+				options: {
+					mangle: true,
+					compress: {
+						drop_console: true
+					}
+				},
+				files: {
+					'js/akquise-lp/dist/min/akquise-lp.js': ['js/akquise-lp/dist/akquise-lp.js']
+				}
+			}
+		},
+
+		compass: {
+			main_development: {
+				options: {
+					sassDir: 'scss/main',
+					cssDir: 'css/main',
+					environment: 'development',
+					outputStyle: 'expanded',
+				},
+			},
+			main_production: {
+				options: {
+					sassDir: 'scss/main',
+					cssDir: 'css/main/min',
+					environment: 'production', 
+					outputStyle: 'compressed',
+				}
+			},
+			akquise_lp_development: {
+				options: {
+					sassDir: 'scss/akquise-lp',
+					cssDir: 'css/akquise-lp',
+					environment: 'development',
+					outputStyle: 'expanded',
+				},
+			},
+			akquise_lp_production: {
+				options: {
+					sassDir: 'scss/akquise-lp',
+					cssDir: 'css/akquise-lp/min',
+					environment: 'production', 
+					outputStyle: 'compressed',
+				}
+			}
+		},
+
+		rename: {
+			akquise_lp_css: {
+				src: 'css/akquise-lp/styles.css',
+				dest: 'css/akquise-lp/akquise-lp.css'
+			},
+			akquise_lp_css_min: {
+				src: 'css/akquise-lp/min/styles.css',
+				dest: 'css/akquise-lp/min/akquise-lp.css'
+			},
+		},
+
+		revisions: {
+			main_css: {
+				src: ['css/main/min/*'],
+				dest: ''
+			},
+			akquise_lp_css: {
+				src: ['css/akquise-lp/min/akquise-lp.css'],
+				dest: ''
+			},
+			akquise_lp_js: {
+				src: ['js/akquise-lp/dist/min/akquise-lp.js'],
+				dest: ''
+			}
+		},
+
+		replace: {
+			akquise_lp_css: {
+				src: ['Views/Content/LandingPage.cshtml'],
+				dest: 'Views/Content/LandingPage.cshtml',
+				replacements: [{
+					from: /css\/akquise\-lp\/min\/(.*?)\.css/g,
+					to: function(matchedWord, index, fullText, regexMatches){
+						var _filename = '';
+						grunt.file.recurse('css/akquise-lp/min', callback);
+						function callback(abspath, rootdir, subdir, filename) {
+							var str = filename;
+							var patt = new RegExp(/akquise\-lp\.(.*)\.css/g);
+							var res = patt.test(str);
+							if(res){
+								// grunt.log.write('res: '+_filename);
+								_filename = str;
+							}
+						}
+						return "css/akquise-lp/min/"+ _filename;
+					}
+				}]
+			},
+			akquise_lp_js: {
+				src: ['Views/Content/LandingPage.cshtml'],
+				dest: 'Views/Content/LandingPage.cshtml',
+				replacements: [{
+					from: /js\/akquise\-lp\/dist\/min\/(.*?)\.js/g,
+					to: function(matchedWord, index, fullText, regexMatches){
+						var _filename = '';
+						grunt.file.recurse('js/akquise-lp/dist/min', callback);
+						function callback(abspath, rootdir, subdir, filename) {
+							var str = filename;
+							var patt = new RegExp(/akquise\-lp\.(.*)\.js/g);
+							var res = patt.test(str);
+							if(res){
+								// grunt.log.write('res: '+_filename);
+								_filename = str;
+							}
+						}
+						return "js/akquise-lp/dist/min/"+ _filename;
+					}
+				}]
+			},
+			main_css: {
+				src: ['Views/Shared/_Layout.cshtml'],
+				dest: 'Views/Shared/_Layout.cshtml',
+				replacements: [{
+					from: /css\/main\/min\/style(.*?)\.css/g,
+					to: function(matchedWord, index, fullText, regexMatches){
+						var _filename = '';
+						grunt.file.recurse('css/main/min', callback);
+						function callback(abspath, rootdir, subdir, filename) {
+							var str = filename;
+							var patt = new RegExp(/^style.(.*)/g);
+							var res = patt.test(str);
+							if(res){
+								// grunt.log.write('res: '+_filename);
+								_filename = str;
+							}
+
+						}
+						return "css/main/min/" + _filename;
+					}
+				}]
+			},
+			main_noscript_css: {
+				src: ['Views/Shared/_Layout.cshtml'],
+				dest: 'Views/Shared/_Layout.cshtml',
+				replacements: [{
+					from: /css\/main\/min\/noscript(.*?)\.css/g,
+					to: function(matchedWord, index, fullText, regexMatches){
+						var _filename = '';
+						grunt.file.recurse('css/main/min', callback);
+						function callback(abspath, rootdir, subdir, filename) {
+							var str = filename;
+							var patt = new RegExp(/^noscript.(.*)/g);
+							var res = patt.test(str);
+							if(res){
+								// grunt.log.write('res: '+_filename);
+								_filename = str;
+							}
+
+						}
+						return "css/main/min/" + _filename;
+					}
+				}]
+			}
+		},
+
+	});
+
+	grunt.registerTask('task_build_akquise_lp', 'Build CSS and JS for the Akquise-Landingpage.', [
+		'clean:akquise_lp', 
+		'concat:akquise_lp',
+		'uglify:akquise_lp',
+		'compass:akquise_lp_development',
+		'compass:akquise_lp_production',
+		'rename:akquise_lp_css',
+		'rename:akquise_lp_css_min',
+		'revisions:akquise_lp_css',
+		'revisions:akquise_lp_js',
+		'replace:akquise_lp_css',
+		'replace:akquise_lp_js'
+	]);
+
+	grunt.registerTask('task_build_main_css', 'Build CSS for the main page.', [
+		'clean:main', 
+		'compass:main_development',
+		'compass:main_production',
+		'revisions:main_css',
+		'replace:main_css',
+		'replace:main_noscript_css',
+	]);
+
 };

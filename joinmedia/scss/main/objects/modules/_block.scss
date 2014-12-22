@@ -104,7 +104,7 @@
 
 
 	&.img-bottom {
-		@extend %img-direction-vertical;
+		// @extend %img-direction-vertical;
 	}
 	
 	&.img-left {
@@ -133,7 +133,7 @@
 	}
 
 	&.img-top {
-		@extend %img-direction-vertical;
+		// @extend %img-direction-vertical;
 	}
 
 	&.img-center {

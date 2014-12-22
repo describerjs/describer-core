@@ -1,0 +1,759 @@
+.wrap {
+    @include container;
+    padding: 0 1em;
+}
+
+.row {
+    @include clearfix;
+    overflow: visible;
+}
+
+// ==========================================
+// Notification
+// ==========================================
+
+.notification {
+    background-color: darken($orange, 10%);
+    color: $white;
+    padding: 1em 0;
+    display: none;
+    visibility: hidden;
+
+    p {
+        margin: 0;
+        float: left;
+    }
+
+    &.hide {
+        display: none;
+        visibility: hidden;
+    }
+
+    @include bp-medium {
+        display: block;
+        visibility: visible;
+    }
+}
+
+.notification-close {
+    background-image: url(/img/akquise-lp/ui-elements/cancel.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    text-indent: -9999px;
+    display: inline;
+    float: right;
+    margin-top: 3px;
+}
+
+// ==========================================
+// Header
+// ==========================================
+
+.header {
+    border-bottom: 1px solid #ae350d;
+    padding: 1.5em 0 1em 0;
+}
+
+.logo-container {
+    @include bp-medium {
+        @include span-columns(12);
+    }
+
+    @include bp-large {
+        @include span-columns(7);
+    }
+}
+
+.logo {
+    img {
+        width: 160px;
+    }
+}
+
+// ======================
+// Navigation
+// ======================
+
+.nav {
+    margin-top: 1em;
+
+    @include bp-medium {
+        @include span-columns(5);
+    }
+
+    @include bp-large {
+        @include span-columns(3);
+        margin-top: 0.6em;
+    }
+}
+
+.nav-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-item-link {
+    text-decoration: none;
+    color: $white;
+    font-size: 1.3em;
+    display: block;
+    background-color: darken($orange, 10%);
+    padding: .7em .5em;
+    text-align: center;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        background-color: darken($orange, 20%);
+        color: $white;
+    }
+}
+
+// ======================
+// Kunden Logos
+// ======================
+
+.kunden-container {
+    @include bp-medium {
+        @include span-columns(7 omega);
+        margin-top: -24px;
+    }
+
+    @include bp-large {
+        @include span-columns(5 omega);
+        margin-top: 5px;
+    }
+}
+
+.kunden-logo-head {
+    margin: 0 0 .5em;
+
+    @include bp-medium {
+        margin: 0 0 .65em;
+    }
+
+    @include bp-large {
+        margin: -12px 0 0.35em;
+    }
+}
+
+.kunden-logos {
+    @include clearfix;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        @include span-columns(3);
+        background-color: $white;
+        height: 50px;
+        position: relative;
+
+        &:last-child {
+            @include omega;
+        }
+
+        @media only screen and (min-width: 350px) {
+            height: 60px;
+        }
+
+        @media only screen and (min-width: 400px) {
+            height: 70px;
+        }
+
+        @media only screen and (min-width: 550px) {
+            height: 90px;
+        }
+
+        @include bp-medium {
+            height: 60px;
+        }
+
+        @include bp-large {
+            height: 54px;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 80%;
+
+            @media only screen and (min-width: 400px) {
+                width: 60px;
+            }
+
+            @media only screen and (min-width: 550px) {
+                width: 80px;
+            }
+
+            @include bp-medium {
+                width: 60px;
+            }
+
+            &.toohigh {
+                @include bp-large {
+                    width: 50px;
+                }
+            }
+        }
+    }
+}
+
+// ==========================================
+// Stage
+// ==========================================
+
+.stage {
+    background-color: $orange;
+    color: $white;
+    padding-bottom: 2em;
+    position: relative;
+
+    @include bp-massive {
+        max-height: 880px;
+        margin-bottom: 9em;
+    }
+}
+
+// ======================
+// Smartphone
+// ======================
+
+.stage-wrap {
+    @include bp-medium {
+        @include container;
+        padding: 0 1em;
+    }
+}
+
+.smartphone-box {
+    @include bp-large {
+        margin-top: -22em;
+        @include span-columns(6);
+    }
+
+    @include bp-huge {
+        @include span-columns(5);
+        margin-top: -20em;
+    }
+
+    @include bp-massive {
+        @include span-columns(5);
+        margin-left: 0;
+        margin-top: -20em;
+    }
+}
+
+/*------------------------------------*\
+    $SMARTPHONE_CONTAINER
+\*------------------------------------*/
+
+%smartphone-container-element {
+    position: absolute;
+    width: 100%;
+
+    @include bp-mini {
+        left: -2px;
+    }
+
+    @include bp-small {
+        left: -3px;
+    }
+
+    @include bp-medium {
+        left: -15px;
+    }
+}
+
+.smartphone-header {
+    @extend %smartphone-container-element;
+    top: 0;
+}
+
+.smartphone-bottom {
+    @extend %smartphone-container-element;
+    bottom: 0;
+}
+
+.smartphone-body {
+    @extend %smartphone-container-element;
+
+    bottom: 199px;
+    top: 237px;
+
+    @include bp-mini {
+        bottom: 257px;
+        top: 307px;
+    }
+
+    .smartphone-container-img {
+        height: 100%;
+    }
+}
+
+.smartphone-container-img {
+    display: block;
+    max-width: 118.4375%;
+    margin: 0 -8.4375% 0 -10%;
+    width: 118.4375%;
+
+    @include bp-mini {
+        margin: 0 auto;
+        max-width: 379px;
+        width: 100%;
+    }
+}
+
+/*------------------------------------*\
+    $SMARTPHONE_CONTAINER
+\*------------------------------------*/
+
+// Distance für "smartphone" und "scroll" muss gleich sein.
+$scroll-distance-bottom: 45.1%;
+$scroll-distance-top: 43.8%;
+
+$scroll-distance-bottom-micro: 29%;
+$scroll-distance-top-micro: 28%;
+
+$scroll-distance-bottom-mini: 141px;
+$scroll-distance-top-mini: 141px;
+
+.smartphone {
+    overflow: hidden;
+    padding: $scroll-distance-top 0 $scroll-distance-bottom;
+    position: relative;
+
+    @include bp-micro {
+        margin: 0 16.25% 0 19.375%; // 52/320 | 62/320
+        padding: $scroll-distance-top-micro 0 $scroll-distance-bottom-micro;
+        overflow: visible;
+    }
+
+    @include bp-mini {
+        margin: 0 auto;
+        padding: $scroll-distance-top-mini 0 $scroll-distance-bottom-mini;
+    }
+
+    @include bp-medium {
+        /*background-image: url("/img/akquise-lp/grafiken/iphone.png");
+        background-repeat: no-repeat;
+        background-size: 100%;*/
+        width: 505px; //was 480px;
+        height: 830px; //was 875 | was 830px;
+    }
+}
+
+.scroll {
+    @include bp-medium {
+        overflow: hidden;
+        position: absolute;
+        // width: 171px;
+        // height: 291px;
+        // top: 76px;
+        // left: 43px;
+        width: 320px; //was 304px;
+        height: 569px; //was 517px;
+        top: $scroll-distance-top-mini; //was 143, was 136px;
+        left: 80px; //was 76px;
+    }
+}
+
+.scroll-inner {
+    @include bp-medium {
+        overflow: scroll;
+        // width: 171px;
+        // height: 291px;
+        width: 321px;
+        height: 545px; //was 534px;
+
+        &:hover {
+            cursor: ns-resize;
+        }
+    }
+}
+
+.scroll-image {
+    @include bp-micro {
+        width: 360px;
+    }
+
+    @include bp-mini {
+        width: 460px;
+    }
+
+    @include bp-medium {
+        width: auto;
+        margin: 0;
+        padding: 0;
+    } 
+
+    img {
+        max-width: none;
+        width: 100%;
+        margin: 0 auto;
+        display: block;
+
+        @include bp-micro {
+            max-width: 100%;
+            width: auto;
+        }
+    }
+}
+
+// ======================
+// Stage Headline
+// ======================
+
+.stage-headline-box {
+    @include bp-large {
+        @include span-columns(6 omega);
+    }
+
+    @include bp-huge {
+        @include span-columns(7 omega);
+    }
+
+}
+
+.stage-headline {
+    margin: 1em 0 0 0;
+    text-align: center;
+
+    @include bp-large {
+        text-align: left;
+    }
+
+}
+
+.stage-subhead {
+    margin: 0.6em 0 0.6em 0;
+    text-align: center;
+
+    @include bp-large {
+        text-align: left;
+        margin: 0.6em 0 0.6em 0;
+    }
+
+    &.red {
+        font-size: 1.75em;
+        color: darken($orange, 20%);
+
+        @include bp-medium {
+            font-size: 2em;
+        }
+    }
+}
+
+// ======================
+// List
+// ======================
+
+.fact-wrap {
+    @include container;
+
+    @include bp-large {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.facts-box {
+    @include bp-large {
+        @include span-columns(6 omega);
+    }
+
+    @include bp-huge {
+        @include span-columns(7 omega);
+        // @include post(1);
+    }
+
+    @include bp-massive {
+        @include span-columns(7 omega);
+    }
+}
+
+.list-check-row {
+    @include clearfix;
+
+    @include bp-huge {
+        overflow: visible;
+    }
+}
+
+.list-check {
+    margin: 0 0 2em 0;
+    padding: 0;
+    list-style: none;
+
+    @include bp-micro {
+        @include span-columns(10);
+        @include pre(1);
+        @include post(1);
+    }
+
+    @include bp-mini {
+        @include span-columns(8);
+        @include pre(2);
+        @include post(2);
+    }
+
+    @include bp-large {
+        @include span-columns(12);
+        float: none;
+        padding: 0;
+    }
+
+    li {
+        // font-size: 1.3em;
+        // list-style: none;
+        // padding: 9px 0px 9px 44px;
+        // background-image: url(../img/bullet-tick.png);
+        // background-repeat: no-repeat;
+        // background-position: 0px 4px;
+        // background-size: 30px;
+
+        // @media only screen and (min-width: emify(700px)) { 
+        //     font-size: 1.5em;
+        //     line-height: 1.3;
+        //     background-position: 0px 7px;
+        //     background-size: 40px;
+        //     padding: 13px 0px 13px 54px;
+        // }
+    }
+}
+
+.list-check-link {
+    position: relative;
+    display: block;
+    color: $white;
+    text-decoration: none;
+    font-size: 1.3em;
+    padding: 15px 45px 15px 50px;
+    margin-bottom: 5px;
+    background-color: darken($orange, 10%);
+    background-image: url(/img/akquise-lp/ui-elements/bullet-tick.png);
+    background-repeat: no-repeat;
+    background-position: 10px 50%;
+    background-size: 30px;
+    @include transition(all .2s ease-in-out);
+
+    &:hover {
+        background-color: darken($orange, 20%);
+        text-decoration: none;
+        color: $white;
+
+        &:after {
+            @include transform(translateX(3px));
+        }
+    }
+
+    &:after {
+        @include transition(all .2s ease-in-out);
+        content: '';
+        width: 25px;
+        height: 100%;
+        background-image: url(/img/akquise-lp/ui-elements/arrow-right-small.png);
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        background-size: 10px 17px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    @media only screen and (min-width: emify(700px)) { 
+        font-size: 1.5em;
+        line-height: 1.3;
+        // background-position: 0px 7px;
+        // background-size: 40px;
+        // padding: 13px 0px 13px 54px;
+    }
+}
+
+// ======================
+// CTA
+// ======================
+
+.cta {
+    text-align: center;
+    background-color: $blue;
+    color: $white;
+    padding: 5em 0;
+}
+
+.stage-cta {
+    text-align: center;
+    background-color: darken($orange, 10%);
+    color: $white;
+    padding: 2em 1em;
+
+    @include bp-medium {
+        margin: 0;
+        padding: 1.5em;
+    }
+}
+
+.cta-headline {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+// ==========================================
+// Conversion
+// ==========================================
+
+.conversion {
+    padding-bottom: 2em;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: $orange;
+    }
+}
+
+.conversion-headline {
+    margin: 2em 0 1em 0;
+    text-align: center;
+}
+
+.conversion-image-top,
+.conversion-image-bottom {
+    @include bp-micro {
+        @include span-columns(10);
+        @include pre(1);
+        @include post(1);
+    }
+
+    @include bp-mini {
+        @include span-columns(8);
+        @include pre(2);
+        @include post(2);
+    }
+
+    @include bp-medium {
+        @include span-columns(6);
+        @include pre(3);
+        @include post(3);
+    }
+}
+
+.conversion-text {
+    margin-top: 1em;
+    text-align: center;
+
+    @include bp-medium {
+        @include span-columns(8);
+        @include pre(2);
+        @include post(2);
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+}
+
+// ==========================================
+// Footer
+// ==========================================
+
+.footer {
+    background-color: $grey-dark;
+    color: $white;
+    padding: 2em 0;
+
+    a {
+        color: $white;
+    }
+}
+
+// ==========================================
+// Modal
+// ==========================================
+
+.modal {
+    background-color: rgba($black, .75);
+    color: $black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    @include transition(opacity .2s ease-in-out);
+
+    @include bp-medium {
+        background-color: rgba($orange, .9);
+    }
+
+    &.visible {
+        display: block;
+        visibility: visible;
+    }
+
+    &.fadeIn {
+        opacity: 1;
+    }
+
+    .wrap {
+        @include bp-medium {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+    }
+}
+
+.modal-inner {
+    background-color: rgba($white, 1);
+    max-width: 600px;
+    margin: 0 auto;
+    @include bp-medium {
+        // height: 100%;
+    }
+}
+
+.modal-head {
+    border-bottom: 1px solid $orange;
+    margin-bottom: 1.5em;
+    height: 51px;
+}
+
+.modal-footer {
+    border-top: 1px solid $orange;
+    margin-top: 1.5em;
+    height: 51px;
+
+    @include bp-medium {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+.modal-close {
+    background-image: url(/img/akquise-lp/ui-elements/cancel-dark.png);
+    width: 44px;
+    height: 44px;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    text-indent: -9999px;
+    display: block;
+    opacity: 0.2;
+    float: right;
+    margin-top: 3px;
+}
+
+.abstand-oben {
+    margin-top: 1.5em;
+}
+
+.modal-form {
+    margin-bottom: 2em;
+}

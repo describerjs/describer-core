@@ -1,0 +1,250 @@
+// ==========================================
+// General
+// ==========================================
+
+// Border-Box 
+// http:/paulirish.com/2012/box-sizing-border-box-ftw/ 
+*, *:before, *:after { 
+	 -webkit-box-sizing: border-box; 
+		-moz-box-sizing: border-box; 
+			 box-sizing: border-box; 
+}
+
+// html, 
+// body {
+// 	height: 100%;
+// 	min-height: 100%;
+// 	max-height: 100%; // ? 
+// }
+
+html {
+	background-color: $white;
+	color: $font-base-colour;
+	font: 80%/1.5 $font;
+	min-height: 100%;
+	position: relative;
+}
+
+body {
+	@include adjust-font-size-to($base-font-size, 3); 
+	font-style: normal;
+	font-weight: 400;
+	height: 100%;
+}
+
+// ==========================================
+// Headings
+// ==========================================
+// http://typecast.com/blog/a-more-modern-scale-for-web-typography
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: $headline-font;
+	font-weight: normal;
+}
+
+h1, .h1 { 
+	@include adjust-font-size-to(32px, 5);
+	margin: 0 0 rhythm(5, 32px) 0;
+
+	@include bp-medium {
+		@include adjust-font-size-to(40px, 5.5);
+		margin: 0 0 rhythm(7, 40px) 0;
+	}
+
+	@include bp-large {
+		@include adjust-font-size-to(48px, 7);
+		margin: 0 0 rhythm(8, 48px) 0;
+	}
+} 
+			
+h2, .h2 { 
+	@include adjust-font-size-to(26px, 4);
+	margin: rhythm(4, 26px) 0 rhythm(2, 26px) 0;
+
+	@include bp-medium {
+		@include adjust-font-size-to(32px, 5);
+		margin: rhythm(4, 32px) 0 rhythm(2, 32px) 0;
+	}
+
+	@include bp-large {
+		@include adjust-font-size-to(36px, 6.075);
+		margin: rhythm(4, 36px) 0 rhythm(2, 36px) 0;
+	}
+}
+
+h3, .h3 { 
+	@include adjust-font-size-to(22px, 4);
+	margin: rhythm(4, 22px) 0 rhythm(2, 22px) 0;
+
+	@include bp-medium {
+		@include adjust-font-size-to(24px, 4.035);
+		margin: rhythm(4, 24px) 0 rhythm(2, 24px) 0;
+	}
+
+	@include bp-large {
+		@include adjust-font-size-to(28px, 4.9);
+		margin: rhythm(4, 28px) 0 rhythm(2, 28px) 0;
+	}
+} 
+
+h4, .h4, h5, .h5, h6, .h6 { 
+	@include adjust-font-size-to(18px, 3.042);
+	margin: rhythm(2, 18px) 0 rhythm(1, 18px) 0;
+}
+
+// ==========================================
+// Links
+// ==========================================
+
+h1, h2, h3, h4, h5, h6 {
+	a {
+		color: $font-base-colour;
+		text-decoration: none;
+		outline: 0;
+		transition: all .2s ease-in-out;
+
+		&:hover, 
+		&:focus,
+		&:active {
+			color: $orange;
+		}
+	}
+}
+
+a {
+	color: $font-base-colour;
+	text-decoration: underline;
+	outline: 0;
+	transition: all .2s ease-in-out;
+	
+	&:hover, 
+	&:focus,
+	&:active {
+		color: lighten($font-base-colour, 15%);
+		text-decoration: none;
+	}
+}
+
+// ==========================================
+// Lists
+// ==========================================
+
+ol, ul {
+	padding-left: 1.2em;
+
+	@media only screen and (min-width: $bp-medium) { 
+		padding-left: 0;
+	}
+}
+
+// ==========================================
+// Standart Text Styles
+// ==========================================
+
+p {
+	font-size: 1.3em;
+	line-height: 1.5;
+}
+
+p, pre, label { 
+	margin: 0 0 rhythm(3, 16px) 0;
+}
+
+strong, b { 
+	font-weight: 600; 
+}
+
+em, i, q { 
+	font-style: italic; 
+}
+
+blockquote {
+	padding-left: $space-double;
+	border-left: $space-half solid $orange;
+	color: $grey;
+	@include adjust-font-size-to(20px, 3.5);
+	margin: rhythm(3, 20px) 0;
+
+	@include bp-medium {
+		@include adjust-font-size-to(24px, 4.5);
+		margin: rhythm(3, 24px) 0;
+	}
+
+	p {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	.citation {
+		display: inline-block;
+		margin-top: $space;
+	}
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	background: $orange;
+	margin: $space-double 0;
+}
+
+mark {
+	background-color: $blue;
+}
+
+s, strike, del {
+	text-decoration: line-through;
+	color: $grey;
+}
+
+// ==========================================
+// Media
+// ==========================================
+
+img, 
+video, 
+object ,
+iframe {
+	max-width: 100%;
+	height: auto;
+}
+
+object {
+	pointer-events: none; // make links with svgs clickable, eg. logo
+}
+
+figcaption {
+	font-style: italic;
+	margin-top: rhythm(1, 16px);
+}
+
+// ==========================================
+// Special Text Styles (Pullquotes, ..)
+// ==========================================
+
+.hgroup {
+	.mainheading {
+		color: $orange;
+	}
+
+	.subheading {
+		margin-top: 0;
+		color: $grey-dark;
+	}
+}
+
+address {
+	font-style: normal;
+}
+
+.orange {
+	display: inline;
+	line-height: 1.9em;
+	padding: 0.2em 0.4em;
+	width: auto;
+	background: $white;
+	color: $orange;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}

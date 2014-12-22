@@ -10815,7 +10815,7 @@ $(document).ready(function() {
             // Erste E-Mail senden
             if(!buttonPressed) {
                 var mailParameter = '?kontakt=' + landingpage + '&message=Button wurde gedrückt.';
-                $.post('/Handler/_Update' + mailParameter);
+                $.post('/handler/Kontakt.ashx' + mailParameter);
                 console.log(mailParameter);
                 buttonPressed = true;
             }
@@ -10827,7 +10827,7 @@ $(document).ready(function() {
 
             // Zweite E-Mail senden
             if(inputNameValue !== '' && inputMailTelValue !== '') {
-            	$.post('/Handler/_Update' + mailParameter);
+                $.post('/handler/Kontakt.ashx' + mailParameter);
                 console.log(mailParameter);
                 toggleModal(modalName, marginTop);
             }
@@ -10837,7 +10837,7 @@ $(document).ready(function() {
 
             // Dritte E-Mail senden
             if(inputTerminwunschValue !== '') {
-            	$.post('/Handler/_Update' + mailParameter);
+                $.post('/handler/Kontakt.ashx' + mailParameter);
                 console.log(mailParameter);
                 toggleModal(modalName, marginTop);
             }

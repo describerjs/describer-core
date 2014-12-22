@@ -1,0 +1,72 @@
+// ==========================================
+// Variables
+// ==========================================
+
+// ===========================
+// join.media Farben
+// ===========================
+$orange-medium:     #c53d0f;
+$orange: 		    #dd4411;
+$orange-light: 	    #ff6611;
+$orange-ultralight: #EE5511;
+
+$blue: 			    #389ea7;
+$blue-light: 	    #38c6d3;
+
+$black:             #1A1A1A;
+$grey:              #666666;
+$grey-dark:         #333333;
+$grey-light:        #dadada;
+$grey-ultralight:   #F0F0F0;
+$white:             #ffffff;
+
+// ===========================
+// Typografie Setup
+// ===========================
+$font:              "robotolight", sans-serif;
+$headline-font: 	"roboto_slabregular", sans-serif;
+$font-base-colour: 	$black;
+
+$base-font-size: 	16px;
+$base-line-height: 	8px;
+
+// ==========================================
+// Susy Setup
+// ==========================================
+$container-style: 	magic;
+$container-width:	1200px;
+
+$total-columns: 	12;
+$column-width: 		64px;
+$gutter-width: 		16px;
+$grid-padding: 		$gutter-width*1.5;
+
+// ===========================
+// Margins & Paddings
+// ===========================
+$space: 			rhythm(1, 16px);
+$space-and-half: 	$space*1.5;
+$space-double:  	$space*2;
+$space-triple:  	$space*3;
+$space-quad: 		$space*4;
+$space-penta: 		$space*5;
+$space-hexa: 		$space*6;
+$space-hepta: 		$space*7;
+$space-octa: 		$space*8;
+$space-nona: 		$space*9;
+$space-deca: 		$space*10;
+$space-half: 		$space/2;
+$space-quarter: 	$space/4;
+
+// ===========================
+// Breakpoints
+// ===========================
+$bp-micro: emify(390px);
+$bp-mini: emify(450px);
+$bp-small: emify(500px);
+$bp-small-l: emify(650px);
+$bp-small-xl: emify(750px);
+$bp-medium: emify(900px);
+$bp-medium-l: emify(1000px);
+$bp-medium-xl: emify(1024px);
+$bp-large: emify(1200px);

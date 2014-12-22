@@ -2,7 +2,7 @@
     "debug": false,
     "lintScripts": false,
     "preprocessorLocations": [
-        "scss"
+        "scss/main"
     ],
     "preprocessorScriptOutput": null,
     "preprocessorStyleOutput": "css",

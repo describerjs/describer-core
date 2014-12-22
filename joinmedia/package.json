@@ -14,7 +14,9 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "~0.2.0",
     "grunt-text-replace": "*",
+    "grunt-contrib-compass": "~0.9.0",
     "grunt-webp": "0.0.4",
+    "grunt-rename": "~0.1.3",
     "xml2js": "0.4.4",
     "webp-bin": "0.1.4"
   }

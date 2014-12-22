@@ -1,0 +1,145 @@
+// ====================================================
+// == Forms                                          ==
+// ====================================================
+
+form > div {
+  margin-bottom: $space;
+}
+
+form ol,
+form ul {
+  list-style: none;
+  margin-left: 0;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+label {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  margin: 0;
+  padding: 0;
+}
+
+label,
+legend {
+  display: block;
+  padding-bottom: 0.5em;
+  font-size: 1.3em;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px $space;
+  border: 0;
+  line-height: 1.4;
+  font-size: 1.3em;
+  border-bottom: 2px solid $orange;
+  @include border-radius(5px);
+  background-color: $grey-ultralight;
+  color: $grey-dark;
+  transition: border .15s ease-in;
+
+  // @include bp-medium {
+  //   width: auto;
+  // }
+
+  &:focus {
+    outline: 0;
+    border-bottom: 2px solid $white;
+  }
+}
+
+// TODO: Error and Success Validation in input fields
+
+input[type="text"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
+textarea {
+  -webkit-appearance: none;
+}
+
+input[type="color"],
+input[type="range"] {
+  height: $space-and-half;
+  vertical-align: middle;
+}
+
+input[type="color"] {
+  width: $space-and-half;
+  padding: 0 0.1rem;
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  @extend .btn-primary;
+  width: auto;
+  cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+}
+
+select {
+  option {
+    color: $grey-dark;
+  }
+}
+
+.field-container {
+  margin-bottom: $space-double;
+}
+
+// =================================
+// == Placeholder         ==
+// =================================
+
+::-webkit-input-placeholder {
+   color: darken($grey-light, 10%);
+}
+
+:-moz-placeholder {
+   color: darken($grey-light, 10%);
+}
+
+::-moz-placeholder {
+   color: darken($grey-light, 10%);
+}
+
+:-ms-input-placeholder {
+   color: darken($grey-light, 10%);
+}

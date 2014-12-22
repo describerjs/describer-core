@@ -1,3 +1,5 @@
+//@prepros-prepend libs/matchMedia.js
+//@prepros-prepend libs/matchMedia.addListener.js
 //@prepros-prepend libs/jquery-2.1.1.js
 //@prepros-prepend libs/jquery.kinetic.js
 //@prepros-prepend libs/enquire.js
@@ -80,7 +82,7 @@ $(document).ready(function() {
             // Erste E-Mail senden
             if(!buttonPressed) {
                 var mailParameter = '?kontakt=' + landingpage + '&message=Button wurde gedrückt.';
-                $.post('/Handler/_Update' + mailParameter);
+                $.post('/handler/Kontakt.ashx' + mailParameter);
                 console.log(mailParameter);
                 buttonPressed = true;
             }
@@ -92,7 +94,7 @@ $(document).ready(function() {
 
             // Zweite E-Mail senden
             if(inputNameValue !== '' && inputMailTelValue !== '') {
-            	$.post('/Handler/_Update' + mailParameter);
+                $.post('/handler/Kontakt.ashx' + mailParameter);
                 console.log(mailParameter);
                 toggleModal(modalName, marginTop);
             }
@@ -102,7 +104,7 @@ $(document).ready(function() {
 
             // Dritte E-Mail senden
             if(inputTerminwunschValue !== '') {
-            	$.post('/Handler/_Update' + mailParameter);
+                $.post('/handler/Kontakt.ashx' + mailParameter);
                 console.log(mailParameter);
                 toggleModal(modalName, marginTop);
             }
