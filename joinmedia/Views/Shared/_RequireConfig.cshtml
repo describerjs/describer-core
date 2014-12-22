@@ -72,7 +72,7 @@ require.config({
 		'jquery_countdown'                                  : buildPath+'describer-more/plugins/customized/jquery.countdown',
 		'jquery_countdown-de'                               : buildPath+'describer-more/plugins/customized/jquery.countdown-de',
 		'jquery_exif'                                       : buildPath+'describer-more/plugins/customized/jquery.exif',
-        'jquery_smoothwheel'                                : buildPath+'describer-more/plugins/customized/jquery.smoothwheel',
+        'jquery_smoothMousewheel'                                : buildPath+'describer-more/plugins/customized/jquery.smoothMousewheel',
 		'jquery_parallax'                                   : buildPath+'describer-more/plugins/customized/jquery.parallax',
 		'jquery_plugin'                                     : buildPath+'describer-more/plugins/customized/jquery.plugin',
 		'jquery_validate'                                   : buildPath+'describer-more/plugins/customized/jquery.validate',
@@ -89,6 +89,9 @@ require.config({
 	shim: {
 		'jquery_canvasResize': {
 			deps: ['jquery_exif', 'jquery']
+		},
+		'jquery_smoothMousewheel': {
+			deps: ['jquery_mousewheel', 'jquery']
 		},
 		'fastclick': {
 			//These script dependencies should be loaded before loading

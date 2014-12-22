@@ -83,7 +83,7 @@ require.config({
 		'jquery_exif'                                       : 'describer-more/plugins/customized/jquery.exif',
 		'jquery_parallax'                                   : 'describer-more/plugins/customized/jquery.parallax',
 		'jquery_plugin'                                     : 'describer-more/plugins/customized/jquery.plugin',
-		'jquery_smoothwheel'                                : 'describer-more/plugins/customized/jquery.smoothwheel',
+		'jquery_smoothMousewheel'                                : 'describer-more/plugins/customized/jquery.smoothMousewheel',
 		'jquery_validate'                                   : 'describer-more/plugins/customized/jquery.validate',
 		'owl_carousel'                                      : 'describer-more/plugins/customized/owl.carousel',
 		'video'                                             : 'describer-more/plugins/customized/video',
