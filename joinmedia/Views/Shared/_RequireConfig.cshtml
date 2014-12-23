@@ -33,6 +33,7 @@ require.config({
 
 
 		// ******************* describer-more ******************************
+		'config.googlemap'                                  : buildPath+'describer-more/config/googlemap',
 		'modules.carousel'                                  : buildPath+'describer-more/modules/carousel',
 		'modules.carousel-ts'                               : buildPath+'describer-more/modules/carousel-ts',
 
@@ -45,6 +46,7 @@ require.config({
 		'modules.form.formvalidate-addon'                   : buildPath+'describer-more/modules/form/formvalidate-addon',
 		'modules.form.selectOptionExtractInGroup'           : buildPath+'describer-more/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                         : buildPath+'describer-more/modules/form/submitbutton',
+		'modules.googlemap'                                 : buildPath+'describer-more/modules/googlemap',
 		'modules.fotoupload'                                : buildPath+'describer-more/modules/fotoupload',
 		'modules.modal'                                     : buildPath+'describer-more/modules/modal',
         'modules.onView'                                    : buildPath+'describer-more/modules/onView',
@@ -84,7 +86,9 @@ require.config({
 		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel',
 
 		// CSS for components
-		'require-css.video'                                 : buildPath+'describer-more/require-css/video'
+		'require-css.video'                                 : buildPath+'describer-more/require-css/video',
+
+		'async'                                             : buildPath+'describer-core/libs/async'
 	},
 	shim: {
 		'jquery_canvasResize': {

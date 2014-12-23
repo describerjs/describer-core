@@ -55,6 +55,7 @@ require.config({
 		'modules.form.selectOptionExtractInGroup'           : 'describer-more/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                         : 'describer-more/modules/form/submitbutton',
 		'modules.fotoupload'                                : 'describer-more/modules/fotoupload',
+		'modules.googlemap'                                 : 'describer-more/modules/googlemap',
 		'modules.modal'                                     : 'describer-more/modules/modal',
 		'modules.onView'                                    : 'describer-more/modules/onView',
 		'modules.parallax'                                  : 'describer-more/modules/parallax',
