@@ -239,11 +239,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 
 			// raf-100ms-one
-			this.cAF = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
+			this.oneTimeExec = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
 			this.renderDelay = this._getRenderDelay();
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
-			window.dc.execRafObj['func_' + window.dc.execRafObj.countProperties()] = this._render.bind(this);
+			this._addRenderFunctionToExecRafObj();
 
 		},
 
@@ -606,12 +606,36 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.$elem.offsetHeight === 0){
 				return;
 			}
-			if(eval(this.conditionSource) && !this.cAF){
+			if(!this.oneTimeExec && eval(this.conditionSource)){
 				this._exec();
+				return;
+			}
+			if(this.oneTimeExec && eval(this.conditionSource)){
+				this._exec();
+				this._removeRenderFunctionFromExecRafObj();
 			}
 		},
 
 // *********************************  raf-Functions HOT-CODE End    *************************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  add/remove renderFunctions Begin  *********************************************
+
+		_addRenderFunctionToExecRafObj: function(){
+			this.renderFunctionIndex = window.dc.execRafObj.countProperties();
+			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
+		},
+
+		_removeRenderFunctionFromExecRafObj: function(){
+			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = null;
+			delete window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex];
+		},
+
+// *********************************  add/remove renderFunctions End  ***********************************************
 
 //###################################################################################################################
 //###################################################################################################################

@@ -591,6 +591,16 @@ define(function(){
 			}]
 		},
 		{
+			jmname: 'googlemap-joinmedia',
+			jmplugin: 'modules.googlemap',
+			jmconfig: {
+				'event': 'raf-6',
+				'relatedTo': 'this.$elem[0]',
+				'offsetTop': '-2000px',
+				'configMapName': 'joinmedia'
+			}
+		},
+		{
 			jmname   : 'test1',
 			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
 			jmconfig : [
