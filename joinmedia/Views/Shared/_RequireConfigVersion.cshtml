@@ -10,14 +10,14 @@ require.config({
 	paths      : {
 		// ******************* describer-core ******************************
 		'jquery'                                            : pathToJQuery,
-		'scrolltotop'                                       : buildPath+'describer-core/libs/scrolltotop.b08575',
+		'scrolltotop'                                       : buildPath+'describer-core/libs/scrolltotop.7bbf3e',
 		'rAF'                                               : buildPath+'describer-core/libs/rAF.1ad539',
 
 		// mylibs
-		'_config'                                           : buildPath+'describer-config.a9861b',
-		'core'                                              : buildPath+'describer-core/core.ccc09e',
+		'_config'                                           : buildPath+'describer-config.938a09',
+		'core'                                              : buildPath+'describer-core/core.f85fe7',
 
-		'_super'                                            : buildPath+'describer-core/_super.f1680b',
+		'_super'                                            : buildPath+'describer-core/_super.082b5d',
 		'actions.add'                                       : buildPath+'describer-core/actions/add.98a413',
 		'actions.ajax'                                      : buildPath+'describer-core/actions/ajax.e1ae8c',
         'actions.apply'                                     : buildPath+'describer-core/actions/apply.6eaa03',
@@ -33,6 +33,7 @@ require.config({
 
 
 		// ******************* describer-more ******************************
+		'config.googlemap'                                  : buildPath+'describer-more/config/googlemap',
 		'modules.carousel'                                  : buildPath+'describer-more/modules/carousel.616a9c',
 		'modules.carousel-ts'                               : buildPath+'empty',
 
@@ -45,10 +46,11 @@ require.config({
 		'modules.form.formvalidate-addon'                   : buildPath+'describer-more/modules/form/formvalidate-addon.bb7de8',
 		'modules.form.selectOptionExtractInGroup'           : buildPath+'describer-more/modules/form/selectOptionExtractInGroup.b8aff8',
 		'modules.form.submitbutton'                         : buildPath+'describer-more/modules/form/submitbutton.db6aef',
+		'modules.googlemap'                                 : buildPath+'describer-more/modules/googlemap.2191b4',
 		'modules.fotoupload'                                : buildPath+'describer-more/modules/fotoupload.9caf6b',
 		'modules.modal'                                     : buildPath+'describer-more/modules/modal.a9ffbb',
-        'modules.onView'                                    : buildPath+'describer-more/modules/onView.07709b',
-		'modules.parallax'                                  : buildPath+'describer-more/modules/parallax.8cc4cc',
+        'modules.onView'                                    : buildPath+'describer-more/modules/onView.a094e2',
+		'modules.parallax'                                  : buildPath+'describer-more/modules/parallax.ab8234',
 		'modules.scrollControlFrames'                       : buildPath+'describer-more/modules/scrollControlFrames.fd8b3f',
 		'modules.scrollControlTransform'                    : buildPath+'describer-more/modules/scrollControlTransform.9df26e',
 		'modules.tablesort'                                 : buildPath+'describer-more/modules/tablesort.4d87ee',
@@ -72,7 +74,7 @@ require.config({
 		'jquery_countdown'                                  : buildPath+'describer-more/plugins/customized/jquery.countdown.5dea9a',
 		'jquery_countdown-de'                               : buildPath+'describer-more/plugins/customized/jquery.countdown-de.a422f0',
 		'jquery_exif'                                       : buildPath+'describer-more/plugins/customized/jquery.exif.2da176',
-        'jquery_smoothwheel'                                : buildPath+'describer-more/plugins/customized/jquery.smoothwheel.b95f7b',
+        'jquery_smoothMousewheel'                                : buildPath+'describer-more/plugins/customized/jquery.smoothMousewheel.83352b',
 		'jquery_parallax'                                   : buildPath+'describer-more/plugins/customized/jquery.parallax.3221ac',
 		'jquery_plugin'                                     : buildPath+'describer-more/plugins/customized/jquery.plugin.29555f',
 		'jquery_validate'                                   : buildPath+'describer-more/plugins/customized/jquery.validate.7fefca',
@@ -84,11 +86,16 @@ require.config({
 		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel.c3ef50',
 
 		// CSS for components
-		'require-css.video'                                 : buildPath+'describer-more/require-css/video.240ff7'
+		'require-css.video'                                 : buildPath+'describer-more/require-css/video.240ff7',
+
+		'async'                                             : buildPath+'describer-core/libs/async.5d796a'
 	},
 	shim: {
 		'jquery_canvasResize': {
 			deps: ['jquery_exif', 'jquery']
+		},
+		'jquery_smoothMousewheel': {
+			deps: ['jquery_mousewheel', 'jquery']
 		},
 		'fastclick': {
 			//These script dependencies should be loaded before loading
