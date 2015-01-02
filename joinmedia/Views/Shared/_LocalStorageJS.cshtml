@@ -225,7 +225,7 @@
                     localStorage['timestamp'] = new Date().getTime().toString();
                 }else{
                     // wenn der timestamp im localStorage kleiner ist als der fest codierte Timestamp, wird wird der localStorage gelöscht.
-                    if (parseInt(localStorage['timestamp'], 10) < 1402389706108) { // Nicht Ändern!!!! So wird bei allen Clients der localStorage gelöscht!!!! Nur Ändern, wenn sich die Datei-Pfad in der main.js zu den Modulen ändern Bsp. require.config({  paths:{ 'jmButtonForAddClassOnRelatedElem': 'mylibs/AMD-Plugins/jmButtonForAddClassOnRelatedElem',......
+                    if (parseInt(localStorage['timestamp'], 10) < 1420186140795) { // Nicht Ändern!!!! So wird bei allen Clients der localStorage gelöscht!!!! Nur aktualisieren, wenn sich die Datei-Pfad (require.config({ paths:{'actions.add':' 'describer-core/actions/add' ...... }}); in der require-main.js ändert.
                         window.localStorage.clear();
                     }
                 }
