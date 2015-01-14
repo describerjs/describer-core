@@ -159,3 +159,5 @@ $RECYCLE.BIN/
 joinmedia/node_modules/
 deploy/
 joinmedia/Properties/PublishProfiles/local deploy.pubxml
+joinmedia/.idea/
+joinmedia/css/main/min/
