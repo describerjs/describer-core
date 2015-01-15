@@ -13,7 +13,7 @@ namespace joinmedia.Infrastructure
 			if (lpKey == null)
 				return false;
 
-			return LandingPageHandler.LandingPages.ContainsKey(lpKey);
+			return LandingPageHandler.LandingPages.ContainsKey(lpKey.ToLowerInvariant());
 		}
 	}
 }
