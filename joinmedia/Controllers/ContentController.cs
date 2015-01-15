@@ -68,9 +68,13 @@ namespace joinmedia.Controllers
 		/// <returns></returns>
 		public ActionResult LandingPage(string id)
 		{
+		    var key = (id ?? string.Empty).ToLowerInvariant();
+            if(string.IsNullOrEmpty(key))
+                throw new HttpException(404, "Not found");
+
 			var isPreview = RequestParameter.ReadGet("preview", "0") == "1";
 			var lpHandler = new LandingPageHandler();
-			var model = LandingPageHandler.LandingPages.FirstOrDefault(m => m.Key == id).Value;
+			var model = LandingPageHandler.LandingPages.FirstOrDefault(m => m.Key == key).Value;
 
 			if (model == null)
 			{
