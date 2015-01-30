@@ -62,6 +62,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							animationRange: this.is('animationRange')
 						});
 					}else{
+						this.guaranteeDCRAF();
 						this.$elem.parallax({
 							frictionY: 1,
 							scrollY: true,
@@ -93,6 +94,7 @@ define(['jquery', '_super', 'jquery_parallax', 'rAF'], function ($, _super){
 							animationRange: this.is('animationRange')
 						});
 					}else{
+						this.guaranteeDCRAF();
 						this.$elem.parallax({
 							gyromouseX: true,
 							frictionY: 1,

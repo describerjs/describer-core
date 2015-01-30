@@ -151,7 +151,7 @@ define(function() {
     var linkElem;
     var styleElem;
     var linkUrl = url;
-        if (window.UseLocalStorage && testLocalStorage() && (localStorage[url] === undefined)) {
+        if (dc.useLocalStorage && dc.localStorage.test() && (localStorage[url] === undefined)) {
         // window.localStorage is available!
         linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
@@ -160,7 +160,7 @@ define(function() {
         document.getElementsByTagName('head')[0].appendChild(linkElem);
 
         
-    } else if (window.UseLocalStorage && testLocalStorage() && (localStorage[url] !== undefined)) {
+    } else if (dc.useLocalStorage && dc.localStorage.test() && (localStorage[url] !== undefined)) {
         styleElem = document.createElement('style');
         styleElem.appendChild(document.createTextNode(localStorage[url]));
         document.getElementsByTagName('head')[0].appendChild(styleElem);
@@ -182,7 +182,7 @@ define(function() {
           xhr.send();
           xhr.onreadystatechange = function () {
               if (xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== '') {
-                  clearLocalStorageForKey(url);
+	              dc.localStorage.clearOldVersionEntry(url);
                   localStorage[url] = xhr.responseText;
               }
           };

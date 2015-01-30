@@ -1837,8 +1837,8 @@ var requirejs, require, define;
 			xhr,
 			scriptElem;
         if (isBrowser) {
-	        if (window.UseLocalStorage && (moduleName !== 'main') && window.testLocalStorage() && (localStorage[url] !== undefined)) {
-		        window.tryToEvalLocalStorageStirngOrFixIt(localStorage[url], url, moduleName, function(){context.completeLoad(moduleName)});
+	        if (dc.useLocalStorage && (moduleName !== 'main') && dc.localStorage.test() && (localStorage[url] !== undefined)) {
+		        dc.localStorage.addLocalStorageEntryToDom(localStorage[url], url, moduleName, function(){context.completeLoad(moduleName)});
 	        }else{
 		        //In the browser so use a script tag
 		        node = req.createNode(config, moduleName, url);
@@ -1899,7 +1899,7 @@ var requirejs, require, define;
 			        head.appendChild(node);
 		        }
 		        currentlyAddingScript = null;
-		        if (window.UseLocalStorage && (moduleName !== 'main') && window.testLocalStorage() && (localStorage[url] === undefined)) {
+		        if (dc.useLocalStorage && (moduleName !== 'main') && dc.localStorage.test() && (localStorage[url] === undefined)) {
 			        // window.localStorage is available!
 			        xhr = new XMLHttpRequest();
 
@@ -1908,7 +1908,7 @@ var requirejs, require, define;
 
 			        xhr.onreadystatechange = function () {
 				        if (xhr.readyState === 4 && xhr.status !== 404 && xhr.responseText !== '') {
-					        clearLocalStorageForKey(url);
+					        dc.localStorage.clearOldVersionEntry(url);
 					        localStorage.setItem(url, xhr.responseText);
 					        //eval(xhr.responseText);
 
