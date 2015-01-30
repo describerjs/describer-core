@@ -14,19 +14,19 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	});
 
 	jmHF.alert = function(p_data){
-		if(window.debug){
+		if(dc.debug){
 			window.alert(p_data);
 		}
 	};
 
 	jmHF.log = function(p_data){
-		if(window.debug){
+		if(dc.debug){
 			window.console.log(p_data);
 		}
 	};
 
 	jmHF.error = function(p_data){
-		if(window.debug){
+		if(dc.debug){
 			window.console.trace('%cJM \n ->'+p_data+'', 'color: red; font-style: italic');
 			$.doTimeout('jmHF.error', 200, function(){
 				jmHF.alert('Fehler! siehe Console JM ->');
@@ -35,7 +35,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	jmHF.warn = function(p_data){
-		if(window.debug){
+		if(dc.debug){
 			window.console.trace('%cJM \n ->'+p_data+'', 'color: orange; font-style: italic');
 			$.doTimeout('jmHF.warn', 200, function(){
 				jmHF.alert('Warnung! siehe Console JM ->');

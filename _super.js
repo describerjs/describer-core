@@ -48,7 +48,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
 		jmtrigger: function(e, e_param){
 			if($.type(e_param) === 'undefined'){
-				if(window.debug){
+				if(dc.debug){
 					jmHF.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
 				}
 				return;
@@ -234,16 +234,13 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_raf: function(){
-			if(!window.dc.singleton){
-				this._singelton();
-			}
-
+			this.guaranteeDCRAF();
 			// raf-100ms-one
-			this.cAF = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
+			this.oneTimeExec = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
 			this.renderDelay = this._getRenderDelay();
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
-			window.dc.execRafObj['func_' + window.dc.execRafObj.countProperties()] = this._render.bind(this);
+			this._addRenderFunctionToExecRafObj();
 
 		},
 
@@ -389,7 +386,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				$.each(jmconfigJsonParse, function(key, value){
 					if(key === that.myJmName){
 						if($.type(value) === 'object'){
-							if(window.debug){
+							if(dc.debug){
 								for(var i = 0, leni = _config.length; i < leni; i++){
 									if(_config[i].jmname === that.myJmName){
 										if($.type(_config[i].jmconfig) !== 'array'){
@@ -416,7 +413,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 							return false;
 						}
 						if($.type(value) === 'array'){
-							if(window.debug && $.type(value[that.myPos]) === 'undefined'){
+							if(dc.debug && $.type(value[that.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom2', 200, function(){
 									jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
 										'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben. \n\n ' +
@@ -434,7 +431,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				});
 
 				if(_jmconfigJsonContainsObjectOnlyOnFirstLevel){
-					if(window.debug){
+					if(dc.debug){
 						for(var i = 0, leni = _config.length; i < leni; i++){
 							if(_config[i].jmname === that.myJmName){
 								if($.type(_config[i].jmconfig) !== 'array'){
@@ -463,7 +460,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 
 			if($.type(jmconfigJsonParse) === 'array'){
-				if(window.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
+				if(dc.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 					$.doTimeout('_getObjFromDom4', 200, function(){
 						jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
 							'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
@@ -505,7 +502,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 // *********************************  Global-Singelton-Functions Begin  *********************************************
 
-		_singelton: function(){
+		guaranteeDCRAF: function(){
+			if(window.dc.singleton){
+				return;
+			}
 			window.dc.singleton = true;
 			this._createRAFObjects();
 			if(window.dc.debugview){
@@ -606,12 +606,36 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.$elem.offsetHeight === 0){
 				return;
 			}
-			if(eval(this.conditionSource) && !this.cAF){
+			if(!this.oneTimeExec && eval(this.conditionSource)){
 				this._exec();
+				return;
+			}
+			if(this.oneTimeExec && eval(this.conditionSource)){
+				this._exec();
+				this._removeRenderFunctionFromExecRafObj();
 			}
 		},
 
 // *********************************  raf-Functions HOT-CODE End    *************************************************
+
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+//###################################################################################################################
+
+// *********************************  add/remove renderFunctions Begin  *********************************************
+
+		_addRenderFunctionToExecRafObj: function(){
+			this.renderFunctionIndex = window.dc.execRafObj.countProperties();
+			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
+		},
+
+		_removeRenderFunctionFromExecRafObj: function(){
+			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = null;
+			delete window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex];
+		},
+
+// *********************************  add/remove renderFunctions End  ***********************************************
 
 //###################################################################################################################
 //###################################################################################################################
