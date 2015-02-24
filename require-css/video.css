@@ -476,6 +476,14 @@ easily in the skin designer. http://designer.videojs.com/
     -moz-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
+    
+    left: 50%;
+    top: 50%;
+    -moz-transform:     translate3d(-50%, -50%, 0);
+    -ms-transform:      translate3d(-50%, -50%, 0);
+    -o-transform:       translate3d(-50%, -50%, 0);
+    -webkit-transform:  translate3d(-50%, -50%, 0);
+    transform:          translate3d(-50%, -50%, 0);
 }
 /* Optionally center */
 .vjs-default-skin.vjs-big-play-centered .vjs-big-play-button {
@@ -816,11 +824,13 @@ control positioning and full window mode. **
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    line-height: 1;
 }
 /* Playback technology elements expand to the width/height of the containing div
     <video> or <object> */
 .video-js .vjs-tech {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
