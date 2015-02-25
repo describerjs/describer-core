@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', 'modules.form.formvalidate-addon'], function ($, _super){
+define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', 'config.validation'], function ($, _super){
 	'use strict';
 	var formvalidate = $.extend({}, _super, {
 		init: function (options, elem) {
