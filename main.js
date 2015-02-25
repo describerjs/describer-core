@@ -16,7 +16,14 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 	pathToJQuery = 'describer-core/libs/jquery-1.11.0';
 }
 require.config({
+	baseUrl: '/js',
 	paths      : {
+		// ******************* describer-core ******************************
+		'_config'                                           : 'describer-config/describer',
+		'config.validation'                                 : 'describer-config/validation',
+		'config.googlemap'                                  : 'describer-config/googlemap',
+
+
 		// ******************* describer-core ******************************
 		'async'                                             : 'describer-core/libs/async',
 		'jquery'                                            : pathToJQuery,
@@ -25,7 +32,6 @@ require.config({
 
 
 		// mylibs
-		'_config'                                           : 'describer-config',
 		'core'                                              : 'describer-core/core',
 
 		'_super'                                            : 'describer-core/_super',
@@ -45,7 +51,7 @@ require.config({
 
 
 		// ******************* describer-more ******************************
-		'config.googlemap'                                  : 'describer-more/config/googlemap',
+		
 		'modules.carousel'                                  : 'describer-more/modules/carousel',
 		'modules.carousel-ts'                               : 'describer-more/modules/carousel-ts',
 
@@ -55,7 +61,6 @@ require.config({
 		'modules.equalheights'                              : 'describer-more/modules/equalheights',
 		'modules.form.autocomplete'                         : 'describer-more/modules/form/autocomplete',
 		'modules.form.formvalidate'                         : 'describer-more/modules/form/formvalidate',
-		'modules.form.formvalidate-addon'                   : 'describer-more/modules/form/formvalidate-addon',
 		'modules.form.selectOptionExtractInGroup'           : 'describer-more/modules/form/selectOptionExtractInGroup',
 		'modules.form.submitbutton'                         : 'describer-more/modules/form/submitbutton',
 		'modules.fotoupload'                                : 'describer-more/modules/fotoupload',
