@@ -11,6 +11,7 @@
  */
 define(function(){
 	return [
+// A
 		{
 			//  remove show auf allen Elemente, wenn das geklickte Elternelement nicht die Klasse show hat (noch zugeklapp ist). toggel um das geöffnete Element auch wieder schliessen zu können.
 			jmname  : 'accordionbox',
@@ -156,6 +157,8 @@ define(function(){
 				}
 			]
 		},
+
+// B
 		{
 			jmname  : 'back-to-top',
 			jmplugin: 'actions.scroll',
@@ -180,6 +183,8 @@ define(function(){
 				'condition' : '(window.dc.perf === 1)'
 			}]
 		},
+
+// C
 		{
 			// Soll das Carousel wieder abgebaut werde, wenn die condition bei orientations-change nicht mehr greift?
 			jmname  : 'carousel',
@@ -224,6 +229,10 @@ define(function(){
 				}
 			]
 		},
+
+// D
+
+// E
 		{
 			jmname  : 'equalheights-not-mobile',
 			jmplugin: 'modules.equalheights',
@@ -233,6 +242,8 @@ define(function(){
 				'condition': 'Modernizr.mq(\'only screen and (min-width : 46.8em)\')'
 			}
 		},
+
+// F
 		{
 			jmname  : 'flyout-link',
 			jmplugin: 'actions.add|actions.link',
@@ -276,8 +287,10 @@ define(function(){
 				'execWindowScale': '1'
 			}
 		},
+
+// G
 		{
-			jmname  : 'googlemap-joinmedia',
+			jmname  : 'googlemap',
 			jmplugin: 'modules.googlemap',
 			jmconfig: {
 				'event'        : 'raf-6',
@@ -293,6 +306,18 @@ define(function(){
 		//				'exec' : 'this.$elem.css({ \'display\': \'block\', \'height\': this.$elem.outerHeight(), \'width\': this.$elem.outerWidth(), \'overflow\': \'hidden\', \'margin\': \'0\' });'
 		//			}
 		//		},
+
+// H
+
+// I
+
+// J
+
+// K
+
+// L
+
+// M
 		{
 			jmname  : 'menu-close',
 			jmplugin: 'actions.remove',
@@ -311,6 +336,9 @@ define(function(){
 				'method': 'post'
 			}
 		},
+
+// N
+
 		{
 			jmname  : 'nav',
 			jmplugin: 'actions.toggle',
@@ -350,6 +378,10 @@ define(function(){
 				}
 			]
 		},
+
+// O
+
+// P
 		{
 			jmname  : 'parallax-content-orientation',
 			jmplugin: 'modules.parallax',
@@ -382,6 +414,13 @@ define(function(){
 				'data' : 'scrollY-fallback'
 			}
 		},
+
+// Q
+
+// R
+
+// S
+
 		{
 			jmname  : 'scrollControlTransition',
 			jmplugin: 'modules.scrollControlTransform',
@@ -392,7 +431,6 @@ define(function(){
 				'execWindowScale': '1'
 			}
 		},
-
 		{
 			jmname   : 'section-toggle',
 			jmplugin: 'actions.exec|actions.add_1|actions.add_2|actions.add_3|actions.scroll_1|actions.scroll_2',
@@ -538,6 +576,8 @@ define(function(){
 				'data'     : 'jmHF.escapeHtml(this.$elem.val())'
 			}
 		},
+
+// T
 		{
 			jmname  : 'tab',
 			jmplugin: 'actions.move',
@@ -608,6 +648,10 @@ define(function(){
 				}
 			]
 		},
+
+// U
+
+// V
 		{
 			jmname  : 'videoplayer',
 			jmplugin: 'modules.videoplayer',
@@ -665,5 +709,13 @@ define(function(){
 				'height': '480'*/
 			}
 		}
+
+// W
+
+// X
+
+// Y
+
+// Z
 	];
 });
