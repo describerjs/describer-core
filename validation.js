@@ -1,4 +1,4 @@
-define(['jquery', 'jquery_validate'], function ($){
+define(['jquery', 'jquery_validate', 'i18n!language/nls/speak'], function ($, speak){
 	(function($, window, document, undefined){
 		/*$.validator.addMethod('jmfilesize', function(value, element, param){
 			// param = size (en bytes)
@@ -54,7 +54,7 @@ define(['jquery', 'jquery_validate'], function ($){
 			}else{
 				return true;
 			}
-		}, 'Es wurde kein zugehöriger Tarif ausgewählt');
+		}, speak.jmrelatedelementCheckbyval);
 		$.validator.addMethod("jmrequiredincl0", function(value, element, param){
 			if($(element).val() === '0'){
 				return false;
@@ -69,7 +69,7 @@ define(['jquery', 'jquery_validate'], function ($){
 			}
 			return $.trim(value).length > 0;
 
-		}, 'Eine Auswahl ist Erforderlich');
+		}, speak.jmrequiredincl0);
 		$.validator.addMethod("jmrequired", function(value, element, param){
 			if($.type($(element).attr('data-jmremovejmrequired')) !== 'undefined'){
 				return '"true"';   // immer "true"' so schreiben, da im Android bei nur true kein success gefeuert wird!!!!!!!!!!!!!!!!
@@ -163,18 +163,18 @@ define(['jquery', 'jquery_validate'], function ($){
 
 						}else{
 							_$elem = $(element).closest('label').next('label').find('input, select');
-							_$input = $('<input type="text" data-jmname="sync-val" data-jmdominit="true" data-rule-jmcity="Bitte geben Sie einen gültigen Ortsnamen ein." class="input-autocomplete" id="' + _$elem.attr('id') + '" name="' + _$elem.attr('name') + '" maxlength="40" x-autocomplete="' + _$elem.attr('x-autocomplete') + '" value="' + _$elem.val() + '" /><input id="' + _$elem.attr('id') + '" name="' + _$elem.attr('name') + '" type="hidden" value="' + json.Data.CityNames + '">');
+							_$input = $('<input type="text" data-jmname="sync-val" data-jmdominit="true" data-rule-jmcity="'+ speak.jmplzOrt +'" class="input-autocomplete" id="' + _$elem.attr('id') + '" name="' + _$elem.attr('name') + '" maxlength="40" x-autocomplete="' + _$elem.attr('x-autocomplete') + '" value="' + _$elem.val() + '" /><input id="' + _$elem.attr('id') + '" name="' + _$elem.attr('name') + '" type="hidden" value="' + json.Data.CityNames + '">');
 							_$elem.last().after(_$input);
 
 							//json.Data.CityNames = 'service';
 							if(json.Data.CityNames[0] === 'Service not available'){
-								if(_$input.eq(0).val() !== 'Wird automatisch ausgefüllt' && _$input.eq(0).val() !== ''){
+								if(_$input.eq(0).val() !== speak.wirdAutomatischAusgefuellt && _$input.eq(0).val() !== ''){
 									_$input.eq(1).val(_$input.eq(0).val());
 									_$input.eq(0).trigger('change');
 									_$elem.remove();
 									return '"true"';
 								}
-								_$input.eq(0).prop('disabled', false).addClass('input-text').removeClass('input-autocomplete').val('').attr('placeholder', 'Bitte ausfüllen');
+								_$input.eq(0).prop('disabled', false).addClass('input-text').removeClass('input-autocomplete').val('').attr('placeholder', speak.bitteAusfuellen);
 								_$input.eq(1).prop('disabled', true).val('');
 								_$input.eq(0).trigger('change');
 								_$elem.remove();
@@ -189,7 +189,7 @@ define(['jquery', 'jquery_validate'], function ($){
 						return '"true"';
 					}else{
 						var _errorMassage = json.ErrorMessage;
-						$(element).closest('label').next('label').find('input').val('Wird automatisch ausgefüllt');
+						$(element).closest('label').next('label').find('input').val(speak.wirdAutomatischAusgefuellt);
 						return JSON.stringify(_errorMassage);
 					}
 				}
@@ -228,7 +228,7 @@ define(['jquery', 'jquery_validate'], function ($){
 						return '"true"';
 					}else{
 						var _errorMassage = json.ErrorMessage;
-						$(element).closest('label').next('label').find('input').val('Wird automatisch ausgefüllt');
+						$(element).closest('label').next('label').find('input').val(speak.wirdAutomatischAusgefuellt);
 						return JSON.stringify(_errorMassage);
 					}
 				}
@@ -369,7 +369,7 @@ define(['jquery', 'jquery_validate'], function ($){
 								$bankfield.siblings('input').val($bankfield.val());
 								return '"true"';
 							}
-							$bankfield.prop('disabled', false).addClass('input-text').removeClass('input-autocomplete').val('').attr('placeholder', 'Bitte ausfüllen');
+							$bankfield.prop('disabled', false).addClass('input-text').removeClass('input-autocomplete').val('').attr('placeholder', speak.bitteAusfuellen);
 							$bankfield.siblings('input').prop('disabled', true).val('');
 							return '"true"';
 						}
@@ -450,7 +450,7 @@ define(['jquery', 'jquery_validate'], function ($){
 								$bankfield.siblings('input').val($bankfield.val());
 								return '"true"';
 							}
-							$bankfield.prop('disabled', false).addClass('input-text').removeClass('input-autocomplete').val('').attr('placeholder', 'Bitte ausfüllen');
+							$bankfield.prop('disabled', false).addClass('input-text').removeClass('input-autocomplete').val('').attr('placeholder', speak.bitteAusfuellen);
 							$bankfield.siblings('input').prop('disabled', true).val('');
 							return '"true"';
 						}

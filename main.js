@@ -22,6 +22,9 @@ require.config({
 		'_config'                                           : 'describer-config/describer',
 		'config.validation'                                 : 'describer-config/validation',
 		'config.googlemap'                                  : 'describer-config/googlemap',
+		'config.languageTextObj'                            : 'describer-config/languageTextObj',
+		'language/nls/speak'                                : 'describer-config/nls/speak',
+		'language/nls/en/speak'                             : 'describer-config/nls/en/speak',
 
 
 		// ******************* describer-core ******************************
@@ -51,11 +54,11 @@ require.config({
 
 
 		// ******************* describer-more ******************************
-		
+
 		'modules.carousel'                                  : 'describer-more/modules/carousel',
 		'modules.carousel-ts'                               : 'describer-more/modules/carousel-ts',
 
-		/*'modules.carousel-ts'                              : 'empty',*/
+		/*'modules.carousel-ts'                              : 'describer-more/empty',*/
 		'modules.countdown'                                 : 'describer-more/modules/countdown',
 		'modules.dependentSelectionGroup'                   : 'describer-more/modules/dependentSelectionGroup',
 		'modules.equalheights'                              : 'describer-more/modules/equalheights',
@@ -76,6 +79,7 @@ require.config({
 		'modules.videoplayer'                               : 'describer-more/modules/videoplayer',
 
 		// untouched externel
+		'i18n'                                              : 'describer-more/plugins/i18n',
 		'jquery_canvasResize'                               : 'describer-more/plugins/jquery.canvasResize',
 		'fastclick'                                         : 'describer-more/plugins/fastclick',
 		'fixedfixed'                                        : 'describer-more/plugins/fixedfixed',
@@ -93,7 +97,7 @@ require.config({
 		'jquery_exif'                                       : 'describer-more/plugins/customized/jquery.exif',
 		'jquery_parallax'                                   : 'describer-more/plugins/customized/jquery.parallax',
 		'jquery_plugin'                                     : 'describer-more/plugins/customized/jquery.plugin',
-		'jquery_smoothMousewheel'                                : 'describer-more/plugins/customized/jquery.smoothMousewheel',
+		'jquery_smoothMousewheel'                           : 'describer-more/plugins/customized/jquery.smoothMousewheel',
 		'jquery_validate'                                   : 'describer-more/plugins/customized/jquery.validate',
 		'owl_carousel'                                      : 'describer-more/plugins/customized/owl.carousel',
 		'video'                                             : 'describer-more/plugins/customized/video',
@@ -130,7 +134,8 @@ require.config({
 	        'css': 'describer-more/require-css/css' // or whatever the path to require-css is
 	    }
 	},
-	waitSeconds: 500
+	waitSeconds: 500,
+	locale: document.getElementsByTagName('html')[0].getAttribute('lang')
 });
 
 
