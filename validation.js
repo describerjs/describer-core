@@ -1,4 +1,4 @@
-define(['jquery', 'jquery_validate', 'i18n!language/nls/speak'], function ($, speak){
+define(['jquery', 'i18n!language/nls/speak', 'jquery_validate'], function ($, speak){
 	(function($, window, document, undefined){
 		/*$.validator.addMethod('jmfilesize', function(value, element, param){
 			// param = size (en bytes)
