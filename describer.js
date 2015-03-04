@@ -32,7 +32,7 @@ define(function(){
 //					'condition': '!this.$elem.parent().hasClass(\'show\')'
 //				},
 //				{
-//					'event'    : 'click',
+//					'event'    : 'click|jmtrigger:hash',
 //					'datatype' : 'class',
 //					'data'     : 'show',
 //					'relatedTo': 'this.$elem.parent()[0]',
@@ -638,7 +638,7 @@ define(function(){
 
 //		{
 //			jmname  : 'togglebox',
-//			jmplugin: 'actions.ajax|actions.toggle',
+//			jmplugin: 'actions.ajax|actions.toggle_1|actions.toggle_2',
 //			jmconfig: [
 //				{
 //					'event'    : 'jmtrigger:open',
@@ -652,6 +652,14 @@ define(function(){
 //					'data'     : 'show',
 //					'relatedTo': 'this.$elem.parent()[0]',
 //					'callback' : 'if(this.$elem.parent().hasClass(\'show\')) this.$elem.jmtrigger(\'open\')'
+//				},
+//				{
+//					'event'    : 'jmtrigger:hash',
+//					'datatype' : 'class',
+//					'data'     : 'show',
+//					'relatedTo': 'this.$elem.parent()[0]',
+//					'callback' : 'if(this.$elem.parent().hasClass(\'show\')) this.$elem.jmtrigger(\'open\')',
+//					'scrollTo' : 'this.$elem[0]'
 //				}
 //			]
 //		},

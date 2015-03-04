@@ -209,6 +209,11 @@ require(['jquery', '_config'], function require_jquery($){
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
 			execDomReadyObject();
 
+			// Trigger jmtrigger:hash on element with id === hash
+			if(window.location.hash !== ''){
+				$(window.location.hash).jmtrigger('hash');
+			}
+
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
 			try{picturefill();}catch(e){}
 
