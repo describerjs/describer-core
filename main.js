@@ -10,104 +10,105 @@
  * Released under the MIT license
  */
 var pathToJQuery;
+var buildPath = (window.dc.loadUnminifyVersion) ? '' : 'build/';
 if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
-	pathToJQuery = 'describer-core/libs/jquery-2.1.0';
+	pathToJQuery = buildPath+'describer-core/libs/jquery-2.1.0';
 }else{
-	pathToJQuery = 'describer-core/libs/jquery-1.11.0';
+	pathToJQuery = buildPath+'describer-core/libs/jquery-1.11.0';
 }
 require.config({
 	baseUrl: '/js',
 	paths      : {
 		// ******************* describer-core ******************************
-		'_config'                                           : 'describer-config/describer',
-		'config.validation'                                 : 'describer-config/validation',
-		'config.googlemap'                                  : 'describer-config/googlemap',
-		'config.languageTextObj'                            : 'describer-config/languageTextObj',
-		'language/nls/speak'                                : 'describer-config/nls/speak',
-		'language/nls/en/speak'                             : 'describer-config/nls/en/speak',
+		'_config'                                           : buildPath+'describer-config/describer',
+		'config.validation'                                 : buildPath+'describer-config/validation',
+		'config.googlemap'                                  : buildPath+'describer-config/googlemap',
+		'config.languageTextObj'                            : buildPath+'describer-config/languageTextObj',
+		'language/nls/speak'                                : buildPath+'describer-config/nls/speak',
+		'language/nls/en/speak'                             : buildPath+'describer-config/nls/en/speak',
 
 
 		// ******************* describer-core ******************************
-		'async'                                             : 'describer-core/libs/async',
+		'async'                                             : buildPath+'describer-core/libs/async',
 		'jquery'                                            : pathToJQuery,
-		'scrolltotop'                                       : 'describer-core/libs/scrolltotop',
-		'rAF'                                               : 'describer-core/libs/rAF',
+		'scrolltotop'                                       : buildPath+'describer-core/libs/scrolltotop',
+		'rAF'                                               : buildPath+'describer-core/libs/rAF',
 
 
 		// mylibs
-		'core'                                              : 'describer-core/core',
+		'core'                                              : buildPath+'describer-core/core',
 
-		'_super'                                            : 'describer-core/_super',
-		'actions.add'                                       : 'describer-core/actions/add',
-		'actions.ajax'                                      : 'describer-core/actions/ajax',
-		'actions.apply'                                     : 'describer-core/actions/apply',
-		'actions.exec'                                      : 'describer-core/actions/exec',
-		'actions.link'                                      : 'describer-core/actions/link',
-		'actions.move'                                      : 'describer-core/actions/move',
-		'actions.remove'                                    : 'describer-core/actions/remove',
-		'actions.scroll'                                    : 'describer-core/actions/scroll',
-		'actions.set'                                       : 'describer-core/actions/set',
+		'_super'                                            : buildPath+'describer-core/_super',
+		'actions.add'                                       : buildPath+'describer-core/actions/add',
+		'actions.ajax'                                      : buildPath+'describer-core/actions/ajax',
+		'actions.apply'                                     : buildPath+'describer-core/actions/apply',
+		'actions.exec'                                      : buildPath+'describer-core/actions/exec',
+		'actions.link'                                      : buildPath+'describer-core/actions/link',
+		'actions.move'                                      : buildPath+'describer-core/actions/move',
+		'actions.remove'                                    : buildPath+'describer-core/actions/remove',
+		'actions.scroll'                                    : buildPath+'describer-core/actions/scroll',
+		'actions.set'                                       : buildPath+'describer-core/actions/set',
 		/*		'actions.sticky'                                   : 'mylibs/actions/sticky',*/
-		'actions.toggle'                                    : 'describer-core/actions/toggle',
-		'actions.trigger'                                   : 'describer-core/actions/trigger',
+		'actions.toggle'                                    : buildPath+'describer-core/actions/toggle',
+		'actions.trigger'                                   : buildPath+'describer-core/actions/trigger',
 
 
 
 		// ******************* describer-more ******************************
 
-		'modules.carousel'                                  : 'describer-more/modules/carousel',
-		'modules.carousel-ts'                               : 'describer-more/modules/carousel-ts',
+		'modules.carousel'                                  : buildPath+'describer-more/modules/carousel',
+		'modules.carousel-ts'                               : buildPath+'describer-more/modules/carousel-ts',
 
 		/*'modules.carousel-ts'                              : 'describer-more/empty',*/
-		'modules.countdown'                                 : 'describer-more/modules/countdown',
-		'modules.dependentSelectionGroup'                   : 'describer-more/modules/dependentSelectionGroup',
-		'modules.equalheights'                              : 'describer-more/modules/equalheights',
-		'modules.form.autocomplete'                         : 'describer-more/modules/form/autocomplete',
-		'modules.form.formvalidate'                         : 'describer-more/modules/form/formvalidate',
-		'modules.form.selectOptionExtractInGroup'           : 'describer-more/modules/form/selectOptionExtractInGroup',
-		'modules.form.submitbutton'                         : 'describer-more/modules/form/submitbutton',
-		'modules.fotoupload'                                : 'describer-more/modules/fotoupload',
-		'modules.googlemap'                                 : 'describer-more/modules/googlemap',
-		'modules.modal'                                     : 'describer-more/modules/modal',
-		'modules.onView'                                    : 'describer-more/modules/onView',
-		'modules.parallax'                                  : 'describer-more/modules/parallax',
-		'modules.scrollControlFrames'                       : 'describer-more/modules/scrollControlFrames',
-		'modules.scrollControlTransform'                    : 'describer-more/modules/scrollControlTransform',
-		'modules.tablesort'                                 : 'describer-more/modules/tablesort',
-		'modules.video'                                     : 'describer-more/modules/video',
-		'modules.videocontrol'                              : 'describer-more/modules/videocontrol',
-		'modules.videoplayer'                               : 'describer-more/modules/videoplayer',
+		'modules.countdown'                                 : buildPath+'describer-more/modules/countdown',
+		'modules.dependentSelectionGroup'                   : buildPath+'describer-more/modules/dependentSelectionGroup',
+		'modules.equalheights'                              : buildPath+'describer-more/modules/equalheights',
+		'modules.form.autocomplete'                         : buildPath+'describer-more/modules/form/autocomplete',
+		'modules.form.formvalidate'                         : buildPath+'describer-more/modules/form/formvalidate',
+		'modules.form.selectOptionExtractInGroup'           : buildPath+'describer-more/modules/form/selectOptionExtractInGroup',
+		'modules.form.submitbutton'                         : buildPath+'describer-more/modules/form/submitbutton',
+		'modules.fotoupload'                                : buildPath+'describer-more/modules/fotoupload',
+		'modules.googlemap'                                 : buildPath+'describer-more/modules/googlemap',
+		'modules.modal'                                     : buildPath+'describer-more/modules/modal',
+		'modules.onView'                                    : buildPath+'describer-more/modules/onView',
+		'modules.parallax'                                  : buildPath+'describer-more/modules/parallax',
+		'modules.scrollControlFrames'                       : buildPath+'describer-more/modules/scrollControlFrames',
+		'modules.scrollControlTransform'                    : buildPath+'describer-more/modules/scrollControlTransform',
+		'modules.tablesort'                                 : buildPath+'describer-more/modules/tablesort',
+		'modules.video'                                     : buildPath+'describer-more/modules/video',
+		'modules.videocontrol'                              : buildPath+'describer-more/modules/videocontrol',
+		'modules.videoplayer'                               : buildPath+'describer-more/modules/videoplayer',
 
 		// untouched externel
-		'i18n'                                              : 'describer-more/plugins/i18n',
-		'jquery_canvasResize'                               : 'describer-more/plugins/jquery.canvasResize',
-		'fastclick'                                         : 'describer-more/plugins/fastclick',
-		'fixedfixed'                                        : 'describer-more/plugins/fixedfixed',
-		'fixedsticky'                                       : 'describer-more/plugins/fixedsticky',
-		'jquery_mousewheel'                                 : 'describer-more/plugins/jquery.mousewheel',
-		'md5'                                               : 'describer-more/plugins/md5',
-		'video_4_10_2'                                      : 'describer-more/plugins/video.4.10.2',
-		'videojs-youtube'                                   : 'describer-more/plugins/youtube',
+		'i18n'                                              : buildPath+'describer-more/plugins/i18n',
+		'jquery_canvasResize'                               : buildPath+'describer-more/plugins/jquery.canvasResize',
+		'fastclick'                                         : buildPath+'describer-more/plugins/fastclick',
+		'fixedfixed'                                        : buildPath+'describer-more/plugins/fixedfixed',
+		'fixedsticky'                                       : buildPath+'describer-more/plugins/fixedsticky',
+		'jquery_mousewheel'                                 : buildPath+'describer-more/plugins/jquery.mousewheel',
+		'md5'                                               : buildPath+'describer-more/plugins/md5',
+		'video_4_10_2'                                      : buildPath+'describer-more/plugins/video.4.10.2',
+		'videojs-youtube'                                   : buildPath+'describer-more/plugins/youtube',
 
 		// customized externel
-		'jquery_autocomplete'                               : 'describer-more/plugins/customized/jquery.autocomplete',
-		'jquery_ba-dotimeout'                               : 'describer-more/plugins/customized/jquery.ba-dotimeout',
-		'jquery_countdown'                                  : 'describer-more/plugins/customized/jquery.countdown',
-		'jquery_countdown-de'                               : 'describer-more/plugins/customized/jquery.countdown-de',
-		'jquery_exif'                                       : 'describer-more/plugins/customized/jquery.exif',
-		'jquery_parallax'                                   : 'describer-more/plugins/customized/jquery.parallax',
-		'jquery_plugin'                                     : 'describer-more/plugins/customized/jquery.plugin',
-		'jquery_smoothMousewheel'                           : 'describer-more/plugins/customized/jquery.smoothMousewheel',
-		'jquery_validate'                                   : 'describer-more/plugins/customized/jquery.validate',
-		'owl_carousel'                                      : 'describer-more/plugins/customized/owl.carousel',
-		'video'                                             : 'describer-more/plugins/customized/video',
+		'jquery_autocomplete'                               : buildPath+'describer-more/plugins/customized/jquery.autocomplete',
+		'jquery_ba-dotimeout'                               : buildPath+'describer-more/plugins/customized/jquery.ba-dotimeout',
+		'jquery_countdown'                                  : buildPath+'describer-more/plugins/customized/jquery.countdown',
+		'jquery_countdown-de'                               : buildPath+'describer-more/plugins/customized/jquery.countdown-de',
+		'jquery_exif'                                       : buildPath+'describer-more/plugins/customized/jquery.exif',
+		'jquery_parallax'                                   : buildPath+'describer-more/plugins/customized/jquery.parallax',
+		'jquery_plugin'                                     : buildPath+'describer-more/plugins/customized/jquery.plugin',
+		'jquery_smoothMousewheel'                           : buildPath+'describer-more/plugins/customized/jquery.smoothMousewheel',
+		'jquery_validate'                                   : buildPath+'describer-more/plugins/customized/jquery.validate',
+		'owl_carousel'                                      : buildPath+'describer-more/plugins/customized/owl.carousel',
+		'video'                                             : buildPath+'describer-more/plugins/customized/video',
 
 		// overwritings externel
-		'overwritings.jquery_validate'                      : 'describer-more/plugins/overwritings/jquery.validate',
-		'overwritings.owl_carousel'                         : 'describer-more/plugins/overwritings/owl.carousel',
+		'overwritings.jquery_validate'                      : buildPath+'describer-more/plugins/overwritings/jquery.validate',
+		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel',
 
 		// CSS for components
-		'require-css.video'                                 : 'describer-more/require-css/video'
+		'require-css.video'                                 : buildPath+'describer-more/require-css/video'
 	},
 	shim: {
 		'jquery_canvasResize': {

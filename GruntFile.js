@@ -3,6 +3,8 @@
  */
 module.exports = function(grunt){
 
+	var referenzfile = 'include/header.inc.asp';
+
 	var getObjFor = function(path, searchpath){
 		return {
 			from: new RegExp("\'"+ path.replace(/\//g, '\\/') +"[^/\\n]*\'", "g"),
@@ -61,7 +63,7 @@ module.exports = function(grunt){
 			},
 			uglify: {
 				build : {
-					src     : ['**/*.js', '!*.min.js', '!require-main.js'],
+					src     : ['**/*.js', '!*.min.js', '!**/main.js'],
 					cwd     : 'js/',
 					dest    : 'js/build/',
 					expand  : true
@@ -90,7 +92,7 @@ module.exports = function(grunt){
 			},
 			copy: {
 				main: {
-					src: ['**/*.js', '!*.min.js', '!require-main.js'],
+					src: ['**/*.js', '!*.min.js', '!**/main.js'],
 					cwd: 'js/',
 					dest: 'js/build/',
 					expand  : true
@@ -118,15 +120,15 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			replace: {
 				example: {
-					src: ['js/require-main.js'],             // source files array (supports minimatch)
-					dest: 'js/build/require-main.js',             // destination directory or file
+					src: ['js/describer-config/main.js'],             // source files array (supports minimatch)
+					dest: 'js/build/describer-config/main.js',             // destination directory or file
 					replacements: [
 						{
-							from: 'describer-config',
+							from: 'main',
 							// string replacement
 							to: function(matchedWord, index, fullText, regexMatches){
 								var _filename = '';
-								grunt.file.recurse('js/build/', callback);
+								grunt.file.recurse('js/build/describer-config/', callback);
 								function callback(abspath, rootdir, subdir, filename) {
 									var str = filename;
 									var patt = new RegExp('^'+matchedWord.replace(/\'/g, "")+'\\.(.*)');
@@ -139,7 +141,12 @@ module.exports = function(grunt){
 								return _filename;
 							}
 						},
-						// new
+
+						// describer-config
+						getObjFor('describer-config/', 'js/build/'),
+						getObjFor('describer-config/nls/', 'js/build/'),
+						getObjFor('describer-config/nls/en/', 'js/build/'),
+
 						// describer-core
 						getObjFor('describer-core/', 'js/build/'),
 						getObjFor('describer-core/actions/', 'js/build/'),
@@ -151,25 +158,10 @@ module.exports = function(grunt){
 						// describer-more
 						getObjFor('describer-more/modules/', 'js/build/'),
 						getObjFor('describer-more/modules/form/', 'js/build/'),
-
 						getObjFor('describer-more/plugins/', 'js/build/'),
 						getObjFor('describer-more/plugins/customized/', 'js/build/'),
 						getObjFor('describer-more/plugins/overwritings/', 'js/build/'),
-
 						getObjFor('describer-more/require-css/', 'js/build/')
-						/*
-						getObjFor('externals/customized/', 'js/build/'),
-						getObjFor('externals/customized/overwritings/', 'js/build/'),
-						getObjFor('externals/originalReferenceSource/', 'js/build/'),
-						getObjFor('mylibs/', 'js/build/'),
-						getObjFor('mylibs/actions/', 'js/build/'),
-						*//*getObjFor('mylibs/add-ons/', 'js/build/'),*//*
-						getObjFor('mylibs/custom/', 'js/build/'),
-						*//*getObjFor('mylibs/jmtools/', 'js/build/'),*//*
-						getObjFor('mylibs/modules/', 'js/build/'),
-						getObjFor('mylibs/modules/form/', 'js/build/'),
-						getObjFor('mylibs/utils/', 'js/build/'),
-						getObjFor('require-css/', 'js/build/')*/
 					]
 				}
 			}
@@ -180,13 +172,13 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			uglify: {
 				build : {
-					src     : ['js/build/require-main.js'],
+					src     : ['js/build/describer-config/main.js'],
 					expand  : true
 				}
 			},
 			revisions: {
 				rename: {
-					src: 'js/build/require-main.js',
+					src: 'js/build/describer-config/main.js',
 					dest: ''
 				}
 			}
@@ -197,8 +189,8 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			replace: {
 				example: {
-					src: ['demo.html'],             // source files array (supports minimatch)
-					dest: 'demo.html',             // destination directory or file
+					src: [referenzfile],             // source files array (supports minimatch)
+					dest: referenzfile,             // destination directory or file
 					replacements: [{
 						from: /css\/build\/style(.*?)\.css/g,          // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
@@ -217,114 +209,132 @@ module.exports = function(grunt){
 							return "css/build/" + _filename;
 						}
 					},
-					{
-						from: /css\/build\/noscript(.*?)\.css/g,          // string replacement
-						to: function(matchedWord, index, fullText, regexMatches){
-							var _filename = '';
-							grunt.file.recurse('css/build', callback);
-							function callback(abspath, rootdir, subdir, filename) {
-								var str = filename;
-								var patt = new RegExp(/^noscript.(.*)/g);
-								var res = patt.test(str);
-								if(res){
-									grunt.log.write('res: '+_filename);
-									_filename = str;
-								}
+						{
+							from: /css\/build\/noscript(.*?)\.css/g,          // string replacement
+							to: function(matchedWord, index, fullText, regexMatches){
+								var _filename = '';
+								grunt.file.recurse('css/build', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^noscript.(.*)/g);
+									var res = patt.test(str);
+									if(res){
+										grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
 
-							}
-							return "css/build/" + _filename;
-						}
-					},
-					{
-						from: /js\/build\/describer-core\/libs\/require.2.1.11(.*?)\.js/g,                   // string replacement
-						to: function(matchedWord, index, fullText, regexMatches){
-							var _filename = '';
-							grunt.file.recurse('js/build/describer-core/libs', callback);
-							function callback(abspath, rootdir, subdir, filename) {
-								var str = filename;
-								var patt = new RegExp(/^require.2.1.11.(.*)/g);
-								var res = patt.test(str);
-								if(res){
-									//grunt.log.write('res: '+_filename);
-									_filename = str;
 								}
-
+								return "css/build/" + _filename;
 							}
-							return "js/build/describer-core/libs/"+ _filename;
-						}
-					},
-					{
-						from: /js\/build\/describer-core\/libs\/modernizr.custom(.*?)\.js/g,                   // string replacement
-						to: function (matchedWord, index, fullText, regexMatches) {
-							var _filename = '';
-							grunt.file.recurse('js/build/describer-core/libs', callback);
-							function callback(abspath, rootdir, subdir, filename) {
-								var str = filename;
-								var patt = new RegExp(/^modernizr.custom.(.*)/g);
-								var res = patt.test(str);
-								if (res) {
-									//grunt.log.write('res: '+_filename);
-									_filename = str;
+						},
+						{
+							from: /js\/build\/describer-localStorage\/localStorage(.*?)\.js/g,                   // string replacement
+							to: function(matchedWord, index, fullText, regexMatches){
+								var _filename = '';
+								grunt.file.recurse('js/build/describer-localStorage/', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^localStorage.(.*)/g);
+									var res = patt.test(str);
+									if(res){
+										//grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
+
 								}
-
+								return "js/build/describer-localStorage/"+ _filename;
 							}
-							return "js/build/describer-core/libs/" + _filename;
-						}
-					},
-					{
-						from: /js\/build\/describer-core\/libs\/matchmedia(.*?)\.js/g,                   // string replacement
-						to: function (matchedWord, index, fullText, regexMatches) {
-							var _filename = '';
-							grunt.file.recurse('js/build/describer-core/libs', callback);
-							function callback(abspath, rootdir, subdir, filename) {
-								var str = filename;
-								var patt = new RegExp(/^matchmedia.(.*)/g);
-								var res = patt.test(str);
-								if (res) {
-									//grunt.log.write('res: '+_filename);
-									_filename = str;
+						},
+						{
+							from: /js\/build\/describer-localStorage\/require.2.1.11-localStorage(.*?)\.js/g,                   // string replacement
+							to: function(matchedWord, index, fullText, regexMatches){
+								var _filename = '';
+								grunt.file.recurse('js/build/describer-localStorage/', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^require.2.1.11-localStorage.(.*)/g);
+									var res = patt.test(str);
+									if(res){
+										//grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
+
 								}
-
+								return "js/build/describer-localStorage/"+ _filename;
 							}
-							return "js/build/describer-core/libs/" + _filename;
-						}
-					},
-					{
-						from: /js\/build\/describer-more\/plugins\/picturefill(.*?)\.js/g,                   // string replacement
-						to: function (matchedWord, index, fullText, regexMatches) {
-							var _filename = '';
-							grunt.file.recurse('js/build/describer-more/plugins', callback);
-							function callback(abspath, rootdir, subdir, filename) {
-								var str = filename;
-								var patt = new RegExp(/^picturefill.(.*)/g);
-								var res = patt.test(str);
-								if (res) {
-									//grunt.log.write('res: '+_filename);
-									_filename = str;
+						},
+						{
+							from: /js\/build\/describer-core\/libs\/modernizr.custom(.*?)\.js/g,                   // string replacement
+							to: function (matchedWord, index, fullText, regexMatches) {
+								var _filename = '';
+								grunt.file.recurse('js/build/describer-core/libs', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^modernizr.custom.(.*)/g);
+									var res = patt.test(str);
+									if (res) {
+										//grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
+
 								}
-
+								return "js/build/describer-core/libs/" + _filename;
 							}
-							return "js/build/describer-more/plugins/" + _filename;
-						}
-					},
-					{
-						from: /\/js\/build\/require-main(.*)\'/g,                   // string replacement
-						to: function(matchedWord, index, fullText, regexMatches){
-							var _filename = '';
-							grunt.file.recurse('js/build', callback);
-							function callback(abspath, rootdir, subdir, filename) {
-								var str = filename;
-								var patt = new RegExp(/^require-main.(.*)/g);
-								var res = patt.test(str);
-								if(res){
-									//grunt.log.write('res: '+_filename);
-									_filename = str;
+						},
+						{
+							from: /js\/build\/describer-core\/libs\/matchmedia(.*?)\.js/g,                   // string replacement
+							to: function (matchedWord, index, fullText, regexMatches) {
+								var _filename = '';
+								grunt.file.recurse('js/build/describer-core/libs', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^matchmedia.(.*)/g);
+									var res = patt.test(str);
+									if (res) {
+										//grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
+
 								}
-
+								return "js/build/describer-core/libs/" + _filename;
 							}
-							return "/js/build/"+ _filename + "'";
-						}
-					}]
+						},
+						{
+							from: /js\/build\/describer-more\/plugins\/picturefill(.*?)\.js/g,                   // string replacement
+							to: function (matchedWord, index, fullText, regexMatches) {
+								var _filename = '';
+								grunt.file.recurse('js/build/describer-more/plugins', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^picturefill.(.*)/g);
+									var res = patt.test(str);
+									if (res) {
+										//grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
+
+								}
+								return "js/build/describer-more/plugins/" + _filename;
+							}
+						},
+						{
+							from: /\/js\/build\/describer-config\/main(.*)\'/g,                   // string replacement
+							to: function(matchedWord, index, fullText, regexMatches){
+								var _filename = '';
+								grunt.file.recurse('js/build/describer-config', callback);
+								function callback(abspath, rootdir, subdir, filename) {
+									var str = filename;
+									var patt = new RegExp(/^main.(.*)/g);
+									var res = patt.test(str);
+									if(res){
+										//grunt.log.write('res: '+_filename);
+										_filename = str;
+									}
+
+								}
+								return "/js/build/describer-config/"+ _filename + "'";
+							}
+						}]
 				}
 			}
 		});
@@ -353,8 +363,8 @@ module.exports = function(grunt){
 				files: {
 					expand: true,
 					//cwd: 'path/to/source/images',
-/*					src: ['img/add-on-steps/add-on-steps-1.png'],
-					dest: '/'*/
+					/*					src: ['img/add-on-steps/add-on-steps-1.png'],
+										dest: '/'*/
 					src: ['**/*.jpg', '**/*.png', '!**/productimages/*.png'] ,
 					cwd: 'img/',
 					dest: 'img/'
