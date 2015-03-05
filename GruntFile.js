@@ -3,7 +3,7 @@
  */
 module.exports = function(grunt){
 
-	var referenzfile = 'include/header.inc.asp';
+	var referenzfile = 'include/html-header.inc.asp';
 
 	var getObjFor = function(path, searchpath){
 		return {
@@ -92,7 +92,7 @@ module.exports = function(grunt){
 			},
 			copy: {
 				main: {
-					src: ['**/*.js', '!*.min.js', '!**/main.js'],
+					src: ['**/*.eot', '**/*.svg', '**/*.ttf', '**/*.woff'],
 					cwd: 'js/',
 					dest: 'js/build/',
 					expand  : true
@@ -103,13 +103,13 @@ module.exports = function(grunt){
 					files: {
 						'css/build/style.css': ['css/style.css'],
 						'css/build/noscript.css': ['css/noscript.css'],
-						'js/build/require-css/video.css': ['js/require-css/video.css']
+						'js/build/describer-config/require-css/video.css': ['js/describer-config/require-css/video.css']
 					}
 				}
 			},
 			revisions: {
 				rename: {
-					src: ['js/build/**', 'css/build/**'],
+					src: ['js/build/**', 'css/build/**', '!**/*.eot', '!**/*.svg', '!**/*.ttf', '!**/*.woff'],
 					dest: ''
 				}
 			}
@@ -146,6 +146,7 @@ module.exports = function(grunt){
 						getObjFor('describer-config/', 'js/build/'),
 						getObjFor('describer-config/nls/', 'js/build/'),
 						getObjFor('describer-config/nls/en/', 'js/build/'),
+						getObjFor('describer-config/require-css/', 'js/build/'),
 
 						// describer-core
 						getObjFor('describer-core/', 'js/build/'),
@@ -160,8 +161,7 @@ module.exports = function(grunt){
 						getObjFor('describer-more/modules/form/', 'js/build/'),
 						getObjFor('describer-more/plugins/', 'js/build/'),
 						getObjFor('describer-more/plugins/customized/', 'js/build/'),
-						getObjFor('describer-more/plugins/overwritings/', 'js/build/'),
-						getObjFor('describer-more/require-css/', 'js/build/')
+						getObjFor('describer-more/plugins/overwritings/', 'js/build/')
 					]
 				}
 			}
@@ -458,7 +458,7 @@ module.exports = function(grunt){
 
 
 
-	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'replace', 'cssmin', 'revisions' ]);
+	grunt.registerTask('default1', ['task_step1', 'clean', 'uglify', 'copy', 'replace', 'cssmin', 'revisions' ]);
 	grunt.registerTask('default2', ['task_step2', 'replace' ]);
 	grunt.registerTask('default3', ['task_step3', 'uglify', 'revisions' ]);
 	grunt.registerTask('default4', ['task_step4', 'replace' ]);
