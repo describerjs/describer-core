@@ -3,7 +3,7 @@
  */
 module.exports = function(grunt){
 
-	var referenzfile = 'include/html-header.inc.asp';
+	var referencefile = '/js/describer-config/example-referencefile.html';
 
 	var getObjFor = function(path, searchpath){
 		return {
@@ -189,8 +189,8 @@ module.exports = function(grunt){
 		grunt.initConfig({
 			replace: {
 				example: {
-					src: [referenzfile],             // source files array (supports minimatch)
-					dest: referenzfile,             // destination directory or file
+					src: [referencefile],             // source files array (supports minimatch)
+					dest: referencefile,             // destination directory or file
 					replacements: [{
 						from: /css\/build\/style(.*?)\.css/g,          // string replacement
 						to: function(matchedWord, index, fullText, regexMatches){
