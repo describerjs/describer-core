@@ -109,7 +109,7 @@ module.exports = function(grunt){
 			},
 			revisions: {
 				rename: {
-					src: ['js/build/**', 'css/build/**', '!**/*.eot', '!**/*.svg', '!**/*.ttf', '!**/*.woff'],
+					src: ['js/build/**', 'css/build/**', '!js/build/describer-more/empty.js', '!**/*.eot', '!**/*.svg', '!**/*.ttf', '!**/*.woff'],
 					dest: ''
 				}
 			}
