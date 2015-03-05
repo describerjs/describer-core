@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'video', 'css!require-css.video'], function ($, _super) {
+define(['jquery', '_super', 'video', 'css!config.require-css.video'], function ($, _super) {
     'use strict';
     var video = $.extend({}, _super, {
         init: function (options, elem) {

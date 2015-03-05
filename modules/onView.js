@@ -62,7 +62,7 @@ define(['jquery', '_super'], function ($, _super){
 				if(this.onlyTopOfElem){
 					if(_viewportBottom < this.eot + this.offsetTop){
 						this.$destination.removeClass('show');
-						this._finishing();
+						this._off();
 					}
 					/*if((!(_viewportBottom > this.eot + this.offsetTop)) && (_viewportTop < (this.eot + ((this.dynamic) ? this.$elem[0].getBoundingClientRect().height : this.elemHeight) + this.offsetBottom))){
 						this.$destination.removeClass('show');
@@ -71,7 +71,7 @@ define(['jquery', '_super'], function ($, _super){
 				}else{
 					if((_viewportBottom < this.eot + this.offsetTop) || (_viewportTop > (this.eot + this.elemHeight + this.offsetBottom))){
 						this.$destination.removeClass('show');
-						this._finishing();
+						this._off();
 					}
 				}
 
@@ -79,15 +79,23 @@ define(['jquery', '_super'], function ($, _super){
 				if(this.onlyTopOfElem){
 					if(_viewportBottom > this.eot + this.offsetTop){
 						this.$destination.addClass('show');
-						this._finishing();
+						this._on();
 					}
 				}else{
 					if((_viewportBottom > this.eot + this.offsetTop) && (_viewportTop < (this.eot + this.elemHeight + this.offsetBottom))){
 						this.$destination.addClass('show');
-						this._finishing();
+						this._on();
 					}
 				}
 			}
+		},
+
+		_on: function(){
+			this._finishing();
+		},
+
+		_off: function(){
+			this._finishing();
 		}
 	});
 

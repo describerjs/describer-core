@@ -1,35 +1,27 @@
 /*!
- * jQuery Smoothwheel Plugin v1.0
+ * jQuery SmoothMousewheel Plugin v1.0
  *
  * Copyright (c) 2014 Andreas Otten (aotten77)
  * Released under the MIT license
  */
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else {
-        // Browser globals
-        factory(jQuery);
-    }
-}(function ($) {
-	$.smoothwheel = function(options){
-		if(window.smoothwheel || navigator.platform.toLowerCase().indexOf('win') === -1 || navigator.userAgent.toLowerCase().indexOf('firefox') === 0 ) return;
-		window.smoothwheel = true;
+(function ($) {
+	$.smoothMousewheel = function(options){
+		if(window.smoothMousewheel || navigator.platform.toLowerCase().indexOf('win') === -1 || navigator.userAgent.toLowerCase().indexOf('firefox') === 0 ) return;
+		window.smoothMousewheel = true;
 		var opt = $.extend({
 			friction: 0.2,
 			deltaSteps: 100
 		}, options);
 
 		var raf,
-		    scrollwheel = false,
-		    $window = $(window),
-		    $document = $(document),
-		    viewHeight = $window.height(),
-		    $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html'),
-		    viewY = $body.scrollTop(),
-		    scrollToX = $body.scrollLeft(),
-		    scrollToY = $body.scrollTop();
+			scrollwheel = false,
+			$window = $(window),
+			$document = $(document),
+			viewHeight = $window.height(),
+			$body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html'),
+			viewY = $body.scrollTop(),
+			scrollToX = $body.scrollLeft(),
+			scrollToY = $body.scrollTop();
 
 		var _onAnimationFrame = function(){
 			viewY += (scrollToY - viewY) * opt.friction;
@@ -60,4 +52,4 @@
 			return false;
 		});
 	};
-}));
+})(jQuery);
