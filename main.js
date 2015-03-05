@@ -23,6 +23,7 @@ require.config({
 		'_config'                                           : buildPath+'describer-config/describer',
 		'config.validation'                                 : buildPath+'describer-config/validation',
 		'config.googlemap'                                  : buildPath+'describer-config/googlemap',
+		'config.require-css.video'                          : buildPath+'describer-config/require-css/video',
 		'config.languageTextObj'                            : buildPath+'describer-config/languageTextObj',
 		'language/nls/speak'                                : buildPath+'describer-config/nls/speak',
 		'language/nls/en/speak'                             : buildPath+'describer-config/nls/en/speak',
@@ -105,10 +106,7 @@ require.config({
 
 		// overwritings externel
 		'overwritings.jquery_validate'                      : buildPath+'describer-more/plugins/overwritings/jquery.validate',
-		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel',
-
-		// CSS for components
-		'require-css.video'                                 : buildPath+'describer-more/require-css/video'
+		'overwritings.owl_carousel'                         : buildPath+'describer-more/plugins/overwritings/owl.carousel'
 	},
 	shim: {
 		'jquery_canvasResize': {
@@ -132,7 +130,7 @@ require.config({
 	},
 	map: {
 	    '*': {
-	        'css': 'describer-more/require-css/css' // or whatever the path to require-css is
+	        'css': buildPath+'describer-more/plugins/css' // or whatever the path to require-css is
 	    }
 	},
 	waitSeconds: 500,

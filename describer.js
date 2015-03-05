@@ -52,7 +52,7 @@ define(function(){
 //					'data'      : 'show',
 //					'relatedTo' : 'this.$elem[0]',
 //					'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-//					'condition' : '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)'
+//					'condition' : '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)'
 //				},
 //				{
 //					'event'     : 'raf-6',
@@ -60,7 +60,7 @@ define(function(){
 //					'data'      : 'show',
 //					'relatedTo' : 'this.$elem[0]',
 //					'localScope': 'this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-//					'condition' : 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)) && (window.dcRAF.domObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
+//					'condition' : 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)) && (window.dc.win.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'
 //				}
 //			]
 //		},
@@ -150,7 +150,7 @@ define(function(){
 //					'data'      : 'show',
 //					'relatedTo' : 'this.$elem[0]',
 //					'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-//					'condition' : '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)',
+//					'condition' : '!jmHF.hasClass(this.$elem[0], \'show\') && ((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)',
 //					'callback'  : 'this.animateTransformTag.beginElement()'
 //				},
 //				{
@@ -159,7 +159,7 @@ define(function(){
 //					'data'      : 'show',
 //					'relatedTo' : 'this.$elem[0]',
 //					'localScope': 'this.eot = this.$elem.offset().top; this.offset = 0; this.animateTransformTag = $(this.$elem[0].contentDocument.getElementsByTagName(\'svg\')[0]).find(\'animateTransform, animate, animateMotion\')[0]',
-//					'condition' : 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dcRAF.domObj.pageYOffset + window.dcRAF.domObj.innerHeight) > this.eot + this.offset)) && (window.dcRAF.domObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
+//					'condition' : 'jmHF.hasClass(this.$elem[0], \'show\') &&  (!((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)) && (window.dc.win.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))',
 //					'callback'  : 'this.animateTransformTag.endElement()'
 //				}
 //			]
@@ -498,7 +498,7 @@ define(function(){
 //					'datatype'  : 'class',
 //					'data'      : 'activ',
 //					'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-//					//'condition': '!jmHF.hasClass(this.relatedTo[0], \'activ\') && ((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)'
+//					//'condition': '!jmHF.hasClass(this.relatedTo[0], \'activ\') && ((window.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)'
 //					'condition' : 'false'
 //				},
 //				{
@@ -507,7 +507,7 @@ define(function(){
 //					'data'      : 'activ',
 //					'relatedTo' : '$(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\')[0]',
 //					'localScope': 'this.relatedTo = $(\'nav\').find(\'a[href="#\'+this.$elem.attr(\'id\')+\'"]\'); this.eot = this.$elem.offset().top; this.offset = window.innerHeight * 0.2',
-//					/*'condition': 'jmHF.hasClass(this.relatedTo[0], \'activ\') &&  (!((jmGO.rafObj.pageYOffset + jmGO.rafObj.innerHeight) > this.eot + this.offset)) && (jmGO.rafObj.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'*/
+//					/*'condition': 'jmHF.hasClass(this.relatedTo[0], \'activ\') &&  (!((jwindow.dc.win.pageYOffset + window.dc.win.innerHeight) > this.eot + this.offset)) && (window.dc.win.pageYOffset < (this.eot + this.$elem[0].getBoundingClientRect().height))'*/
 //					'condition' : 'false'
 //				}
 //			]
