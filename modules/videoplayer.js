@@ -2,7 +2,7 @@
  * Created by aotten77 on 17.11.2014.
  */
 
-define(['jquery', '_super', 'video_4_10_2', 'css!require-css.video'], function($, _super){
+define(['jquery', '_super', 'video_4_10_2', 'css!config.require-css.video'], function($, _super){
 	'use strict';
 
 	var videoplayer = $.extend({}, _super, {
