@@ -77,7 +77,7 @@ require.config({
 		'modules.scrollControlTransform'                    : buildPath+'describer-more/modules/scrollControlTransform',
 		'modules.tablesort'                                 : buildPath+'describer-more/modules/tablesort',
 		'modules.video'                                     : buildPath+'describer-more/modules/video',
-		'modules.videocontrol'                              : buildPath+'describer-more/modules/videocontrol',
+		'modules.videocontrol'                              : buildPath+'describer-more/modules/videoControl',
 		'modules.videoplayer'                               : buildPath+'describer-more/modules/videoplayer',
 
 		// untouched externel
