@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'modules.carousel-ts'], function ($, _super, ts){
+define(['jquery', '_super', 'modules.carousel-ts', 'css!config.require-css.owl.carousel'], function ($, _super, ts){
 	'use strict';
 	var carousel = $.extend({}, _super, {
 		init: function (options, elem) {
