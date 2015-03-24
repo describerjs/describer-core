@@ -22,11 +22,32 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 		},
 
 		_exec: function(e){
-			this.$modal = $('#'+this._getID());
+			this.refID = this._getID();
+			this.$ref = $('#'+this.refID);
+			if(this.$ref.doesExist() && !this.$ref.hasClass('mask')){
+				this.$outcommentHTML = this._getOutcommendHtml();
+				this.$ref.replaceWith(this.$outcommentHTML);
+			}
+			window.requestAnimationFrame(this._switchModalDoesExist.bind(this));
+		},
+
+		_switchModalDoesExist: function(){
+			this.$modal = $('#'+this.refID);
 			if(this.$modal.doesExist()){
 				window.requestAnimationFrame(this._openAndCallFinishing.bind(this));
 			}else{
 				window.requestAnimationFrame(this._createModal.bind(this));
+			}
+		},
+
+		_getOutcommendHtml: function(){
+			var i = 0;
+			var length = this.$ref[0].childNodes.length;
+			for(; i < length; i++) {
+				// node type 8 is comment
+				if(this.$ref[0].childNodes[i].nodeType === 8) {
+					return (this.$ref[0].childNodes[i].textContent !== undefined) ? this.$ref[0].childNodes[i].textContent.replace('comment in by JS', '') : this.$ref[0].childNodes[i].data.replace('comment in by JS', '');
+				}
 			}
 		},
 
@@ -45,6 +66,7 @@ define(['jquery', 'actions.ajax', 'md5'], function ($, extendOjb, md5){
 		},
 
 		_getID: function(){
+			// return ID or md5 hash for Modal-ID
 			return (this.$elem.attr('href').match(/^#(.*)/g)) ? this.$elem.attr('href').replace('#', '') : md5(this.$elem.attr('href'));
 		},
 
