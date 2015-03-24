@@ -115,6 +115,7 @@ define(['jquery', '_super'], function ($, _super){
 		_addProp: function(){
 			var data = this.data.split(':');
 			if(data[0] === 'checked'){
+				// create a valid bool state
 				data[1] = (data[1] === 'true');
 			}
 			this.$destination.prop(data[0], data[1]);
