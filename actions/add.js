@@ -108,7 +108,7 @@ define(['jquery', '_super'], function ($, _super){
 		},
 
 		_addText: function(){
-			this.$destination.html(this.data);
+			this.$destination.text(this.data);
 			this._finishing();
 		},
 
