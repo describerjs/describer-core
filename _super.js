@@ -53,12 +53,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				}
 				return;
 			}
-			if(this.includes('event', 'jmtrigger:'+e_param.event) && this.isCondition()) this._execWait(e);
+			if(this.includes('event', 'jmtrigger:'+e_param.event) && this.isCondition()) this._execWait(e, e_param.data);
 		},
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
 		dominit: function(e){
-			var that = this;
 			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 			//
@@ -118,8 +117,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				case 'scrollToOffset':
 				case 'data':
 				case 'loaderTo':
+				case 'event':
 					// return String or Dom-Element/e
-					return (this.configObj[p_dataAttr].indexOf('this.') !== -1) ? eval(_returnString) : _returnString;
+					return ((this.configObj[p_dataAttr].indexOf('this.') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmHF') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmGO') !== -1)  || (this.configObj[p_dataAttr].indexOf('window.dc') !== -1)) ? eval(_returnString) : _returnString;
 				default:
 					// return String
 					return _returnString;
@@ -145,10 +145,25 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		includes: function(p_dataAttr, p_value, p_now){
+			var _array_value;
 			this.configObj = this._getConfigObjArray(p_now);
 			// gibt true zurück, wenn der hinterlegte Sting von p_dataAttr p_value enthält. Andernfalls wird false zurückgegeben.
 			// return Bool
-			return($.type(this.configObj[p_dataAttr]) !== 'undefined' && $.inArray(p_value, this.configObj[p_dataAttr].split('|')) !== -1);
+			if($.type(this.configObj[p_dataAttr]) === 'undefined'){
+				return;
+			}
+
+			if(this.configObj[p_dataAttr].indexOf('this.') === -1){
+				return $.inArray(p_value, this.configObj[p_dataAttr].split('|')) !== -1;
+			}
+
+			_array_value = this.configObj[p_dataAttr].split('|');
+			for(var i = 0, leni = _array_value.length; i < leni; i++){
+			    if((_array_value[i].indexOf('this.') != -1) && (_array_value[i].indexOf('jmtrigger:') != -1)){
+				    _array_value[i] = eval(_array_value[i]);
+			    }
+			}
+			return $.inArray(p_value, _array_value) !== -1;
 		},
 
 		// gibt den aktuellen bool zurück. Siehe includes-funktion.
@@ -281,18 +296,18 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 		},
 
-		_execWait: function(e){
+		_execWait: function(e, p_data){
 			var that = this;
 			if(this.is('wait') === ''){
-				this._exec(e);
+				this._exec(e, p_data);
 				return;
 			}
 			if(this.is('wait') === 'raf'){
-				window.requestAnimationFrame(this._exec.bind(this, e));
+				window.requestAnimationFrame(this._exec.bind(this, e, p_data));
 				return;
 			}
 			if(this.is('wait') !== ''){
-				setTimeout(function(){ that._exec(e); }, parseInt(this.is('wait'), 10));
+				setTimeout(function(){ that._exec(e, p_data); }, parseInt(this.is('wait'), 10));
 			}
 		},
 
@@ -603,7 +618,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if((window.dc.win.counter % this.renderDelay) !== 0){
 				return;
 			}
-			if(this.$elem.offsetHeight === 0){
+			if(this.$elem[0].offsetHeight === 0){
 				return;
 			}
 			if(!this.oneTimeExec && eval(this.conditionSource)){

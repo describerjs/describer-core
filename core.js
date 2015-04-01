@@ -298,7 +298,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			if(eventArray[i] === p_eventType){
 				// return true if p_eventType === click || change
 				_retrun = true;
-			}else if(eventArray[i].split(':')[0] === p_eventType){
+			}else if(eventArray[i].split(':')[0].replace('\'', '').replace('"', '') === p_eventType){
 				// return true if eventArray[i] contains jmtrigger
 				_retrun = true;
 			}else if('dominit' === p_eventType){
@@ -683,10 +683,9 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	}*/
 
 	// Funktionswrapper um ein jmtrigger-Event mit event-type zu triggern.
-	$.fn.jmtrigger = function(p_event){
+	$.fn.jmtrigger = function(p_event, p_data){
 		return this.each(function(){
-			$(this).trigger('jmtrigger', { 'event': p_event });
-
+			$(this).trigger('jmtrigger', { 'event': p_event, 'data': p_data });
 		});
 	};
 

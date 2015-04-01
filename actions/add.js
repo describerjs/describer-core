@@ -33,9 +33,17 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(e){
+		_exec: function(e, p_data){
 			this.$destination = this.getRelatedToElem();
-			this.data = (this.is('data') !== '') ? this.is('data') : this._getOutcommendHtml();
+
+			if($.type(p_data) !== 'undefined'){
+				this.data = (p_data.match(/<(.*)[^>]*>/)) ? $(p_data) : p_data;
+			}else if(this.is('data') !== ''){
+				this.data = this.is('data');
+			}else{
+				this.data = this._getOutcommendHtml();
+			}
+
 			switch(this.is('datatype')){
 				case 'class':
 					window.requestAnimationFrame(this._addClass.bind(this));
@@ -68,6 +76,8 @@ define(['jquery', '_super'], function ($, _super){
 					return (this.$destination[0].childNodes[i].textContent !== undefined) ? this.$destination[0].childNodes[i].textContent.replace('comment in by JS', '') : this.$destination[0].childNodes[i].data.replace('comment in by JS', '');
 				}
 			}
+
+			jmHF.warn('data is not define');
 		},
 
 		_getCssObj: function(){
