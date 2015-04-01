@@ -91,44 +91,45 @@ define(['jquery', '_super', 'jquery_validate', 'overwritings.jquery_validate', '
 				errorElement: 'span',
 				submitHandler: function(form) {
 					$.doTimeout('submitTimer', 200, function () {
-						if (that.is('submit', 'true')) {
-							if (that.$elem.attr('action').indexOf('_') !== -1) {
-								that.$elem.attr('action', that.$elem.attr('action').replace('_', ''));
-							}
-							form.submit();
+						if(that.is('ajax') === 'true'){
+							$.ajax({
+								type: 'POST',
+								url: that._getUrl(),
+								progressUpload: function(e) {
+									if (e.lengthComputable) {
+										that.progresslayer.css('width', parseInt( (e.loaded / e.total * 100), 10) + '%');
+										//console.log("Loaded " + parseInt( (e.loaded / e.total * 100), 10) + "%");
+										//console.log(progresslayer);
+									}
+									else {
+										//console.log("Length not computable.");
+									}
+								},
+								beforeSend: function () {
+									//that.addSpinner(target);
+									if(that.$elem.find('.form-upload-canvas').doesExist()){
+										that.canvas = that.$elem.find('.form-upload-canvas').prepend('<div class="fotouploadprogresslayer" style="width: 0; height: 100%; position:absolute; background-color: #fff; opacity: 0.5"></div>');
+										that.progresslayer = that.canvas.find('.fotouploadprogresslayer');
+									}
+								},
+								data: that.$elem.serialize()
+							}).done(function (p_data) {
+								that.$elem.jmtrigger('done-'+ that.$elem.data('dcid'), p_data);
+								//							that.$elem.trigger({
+								//								type: 'jm.done',
+								//								response: p_data,
+								//								validateTriggerTarget: that.targetElement
+								//							});
+							}).always(function () {
+							}).fail(function () {
+
+							});
 							return;
 						}
-						$.ajax({
-							type: 'POST',
-							url: that._getUrl(),
-							progressUpload: function(e) {
-								if (e.lengthComputable) {
-									that.progresslayer.css('width', parseInt( (e.loaded / e.total * 100), 10) + '%');
-									//console.log("Loaded " + parseInt( (e.loaded / e.total * 100), 10) + "%");
-									//console.log(progresslayer);
-								}
-								else {
-									//console.log("Length not computable.");
-								}
-							},
-							beforeSend: function () {
-								//that.addSpinner(target);
-								if(that.$elem.find('.form-upload-canvas').doesExist()){
-									that.canvas = that.$elem.find('.form-upload-canvas').prepend('<div class="fotouploadprogresslayer" style="width: 0; height: 100%; position:absolute; background-color: #fff; opacity: 0.5"></div>');
-									that.progresslayer = that.canvas.find('.fotouploadprogresslayer');
-								}
-							},
-							data: that.$elem.serialize()
-						}).done(function (p_data) {
-							that.$elem.trigger({
-								type: 'jm.done',
-								response: p_data,
-								validateTriggerTarget: that.targetElement
-							});
-						}).always(function () {
-						}).fail(function () {
-
-						});
+						if (that.$elem.attr('action').indexOf('_') !== -1) {
+							that.$elem.attr('action', that.$elem.attr('action').replace('_', ''));
+						}
+						form.submit();
 					});
 				},
 				invalidHandler: function(event, validator) {
