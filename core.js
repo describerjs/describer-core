@@ -451,6 +451,19 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
+	jmHF.scrollToPosition = function(pos, speed){
+		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: pos
+			},{
+				duration: speed
+			});
+		}else{
+			$body.scrollToTop(pos);
+		}
+	};
+
 	// http://shebang.brandonmintern.com/foolproof-html-escaping-in-javascript/
 	// Use the browser's built-in functionality to quickly and safely escape the
 	// string
@@ -747,13 +760,21 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	$.fn.scrollToMe = function(p_delta_offset){
+	$.fn.scrollToMe = function(p_delta_offset, speed){
 		var _delta_offset = 0;
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
 		if ($.type(p_delta_offset) === 'number') {
 			_delta_offset = p_delta_offset;
 		}
-		$body.scrollToTop($(this).offset().top + _delta_offset);
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: $(this).offset().top + _delta_offset
+			},{
+				duration: speed
+			});
+		}else{
+			$body.scrollToTop($(this).offset().top + _delta_offset);
+		}
 	};
 
 	$.fn.removeDotNetFallbackHiddenFields = function(){
