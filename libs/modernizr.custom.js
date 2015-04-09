@@ -1,5 +1,5 @@
-/* Modernizr 2.7.1 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-fontface-backgroundsize-multiplebgs-opacity-rgba-generatedcontent-csstransforms-csstransforms3d-csstransitions-canvas-input-inputtypes-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-file_api
+/* Modernizr 2.8.3 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-fontface-backgroundsize-multiplebgs-opacity-rgba-generatedcontent-csstransforms-csstransforms3d-csstransitions-canvas-input-inputtypes-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_shapes-file_api
  */
 ;
 
@@ -7,7 +7,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.7.1',
+    var version = '2.8.3',
 
     Modernizr = {},
 
@@ -91,7 +91,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
       var matchMedia = window.matchMedia || window.msMatchMedia;
       if ( matchMedia ) {
-        return matchMedia(mq).matches;
+        return matchMedia(mq) && matchMedia(mq).matches || false;
       }
 
       var bool;
@@ -630,6 +630,10 @@ window.Modernizr = (function( window, document, undefined ) {
     return Modernizr;
 
 })(this, this.document);
+
+// http://html.adobe.com/webplatform/layout/shapes
+
+Modernizr.addTest('shapes', Modernizr.testAllProps('shapeOutside', 'content-box', true));
 /**
  * file tests for the File API specification
  *   Tests for objects specific to the File API W3C specification without
