@@ -326,43 +326,51 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
 		var _index = index || 0;
 		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
-		require([_requirePlugin], function(pluginObj){
-			var _elem;
-			// hier wird getestet, ob das Element schon eine Instanz des Plugins besitzt.
-			if($.type(Obj.$element.data(p_plugin)) === 'undefined' || ($.type(Obj.$element.data(p_plugin)) !== 'undefined' && Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)) || ($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) !== 'undefined' && !Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin))){
-				// Das Element hat noch keine Instanz von dem Plugin
+		if(require.defined(_requirePlugin)){
+			jmHF.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
+		}else{
+			require([_requirePlugin], function(pluginObj){
+				jmHF.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
+			});
+		}
+	};
 
-				// Ist das Plugin noch nicht erstellt wird es mit dem name des jmplugins und dem Objekt des OrginalPlugins erstellt.
-				// Dies ist der Fall, wenn z.B. mehrmals das gleiche Plugins auf das Element angewendet wird.
-				// Das Plugin ist dann mit "pluginName"+"_1" und "pluginName"+"_2" der Fall,
-				// oder wenn eine Plugin mit unterschiedlichen Namen (z.B. symbolische Name wie action.toggle -> navi wird) initialisiert werden kann.
-				if($.type($.fn[p_plugin]) === 'undefined'){
-					$.plugin(p_plugin, pluginObj);
-				}
-				// hier wird überprüft, ob es schon eine jQuery-Instanz gibt.
-				if(!Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)){
-					// Das Plugin wird auf das Element angewendet. Es werden pluginName und pos als Options übergeben.
-					Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				}
-				_elem = Obj.$element.data(p_plugin);
-			}else{
-				// Das Element hat schon mindestens Instanz von dem Plugin
-				if($.type($.fn[p_plugin+'-for-'+Obj.jmname]) === 'undefined'){
-					$.plugin(p_plugin+'-for-'+Obj.jmname, pluginObj);
-				}
-				// hier wird überprüft, ob es schon eine jQuery-Instanz gibt.
-				if(!Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)){
-					// Das Plugin wird auf das Element angewendet. Es werden pluginName und pos als Options übergeben.
-					Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				}
-				_elem = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
-			}
+	jmHF.bindAndExecPlugin = function(Obj, p_plugin, index, pluginObj){
+		var _elem;
+		// hier wird getestet, ob das Element schon eine Instanz des Plugins besitzt.
+		if($.type(Obj.$element.data(p_plugin)) === 'undefined' || ($.type(Obj.$element.data(p_plugin)) !== 'undefined' && Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)) || ($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) !== 'undefined' && !Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin))){
+			// Das Element hat noch keine Instanz von dem Plugin
 
-			// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
-			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type(_elem[Obj.e.type]) !== 'undefined'){
-				_elem[Obj.e.type](Obj.e, Obj.e_param);
+			// Ist das Plugin noch nicht erstellt wird es mit dem name des jmplugins und dem Objekt des OrginalPlugins erstellt.
+			// Dies ist der Fall, wenn z.B. mehrmals das gleiche Plugins auf das Element angewendet wird.
+			// Das Plugin ist dann mit "pluginName"+"_1" und "pluginName"+"_2" der Fall,
+			// oder wenn eine Plugin mit unterschiedlichen Namen (z.B. symbolische Name wie action.toggle -> navi wird) initialisiert werden kann.
+			if($.type($.fn[p_plugin]) === 'undefined'){
+				$.plugin(p_plugin, pluginObj);
 			}
-		});
+			// hier wird überprüft, ob es schon eine jQuery-Instanz gibt.
+			if(!Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)){
+				// Das Plugin wird auf das Element angewendet. Es werden pluginName und pos als Options übergeben.
+				Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: index });
+			}
+			_elem = Obj.$element.data(p_plugin);
+		}else{
+			// Das Element hat schon mindestens Instanz von dem Plugin
+			if($.type($.fn[p_plugin+'-for-'+Obj.jmname]) === 'undefined'){
+				$.plugin(p_plugin+'-for-'+Obj.jmname, pluginObj);
+			}
+			// hier wird überprüft, ob es schon eine jQuery-Instanz gibt.
+			if(!Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)){
+				// Das Plugin wird auf das Element angewendet. Es werden pluginName und pos als Options übergeben.
+				Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: index });
+			}
+			_elem = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
+		}
+
+		// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
+		if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type(_elem[Obj.e.type]) !== 'undefined'){
+			_elem[Obj.e.type](Obj.e, Obj.e_param);
+		}
 	};
 
 
