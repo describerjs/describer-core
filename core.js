@@ -465,7 +465,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			$body.animate({
 				scrollTop: pos
 			},{
-				duration: speed
+				duration: speed,
+				always: function(){
+					$body.off('scroll mousedown DOMMouseScroll mousewheel keyup');
+				}
+			});
+			// Stop the animation if the user scrolls. Defaults on .stop() should be fine
+			$body.on("scroll mousedown DOMMouseScroll mousewheel keyup touchstart", function(e){
+				if( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel" || e.type === 'touchstart'){
+					$body.stop(); // This identifies the scroll as a user action, stops the animation
+				}
 			});
 		}else{
 			$body.scrollToTop(pos);
