@@ -327,40 +327,41 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var _index = index || 0;
 		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
 		require([_requirePlugin], function(pluginObj){
-			var _elem;
-			// hier wird getestet, ob das Element schon eine Instanz des Plugins besitzt.
-			if($.type(Obj.$element.data(p_plugin)) === 'undefined' || ($.type(Obj.$element.data(p_plugin)) !== 'undefined' && Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)) || ($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) !== 'undefined' && !Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin))){
-				// Das Element hat noch keine Instanz von dem Plugin
+			var $plugin;
+			// für pluginName können folgende varationen entstehen.
+			// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
+			// z.B. actions.add_1 (wenn auf dem element weitere actions.add im jmname-Modul angewendet werden)
+			// z.B. actions.add-for-[jmname] (wenn auf dem element schon ein actions.add Plugin angewendet wurde aus einem anderen jmname-Modul)
 
-				// Ist das Plugin noch nicht erstellt wird es mit dem name des jmplugins und dem Objekt des OrginalPlugins erstellt.
-				// Dies ist der Fall, wenn z.B. mehrmals das gleiche Plugins auf das Element angewendet wird.
-				// Das Plugin ist dann mit "pluginName"+"_1" und "pluginName"+"_2" der Fall,
-				// oder wenn eine Plugin mit unterschiedlichen Namen (z.B. symbolische Name wie action.toggle -> navi wird) initialisiert werden kann.
-				if($.type($.fn[p_plugin]) === 'undefined'){
-					$.plugin(p_plugin, pluginObj);
-				}
-				// hier wird überprüft, ob es schon eine jQuery-Instanz gibt.
-				if(!Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)){
-					// Das Plugin wird auf das Element angewendet. Es werden pluginName und pos als Options übergeben.
-					Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				}
-				_elem = Obj.$element.data(p_plugin);
+			// ist das Plugin z.B. actions.add noch nicht auf dem Element angewendet, oder das Obj.jmname === Obj.$element.data(p_plugin).jmname bleibt pluginName = p_plugin (z.B. acitons.add oder actions.add_1).
+			// Andernfalls wird p_plugin mit dem jmname erweitert. (actions.add-for-[jmname])
+			var pluginName = ($.type(Obj.$element.data(p_plugin)) === 'undefined' || Obj.jmname === Obj.$element.data(p_plugin).jmname) ? p_plugin : p_plugin+'-for-'+Obj.jmname;
+
+			// ist das pluginName - Plugin noch nicht als jQuery-Plugin definiert, wird dieses durchgeführt.
+			if($.type($.fn[pluginName]) === 'undefined'){
+				$.plugin(pluginName, pluginObj);
+			}
+
+			if($.type(Obj.$element.data(p_plugin)) === 'undefined'){
+				// Fall 1: Das Plugin wird auf das Element angewendet. Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
+				Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
+				$plugin = Obj.$element.data(p_plugin);
+			}else if(Obj.jmname === Obj.$element.data(p_plugin).jmname){
+				// Fall 2: Das Plugin ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
+				$plugin = Obj.$element.data(p_plugin);
+			}else if($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) === 'undefined'){
+				// Fall 3: Das Plugin (erweiterte Benennung mit jmname) wird auf das Element angewendet. Dies ist der Fall, wenn Obj.jmname !== Obj.$element.data(p_plugin).jmname ist.
+				// Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
+				Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
+				$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
 			}else{
-				// Das Element hat schon mindestens Instanz von dem Plugin
-				if($.type($.fn[p_plugin+'-for-'+Obj.jmname]) === 'undefined'){
-					$.plugin(p_plugin+'-for-'+Obj.jmname, pluginObj);
-				}
-				// hier wird überprüft, ob es schon eine jQuery-Instanz gibt.
-				if(!Obj.$element.hasClass('JSINIT-'+ Obj.jmname + '-EL-' + p_plugin)){
-					// Das Plugin wird auf das Element angewendet. Es werden pluginName und pos als Options übergeben.
-					Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				}
-				_elem = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
+				// Fall 4: Das Plugin (erweiterte Benennung mit jmname) ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
+				$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
 			}
 
 			// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
-			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type(_elem[Obj.e.type]) !== 'undefined'){
-				_elem[Obj.e.type](Obj.e, Obj.e_param);
+			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type($plugin[Obj.e.type]) !== 'undefined'){
+				$plugin[Obj.e.type](Obj.e, Obj.e_param);
 			}
 		});
 	};

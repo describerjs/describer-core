@@ -18,7 +18,6 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.myJmName = this.jmname;
 			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
 			this.initExec();
-			this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
 		initExec: function(){
@@ -241,7 +240,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		_keyup: function(e){
 			if(this.isCondition()){
 				if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
-					$.doTimeout('JSINIT-' +this.myJmName +'-el-'+  this.name, parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
+					$.doTimeout(this.getUniqueId(), parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
 				}else{
 					this._execWait.bind(this, e)
 				}
@@ -661,6 +660,13 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		getRelatedToElem: function(){
 			return (this.relatedTo) ? this.relatedTo : this.relatedTo = ((this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem);
+		},
+
+		getUniqueId: function(){
+			if(this.uniqueId){
+				return this.uniqueId;
+			}
+			return this.uniqueId = window.jmGO.uuID.generate();
 		},
 
 		_finishing: function(p_$data){
