@@ -34,9 +34,10 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(e){
 			var that = this;
+			this.$destination = this.getRelatedToElem();
 			if(this.is('function') !== ''){
 				require([this.is('require')], function(){
-					this.$destination[that.is('function')]((that.is('options') !== '') ? that.is('options') : {});
+					that.$destination[that.is('function')]((that.is('options') !== '') ? that.is('options') : {});
 				});
 			}
 			this._finishing();
