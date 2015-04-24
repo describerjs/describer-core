@@ -49,6 +49,9 @@ define(['jquery', '_super'], function ($, _super){
 				case 'prop':
 					window.requestAnimationFrame(this._setProp.bind(this));
 					break;
+				case 'style':
+					window.requestAnimationFrame(this._setStyle.bind(this));
+					break;
 				case 'val':
 				default:
 					window.requestAnimationFrame(this._setVal.bind(this));
@@ -68,6 +71,17 @@ define(['jquery', '_super'], function ($, _super){
 			}
 		},*/
 
+		_getCssObj: function(){
+			var _obj = {};
+			var _arr;
+			var _dataArray = this.data.split('|');
+			for(var i = 0, leni = _dataArray.length; i < leni; i++){
+				_arr = _dataArray[i].split(':');
+				_obj[_arr[0]] = _arr[1];
+			}
+			return _obj;
+		},
+
 		_setVal: function(){
 			this.$destination.val(this.data);
 			this._finishing();
@@ -76,6 +90,11 @@ define(['jquery', '_super'], function ($, _super){
 		_setAttr: function(){
 			var data = this.data.split(':');
 			this.$destination.attr(data[0], data[1]);
+			this._finishing();
+		},
+
+		_setStyle: function(){
+			this.$destination.css(this._getCssObj());
 			this._finishing();
 		},
 

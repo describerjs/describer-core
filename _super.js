@@ -686,9 +686,26 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_scrollTo: function(){
-			if(this.is('scrollTo')){
-				$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0);
+			if(this.is('scrollTo') === ''){
+				return;
 			}
+			if($.type(this.is('scrollTo')) === 'number'){
+				jmHF.scrollToPosition(this.is('scrollTo'), (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
+				return;
+			}
+			if($.type(this.is('scrollTo')) === 'string'){
+				try{
+					if($.type($(this.is('scrollTo'))) === 'object'){
+						$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0, (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
+						return;
+					}
+					jmHF.warn('falsche angabe für scrollTo');
+				}catch(e){
+					jmHF.error('falsche angabe für scrollTo');
+					console.error(e.message);
+				}
+			}
+
 		},
 
 		_callback: function(){

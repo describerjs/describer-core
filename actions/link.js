@@ -61,7 +61,8 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(e){
 			this.$elem.append(this.$ani);
-			window.location.href = (this.$elem.attr('href').substring(0,1) !== '#') ? this.$elem.attr('href') : this.is('prefix') + this.$elem.attr('href');
+			this.url = (this.$elem.attr('href').substring(0,1) !== '#') ? this.$elem.attr('href') : this.is('prefix') + this.$elem.attr('href');
+			(this.$elem.attr('target') === '_blank') ? window.open(this.url, '_blank') : window.location.href = this.url;
 		}
 	});
 

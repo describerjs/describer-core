@@ -326,46 +326,53 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
 		var _index = index || 0;
 		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
-		require([_requirePlugin], function(pluginObj){
-			var $plugin;
-			// für pluginName können folgende varationen entstehen.
-			// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
-			// z.B. actions.add_1 (wenn auf dem element weitere actions.add im jmname-Modul angewendet werden)
-			// z.B. actions.add-for-[jmname] (wenn auf dem element schon ein actions.add Plugin angewendet wurde aus einem anderen jmname-Modul)
-
-			// ist das Plugin z.B. actions.add noch nicht auf dem Element angewendet, oder das Obj.jmname === Obj.$element.data(p_plugin).jmname bleibt pluginName = p_plugin (z.B. acitons.add oder actions.add_1).
-			// Andernfalls wird p_plugin mit dem jmname erweitert. (actions.add-for-[jmname])
-			var pluginName = ($.type(Obj.$element.data(p_plugin)) === 'undefined' || Obj.jmname === Obj.$element.data(p_plugin).jmname) ? p_plugin : p_plugin+'-for-'+Obj.jmname;
-
-			// ist das pluginName - Plugin noch nicht als jQuery-Plugin definiert, wird dieses durchgeführt.
-			if($.type($.fn[pluginName]) === 'undefined'){
-				$.plugin(pluginName, pluginObj);
-			}
-
-			if($.type(Obj.$element.data(p_plugin)) === 'undefined'){
-				// Fall 1: Das Plugin wird auf das Element angewendet. Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
-				Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				$plugin = Obj.$element.data(p_plugin);
-			}else if(Obj.jmname === Obj.$element.data(p_plugin).jmname){
-				// Fall 2: Das Plugin ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
-				$plugin = Obj.$element.data(p_plugin);
-			}else if($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) === 'undefined'){
-				// Fall 3: Das Plugin (erweiterte Benennung mit jmname) wird auf das Element angewendet. Dies ist der Fall, wenn Obj.jmname !== Obj.$element.data(p_plugin).jmname ist.
-				// Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
-				Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
-			}else{
-				// Fall 4: Das Plugin (erweiterte Benennung mit jmname) ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
-				$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
-			}
-
-			// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
-			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type($plugin[Obj.e.type]) !== 'undefined'){
-				$plugin[Obj.e.type](Obj.e, Obj.e_param);
-			}
-		});
+		if(require.defined(_requirePlugin)){
+			jmHF.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
+		}else{
+			require([_requirePlugin], function(pluginObj){
+				jmHF.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
+			});
+		}
 	};
 
+	jmHF.bindAndExecPlugin = function(Obj, p_plugin, index, pluginObj){
+		var $plugin;
+		// für pluginName können folgende varationen entstehen.
+		// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
+		// z.B. actions.add_1 (wenn auf dem element weitere actions.add im jmname-Modul angewendet werden)
+		// z.B. actions.add-for-[jmname] (wenn auf dem element schon ein actions.add Plugin angewendet wurde aus einem anderen jmname-Modul)
+
+		// ist das Plugin z.B. actions.add noch nicht auf dem Element angewendet, oder das Obj.jmname === Obj.$element.data(p_plugin).jmname bleibt pluginName = p_plugin (z.B. acitons.add oder actions.add_1).
+		// Andernfalls wird p_plugin mit dem jmname erweitert. (actions.add-for-[jmname])
+		var pluginName = ($.type(Obj.$element.data(p_plugin)) === 'undefined' || Obj.jmname === Obj.$element.data(p_plugin).jmname) ? p_plugin : p_plugin+'-for-'+Obj.jmname;
+
+		// ist das pluginName - Plugin noch nicht als jQuery-Plugin definiert, wird dieses durchgeführt.
+		if($.type($.fn[pluginName]) === 'undefined'){
+			$.plugin(pluginName, pluginObj);
+		}
+
+		if($.type(Obj.$element.data(p_plugin)) === 'undefined'){
+			// Fall 1: Das Plugin wird auf das Element angewendet. Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
+			Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
+			$plugin = Obj.$element.data(p_plugin);
+		}else if(Obj.jmname === Obj.$element.data(p_plugin).jmname){
+			// Fall 2: Das Plugin ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
+			$plugin = Obj.$element.data(p_plugin);
+		}else if($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) === 'undefined'){
+			// Fall 3: Das Plugin (erweiterte Benennung mit jmname) wird auf das Element angewendet. Dies ist der Fall, wenn Obj.jmname !== Obj.$element.data(p_plugin).jmname ist.
+			// Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
+			Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
+			$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
+		}else{
+			// Fall 4: Das Plugin (erweiterte Benennung mit jmname) ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
+			$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
+		}
+
+		// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
+		if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type($plugin[Obj.e.type]) !== 'undefined'){
+			$plugin[Obj.e.type](Obj.e, Obj.e_param);
+		}
+	});
 
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
@@ -449,6 +456,28 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			for(var i = 0, leni = _svgImages.length; i < leni; i++){
 				_svgImages.eq(i).attr('src', _svgImages.eq(i).attr('src').replace('.svg', '.png'));
 			}
+		}
+	};
+
+	jmHF.scrollToPosition = function(pos, speed){
+		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: pos
+			},{
+				duration: speed,
+				always: function(){
+					$body.off('scroll mousedown DOMMouseScroll mousewheel keyup');
+				}
+			});
+			// Stop the animation if the user scrolls. Defaults on .stop() should be fine
+			$body.on("scroll mousedown DOMMouseScroll mousewheel keyup touchstart", function(e){
+				if( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel" || e.type === 'touchstart'){
+					$body.stop(); // This identifies the scroll as a user action, stops the animation
+				}
+			});
+		}else{
+			$body.scrollToTop(pos);
 		}
 	};
 
@@ -748,13 +777,21 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	$.fn.scrollToMe = function(p_delta_offset){
+	$.fn.scrollToMe = function(p_delta_offset, speed){
 		var _delta_offset = 0;
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
 		if ($.type(p_delta_offset) === 'number') {
 			_delta_offset = p_delta_offset;
 		}
-		$body.scrollToTop($(this).offset().top + _delta_offset);
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: $(this).offset().top + _delta_offset
+			},{
+				duration: speed
+			});
+		}else{
+			$body.scrollToTop($(this).offset().top + _delta_offset);
+		}
 	};
 
 	$.fn.removeDotNetFallbackHiddenFields = function(){
