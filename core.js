@@ -335,7 +335,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.bindAndExecPlugin = function(Obj, p_plugin, index, pluginObj){
+	jmHF.bindAndExecPlugin = function(Obj, p_plugin, _index, pluginObj){
 		var $plugin;
 		// für pluginName können folgende varationen entstehen.
 		// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
@@ -372,7 +372,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type($plugin[Obj.e.type]) !== 'undefined'){
 			$plugin[Obj.e.type](Obj.e, Obj.e_param);
 		}
-	});
+	};
 
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
