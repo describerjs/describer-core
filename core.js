@@ -80,13 +80,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.checkOrientation = function(){
+	jmHF.checkOrientationAndTriggerDcResize = function(){
 		if(window.dc.orientation === 'w' && (window.innerHeight > window.innerWidth)){
 			window.dc.orientation = 'p';
 			$body.trigger('dc-orientationchange');
 		}else if(window.dc.orientation === 'p' && (window.innerHeight < window.innerWidth)){
 			window.dc.orientation = 'w';
 			$body.trigger('dc-orientationchange');
+		}
+		if((window.userOS !== 'iOS') && (window.userOS !== 'Android')){
+			$body.trigger('dc-resizeondesktop');
 		}
 	};
 
