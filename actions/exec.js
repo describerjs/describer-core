@@ -32,7 +32,7 @@ define(['jquery', '_super'], function ($, _super){
 
 		},
 
-		_exec: function(e){
+		_exec: function(e, p_data){
 			try{
 				eval(this.is('exec'));
 			}catch(e){}
