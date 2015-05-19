@@ -1,5 +1,5 @@
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-fontface-backgroundsize-multiplebgs-opacity-rgba-generatedcontent-csstransforms-csstransforms3d-csstransitions-canvas-input-inputtypes-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_shapes-file_api
+ * Build: http://modernizr.com/download/#-fontface-backgroundsize-multiplebgs-opacity-rgba-generatedcontent-csstransforms-csstransforms3d-csstransitions-canvas-input-inputtypes-svg-touch-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_shapes-file_api
  */
 ;
 
@@ -7,627 +7,640 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.8.3',
+	var version = '2.8.3',
 
-    Modernizr = {},
+	    Modernizr = {},
 
-    enableClasses = true,
+	    enableClasses = true,
 
-    docElement = document.documentElement,
+	    docElement = document.documentElement,
 
-    mod = 'modernizr',
-    modElem = document.createElement(mod),
-    mStyle = modElem.style,
+	    mod = 'modernizr',
+	    modElem = document.createElement(mod),
+	    mStyle = modElem.style,
 
-    inputElem  = document.createElement('input')  ,
+	    inputElem  = document.createElement('input')  ,
 
-    smile = ':)',
+	    smile = ':)',
 
-    toString = {}.toString,
+	    toString = {}.toString,
 
-    prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
+	    prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
 
 
 
-    omPrefixes = 'Webkit Moz O ms',
+	    omPrefixes = 'Webkit Moz O ms',
 
-    cssomPrefixes = omPrefixes.split(' '),
+	    cssomPrefixes = omPrefixes.split(' '),
 
-    domPrefixes = omPrefixes.toLowerCase().split(' '),
+	    domPrefixes = omPrefixes.toLowerCase().split(' '),
 
-    ns = {'svg': 'http://www.w3.org/2000/svg'},
+	    ns = {'svg': 'http://www.w3.org/2000/svg'},
 
-    tests = {},
-    inputs = {},
-    attrs = {},
+	    tests = {},
+	    inputs = {},
+	    attrs = {},
 
-    classes = [],
+	    classes = [],
 
-    slice = classes.slice,
+	    slice = classes.slice,
 
-    featureName, 
+	    featureName,
 
 
-    injectElementWithStyles = function( rule, callback, nodes, testnames ) {
+	    injectElementWithStyles = function( rule, callback, nodes, testnames ) {
 
-      var style, ret, node, docOverflow,
-          div = document.createElement('div'),
-                body = document.body,
-                fakeBody = body || document.createElement('body');
+		    var style, ret, node, docOverflow,
+		        div = document.createElement('div'),
+		        body = document.body,
+		        fakeBody = body || document.createElement('body');
 
-      if ( parseInt(nodes, 10) ) {
-                      while ( nodes-- ) {
-              node = document.createElement('div');
-              node.id = testnames ? testnames[nodes] : mod + (nodes + 1);
-              div.appendChild(node);
-          }
-      }
+		    if ( parseInt(nodes, 10) ) {
+			    while ( nodes-- ) {
+				    node = document.createElement('div');
+				    node.id = testnames ? testnames[nodes] : mod + (nodes + 1);
+				    div.appendChild(node);
+			    }
+		    }
 
-                style = ['&#173;','<style id="s', mod, '">', rule, '</style>'].join('');
-      div.id = mod;
-          (body ? div : fakeBody).innerHTML += style;
-      fakeBody.appendChild(div);
-      if ( !body ) {
-                fakeBody.style.background = '';
-                fakeBody.style.overflow = 'hidden';
-          docOverflow = docElement.style.overflow;
-          docElement.style.overflow = 'hidden';
-          docElement.appendChild(fakeBody);
-      }
+		    style = ['&#173;','<style id="s', mod, '">', rule, '</style>'].join('');
+		    div.id = mod;
+		    (body ? div : fakeBody).innerHTML += style;
+		    fakeBody.appendChild(div);
+		    if ( !body ) {
+			    fakeBody.style.background = '';
+			    fakeBody.style.overflow = 'hidden';
+			    docOverflow = docElement.style.overflow;
+			    docElement.style.overflow = 'hidden';
+			    docElement.appendChild(fakeBody);
+		    }
 
-      ret = callback(div, rule);
-        if ( !body ) {
-          fakeBody.parentNode.removeChild(fakeBody);
-          docElement.style.overflow = docOverflow;
-      } else {
-          div.parentNode.removeChild(div);
-      }
+		    ret = callback(div, rule);
+		    if ( !body ) {
+			    fakeBody.parentNode.removeChild(fakeBody);
+			    docElement.style.overflow = docOverflow;
+		    } else {
+			    div.parentNode.removeChild(div);
+		    }
 
-      return !!ret;
+		    return !!ret;
 
-    },
+	    },
 
-    testMediaQuery = function( mq ) {
+	    testMediaQuery = function( mq ) {
 
-      var matchMedia = window.matchMedia || window.msMatchMedia;
-      if ( matchMedia ) {
-        return matchMedia(mq) && matchMedia(mq).matches || false;
-      }
+		    var matchMedia = window.matchMedia || window.msMatchMedia;
+		    if ( matchMedia ) {
+			    return matchMedia(mq) && matchMedia(mq).matches || false;
+		    }
 
-      var bool;
+		    var bool;
 
-      injectElementWithStyles('@media ' + mq + ' { #' + mod + ' { position: absolute; } }', function( node ) {
-        bool = (window.getComputedStyle ?
-                  getComputedStyle(node, null) :
-                  node.currentStyle)['position'] == 'absolute';
-      });
+		    injectElementWithStyles('@media ' + mq + ' { #' + mod + ' { position: absolute; } }', function( node ) {
+			    bool = (window.getComputedStyle ?
+				    getComputedStyle(node, null) :
+				    node.currentStyle)['position'] == 'absolute';
+		    });
 
-      return bool;
+		    return bool;
 
-     },
- 
+	    },
 
-    isEventSupported = (function() {
 
-      var TAGNAMES = {
-        'select': 'input', 'change': 'input',
-        'submit': 'form', 'reset': 'form',
-        'error': 'img', 'load': 'img', 'abort': 'img'
-      };
+	    isEventSupported = (function() {
 
-      function isEventSupported( eventName, element ) {
+		    var TAGNAMES = {
+			    'select': 'input', 'change': 'input',
+			    'submit': 'form', 'reset': 'form',
+			    'error': 'img', 'load': 'img', 'abort': 'img'
+		    };
 
-        element = element || document.createElement(TAGNAMES[eventName] || 'div');
-        eventName = 'on' + eventName;
+		    function isEventSupported( eventName, element ) {
 
-            var isSupported = eventName in element;
-
-        if ( !isSupported ) {
-                if ( !element.setAttribute ) {
-            element = document.createElement('div');
-          }
-          if ( element.setAttribute && element.removeAttribute ) {
-            element.setAttribute(eventName, '');
-            isSupported = is(element[eventName], 'function');
-
-                    if ( !is(element[eventName], 'undefined') ) {
-              element[eventName] = undefined;
-            }
-            element.removeAttribute(eventName);
-          }
-        }
-
-        element = null;
-        return isSupported;
-      }
-      return isEventSupported;
-    })(),
-
-
-    _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
-
-    if ( !is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined') ) {
-      hasOwnProp = function (object, property) {
-        return _hasOwnProperty.call(object, property);
-      };
-    }
-    else {
-      hasOwnProp = function (object, property) { 
-        return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
-      };
-    }
-
-
-    if (!Function.prototype.bind) {
-      Function.prototype.bind = function bind(that) {
+			    element = element || document.createElement(TAGNAMES[eventName] || 'div');
+			    eventName = 'on' + eventName;
 
-        var target = this;
+			    var isSupported = eventName in element;
+
+			    if ( !isSupported ) {
+				    if ( !element.setAttribute ) {
+					    element = document.createElement('div');
+				    }
+				    if ( element.setAttribute && element.removeAttribute ) {
+					    element.setAttribute(eventName, '');
+					    isSupported = is(element[eventName], 'function');
+
+					    if ( !is(element[eventName], 'undefined') ) {
+						    element[eventName] = undefined;
+					    }
+					    element.removeAttribute(eventName);
+				    }
+			    }
+
+			    element = null;
+			    return isSupported;
+		    }
+		    return isEventSupported;
+	    })(),
+
+
+	    _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
+
+	if ( !is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined') ) {
+		hasOwnProp = function (object, property) {
+			return _hasOwnProperty.call(object, property);
+		};
+	}
+	else {
+		hasOwnProp = function (object, property) {
+			return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
+		};
+	}
+
+
+	if (!Function.prototype.bind) {
+		Function.prototype.bind = function bind(that) {
 
-        if (typeof target != "function") {
-            throw new TypeError();
-        }
+			var target = this;
 
-        var args = slice.call(arguments, 1),
-            bound = function () {
+			if (typeof target != "function") {
+				throw new TypeError();
+			}
 
-            if (this instanceof bound) {
+			var args = slice.call(arguments, 1),
+			    bound = function () {
 
-              var F = function(){};
-              F.prototype = target.prototype;
-              var self = new F();
+				    if (this instanceof bound) {
 
-              var result = target.apply(
-                  self,
-                  args.concat(slice.call(arguments))
-              );
-              if (Object(result) === result) {
-                  return result;
-              }
-              return self;
+					    var F = function(){};
+					    F.prototype = target.prototype;
+					    var self = new F();
 
-            } else {
+					    var result = target.apply(
+						    self,
+						    args.concat(slice.call(arguments))
+					    );
+					    if (Object(result) === result) {
+						    return result;
+					    }
+					    return self;
 
-              return target.apply(
-                  that,
-                  args.concat(slice.call(arguments))
-              );
+				    } else {
 
-            }
+					    return target.apply(
+						    that,
+						    args.concat(slice.call(arguments))
+					    );
 
-        };
+				    }
 
-        return bound;
-      };
-    }
+			    };
 
-    function setCss( str ) {
-        mStyle.cssText = str;
-    }
+			return bound;
+		};
+	}
 
-    function setCssAll( str1, str2 ) {
-        return setCss(prefixes.join(str1 + ';') + ( str2 || '' ));
-    }
+	function setCss( str ) {
+		mStyle.cssText = str;
+	}
 
-    function is( obj, type ) {
-        return typeof obj === type;
-    }
+	function setCssAll( str1, str2 ) {
+		return setCss(prefixes.join(str1 + ';') + ( str2 || '' ));
+	}
 
-    function contains( str, substr ) {
-        return !!~('' + str).indexOf(substr);
-    }
+	function is( obj, type ) {
+		return typeof obj === type;
+	}
 
-    function testProps( props, prefixed ) {
-        for ( var i in props ) {
-            var prop = props[i];
-            if ( !contains(prop, "-") && mStyle[prop] !== undefined ) {
-                return prefixed == 'pfx' ? prop : true;
-            }
-        }
-        return false;
-    }
+	function contains( str, substr ) {
+		return !!~('' + str).indexOf(substr);
+	}
 
-    function testDOMProps( props, obj, elem ) {
-        for ( var i in props ) {
-            var item = obj[props[i]];
-            if ( item !== undefined) {
+	function testProps( props, prefixed ) {
+		for ( var i in props ) {
+			var prop = props[i];
+			if ( !contains(prop, "-") && mStyle[prop] !== undefined ) {
+				return prefixed == 'pfx' ? prop : true;
+			}
+		}
+		return false;
+	}
 
-                            if (elem === false) return props[i];
+	function testDOMProps( props, obj, elem ) {
+		for ( var i in props ) {
+			var item = obj[props[i]];
+			if ( item !== undefined) {
 
-                            if (is(item, 'function')){
-                                return item.bind(elem || obj);
-                }
+				if (elem === false) return props[i];
 
-                            return item;
-            }
-        }
-        return false;
-    }
+				if (is(item, 'function')){
+					return item.bind(elem || obj);
+				}
 
-    function testPropsAll( prop, prefixed, elem ) {
+				return item;
+			}
+		}
+		return false;
+	}
 
-        var ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
-            props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
+	function testPropsAll( prop, prefixed, elem ) {
 
-            if(is(prefixed, "string") || is(prefixed, "undefined")) {
-          return testProps(props, prefixed);
+		var ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
+		    props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
-            } else {
-          props = (prop + ' ' + (domPrefixes).join(ucProp + ' ') + ucProp).split(' ');
-          return testDOMProps(props, prefixed, elem);
-        }
-    }
+		if(is(prefixed, "string") || is(prefixed, "undefined")) {
+			return testProps(props, prefixed);
 
+		} else {
+			props = (prop + ' ' + (domPrefixes).join(ucProp + ' ') + ucProp).split(' ');
+			return testDOMProps(props, prefixed, elem);
+		}
+	}
 
 
-    tests['canvas'] = function() {
-        var elem = document.createElement('canvas');
-        return !!(elem.getContext && elem.getContext('2d'));
-    };
-    tests['rgba'] = function() {
-        setCss('background-color:rgba(150,255,150,.5)');
 
-        return contains(mStyle.backgroundColor, 'rgba');
-    };
+	tests['canvas'] = function() {
+		var elem = document.createElement('canvas');
+		return !!(elem.getContext && elem.getContext('2d'));
+	};
 
+	tests['touch'] = function() {
+		var bool;
 
-    tests['multiplebgs'] = function() {
-                setCss('background:url(https://),url(https://),red url(https://)');
+		if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+			bool = true;
+		} else {
+			injectElementWithStyles(['@media (',prefixes.join('touch-enabled),('),mod,')','{#modernizr{top:9px;position:absolute}}'].join(''), function( node ) {
+				bool = node.offsetTop === 9;
+			});
+		}
 
-            return (/(url\s*\(.*?){3}/).test(mStyle.background);
-    };    tests['backgroundsize'] = function() {
-        return testPropsAll('backgroundSize');
-    };
+		return bool;
+	};    tests['rgba'] = function() {
+		setCss('background-color:rgba(150,255,150,.5)');
 
+		return contains(mStyle.backgroundColor, 'rgba');
+	};
 
 
-    tests['opacity'] = function() {
-                setCssAll('opacity:.55');
+	tests['multiplebgs'] = function() {
+		setCss('background:url(https://),url(https://),red url(https://)');
 
-                    return (/^0.55$/).test(mStyle.opacity);
-    };
-    tests['csstransforms'] = function() {
-        return !!testPropsAll('transform');
-    };
+		return (/(url\s*\(.*?){3}/).test(mStyle.background);
+	};    tests['backgroundsize'] = function() {
+		return testPropsAll('backgroundSize');
+	};
 
 
-    tests['csstransforms3d'] = function() {
 
-        var ret = !!testPropsAll('perspective');
+	tests['opacity'] = function() {
+		setCssAll('opacity:.55');
 
-                        if ( ret && 'webkitPerspective' in docElement.style ) {
+		return (/^0.55$/).test(mStyle.opacity);
+	};
+	tests['csstransforms'] = function() {
+		return !!testPropsAll('transform');
+	};
 
-                      injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
-            ret = node.offsetLeft === 9 && node.offsetHeight === 3;
-          });
-        }
-        return ret;
-    };
 
+	tests['csstransforms3d'] = function() {
 
-    tests['csstransitions'] = function() {
-        return testPropsAll('transition');
-    };
+		var ret = !!testPropsAll('perspective');
 
+		if ( ret && 'webkitPerspective' in docElement.style ) {
 
+			injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
+				ret = node.offsetLeft === 9 && node.offsetHeight === 3;
+			});
+		}
+		return ret;
+	};
 
-    tests['fontface'] = function() {
-        var bool;
 
-        injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function( node, rule ) {
-          var style = document.getElementById('smodernizr'),
-              sheet = style.sheet || style.styleSheet,
-              cssText = sheet ? (sheet.cssRules && sheet.cssRules[0] ? sheet.cssRules[0].cssText : sheet.cssText || '') : '';
+	tests['csstransitions'] = function() {
+		return testPropsAll('transition');
+	};
 
-          bool = /src/i.test(cssText) && cssText.indexOf(rule.split(' ')[0]) === 0;
-        });
 
-        return bool;
-    };
 
-    tests['generatedcontent'] = function() {
-        var bool;
+	tests['fontface'] = function() {
+		var bool;
 
-        injectElementWithStyles(['#',mod,'{font:0/0 a}#',mod,':after{content:"',smile,'";visibility:hidden;font:3px/1 a}'].join(''), function( node ) {
-          bool = node.offsetHeight >= 3;
-        });
+		injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function( node, rule ) {
+			var style = document.getElementById('smodernizr'),
+			    sheet = style.sheet || style.styleSheet,
+			    cssText = sheet ? (sheet.cssRules && sheet.cssRules[0] ? sheet.cssRules[0].cssText : sheet.cssText || '') : '';
 
-        return bool;
-    };
-    tests['svg'] = function() {
-        return !!document.createElementNS && !!document.createElementNS(ns.svg, 'svg').createSVGRect;
-    };
-    function webforms() {
-                                            Modernizr['input'] = (function( props ) {
-            for ( var i = 0, len = props.length; i < len; i++ ) {
-                attrs[ props[i] ] = !!(props[i] in inputElem);
-            }
-            if (attrs.list){
-                                  attrs.list = !!(document.createElement('datalist') && window.HTMLDataListElement);
-            }
-            return attrs;
-        })('autocomplete autofocus list placeholder max min multiple pattern required step'.split(' '));
-                            Modernizr['inputtypes'] = (function(props) {
+			bool = /src/i.test(cssText) && cssText.indexOf(rule.split(' ')[0]) === 0;
+		});
 
-            for ( var i = 0, bool, inputElemType, defaultView, len = props.length; i < len; i++ ) {
+		return bool;
+	};
 
-                inputElem.setAttribute('type', inputElemType = props[i]);
-                bool = inputElem.type !== 'text';
+	tests['generatedcontent'] = function() {
+		var bool;
 
-                                                    if ( bool ) {
+		injectElementWithStyles(['#',mod,'{font:0/0 a}#',mod,':after{content:"',smile,'";visibility:hidden;font:3px/1 a}'].join(''), function( node ) {
+			bool = node.offsetHeight >= 3;
+		});
 
-                    inputElem.value         = smile;
-                    inputElem.style.cssText = 'position:absolute;visibility:hidden;';
+		return bool;
+	};
+	tests['svg'] = function() {
+		return !!document.createElementNS && !!document.createElementNS(ns.svg, 'svg').createSVGRect;
+	};
+	function webforms() {
+		Modernizr['input'] = (function( props ) {
+			for ( var i = 0, len = props.length; i < len; i++ ) {
+				attrs[ props[i] ] = !!(props[i] in inputElem);
+			}
+			if (attrs.list){
+				attrs.list = !!(document.createElement('datalist') && window.HTMLDataListElement);
+			}
+			return attrs;
+		})('autocomplete autofocus list placeholder max min multiple pattern required step'.split(' '));
+		Modernizr['inputtypes'] = (function(props) {
 
-                    if ( /^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined ) {
+			for ( var i = 0, bool, inputElemType, defaultView, len = props.length; i < len; i++ ) {
 
-                      docElement.appendChild(inputElem);
-                      defaultView = document.defaultView;
+				inputElem.setAttribute('type', inputElemType = props[i]);
+				bool = inputElem.type !== 'text';
 
-                                        bool =  defaultView.getComputedStyle &&
-                              defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
-                                                                                  (inputElem.offsetHeight !== 0);
+				if ( bool ) {
 
-                      docElement.removeChild(inputElem);
+					inputElem.value         = smile;
+					inputElem.style.cssText = 'position:absolute;visibility:hidden;';
 
-                    } else if ( /^(search|tel)$/.test(inputElemType) ){
-                                                                                    } else if ( /^(url|email)$/.test(inputElemType) ) {
-                                        bool = inputElem.checkValidity && inputElem.checkValidity() === false;
+					if ( /^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined ) {
 
-                    } else {
-                                        bool = inputElem.value != smile;
-                    }
-                }
+						docElement.appendChild(inputElem);
+						defaultView = document.defaultView;
 
-                inputs[ props[i] ] = !!bool;
-            }
-            return inputs;
-        })('search tel url email datetime date month week time datetime-local number range color'.split(' '));
-        }
-    for ( var feature in tests ) {
-        if ( hasOwnProp(tests, feature) ) {
-                                    featureName  = feature.toLowerCase();
-            Modernizr[featureName] = tests[feature]();
+						bool =  defaultView.getComputedStyle &&
+							defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
+							(inputElem.offsetHeight !== 0);
 
-            classes.push((Modernizr[featureName] ? '' : 'no-') + featureName);
-        }
-    }
+						docElement.removeChild(inputElem);
 
-    Modernizr.input || webforms();
+					} else if ( /^(search|tel)$/.test(inputElemType) ){
+					} else if ( /^(url|email)$/.test(inputElemType) ) {
+						bool = inputElem.checkValidity && inputElem.checkValidity() === false;
 
+					} else {
+						bool = inputElem.value != smile;
+					}
+				}
 
-     Modernizr.addTest = function ( feature, test ) {
-       if ( typeof feature == 'object' ) {
-         for ( var key in feature ) {
-           if ( hasOwnProp( feature, key ) ) {
-             Modernizr.addTest( key, feature[ key ] );
-           }
-         }
-       } else {
+				inputs[ props[i] ] = !!bool;
+			}
+			return inputs;
+		})('search tel url email datetime date month week time datetime-local number range color'.split(' '));
+	}
+	for ( var feature in tests ) {
+		if ( hasOwnProp(tests, feature) ) {
+			featureName  = feature.toLowerCase();
+			Modernizr[featureName] = tests[feature]();
 
-         feature = feature.toLowerCase();
+			classes.push((Modernizr[featureName] ? '' : 'no-') + featureName);
+		}
+	}
 
-         if ( Modernizr[feature] !== undefined ) {
-                                              return Modernizr;
-         }
+	Modernizr.input || webforms();
 
-         test = typeof test == 'function' ? test() : test;
 
-         if (typeof enableClasses !== "undefined" && enableClasses) {
-           docElement.className += ' ' + (test ? '' : 'no-') + feature;
-         }
-         Modernizr[feature] = test;
+	Modernizr.addTest = function ( feature, test ) {
+		if ( typeof feature == 'object' ) {
+			for ( var key in feature ) {
+				if ( hasOwnProp( feature, key ) ) {
+					Modernizr.addTest( key, feature[ key ] );
+				}
+			}
+		} else {
 
-       }
+			feature = feature.toLowerCase();
 
-       return Modernizr; 
-     };
+			if ( Modernizr[feature] !== undefined ) {
+				return Modernizr;
+			}
 
+			test = typeof test == 'function' ? test() : test;
 
-    setCss('');
-    modElem = inputElem = null;
+			if (typeof enableClasses !== "undefined" && enableClasses) {
+				docElement.className += ' ' + (test ? '' : 'no-') + feature;
+			}
+			Modernizr[feature] = test;
 
-    ;(function(window, document) {
-                var version = '3.7.0';
+		}
 
-            var options = window.html5 || {};
+		return Modernizr;
+	};
 
-            var reSkip = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i;
 
-            var saveClones = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i;
+	setCss('');
+	modElem = inputElem = null;
 
-            var supportsHtml5Styles;
-
-            var expando = '_html5shiv';
-
-            var expanID = 0;
-
-            var expandoData = {};
+	;(function(window, document) {
+		var version = '3.7.0';
 
-            var supportsUnknownElements;
-
-        (function() {
-          try {
-            var a = document.createElement('a');
-            a.innerHTML = '<xyz></xyz>';
-                    supportsHtml5Styles = ('hidden' in a);
-
-            supportsUnknownElements = a.childNodes.length == 1 || (function() {
-                        (document.createElement)('a');
-              var frag = document.createDocumentFragment();
-              return (
-                typeof frag.cloneNode == 'undefined' ||
-                typeof frag.createDocumentFragment == 'undefined' ||
-                typeof frag.createElement == 'undefined'
-              );
-            }());
-          } catch(e) {
-                    supportsHtml5Styles = true;
-            supportsUnknownElements = true;
-          }
-
-        }());
-
-            function addStyleSheet(ownerDocument, cssText) {
-          var p = ownerDocument.createElement('p'),
-          parent = ownerDocument.getElementsByTagName('head')[0] || ownerDocument.documentElement;
-
-          p.innerHTML = 'x<style>' + cssText + '</style>';
-          return parent.insertBefore(p.lastChild, parent.firstChild);
-        }
-
-            function getElements() {
-          var elements = html5.elements;
-          return typeof elements == 'string' ? elements.split(' ') : elements;
-        }
-
-            function getExpandoData(ownerDocument) {
-          var data = expandoData[ownerDocument[expando]];
-          if (!data) {
-            data = {};
-            expanID++;
-            ownerDocument[expando] = expanID;
-            expandoData[expanID] = data;
-          }
-          return data;
-        }
-
-            function createElement(nodeName, ownerDocument, data){
-          if (!ownerDocument) {
-            ownerDocument = document;
-          }
-          if(supportsUnknownElements){
-            return ownerDocument.createElement(nodeName);
-          }
-          if (!data) {
-            data = getExpandoData(ownerDocument);
-          }
-          var node;
+		var options = window.html5 || {};
 
-          if (data.cache[nodeName]) {
-            node = data.cache[nodeName].cloneNode();
-          } else if (saveClones.test(nodeName)) {
-            node = (data.cache[nodeName] = data.createElem(nodeName)).cloneNode();
-          } else {
-            node = data.createElem(nodeName);
-          }
+		var reSkip = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i;
 
-                                                    return node.canHaveChildren && !reSkip.test(nodeName) && !node.tagUrn ? data.frag.appendChild(node) : node;
-        }
+		var saveClones = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i;
 
-            function createDocumentFragment(ownerDocument, data){
-          if (!ownerDocument) {
-            ownerDocument = document;
-          }
-          if(supportsUnknownElements){
-            return ownerDocument.createDocumentFragment();
-          }
-          data = data || getExpandoData(ownerDocument);
-          var clone = data.frag.cloneNode(),
-          i = 0,
-          elems = getElements(),
-          l = elems.length;
-          for(;i<l;i++){
-            clone.createElement(elems[i]);
-          }
-          return clone;
-        }
+		var supportsHtml5Styles;
+
+		var expando = '_html5shiv';
+
+		var expanID = 0;
+
+		var expandoData = {};
 
-            function shivMethods(ownerDocument, data) {
-          if (!data.cache) {
-            data.cache = {};
-            data.createElem = ownerDocument.createElement;
-            data.createFrag = ownerDocument.createDocumentFragment;
-            data.frag = data.createFrag();
-          }
+		var supportsUnknownElements;
+
+		(function() {
+			try {
+				var a = document.createElement('a');
+				a.innerHTML = '<xyz></xyz>';
+				supportsHtml5Styles = ('hidden' in a);
+
+				supportsUnknownElements = a.childNodes.length == 1 || (function() {
+					(document.createElement)('a');
+					var frag = document.createDocumentFragment();
+					return (
+						typeof frag.cloneNode == 'undefined' ||
+						typeof frag.createDocumentFragment == 'undefined' ||
+						typeof frag.createElement == 'undefined'
+						);
+				}());
+			} catch(e) {
+				supportsHtml5Styles = true;
+				supportsUnknownElements = true;
+			}
+
+		}());
+
+		function addStyleSheet(ownerDocument, cssText) {
+			var p = ownerDocument.createElement('p'),
+			    parent = ownerDocument.getElementsByTagName('head')[0] || ownerDocument.documentElement;
+
+			p.innerHTML = 'x<style>' + cssText + '</style>';
+			return parent.insertBefore(p.lastChild, parent.firstChild);
+		}
+
+		function getElements() {
+			var elements = html5.elements;
+			return typeof elements == 'string' ? elements.split(' ') : elements;
+		}
+
+		function getExpandoData(ownerDocument) {
+			var data = expandoData[ownerDocument[expando]];
+			if (!data) {
+				data = {};
+				expanID++;
+				ownerDocument[expando] = expanID;
+				expandoData[expanID] = data;
+			}
+			return data;
+		}
+
+		function createElement(nodeName, ownerDocument, data){
+			if (!ownerDocument) {
+				ownerDocument = document;
+			}
+			if(supportsUnknownElements){
+				return ownerDocument.createElement(nodeName);
+			}
+			if (!data) {
+				data = getExpandoData(ownerDocument);
+			}
+			var node;
 
+			if (data.cache[nodeName]) {
+				node = data.cache[nodeName].cloneNode();
+			} else if (saveClones.test(nodeName)) {
+				node = (data.cache[nodeName] = data.createElem(nodeName)).cloneNode();
+			} else {
+				node = data.createElem(nodeName);
+			}
 
-          ownerDocument.createElement = function(nodeName) {
-                    if (!html5.shivMethods) {
-              return data.createElem(nodeName);
-            }
-            return createElement(nodeName, ownerDocument, data);
-          };
+			return node.canHaveChildren && !reSkip.test(nodeName) && !node.tagUrn ? data.frag.appendChild(node) : node;
+		}
 
-          ownerDocument.createDocumentFragment = Function('h,f', 'return function(){' +
-                                                          'var n=f.cloneNode(),c=n.createElement;' +
-                                                          'h.shivMethods&&(' +
-                                                                                                                getElements().join().replace(/[\w\-]+/g, function(nodeName) {
-            data.createElem(nodeName);
-            data.frag.createElement(nodeName);
-            return 'c("' + nodeName + '")';
-          }) +
-            ');return n}'
-                                                         )(html5, data.frag);
-        }
+		function createDocumentFragment(ownerDocument, data){
+			if (!ownerDocument) {
+				ownerDocument = document;
+			}
+			if(supportsUnknownElements){
+				return ownerDocument.createDocumentFragment();
+			}
+			data = data || getExpandoData(ownerDocument);
+			var clone = data.frag.cloneNode(),
+			    i = 0,
+			    elems = getElements(),
+			    l = elems.length;
+			for(;i<l;i++){
+				clone.createElement(elems[i]);
+			}
+			return clone;
+		}
 
-            function shivDocument(ownerDocument) {
-          if (!ownerDocument) {
-            ownerDocument = document;
-          }
-          var data = getExpandoData(ownerDocument);
+		function shivMethods(ownerDocument, data) {
+			if (!data.cache) {
+				data.cache = {};
+				data.createElem = ownerDocument.createElement;
+				data.createFrag = ownerDocument.createDocumentFragment;
+				data.frag = data.createFrag();
+			}
 
-          if (html5.shivCSS && !supportsHtml5Styles && !data.hasCSS) {
-            data.hasCSS = !!addStyleSheet(ownerDocument,
-                                                                                'article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}' +
-                                                                                    'mark{background:#FF0;color:#000}' +
-                                                                                    'template{display:none}'
-                                         );
-          }
-          if (!supportsUnknownElements) {
-            shivMethods(ownerDocument, data);
-          }
-          return ownerDocument;
-        }
 
-            var html5 = {
+			ownerDocument.createElement = function(nodeName) {
+				if (!html5.shivMethods) {
+					return data.createElem(nodeName);
+				}
+				return createElement(nodeName, ownerDocument, data);
+			};
 
-                'elements': options.elements || 'abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video',
+			ownerDocument.createDocumentFragment = Function('h,f', 'return function(){' +
+					'var n=f.cloneNode(),c=n.createElement;' +
+					'h.shivMethods&&(' +
+					getElements().join().replace(/[\w\-]+/g, function(nodeName) {
+						data.createElem(nodeName);
+						data.frag.createElement(nodeName);
+						return 'c("' + nodeName + '")';
+					}) +
+					');return n}'
+			)(html5, data.frag);
+		}
 
-                'version': version,
+		function shivDocument(ownerDocument) {
+			if (!ownerDocument) {
+				ownerDocument = document;
+			}
+			var data = getExpandoData(ownerDocument);
 
-                'shivCSS': (options.shivCSS !== false),
+			if (html5.shivCSS && !supportsHtml5Styles && !data.hasCSS) {
+				data.hasCSS = !!addStyleSheet(ownerDocument,
+						'article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}' +
+						'mark{background:#FF0;color:#000}' +
+						'template{display:none}'
+				);
+			}
+			if (!supportsUnknownElements) {
+				shivMethods(ownerDocument, data);
+			}
+			return ownerDocument;
+		}
 
-                'supportsUnknownElements': supportsUnknownElements,
+		var html5 = {
 
-                'shivMethods': (options.shivMethods !== false),
+			'elements': options.elements || 'abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video',
 
-                'type': 'default',
+			'version': version,
 
-                'shivDocument': shivDocument,
+			'shivCSS': (options.shivCSS !== false),
 
-                createElement: createElement,
+			'supportsUnknownElements': supportsUnknownElements,
 
-                createDocumentFragment: createDocumentFragment
-        };
+			'shivMethods': (options.shivMethods !== false),
 
-            window.html5 = html5;
+			'type': 'default',
 
-            shivDocument(document);
+			'shivDocument': shivDocument,
 
-    }(this, document));
+			createElement: createElement,
 
-    Modernizr._version      = version;
+			createDocumentFragment: createDocumentFragment
+		};
 
-    Modernizr._prefixes     = prefixes;
-    Modernizr._domPrefixes  = domPrefixes;
-    Modernizr._cssomPrefixes  = cssomPrefixes;
+		window.html5 = html5;
 
-    Modernizr.mq            = testMediaQuery;
+		shivDocument(document);
 
-    Modernizr.hasEvent      = isEventSupported;
+	}(this, document));
 
-    Modernizr.testProp      = function(prop){
-        return testProps([prop]);
-    };
+	Modernizr._version      = version;
 
-    Modernizr.testAllProps  = testPropsAll;
+	Modernizr._prefixes     = prefixes;
+	Modernizr._domPrefixes  = domPrefixes;
+	Modernizr._cssomPrefixes  = cssomPrefixes;
 
+	Modernizr.mq            = testMediaQuery;
 
-    Modernizr.testStyles    = injectElementWithStyles;    docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
+	Modernizr.hasEvent      = isEventSupported;
 
-                                                    (enableClasses ? ' js ' + classes.join(' ') : '');
+	Modernizr.testProp      = function(prop){
+		return testProps([prop]);
+	};
 
-    return Modernizr;
+	Modernizr.testAllProps  = testPropsAll;
+
+
+	Modernizr.testStyles    = injectElementWithStyles;    docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
+
+		(enableClasses ? ' js ' + classes.join(' ') : '');
+
+	return Modernizr;
 
 })(this, this.document);
 
@@ -644,6 +657,6 @@ Modernizr.addTest('shapes', Modernizr.testAllProps('shapeOutside', 'content-box'
  *   defined FileReader object
  */
 Modernizr.addTest('filereader', function () {
-    return !!(window.File && window.FileList && window.FileReader);
+	return !!(window.File && window.FileList && window.FileReader);
 });
 ;

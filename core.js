@@ -845,6 +845,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+	window.dc.touch = Modernizr.touch;
 
 	if(window.location.href.indexOf('debugview=true') !== -1){
 		window.dc.debugview = true;
