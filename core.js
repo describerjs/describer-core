@@ -249,7 +249,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	jmHF.eventDelegationHelper = function($this, e, param){
-		var _jmname = $this.attr('data-jmname').split('|')
+		var _jmname = $this.attr('data-jmname').split('|');
 		if(e.type === 'dcpointer'){
 			e.type = 'click';
 		}
