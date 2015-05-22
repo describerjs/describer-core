@@ -216,20 +216,20 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	jmHF.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
-		jmHF.eventDelegationHepler($this, e, param);
+		jmHF.eventDelegationHelper($this, e, param);
 	};
 
 	jmHF.eventDelegationTriggerForDomInit = function(e, param){
 		var $this = $(this);//$(e.target);//
 		e.stopPropagation();
 		e.preventDefault();
-		jmHF.eventDelegationHepler($this, e, param);
+		jmHF.eventDelegationHelper($this, e, param);
 	};
 
 	jmHF.eventDelegationTriggerForATags = function(e){
 		var $this = $(this);
 		e.preventDefault();
-		jmHF.eventDelegationHepler($this, e);
+		jmHF.eventDelegationHelper($this, e);
 	};
 
 	jmHF.eventDelegationTriggerForLabels = function(e){
@@ -237,7 +237,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
 		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
 		if(e.target.tagName.toLowerCase() === 'label'){
-			jmHF.eventDelegationHepler($this, e);
+			jmHF.eventDelegationHelper($this, e);
 		}
 	};
 
@@ -245,11 +245,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var $this = $(this);
 		// jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
 		jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
-		jmHF.eventDelegationHepler($this, e);
+		jmHF.eventDelegationHelper($this, e);
 	};
 
-	jmHF.eventDelegationHepler = function($this, e, param){
-		var _jmname = $this.attr('data-jmname').split('|');
+	jmHF.eventDelegationHelper = function($this, e, param){
+		var _jmname = $this.attr('data-jmname').split('|')
+		if(e.type === 'dcpointer'){
+			e.type = 'click';
+		}
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
 			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': jmHF.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
 		}
@@ -423,6 +426,83 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			}
 		}
 	};
+
+
+
+
+	// Pointer-Events handling
+	// Thank you to the filamentgroup. The following code was partial reused form https://github.com/filamentgroup/tappy/
+
+	dc.pointer = {};
+	dc.pointer.tapHandling = false;
+	dc.pointer.tappy = true;
+	dc.pointer.startX;
+	dc.pointer.startY;
+	dc.pointer.cancel;
+	dc.pointer.resetTimer;
+	dc.pointer.scrollTolerance = 10;
+	dc.pointer.start =  function(e){
+		if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
+			return false;
+		}
+
+		var coords = dc.pointer.getCoords( e );
+		dc.pointer.startX = coords[ 0 ];
+		dc.pointer.startY = coords[ 1 ];
+	};
+
+	dc.pointer.getCoords = function(e){
+		var ev = e.originalEvent || e,
+		    touches = ev.touches || ev.targetTouches;
+
+		if( touches ){
+			return [ touches[ 0 ].pageX, touches[ 0 ].pageY ];
+		}
+		else {
+			return null;
+		}
+	};
+
+	// any touchscroll that results in > tolerance should cancel the tap
+	dc.pointer.move = function(e){
+		if( !dc.pointer.cancel ){
+			var coords = dc.getCoords( e );
+			if( coords && ( Math.abs( dc.pointer.startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( dc.pointer.startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
+				dc.pointer.cancel = true;
+			}
+		}
+	};
+//
+	dc.pointer.end = function(e){
+		clearTimeout( dc.pointer.resetTimer );
+		dc.pointer.resetTimer = setTimeout( function(){
+			dc.pointer.tapHandling = false;
+			dc.pointer.cancel = false;
+		}, 1000 );
+
+		// make sure no modifiers are present. thx http://www.jacklmoore.com/notes/click-events/
+		if( ( e.which && e.which > 1 ) || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey ){
+			return;
+		}
+
+		e.preventDefault();
+
+		// this part prevents a double callback from touch and mouse on the same tap
+
+		// if a scroll happened between touchstart and touchend
+		if( dc.pointer.cancel || dc.pointer.tapHandling && dc.pointer.tapHandling !== e.type ){
+			dc.pointer.cancel = false;
+			return;
+		}
+
+		dc.pointer.tapHandling = e.type;
+		$( e.target ).trigger('dcpointer');
+	};
+
+
+
+	// Pointer-Events handling end
+
 
 	/*jmHF.getJmPluginByJmName = function(p_config, p_name){
 		var i = 0;
