@@ -414,7 +414,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 								}
 								if(_configObjlength > that.myPos+1){
 									$.doTimeout('_getObjFromDom1', 200, function(){
-										jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
+										jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 											'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
 										console.warn('%cELEMENT', 'color: orange; font-style: italic');
 										console.log(that.$elem[0]);
@@ -429,7 +429,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						if($.type(value) === 'array'){
 							if(dc.debug && $.type(value[that.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom2', 200, function(){
-									jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
+									jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 										'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben. \n\n ' +
 										'-> Soll '+that.myJmName+' nicht überschrieben werden ist das entsprechende key-Value-Pair in data-jmconfig-Attribut zu entfernen.');
 									console.warn('%cELEMENT', 'color: orange; font-style: italic');
@@ -460,7 +460,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						if(_configObjlength > that.myPos+1){
 							if($.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom3', 200, function(){
-									jmHF.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
+									jmHF.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 										'-> Wrappen sie das Objekt bitte in ein Array und füllen sie das Array (für die nicht zu überschreibenden Objekte in der _config.js) mit leheren Objekten auf.');
 									console.warn('%cELEMENT', 'color: orange; font-style: italic');
 									console.log(that.$elem[0]);
@@ -476,7 +476,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if($.type(jmconfigJsonParse) === 'array'){
 				if(dc.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 					$.doTimeout('_getObjFromDom4', 200, function(){
-						jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der _config.js ab!!! \n\n' +
+						jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 							'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
 						console.warn('%cELEMENT', 'color: orange; font-style: italic');
 						console.log(that.$elem[0]);

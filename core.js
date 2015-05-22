@@ -102,7 +102,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			if(_jmpluginLength !== _jmconfigObjCount){
 				window.console.trace('%cJM \n ->Die Anzahl der jmplugins "'+_config[i].jmplugin+'" im Konfigurationsmodul jmname="'+_config[i].jmname+'"  und die Anzahl der zugehörigen jmconfig-Objekte stimmen nicht überein.', 'color: orange; font-style: italic');
 				$.doTimeout('jmHF.warn', 200, function(){
-					jmHF.alert('Error! in _config.js -> siehe Console JM');
+					jmHF.alert('Error! in describer.js -> siehe Console JM');
 				});
 			}
 		}
@@ -387,7 +387,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var _configObj = jmHF.getConfigObj(jmname);
 		var _jmpluginString;
 		if($.type(_configObj) === 'undefined'){
-			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
+			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
 			return;
 		}
 		_jmpluginString = _configObj.jmplugin;
