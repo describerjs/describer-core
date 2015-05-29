@@ -269,7 +269,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-
 	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten (das Modul/Plugin wird auf das Element angewendet.), und ruft optional eine eigene Methode
 	// auf wie z.B. click, change oder auch domInit
 	// Enthält das Plugin ein |, so werden die hiermit getrennt aufgelisteten Module/Plugins nacheinander initialisiert. (via $.each)
@@ -290,45 +289,59 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			// event-Check for init plugin
-			if(jmHF.matchTriggerEventWithConfigEvents(Obj.e.type, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
+			if(jmHF.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
 				jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
 			}
 		}
 	};
 
-	jmHF.matchTriggerEventWithConfigEvents = function(p_eventType, p_pluginConfigOjb){
+	jmHF.matchTriggerEventWithConfigEvents = function(p_index, p_Obj, p_pluginConfigOjb){
 		//console.log(p_pluginConfigOjb);
 		// Erstelle ein Array aus der event-Value-Angabe aus dem config-Obj
 		var eventArray = p_pluginConfigOjb.event.split('|');
 		var _retrun = false;
+		var _eventType = p_Obj.e.type;
 		// Durchlaufe das Event-Array
 		for(var i = 0, leni = eventArray.length; i < leni; i++){
-			if(eventArray[i] === p_eventType){
+			if(eventArray[i] === _eventType){
 				// return true if p_eventType === click || change
 				_retrun = true;
-			}else if(eventArray[i].split(':')[0].replace('\'', '').replace('"', '') === p_eventType){
+			}else if(eventArray[i].split(':')[0].replace('\'', '').replace('"', '') === _eventType){
 				// return true if eventArray[i] contains jmtrigger
 				_retrun = true;
-			}else if('dominit' === p_eventType){
-				switch(eventArray[i]){
-					case 'dominit':
-					case 'blur':
-					case 'focus':
-					case 'hover':
-					case 'init-by-perf':
-					case ((eventArray[i].match(/^dc-(.*)/))? eventArray[i] : undefined):
-					case ((eventArray[i].match(/raf(.*)/))? eventArray[i] : undefined):
-					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
-					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
-						// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
-						_retrun = true;
-						break;
-					default:
-						break;
+			}else if('dominit' === _eventType){
+				if($(p_Obj.e.target).attr('data-jmconfig') && $(p_Obj.e.target).attr('data-jmconfig').indexOf('event') !== -1){
+					_retrun = jmHF.isEventKeyInDomConfigObj(p_index, p_Obj);
+					if(!_retrun){
+						_retrun = jmHF.isDominitEvent(eventArray[i]);
+					}
+				}else{
+					_retrun = jmHF.isDominitEvent(eventArray[i]);
 				}
 			}
 		}
 		return _retrun;
+	};
+
+	jmHF.isDominitEvent = function(p_event){
+		var _return = false;
+		switch(p_event){
+			case 'dominit':
+			case 'blur':
+			case 'focus':
+			case 'hover':
+			case 'init-by-perf':
+			case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
+			case ((p_event.match(/raf(.*)/))? p_event : undefined):
+			case ((p_event.match(/keyup(.*)/))? p_event : undefined):
+			case ((p_event.match(/interval(.*)/))? p_event : undefined):
+				// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
+				_return = true;
+				break;
+			default:
+				break;
+		}
+		return _return;
 	};
 
 	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
@@ -777,6 +790,61 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			this.ie8BugfixForRadioAndCheckbox()
 		}*/
 		return this;
+	};
+
+	jmHF.isEventKeyInDomConfigObj = function(p_index, p_Obj){
+		var $elem =  $(p_Obj.e.target);
+		var jmconfigJsonParse;
+		var _return = false;
+		var _multiObj = true;
+
+		// die Daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
+		if($.type($elem.data('jmconfig')) !== 'string'){
+			jmconfigJsonParse = $elem.data('jmconfig');
+		}else{
+			jmconfigJsonParse = JSON.parse($elem.data('jmconfig').replace(/'/g, "\""));
+		}
+
+		if($.type(jmconfigJsonParse) === 'object'){
+			$.each(jmconfigJsonParse, function(key, value){
+				if($.type(value) !== 'object' && $.type(value) !== 'array'){
+					_multiObj = false;
+					return false;
+				}
+			});
+			$.each(jmconfigJsonParse, function(key, value){
+				if(_multiObj && key === p_Obj.jmname){
+					if($.type(value) === 'object'){
+						if(value.hasOwnProperty('event') && jmHF.isDominitEvent(value.event)){
+							_return = true;
+							return false;
+						}
+					}else if($.type(value) === 'array'){
+						$.each(value, function(key, array_obj){
+							if(array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
+								_return = true;
+								return false;
+							}
+						});
+					}
+					if(_return){
+						return false;
+					}
+				}else if(!_multiObj && (key === 'event') && jmHF.isDominitEvent(value)){
+					_return = true;
+					return false;
+				}
+			});
+		}else if($.type(jmconfigJsonParse) === 'array'){
+			$.each(jmconfigJsonParse, function(key, array_obj){
+				if(key === p_index && array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
+					_return = true;
+					return false;
+				}
+			});
+		}
+
+		return _return;
 	};
 
 	// TODO Andreas modenizr-Weiche integrieren

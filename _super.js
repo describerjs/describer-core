@@ -18,6 +18,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.myJmName = this.jmname;
 			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
 			this.initExec();
+			//this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
 
 		initExec: function(){
