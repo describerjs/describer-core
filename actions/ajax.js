@@ -135,7 +135,8 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
                     that._beforeSend(that.$destination);
                 }
             }).done(function (p_data) {
-	            that.data = (p_data.match(/<(.*)[^>]*>/)) ? $(p_data) : p_data;
+	            // if HTML -> wrap in jQuery
+		        that.data = ($.type(p_data) === 'string' && p_data.match(/<(.*)[^>]*>/)) ? $(p_data) : p_data;
 	            window.requestAnimationFrame(that._injectAfterFrame.bind(that));
             }).always(function () {
 
@@ -160,7 +161,9 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		        this.$ani.css({
 			        'top': jmHF.getClientHeight()/2
 		        });
-		        p_$target[this.injection](this.$ani);
+		        if(this.injection !== ''){
+			        p_$target[this.injection](this.$ani);
+		        }
 	        }
 	        if(this.is('scrollTo') !== ''){
 		        this._scrollTo();
@@ -191,9 +194,10 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    if(this.injection === 'html'){
 				this.$destination.empty();
 		    }
-
-		    this.$destination[this.injection](this.data);
-		    if($.type(that.data) !== 'string'){
+			if(this.$destination !== '' && this.injection !== ''){
+				this.$destination[this.injection](this.data);
+			}
+		    if(that.data instanceof jQuery){
 			    this._finishing(this.data);
 		    }else{
 			    this._finishing();
@@ -205,6 +209,10 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 			    this.$elem.remove();
 		    }*/
 		    this.ajaxCompleteCallback();
+	    },
+
+	    getResponse: function(){
+		    return this.data;
 	    },
 
 	    // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Funktionsdefinition für erbende Plugins

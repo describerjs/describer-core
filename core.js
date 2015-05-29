@@ -51,12 +51,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		//alert(navigator.userAgent);
 		if(window.userOS === 'Android'){
 			switch(true){
+				case parseInt(userOSver.charAt(0), 10) > 4:
 				case /LG-D855/i.test(navigator.userAgent):      // LG G3
 				case /Nexus 7/i.test(navigator.userAgent):      // Nexus 7
-				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
-				case /GT-N7100/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
-				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
-				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/3/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
+				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
+				case /GT-N7100/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
+				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
 					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
 					break;
 				default:
@@ -80,13 +82,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.checkOrientation = function(){
+	jmHF.checkOrientationAndTriggerDcResize = function(){
 		if(window.dc.orientation === 'w' && (window.innerHeight > window.innerWidth)){
 			window.dc.orientation = 'p';
 			$body.trigger('dc-orientationchange');
 		}else if(window.dc.orientation === 'p' && (window.innerHeight < window.innerWidth)){
 			window.dc.orientation = 'w';
 			$body.trigger('dc-orientationchange');
+		}
+		if((window.userOS !== 'iOS') && (window.userOS !== 'Android')){
+			$body.trigger('dc-resizeondesktop');
 		}
 	};
 
@@ -97,7 +102,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			if(_jmpluginLength !== _jmconfigObjCount){
 				window.console.trace('%cJM \n ->Die Anzahl der jmplugins "'+_config[i].jmplugin+'" im Konfigurationsmodul jmname="'+_config[i].jmname+'"  und die Anzahl der zugehörigen jmconfig-Objekte stimmen nicht überein.', 'color: orange; font-style: italic');
 				$.doTimeout('jmHF.warn', 200, function(){
-					jmHF.alert('Error! in _config.js -> siehe Console JM');
+					jmHF.alert('Error! in describer.js -> siehe Console JM');
 				});
 			}
 		}
@@ -211,20 +216,20 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	jmHF.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
-		jmHF.eventDelegationHepler($this, e, param);
+		jmHF.eventDelegationHelper($this, e, param);
 	};
 
 	jmHF.eventDelegationTriggerForDomInit = function(e, param){
 		var $this = $(this);//$(e.target);//
 		e.stopPropagation();
 		e.preventDefault();
-		jmHF.eventDelegationHepler($this, e, param);
+		jmHF.eventDelegationHelper($this, e, param);
 	};
 
 	jmHF.eventDelegationTriggerForATags = function(e){
 		var $this = $(this);
 		e.preventDefault();
-		jmHF.eventDelegationHepler($this, e);
+		jmHF.eventDelegationHelper($this, e);
 	};
 
 	jmHF.eventDelegationTriggerForLabels = function(e){
@@ -232,7 +237,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
 		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
 		if(e.target.tagName.toLowerCase() === 'label'){
-			jmHF.eventDelegationHepler($this, e);
+			jmHF.eventDelegationHelper($this, e);
 		}
 	};
 
@@ -240,11 +245,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var $this = $(this);
 		// jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
 		jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
-		jmHF.eventDelegationHepler($this, e);
+		jmHF.eventDelegationHelper($this, e);
 	};
 
-	jmHF.eventDelegationHepler = function($this, e, param){
+	jmHF.eventDelegationHelper = function($this, e, param){
 		var _jmname = $this.attr('data-jmname').split('|');
+		if(e.type === 'dcpointer'){
+			e.type = 'click';
+		}
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
 			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': jmHF.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
 		}
@@ -260,7 +268,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			}
 		}
 	};
-
 
 	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten (das Modul/Plugin wird auf das Element angewendet.), und ruft optional eine eigene Methode
 	// auf wie z.B. click, change oder auch domInit
@@ -282,97 +289,118 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			// event-Check for init plugin
-			if(jmHF.matchTriggerEventWithConfigEvents(Obj.e.type, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
+			if(jmHF.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
 				jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
 			}
 		}
 	};
 
-	jmHF.matchTriggerEventWithConfigEvents = function(p_eventType, p_pluginConfigOjb){
+	jmHF.matchTriggerEventWithConfigEvents = function(p_index, p_Obj, p_pluginConfigOjb){
 		//console.log(p_pluginConfigOjb);
 		// Erstelle ein Array aus der event-Value-Angabe aus dem config-Obj
 		var eventArray = p_pluginConfigOjb.event.split('|');
 		var _retrun = false;
+		var _eventType = p_Obj.e.type;
 		// Durchlaufe das Event-Array
 		for(var i = 0, leni = eventArray.length; i < leni; i++){
-			if(eventArray[i] === p_eventType){
+			if(eventArray[i] === _eventType){
 				// return true if p_eventType === click || change
 				_retrun = true;
-			}else if(eventArray[i].split(':')[0].replace('\'', '').replace('"', '') === p_eventType){
+			}else if(eventArray[i].split(':')[0].replace('\'', '').replace('"', '') === _eventType){
 				// return true if eventArray[i] contains jmtrigger
 				_retrun = true;
-			}else if('dominit' === p_eventType){
-				switch(eventArray[i]){
-					case 'dominit':
-					case 'blur':
-					case 'focus':
-					case 'hover':
-					case 'init-by-perf':
-					case ((eventArray[i].match(/^dc-(.*)/))? eventArray[i] : undefined):
-					case ((eventArray[i].match(/raf(.*)/))? eventArray[i] : undefined):
-					case ((eventArray[i].match(/keyup(.*)/))? eventArray[i] : undefined):
-					case ((eventArray[i].match(/interval(.*)/))? eventArray[i] : undefined):
-						// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
-						_retrun = true;
-						break;
-					default:
-						break;
+			}else if('dominit' === _eventType){
+				if($(p_Obj.e.target).attr('data-jmconfig') && $(p_Obj.e.target).attr('data-jmconfig').indexOf('event') !== -1){
+					_retrun = jmHF.isEventKeyInDomConfigObj(p_index, p_Obj);
+					if(!_retrun){
+						_retrun = jmHF.isDominitEvent(eventArray[i]);
+					}
+				}else{
+					_retrun = jmHF.isDominitEvent(eventArray[i]);
 				}
 			}
 		}
 		return _retrun;
 	};
 
+	jmHF.isDominitEvent = function(p_event){
+		var _return = false;
+		switch(p_event){
+			case 'dominit':
+			case 'blur':
+			case 'focus':
+			case 'hover':
+			case 'init-by-perf':
+			case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
+			case ((p_event.match(/raf(.*)/))? p_event : undefined):
+			case ((p_event.match(/keyup(.*)/))? p_event : undefined):
+			case ((p_event.match(/interval(.*)/))? p_event : undefined):
+				// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
+				_return = true;
+				break;
+			default:
+				break;
+		}
+		return _return;
+	};
+
 	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
 		var _index = index || 0;
 		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
-		require([_requirePlugin], function(pluginObj){
-			var $plugin;
-			// für pluginName können folgende varationen entstehen.
-			// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
-			// z.B. actions.add_1 (wenn auf dem element weitere actions.add im jmname-Modul angewendet werden)
-			// z.B. actions.add-for-[jmname] (wenn auf dem element schon ein actions.add Plugin angewendet wurde aus einem anderen jmname-Modul)
-
-			// ist das Plugin z.B. actions.add noch nicht auf dem Element angewendet, oder das Obj.jmname === Obj.$element.data(p_plugin).jmname bleibt pluginName = p_plugin (z.B. acitons.add oder actions.add_1).
-			// Andernfalls wird p_plugin mit dem jmname erweitert. (actions.add-for-[jmname])
-			var pluginName = ($.type(Obj.$element.data(p_plugin)) === 'undefined' || Obj.jmname === Obj.$element.data(p_plugin).jmname) ? p_plugin : p_plugin+'-for-'+Obj.jmname;
-
-			// ist das pluginName - Plugin noch nicht als jQuery-Plugin definiert, wird dieses durchgeführt.
-			if($.type($.fn[pluginName]) === 'undefined'){
-				$.plugin(pluginName, pluginObj);
-			}
-
-			if($.type(Obj.$element.data(p_plugin)) === 'undefined'){
-				// Fall 1: Das Plugin wird auf das Element angewendet. Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
-				Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				$plugin = Obj.$element.data(p_plugin);
-			}else if(Obj.jmname === Obj.$element.data(p_plugin).jmname){
-				// Fall 2: Das Plugin ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
-				$plugin = Obj.$element.data(p_plugin);
-			}else if($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) === 'undefined'){
-				// Fall 3: Das Plugin (erweiterte Benennung mit jmname) wird auf das Element angewendet. Dies ist der Fall, wenn Obj.jmname !== Obj.$element.data(p_plugin).jmname ist.
-				// Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
-				Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
-				$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
-			}else{
-				// Fall 4: Das Plugin (erweiterte Benennung mit jmname) ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
-				$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
-			}
-
-			// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
-			if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type($plugin[Obj.e.type]) !== 'undefined'){
-				$plugin[Obj.e.type](Obj.e, Obj.e_param);
-			}
-		});
+		if(require.defined(_requirePlugin)){
+			jmHF.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
+		}else{
+			require([_requirePlugin], function(pluginObj){
+				jmHF.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
+			});
+		}
 	};
 
+	jmHF.bindAndExecPlugin = function(Obj, p_plugin, _index, pluginObj){
+		var $plugin;
+		// für pluginName können folgende varationen entstehen.
+		// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
+		// z.B. actions.add_1 (wenn auf dem element weitere actions.add im jmname-Modul angewendet werden)
+		// z.B. actions.add-for-[jmname] (wenn auf dem element schon ein actions.add Plugin angewendet wurde aus einem anderen jmname-Modul)
+
+		// ist das Plugin z.B. actions.add noch nicht auf dem Element angewendet, oder das Obj.jmname === Obj.$element.data(p_plugin).jmname bleibt pluginName = p_plugin (z.B. acitons.add oder actions.add_1).
+		// Andernfalls wird p_plugin mit dem jmname erweitert. (actions.add-for-[jmname])
+		var pluginName = ($.type(Obj.$element.data(p_plugin)) === 'undefined' || Obj.jmname === Obj.$element.data(p_plugin).jmname) ? p_plugin : p_plugin+'-for-'+Obj.jmname;
+
+		// ist das pluginName - Plugin noch nicht als jQuery-Plugin definiert, wird dieses durchgeführt.
+		if($.type($.fn[pluginName]) === 'undefined'){
+			$.plugin(pluginName, pluginObj);
+		}
+
+		if($.type(Obj.$element.data(p_plugin)) === 'undefined'){
+			// Fall 1: Das Plugin wird auf das Element angewendet. Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
+			Obj.$element[p_plugin]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
+			$plugin = Obj.$element.data(p_plugin);
+		}else if(Obj.jmname === Obj.$element.data(p_plugin).jmname){
+			// Fall 2: Das Plugin ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
+			$plugin = Obj.$element.data(p_plugin);
+		}else if($.type(Obj.$element.data(p_plugin+'-for-'+Obj.jmname)) === 'undefined'){
+			// Fall 3: Das Plugin (erweiterte Benennung mit jmname) wird auf das Element angewendet. Dies ist der Fall, wenn Obj.jmname !== Obj.$element.data(p_plugin).jmname ist.
+			// Es werden jmname, pluginName und pos als Options übergeben. Das angewendete Plugin wird in $plugin gespeichert.
+			Obj.$element[p_plugin+'-for-'+Obj.jmname]({ jmname: Obj.jmname, pluginName: p_plugin, pos: _index });
+			$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
+		}else{
+			// Fall 4: Das Plugin (erweiterte Benennung mit jmname) ist schon auf das Element angewendet. Das angewendete Plugin wird in $plugin gespeichert.
+			$plugin = Obj.$element.data(p_plugin+'-for-'+Obj.jmname);
+		}
+
+		// if event !== undefined && event.type !== undefined && ist die Plugin-Methode !== undefined
+		if(($.type(Obj.e) !== 'undefined') && ($.type(Obj.e.type) !== 'undefined') && $.type($plugin[Obj.e.type]) !== 'undefined'){
+			$plugin[Obj.e.type](Obj.e, Obj.e_param);
+		}
+	};
 
 	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
 		var _configObj = jmHF.getConfigObj(jmname);
 		var _jmpluginString;
 		if($.type(_configObj) === 'undefined'){
-			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der _config.js hinterlegt');
+			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
 			return;
 		}
 		_jmpluginString = _configObj.jmplugin;
@@ -412,6 +440,83 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
+
+
+
+	// Pointer-Events handling
+	// Thank you to the filamentgroup. The following code was partial reused form https://github.com/filamentgroup/tappy/
+
+	dc.pointer = {};
+	dc.pointer.tapHandling = false;
+	dc.pointer.tappy = true;
+	dc.pointer.startX;
+	dc.pointer.startY;
+	dc.pointer.cancel;
+	dc.pointer.resetTimer;
+	dc.pointer.scrollTolerance = 10;
+	dc.pointer.start =  function(e){
+		if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
+			return false;
+		}
+
+		var coords = dc.pointer.getCoords( e );
+		dc.pointer.startX = coords[ 0 ];
+		dc.pointer.startY = coords[ 1 ];
+	};
+
+	dc.pointer.getCoords = function(e){
+		var ev = e.originalEvent || e,
+		    touches = ev.touches || ev.targetTouches;
+
+		if( touches ){
+			return [ touches[ 0 ].pageX, touches[ 0 ].pageY ];
+		}
+		else {
+			return null;
+		}
+	};
+
+	// any touchscroll that results in > tolerance should cancel the tap
+	dc.pointer.move = function(e){
+		if( !dc.pointer.cancel ){
+			var coords = dc.getCoords( e );
+			if( coords && ( Math.abs( dc.pointer.startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( dc.pointer.startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
+				dc.pointer.cancel = true;
+			}
+		}
+	};
+//
+	dc.pointer.end = function(e){
+		clearTimeout( dc.pointer.resetTimer );
+		dc.pointer.resetTimer = setTimeout( function(){
+			dc.pointer.tapHandling = false;
+			dc.pointer.cancel = false;
+		}, 1000 );
+
+		// make sure no modifiers are present. thx http://www.jacklmoore.com/notes/click-events/
+		if( ( e.which && e.which > 1 ) || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey ){
+			return;
+		}
+
+		e.preventDefault();
+
+		// this part prevents a double callback from touch and mouse on the same tap
+
+		// if a scroll happened between touchstart and touchend
+		if( dc.pointer.cancel || dc.pointer.tapHandling && dc.pointer.tapHandling !== e.type ){
+			dc.pointer.cancel = false;
+			return;
+		}
+
+		dc.pointer.tapHandling = e.type;
+		$( e.target ).trigger('dcpointer');
+	};
+
+
+
+	// Pointer-Events handling end
+
+
 	/*jmHF.getJmPluginByJmName = function(p_config, p_name){
 		var i = 0;
 		var _length = p_config.length;
@@ -449,6 +554,28 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			for(var i = 0, leni = _svgImages.length; i < leni; i++){
 				_svgImages.eq(i).attr('src', _svgImages.eq(i).attr('src').replace('.svg', '.png'));
 			}
+		}
+	};
+
+	jmHF.scrollToPosition = function(pos, speed){
+		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: pos
+			},{
+				duration: speed,
+				always: function(){
+					$body.off('scroll mousedown DOMMouseScroll mousewheel keyup');
+				}
+			});
+			// Stop the animation if the user scrolls. Defaults on .stop() should be fine
+			$body.on("scroll mousedown DOMMouseScroll mousewheel keyup touchstart", function(e){
+				if( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel" || e.type === 'touchstart'){
+					$body.stop(); // This identifies the scroll as a user action, stops the animation
+				}
+			});
+		}else{
+			$body.scrollToTop(pos);
 		}
 	};
 
@@ -665,6 +792,61 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return this;
 	};
 
+	jmHF.isEventKeyInDomConfigObj = function(p_index, p_Obj){
+		var $elem =  $(p_Obj.e.target);
+		var jmconfigJsonParse;
+		var _return = false;
+		var _multiObj = true;
+
+		// die Daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
+		if($.type($elem.data('jmconfig')) !== 'string'){
+			jmconfigJsonParse = $elem.data('jmconfig');
+		}else{
+			jmconfigJsonParse = JSON.parse($elem.data('jmconfig').replace(/'/g, "\""));
+		}
+
+		if($.type(jmconfigJsonParse) === 'object'){
+			$.each(jmconfigJsonParse, function(key, value){
+				if($.type(value) !== 'object' && $.type(value) !== 'array'){
+					_multiObj = false;
+					return false;
+				}
+			});
+			$.each(jmconfigJsonParse, function(key, value){
+				if(_multiObj && key === p_Obj.jmname){
+					if($.type(value) === 'object'){
+						if(value.hasOwnProperty('event') && jmHF.isDominitEvent(value.event)){
+							_return = true;
+							return false;
+						}
+					}else if($.type(value) === 'array'){
+						$.each(value, function(key, array_obj){
+							if(array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
+								_return = true;
+								return false;
+							}
+						});
+					}
+					if(_return){
+						return false;
+					}
+				}else if(!_multiObj && (key === 'event') && jmHF.isDominitEvent(value)){
+					_return = true;
+					return false;
+				}
+			});
+		}else if($.type(jmconfigJsonParse) === 'array'){
+			$.each(jmconfigJsonParse, function(key, array_obj){
+				if(key === p_index && array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
+					_return = true;
+					return false;
+				}
+			});
+		}
+
+		return _return;
+	};
+
 	// TODO Andreas modenizr-Weiche integrieren
 	/*if(navigator.appVersion.indexOf("MSIE 8.") != -1){
 		(function () {
@@ -748,13 +930,21 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	$.fn.scrollToMe = function(p_delta_offset){
+	$.fn.scrollToMe = function(p_delta_offset, speed){
 		var _delta_offset = 0;
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
 		if ($.type(p_delta_offset) === 'number') {
 			_delta_offset = p_delta_offset;
 		}
-		$body.scrollToTop($(this).offset().top + _delta_offset);
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: $(this).offset().top + _delta_offset
+			},{
+				duration: speed
+			});
+		}else{
+			$body.scrollToTop($(this).offset().top + _delta_offset);
+		}
 	};
 
 	$.fn.removeDotNetFallbackHiddenFields = function(){
@@ -803,6 +993,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+	window.dc.touch = Modernizr.touch;
 
 	if(window.location.href.indexOf('debugview=true') !== -1){
 		window.dc.debugview = true;
