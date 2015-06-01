@@ -255,7 +255,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.renderDelay = this._getRenderDelay();
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
-			this._addRenderFunctionToExecRafObj();
+			this._addRenderFunctionToRafExecIterationObj();
 
 		},
 
@@ -518,10 +518,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 // *********************************  Global-Singelton-Functions Begin  *********************************************
 
 		guaranteeDCRAF: function(){
-			if(window.dc.singleton){
+			if(window.dc.raf.iterationSingleton){
 				return;
 			}
-			window.dc.singleton = true;
+			window.dc.raf.iterationSingleton = true;
 			this._createRAFObjects();
 			if(window.dc.debugview){
 				this.thempCountedFrames = 0;
@@ -542,7 +542,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				rafs: null,
 				avgrafs: null
 			};
-			window.dc.execRafObj = {
+			window.dc.raf.execIterationObj = {
 				countProperties: function(){
 					var count = 0;
 					for(var property in this){
@@ -602,9 +602,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				window.dc.win.counter = 1;
 			}
 
-			for(var property in window.dc.execRafObj){
-				if(window.dc.execRafObj.hasOwnProperty(property) && ('countProperties' !== property)){
-					window.dc.execRafObj[property]();
+			for(var property in window.dc.raf.execIterationObj){
+				if(window.dc.raf.execIterationObj.hasOwnProperty(property) && ('countProperties' !== property)){
+					window.dc.raf.execIterationObj[property]();
 				}
 			}
 			window.dc.orientation_old = window.dc.orientation;
@@ -627,7 +627,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 			if(this.oneTimeExec && eval(this.conditionSource)){
 				this._exec();
-				this._removeRenderFunctionFromExecRafObj();
+				this._removeRenderFunctionFromRafExecIterationObj();
 			}
 		},
 
@@ -640,14 +640,14 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 // *********************************  add/remove renderFunctions Begin  *********************************************
 
-		_addRenderFunctionToExecRafObj: function(){
-			this.renderFunctionIndex = window.dc.execRafObj.countProperties();
-			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
+		_addRenderFunctionToRafExecIterationObj: function(){
+			this.renderFunctionIndex = window.dc.raf.execIterationObj.countProperties();
+			window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
 		},
 
-		_removeRenderFunctionFromExecRafObj: function(){
-			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = null;
-			delete window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex];
+		_removeRenderFunctionFromRafExecIterationObj: function(){
+			window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = null;
+			delete window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex];
 		},
 
 // *********************************  add/remove renderFunctions End  ***********************************************
