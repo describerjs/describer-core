@@ -200,18 +200,18 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	// Funktion wird benötigt, um bei mehreren Selects eine Gruppen-Validierung zu ermöglichen.
-	jmHF.submit = function(){
+	dc.submit.serviceCheck = function(){
 		var $dataRuleGeb = $('[data-rule-jmgeburtsdatumsservice]');
 		var $dataRuleKartenGueltigkeit = $('[data-rule-jmkreditkartengueltigkeitsservice]');
 
-		jmGO.submit = true;
+		dc.submit.submittable = true;
 
 		if($.type($dataRuleGeb) !== 'undefined' && $.type($dataRuleGeb.eq(0).attr('disabled')) !== 'undefined'){
-			jmGO.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
+			dc.submit.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
 		}
 		// TODO Andreas hier noch die Anpassungen/Optimierungen von jmgeburtsdatumsservice übernehmen
 		if($.type($dataRuleKartenGueltigkeit) !== 'undefined' && $.type($dataRuleKartenGueltigkeit.eq(0).attr('disabled')) !== 'undefined'){
-			jmGO.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
+			dc.submit.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
 		}
 	};
 
