@@ -119,7 +119,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				case 'loaderTo':
 				case 'event':
 					// return String or Dom-Element/e
-					return ((this.configObj[p_dataAttr].indexOf('this.') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmHF') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmGO') !== -1)  || (this.configObj[p_dataAttr].indexOf('window.dc') !== -1)) ? eval(_returnString) : _returnString;
+					return ((this.configObj[p_dataAttr].indexOf('this.') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmHF') !== -1)  || (this.configObj[p_dataAttr].indexOf('window.dc') !== -1)) ? eval(_returnString) : _returnString;
 				default:
 					// return String
 					return _returnString;
@@ -667,7 +667,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.uniqueId){
 				return this.uniqueId;
 			}
-			return this.uniqueId = window.jmGO.uuID.generate();
+			return this.uniqueId = window.dc.uuID.generate();
 		},
 
 		_finishing: function(p_$data){

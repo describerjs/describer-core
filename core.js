@@ -11,7 +11,6 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}, window.dc);
 
 		window.jmHF = window.jmHF || {};
-		window.jmGO = window.jmGO || {};
 
 	})();
 
@@ -604,10 +603,10 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var featureSupport = false;
 		var cssProperty = null;
 		var jsProperty = null;
-		for (var i = 0, l = window.jmGO.vendors.length; i < l; i++) {
-			if (window.jmGO.vendors[i] !== null) {
-				cssProperty = window.jmGO.vendors[i][0] + 'transform';
-				jsProperty = window.jmGO.vendors[i][1] + 'Transform';
+		for (var i = 0, l = window.cd.vendors.length; i < l; i++) {
+			if (window.dc.vendors[i] !== null) {
+				cssProperty = window.cd.vendors[i][0] + 'transform';
+				jsProperty = window.dc.vendors[i][1] + 'Transform';
 			} else {
 				cssProperty = 'transform';
 				jsProperty = 'transform';
@@ -668,16 +667,16 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		};
 	}
 
-	window.jmGO.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
+	window.dc.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
-	window.jmGO.uuID = function() {};
+	window.dc.uuID = function() {};
 
 	/**
 	 * The simplest function to get an UUID string.
 	 * @returns {string} A version 4 UUID string.
 	 */
-	window.jmGO.uuID.generate = function() {
-		var rand = jmGO.uuID._gri, hex = jmGO.uuID._ha;
+	window.dc.uuID.generate = function() {
+		var rand = dc.uuID._gri, hex = dc.uuID._ha;
 		return  hex(rand(32), 8)          // time_low
 			+ "-"
 			+ hex(rand(16), 4)          // time_mid
@@ -694,7 +693,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	 * @param {int} x A positive integer ranging from 0 to 53, inclusive.
 	 * @returns {int} An unsigned x-bit random integer (0 <= f(x) < 2^x).
 	 */
-	window.jmGO.uuID._gri = function(x) { // _getRandomInt
+	window.dc.uuID._gri = function(x) { // _getRandomInt
 		if (x <   0) return NaN;
 		if (x <= 30) return (0 | Math.random() * (1 <<      x));
 		if (x <= 53) return (0 | Math.random() * (1 <<     30))
@@ -708,7 +707,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	 * @param {int} length
 	 * @returns {string}
 	 */
-	window.jmGO.uuID._ha = function(num, length) {  // _hexAligner
+	window.dc.uuID._ha = function(num, length) {  // _hexAligner
 		var str = num.toString(16), i = length - str.length, z = "0";
 		for (; i > 0; i >>>= 1, z += z) { if (i & 1) { str = z + str; } }
 		return str;
