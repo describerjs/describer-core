@@ -6,7 +6,10 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	//alert(navigator.userAgent);
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
-	window.dc = window.dc || {};
+	window.dc = window.dc || {
+		perf: {}
+	};
+
 
 	$(window).on('hashchange', function() {
 		$body.trigger('dc-hashchange');
@@ -59,26 +62,26 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
 				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
 				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
-					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+					window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 1;
 					break;
 				default:
-					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
+					window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 0;
 			}
 		}else if(window.userOS === 'iOS'){
 			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
-				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 3;
+				window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 3;
 			}else{
 				switch(true){
 					case /iPhone/i.test(navigator.userAgent):
-						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
+						window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 0;
 						break;
 					default:
-						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
+						window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 1;
 						break;
 				}
 			}
 		}else{
-			window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 4;
+			window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 4;
 		}
 	};
 
@@ -999,7 +1002,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		window.dc.debugview = true;
 	}
 	if($.urlParam('perf') !== null){
-		window.dc.perf = parseInt($.urlParam('perf'), 10);
+		window.dc.perf.level = parseInt($.urlParam('perf'), 10);
 	}
 	if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
 		alert(navigator.userAgent);

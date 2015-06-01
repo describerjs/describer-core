@@ -261,10 +261,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_initByPerf: function(e){
 			var _initByPerfCounter = 2;
-			if(window.dc.perf === 0){
+			if(window.dc.perf.level === 0){
 				return;
 			}
-			if(window.dc.perf === 1 || window.dc.perf === 4){
+			if(window.dc.perf.level === 1 || window.dc.perf.level === 4){
 				this._execWaitAfterCondition();
 				return;
 			}
@@ -573,8 +573,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				if(window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
 					this.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
 					this.$initByPerfCounter = $('#init-by-perf-counter');
-					if(window.dc.perf === 1) this.$initByPerfCounter.text(' init-fx: all ');
-					if(window.dc.perf === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
+					if(window.dc.perf.level === 1) this.$initByPerfCounter.text(' init-fx: all ');
+					if(window.dc.perf.level === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
 				}
 				that.thempCountedFrames = window.dc.win.counter;
 			}.bind(this), 1000);
