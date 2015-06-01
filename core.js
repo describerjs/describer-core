@@ -4,11 +4,17 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	// Globales Objekt
 	//alert(navigator.userAgent);
-	window.jmHF = window.jmHF || {};
-	window.jmGO = window.jmGO || {};
-	window.dc = window.dc || {
-		perf: {}
-	};
+	(function(){
+		window.dc = $.extend({}, {
+			perf: {},
+			client: {}
+		}, window.dc);
+
+		window.jmHF = window.jmHF || {};
+		window.jmGO = window.jmGO || {};
+
+	})();
+
 
 
 	$(window).on('hashchange', function() {
@@ -531,15 +537,15 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};*/
 
 	// gibt die Höhe des Browserfenster wieder
-	jmHF.getClientHeight = function () {
+	dc.client.getHeight = function () {
 		var $window = $(window);
-		if($.type(jmGO.clientHeightOrientationChangeListener) === 'undefined'){
+		if($.type(dc.client._heightOrientationChangeListener) === 'undefined'){
 			$window.one('orientationchange', function(e) {
-				jmGO.clientHeight = undefined;
+				dc.client._height = undefined;
 			});
-			jmGO.clientHeightOrientationChangeListener = true;
+			dc.client._heightOrientationChangeListener = true;
 		}
-		return jmGO.clientHeight = jmGO.clientHeight || window['innerHeight'] || document.documentElement['clientHeight'] || document.body['clientHeight'];
+		return dc.client._height = dc.client._height || window['innerHeight'] || document.documentElement['clientHeight'] || document.body['clientHeight'];
 	};
 
 	// Auslesen der Scrollposition des Browsers

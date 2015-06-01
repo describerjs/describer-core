@@ -159,7 +159,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	        }*/
 	        if($.type(this.$ani) !== 'undefined'){
 		        this.$ani.css({
-			        'top': jmHF.getClientHeight()/2
+			        'top': dc.client.getHeight()/2
 		        });
 		        if(this.injection !== ''){
 			        p_$target[this.injection](this.$ani);
