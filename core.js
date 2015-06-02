@@ -7,6 +7,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	(function(){
 		window.dc = $.extend({}, {
 			client: {},
+			config: {},
+			dev: {},
 			eventflow : {},
 			modulPreloader: {},
 			perf: {},
@@ -25,32 +27,32 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		//work with -> window.location.hash = '#joinmedi';
 	});
 
-	jmHF.alert = function(p_data){
-		if(dc.debug){
+	dc.dev.alert = function(p_data){
+		if(dc.config.debug){
 			window.alert(p_data);
 		}
 	};
 
-	jmHF.log = function(p_data){
-		if(dc.debug){
+	dc.dev.log = function(p_data){
+		if(dc.config.debug){
 			window.console.log(p_data);
 		}
 	};
 
-	jmHF.error = function(p_data){
-		if(dc.debug){
+	dc.dev.error = function(p_data){
+		if(dc.config.debug){
 			window.console.trace('%cJM \n ->'+p_data+'', 'color: red; font-style: italic');
-			$.doTimeout('jmHF.error', 200, function(){
-				jmHF.alert('Fehler! siehe Console JM ->');
+			$.doTimeout('dc.dev.error', 200, function(){
+				dc.dev.alert('Fehler! siehe Console JM ->');
 			});
 		}
 	};
 
-	jmHF.warn = function(p_data){
-		if(dc.debug){
+	dc.dev.warn = function(p_data){
+		if(dc.config.debug){
 			window.console.trace('%cJM \n ->'+p_data+'', 'color: orange; font-style: italic');
-			$.doTimeout('jmHF.warn', 200, function(){
-				jmHF.alert('Warnung! siehe Console JM ->');
+			$.doTimeout('dc.dev.warn', 200, function(){
+				dc.dev.alert('Warnung! siehe Console JM ->');
 			});
 		}
 	};
@@ -107,14 +109,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.checkConfigJS = function(){
+	dc.dev.checkConfigJS = function(){
 		for(var i = 0, leni = _config.length; i < leni; i++){
 			var _jmpluginLength = _config[i].jmplugin.split('|').length;
 			var _jmconfigObjCount = ($.type(_config[i].jmconfig) === 'object') ? 1 : _config[i].jmconfig.length;
 			if(_jmpluginLength !== _jmconfigObjCount){
 				window.console.trace('%cJM \n ->Die Anzahl der jmplugins "'+_config[i].jmplugin+'" im Konfigurationsmodul jmname="'+_config[i].jmname+'"  und die Anzahl der zugehörigen jmconfig-Objekte stimmen nicht überein.', 'color: orange; font-style: italic');
-				$.doTimeout('jmHF.warn', 200, function(){
-					jmHF.alert('Error! in describer.js -> siehe Console JM');
+				$.doTimeout('dc.dev.warn', 200, function(){
+					dc.dev.alert('Error! in describer.js -> siehe Console JM');
 				});
 			}
 		}
@@ -150,7 +152,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		});
 	};
 
-	jmHF.checkJmNameElementenOnNecessaryDominitAttribut = function(){
+	dc.dev.checkJmNameElementenOnNecessaryDominitAttribut = function(){
 		var _dataJmnameElemente = $('[data-jmname]');
 		for(var i = 0, leni = _dataJmnameElemente.length; i < leni; i++){
 			// je DomElement
@@ -192,7 +194,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 							console.log(_dataJmnameElemente.eq(i)[0]);
 							console.log('%c ... benötigt ein data-jmdominit="true" Attribut, da das event "'+_eventsArray[m]+'" im jmconfig-Obj angegeben wurde!', 'color: red; font-style: italic');
 							console.groupEnd();
-							jmHF.alert('Fehler: siehe Console! JM ->')
+							dc.dev.alert('Fehler: siehe Console! JM ->')
 						}
 						break;
 					default:
@@ -298,7 +300,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
 		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
 		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
-				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
+			    dc.dev.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			// event-Check for init plugin
 			if(dc.eventflow.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
@@ -412,7 +414,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var _configObj = dc.eventflow.getConfigObj(jmname);
 		var _jmpluginString;
 		if($.type(_configObj) === 'undefined'){
-			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
+			dc.dev.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
 			return;
 		}
 		_jmpluginString = _configObj.jmplugin;
@@ -445,7 +447,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
-					jmHF.alert("bitte ändern in $(item).jmtrigger('change')");
+					dc.dev.alert("bitte ändern in $(item).jmtrigger('change')");
 					$(item).trigger('jmtrigger');
 				});
 			}
@@ -1008,7 +1010,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	window.dc.touch = Modernizr.touch;
 
 	if(window.location.href.indexOf('debugview=true') !== -1){
-		window.dc.debugview = true;
+		window.dc.dev.debugview = true;
 	}
 	if($.urlParam('perf') !== null){
 		window.dc.perf.level = parseInt($.urlParam('perf'), 10);

@@ -48,8 +48,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
 		jmtrigger: function(e, e_param){
 			if($.type(e_param) === 'undefined'){
-				if(dc.debug){
-					jmHF.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
+				if(dc.config.debug){
+					dc.dev.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
 				}
 				return;
 			}
@@ -93,7 +93,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		is : function(p_dataAttr, p_value, p_now){
 			var _returnString;
 			if($.type(p_dataAttr) === 'undefined'){
-				jmHF.error('es wurde kein Parameter übergeben');
+				dc.dev.error('es wurde kein Parameter übergeben');
 				return;                                         // return void
 			}
 			// hier wird das configObj geholt.
@@ -341,7 +341,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					if(!_obj.exec){
 						_obj.exec = true;
 						_obj._execWaitAfterCondition();
-						if(window.dc.debugview){
+						if(window.dc.dev.debugview){
 							$('#init-by-perf-counter').text(' init-fx: '+(i+1)+'/'+leni);
 						}
 						return;
@@ -401,7 +401,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				$.each(jmconfigJsonParse, function(key, value){
 					if(key === that.myJmName){
 						if($.type(value) === 'object'){
-							if(dc.debug){
+							if(dc.config.debug){
 								for(var i = 0, leni = _config.length; i < leni; i++){
 									if(_config[i].jmname === that.myJmName){
 										if($.type(_config[i].jmconfig) !== 'array'){
@@ -415,7 +415,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 								}
 								if(_configObjlength > that.myPos+1){
 									$.doTimeout('_getObjFromDom1', 200, function(){
-										jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+										dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 											'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
 										console.warn('%cELEMENT', 'color: orange; font-style: italic');
 										console.log(that.$elem[0]);
@@ -428,9 +428,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 							return false;
 						}
 						if($.type(value) === 'array'){
-							if(dc.debug && $.type(value[that.myPos]) === 'undefined'){
+							if(dc.config.debug && $.type(value[that.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom2', 200, function(){
-									jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+									dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 										'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben. \n\n ' +
 										'-> Soll '+that.myJmName+' nicht überschrieben werden ist das entsprechende key-Value-Pair in data-jmconfig-Attribut zu entfernen.');
 									console.warn('%cELEMENT', 'color: orange; font-style: italic');
@@ -446,7 +446,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				});
 
 				if(_jmconfigJsonContainsObjectOnlyOnFirstLevel){
-					if(dc.debug){
+					if(dc.config.debug){
 						for(var i = 0, leni = _config.length; i < leni; i++){
 							if(_config[i].jmname === that.myJmName){
 								if($.type(_config[i].jmconfig) !== 'array'){
@@ -461,7 +461,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						if(_configObjlength > that.myPos+1){
 							if($.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom3', 200, function(){
-									jmHF.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+									dc.dev.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 										'-> Wrappen sie das Objekt bitte in ein Array und füllen sie das Array (für die nicht zu überschreibenden Objekte in der _config.js) mit leheren Objekten auf.');
 									console.warn('%cELEMENT', 'color: orange; font-style: italic');
 									console.log(that.$elem[0]);
@@ -475,9 +475,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 
 			if($.type(jmconfigJsonParse) === 'array'){
-				if(dc.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
+				if(dc.config.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 					$.doTimeout('_getObjFromDom4', 200, function(){
-						jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+						dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 							'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
 						console.warn('%cELEMENT', 'color: orange; font-style: italic');
 						console.log(that.$elem[0]);
@@ -523,7 +523,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 			window.dc.raf.iterationSingleton = true;
 			this._createRAFObjects();
-			if(window.dc.debugview){
+			if(window.dc.dev.debugview){
 				this.thempCountedFrames = 0;
 				this._applyRAFDeveloperView();
 			}
@@ -700,9 +700,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0, (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
 						return;
 					}
-					jmHF.warn('falsche angabe für scrollTo');
+					dc.dev.warn('falsche angabe für scrollTo');
 				}catch(e){
-					jmHF.error('falsche angabe für scrollTo');
+					dc.dev.error('falsche angabe für scrollTo');
 					console.error(e.message);
 				}
 			}

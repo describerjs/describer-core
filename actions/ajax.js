@@ -102,7 +102,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    if($.type(this.$elem.attr('href')) !== 'undefined' && !this.$elem.attr('href').match(/^#(.*)/g)){
 			    return this.$elem.attr('href');
 		    }
-		    jmHF.warn('There is no valid url defined');
+		    dc.dev.warn('There is no valid url defined');
 	    },
 
         _convertObjToQueryString: function(p_Obj){
