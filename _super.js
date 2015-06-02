@@ -608,7 +608,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				}
 			}
 			window.dc.orientation_old = window.dc.orientation;
-			window.dc.raf = window.requestAnimationFrame(this._everyRAF.bind(this));
+			window.requestAnimationFrame(this._everyRAF.bind(this));
 			if(_oldDocumentHeight !== window.dc.win.documentHeight){
 				$('body').trigger('dc-documentHeightChange');
 			}

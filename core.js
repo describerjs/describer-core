@@ -7,6 +7,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	(function(){
 		window.dc = $.extend({}, {
 			client: {},
+			eventflow : {},
 			modulPreloader: {},
 			perf: {},
 			raf: {},
@@ -225,52 +226,52 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return p_plugin;
 	};
 
-	jmHF.eventDelegationTrigger = function(e, param){
+	dc.eventflow.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
-		jmHF.eventDelegationHelper($this, e, param);
+		dc.eventflow.eventDelegationHelper($this, e, param);
 	};
 
-	jmHF.eventDelegationTriggerForDomInit = function(e, param){
+	dc.eventflow.eventDelegationTriggerForDomInit = function(e, param){
 		var $this = $(this);//$(e.target);//
 		e.stopPropagation();
 		e.preventDefault();
-		jmHF.eventDelegationHelper($this, e, param);
+		dc.eventflow.eventDelegationHelper($this, e, param);
 	};
 
-	jmHF.eventDelegationTriggerForATags = function(e){
+	dc.eventflow.eventDelegationTriggerForATags = function(e){
 		var $this = $(this);
 		e.preventDefault();
-		jmHF.eventDelegationHelper($this, e);
+		dc.eventflow.eventDelegationHelper($this, e);
 	};
 
-	jmHF.eventDelegationTriggerForLabels = function(e){
+	dc.eventflow.eventDelegationTriggerForLabels = function(e){
 		var $this = $(this);
 		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
 		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
 		if(e.target.tagName.toLowerCase() === 'label'){
-			jmHF.eventDelegationHelper($this, e);
+			dc.eventflow.eventDelegationHelper($this, e);
 		}
 	};
 
-	jmHF.eventDelegationTriggerForRadios = function(e){
+	dc.eventflow.eventDelegationTriggerForRadios = function(e){
 		var $this = $(this);
-		// jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
-		jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
-		jmHF.eventDelegationHelper($this, e);
+		// dc.eventflow.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
+		dc.eventflow.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
+		dc.eventflow.eventDelegationHelper($this, e);
 	};
 
-	jmHF.eventDelegationHelper = function($this, e, param){
+	dc.eventflow.eventDelegationHelper = function($this, e, param){
 		var _jmname = $this.attr('data-jmname').split('|');
 		if(e.type === 'dcpointer'){
 			e.type = 'click';
 		}
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
-			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': jmHF.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
+			dc.eventflow.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': dc.eventflow.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
 		}
 	};
 
 	// gebt das complette Objekt für den übergebenen jmname aus der _config.js zurück ({jmname:...,jmplugin:...,jmconfig:...})
-	jmHF.getConfigObj = function(p_name){
+	dc.eventflow.getConfigObj = function(p_name){
 		var i = 0;
 		var _length = _config.length;
 		for(; i < _length; i++){
@@ -283,7 +284,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten (das Modul/Plugin wird auf das Element angewendet.), und ruft optional eine eigene Methode
 	// auf wie z.B. click, change oder auch domInit
 	// Enthält das Plugin ein |, so werden die hiermit getrennt aufgelisteten Module/Plugins nacheinander initialisiert. (via $.each)
-	jmHF.bindPlugin = function(Obj){
+	dc.eventflow.bindPlugin = function(Obj){
 		var _requirePlugin;
 		var _pluginArray;
 		if($.type(Obj.$element) === 'undefined'){
@@ -300,13 +301,13 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			// event-Check for init plugin
-			if(jmHF.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
-				jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
+			if(dc.eventflow.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
+				dc.eventflow.helperForBindPlugin(Obj, _pluginArray[i], i);
 			}
 		}
 	};
 
-	jmHF.matchTriggerEventWithConfigEvents = function(p_index, p_Obj, p_pluginConfigOjb){
+	dc.eventflow.matchTriggerEventWithConfigEvents = function(p_index, p_Obj, p_pluginConfigOjb){
 		//console.log(p_pluginConfigOjb);
 		// Erstelle ein Array aus der event-Value-Angabe aus dem config-Obj
 		var eventArray = p_pluginConfigOjb.event.split('|');
@@ -322,19 +323,19 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				_retrun = true;
 			}else if('dominit' === _eventType){
 				if($(p_Obj.e.target).attr('data-jmconfig') && $(p_Obj.e.target).attr('data-jmconfig').indexOf('event') !== -1){
-					_retrun = jmHF.isEventKeyInDomConfigObj(p_index, p_Obj);
+					_retrun = dc.eventflow.isEventKeyInDomConfigObj(p_index, p_Obj);
 					if(!_retrun){
-						_retrun = jmHF.isDominitEvent(eventArray[i]);
+						_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 					}
 				}else{
-					_retrun = jmHF.isDominitEvent(eventArray[i]);
+					_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 				}
 			}
 		}
 		return _retrun;
 	};
 
-	jmHF.isDominitEvent = function(p_event){
+	dc.eventflow.isDominitEvent = function(p_event){
 		var _return = false;
 		switch(p_event){
 			case 'dominit':
@@ -355,19 +356,19 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return _return;
 	};
 
-	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
+	dc.eventflow.helperForBindPlugin = function(Obj, p_plugin, index){
 		var _index = index || 0;
 		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
 		if(require.defined(_requirePlugin)){
-			jmHF.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
+			dc.eventflow.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
 		}else{
 			require([_requirePlugin], function(pluginObj){
-				jmHF.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
+				dc.eventflow.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
 			});
 		}
 	};
 
-	jmHF.bindAndExecPlugin = function(Obj, p_plugin, _index, pluginObj){
+	dc.eventflow.bindAndExecPlugin = function(Obj, p_plugin, _index, pluginObj){
 		var $plugin;
 		// für pluginName können folgende varationen entstehen.
 		// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
@@ -408,7 +409,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	dc.modulPreloader.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
-		var _configObj = jmHF.getConfigObj(jmname);
+		var _configObj = dc.eventflow.getConfigObj(jmname);
 		var _jmpluginString;
 		if($.type(_configObj) === 'undefined'){
 			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
@@ -435,7 +436,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 
 	// Alle anderen Radio-Buttons feuern das jmtrigger-Event, wenn sich in der Gruppe die Selection ändert.
-	jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup = function(e){
+	dc.eventflow.triggerJmtriggerEventForAllOtherRadiosInGroup = function(e){
 		var radiogroup, $that;
 		if(e.target.tagName.toLowerCase() === 'input'){
 			if($(e.target).attr('type') === 'radio'){
@@ -803,7 +804,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return this;
 	};
 
-	jmHF.isEventKeyInDomConfigObj = function(p_index, p_Obj){
+	dc.eventflow.isEventKeyInDomConfigObj = function(p_index, p_Obj){
 		var $elem =  $(p_Obj.e.target);
 		var jmconfigJsonParse;
 		var _return = false;
@@ -826,13 +827,13 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			$.each(jmconfigJsonParse, function(key, value){
 				if(_multiObj && key === p_Obj.jmname){
 					if($.type(value) === 'object'){
-						if(value.hasOwnProperty('event') && jmHF.isDominitEvent(value.event)){
+						if(value.hasOwnProperty('event') && dc.eventflow.isDominitEvent(value.event)){
 							_return = true;
 							return false;
 						}
 					}else if($.type(value) === 'array'){
 						$.each(value, function(key, array_obj){
-							if(array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
+							if(array_obj.hasOwnProperty('event') && dc.eventflow.isDominitEvent(array_obj.event)){
 								_return = true;
 								return false;
 							}
@@ -841,14 +842,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 					if(_return){
 						return false;
 					}
-				}else if(!_multiObj && (key === 'event') && jmHF.isDominitEvent(value)){
+				}else if(!_multiObj && (key === 'event') && dc.eventflow.isDominitEvent(value)){
 					_return = true;
 					return false;
 				}
 			});
 		}else if($.type(jmconfigJsonParse) === 'array'){
 			$.each(jmconfigJsonParse, function(key, array_obj){
-				if(key === p_index && array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
+				if(key === p_index && array_obj.hasOwnProperty('event') && dc.eventflow.isDominitEvent(array_obj.event)){
 					_return = true;
 					return false;
 				}
