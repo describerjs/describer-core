@@ -63,9 +63,9 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			return;
 		}*/
 		//alert(navigator.userAgent);
-		if(window.userOS === 'Android'){
+		if(window.dc.client.userOS === 'Android'){
 			switch(true){
-				case parseInt(userOSver.charAt(0), 10) > 4:
+				case parseInt(dc.client.userOSver.charAt(0), 10) > 4:
 				case /LG-D855/i.test(navigator.userAgent):      // LG G3
 				case /Nexus 7/i.test(navigator.userAgent):      // Nexus 7
 				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
@@ -78,8 +78,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				default:
 					window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 0;
 			}
-		}else if(window.userOS === 'iOS'){
-			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
+		}else if(window.dc.client.userOS === 'iOS'){
+			if(window.devicePixelRatio >= 2 || parseInt(window.dc.client.userOSver.split('.'), 10) < 8){
 				window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 3;
 			}else{
 				switch(true){
@@ -97,14 +97,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	jmHF.checkOrientationAndTriggerDcResize = function(){
-		if(window.dc.orientation === 'w' && (window.innerHeight > window.innerWidth)){
-			window.dc.orientation = 'p';
+		if(window.dc.client.orientation === 'w' && (window.innerHeight > window.innerWidth)){
+			window.dc.client.orientation = 'p';
 			$body.trigger('dc-orientationchange');
-		}else if(window.dc.orientation === 'p' && (window.innerHeight < window.innerWidth)){
-			window.dc.orientation = 'w';
+		}else if(window.dc.client.orientation === 'p' && (window.innerHeight < window.innerWidth)){
+			window.dc.client.orientation = 'w';
 			$body.trigger('dc-orientationchange');
 		}
-		if((window.userOS !== 'iOS') && (window.userOS !== 'Android')){
+		if((window.dc.client.userOS !== 'iOS') && (window.dc.client.userOS !== 'Android')){
 			$body.trigger('dc-resizeondesktop');
 		}
 	};
@@ -609,10 +609,10 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		var featureSupport = false;
 		var cssProperty = null;
 		var jsProperty = null;
-		for (var i = 0, l = window.cd.vendors.length; i < l; i++) {
-			if (window.dc.vendors[i] !== null) {
-				cssProperty = window.cd.vendors[i][0] + 'transform';
-				jsProperty = window.dc.vendors[i][1] + 'Transform';
+		for (var i = 0, l = window.dc.client.vendors.length; i < l; i++) {
+			if (window.dc.client.vendors[i] !== null) {
+				cssProperty = window.dc.client.vendors[i][0] + 'transform';
+				jsProperty = window.dc.client.vendors[i][1] + 'Transform';
 			} else {
 				cssProperty = 'transform';
 				jsProperty = 'transform';
@@ -673,7 +673,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		};
 	}
 
-	window.dc.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
+	window.dc.client.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
 	window.dc.uuID = function() {};
 
@@ -719,27 +719,27 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return str;
 	};
 
-	window.setGlobalOSVars = (function(){
+	window.dc.client.setUserOS = (function(){
 		window.ua = navigator.userAgent;
 
 		// determine OS
 		if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
-			window.userOS = 'iOS';
+			window.dc.client.userOS = 'iOS';
 			window.uaindex = ua.indexOf( 'OS ' );
 		}else if ( ua.match(/Android/i) ){
-			window.userOS = 'Android';
+			window.dc.client.userOS = 'Android';
 			window.uaindex = ua.indexOf( 'Android ' );
 		}else{
-			window.userOS = 'unknown';
+			window.dc.client.userOS = 'unknown';
 		}
 
 		// determine version
-		if ( userOS === 'iOS'  &&  uaindex > -1 ){
-			window.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
-		}else if ( userOS === 'Android'  &&  uaindex > -1 ){
-			window.userOSver = ua.substr( uaindex + 8, 3 );
+		if ( dc.client.userOS === 'iOS'  &&  uaindex > -1 ){
+			window.dc.client.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
+		}else if ( dc.client.userOS === 'Android'  &&  uaindex > -1 ){
+			window.dc.client.userOSver = ua.substr( uaindex + 8, 3 );
 		}else{
-			window.userOSver = 'unknown';
+			window.dc.client.userOSver = 'unknown';
 		}
 	})();
 
@@ -1006,8 +1006,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			.removeData();
 	};
 
-	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
-	window.dc.touch = Modernizr.touch;
+	window.dc.client.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+	window.dc.client.touch = Modernizr.touch;
 
 	if(window.location.href.indexOf('debugview=true') !== -1){
 		window.dc.dev.debugview = true;

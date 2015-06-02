@@ -593,7 +593,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			var _oldDocumentHeight = window.dc.raf.win.documentHeight || document.body.offsetHeight;
 
 			window.dc.raf.win.pageYOffset     = window.pageYOffset;
-			window.dc.raf.win.innerHeight     = (window.dc._orientation_old === window.dc.orientation) ? window.dc.raf.win.innerHeight : window.innerHeight;
+			window.dc.raf.win.innerHeight     = (window.dc.client._orientation_old === window.dc.client.orientation) ? window.dc.raf.win.innerHeight : window.innerHeight;
 			window.dc.raf.win.innerWidth      = window.innerWidth;
 			window.dc.raf.win._counter        = window.dc.raf.win._counter+1;
 			window.dc.raf.win.documentHeight  = document.body.offsetHeight;
@@ -607,7 +607,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					window.dc.raf.execIterationObj[property]();
 				}
 			}
-			window.dc._orientation_old = window.dc.orientation;
+			window.dc.client._orientation_old = window.dc.client.orientation;
 			window.requestAnimationFrame(this._everyRAF.bind(this));
 			if(_oldDocumentHeight !== window.dc.raf.win.documentHeight){
 				$('body').trigger('dc-documentHeightChange');
