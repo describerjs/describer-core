@@ -7,7 +7,9 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	(function(){
 		window.dc = $.extend({}, {
 			perf: {},
-			client: {}
+			client: {},
+			submit: {},
+			raf: {}
 		}, window.dc);
 
 		window.jmHF = window.jmHF || {};
