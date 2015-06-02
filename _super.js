@@ -273,19 +273,19 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				this._createRAFObjects();
 			}
 
-			window.dc.onHoldArray = window.dc.onHoldArray || [];
-			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
-			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
-			for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
+			window.dc.perf.onHoldArray = window.dc.perf.onHoldArray || [];
+			window.dc.perf.onHoldArrayExecuted = window.dc.perf.onHoldArrayExecuted || false;
+			window.dc.perf.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
+			for(var i = 0, leni = window.dc.perf.onHoldArray.length; i < leni; i++){
 				if(_initByPerfCounter > i){
 					this._applyOnHoldPlugin(i);
 				}
 			}
 
-			if($.type(window.intervalIDForOnHoldPlugins) === 'undefined'){
-				window.intervalIDForOnHoldPlugins = setInterval(this._intervalForApplyOnHoldPlugins.bind(this), 1000);
+			if($.type(window.dc.perf.intervalIDForOnHoldPlugins) === 'undefined'){
+				window.dc.perf.intervalIDForOnHoldPlugins = setInterval(this._intervalForApplyOnHoldPlugins.bind(this), 1000);
 				setTimeout(function(){
-					clearInterval(window.intervalIDForOnHoldPlugins);
+					clearInterval(window.dc.perf.intervalIDForOnHoldPlugins);
 				}, 15000);
 			}
 		},
@@ -326,7 +326,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_applyOnHoldPlugin: function(index){
-			var _obj = window.dc.onHoldArray[index].obj;
+			var _obj = window.dc.perf.onHoldArray[index].obj;
 			if(!_obj.exec){
 				_obj.exec = true;
 				_obj._execWaitAfterCondition();
@@ -335,9 +335,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_intervalForApplyOnHoldPlugins: function(){
 			var _obj;
-			if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.raf.win._avgrafs > 45){
-				for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
-					_obj = window.dc.onHoldArray[i].obj;
+			if(window.dc.perf.onHoldArray && !window.dc.perf.onHoldArrayExecuted && window.dc.raf.win._avgrafs > 45){
+				for(var i = 0, leni = window.dc.perf.onHoldArray.length; i < leni; i++){
+					_obj = window.dc.perf.onHoldArray[i].obj;
 					if(!_obj.exec){
 						_obj.exec = true;
 						_obj._execWaitAfterCondition();
@@ -346,7 +346,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						}
 						return;
 					}else if((leni -1) === i){
-						window.dc.onHoldArrayExecuted = true;
+						window.dc.perf.onHoldArrayExecuted = true;
 					}
 				}
 			}
@@ -570,7 +570,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 				this.$acount.text('avg: '+ window.dc.raf.win._avgrafs+ ' fps | now: '+ window.dc.raf.win._rafs+' fps');
 
-				if(window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
+				if(window.dc.perf.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
 					this.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
 					this.$initByPerfCounter = $('#init-by-perf-counter');
 					if(window.dc.perf.level === 1) this.$initByPerfCounter.text(' init-fx: all ');
