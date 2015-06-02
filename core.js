@@ -13,7 +13,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			modulPreloader: {},
 			perf: {},
 			raf: {},
-			submit: {}
+			form: {}
 		}, window.dc);
 
 		window.jmHF = window.jmHF || {};
@@ -205,18 +205,18 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	// Funktion wird benötigt, um bei mehreren Selects eine Gruppen-Validierung zu ermöglichen.
-	dc.submit.serviceCheck = function(){
+	dc.form.serviceCheck = function(){
 		var $dataRuleGeb = $('[data-rule-jmgeburtsdatumsservice]');
 		var $dataRuleKartenGueltigkeit = $('[data-rule-jmkreditkartengueltigkeitsservice]');
 
-		dc.submit.submittable = true;
+		dc.form.submittable = true;
 
 		if($.type($dataRuleGeb) !== 'undefined' && $.type($dataRuleGeb.eq(0).attr('disabled')) !== 'undefined'){
-			dc.submit.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
+			dc.form.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
 		}
 		// TODO Andreas hier noch die Anpassungen/Optimierungen von jmgeburtsdatumsservice übernehmen
 		if($.type($dataRuleKartenGueltigkeit) !== 'undefined' && $.type($dataRuleKartenGueltigkeit.eq(0).attr('disabled')) !== 'undefined'){
-			dc.submit.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
+			dc.form.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
 		}
 	};
 
