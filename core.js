@@ -6,10 +6,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	//alert(navigator.userAgent);
 	(function(){
 		window.dc = $.extend({}, {
-			perf: {},
 			client: {},
-			submit: {},
-			raf: {}
+			modulPreloader: {},
+			perf: {},
+			raf: {},
+			submit: {}
 		}, window.dc);
 
 		window.jmHF = window.jmHF || {};
@@ -405,7 +406,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
+	dc.modulPreloader.helperForRequirementsForJmPlugins = function(_config, jmname){
 		var _requirePlugin;
 		var _configObj = jmHF.getConfigObj(jmname);
 		var _jmpluginString;
@@ -417,15 +418,15 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
 				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
-				jmHF.requirePluginAndDependencies(_requirePlugin, _configObj, index);
+				dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
 			});
 		}else{
 			_requirePlugin = jmHF.returnRequireLoadPlugin(_jmpluginString);
-			jmHF.requirePluginAndDependencies(_requirePlugin, _configObj);
+			dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj);
 		}
 	};
 
-	jmHF.requirePluginAndDependencies = function(fileref, _configObj, index){
+	dc.modulPreloader.requirePluginAndDependencies = function(fileref, _configObj, index){
 		require([fileref], function(){});
 		if(fileref === 'actions.apply'){
 			($.type(index) !== 'undefined') ? require([_configObj.jmconfig[index].require], function(){}) : require([_configObj.jmconfig.require], function(){});
@@ -777,7 +778,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				var $item = $(item);
 				var _jmname = $item.data('jmname').split('|');
 				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.helperForRequirementsForJmPlugins(_config, _jmname[i]);
+					dc.modulPreloader.helperForRequirementsForJmPlugins(_config, _jmname[i]);
 				}
 			});
 		});
