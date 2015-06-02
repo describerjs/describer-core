@@ -667,7 +667,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.uniqueId){
 				return this.uniqueId;
 			}
-			return this.uniqueId = window.dc.uuID.generate();
+			return this.uniqueId = window.dc.helper.uuID.generate();
 		},
 
 		_finishing: function(p_$data){
@@ -691,7 +691,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				return;
 			}
 			if($.type(this.is('scrollTo')) === 'number'){
-				jmHF.scrollToPosition(this.is('scrollTo'), (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
+				dc.helper.scrollToPosition(this.is('scrollTo'), (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
 				return;
 			}
 			if($.type(this.is('scrollTo')) === 'string'){

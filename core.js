@@ -10,6 +10,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			config: {},
 			dev: {},
 			eventflow : {},
+			helper: {},
 			modulPreloader: {},
 			perf: {},
 			pointer: {},
@@ -58,7 +59,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.setDevicePerfForParallax = function(){
+	dc.helper.setDevicePerfForParallax = function(){
 		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
 			window.dc.perf = window.dc.perf || 3;
 			return;
@@ -97,7 +98,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.checkOrientationAndTriggerDcResize = function(){
+	dc.helper.checkOrientationAndTriggerDcResize = function(){
 		if(window.dc.client.orientation === 'w' && (window.innerHeight > window.innerWidth)){
 			window.dc.client.orientation = 'p';
 			$body.trigger('dc-orientationchange');
@@ -123,7 +124,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.contains = function(a, obj){
+	dc.helper.contains = function(a, obj){
 		var i = a.length;
 		while (i--) {
 			if (a[i] === obj) {
@@ -134,7 +135,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	// extend the ajax-function with the progressUpload and progress funktions
-	jmHF.addXhrProgressEvent = function() {
+	dc.helper.addXhrProgressEvent = function() {
 		var originalXhr = $.ajaxSettings.xhr;
 		$.ajaxSetup({
 			progress: function() { /*console.log("standard progress callback");*/ },
@@ -222,7 +223,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	// gibt das original-Plugin zurück. Funktion dient zur Modulidentifikation. Es  wird dann von requireJS geladen
-	jmHF.returnRequireLoadPlugin = function(p_plugin){
+	dc.helper.returnRequireLoadPlugin = function(p_plugin){
 		if(p_plugin.indexOf('_') !== -1){
 			p_plugin = p_plugin.split('_')[0];
 		}
@@ -361,7 +362,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	dc.eventflow.helperForBindPlugin = function(Obj, p_plugin, index){
 		var _index = index || 0;
-		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
+		var _requirePlugin = dc.helper.returnRequireLoadPlugin(p_plugin);
 		if(require.defined(_requirePlugin)){
 			dc.eventflow.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
 		}else{
@@ -421,11 +422,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		_jmpluginString = _configObj.jmplugin;
 		if(_jmpluginString.split('|').length > 1){
 			$.each(_jmpluginString.split('|'), function(index, innerItem){
-				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
+				_requirePlugin = dc.helper.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
 				dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
 			});
 		}else{
-			_requirePlugin = jmHF.returnRequireLoadPlugin(_jmpluginString);
+			_requirePlugin = dc.helper.returnRequireLoadPlugin(_jmpluginString);
 			dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj);
 		}
 	};
@@ -549,24 +550,15 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	};
 
 	// Auslesen der Scrollposition des Browsers
-	jmHF.getScrollPos = function(){
+	dc.helper.getScrollPos = function(){
 		return ($.type(window.pageYOffset) === "number") ? window.pageYOffset : document.documentElement.scrollTop;
 	};
 
-	jmHF.hasClass = function(elem, selector){
+	dc.helper.hasClass = function(elem, selector){
 		return (" " + elem.className + " ").replace(/[\t\r\n\f]/g, " ").indexOf(" " + selector + " ") >= 0
 	};
 
-	jmHF.replaceSVGForOldBrowser = function(){
-		if(!(!!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect)){
-			var _svgImages = $('img[src*=".svg"]');
-			for(var i = 0, leni = _svgImages.length; i < leni; i++){
-				_svgImages.eq(i).attr('src', _svgImages.eq(i).attr('src').replace('.svg', '.png'));
-			}
-		}
-	};
-
-	jmHF.scrollToPosition = function(pos, speed){
+	dc.helper.scrollToPosition = function(pos, speed){
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
 		if($.type(speed) !== 'undefined'){
 			$body.animate({
@@ -591,13 +583,13 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	// http://shebang.brandonmintern.com/foolproof-html-escaping-in-javascript/
 	// Use the browser's built-in functionality to quickly and safely escape the
 	// string
-	jmHF.escapeHtml = function (str) {
+	dc.helper.escapeHtml = function (str) {
 		var div = document.createElement('div');
 		div.appendChild(document.createTextNode(str));
 		return div.innerHTML;
 	};
 
-	jmHF.transformSupport = function(value) {
+	dc.helper.transformSupport = function(value) {
 		var element = document.createElement('div');
 		var propertySupport = false;
 		var propertyValue = null;
@@ -670,14 +662,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	window.dc.client.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
-	window.dc.uuID = function() {};
+	window.dc.helper.uuID = function() {};
 
 	/**
 	 * The simplest function to get an UUID string.
 	 * @returns {string} A version 4 UUID string.
 	 */
-	window.dc.uuID.generate = function() {
-		var rand = dc.uuID._gri, hex = dc.uuID._ha;
+	window.dc.helper.uuID.generate = function() {
+		var rand = dc.helper.uuID._gri, hex = dc.helper.uuID._ha;
 		return  hex(rand(32), 8)          // time_low
 			+ "-"
 			+ hex(rand(16), 4)          // time_mid
@@ -694,7 +686,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	 * @param {int} x A positive integer ranging from 0 to 53, inclusive.
 	 * @returns {int} An unsigned x-bit random integer (0 <= f(x) < 2^x).
 	 */
-	window.dc.uuID._gri = function(x) { // _getRandomInt
+	window.dc.helper.uuID._gri = function(x) { // _getRandomInt
 		if (x <   0) return NaN;
 		if (x <= 30) return (0 | Math.random() * (1 <<      x));
 		if (x <= 53) return (0 | Math.random() * (1 <<     30))
@@ -708,7 +700,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	 * @param {int} length
 	 * @returns {string}
 	 */
-	window.dc.uuID._ha = function(num, length) {  // _hexAligner
+	window.dc.helper.uuID._ha = function(num, length) {  // _hexAligner
 		var str = num.toString(16), i = length - str.length, z = "0";
 		for (; i > 0; i >>>= 1, z += z) { if (i & 1) { str = z + str; } }
 		return str;
@@ -1013,5 +1005,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
 		alert(navigator.userAgent);
 	}
-	jmHF.setDevicePerfForParallax();
+
+	// TODO Andreas create init-function for all init-functions
+	dc.helper.setDevicePerfForParallax();
 });
