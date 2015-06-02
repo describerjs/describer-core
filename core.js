@@ -12,6 +12,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 			eventflow : {},
 			modulPreloader: {},
 			perf: {},
+			pointer: {},
 			raf: {},
 			form: {}
 		}, window.dc);
@@ -460,13 +461,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	// Pointer-Events handling
 	// Thank you to the filamentgroup. The following code was partial reused form https://github.com/filamentgroup/tappy/
 
-	dc.pointer = {};
-	dc.pointer.tapHandling = false;
-	dc.pointer.tappy = true;
-	dc.pointer.startX;
-	dc.pointer.startY;
-	dc.pointer.cancel;
-	dc.pointer.resetTimer;
+	dc.pointer._tapHandling = false;
 	dc.pointer.scrollTolerance = 10;
 	dc.pointer.start =  function(e){
 		if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
@@ -474,8 +469,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 
 		var coords = dc.pointer.getCoords( e );
-		dc.pointer.startX = coords[ 0 ];
-		dc.pointer.startY = coords[ 1 ];
+		window.dc.pointer._startX = coords[ 0 ];
+		window.dc.pointer._startY = coords[ 1 ];
 	};
 
 	dc.pointer.getCoords = function(e){
@@ -492,19 +487,19 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 
 	// any touchscroll that results in > tolerance should cancel the tap
 	dc.pointer.move = function(e){
-		if( !dc.pointer.cancel ){
+		if( !window.dc.pointer.cancel ){
 			var coords = dc.getCoords( e );
-			if( coords && ( Math.abs( dc.pointer.startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( dc.pointer.startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
-				dc.pointer.cancel = true;
+			if( coords && ( Math.abs( window.dc.pointer._startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( window.dc.pointer._startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
+				window.dc.pointer.cancel = true;
 			}
 		}
 	};
 //
 	dc.pointer.end = function(e){
-		clearTimeout( dc.pointer.resetTimer );
-		dc.pointer.resetTimer = setTimeout( function(){
-			dc.pointer.tapHandling = false;
-			dc.pointer.cancel = false;
+		clearTimeout( window.dc.pointer.resetTimer );
+		window.dc.pointer.resetTimer = setTimeout( function(){
+			dc.pointer._tapHandling = false;
+			window.dc.pointer.cancel = false;
 		}, 1000 );
 
 		// make sure no modifiers are present. thx http://www.jacklmoore.com/notes/click-events/
@@ -517,12 +512,12 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		// this part prevents a double callback from touch and mouse on the same tap
 
 		// if a scroll happened between touchstart and touchend
-		if( dc.pointer.cancel || dc.pointer.tapHandling && dc.pointer.tapHandling !== e.type ){
-			dc.pointer.cancel = false;
+		if( window.dc.pointer.cancel || dc.pointer._tapHandling && dc.pointer._tapHandling !== e.type ){
+			window.dc.pointer.cancel = false;
 			return;
 		}
 
-		dc.pointer.tapHandling = e.type;
+		dc.pointer._tapHandling = e.type;
 		$( e.target ).trigger('dcpointer');
 	};
 
