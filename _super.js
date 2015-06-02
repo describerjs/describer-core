@@ -335,7 +335,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_intervalForApplyOnHoldPlugins: function(){
 			var _obj;
-			if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 45){
+			if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win._avgrafs > 45){
 				for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
 					_obj = window.dc.onHoldArray[i].obj;
 					if(!_obj.exec){
@@ -537,10 +537,10 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				innerWidth: null,
 				outerHeight: null,
 				documentHeight: null,
-				startTime: Date.now(),
-				counter: 0,
-				rafs: null,
-				avgrafs: null
+				_startTime: Date.now(),
+				_counter: 0,
+				_rafs: null,
+				_avgrafs: null
 			};
 			window.dc.raf.execIterationObj = {
 				countProperties: function(){
@@ -562,13 +562,13 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.$acount = $('#fps-counter');
 
 			setInterval(function(){
-				if(window.dc.win.counter < that.thempCountedFrames){
+				if(window.dc.win._counter < that.thempCountedFrames){
 					this.thempCountedFrames = this.thempCountedFrames + 100000001;
 				}
-				window.dc.win.rafs = window.dc.win.counter - this.thempCountedFrames;
-				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
+				window.dc.win._rafs = window.dc.win._counter - this.thempCountedFrames;
+				window.dc.win._avgrafs = Math.round(window.dc.win._counter/((Date.now() - window.dc.win._startTime)/1000));
 
-				this.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+				this.$acount.text('avg: '+ window.dc.win._avgrafs+ ' fps | now: '+ window.dc.win._rafs+' fps');
 
 				if(window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
 					this.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
@@ -576,7 +576,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					if(window.dc.perf.level === 1) this.$initByPerfCounter.text(' init-fx: all ');
 					if(window.dc.perf.level === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
 				}
-				that.thempCountedFrames = window.dc.win.counter;
+				that.thempCountedFrames = window.dc.win._counter;
 			}.bind(this), 1000);
 		},
 
@@ -593,13 +593,13 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			var _oldDocumentHeight = window.dc.win.documentHeight || document.body.offsetHeight;
 
 			window.dc.win.pageYOffset     = window.pageYOffset;
-			window.dc.win.innerHeight     = (window.dc.orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
+			window.dc.win.innerHeight     = (window.dc._orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
 			window.dc.win.innerWidth      = window.innerWidth;
-			window.dc.win.counter         = window.dc.win.counter+1;
+			window.dc.win._counter        = window.dc.win._counter+1;
 			window.dc.win.documentHeight  = document.body.offsetHeight;
 
-			if(window.dc.win.counter === 100000001){
-				window.dc.win.counter = 1;
+			if(window.dc.win._counter === 100000001){
+				window.dc.win._counter = 1;
 			}
 
 			for(var property in window.dc.raf.execIterationObj){
@@ -607,7 +607,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 					window.dc.raf.execIterationObj[property]();
 				}
 			}
-			window.dc.orientation_old = window.dc.orientation;
+			window.dc._orientation_old = window.dc.orientation;
 			window.requestAnimationFrame(this._everyRAF.bind(this));
 			if(_oldDocumentHeight !== window.dc.win.documentHeight){
 				$('body').trigger('dc-documentHeightChange');
@@ -615,7 +615,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_render: function(){
-			if((window.dc.win.counter % this.renderDelay) !== 0){
+			if((window.dc.win._counter % this.renderDelay) !== 0){
 				return;
 			}
 			if(this.$elem[0].offsetHeight === 0){
