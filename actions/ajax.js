@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'rAF'], function ($, _super){
+define(['jquery', '_super'], function ($, _super){
     'use strict';
 	// extend von module.formcomponents.autocomplete
 	// extend von module.modal

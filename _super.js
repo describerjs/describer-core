@@ -384,6 +384,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			var that = this;
 			var jmconfigJsonParse;
 			var _configObjlength;
+			var _jmnameArr;
+			var _jmnamelength;
 			var _jmconfigJsonContainsObjectOnlyOnFirstLevel = true;
 			// liegen die daten aus dem jmconfig-Data-Attribut vor und p_now ist gleich false wird das Array mit dem/den Objekt/en aus dem data-jmconfig zurückgegeben
 			if($.type(p_now) === 'undefined' && $.type(this.staticObjFromDom) !== 'undefined'){
@@ -403,13 +405,17 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						if($.type(value) === 'object'){
 							if(dc.config.debug){
 								for(var i = 0, leni = _config.length; i < leni; i++){
-									if(_config[i].jmname === that.myJmName){
-										if($.type(_config[i].jmconfig) !== 'array'){
-											_configObjlength = 1;
-											break;
-										}else{
-											_configObjlength = _config[i].jmconfig.length;
-											break;
+									_jmnameArr = _config[i].jmname.split(',');
+									_jmnamelength = _jmnameArr.length;
+									for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+										if(_jmnameArr[j].trim() === that.myJmName){
+											if($.type(_config[i].jmconfig) !== 'array'){
+												_configObjlength = 1;
+												break;
+											}else{
+												_configObjlength = _config[i].jmconfig.length;
+												break;
+											}
 										}
 									}
 								}
@@ -448,13 +454,17 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				if(_jmconfigJsonContainsObjectOnlyOnFirstLevel){
 					if(dc.config.debug){
 						for(var i = 0, leni = _config.length; i < leni; i++){
-							if(_config[i].jmname === that.myJmName){
-								if($.type(_config[i].jmconfig) !== 'array'){
-									_configObjlength = 1;
-									break;
-								}else{
-									_configObjlength = _config[i].jmconfig.length;
-									break;
+							_jmnameArr = _config[i].jmname.split(',');
+							_jmnamelength = _jmnameArr.length;
+							for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+								if(_jmnameArr[j].trim() === that.myJmName){
+									if($.type(_config[i].jmconfig) !== 'array'){
+										_configObjlength = 1;
+										break;
+									}else{
+										_configObjlength = _config[i].jmconfig.length;
+										break;
+									}
 								}
 							}
 						}
@@ -491,16 +501,22 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		// gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
 		_getStaticConfigObj: function(){
+			var _jmnameArr;
+			var _jmnamelength;
 			for(var i = 0, leni = _config.length; i < leni; i++){
-				if(_config[i].jmname === this.myJmName){
-					// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
-					if($.type(_config[i].jmconfig) !== 'array'){
-						this.staticObj = _config[i].jmconfig;
-						break;
-					}else{
-						// hier wird das config-Obj aus der entsprechenden Position im Array in das staticObj geschrieben.
-						this.staticObj = _config[i].jmconfig[this.myPos];
-						break;
+				_jmnameArr = _config[i].jmname.split(',');
+				_jmnamelength = _jmnameArr.length;
+				for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+					if(_jmnameArr[j].trim() === this.myJmName){
+						// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
+						if($.type(_config[i].jmconfig) !== 'array'){
+							this.staticObj = _config[i].jmconfig;
+							break;
+						}else{
+							// hier wird das config-Obj aus der entsprechenden Position im Array in das staticObj geschrieben.
+							this.staticObj = _config[i].jmconfig[this.myPos];
+							break;
+						}
 					}
 				}
 			}
