@@ -184,7 +184,7 @@ define(['jquery', '_config'], function($, _config){
 		for(var i = 0, leni = _dataJmnameElemente.length; i < leni; i++){
 			// je DomElement
 			var _events = '';
-			var _jmnameElement = _dataJmnameElemente.eq(i).data('jmname').split('|');
+			var _jmnameElement = ((_dataJmnameElemente.eq(i).data('jmname')).indexOf(' ') !== -1) ? _dataJmnameElemente.eq(i).data('jmname').trim().split(' ') : _dataJmnameElemente.eq(i).data('jmname').trim().split('|');
 			var _eventsArray;
 			for(var j = 0, lenj = _jmnameElement.length; j < lenj; j++){
 				// je jmnameSplit
@@ -307,7 +307,7 @@ define(['jquery', '_config'], function($, _config){
 	};
 
 	dc.eventflow.eventDelegationHelper = function($this, e, param){
-		var _jmname = $this.attr('data-jmname').split('|');
+		var _jmname = (($this.attr('data-jmname')).indexOf(' ') !== -1) ? $this.attr('data-jmname').trim().split(' ') : $this.attr('data-jmname').trim().split('|');
 		if(e.type === 'dcpointer'){
 			e.type = 'click';
 		}
@@ -362,6 +362,8 @@ define(['jquery', '_config'], function($, _config){
 		var eventArray = p_pluginConfigOjb.event.split('|');
 		var _retrun = false;
 		var _eventType = p_Obj.e.type;
+		var _attr_config;
+		var _attr_counter;
 		// Durchlaufe das Event-Array
 		for(var i = 0, leni = eventArray.length; i < leni; i++){
 			if(eventArray[i] === _eventType){
@@ -371,10 +373,24 @@ define(['jquery', '_config'], function($, _config){
 				// return true if eventArray[i] contains jmtrigger
 				_retrun = true;
 			}else if('dominit' === _eventType){
-				if($(p_Obj.e.target).attr('data-jmconfig') && $(p_Obj.e.target).attr('data-jmconfig').indexOf('event') !== -1){
-					_retrun = dc.eventflow.isEventKeyInDomConfigObj(p_index, p_Obj);
-					if(!_retrun){
-						_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
+				_attr_counter = dc.helper.attrPrefixCounter(p_Obj.e.target, 'data-dcconfig');
+				if(_attr_counter === 1){
+					_attr_config = dc.helper.attrPrefix(p_Obj.e.target, 'data-dcconfig');
+					if(_attr_config.indexOf('event') !== -1){
+						_retrun = dc.eventflow.isEventKeyInDomConfigObj(p_index, p_Obj, 0);
+						if(!_retrun){
+							_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
+						}
+					}
+				}else if(_attr_counter > 1){
+					for(var j = 0, lenj = _attr_counter; j < lenj; j++){
+						_attr_config = dc.helper.attrPrefix(p_Obj.e.target, 'data-dcconfig', j);
+						if(_attr_config.indexOf('event') !== -1){
+							_retrun = dc.eventflow.isEventKeyInDomConfigObj(p_index, p_Obj, j);
+							if(!_retrun){
+								_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
+							}
+						}
 					}
 				}else{
 					_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
@@ -386,21 +402,24 @@ define(['jquery', '_config'], function($, _config){
 
 	dc.eventflow.isDominitEvent = function(p_event){
 		var _return = false;
-		switch(p_event){
-			case 'dominit':
-			case 'blur':
-			case 'focus':
-			case 'hover':
-			case 'init-by-perf':
-			case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
-			case ((p_event.match(/raf(.*)/))? p_event : undefined):
-			case ((p_event.match(/keyup(.*)/))? p_event : undefined):
-			case ((p_event.match(/interval(.*)/))? p_event : undefined):
-				// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
-				_return = true;
-				break;
-			default:
-				break;
+		var _eventArray = p_event.split('|');
+		for(var i = 0, leni = _eventArray.length; i < leni; i++){
+			switch(_eventArray[i]){
+				case 'dominit':
+				case 'blur':
+				case 'focus':
+				case 'hover':
+				case 'init-by-perf':
+				case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
+				case ((p_event.match(/raf(.*)/))? p_event : undefined):
+				case ((p_event.match(/keyup(.*)/))? p_event : undefined):
+				case ((p_event.match(/interval(.*)/))? p_event : undefined):
+					// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
+					_return = true;
+					break;
+				default:
+					break;
+			}
 		}
 		return _return;
 	};
@@ -473,18 +492,14 @@ define(['jquery', '_config'], function($, _config){
 		}
 	};
 
-	dc.eventflow.isEventKeyInDomConfigObj = function(p_index, p_Obj){
+	dc.eventflow.isEventKeyInDomConfigObj = function(p_index, p_Obj, p_indexAttr){
 		var $elem =  $(p_Obj.e.target);
 		var jmconfigJsonParse;
 		var _return = false;
 		var _multiObj = true;
 
 		// die Daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
-		if($.type($elem.data('jmconfig')) !== 'string'){
-			jmconfigJsonParse = $elem.data('jmconfig');
-		}else{
-			jmconfigJsonParse = JSON.parse($elem.data('jmconfig').replace(/'/g, "\""));
-		}
+		jmconfigJsonParse = JSON.parse((dc.helper.attrPrefix($elem[0], 'data-dcconfig', p_indexAttr) || dc.helper.attrPrefix($elem[0], 'data-jmconfig')).replace(/'/g, "\""));
 
 		if($.type(jmconfigJsonParse) === 'object'){
 			$.each(jmconfigJsonParse, function(key, value){
@@ -550,6 +565,36 @@ define(['jquery', '_config'], function($, _config){
 
 
 // helper     *************************************************
+
+	dc.helper.attrPrefixCounter = function(elem, prefix){
+		var _atts = elem.attributes;
+		var _attr;
+		var _counter = 0;
+		for(var i = 0, leni = _atts.length; i < leni; i++){
+			_attr = _atts[i].name.match(new RegExp('^'+prefix+'(.*)'));
+			if(_attr){
+				_counter++;
+			}
+		}
+		return _counter;
+	};
+
+	dc.helper.attrPrefix = function(elem, prefix, index){
+		var _atts = elem.attributes;
+		var _attr;
+		var _attr_Array = [];
+		var _index = index || 0;
+		for(var i = 0, leni = _atts.length; i < leni; i++){
+			_attr = _atts[i].name.match(new RegExp('^'+prefix+'(.*)'));
+			if(_attr){
+				if(_index === 0){
+					return elem.getAttribute(_attr[0]);
+				}
+				_attr_Array.push(elem.getAttribute(_attr[0]));
+			}
+		}
+		return _attr_Array[_index] || undefined;
+	};
 
 	// Thank you to "Cowboy" Ben Alman. The following code (dc.helper.doTimeout._func) was partial reused form http://benalman.com/projects/jquery-dotimeout-plugin/
 	dc.helper.doTimeout = {};
@@ -1091,7 +1136,7 @@ define(['jquery', '_config'], function($, _config){
 			var $elem = $(this);
 			$elem.find('[data-jmname]').addBack('[data-jmname]').each(function(index, item){
 				var $item = $(item);
-				var _jmname = $item.data('jmname').split('|');
+				var _jmname = (($item.data('jmname')).indexOf(' ') !== -1) ? $item.data('jmname').trim().split(' ') : $item.data('jmname').trim().split('|');
 				for(var i = 0, leni = _jmname.length; i < leni; i++){
 					dc.modulPreloader.helperForRequirementsForJmPlugins(_config, _jmname[i]);
 				}

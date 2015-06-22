@@ -16,7 +16,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			//this.myPos = ($.type(this.$elem.data('jmname')) !== 'undefined') ? 0 : this.pos;
 			this.myPos = this.pos;
 			this.myJmName = this.jmname;
-			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
+			this.namePostfix = (this.name.slice(-2).charAt(0) === '_') ? this.name.slice(-2) : '';
+			//this.myJmNamePos = ((this.$elem.data('jmname')).indexOf(' ') !== -1) ? $.inArray(this.myJmName, this.$elem.data('jmname').trim().split(' ')) : $.inArray(this.myJmName, this.$elem.data('jmname').trim().split('|'));
 			this.initExec();
 			//this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
@@ -370,17 +371,47 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				return this.initConfigObj;
 			}
 			// wenn es kein jmconfig-Attribut für das Tag gibt. p_now ist hier nicht interessant, da die config-Daten in der _config.js nicht geändert werden können.
-			if($.type(this.$elem.data('jmconfig')) === 'undefined'){
+			if($.type(this._getAttrWithOrWithoutPostfix_1() || this.$elem.data('jmconfig')) === 'undefined'){
 				// return Object
 				return this.initConfigObj = this.staticObj || this._getStaticConfigObj();
 			}
+
 			// wenn es ein jmconfig-Attribut im Tag (DOM-Element) gibt überschreibt dieses die entsprechenden values im config-Objekt, wellches hierfür in der _config.js steht.
 			// return Object
 			return this.initConfigObj = $.extend({}, (this.staticObj || this._getStaticConfigObj()), this._getObjFromDom(p_now) );
 		},
 
-		// gibt ein Array aus dem jmconfig-Data-Attribut zurück
+		_getAttrWithOrWithoutPostfix_1: function(){
+			return this.staticAttrFromDom || (this.staticAttrFromDom = (this.namePostfix === '_1') ? (this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name) || this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name.split('_1')[0])) : (this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name) || this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name+'_1')));
+		},
+
 		_getObjFromDom: function(p_now){
+			if(dc.config.debug){
+				if(this.$elem.data('jmconfig') && dc.helper.attrPrefixCounter(this.$elem[0], 'data-dcconfig')){
+					dc.dev.warn('data-jmconfig und data-dcconfig dürfen nicht zusammen als Attribut auf folgenden Tag verwendet. data-jmconfig ist depricated. Die Überschreibung der config-Objekte ist mit data-dcconfig--... durchzuführen.', this.$elem);
+				}
+			}
+			if(this._getAttrWithOrWithoutPostfix_1()){
+				return this._getObjFromDcConfigAttr(p_now);
+			}else if(this.$elem.data('jmconfig')){
+				if(dc.config.debug){
+					dc.dev.warn('Die Angabe vom data-jmconfig Attribut ist deprecated und der "event"-key kann im via data-jmconfig-attr nicht überschrieben werden. Bitte als Attribut data-dcconfig--*--** (* steht für dcname und ** für das entsprechende jmplugin wie z.B. data-dcconfig--back-to-top--actions.scroll) verwenden!!!');
+				}
+				return this._getObjFromJmConfigAttr(p_now);
+			}
+			return {};
+		},
+
+		_getObjFromDcConfigAttr: function(p_now){
+			// liegen die daten aus dem jmconfig-Data-Attribut vor und p_now ist gleich false wird das Array mit dem/den Objekt/en aus dem data-jmconfig zurückgegeben
+			if($.type(p_now) === 'undefined' && $.type(this.staticObjFromDom) !== 'undefined'){
+				// return Object
+				return this.staticObjFromDom;
+			}
+			return this.staticObjFromDom = JSON.parse(this._getAttrWithOrWithoutPostfix_1().replace(/'/g, "\""));
+		},
+
+		_getObjFromJmConfigAttr: function(p_now){
 			var that = this;
 			var jmconfigJsonParse;
 			var _configObjlength;
