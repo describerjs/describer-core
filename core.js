@@ -91,6 +91,13 @@ define(['jquery', '_config'], function($, _config){
 
 // client	*********************************************
 
+	// hier wird ein div injected, welches als je nach mediaquery einen anderen z-index erhält
+	dc.client.addStateIndicator = function () {
+		dc.client.indicator = document.createElement('div');
+		dc.client.indicator.className = 'state-indicator';
+		document.body.appendChild(dc.client.indicator);
+	};
+
 	// gibt die Höhe des Browserfenster wieder
 	dc.client.getHeight = function () {
 		var $window = $(window);
@@ -130,6 +137,22 @@ define(['jquery', '_config'], function($, _config){
 	dc.client.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
 	dc.client.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+
+	// schreibt den aktuellen breakpoint in dc.client.deviceState
+	dc.client.setDeviceState = function() {
+		var index = parseInt(window.getComputedStyle(dc.client.indicator).getPropertyValue('z-index'), 10);
+
+		var states = {
+			2: 'bp-xs',
+			3: 'bp-s',
+			4: 'bp-m',
+			5: 'bp-l',
+			6: 'bp-xl',
+			7: 'bp-xxl'
+		};
+
+		dc.client.deviceState = states[index] || 'small';
+	};
 
 	dc.client.touch = Modernizr.touch;
 
@@ -746,6 +769,7 @@ define(['jquery', '_config'], function($, _config){
 		if((window.dc.client.userOS !== 'iOS') && (window.dc.client.userOS !== 'Android')){
 			$body.trigger('dc-resizeondesktop');
 		}
+		dc.client.setDeviceState();
 	};
 
 	dc.helper.contains = function(a, obj){
