@@ -85,18 +85,56 @@ define(['jquery', '_config'], function($, _config){
 					clearTimeout(id);
 				};
 		}());
+
+		// polyfill for Object.keys
+		// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+		(function() {
+			if (!Object.keys) {
+				Object.keys = (function() {
+					'use strict';
+					var hasOwnProperty = Object.prototype.hasOwnProperty,
+					    hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+					    dontEnums = [
+						    'toString',
+						    'toLocaleString',
+						    'valueOf',
+						    'hasOwnProperty',
+						    'isPrototypeOf',
+						    'propertyIsEnumerable',
+						    'constructor'
+					    ],
+					    dontEnumsLength = dontEnums.length;
+
+					return function(obj) {
+						if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+							throw new TypeError('Object.keys called on non-object');
+						}
+
+						var result = [], prop, i;
+
+						for (prop in obj) {
+							if (hasOwnProperty.call(obj, prop)) {
+								result.push(prop);
+							}
+						}
+
+						if (hasDontEnumBug) {
+							for (i = 0; i < dontEnumsLength; i++) {
+								if (hasOwnProperty.call(obj, dontEnums[i])) {
+									result.push(dontEnums[i]);
+								}
+							}
+						}
+						return result;
+					};
+				}());
+			}
+		}());
 	})();
 
 
 
 // client	*********************************************
-
-	// hier wird ein div injected, welches als je nach mediaquery einen anderen z-index erhält
-	dc.client.addStateIndicator = function () {
-		dc.client.indicator = document.createElement('div');
-		dc.client.indicator.className = 'state-indicator';
-		document.body.appendChild(dc.client.indicator);
-	};
 
 	// gibt die Höhe des Browserfenster wieder
 	dc.client.getHeight = function () {
@@ -258,6 +296,13 @@ define(['jquery', '_config'], function($, _config){
 
 
 // domready
+
+	// hier wird ein div injected, welches als je nach mediaquery einen anderen z-index erhält
+	dc.domready.addStateIndicator = function () {
+		dc.client.indicator = document.createElement('div');
+		dc.client.indicator.className = 'state-indicator';
+		document.body.appendChild(dc.client.indicator);
+	};
 
 	dc.domready.checkUrl = function(){
 
@@ -780,6 +825,16 @@ define(['jquery', '_config'], function($, _config){
 			}
 		}
 		return false;
+	};
+
+	dc.helper.countProperties =  function(obj){
+		var count = 0;
+		for(var property in obj){
+			if(obj.hasOwnProperty(property)){
+				count += 1;
+			}
+		}
+		return count;
 	};
 
 	// extend the ajax-function with the progressUpload and progress funktions
