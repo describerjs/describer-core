@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super', 'rAF'], function ($, _super){
+define(['jquery', '_super'], function ($, _super){
     'use strict';
 	// extend von module.formcomponents.autocomplete
 	// extend von module.modal
@@ -74,16 +74,15 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	        if(this.is('data').indexOf('this.') !== -1){
 		        return eval(this.is('data'));
 	        }
-	        // this.is('data').match auf String mit beginnenden $$ -Zeichen dann wird die Value des Elements in das window.jmGO als Objekt $$... gespeichert.
+	        // this.is('data').match auf String mit beginnenden $$ -Zeichen dann wird die Value des Elements in das window.dc als Objekt $$... gespeichert.
 	        // Dieses Objekt wird dann in einen Query-String umgewandelt und zurückgegeben.
 	        // Somit kann einen Form-Auswahl im $$.. gespeichert werden und diese wird dann via Ajax gesendet.
             if(this.is('data').match(/^\$\$(.*)/)){
-	            window.jmGO = window.jmGO || {};
-	            window.jmGO[this.is('data')] = window.jmGO[this.is('data')] || {};
+	            window.dc[this.is('data')] = window.dc[this.is('data')] || {};
 	            if(this.$elem[0].tagName.toLowerCase() === 'select'){
-		            window.jmGO[this.is('data')][this.$elem.attr('name')] = this.$elem.val();
+		            window.dc[this.is('data')][this.$elem.attr('name')] = this.$elem.val();
 	            }
-	            return this._convertObjToQueryString(window.jmGO[this.is('data')]);
+	            return this._convertObjToQueryString(window.dc[this.is('data')]);
             }
 
 	        // ist this.$elem ein form-Tag und es wird auf den event submit gematcht, werden die Formulardaten als Querystring zurückgegebent.
@@ -92,7 +91,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	            return this.$elem.serialize();
             }*/
 			// data oder lehrString wird zuürckgegeben.
-	        return  this.is('data') || '';
+	        return this.is('data') || '';
 
         },
 
@@ -103,7 +102,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 		    if($.type(this.$elem.attr('href')) !== 'undefined' && !this.$elem.attr('href').match(/^#(.*)/g)){
 			    return this.$elem.attr('href');
 		    }
-		    jmHF.warn('There is no valid url defined');
+		    dc.dev.warn('There is no valid url defined');
 	    },
 
         _convertObjToQueryString: function(p_Obj){
@@ -159,7 +158,7 @@ define(['jquery', '_super', 'rAF'], function ($, _super){
 	        }*/
 	        if($.type(this.$ani) !== 'undefined'){
 		        this.$ani.css({
-			        'top': jmHF.getClientHeight()/2
+			        'top': dc.client.getHeight()/2
 		        });
 		        if(this.injection !== ''){
 			        p_$target[this.injection](this.$ani);

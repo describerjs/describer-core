@@ -77,7 +77,7 @@ define(['jquery', '_super'], function ($, _super){
 				}
 			}
 
-			jmHF.warn('data is not define');
+			dc.dev.warn('data is not define');
 		},
 
 		_getCssObj: function(){

@@ -1,149 +1,190 @@
-define(['jquery', '_config', 'scrolltotop'], function($, _config){
-	/*'jquery', 'spinner', 'transit', 'doTimeout', 'jquery.whenMutation', 'jquery.scrolltotop'*/
+define(['jquery', '_config'], function($, _config){
+
 	var $body = $('body');
 
-	// Globales Objekt
-	//alert(navigator.userAgent);
-	window.jmHF = window.jmHF || {};
-	window.jmGO = window.jmGO || {};
-	window.dc = window.dc || {};
+	(function(){
+		window.dc = $.extend({}, {
+			client: {},
+			config: {},
+			dev: {},
+			domready: {},
+			eventflow : {},
+			form: {},
+			helper: {},
+			modulPreloader: {},
+			perf: {},
+			pointer: {},
+			raf: {}
+		}, window.dc);
 
-	$(window).on('hashchange', function() {
-		$body.trigger('dc-hashchange');
-		//work with -> window.location.hash = '#joinmedi';
-	});
+		// polyfill for bind
+		if (!Function.prototype.bind) {
+			Function.prototype.bind = function (oThis) {
+				if (typeof this !== "function") {
+					// closest thing possible to the ECMAScript 5 internal IsCallable function
+					throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+				}
 
-	jmHF.alert = function(p_data){
-		if(dc.debug){
+				var aArgs = Array.prototype.slice.call(arguments, 1),
+				    fToBind = this,
+				    fNOP = function () {},
+				    fBound = function () {
+					    return fToBind.apply(this instanceof fNOP && oThis
+							    ? this
+							    : oThis,
+						    aArgs.concat(Array.prototype.slice.call(arguments)));
+				    };
+
+				fNOP.prototype = this.prototype;
+				fBound.prototype = new fNOP();
+
+				return fBound;
+			};
+		}
+
+		// polyfill for Object.create
+		// Object.create support test, and fallback for browsers without it
+		if(typeof Object.create !== "function"){
+			Object.create = function(o){  // http://eloquentjavascript.net/ -> function clone(object) {...}
+				function F(){
+				}
+
+				F.prototype = o;
+				return new F();
+			};
+		}
+
+		// polyfill for requestAnimationFrame
+
+		// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+		// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+
+		// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+
+		(function() {
+			var lastTime = 0;
+			var vendors = ['ms', 'moz', 'webkit', 'o'];
+			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+				window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+				window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+					|| window[vendors[x]+'CancelRequestAnimationFrame'];
+			}
+
+			if (!window.requestAnimationFrame)
+				window.requestAnimationFrame = function(callback, element) {
+					var currTime = new Date().getTime();
+					var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+					var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+						timeToCall);
+					lastTime = currTime + timeToCall;
+					return id;
+				};
+
+			if (!window.cancelAnimationFrame)
+				window.cancelAnimationFrame = function(id) {
+					clearTimeout(id);
+				};
+		}());
+	})();
+
+
+
+// client	*********************************************
+
+	// gibt die Höhe des Browserfenster wieder
+	dc.client.getHeight = function () {
+		var $window = $(window);
+		if($.type(dc.client._heightOrientationChangeListener) === 'undefined'){
+			$window.one('orientationchange', function(e) {
+				dc.client._height = undefined;
+			});
+			dc.client._heightOrientationChangeListener = true;
+		}
+		return dc.client._height = dc.client._height || window['innerHeight'] || document.documentElement['clientHeight'] || document.body['clientHeight'];
+	};
+
+	dc.client.setUserOS = (function(){
+		window.ua = navigator.userAgent;
+
+		// determine OS
+		if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
+			window.dc.client.userOS = 'iOS';
+			window.uaindex = ua.indexOf( 'OS ' );
+		}else if ( ua.match(/Android/i) ){
+			window.dc.client.userOS = 'Android';
+			window.uaindex = ua.indexOf( 'Android ' );
+		}else{
+			window.dc.client.userOS = 'unknown';
+		}
+
+		// determine version
+		if ( dc.client.userOS === 'iOS'  &&  uaindex > -1 ){
+			window.dc.client.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
+		}else if ( dc.client.userOS === 'Android'  &&  uaindex > -1 ){
+			window.dc.client.userOSver = ua.substr( uaindex + 8, 3 );
+		}else{
+			window.dc.client.userOSver = 'unknown';
+		}
+	})();
+
+	dc.client.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
+
+	dc.client.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+
+	dc.client.touch = Modernizr.touch;
+
+
+// dev     **********************************************
+
+	dc.dev.alert = function(p_data){
+		if(dc.config.debug){
 			window.alert(p_data);
 		}
 	};
 
-	jmHF.log = function(p_data){
-		if(dc.debug){
+	dc.dev.log = function(p_data){
+		if(dc.config.debug){
 			window.console.log(p_data);
 		}
 	};
 
-	jmHF.error = function(p_data){
-		if(dc.debug){
+	dc.dev.error = function(p_data){
+		if(dc.config.debug){
 			window.console.trace('%cJM \n ->'+p_data+'', 'color: red; font-style: italic');
-			$.doTimeout('jmHF.error', 200, function(){
-				jmHF.alert('Fehler! siehe Console JM ->');
+			$.doTimeout('dc.dev.error', 200, function(){
+				dc.dev.alert('Fehler! siehe Console JM ->');
 			});
 		}
 	};
 
-	jmHF.warn = function(p_data){
-		if(dc.debug){
+	dc.dev.warn = function(p_data){
+		if(dc.config.debug){
 			window.console.trace('%cJM \n ->'+p_data+'', 'color: orange; font-style: italic');
-			$.doTimeout('jmHF.warn', 200, function(){
-				jmHF.alert('Warnung! siehe Console JM ->');
+			$.doTimeout('dc.dev.warn', 200, function(){
+				dc.dev.alert('Warnung! siehe Console JM ->');
 			});
 		}
 	};
 
-	jmHF.setDevicePerfForParallax = function(){
-		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
-			window.dc.perf = window.dc.perf || 3;
-			return;
-		}*/
-		//alert(navigator.userAgent);
-		if(window.userOS === 'Android'){
-			switch(true){
-				case parseInt(userOSver.charAt(0), 10) > 4:
-				case /LG-D855/i.test(navigator.userAgent):      // LG G3
-				case /Nexus 7/i.test(navigator.userAgent):      // Nexus 7
-				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
-				case /GT-N7100/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
-				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
-				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
-				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
-					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
-					break;
-				default:
-					window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
-			}
-		}else if(window.userOS === 'iOS'){
-			if(window.devicePixelRatio >= 2 || parseInt(window.userOSver.split('.'), 10) < 8){
-				window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 3;
-			}else{
-				switch(true){
-					case /iPhone/i.test(navigator.userAgent):
-						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 0;
-						break;
-					default:
-						window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 1;
-						break;
-				}
-			}
-		}else{
-			window.dc.perf = ($.type(window.dc.perf) !== 'undefined') ? window.dc.perf : 4;
-		}
-	};
-
-	jmHF.checkOrientationAndTriggerDcResize = function(){
-		if(window.dc.orientation === 'w' && (window.innerHeight > window.innerWidth)){
-			window.dc.orientation = 'p';
-			$body.trigger('dc-orientationchange');
-		}else if(window.dc.orientation === 'p' && (window.innerHeight < window.innerWidth)){
-			window.dc.orientation = 'w';
-			$body.trigger('dc-orientationchange');
-		}
-		if((window.userOS !== 'iOS') && (window.userOS !== 'Android')){
-			$body.trigger('dc-resizeondesktop');
-		}
-	};
-
-	jmHF.checkConfigJS = function(){
+	dc.dev.checkConfigJS = function(){
 		for(var i = 0, leni = _config.length; i < leni; i++){
 			var _jmpluginLength = _config[i].jmplugin.split('|').length;
 			var _jmconfigObjCount = ($.type(_config[i].jmconfig) === 'object') ? 1 : _config[i].jmconfig.length;
 			if(_jmpluginLength !== _jmconfigObjCount){
 				window.console.trace('%cJM \n ->Die Anzahl der jmplugins "'+_config[i].jmplugin+'" im Konfigurationsmodul jmname="'+_config[i].jmname+'"  und die Anzahl der zugehörigen jmconfig-Objekte stimmen nicht überein.', 'color: orange; font-style: italic');
-				$.doTimeout('jmHF.warn', 200, function(){
-					jmHF.alert('Error! in describer.js -> siehe Console JM');
+				$.doTimeout('dc.dev.warn', 200, function(){
+					dc.dev.alert('Error! in describer.js -> siehe Console JM');
 				});
 			}
 		}
 	};
 
-	jmHF.contains = function(a, obj){
-		var i = a.length;
-		while (i--) {
-			if (a[i] === obj) {
-				return true;
-			}
-		}
-		return false;
-	};
-
-	// extend the ajax-function with the progressUpload and progress funktions
-	jmHF.addXhrProgressEvent = function() {
-		var originalXhr = $.ajaxSettings.xhr;
-		$.ajaxSetup({
-			progress: function() { /*console.log("standard progress callback");*/ },
-			progressUpload: function() { /*console.log("standard upload progress callback");*/ },
-			xhr: function() {
-				var req = originalXhr(), that = this;
-				if (req.upload) {
-					if (typeof req.upload.addEventListener == "function") {
-						req.upload.addEventListener("progress", function(evt) {
-							that.progressUpload(evt);
-						},false);
-					}
-				}
-				return req;
-			}
-		});
-	};
-
-	jmHF.checkJmNameElementenOnNecessaryDominitAttribut = function(){
+	dc.dev.checkJmNameElementenOnNecessaryDominitAttribut = function(){
 		var _dataJmnameElemente = $('[data-jmname]');
 		for(var i = 0, leni = _dataJmnameElemente.length; i < leni; i++){
 			// je DomElement
 			var _events = '';
-			var _jmnameElement = _dataJmnameElemente.eq(i).data('jmname').split('|');
+			var _jmnameElement = ((_dataJmnameElemente.eq(i).data('jmname')).indexOf(' ') !== -1) ? _dataJmnameElemente.eq(i).data('jmname').trim().split(' ') : _dataJmnameElemente.eq(i).data('jmname').trim().split('|');
 			var _eventsArray;
 			for(var j = 0, lenj = _jmnameElement.length; j < lenj; j++){
 				// je jmnameSplit
@@ -180,7 +221,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 							console.log(_dataJmnameElemente.eq(i)[0]);
 							console.log('%c ... benötigt ein data-jmdominit="true" Attribut, da das event "'+_eventsArray[m]+'" im jmconfig-Obj angegeben wurde!', 'color: red; font-style: italic');
 							console.groupEnd();
-							jmHF.alert('Fehler: siehe Console! JM ->')
+							dc.dev.alert('Fehler: siehe Console! JM ->')
 						}
 						break;
 					default:
@@ -190,81 +231,102 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	// Funktion wird benötigt, um bei mehreren Selects eine Gruppen-Validierung zu ermöglichen.
-	jmHF.submit = function(){
-		var $dataRuleGeb = $('[data-rule-jmgeburtsdatumsservice]');
-		var $dataRuleKartenGueltigkeit = $('[data-rule-jmkreditkartengueltigkeitsservice]');
 
-		jmGO.submit = true;
 
-		if($.type($dataRuleGeb) !== 'undefined' && $.type($dataRuleGeb.eq(0).attr('disabled')) !== 'undefined'){
-			jmGO.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
+
+// domready
+
+	dc.domready.checkUrl = function(){
+
+
+		$(window).on('hashchange', function() {
+			$body.trigger('dc-hashchange');
+			//work with -> window.location.hash = '#joinmedi';
+		});
+
+		if(window.location.hash !== ''){
+			$(window.location.hash).jmtrigger('hash');
 		}
-		// TODO Andreas hier noch die Anpassungen/Optimierungen von jmgeburtsdatumsservice übernehmen
-		if($.type($dataRuleKartenGueltigkeit) !== 'undefined' && $.type($dataRuleKartenGueltigkeit.eq(0).attr('disabled')) !== 'undefined'){
-			jmGO.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
+
+		if($.urlParam('debugview') !== null && $.urlParam('debugview') === 'true'){
+			window.dc.dev.debugview = true;
+		}
+
+		if($.urlParam('showmodal') !== null && $.urlParam('showmodal') !== ''){
+			$('body').append('<a data-jmname="modal-form-url" data-jmdominit="true" href="/sendebizdensin/wp-admin/admin-ajax.php?action=post_vote_data&post_id='+ $.urlParam('showmodal')+'"></a>').find('[data-jmname="modal-form-url"]').triggerSelfexecObj();
+			setTimeout(function(){
+				$('[data-jmname="modal-form-url"]').trigger('dc-openmodal');
+			}, 500);
+		}
+
+		if($.urlParam('perf') !== null){
+			window.dc.perf.level = parseInt($.urlParam('perf'), 10);
+		}
+
+		if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
+			alert(navigator.userAgent);
 		}
 	};
 
-	// gibt das original-Plugin zurück. Funktion dient zur Modulidentifikation. Es  wird dann von requireJS geladen
-	jmHF.returnRequireLoadPlugin = function(p_plugin){
-		if(p_plugin.indexOf('_') !== -1){
-			p_plugin = p_plugin.split('_')[0];
-		}
-		return p_plugin;
-	};
 
-	jmHF.eventDelegationTrigger = function(e, param){
+
+// eventflow  ***********************************************
+
+	dc.eventflow.eventDelegationTrigger = function(e, param){
 		var $this = $(this);
-		jmHF.eventDelegationHelper($this, e, param);
+		dc.eventflow.eventDelegationHelper($this, e, param);
 	};
 
-	jmHF.eventDelegationTriggerForDomInit = function(e, param){
+	dc.eventflow.eventDelegationTriggerForDomInit = function(e, param){
 		var $this = $(this);//$(e.target);//
 		e.stopPropagation();
 		e.preventDefault();
-		jmHF.eventDelegationHelper($this, e, param);
+		dc.eventflow.eventDelegationHelper($this, e, param);
 	};
 
-	jmHF.eventDelegationTriggerForATags = function(e){
+	dc.eventflow.eventDelegationTriggerForATags = function(e){
 		var $this = $(this);
 		e.preventDefault();
-		jmHF.eventDelegationHelper($this, e);
+		dc.eventflow.eventDelegationHelper($this, e);
 	};
 
-	jmHF.eventDelegationTriggerForLabels = function(e){
+	dc.eventflow.eventDelegationTriggerForLabels = function(e){
 		var $this = $(this);
 		// Fix für doppelten Eventtrigger, der bei (Label > input[type="radio"]) besteht.
 		// Hier wird zuerste der Click-Event von Lable gefeuert und dann nochmal vom radio.
 		if(e.target.tagName.toLowerCase() === 'label'){
-			jmHF.eventDelegationHelper($this, e);
+			dc.eventflow.eventDelegationHelper($this, e);
 		}
 	};
 
-	jmHF.eventDelegationTriggerForRadios = function(e){
+	dc.eventflow.eventDelegationTriggerForRadios = function(e){
 		var $this = $(this);
-		// jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
-		jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
-		jmHF.eventDelegationHelper($this, e);
+		// dc.eventflow.triggerJmtriggerEventForAllOtherRadiosInGroup wird aufgerufen, damit jeder Radio-Butten angetriggert wird, wenn sich in der Gruppe die Selection ändert.
+		dc.eventflow.triggerJmtriggerEventForAllOtherRadiosInGroup(e);
+		dc.eventflow.eventDelegationHelper($this, e);
 	};
 
-	jmHF.eventDelegationHelper = function($this, e, param){
-		var _jmname = $this.attr('data-jmname').split('|');
+	dc.eventflow.eventDelegationHelper = function($this, e, param){
+		var _jmname = (($this.attr('data-jmname')).indexOf(' ') !== -1) ? $this.attr('data-jmname').trim().split(' ') : $this.attr('data-jmname').trim().split('|');
 		if(e.type === 'dcpointer'){
 			e.type = 'click';
 		}
 		for(var i = 0, leni = _jmname.length; i < leni; i++){
-			jmHF.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': jmHF.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
+			dc.eventflow.bindPlugin({ '$element': $this, 'jmname': _jmname[i], 'configObj': dc.eventflow.getConfigObj(_jmname[i]), 'e': e, 'e_param': param });
 		}
 	};
 
 	// gebt das complette Objekt für den übergebenen jmname aus der _config.js zurück ({jmname:...,jmplugin:...,jmconfig:...})
-	jmHF.getConfigObj = function(p_name){
-		var i = 0;
-		var _length = _config.length;
-		for(; i < _length; i++){
-			if(_config[i].jmname === p_name){
-				return _config[i];
+	dc.eventflow.getConfigObj = function(p_name){
+		var _jmnameArr;
+		var _jmnamelength;
+		for(var i = 0, leni = _config.length; i < leni; i++){
+			_jmnameArr = _config[i].jmname.split(',');
+			_jmnamelength = _jmnameArr.length;
+			for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+				if(_jmnameArr[j].trim() === p_name){
+					return _config[i];
+				}
 			}
 		}
 	};
@@ -272,8 +334,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten (das Modul/Plugin wird auf das Element angewendet.), und ruft optional eine eigene Methode
 	// auf wie z.B. click, change oder auch domInit
 	// Enthält das Plugin ein |, so werden die hiermit getrennt aufgelisteten Module/Plugins nacheinander initialisiert. (via $.each)
-	jmHF.bindPlugin = function(Obj){
-		var _requirePlugin;
+	dc.eventflow.bindPlugin = function(Obj){
 		var _pluginArray;
 		if($.type(Obj.$element) === 'undefined'){
 			return;
@@ -283,24 +344,26 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 		_pluginArray = Obj.configObj.jmplugin.split('|');
 		for (var i = 0, leni = _pluginArray.length; i < leni; i++) {
-		    // indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
-		    //if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) { 
-		    if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
-				jmHF.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
+			// indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
+			//if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) {
+			if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
+				dc.dev.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
 			}
 			// event-Check for init plugin
-			if(jmHF.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
-				jmHF.helperForBindPlugin(Obj, _pluginArray[i], i);
+			if(dc.eventflow.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
+				dc.eventflow.helperForBindPlugin(Obj, _pluginArray[i], i);
 			}
 		}
 	};
 
-	jmHF.matchTriggerEventWithConfigEvents = function(p_index, p_Obj, p_pluginConfigOjb){
+	dc.eventflow.matchTriggerEventWithConfigEvents = function(p_index, p_Obj, p_pluginConfigOjb){
 		//console.log(p_pluginConfigOjb);
 		// Erstelle ein Array aus der event-Value-Angabe aus dem config-Obj
 		var eventArray = p_pluginConfigOjb.event.split('|');
 		var _retrun = false;
 		var _eventType = p_Obj.e.type;
+		var _attr_config;
+		var _attr_counter;
 		// Durchlaufe das Event-Array
 		for(var i = 0, leni = eventArray.length; i < leni; i++){
 			if(eventArray[i] === _eventType){
@@ -310,53 +373,70 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				// return true if eventArray[i] contains jmtrigger
 				_retrun = true;
 			}else if('dominit' === _eventType){
-				if($(p_Obj.e.target).attr('data-jmconfig') && $(p_Obj.e.target).attr('data-jmconfig').indexOf('event') !== -1){
-					_retrun = jmHF.isEventKeyInDomConfigObj(p_index, p_Obj);
-					if(!_retrun){
-						_retrun = jmHF.isDominitEvent(eventArray[i]);
+				_attr_counter = dc.helper.attrPrefixCounter(p_Obj.e.target, 'data-dcconfig');
+				if(_attr_counter === 1){
+					_attr_config = dc.helper.attrPrefix(p_Obj.e.target, 'data-dcconfig');
+					if(_attr_config.indexOf('event') !== -1){
+						_retrun = dc.eventflow.isEventKeyInDomConfigObj(p_index, p_Obj, 0);
+						if(!_retrun){
+							_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
+						}
+					}
+				}else if(_attr_counter > 1){
+					for(var j = 0, lenj = _attr_counter; j < lenj; j++){
+						_attr_config = dc.helper.attrPrefix(p_Obj.e.target, 'data-dcconfig', j);
+						if(_attr_config.indexOf('event') !== -1){
+							_retrun = dc.eventflow.isEventKeyInDomConfigObj(p_index, p_Obj, j);
+							if(!_retrun){
+								_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
+							}
+						}
 					}
 				}else{
-					_retrun = jmHF.isDominitEvent(eventArray[i]);
+					_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 				}
 			}
 		}
 		return _retrun;
 	};
 
-	jmHF.isDominitEvent = function(p_event){
+	dc.eventflow.isDominitEvent = function(p_event){
 		var _return = false;
-		switch(p_event){
-			case 'dominit':
-			case 'blur':
-			case 'focus':
-			case 'hover':
-			case 'init-by-perf':
-			case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
-			case ((p_event.match(/raf(.*)/))? p_event : undefined):
-			case ((p_event.match(/keyup(.*)/))? p_event : undefined):
-			case ((p_event.match(/interval(.*)/))? p_event : undefined):
-				// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
-				_return = true;
-				break;
-			default:
-				break;
+		var _eventArray = p_event.split('|');
+		for(var i = 0, leni = _eventArray.length; i < leni; i++){
+			switch(_eventArray[i]){
+				case 'dominit':
+				case 'blur':
+				case 'focus':
+				case 'hover':
+				case 'init-by-perf':
+				case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
+				case ((p_event.match(/raf(.*)/))? p_event : undefined):
+				case ((p_event.match(/keyup(.*)/))? p_event : undefined):
+				case ((p_event.match(/interval(.*)/))? p_event : undefined):
+					// return true if p_eventType === dominit && eventArray[i] gleich dominit || raf || blur || focus || hover || match /keyup(.*)/ || match /interval(.*)/
+					_return = true;
+					break;
+				default:
+					break;
+			}
 		}
 		return _return;
 	};
 
-	jmHF.helperForBindPlugin = function(Obj, p_plugin, index){
+	dc.eventflow.helperForBindPlugin = function(Obj, p_plugin, index){
 		var _index = index || 0;
-		var _requirePlugin = jmHF.returnRequireLoadPlugin(p_plugin);
+		var _requirePlugin = dc.helper.returnRequireLoadPlugin(p_plugin);
 		if(require.defined(_requirePlugin)){
-			jmHF.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
+			dc.eventflow.bindAndExecPlugin(Obj, p_plugin, _index, require.s.contexts._.defined[_requirePlugin]);
 		}else{
 			require([_requirePlugin], function(pluginObj){
-				jmHF.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
+				dc.eventflow.bindAndExecPlugin(Obj, p_plugin, _index, pluginObj);
 			});
 		}
 	};
 
-	jmHF.bindAndExecPlugin = function(Obj, p_plugin, _index, pluginObj){
+	dc.eventflow.bindAndExecPlugin = function(Obj, p_plugin, _index, pluginObj){
 		var $plugin;
 		// für pluginName können folgende varationen entstehen.
 		// z.B. actions.add (wenn auf dem element kein weiteres actions.add im jmname-Modul angewendet wird)
@@ -395,36 +475,8 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
-	jmHF.helperForRequirementsForJmPlugins = function(_config, jmname){
-		var _requirePlugin;
-		var _configObj = jmHF.getConfigObj(jmname);
-		var _jmpluginString;
-		if($.type(_configObj) === 'undefined'){
-			jmHF.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
-			return;
-		}
-		_jmpluginString = _configObj.jmplugin;
-		if(_jmpluginString.split('|').length > 1){
-			$.each(_jmpluginString.split('|'), function(index, innerItem){
-				_requirePlugin = jmHF.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
-				jmHF.requirePluginAndDependencies(_requirePlugin, _configObj, index);
-			});
-		}else{
-			_requirePlugin = jmHF.returnRequireLoadPlugin(_jmpluginString);
-			jmHF.requirePluginAndDependencies(_requirePlugin, _configObj);
-		}
-	};
-
-	jmHF.requirePluginAndDependencies = function(fileref, _configObj, index){
-		require([fileref], function(){});
-		if(fileref === 'actions.apply'){
-			($.type(index) !== 'undefined') ? require([_configObj.jmconfig[index].require], function(){}) : require([_configObj.jmconfig.require], function(){});
-		}
-	};
-
-
 	// Alle anderen Radio-Buttons feuern das jmtrigger-Event, wenn sich in der Gruppe die Selection ändert.
-	jmHF.triggerJmtriggerEventForAllOtherRadiosInGroup = function(e){
+	dc.eventflow.triggerJmtriggerEventForAllOtherRadiosInGroup = function(e){
 		var radiogroup, $that;
 		if(e.target.tagName.toLowerCase() === 'input'){
 			if($(e.target).attr('type') === 'radio'){
@@ -433,131 +485,317 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
-					jmHF.alert("bitte ändern in $(item).jmtrigger('change')");
+					dc.dev.alert("bitte ändern in $(item).jmtrigger('change')");
 					$(item).trigger('jmtrigger');
 				});
 			}
 		}
 	};
 
+	dc.eventflow.isEventKeyInDomConfigObj = function(p_index, p_Obj, p_indexAttr){
+		var $elem =  $(p_Obj.e.target);
+		var jmconfigJsonParse;
+		var _return = false;
+		var _multiObj = true;
 
+		// die Daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
+		jmconfigJsonParse = JSON.parse((dc.helper.attrPrefix($elem[0], 'data-dcconfig', p_indexAttr) || dc.helper.attrPrefix($elem[0], 'data-jmconfig')).replace(/'/g, "\""));
 
-
-	// Pointer-Events handling
-	// Thank you to the filamentgroup. The following code was partial reused form https://github.com/filamentgroup/tappy/
-
-	dc.pointer = {};
-	dc.pointer.tapHandling = false;
-	dc.pointer.tappy = true;
-	dc.pointer.startX;
-	dc.pointer.startY;
-	dc.pointer.cancel;
-	dc.pointer.resetTimer;
-	dc.pointer.scrollTolerance = 10;
-	dc.pointer.start =  function(e){
-		if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
-			return false;
-		}
-
-		var coords = dc.pointer.getCoords( e );
-		dc.pointer.startX = coords[ 0 ];
-		dc.pointer.startY = coords[ 1 ];
-	};
-
-	dc.pointer.getCoords = function(e){
-		var ev = e.originalEvent || e,
-		    touches = ev.touches || ev.targetTouches;
-
-		if( touches ){
-			return [ touches[ 0 ].pageX, touches[ 0 ].pageY ];
-		}
-		else {
-			return null;
-		}
-	};
-
-	// any touchscroll that results in > tolerance should cancel the tap
-	dc.pointer.move = function(e){
-		if( !dc.pointer.cancel ){
-			var coords = dc.getCoords( e );
-			if( coords && ( Math.abs( dc.pointer.startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( dc.pointer.startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
-				dc.pointer.cancel = true;
-			}
-		}
-	};
-//
-	dc.pointer.end = function(e){
-		clearTimeout( dc.pointer.resetTimer );
-		dc.pointer.resetTimer = setTimeout( function(){
-			dc.pointer.tapHandling = false;
-			dc.pointer.cancel = false;
-		}, 1000 );
-
-		// make sure no modifiers are present. thx http://www.jacklmoore.com/notes/click-events/
-		if( ( e.which && e.which > 1 ) || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey ){
-			return;
-		}
-
-		e.preventDefault();
-
-		// this part prevents a double callback from touch and mouse on the same tap
-
-		// if a scroll happened between touchstart and touchend
-		if( dc.pointer.cancel || dc.pointer.tapHandling && dc.pointer.tapHandling !== e.type ){
-			dc.pointer.cancel = false;
-			return;
-		}
-
-		dc.pointer.tapHandling = e.type;
-		$( e.target ).trigger('dcpointer');
-	};
-
-
-
-	// Pointer-Events handling end
-
-
-	/*jmHF.getJmPluginByJmName = function(p_config, p_name){
-		var i = 0;
-		var _length = p_config.length;
-		for(; i < _length; i++){
-			if(p_config[i].jmname === p_name){
-				return p_config[i].jmplugin;
-			}
-		}
-	};*/
-
-	// gibt die Höhe des Browserfenster wieder
-	jmHF.getClientHeight = function () {
-		var $window = $(window);
-		if($.type(jmGO.clientHeightOrientationChangeListener) === 'undefined'){
-			$window.one('orientationchange', function(e) {
-				jmGO.clientHeight = undefined;
+		if($.type(jmconfigJsonParse) === 'object'){
+			$.each(jmconfigJsonParse, function(key, value){
+				if($.type(value) !== 'object' && $.type(value) !== 'array'){
+					_multiObj = false;
+					return false;
+				}
 			});
-			jmGO.clientHeightOrientationChangeListener = true;
+			$.each(jmconfigJsonParse, function(key, value){
+				if(_multiObj && key === p_Obj.jmname){
+					if($.type(value) === 'object'){
+						if(value.hasOwnProperty('event') && dc.eventflow.isDominitEvent(value.event)){
+							_return = true;
+							return false;
+						}
+					}else if($.type(value) === 'array'){
+						$.each(value, function(key, array_obj){
+							if(array_obj.hasOwnProperty('event') && dc.eventflow.isDominitEvent(array_obj.event)){
+								_return = true;
+								return false;
+							}
+						});
+					}
+					if(_return){
+						return false;
+					}
+				}else if(!_multiObj && (key === 'event') && dc.eventflow.isDominitEvent(value)){
+					_return = true;
+					return false;
+				}
+			});
+		}else if($.type(jmconfigJsonParse) === 'array'){
+			$.each(jmconfigJsonParse, function(key, array_obj){
+				if(key === p_index && array_obj.hasOwnProperty('event') && dc.eventflow.isDominitEvent(array_obj.event)){
+					_return = true;
+					return false;
+				}
+			});
 		}
-		return jmGO.clientHeight = jmGO.clientHeight || window['innerHeight'] || document.documentElement['clientHeight'] || document.body['clientHeight'];
+
+		return _return;
+	};
+
+
+// form      ************************************************
+
+	// Funktion wird benötigt, um bei mehreren Selects eine Gruppen-Validierung zu ermöglichen.
+	dc.form.serviceCheck = function(){
+		var $dataRuleGeb = $('[data-rule-jmgeburtsdatumsservice]');
+		var $dataRuleKartenGueltigkeit = $('[data-rule-jmkreditkartengueltigkeitsservice]');
+
+		dc.form.submittable = true;
+
+		if($.type($dataRuleGeb) !== 'undefined' && $.type($dataRuleGeb.eq(0).attr('disabled')) !== 'undefined'){
+			dc.form.checkSiblingsforjmgeburtsdatumsservice = true; // obsolate nach anpassung von jmgeburtsdatumsservice
+		}
+		// TODO Andreas hier noch die Anpassungen/Optimierungen von jmgeburtsdatumsservice übernehmen
+		if($.type($dataRuleKartenGueltigkeit) !== 'undefined' && $.type($dataRuleKartenGueltigkeit.eq(0).attr('disabled')) !== 'undefined'){
+			dc.form.checkSiblingsforjmkreditkartengueltigkeitsservice = true;
+		}
+	};
+
+
+
+// helper     *************************************************
+
+	dc.helper.attrPrefixCounter = function(elem, prefix){
+		var _atts = elem.attributes;
+		var _attr;
+		var _counter = 0;
+		for(var i = 0, leni = _atts.length; i < leni; i++){
+			_attr = _atts[i].name.match(new RegExp('^'+prefix+'(.*)'));
+			if(_attr){
+				_counter++;
+			}
+		}
+		return _counter;
+	};
+
+	dc.helper.attrPrefix = function(elem, prefix, index){
+		var _atts = elem.attributes;
+		var _attr;
+		var _attr_Array = [];
+		var _index = index || 0;
+		for(var i = 0, leni = _atts.length; i < leni; i++){
+			_attr = _atts[i].name.match(new RegExp('^'+prefix+'(.*)'));
+			if(_attr){
+				if(_index === 0){
+					return elem.getAttribute(_attr[0]);
+				}
+				_attr_Array.push(elem.getAttribute(_attr[0]));
+			}
+		}
+		return _attr_Array[_index] || undefined;
+	};
+
+	// Thank you to "Cowboy" Ben Alman. The following code (dc.helper.doTimeout._func) was partial reused form http://benalman.com/projects/jquery-dotimeout-plugin/
+	dc.helper.doTimeout = {};
+	dc.helper.doTimeout._func = function(jquery_data_key){
+		var that = this,
+		    elem,
+		    data = {},
+
+		    // Allows the plugin to call a string callback method.
+		    method_base = jquery_data_key ? $.fn : $,
+
+		    // Any additional arguments will be passed to the callback.
+		    args = arguments,
+		    slice_args = 4,
+
+		    id        = args[1],
+		    delay     = args[2],
+		    callback  = args[3];
+
+		if ( typeof id !== 'string' ) {
+			slice_args--;
+
+			id        = jquery_data_key = 0;
+			delay     = args[1];
+			callback  = args[2];
+		}
+
+		// If id is passed, store a data reference either as .data on the first
+		// element in a jQuery collection, or in the internal cache.
+		if ( jquery_data_key ) { // Note: key is 'doTimeout' + id
+
+			// Get id-object from the first element's data, otherwise initialize it to {}.
+			elem = that.eq(0);
+			elem.data( jquery_data_key, data = elem.data( jquery_data_key ) || {} );
+
+		} else if ( id ) {
+			// Get id-object from the cache, otherwise initialize it to {}.
+			data = dc.helper.doTimeout._cache[ id ] || ( dc.helper.doTimeout._cache[ id ] = {} );
+		}
+
+		// Clear any existing timeout for this id.
+		data.id && clearTimeout( data.id );
+		delete data.id;
+
+		// Clean up when necessary.
+		function cleanup() {
+			if ( jquery_data_key ) {
+				elem.removeData( jquery_data_key );
+			} else if ( id ) {
+				delete dc.helper.doTimeout._cache[ id ];
+			}
+		}
+
+		// Yes, there actually is a setTimeout call in here!
+		function actually_setTimeout() {
+			data.id = setTimeout( function(){ data.fn(); }, delay );
+		}
+
+		if ( callback ) {
+			// A callback (and delay) were specified. Store the callback reference for
+			// possible later use, and then setTimeout.
+			data.fn = function( no_polling_loop ) {
+
+				// If the callback value is a string, it is assumed to be the name of a
+				// method on $ or $.fn depending on where doTimeout was executed.
+				if ( typeof callback === 'string' ) {
+					callback = method_base[ callback ];
+				}
+
+				callback.apply( that, dc.helper.doTimeout._aps.call( args, slice_args ) ) === true && !no_polling_loop
+
+					// Since the callback returned true, and we're not specifically
+					// canceling a polling loop, do it again!
+					? actually_setTimeout()
+
+					// Otherwise, clean up and quit.
+					: cleanup();
+			};
+
+			// Set that timeout!
+			actually_setTimeout();
+
+		} else if ( data.fn ) {
+			// No callback passed. If force_mode (delay) is true, execute the data.fn
+			// callback immediately, continuing any callback return-true polling loop.
+			// If force_mode is false, execute the data.fn callback immediately but do
+			// NOT continue a callback return-true polling loop. If force_mode is
+			// undefined, simply clean up. Since data.fn was still defined, whatever
+			// was supposed to happen hadn't yet, so return true.
+			delay === undefined ? cleanup() : data.fn( delay === false );
+			return true;
+
+		} else {
+			// Since no callback was passed, and data.fn isn't defined, it looks like
+			// whatever was supposed to happen already did. Clean up and quit!
+			cleanup();
+		}
+
+	};
+	dc.helper.doTimeout._cache = {};
+	dc.helper.doTimeout._aps = Array.prototype.slice;
+
+	dc.helper.setDevicePerfForParallax = function(){
+		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
+			window.dc.perf = window.dc.perf || 3;
+			return;
+		}*/
+		//alert(navigator.userAgent);
+		if(window.dc.client.userOS === 'Android'){
+			switch(true){
+				case parseInt(dc.client.userOSver.charAt(0), 10) > 4:
+				case /LG-D855/i.test(navigator.userAgent):      // LG G3
+				case /Nexus 7/i.test(navigator.userAgent):      // Nexus 7
+				case /GT-I9505/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung G 4 && Chrome >= 30
+				case /GT-N7100/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /Nexus Build/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy Note 2 && Chrome >= 30
+				case /GT-I9300/i.test(navigator.userAgent) && /Chrome\/4/i.test(navigator.userAgent):   // Samsung Galaxy S3 && Chrome >= 30
+					window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 1;
+					break;
+				default:
+					window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 0;
+			}
+		}else if(window.dc.client.userOS === 'iOS'){
+			if(window.devicePixelRatio >= 2 || parseInt(window.dc.client.userOSver.split('.'), 10) < 8){
+				window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 3;
+			}else{
+				switch(true){
+					case /iPhone/i.test(navigator.userAgent):
+						window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 0;
+						break;
+					default:
+						window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 1;
+						break;
+				}
+			}
+		}else{
+			window.dc.perf.level = ($.type(window.dc.perf.level) !== 'undefined') ? window.dc.perf.level : 4;
+		}
+	};
+
+	dc.helper.checkOrientationAndTriggerDcResize = function(){
+		if(window.dc.client.orientation === 'w' && (window.innerHeight > window.innerWidth)){
+			window.dc.client.orientation = 'p';
+			$body.trigger('dc-orientationchange');
+		}else if(window.dc.client.orientation === 'p' && (window.innerHeight < window.innerWidth)){
+			window.dc.client.orientation = 'w';
+			$body.trigger('dc-orientationchange');
+		}
+		if((window.dc.client.userOS !== 'iOS') && (window.dc.client.userOS !== 'Android')){
+			$body.trigger('dc-resizeondesktop');
+		}
+	};
+
+	dc.helper.contains = function(a, obj){
+		var i = a.length;
+		while (i--) {
+			if (a[i] === obj) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	// extend the ajax-function with the progressUpload and progress funktions
+	dc.helper.addXhrProgressEvent = function() {
+		var originalXhr = $.ajaxSettings.xhr;
+		$.ajaxSetup({
+			progress: function() { /*console.log("standard progress callback");*/ },
+			progressUpload: function() { /*console.log("standard upload progress callback");*/ },
+			xhr: function() {
+				var req = originalXhr(), that = this;
+				if (req.upload) {
+					if (typeof req.upload.addEventListener == "function") {
+						req.upload.addEventListener("progress", function(evt) {
+							that.progressUpload(evt);
+						},false);
+					}
+				}
+				return req;
+			}
+		});
+	};
+
+	// gibt das original-Plugin zurück. Funktion dient zur Modulidentifikation. Es  wird dann von requireJS geladen
+	dc.helper.returnRequireLoadPlugin = function(p_plugin){
+		if(p_plugin.indexOf('_') !== -1){
+			p_plugin = p_plugin.split('_')[0];
+		}
+		return p_plugin;
 	};
 
 	// Auslesen der Scrollposition des Browsers
-	jmHF.getScrollPos = function(){
+	dc.helper.getScrollPos = function(){
 		return ($.type(window.pageYOffset) === "number") ? window.pageYOffset : document.documentElement.scrollTop;
 	};
 
-	jmHF.hasClass = function(elem, selector){
+	dc.helper.hasClass = function(elem, selector){
 		return (" " + elem.className + " ").replace(/[\t\r\n\f]/g, " ").indexOf(" " + selector + " ") >= 0
 	};
 
-	jmHF.replaceSVGForOldBrowser = function(){
-		if(!(!!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect)){
-			var _svgImages = $('img[src*=".svg"]');
-			for(var i = 0, leni = _svgImages.length; i < leni; i++){
-				_svgImages.eq(i).attr('src', _svgImages.eq(i).attr('src').replace('.svg', '.png'));
-			}
-		}
-	};
-
-	jmHF.scrollToPosition = function(pos, speed){
+	dc.helper.scrollToPosition = function(pos, speed){
 		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
 		if($.type(speed) !== 'undefined'){
 			$body.animate({
@@ -579,26 +817,28 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		}
 	};
 
+	dc.helper._scrollToTopInProgress = false;
+
 	// http://shebang.brandonmintern.com/foolproof-html-escaping-in-javascript/
 	// Use the browser's built-in functionality to quickly and safely escape the
 	// string
-	jmHF.escapeHtml = function (str) {
+	dc.helper.escapeHtml = function (str) {
 		var div = document.createElement('div');
 		div.appendChild(document.createTextNode(str));
 		return div.innerHTML;
 	};
 
-	jmHF.transformSupport = function(value) {
+	dc.helper.transformSupport = function(value) {
 		var element = document.createElement('div');
 		var propertySupport = false;
 		var propertyValue = null;
 		var featureSupport = false;
 		var cssProperty = null;
 		var jsProperty = null;
-		for (var i = 0, l = window.jmGO.vendors.length; i < l; i++) {
-			if (window.jmGO.vendors[i] !== null) {
-				cssProperty = window.jmGO.vendors[i][0] + 'transform';
-				jsProperty = window.jmGO.vendors[i][1] + 'Transform';
+		for (var i = 0, l = window.dc.client.vendors.length; i < l; i++) {
+			if (window.dc.client.vendors[i] !== null) {
+				cssProperty = window.dc.client.vendors[i][0] + 'transform';
+				jsProperty = window.dc.client.vendors[i][1] + 'Transform';
 			} else {
 				cssProperty = 'transform';
 				jsProperty = 'transform';
@@ -635,40 +875,14 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		return featureSupport;
 	};
 
-	if (!Function.prototype.bind) {
-		Function.prototype.bind = function (oThis) {
-			if (typeof this !== "function") {
-				// closest thing possible to the ECMAScript 5 internal IsCallable function
-				throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-			}
-
-			var aArgs = Array.prototype.slice.call(arguments, 1),
-			    fToBind = this,
-			    fNOP = function () {},
-			    fBound = function () {
-				    return fToBind.apply(this instanceof fNOP && oThis
-						    ? this
-						    : oThis,
-					    aArgs.concat(Array.prototype.slice.call(arguments)));
-			    };
-
-			fNOP.prototype = this.prototype;
-			fBound.prototype = new fNOP();
-
-			return fBound;
-		};
-	}
-
-	window.jmGO.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
-
-	window.jmGO.uuID = function() {};
+	dc.helper.uuID = function() {};
 
 	/**
 	 * The simplest function to get an UUID string.
 	 * @returns {string} A version 4 UUID string.
 	 */
-	window.jmGO.uuID.generate = function() {
-		var rand = jmGO.uuID._gri, hex = jmGO.uuID._ha;
+	dc.helper.uuID.generate = function() {
+		var rand = dc.helper.uuID._gri, hex = dc.helper.uuID._ha;
 		return  hex(rand(32), 8)          // time_low
 			+ "-"
 			+ hex(rand(16), 4)          // time_mid
@@ -685,7 +899,7 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	 * @param {int} x A positive integer ranging from 0 to 53, inclusive.
 	 * @returns {int} An unsigned x-bit random integer (0 <= f(x) < 2^x).
 	 */
-	window.jmGO.uuID._gri = function(x) { // _getRandomInt
+	dc.helper.uuID._gri = function(x) { // _getRandomInt
 		if (x <   0) return NaN;
 		if (x <= 30) return (0 | Math.random() * (1 <<      x));
 		if (x <= 53) return (0 | Math.random() * (1 <<     30))
@@ -699,56 +913,125 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	 * @param {int} length
 	 * @returns {string}
 	 */
-	window.jmGO.uuID._ha = function(num, length) {  // _hexAligner
+	dc.helper.uuID._ha = function(num, length) {  // _hexAligner
 		var str = num.toString(16), i = length - str.length, z = "0";
 		for (; i > 0; i >>>= 1, z += z) { if (i & 1) { str = z + str; } }
 		return str;
 	};
 
-	window.setGlobalOSVars = (function(){
-		window.ua = navigator.userAgent;
 
-		// determine OS
-		if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
-			window.userOS = 'iOS';
-			window.uaindex = ua.indexOf( 'OS ' );
-		}else if ( ua.match(/Android/i) ){
-			window.userOS = 'Android';
-			window.uaindex = ua.indexOf( 'Android ' );
+
+
+// modulPreloader  *****************************************
+
+	dc.modulPreloader.helperForRequirementsForJmPlugins = function(_config, jmname){
+		var _requirePlugin;
+		var _configObj = dc.eventflow.getConfigObj(jmname);
+		var _jmpluginString;
+		if($.type(_configObj) === 'undefined'){
+			dc.dev.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
+			return;
+		}
+		_jmpluginString = _configObj.jmplugin;
+		if(_jmpluginString.split('|').length > 1){
+			$.each(_jmpluginString.split('|'), function(index, innerItem){
+				_requirePlugin = dc.helper.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
+				dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
+			});
 		}else{
-			window.userOS = 'unknown';
+			_requirePlugin = dc.helper.returnRequireLoadPlugin(_jmpluginString);
+			dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj);
+		}
+	};
+
+	dc.modulPreloader.requirePluginAndDependencies = function(fileref, _configObj, index){
+		require([fileref], function(){});
+		if(fileref === 'actions.apply'){
+			($.type(index) !== 'undefined') ? require([_configObj.jmconfig[index].require], function(){}) : require([_configObj.jmconfig.require], function(){});
+		}
+	};
+
+
+
+// pointer     ***********************************************
+
+	// Thank you to the filamentgroup. The following code was partial reused form https://github.com/filamentgroup/tappy/
+	dc.pointer._tapHandling = false;
+
+	dc.pointer.scrollTolerance = 10;
+
+	dc.pointer.start =  function(e){
+		if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
+			return false;
 		}
 
-		// determine version
-		if ( userOS === 'iOS'  &&  uaindex > -1 ){
-			window.userOSver = ua.substr( uaindex + 3, 3 ).replace( '_', '.' );
-		}else if ( userOS === 'Android'  &&  uaindex > -1 ){
-			window.userOSver = ua.substr( uaindex + 8, 3 );
-		}else{
-			window.userOSver = 'unknown';
+		var coords = dc.pointer.getCoords( e );
+		window.dc.pointer._startX = coords[ 0 ];
+		window.dc.pointer._startY = coords[ 1 ];
+	};
+
+	dc.pointer.getCoords = function(e){
+		var ev = e.originalEvent || e,
+		    touches = ev.touches || ev.targetTouches;
+
+		if( touches ){
+			return [ touches[ 0 ].pageX, touches[ 0 ].pageY ];
 		}
-	})();
+		else {
+			return null;
+		}
+	};
 
-
-	// Object.create support test, and fallback for browsers without it
-	if(typeof Object.create !== "function"){
-		Object.create = function(o){  // http://eloquentjavascript.net/ -> function clone(object) {...}
-			function F(){
+	// any touchscroll that results in > tolerance should cancel the tap
+	dc.pointer.move = function(e){
+		if( !window.dc.pointer.cancel ){
+			var coords = dc.getCoords( e );
+			if( coords && ( Math.abs( window.dc.pointer._startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( window.dc.pointer._startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
+				window.dc.pointer.cancel = true;
 			}
+		}
+	};
+	//
+	dc.pointer.end = function(e){
+		clearTimeout( window.dc.pointer.resetTimer );
+		window.dc.pointer.resetTimer = setTimeout( function(){
+			dc.pointer._tapHandling = false;
+			window.dc.pointer.cancel = false;
+		}, 1000 );
 
-			F.prototype = o;
-			return new F();
-		};
-	}
+		// make sure no modifiers are present. thx http://www.jacklmoore.com/notes/click-events/
+		if( ( e.which && e.which > 1 ) || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey ){
+			return;
+		}
+
+		e.preventDefault();
+
+		// this part prevents a double callback from touch and mouse on the same tap
+
+		// if a scroll happened between touchstart and touchend
+		if( window.dc.pointer.cancel || dc.pointer._tapHandling && dc.pointer._tapHandling !== e.type ){
+			window.dc.pointer.cancel = false;
+			return;
+		}
+
+		dc.pointer._tapHandling = e.type;
+		$( e.target ).trigger('dcpointer');
+	};
+
+
 
 
 	// ***************** jQuery-Helperplugins ****************************
 
 
-
-
-
 	// Initialisierung des Plugins aus dem Objekt an das Element
+
+
+
+	$.doTimeout = function() {
+		return dc.helper.doTimeout._func.apply( window, [ 0 ].concat( dc.helper.doTimeout._aps.call( arguments ) ) );
+	};
+
 	$.plugin = function(name, object){
 		$.fn[name] = function(options){
 			return this.each(function(){ // für jedes Element in der Selection, an die der Funktionsaufruf angehangen wird.
@@ -759,112 +1042,29 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		};
 	};
 
-	// sucht die benötigten AMD-Module für die nun im DOM existierenden Tags raus und läd sie schon mal vorab via require([_requirePlugin]).
-	$.fn.requirementsForJmPlugins = function(){
-		return this.each(function(){
-			var $elem = $(this);
-			$elem.find('[data-jmname]').addBack('[data-jmname]').each(function(index, item){
-				var $item = $(item);
-				var _jmname = $item.data('jmname').split('|');
-				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					jmHF.helperForRequirementsForJmPlugins(_config, _jmname[i]);
-				}
-			});
-		});
-	};
-
-	// Wenn in den Selektion Element vorkommen, die umgehend Initialisiert werden sollen (ohne User-Events), werden die entsprechenden Funktionen angesprochen.
-	$.fn.triggerSelfexecObj = function () {
-		this.each(function () {
-			var $elem = $(this);
-			$elem.find('[data-jmdominit="true"]').addBack('[data-jmdominit="true"]').each(function (index, item) {
-				$(item).trigger('dominit');
-			});
-			// TODO Andreas wird das noch gebraucht?
-			$elem.find('[data-jmsetelementwithjs]').addBack('[data-jmsetelementwithjs]').each(function (index, item) {
-				$(item).trigger('setelementwithjs');
-			});
-		});
-		// TODO Andreas modenizr-Weiche integrieren
-		/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
-			this.ie8BugfixForRadioAndCheckbox()
-		}*/
-		return this;
-	};
-
-	jmHF.isEventKeyInDomConfigObj = function(p_index, p_Obj){
-		var $elem =  $(p_Obj.e.target);
-		var jmconfigJsonParse;
-		var _return = false;
-		var _multiObj = true;
-
-		// die Daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
-		if($.type($elem.data('jmconfig')) !== 'string'){
-			jmconfigJsonParse = $elem.data('jmconfig');
-		}else{
-			jmconfigJsonParse = JSON.parse($elem.data('jmconfig').replace(/'/g, "\""));
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
 		}
-
-		if($.type(jmconfigJsonParse) === 'object'){
-			$.each(jmconfigJsonParse, function(key, value){
-				if($.type(value) !== 'object' && $.type(value) !== 'array'){
-					_multiObj = false;
-					return false;
-				}
-			});
-			$.each(jmconfigJsonParse, function(key, value){
-				if(_multiObj && key === p_Obj.jmname){
-					if($.type(value) === 'object'){
-						if(value.hasOwnProperty('event') && jmHF.isDominitEvent(value.event)){
-							_return = true;
-							return false;
-						}
-					}else if($.type(value) === 'array'){
-						$.each(value, function(key, array_obj){
-							if(array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
-								_return = true;
-								return false;
-							}
-						});
-					}
-					if(_return){
-						return false;
-					}
-				}else if(!_multiObj && (key === 'event') && jmHF.isDominitEvent(value)){
-					_return = true;
-					return false;
-				}
-			});
-		}else if($.type(jmconfigJsonParse) === 'array'){
-			$.each(jmconfigJsonParse, function(key, array_obj){
-				if(key === p_index && array_obj.hasOwnProperty('event') && jmHF.isDominitEvent(array_obj.event)){
-					_return = true;
-					return false;
-				}
-			});
+		else{
+			return results[1] || 0;
 		}
-
-		return _return;
 	};
 
-	// TODO Andreas modenizr-Weiche integrieren
-	/*if(navigator.appVersion.indexOf("MSIE 8.") != -1){
-		(function () {
-			$.fn.ie8BugfixForRadioAndCheckbox = function () {
-				this.each(function () {
-					var $elem = $(this);
-					$elem.find('input[type="radio"], input[type="checkbox"]').addBack('input[type="radio"], input[type="checkbox"]').each(function (e) {
-						if ($(this).is(':checked')) {
-							$(this).addClass('option-checked');
-						} else {
-							$(this).removeClass('option-checked');
-						}
-					});
-				});
-			}
-		})()
-	}*/
+	$.fn.doTimeout = function() {
+		var args = dc.helper.doTimeout._aps.call( arguments ),
+		    result = dc.helper.doTimeout._func.apply( this, [ 'doTimeout' + args[0] ].concat( args ) );
 
+		return typeof args[0] === 'number' || typeof args[1] === 'number'
+			? this
+			: result;
+	};
+
+	// Überprüfung, ob ein Element existiert
+	$.fn.doesExist = function(){
+		return $(this).length > 0;
+	};
 	// Funktionswrapper um ein jmtrigger-Event mit event-type zu triggern.
 	$.fn.jmtrigger = function(p_event, p_data){
 		return this.each(function(){
@@ -883,6 +1083,158 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 				elements: _array
 			});
 		}catch(e){}
+	};
+
+	$.fn.removeClassRegExp = function (regexp) {
+		if(regexp && (typeof regexp==='string' || typeof regexp==='object')) {
+			regexp = typeof regexp === 'string' ? regexp = new RegExp(regexp) : regexp;
+			$(this).each(function () {
+				$(this).removeClass(function(i,c) {
+					var classes = [];
+					$.each(c.split(' '), function(i,c) {
+						if(regexp.test(c)) { classes.push(c); }
+					});
+					return classes.join(' ');
+				});
+			});
+		}
+		return this;
+	};
+
+	$.fn.removeDotNetFallbackHiddenFields = function(){
+		return $(this).each(function(){
+			var $form = $(this);
+			var $elemens = $form.find('[name]');
+			var nameArray = [];
+			$elemens.each(function(index, item){
+				var $item = $(item);
+				if($.type($item.attr('type')) !== 'undefined' && ($item.attr('type') !== 'hidden') && $.type($item.attr('name')) !== 'undefined'){
+					nameArray.push($item.attr('name'));
+				}
+			});
+			$elemens.each(function(index, item){
+				var $item = $(item);
+				if($.type($item.attr('type')) !== 'undefined' && ($item.attr('type') === 'hidden') && $.type($item.attr('name')) !== 'undefined' && $.inArray($item.attr('name'), nameArray) !== -1){
+					$item.remove();
+				}
+			});
+		});
+	};
+
+	$.fn.removePlugins = function () {
+		this.off('keyup', '**')
+			.off('blur', '**')
+			.off('focus', '**')
+			.off('mouseover', '**')
+			.removeClassRegExp(/^JSINIT-/)
+			.removeData();
+	};
+
+	// sucht die benötigten AMD-Module für die nun im DOM existierenden Tags raus und läd sie schon mal vorab via require([_requirePlugin]).
+	$.fn.requirementsForJmPlugins = function(){
+		return this.each(function(){
+			var $elem = $(this);
+			$elem.find('[data-jmname]').addBack('[data-jmname]').each(function(index, item){
+				var $item = $(item);
+				var _jmname = (($item.data('jmname')).indexOf(' ') !== -1) ? $item.data('jmname').trim().split(' ') : $item.data('jmname').trim().split('|');
+				for(var i = 0, leni = _jmname.length; i < leni; i++){
+					dc.modulPreloader.helperForRequirementsForJmPlugins(_config, _jmname[i]);
+				}
+			});
+		});
+	};
+
+	$.fn.scrollToMe = function(p_delta_offset, speed){
+		var _delta_offset = 0;
+		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
+		if ($.type(p_delta_offset) === 'number') {
+			_delta_offset = p_delta_offset;
+		}
+		if($.type(speed) !== 'undefined'){
+			$body.animate({
+				scrollTop: $(this).offset().top + _delta_offset
+			},{
+				duration: speed
+			});
+		}else{
+			$body.scrollToTop($(this).offset().top + _delta_offset);
+		}
+	};
+
+	// Thank you to "madrobby" Thomas Fuchs. The following code ($.fn.scrollToTop) was partial reused form https://gist.github.com/madrobby/8507960
+	$.fn.scrollToTop = function(position){
+		var $this = this;
+		var $body = $('body');
+		var targetY = Math.round(position) || 0;
+		var initialY = $this.scrollTop();
+		var lastY = initialY;
+		var delta = targetY - initialY;// duration in ms, make it a bit shorter for short distances
+		// this is not scientific and you might want to adjust this for
+		// your preferences
+		var speed = Math.min(750, Math.min(1500, Math.abs(initialY - targetY)));// temp variables (t will be a position between 0 and 1, y is the calculated scrollTop)
+		var start;
+		var t;
+		var y;
+		// use requestAnimationFrame or polyfill
+		var frame = window.requestAnimationFrame;
+		var cancelScroll = function(){
+			abort();
+		};
+
+		// abort if already in progress or nothing to scroll
+		if(dc.helper._scrollToTopInProgress){
+			return;
+		}
+
+		// quint ease-in-out smoothing, from
+		// https://github.com/madrobby/scripty2/blob/master/src/effects/transitions/penner.js#L127-L136
+		function smooth(pos){
+			if((pos /= 0.5) < 1){
+				return 0.5 * Math.pow(pos, 5);
+			}
+			return 0.5 * (Math.pow((pos - 2), 5) + 2);
+		}
+
+		function abort(){
+			$this.off('touchstart', cancelScroll);
+			dc.helper._scrollToTopInProgress = false;
+			$body.trigger('dc-scrollEnd');
+		}
+
+		// when there's a touch detected while scrolling is in progress, abort
+		// the scrolling (emulates native scrolling behavior)
+		$this.on('touchstart', cancelScroll);
+		dc.helper._scrollToTopInProgress = true;
+
+		// start rendering away! note the function given to frame
+		// is named "render" so we can reference it again further down
+		frame(function render(now){
+			if(!dc.helper._scrollToTopInProgress){
+				return;
+			}
+			if(!start){
+				start = now;
+			}
+			// calculate t, position of animation in [0..1]
+			t = Math.min(1, Math.max((now - start) / speed, 0));
+			// calculate the new scrollTop position (don't forget to smooth)
+			y = Math.round(initialY + delta * smooth(t));
+			// bracket scrollTop so we're never over-scrolling
+			if(delta > 0 && y > targetY){
+				y = targetY;
+			}
+			if(delta < 0 && y < targetY){
+				y = targetY;
+			}
+			// only actually set scrollTop if there was a change fromt he last frame
+			if(lastY != y){
+				$this.scrollTop(y);
+			}
+			lastY = y;
+			// if we're not done yet, queue up an other frame to render,
+			// or clean up
+			(y !== targetY) ? frame(render) : abort();
+		})
 	};
 
 	// tauschen von Tabellenspalten
@@ -915,94 +1267,23 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 		});
 	};
 
-	// Überprüfung, ob ein Element existiert
-	$.fn.doesExist = function(){
-		return $(this).length > 0;
-	};
-
-	$.urlParam = function(name){
-		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-		if (results==null){
-			return null;
-		}
-		else{
-			return results[1] || 0;
-		}
-	};
-
-	$.fn.scrollToMe = function(p_delta_offset, speed){
-		var _delta_offset = 0;
-		var $body = (navigator.userAgent.indexOf('AppleWebKit') !== -1) ? $('body') : $('html');
-		if ($.type(p_delta_offset) === 'number') {
-			_delta_offset = p_delta_offset;
-		}
-		if($.type(speed) !== 'undefined'){
-			$body.animate({
-				scrollTop: $(this).offset().top + _delta_offset
-			},{
-				duration: speed
+	// Wenn in den Selektion Element vorkommen, die umgehend Initialisiert werden sollen (ohne User-Events), werden die entsprechenden Funktionen angesprochen.
+	$.fn.triggerSelfexecObj = function () {
+		this.each(function () {
+			var $elem = $(this);
+			$elem.find('[data-jmdominit="true"]').addBack('[data-jmdominit="true"]').each(function (index, item) {
+				$(item).trigger('dominit');
 			});
-		}else{
-			$body.scrollToTop($(this).offset().top + _delta_offset);
-		}
-	};
-
-	$.fn.removeDotNetFallbackHiddenFields = function(){
-		return $(this).each(function(){
-			var $form = $(this);
-			var $elemens = $form.find('[name]');
-			var nameArray = [];
-			$elemens.each(function(index, item){
-				var $item = $(item);
-				if($.type($item.attr('type')) !== 'undefined' && ($item.attr('type') !== 'hidden') && $.type($item.attr('name')) !== 'undefined'){
-					nameArray.push($item.attr('name'));
-				}
-			});
-			$elemens.each(function(index, item){
-				var $item = $(item);
-				if($.type($item.attr('type')) !== 'undefined' && ($item.attr('type') === 'hidden') && $.type($item.attr('name')) !== 'undefined' && $.inArray($item.attr('name'), nameArray) !== -1){
-					$item.remove();
-				}
+			// TODO Andreas wird das noch gebraucht?
+			$elem.find('[data-jmsetelementwithjs]').addBack('[data-jmsetelementwithjs]').each(function (index, item) {
+				$(item).trigger('setelementwithjs');
 			});
 		});
-	};
-
-	$.fn.removeClassRegExp = function (regexp) {
-		if(regexp && (typeof regexp==='string' || typeof regexp==='object')) {
-			regexp = typeof regexp === 'string' ? regexp = new RegExp(regexp) : regexp;
-			$(this).each(function () {
-				$(this).removeClass(function(i,c) {
-					var classes = [];
-					$.each(c.split(' '), function(i,c) {
-						if(regexp.test(c)) { classes.push(c); }
-					});
-					return classes.join(' ');
-				});
-			});
-		}
+		// TODO Andreas modenizr-Weiche integrieren
+		/*if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
+			this.ie8BugfixForRadioAndCheckbox()
+		}*/
 		return this;
 	};
 
-	$.fn.removePlugins = function () {
-		this.off('keyup', '**')
-			.off('blur', '**')
-			.off('focus', '**')
-			.off('mouseover', '**')
-			.removeClassRegExp(/^JSINIT-/)
-			.removeData();
-	};
-
-	window.dc.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
-	window.dc.touch = Modernizr.touch;
-
-	if(window.location.href.indexOf('debugview=true') !== -1){
-		window.dc.debugview = true;
-	}
-	if($.urlParam('perf') !== null){
-		window.dc.perf = parseInt($.urlParam('perf'), 10);
-	}
-	if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
-		alert(navigator.userAgent);
-	}
-	jmHF.setDevicePerfForParallax();
 });

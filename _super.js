@@ -16,7 +16,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			//this.myPos = ($.type(this.$elem.data('jmname')) !== 'undefined') ? 0 : this.pos;
 			this.myPos = this.pos;
 			this.myJmName = this.jmname;
-			this.myJmNamePos = $.inArray(this.myJmName, this.$elem.data('jmname').split('|'));
+			this.namePostfix = (this.name.slice(-2).charAt(0) === '_') ? this.name.slice(-2) : '';
+			//this.myJmNamePos = ((this.$elem.data('jmname')).indexOf(' ') !== -1) ? $.inArray(this.myJmName, this.$elem.data('jmname').trim().split(' ')) : $.inArray(this.myJmName, this.$elem.data('jmname').trim().split('|'));
 			this.initExec();
 			//this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 		},
@@ -48,8 +49,8 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
 		jmtrigger: function(e, e_param){
 			if($.type(e_param) === 'undefined'){
-				if(dc.debug){
-					jmHF.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
+				if(dc.config.debug){
+					dc.dev.warn('Es wird kein Event mitgegeben. Zum einen muss im jmconfig-Objekt als Value z.B. \'jmtrigger:click\' für \'event\' angegeben werden und der Event muss entsprechend via jmtrigger(\'click\') gefeuert werden.');
 				}
 				return;
 			}
@@ -93,7 +94,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		is : function(p_dataAttr, p_value, p_now){
 			var _returnString;
 			if($.type(p_dataAttr) === 'undefined'){
-				jmHF.error('es wurde kein Parameter übergeben');
+				dc.dev.error('es wurde kein Parameter übergeben');
 				return;                                         // return void
 			}
 			// hier wird das configObj geholt.
@@ -119,7 +120,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				case 'loaderTo':
 				case 'event':
 					// return String or Dom-Element/e
-					return ((this.configObj[p_dataAttr].indexOf('this.') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmHF') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmGO') !== -1)  || (this.configObj[p_dataAttr].indexOf('window.dc') !== -1)) ? eval(_returnString) : _returnString;
+					return ((this.configObj[p_dataAttr].indexOf('this.') !== -1) || (this.configObj[p_dataAttr].indexOf('window.jmHF') !== -1)  || (this.configObj[p_dataAttr].indexOf('window.dc') !== -1)) ? eval(_returnString) : _returnString;
 				default:
 					// return String
 					return _returnString;
@@ -255,37 +256,37 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.renderDelay = this._getRenderDelay();
 			// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 			this.conditionSource = this.isCondition('source');
-			this._addRenderFunctionToExecRafObj();
+			this._addRenderFunctionToRafExecIterationObj();
 
 		},
 
 		_initByPerf: function(e){
 			var _initByPerfCounter = 2;
-			if(window.dc.perf === 0){
+			if(window.dc.perf.level === 0){
 				return;
 			}
-			if(window.dc.perf === 1 || window.dc.perf === 4){
+			if(window.dc.perf.level === 1 || window.dc.perf.level === 4){
 				this._execWaitAfterCondition();
 				return;
 			}
 
-			if(!window.dc.win){
+			if(!window.dc.raf.win){
 				this._createRAFObjects();
 			}
 
-			window.dc.onHoldArray = window.dc.onHoldArray || [];
-			window.dc.onHoldArrayExecuted = window.dc.onHoldArrayExecuted || false;
-			window.dc.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
-			for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
+			window.dc.perf.onHoldArray = window.dc.perf.onHoldArray || [];
+			window.dc.perf.onHoldArrayExecuted = window.dc.perf.onHoldArrayExecuted || false;
+			window.dc.perf.onHoldArray.push({ 'obj':this, 'e':e, 'exec': false });
+			for(var i = 0, leni = window.dc.perf.onHoldArray.length; i < leni; i++){
 				if(_initByPerfCounter > i){
 					this._applyOnHoldPlugin(i);
 				}
 			}
 
-			if($.type(window.intervalIDForOnHoldPlugins) === 'undefined'){
-				window.intervalIDForOnHoldPlugins = setInterval(this._intervalForApplyOnHoldPlugins.bind(this), 1000);
+			if($.type(window.dc.perf.intervalIDForOnHoldPlugins) === 'undefined'){
+				window.dc.perf.intervalIDForOnHoldPlugins = setInterval(this._intervalForApplyOnHoldPlugins.bind(this), 1000);
 				setTimeout(function(){
-					clearInterval(window.intervalIDForOnHoldPlugins);
+					clearInterval(window.dc.perf.intervalIDForOnHoldPlugins);
 				}, 15000);
 			}
 		},
@@ -326,7 +327,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_applyOnHoldPlugin: function(index){
-			var _obj = window.dc.onHoldArray[index].obj;
+			var _obj = window.dc.perf.onHoldArray[index].obj;
 			if(!_obj.exec){
 				_obj.exec = true;
 				_obj._execWaitAfterCondition();
@@ -335,18 +336,18 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		_intervalForApplyOnHoldPlugins: function(){
 			var _obj;
-			if(window.dc.onHoldArray && !window.dc.onHoldArrayExecuted && window.dc.win.avgrafs > 45){
-				for(var i = 0, leni = window.dc.onHoldArray.length; i < leni; i++){
-					_obj = window.dc.onHoldArray[i].obj;
+			if(window.dc.perf.onHoldArray && !window.dc.perf.onHoldArrayExecuted && window.dc.raf.win._avgrafs > 45){
+				for(var i = 0, leni = window.dc.perf.onHoldArray.length; i < leni; i++){
+					_obj = window.dc.perf.onHoldArray[i].obj;
 					if(!_obj.exec){
 						_obj.exec = true;
 						_obj._execWaitAfterCondition();
-						if(window.dc.debugview){
+						if(window.dc.dev.debugview){
 							$('#init-by-perf-counter').text(' init-fx: '+(i+1)+'/'+leni);
 						}
 						return;
 					}else if((leni -1) === i){
-						window.dc.onHoldArrayExecuted = true;
+						window.dc.perf.onHoldArrayExecuted = true;
 					}
 				}
 			}
@@ -370,20 +371,52 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				return this.initConfigObj;
 			}
 			// wenn es kein jmconfig-Attribut für das Tag gibt. p_now ist hier nicht interessant, da die config-Daten in der _config.js nicht geändert werden können.
-			if($.type(this.$elem.data('jmconfig')) === 'undefined'){
+			if($.type(this._getAttrWithOrWithoutPostfix_1() || this.$elem.data('jmconfig')) === 'undefined'){
 				// return Object
 				return this.initConfigObj = this.staticObj || this._getStaticConfigObj();
 			}
+
 			// wenn es ein jmconfig-Attribut im Tag (DOM-Element) gibt überschreibt dieses die entsprechenden values im config-Objekt, wellches hierfür in der _config.js steht.
 			// return Object
 			return this.initConfigObj = $.extend({}, (this.staticObj || this._getStaticConfigObj()), this._getObjFromDom(p_now) );
 		},
 
-		// gibt ein Array aus dem jmconfig-Data-Attribut zurück
+		_getAttrWithOrWithoutPostfix_1: function(){
+			return this.staticAttrFromDom || (this.staticAttrFromDom = (this.namePostfix === '_1') ? (this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name) || this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name.split('_1')[0])) : (this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name) || this.$elem.attr('data-dcconfig--'+this.myJmName+'--'+this.name+'_1')));
+		},
+
 		_getObjFromDom: function(p_now){
+			if(dc.config.debug){
+				if(this.$elem.data('jmconfig') && dc.helper.attrPrefixCounter(this.$elem[0], 'data-dcconfig')){
+					dc.dev.warn('data-jmconfig und data-dcconfig dürfen nicht zusammen als Attribut auf folgenden Tag verwendet. data-jmconfig ist depricated. Die Überschreibung der config-Objekte ist mit data-dcconfig--... durchzuführen.', this.$elem);
+				}
+			}
+			if(this._getAttrWithOrWithoutPostfix_1()){
+				return this._getObjFromDcConfigAttr(p_now);
+			}else if(this.$elem.data('jmconfig')){
+				if(dc.config.debug){
+					dc.dev.warn('Die Angabe vom data-jmconfig Attribut ist deprecated und der "event"-key kann im via data-jmconfig-attr nicht überschrieben werden. Bitte als Attribut data-dcconfig--*--** (* steht für dcname und ** für das entsprechende jmplugin wie z.B. data-dcconfig--back-to-top--actions.scroll) verwenden!!!');
+				}
+				return this._getObjFromJmConfigAttr(p_now);
+			}
+			return {};
+		},
+
+		_getObjFromDcConfigAttr: function(p_now){
+			// liegen die daten aus dem jmconfig-Data-Attribut vor und p_now ist gleich false wird das Array mit dem/den Objekt/en aus dem data-jmconfig zurückgegeben
+			if($.type(p_now) === 'undefined' && $.type(this.staticObjFromDom) !== 'undefined'){
+				// return Object
+				return this.staticObjFromDom;
+			}
+			return this.staticObjFromDom = JSON.parse(this._getAttrWithOrWithoutPostfix_1().replace(/'/g, "\""));
+		},
+
+		_getObjFromJmConfigAttr: function(p_now){
 			var that = this;
 			var jmconfigJsonParse;
 			var _configObjlength;
+			var _jmnameArr;
+			var _jmnamelength;
 			var _jmconfigJsonContainsObjectOnlyOnFirstLevel = true;
 			// liegen die daten aus dem jmconfig-Data-Attribut vor und p_now ist gleich false wird das Array mit dem/den Objekt/en aus dem data-jmconfig zurückgegeben
 			if($.type(p_now) === 'undefined' && $.type(this.staticObjFromDom) !== 'undefined'){
@@ -401,21 +434,25 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				$.each(jmconfigJsonParse, function(key, value){
 					if(key === that.myJmName){
 						if($.type(value) === 'object'){
-							if(dc.debug){
+							if(dc.config.debug){
 								for(var i = 0, leni = _config.length; i < leni; i++){
-									if(_config[i].jmname === that.myJmName){
-										if($.type(_config[i].jmconfig) !== 'array'){
-											_configObjlength = 1;
-											break;
-										}else{
-											_configObjlength = _config[i].jmconfig.length;
-											break;
+									_jmnameArr = _config[i].jmname.split(',');
+									_jmnamelength = _jmnameArr.length;
+									for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+										if(_jmnameArr[j].trim() === that.myJmName){
+											if($.type(_config[i].jmconfig) !== 'array'){
+												_configObjlength = 1;
+												break;
+											}else{
+												_configObjlength = _config[i].jmconfig.length;
+												break;
+											}
 										}
 									}
 								}
 								if(_configObjlength > that.myPos+1){
 									$.doTimeout('_getObjFromDom1', 200, function(){
-										jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+										dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 											'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
 										console.warn('%cELEMENT', 'color: orange; font-style: italic');
 										console.log(that.$elem[0]);
@@ -428,9 +465,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 							return false;
 						}
 						if($.type(value) === 'array'){
-							if(dc.debug && $.type(value[that.myPos]) === 'undefined'){
+							if(dc.config.debug && $.type(value[that.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom2', 200, function(){
-									jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+									dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 										'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben. \n\n ' +
 										'-> Soll '+that.myJmName+' nicht überschrieben werden ist das entsprechende key-Value-Pair in data-jmconfig-Attribut zu entfernen.');
 									console.warn('%cELEMENT', 'color: orange; font-style: italic');
@@ -446,22 +483,26 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				});
 
 				if(_jmconfigJsonContainsObjectOnlyOnFirstLevel){
-					if(dc.debug){
+					if(dc.config.debug){
 						for(var i = 0, leni = _config.length; i < leni; i++){
-							if(_config[i].jmname === that.myJmName){
-								if($.type(_config[i].jmconfig) !== 'array'){
-									_configObjlength = 1;
-									break;
-								}else{
-									_configObjlength = _config[i].jmconfig.length;
-									break;
+							_jmnameArr = _config[i].jmname.split(',');
+							_jmnamelength = _jmnameArr.length;
+							for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+								if(_jmnameArr[j].trim() === that.myJmName){
+									if($.type(_config[i].jmconfig) !== 'array'){
+										_configObjlength = 1;
+										break;
+									}else{
+										_configObjlength = _config[i].jmconfig.length;
+										break;
+									}
 								}
 							}
 						}
 						if(_configObjlength > that.myPos+1){
 							if($.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 								$.doTimeout('_getObjFromDom3', 200, function(){
-									jmHF.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+									dc.dev.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 										'-> Wrappen sie das Objekt bitte in ein Array und füllen sie das Array (für die nicht zu überschreibenden Objekte in der _config.js) mit leheren Objekten auf.');
 									console.warn('%cELEMENT', 'color: orange; font-style: italic');
 									console.log(that.$elem[0]);
@@ -475,9 +516,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 
 			if($.type(jmconfigJsonParse) === 'array'){
-				if(dc.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
+				if(dc.config.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
 					$.doTimeout('_getObjFromDom4', 200, function(){
-						jmHF.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
+						dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
 							'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
 						console.warn('%cELEMENT', 'color: orange; font-style: italic');
 						console.log(that.$elem[0]);
@@ -491,16 +532,22 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		// gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
 		_getStaticConfigObj: function(){
+			var _jmnameArr;
+			var _jmnamelength;
 			for(var i = 0, leni = _config.length; i < leni; i++){
-				if(_config[i].jmname === this.myJmName){
-					// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
-					if($.type(_config[i].jmconfig) !== 'array'){
-						this.staticObj = _config[i].jmconfig;
-						break;
-					}else{
-						// hier wird das config-Obj aus der entsprechenden Position im Array in das staticObj geschrieben.
-						this.staticObj = _config[i].jmconfig[this.myPos];
-						break;
+				_jmnameArr = _config[i].jmname.split(',');
+				_jmnamelength = _jmnameArr.length;
+				for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
+					if(_jmnameArr[j].trim() === this.myJmName){
+						// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
+						if($.type(_config[i].jmconfig) !== 'array'){
+							this.staticObj = _config[i].jmconfig;
+							break;
+						}else{
+							// hier wird das config-Obj aus der entsprechenden Position im Array in das staticObj geschrieben.
+							this.staticObj = _config[i].jmconfig[this.myPos];
+							break;
+						}
 					}
 				}
 			}
@@ -518,12 +565,12 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 // *********************************  Global-Singelton-Functions Begin  *********************************************
 
 		guaranteeDCRAF: function(){
-			if(window.dc.singleton){
+			if(window.dc.raf.iterationSingleton){
 				return;
 			}
-			window.dc.singleton = true;
+			window.dc.raf.iterationSingleton = true;
 			this._createRAFObjects();
-			if(window.dc.debugview){
+			if(window.dc.dev.debugview){
 				this.thempCountedFrames = 0;
 				this._applyRAFDeveloperView();
 			}
@@ -531,18 +578,18 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_createRAFObjects: function(){
-			window.dc.win = {
+			window.dc.raf.win = {
 				pageYOffset: null,
 				innerHeight: null,
 				innerWidth: null,
 				outerHeight: null,
 				documentHeight: null,
-				startTime: Date.now(),
-				counter: 0,
-				rafs: null,
-				avgrafs: null
+				_startTime: Date.now(),
+				_counter: 0,
+				_rafs: null,
+				_avgrafs: null
 			};
-			window.dc.execRafObj = {
+			window.dc.raf.execIterationObj = {
 				countProperties: function(){
 					var count = 0;
 					for(var property in this){
@@ -562,21 +609,21 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			this.$acount = $('#fps-counter');
 
 			setInterval(function(){
-				if(window.dc.win.counter < that.thempCountedFrames){
+				if(window.dc.raf.win._counter < that.thempCountedFrames){
 					this.thempCountedFrames = this.thempCountedFrames + 100000001;
 				}
-				window.dc.win.rafs = window.dc.win.counter - this.thempCountedFrames;
-				window.dc.win.avgrafs = Math.round(window.dc.win.counter/((Date.now() - window.dc.win.startTime)/1000));
+				window.dc.raf.win._rafs = window.dc.raf.win._counter - this.thempCountedFrames;
+				window.dc.raf.win._avgrafs = Math.round(window.dc.raf.win._counter/((Date.now() - window.dc.raf.win._startTime)/1000));
 
-				this.$acount.text('avg: '+ window.dc.win.avgrafs+ ' fps | now: '+ window.dc.win.rafs+' fps');
+				this.$acount.text('avg: '+ window.dc.raf.win._avgrafs+ ' fps | now: '+ window.dc.raf.win._rafs+' fps');
 
-				if(window.dc.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
+				if(window.dc.perf.onHoldArray && $.type(that.$initByPerfCounter) === 'undefined'){
 					this.$acount.after('<span style="padding: 1rem; float: right; background-color: rgba(30,30,30,.8)" id="init-by-perf-counter"> init-fx: 2/?</span>');
 					this.$initByPerfCounter = $('#init-by-perf-counter');
-					if(window.dc.perf === 1) this.$initByPerfCounter.text(' init-fx: all ');
-					if(window.dc.perf === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
+					if(window.dc.perf.level === 1) this.$initByPerfCounter.text(' init-fx: all ');
+					if(window.dc.perf.level === 2) this.$initByPerfCounter.text(' init-fx: 2 ');
 				}
-				that.thempCountedFrames = window.dc.win.counter;
+				that.thempCountedFrames = window.dc.raf.win._counter;
 			}.bind(this), 1000);
 		},
 
@@ -590,32 +637,32 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 // *********************************  raf-Functions HOT-CODE Begin  *************************************************
 
 		_everyRAF: function(){
-			var _oldDocumentHeight = window.dc.win.documentHeight || document.body.offsetHeight;
+			var _oldDocumentHeight = window.dc.raf.win.documentHeight || document.body.offsetHeight;
 
-			window.dc.win.pageYOffset     = window.pageYOffset;
-			window.dc.win.innerHeight     = (window.dc.orientation_old === window.dc.orientation) ? window.dc.win.innerHeight : window.innerHeight;
-			window.dc.win.innerWidth      = window.innerWidth;
-			window.dc.win.counter         = window.dc.win.counter+1;
-			window.dc.win.documentHeight  = document.body.offsetHeight;
+			window.dc.raf.win.pageYOffset     = window.pageYOffset;
+			window.dc.raf.win.innerHeight     = (window.dc.client._orientation_old === window.dc.client.orientation) ? window.dc.raf.win.innerHeight : window.innerHeight;
+			window.dc.raf.win.innerWidth      = window.innerWidth;
+			window.dc.raf.win._counter        = window.dc.raf.win._counter+1;
+			window.dc.raf.win.documentHeight  = document.body.offsetHeight;
 
-			if(window.dc.win.counter === 100000001){
-				window.dc.win.counter = 1;
+			if(window.dc.raf.win._counter === 100000001){
+				window.dc.raf.win._counter = 1;
 			}
 
-			for(var property in window.dc.execRafObj){
-				if(window.dc.execRafObj.hasOwnProperty(property) && ('countProperties' !== property)){
-					window.dc.execRafObj[property]();
+			for(var property in window.dc.raf.execIterationObj){
+				if(window.dc.raf.execIterationObj.hasOwnProperty(property) && ('countProperties' !== property)){
+					window.dc.raf.execIterationObj[property]();
 				}
 			}
-			window.dc.orientation_old = window.dc.orientation;
-			window.dc.raf = window.requestAnimationFrame(this._everyRAF.bind(this));
-			if(_oldDocumentHeight !== window.dc.win.documentHeight){
+			window.dc.client._orientation_old = window.dc.client.orientation;
+			window.requestAnimationFrame(this._everyRAF.bind(this));
+			if(_oldDocumentHeight !== window.dc.raf.win.documentHeight){
 				$('body').trigger('dc-documentHeightChange');
 			}
 		},
 
 		_render: function(){
-			if((window.dc.win.counter % this.renderDelay) !== 0){
+			if((window.dc.raf.win._counter % this.renderDelay) !== 0){
 				return;
 			}
 			if(this.$elem[0].offsetHeight === 0){
@@ -627,7 +674,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 			if(this.oneTimeExec && eval(this.conditionSource)){
 				this._exec();
-				this._removeRenderFunctionFromExecRafObj();
+				this._removeRenderFunctionFromRafExecIterationObj();
 			}
 		},
 
@@ -640,14 +687,14 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 // *********************************  add/remove renderFunctions Begin  *********************************************
 
-		_addRenderFunctionToExecRafObj: function(){
-			this.renderFunctionIndex = window.dc.execRafObj.countProperties();
-			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
+		_addRenderFunctionToRafExecIterationObj: function(){
+			this.renderFunctionIndex = window.dc.raf.execIterationObj.countProperties();
+			window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
 		},
 
-		_removeRenderFunctionFromExecRafObj: function(){
-			window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex] = null;
-			delete window.dc.execRafObj['renderFunction_' + this.renderFunctionIndex];
+		_removeRenderFunctionFromRafExecIterationObj: function(){
+			window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = null;
+			delete window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex];
 		},
 
 // *********************************  add/remove renderFunctions End  ***********************************************
@@ -667,7 +714,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.uniqueId){
 				return this.uniqueId;
 			}
-			return this.uniqueId = window.jmGO.uuID.generate();
+			return this.uniqueId = window.dc.helper.uuID.generate();
 		},
 
 		_finishing: function(p_$data){
@@ -691,7 +738,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				return;
 			}
 			if($.type(this.is('scrollTo')) === 'number'){
-				jmHF.scrollToPosition(this.is('scrollTo'), (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
+				dc.helper.scrollToPosition(this.is('scrollTo'), (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
 				return;
 			}
 			if($.type(this.is('scrollTo')) === 'string'){
@@ -700,9 +747,9 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 						$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0, (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
 						return;
 					}
-					jmHF.warn('falsche angabe für scrollTo');
+					dc.dev.warn('falsche angabe für scrollTo');
 				}catch(e){
-					jmHF.error('falsche angabe für scrollTo');
+					dc.dev.error('falsche angabe für scrollTo');
 					console.error(e.message);
 				}
 			}
