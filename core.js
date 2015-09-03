@@ -814,6 +814,7 @@ define(['jquery', '_config'], function($, _config){
 		if((window.dc.client.userOS !== 'iOS') && (window.dc.client.userOS !== 'Android')){
 			$body.trigger('dc-resizeondesktop');
 		}
+		$body.trigger('dc-resize');
 		dc.client.setDeviceState();
 	};
 
@@ -1094,7 +1095,7 @@ define(['jquery', '_config'], function($, _config){
 		}
 
 		dc.pointer._tapHandling = e.type;
-		$( e.target ).trigger('dcpointer');
+		$(this).trigger('dcpointer');
 	};
 
 
