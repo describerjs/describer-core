@@ -818,6 +818,22 @@ define(['jquery', '_config'], function($, _config){
 		dc.client.setDeviceState();
 	};
 
+	dc.helper.createModal = function(html, isNotCloseable){
+		var _modalControl = $('<div style="display: none" href="#'+ Math.round(Math.random()*1000000000000) +'" data-jmname="modal-create-by-function"></div>');
+		$body.append(_modalControl);
+		if(isNotCloseable){
+			if($.type(html) !== 'undefined'){
+				_modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', "{ 'event': 'dominit', 'data': '" + html + "', 'notAutoOpen': 'true', 'notCloseable': true }");
+			}
+		}else{
+			if($.type(html) !== 'undefined'){
+				_modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', "{ 'event': 'dominit', 'data': '" + html + "', 'notAutoOpen': 'true' }");
+			}
+		}
+		dc.eventflow.eventDelegationTriggerForDomInit.call(_modalControl[0], $.Event('dominit', { target: _modalControl[0]}));
+		return _modalControl;
+	};
+
 	dc.helper.contains = function(a, obj){
 		var i = a.length;
 		while (i--) {
