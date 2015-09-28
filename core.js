@@ -1081,7 +1081,7 @@ define(['jquery', '_config'], function($, _config){
 	// any touchscroll that results in > tolerance should cancel the tap
 	dc.pointer.move = function(e){
 		if( !window.dc.pointer.cancel ){
-			var coords = dc.getCoords( e );
+			var coords = dc.pointer.getCoords( e );
 			if( coords && ( Math.abs( window.dc.pointer._startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( window.dc.pointer._startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
 				window.dc.pointer.cancel = true;
 			}
