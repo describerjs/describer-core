@@ -85,6 +85,51 @@ define(['jquery', '_config'], function($, _config){
 					clearTimeout(id);
 				};
 		}());
+
+		// polyfill for Object.keys
+		// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+		(function() {
+			if (!Object.keys) {
+				Object.keys = (function() {
+					'use strict';
+					var hasOwnProperty = Object.prototype.hasOwnProperty,
+					    hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+					    dontEnums = [
+						    'toString',
+						    'toLocaleString',
+						    'valueOf',
+						    'hasOwnProperty',
+						    'isPrototypeOf',
+						    'propertyIsEnumerable',
+						    'constructor'
+					    ],
+					    dontEnumsLength = dontEnums.length;
+
+					return function(obj) {
+						if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+							throw new TypeError('Object.keys called on non-object');
+						}
+
+						var result = [], prop, i;
+
+						for (prop in obj) {
+							if (hasOwnProperty.call(obj, prop)) {
+								result.push(prop);
+							}
+						}
+
+						if (hasDontEnumBug) {
+							for (i = 0; i < dontEnumsLength; i++) {
+								if (hasOwnProperty.call(obj, dontEnums[i])) {
+									result.push(dontEnums[i]);
+								}
+							}
+						}
+						return result;
+					};
+				}());
+			}
+		}());
 	})();
 
 
@@ -130,6 +175,22 @@ define(['jquery', '_config'], function($, _config){
 	dc.client.vendors = [null,['-webkit-','webkit'],['-moz-','Moz'],['-o-','O'],['-ms-','ms']];
 
 	dc.client.orientation = (window.innerHeight > window.innerWidth) ? 'p':'w';
+
+	// schreibt den aktuellen breakpoint in dc.client.deviceState
+	dc.client.setDeviceState = function() {
+		var index = parseInt(window.getComputedStyle(dc.client.indicator).getPropertyValue('z-index'), 10);
+
+		var states = {
+			2: 'bp-xs',
+			3: 'bp-s',
+			4: 'bp-m',
+			5: 'bp-l',
+			6: 'bp-xl',
+			7: 'bp-xxl'
+		};
+
+		dc.client.deviceState = states[index] || 'small';
+	};
 
 	dc.client.touch = Modernizr.touch;
 
@@ -235,6 +296,13 @@ define(['jquery', '_config'], function($, _config){
 
 
 // domready
+
+	// hier wird ein div injected, welches als je nach mediaquery einen anderen z-index erhält
+	dc.domready.addStateIndicator = function () {
+		dc.client.indicator = document.createElement('div');
+		dc.client.indicator.className = 'state-indicator';
+		document.body.appendChild(dc.client.indicator);
+	};
 
 	dc.domready.checkUrl = function(){
 
@@ -746,6 +814,24 @@ define(['jquery', '_config'], function($, _config){
 		if((window.dc.client.userOS !== 'iOS') && (window.dc.client.userOS !== 'Android')){
 			$body.trigger('dc-resizeondesktop');
 		}
+		$body.trigger('dc-resize');
+		dc.client.setDeviceState();
+	};
+
+	dc.helper.createModal = function(html, isNotCloseable){
+		var _modalControl = $('<div style="display: none" href="#'+ Math.round(Math.random()*1000000000000) +'" data-jmname="modal-create-by-function"></div>');
+		$body.append(_modalControl);
+		if(isNotCloseable){
+			if($.type(html) !== 'undefined'){
+				_modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', "{ 'event': 'dominit', 'data': '" + html + "', 'notAutoOpen': 'true', 'notCloseable': true }");
+			}
+		}else{
+			if($.type(html) !== 'undefined'){
+				_modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', "{ 'event': 'dominit', 'data': '" + html + "', 'notAutoOpen': 'true' }");
+			}
+		}
+		dc.eventflow.eventDelegationTriggerForDomInit.call(_modalControl[0], $.Event('dominit', { target: _modalControl[0]}));
+		return _modalControl;
 	};
 
 	dc.helper.contains = function(a, obj){
@@ -756,6 +842,16 @@ define(['jquery', '_config'], function($, _config){
 			}
 		}
 		return false;
+	};
+
+	dc.helper.countProperties =  function(obj){
+		var count = 0;
+		for(var property in obj){
+			if(obj.hasOwnProperty(property)){
+				count += 1;
+			}
+		}
+		return count;
 	};
 
 	// extend the ajax-function with the progressUpload and progress funktions
@@ -985,7 +1081,7 @@ define(['jquery', '_config'], function($, _config){
 	// any touchscroll that results in > tolerance should cancel the tap
 	dc.pointer.move = function(e){
 		if( !window.dc.pointer.cancel ){
-			var coords = dc.getCoords( e );
+			var coords = dc.pointer.getCoords( e );
 			if( coords && ( Math.abs( window.dc.pointer._startY - coords[ 1 ] ) > dc.pointer.scrollTolerance || Math.abs( window.dc.pointer._startX - coords[ 0 ] ) > dc.pointer.scrollTolerance ) ){
 				window.dc.pointer.cancel = true;
 			}
@@ -1015,7 +1111,7 @@ define(['jquery', '_config'], function($, _config){
 		}
 
 		dc.pointer._tapHandling = e.type;
-		$( e.target ).trigger('dcpointer');
+		$(this).trigger('dcpointer');
 	};
 
 
