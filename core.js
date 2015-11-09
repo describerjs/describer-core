@@ -815,7 +815,7 @@ define(['jquery', '_config'], function($, _config){
 			$body.trigger('dc-resizeondesktop');
 		}
 		$body.trigger('dc-resize');
-		dc.client.setDeviceState();
+		//dc.client.setDeviceState();
 	};
 
 	dc.helper.createModal = function(html, isNotCloseable){
