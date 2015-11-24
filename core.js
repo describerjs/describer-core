@@ -449,6 +449,8 @@ define(['jquery', '_config'], function($, _config){
 						if(!_retrun){
 							_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 						}
+					}else{
+						_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 					}
 				}else if(_attr_counter > 1){
 					for(var j = 0, lenj = _attr_counter; j < lenj; j++){
@@ -458,6 +460,8 @@ define(['jquery', '_config'], function($, _config){
 							if(!_retrun){
 								_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 							}
+						}else{
+							_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 						}
 					}
 				}else{
