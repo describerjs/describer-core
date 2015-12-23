@@ -386,40 +386,26 @@ define(['jquery', '_config'], function($, _config){
 
 	// gebt das complette Objekt für den übergebenen jmname aus der _config.js zurück ({jmname:...,jmplugin:...,jmconfig:...})
 	dc.eventflow.getConfigObj = function(p_name){
-		var _jmnameArr;
-		var _jmnamelength;
-		for(var i = 0, leni = _config.length; i < leni; i++){
-			_jmnameArr = _config[i].jmname.split(',');
-			_jmnamelength = _jmnameArr.length;
-			for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
-				if(_jmnameArr[j].trim() === p_name){
-					return _config[i];
-				}
-			}
-		}
+        return _config.default[$.camelCase(p_name)]
 	};
 
 	// Die Funktion verleiht einem Dom-Element spezifische JS-Funktionalitäten (das Modul/Plugin wird auf das Element angewendet.), und ruft optional eine eigene Methode
 	// auf wie z.B. click, change oder auch domInit
 	// Enthält das Plugin ein |, so werden die hiermit getrennt aufgelisteten Module/Plugins nacheinander initialisiert. (via $.each)
 	dc.eventflow.bindPlugin = function(Obj){
-		var _pluginArray;
+		var _objectKeyArray;
 		if($.type(Obj.$element) === 'undefined'){
 			return;
 		}
 		if($.type(Obj.configObj) === 'undefined'){
 			return;
 		}
-		_pluginArray = Obj.configObj.jmplugin.split('|');
-		for (var i = 0, leni = _pluginArray.length; i < leni; i++) {
-			// indexOf() ist ein method nur für StringObject nicht für ObjectArray, diese Funktioniert Ausnahmeweise unter neue Browser aber nicht unter Alte Browser wie IE8
-			//if (_pluginArray.indexOf(_pluginArray[i]) !== _pluginArray.lastIndexOf(_pluginArray[i])) {
-			if (_pluginArray.join(' ').indexOf(_pluginArray[i]) !== _pluginArray.join(' ').lastIndexOf(_pluginArray[i])) {
-				dc.dev.error('Bei der mehrfachen Anwendung vom selben-Plugin im jmplugin-String sind diese mit ..._1|..._2 usw. zu benennen.');
-			}
+        
+        _objectKeyArray = Object.keys(Obj.configObj);
+		for (var i = 0, leni = _objectKeyArray.length; i < leni; i++) {
 			// event-Check for init plugin
-			if(dc.eventflow.matchTriggerEventWithConfigEvents(i, Obj, (_pluginArray.length === 1) ? Obj.configObj.jmconfig : Obj.configObj.jmconfig[i])){
-				dc.eventflow.helperForBindPlugin(Obj, _pluginArray[i], i);
+			if(dc.eventflow.matchTriggerEventWithConfigEvents(i, Obj, (_objectKeyArray.length === 1) ? Obj.configObj[_objectKeyArray[0]] : Obj.configObj[_objectKeyArray[i]])){
+				dc.eventflow.helperForBindPlugin(Obj, _objectKeyArray[i], i);
 			}
 		}
 	};
@@ -1028,16 +1014,20 @@ define(['jquery', '_config'], function($, _config){
 			dc.dev.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
 			return;
 		}
-		_jmpluginString = _configObj.jmplugin;
-		if(_jmpluginString.split('|').length > 1){
-			$.each(_jmpluginString.split('|'), function(index, innerItem){
-				_requirePlugin = dc.helper.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
-				dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
-			});
-		}else{
-			_requirePlugin = dc.helper.returnRequireLoadPlugin(_jmpluginString);
-			dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj);
+		for(var i = 0, leni = _configObj.length; i < leni; i++){
+			_requirePlugin = dc.helper.returnRequireLoadPlugin(_configObj[i]);
+			dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
 		}
+		//_jmpluginString = _configObj.jmplugin;
+		//if(_jmpluginString.split('|').length > 1){
+		//	$.each(_jmpluginString.split('|'), function(index, innerItem){
+		//		_requirePlugin = dc.helper.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
+		//		dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
+		//	});
+		//}else{
+		//	_requirePlugin = dc.helper.returnRequireLoadPlugin(_jmpluginString);
+		//	dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj);
+		//}
 	};
 
 	dc.modulPreloader.requirePluginAndDependencies = function(fileref, _configObj, index){

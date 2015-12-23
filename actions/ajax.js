@@ -123,9 +123,7 @@ define(['jquery', '_super'], function ($, _super){
 	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
 	        // TODO Andreas in den anderen actions wird nun auch this.$destination = this.getRelatedToElem(); verwendet. Bitte verallgemeinern
             this.$destination = this.subObj_$destination || $(this.is('relatedTo'));
-	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
-	        // TODO Andreas  this.subObj_injection wird im modal verwendet. Bessere Lösung finden
-	        this.injection = this.subObj_injection || this.is('inject');
+	        this.injection = this.is('inject');
             $.ajax({
                 type: (that.is('type') !== '') ? ((that.is('type', 'post')) ? 'POST' : 'GET') : 'GET',
                 url: that._getUrl(),

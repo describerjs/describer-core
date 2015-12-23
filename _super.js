@@ -532,26 +532,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 
 		// gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
 		_getStaticConfigObj: function(){
-			var _jmnameArr;
-			var _jmnamelength;
-			for(var i = 0, leni = _config.length; i < leni; i++){
-				_jmnameArr = _config[i].jmname.split(',');
-				_jmnamelength = _jmnameArr.length;
-				for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
-					if(_jmnameArr[j].trim() === this.myJmName){
-						// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
-						if($.type(_config[i].jmconfig) !== 'array'){
-							this.staticObj = _config[i].jmconfig;
-							break;
-						}else{
-							// hier wird das config-Obj aus der entsprechenden Position im Array in das staticObj geschrieben.
-							this.staticObj = _config[i].jmconfig[this.myPos];
-							break;
-						}
-					}
-				}
-			}
-			return this.staticObj;
+            var _objForMyJmName = _config.default[$.camelCase(this.myJmName)];
+            if(_objForMyJmName.hasOwnProperty(event)){
+                return this.staticObj = _objForMyJmName;
+            }
+            return this.staticObj = _objForMyJmName[this.name];
 		},
 
 
