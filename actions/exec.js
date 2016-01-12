@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_super'], function ($, _super){
+define(['jquery', 'underscore', '_super'], function ($, _, _super){
 	'use strict';
 	var exec = $.extend({}, _super, {
 		init: function (options, elem) {
@@ -34,8 +34,10 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(e, p_data){
 			try{
-				eval(this.is('exec'));
-			}catch(e){}
+				eval(this.is('exec').replace(/\n/g, ''));
+			}catch(e){
+				dc.dev.warn(e);
+			}
 			this._finishing();
 		}
 	});

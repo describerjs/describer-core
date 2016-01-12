@@ -12,7 +12,7 @@
 define(['jquery', '_super'], function ($, _super){
 	'use strict';
 	var add = $.extend({}, _super, {
-		init: function (options, elem) {
+			init: function (options, elem) {
 			this.options = $.extend({}, this.options, options);
 			this.name = this.options.pluginName;
 			this.pos = this.options.pos;
@@ -76,8 +76,8 @@ define(['jquery', '_super'], function ($, _super){
 					return (this.$destination[0].childNodes[i].textContent !== undefined) ? this.$destination[0].childNodes[i].textContent.replace('comment in by JS', '') : this.$destination[0].childNodes[i].data.replace('comment in by JS', '');
 				}
 			}
-
-			dc.dev.warn('data is not define');
+			dc.dev.warn('data is not define or an empty string');
+            return '';
 		},
 
 		_getCssObj: function(){

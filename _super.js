@@ -9,7 +9,7 @@
  *
  * Released under the MIT license
  */
-define(['jquery', '_config', 'core'], function ($, _config) {
+define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 	'use strict';
 	return {
 		config : function(){
@@ -67,7 +67,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			if(this.includes('event', 'init-by-perf')) this._initByPerf(e);
 
 			// init Event-Listener auf this.$elem
-			if(this.partOf('event', 'keyup')) this.$elem.on('keyup', this._keyup.bind(this));
+			if(this.partOf('event', 'keyup')) this._keyup(e);
 
 			if(this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
@@ -240,13 +240,11 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_keyup: function(e){
-			if(this.isCondition()){
-				if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
-					$.doTimeout(this.getUniqueId(), parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10), this._execWait.bind(this, e));
-				}else{
-					this._execWait.bind(this, e)
-				}
+			var _delay;
+			if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
+				_delay = parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10);
 			}
+			this.$elem.on('keyup', _.debounce(this._execWaitAfterCondition.bind(this, e), _delay));
 		},
 
 		_raf: function(){
@@ -393,11 +391,6 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 			}
 			if(this._getAttrWithOrWithoutPostfix_1()){
 				return this._getObjFromDcConfigAttr(p_now);
-			}else if(this.$elem.data('jmconfig')){
-				if(dc.config.debug){
-					dc.dev.warn('Die Angabe vom data-jmconfig Attribut ist deprecated und der "event"-key kann im via data-jmconfig-attr nicht überschrieben werden. Bitte als Attribut data-dcconfig--*--** (* steht für dcname und ** für das entsprechende jmplugin wie z.B. data-dcconfig--back-to-top--actions.scroll) verwenden!!!');
-				}
-				return this._getObjFromJmConfigAttr(p_now);
 			}
 			return {};
 		},
@@ -409,125 +402,6 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 				return this.staticObjFromDom;
 			}
 			return this.staticObjFromDom = JSON.parse(this._getAttrWithOrWithoutPostfix_1().replace(/'/g, "\""));
-		},
-
-		_getObjFromJmConfigAttr: function(p_now){
-			var that = this;
-			var jmconfigJsonParse;
-			var _configObjlength;
-			var _jmnameArr;
-			var _jmnamelength;
-			var _jmconfigJsonContainsObjectOnlyOnFirstLevel = true;
-			// liegen die daten aus dem jmconfig-Data-Attribut vor und p_now ist gleich false wird das Array mit dem/den Objekt/en aus dem data-jmconfig zurückgegeben
-			if($.type(p_now) === 'undefined' && $.type(this.staticObjFromDom) !== 'undefined'){
-				// return Object
-				return this.staticObjFromDom;
-			}
-			// die Daten (entweder Objekt oder bei mehreren Objekten, das Objekt aus dem Array der entsprechenden stelle) werden neu vom jmConfig-Attribut geholt
-			if($.type(this.$elem.data('jmconfig')) !== 'string'){
-				jmconfigJsonParse = this.$elem.data('jmconfig');
-			}else{
-				jmconfigJsonParse = JSON.parse(this.$elem.data('jmconfig').replace(/'/g, "\""));
-			}
-
-			if($.type(jmconfigJsonParse) === 'object'){
-				$.each(jmconfigJsonParse, function(key, value){
-					if(key === that.myJmName){
-						if($.type(value) === 'object'){
-							if(dc.config.debug){
-								for(var i = 0, leni = _config.length; i < leni; i++){
-									_jmnameArr = _config[i].jmname.split(',');
-									_jmnamelength = _jmnameArr.length;
-									for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
-										if(_jmnameArr[j].trim() === that.myJmName){
-											if($.type(_config[i].jmconfig) !== 'array'){
-												_configObjlength = 1;
-												break;
-											}else{
-												_configObjlength = _config[i].jmconfig.length;
-												break;
-											}
-										}
-									}
-								}
-								if(_configObjlength > that.myPos+1){
-									$.doTimeout('_getObjFromDom1', 200, function(){
-										dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
-											'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
-										console.warn('%cELEMENT', 'color: orange; font-style: italic');
-										console.log(that.$elem[0]);
-									});
-								}
-							}
-							_jmconfigJsonContainsObjectOnlyOnFirstLevel = false;
-							that.staticObjFromDom = value;
-							// to break ths $.each()
-							return false;
-						}
-						if($.type(value) === 'array'){
-							if(dc.config.debug && $.type(value[that.myPos]) === 'undefined'){
-								$.doTimeout('_getObjFromDom2', 200, function(){
-									dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
-										'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben. \n\n ' +
-										'-> Soll '+that.myJmName+' nicht überschrieben werden ist das entsprechende key-Value-Pair in data-jmconfig-Attribut zu entfernen.');
-									console.warn('%cELEMENT', 'color: orange; font-style: italic');
-									console.log(that.$elem[0]);
-								});
-							}
-							_jmconfigJsonContainsObjectOnlyOnFirstLevel = false;
-							that.staticObjFromDom = value[that.myPos];
-							// to break ths $.each()
-							return false;
-						}
-					}
-				});
-
-				if(_jmconfigJsonContainsObjectOnlyOnFirstLevel){
-					if(dc.config.debug){
-						for(var i = 0, leni = _config.length; i < leni; i++){
-							_jmnameArr = _config[i].jmname.split(',');
-							_jmnamelength = _jmnameArr.length;
-							for(var j = 0, lenj = _jmnamelength; j < lenj; j++){
-								if(_jmnameArr[j].trim() === that.myJmName){
-									if($.type(_config[i].jmconfig) !== 'array'){
-										_configObjlength = 1;
-										break;
-									}else{
-										_configObjlength = _config[i].jmconfig.length;
-										break;
-									}
-								}
-							}
-						}
-						if(_configObjlength > that.myPos+1){
-							if($.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
-								$.doTimeout('_getObjFromDom3', 200, function(){
-									dc.dev.warn('Für data-jmname="'+that.myJmName+'" ist nur ein Objekt angegeben. Dieses weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
-										'-> Wrappen sie das Objekt bitte in ein Array und füllen sie das Array (für die nicht zu überschreibenden Objekte in der _config.js) mit leheren Objekten auf.');
-									console.warn('%cELEMENT', 'color: orange; font-style: italic');
-									console.log(that.$elem[0]);
-								});
-							}
-						}
-					}
-					that.staticObjFromDom = jmconfigJsonParse;
-				}
-				return that.staticObjFromDom;
-			}
-
-			if($.type(jmconfigJsonParse) === 'array'){
-				if(dc.config.debug && $.type(jmconfigJsonParse[this.myPos]) === 'undefined'){
-					$.doTimeout('_getObjFromDom4', 200, function(){
-						dc.dev.warn('Die Anzahl der Objekt im Array-String für data-jmname="'+that.myJmName+'" weichen von der Anzahl der Objekte im entsprechenden jmconfig der describer.js ab!!! \n\n' +
-							'-> Wenn Objekte in der _config.js nicht überschrieben werden sollen, sind an den entsprechenden Positionen im data-jmconfig-Attribut lehre Objekte "{}" anzugeben.');
-						console.warn('%cELEMENT', 'color: orange; font-style: italic');
-						console.log(that.$elem[0]);
-					});
-				}
-				return that.staticObjFromDom = jmconfigJsonParse[this.myPos];
-			}
-
-			return that.staticObjFromDom;
 		},
 
 		// gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
@@ -742,7 +616,7 @@ define(['jquery', '_config', 'core'], function ($, _config) {
 		},
 
 		_callback: function(){
-			if($.type(this.is('callback') !== 'undefined')) eval(this.is('callback'));
+			if($.type(this.is('callback') !== 'undefined')) eval(this.is('callback').replace(/\n/g, ''));
 		}
 
 // *********************************  Common-Functions use by actions End    ****************************************

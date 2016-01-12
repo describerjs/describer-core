@@ -1,4 +1,4 @@
-define(['jquery', '_config'], function($, _config){
+define(['jquery', 'underscore', '_config'], function($, _, _config){
 
 	var $body = $('body');
 
@@ -241,6 +241,7 @@ define(['jquery', '_config'], function($, _config){
 	};
 
 	dc.dev.checkJmNameElementenOnNecessaryDominitAttribut = function(){
+		var _configObj;
 		var _dataJmnameElemente = $('[data-jmname]');
 		for(var i = 0, leni = _dataJmnameElemente.length; i < leni; i++){
 			// je DomElement
@@ -249,21 +250,13 @@ define(['jquery', '_config'], function($, _config){
 			var _eventsArray;
 			for(var j = 0, lenj = _jmnameElement.length; j < lenj; j++){
 				// je jmnameSplit
-				for(var k = 0, lenk = _config.length; k < lenk; k++){
-					// je _configOjb
-					if(_config[k].jmname === _jmnameElement[j]){
-						// ist der Inhalt des jmconfig-Keys kein Array (es wird nur ein jmelemnte-Plugin für jmname verwendent) wird das Obj direckt in das staticObj geschrieben.
-						if($.type(_config[k].jmconfig) !== 'array'){
-							_events += _config[k].jmconfig.event + '|';
-						}else{
-							for(var l = 0, lenl = _config[k].jmconfig.length; l < lenl; l++){
-								// je jmconfigObj in jmconfigArray
-								_events += _config[k].jmconfig[l].event + '|';
-							}
-						}
-					}
-				}
+
+				_configObj = _config.default[$.camelCase(_jmnameElement[j])];
+				_.each(_configObj, function (value, prop) {
+					_events += value.event + '|';
+				});
 			}
+            
 			_eventsArray = _events.split('|');
 			for(var m = 0, lenm = _eventsArray.length; m < lenm; m++){
 				switch(_eventsArray[m]){
@@ -427,6 +420,7 @@ define(['jquery', '_config'], function($, _config){
 				// return true if eventArray[i] contains jmtrigger
 				_retrun = true;
 			}else if('dominit' === _eventType){
+				// zählt die data-dcconfig Attribute des Elements
 				_attr_counter = dc.helper.attrPrefixCounter(p_Obj.e.target, 'data-dcconfig');
 				if(_attr_counter === 1){
 					_attr_config = dc.helper.attrPrefix(p_Obj.e.target, 'data-dcconfig');
@@ -450,6 +444,7 @@ define(['jquery', '_config'], function($, _config){
 					_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 				}
 			}
+			if(_retrun) break;
 		}
 		return _retrun;
 	};
@@ -1007,37 +1002,15 @@ define(['jquery', '_config'], function($, _config){
 // modulPreloader  *****************************************
 
 	dc.modulPreloader.helperForRequirementsForJmPlugins = function(_config, jmname){
-		var _requirePlugin;
 		var _configObj = dc.eventflow.getConfigObj(jmname);
-		var _jmpluginString;
 		if($.type(_configObj) === 'undefined'){
 			dc.dev.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
 			return;
 		}
-		for(var i = 0, leni = _configObj.length; i < leni; i++){
-			_requirePlugin = dc.helper.returnRequireLoadPlugin(_configObj[i]);
-			dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
-		}
-		//_jmpluginString = _configObj.jmplugin;
-		//if(_jmpluginString.split('|').length > 1){
-		//	$.each(_jmpluginString.split('|'), function(index, innerItem){
-		//		_requirePlugin = dc.helper.returnRequireLoadPlugin(innerItem);   //actions.toggle|actions.link
-		//		dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj, index);
-		//	});
-		//}else{
-		//	_requirePlugin = dc.helper.returnRequireLoadPlugin(_jmpluginString);
-		//	dc.modulPreloader.requirePluginAndDependencies(_requirePlugin, _configObj);
-		//}
+        _.each(_configObj, function (value, prop) {
+            require([dc.helper.returnRequireLoadPlugin(prop)], function(){});
+        });
 	};
-
-	dc.modulPreloader.requirePluginAndDependencies = function(fileref, _configObj, index){
-		require([fileref], function(){});
-		if(fileref === 'actions.apply'){
-			($.type(index) !== 'undefined') ? require([_configObj.jmconfig[index].require], function(){}) : require([_configObj.jmconfig.require], function(){});
-		}
-	};
-
-
 
 // pointer     ***********************************************
 
