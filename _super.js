@@ -407,7 +407,7 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 		// gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
 		_getStaticConfigObj: function(){
             var _objForMyJmName = _config.default[$.camelCase(this.myJmName)];
-            if(_objForMyJmName.hasOwnProperty(event)){
+            if(_objForMyJmName.hasOwnProperty('event')){
                 return this.staticObj = _objForMyJmName;
             }
             return this.staticObj = _objForMyJmName[this.name];
