@@ -534,8 +534,7 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 					return $(this)[0] !== $that[0];
 				});
 				radiogroup.each(function(index, item){
-					dc.dev.alert("bitte ändern in $(item).jmtrigger('change')");
-					$(item).trigger('jmtrigger');
+					$(item).jmtrigger('change')
 				});
 			}
 		}
