@@ -240,6 +240,16 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		}
 	};
 
+	dc.dev.checkEqualIDs = function(){
+		var _id_selection = $('body').find('[id]');
+		for (var i = _id_selection.length - 1; i >= 0; i--) {
+			if(_id_selection.filter('[id="'+ $(_id_selection[i]).attr('id')+'"]').length > 1){
+				dc.dev.warn('Es sind mehrere Element mit der gleiche ID ("'+ $(_id_selection[i]).attr('id') +'") versehen!!!');
+			};
+			
+		};
+	};
+
 	dc.dev.checkJmNameElementenOnNecessaryDominitAttribut = function(){
 		var _configObj;
 		var _dataJmnameElemente = $('[data-jmname]');
