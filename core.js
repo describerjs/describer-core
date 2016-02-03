@@ -770,6 +770,15 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 	dc.helper.doTimeout._cache = {};
 	dc.helper.doTimeout._aps = Array.prototype.slice;
 
+	dc.helper.getNextItemFromArray = function(p_item, p_array){
+		var index = _.indexOf(p_array, p_item);
+		var returnItem;
+		if(index !== -1 && $.type(p_array[index+1]) !== 'undefined'){
+			returnItem = p_array[index+1];
+		}
+		return returnItem;
+	}
+
 	dc.helper.setDevicePerfForParallax = function(){
 		/*if(Modernizr.mq('only screen and (min-width : 60em)')){
 			window.dc.perf = window.dc.perf || 3;
