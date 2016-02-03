@@ -653,6 +653,21 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		}
 		return _attr_Array[_index] || undefined;
 	};
+    
+    // Matches dashed string for camelizing
+	dc.helper.rmsPrefix = /^-ms-/;
+	dc.helper.rdashAlpha = /-([\da-z])/gi;
+
+	// Used by jQuery.camelCase as callback to replace()
+	dc.helper.fcamelCase = function( all, letter ) {
+		return letter.toUpperCase();
+	};
+    
+    // Convert dashed to camelCase; used by the css and data modules
+	// Microsoft forgot to hump their vendor prefix (#9572)
+	dc.helper.camelCase = function( string ) {
+		return string.replace( dc.helper.rmsPrefix, "ms-" ).replace( dc.helper.rdashAlpha, dc.helper.fcamelCase );
+	};
 
 	// Thank you to "Cowboy" Ben Alman. The following code (dc.helper.doTimeout._func) was partial reused form http://benalman.com/projects/jquery-dotimeout-plugin/
 	dc.helper.doTimeout = {};
@@ -680,7 +695,7 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 			callback  = args[2];
 		}
 
-		// If id is passed, store a data reference either as .data on the first
+		// If id is passed, store a data reference either as .data on the  first
 		// element in a jQuery collection, or in the internal cache.
 		if ( jquery_data_key ) { // Note: key is 'doTimeout' + id
 
@@ -824,15 +839,17 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		return _modalControl;
 	};
 
-	dc.helper.contains = function(a, obj){
-		var i = a.length;
-		while (i--) {
-			if (a[i] === obj) {
-				return true;
-			}
-		}
-		return false;
-	};
+	// wird nirgendwo verwendet
+
+	//dc.helper.contains = function(a, obj){
+	//	var i = a.length;
+	//	while (i--) {
+	//		if (a[i] === obj) {
+	//			return true;
+	//		}
+	//	}
+	//	return false;
+	//};
 
 	dc.helper.countProperties =  function(obj){
 		var count = 0;
@@ -1010,7 +1027,7 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 
 // modulPreloader  *****************************************
 
-	dc.modulPreloader.helperForRequirementsForJmPlugins = function(_config, jmname){
+	dc.modulPreloader.helperForRequirementsForJmPlugins = function(jmname){
 		var _configObj = dc.eventflow.getConfigObj(jmname);
 		if($.type(_configObj) === 'undefined'){
 			dc.dev.error('Die Funktionalität beschrieben mit data-jmname="'+jmname+'" wurde nicht in der describer.js hinterlegt');
@@ -1206,7 +1223,7 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 				var $item = $(item);
 				var _jmname = (($item.data('jmname')).indexOf(' ') !== -1) ? $item.data('jmname').trim().split(' ') : $item.data('jmname').trim().split('|');
 				for(var i = 0, leni = _jmname.length; i < leni; i++){
-					dc.modulPreloader.helperForRequirementsForJmPlugins(_config, _jmname[i]);
+					dc.modulPreloader.helperForRequirementsForJmPlugins(_jmname[i]);
 				}
 			});
 		});
