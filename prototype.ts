@@ -1,12 +1,14 @@
 /// <reference path="../describer-core/libs/jquery.d.ts" />
+/// <reference path="../describer-core/jquery-dc.d.ts" />
 /// <reference path="../describer-core/window.d.ts" />
 /// <reference path="../describer-core/libs/underscore.d.ts" />
-/// <reference path="../describer-core/prototype.d.ts" />
+
+/// <reference path="../module-aliases.d.ts" />
+
 
 
 /// <amd-dependency path="jquery" name="$" />
 /// <amd-dependency path="underscore" name="_" />
-/// <amd-dependency path="_config" name="_config" />
 /// <amd-dependency path="core" />
 
 
@@ -14,7 +16,7 @@
 
 //import dc from './ICore';
 
-import _config from './describer-config/config';
+import _config = require('_config');
 
 
 //declare var dc:any;
@@ -30,7 +32,7 @@ export class Prototype {
     dcEvents:string[] = [];
 	oneTimeExec:boolean;
 	renderDelay:number;
-	conditionSource:boolean;
+	conditionSource:string;
 	staticObj: Object;
 	staticAttrFromDom: string;
 	staticObjFromDom: Object;
@@ -40,6 +42,7 @@ export class Prototype {
     thempCountedFrames:number;
     $acount:JQuery;
     $initByPerfCounter:JQuery;
+    renderFunctionIndex:number;
 
 
 	constructor(public elem: HTMLElement, public options:Object, public pluginName: string, public pos: string, public jmname:string) {
@@ -99,7 +102,7 @@ export class Prototype {
 		if (this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
 
 		//
-		if (this.partOf('event', 'raf')) this._raf();
+		if (this.partOf('event', 'raf')) this._raf(e);
 		if (this.partOf('event', 'interval')) this._interval(e);
 		if (this.includes('event', 'init-by-perf')) this._initByPerf(e);
 
@@ -284,14 +287,14 @@ export class Prototype {
 		this.$elem.on('keyup', _.debounce(this._execWaitAfterCondition.bind(this, e), _delay));
 	}
 
-	_raf() {
+	_raf(e) {
 		this.guaranteeDCRAF();
 		// raf-100ms-one
 		this.oneTimeExec = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
 		this.renderDelay = this._getRenderDelay();
 		// Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
 		this.conditionSource = this.isCondition('source');
-		this._addRenderFunctionToRafExecIterationObj();
+		this._addRenderFunctionToRafExecIterationObj(e);
 
 	}
 
@@ -557,7 +560,7 @@ export class Prototype {
 		}
 	}
 
-	_render() {
+	_render(e) {
 		if ((window.dc.raf.win._counter % this.renderDelay) !== 0) {
 			return;
 		}
@@ -565,11 +568,11 @@ export class Prototype {
 			return;
 		}
 		if (!this.oneTimeExec && eval(this.conditionSource)) {
-			this._exec();
+			this._exec(e);
 			return;
 		}
 		if (this.oneTimeExec && eval(this.conditionSource)) {
-			this._exec();
+			this._exec(e);
 			this._removeRenderFunctionFromRafExecIterationObj();
 		}
 	}
@@ -583,9 +586,9 @@ export class Prototype {
 
 	// *********************************  add/remove renderFunctions Begin  *********************************************
 
-	_addRenderFunctionToRafExecIterationObj() {
+	_addRenderFunctionToRafExecIterationObj(e) {
 		this.renderFunctionIndex = window.dc.raf.execIterationObj.countProperties();
-		window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
+		window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this, e);
 	}
 
 	_removeRenderFunctionFromRafExecIterationObj() {

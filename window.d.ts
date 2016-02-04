@@ -10,7 +10,7 @@ interface DCClient {
     setDeviceState():void;
     deviceState:string;
     touch:boolean;
-    _orientation_old:number;
+    _orientation_old:string;
 }
 
 interface DCConfig {
@@ -89,17 +89,20 @@ interface DCPerf {
 }
 
 interface DCPerfOnHoldArray {
-    obj:IPrototype;
+    obj:Prototype;
     e:JQueryEventObject;
     exec:boolean;
 }
 
 interface DCRaf {
     iterationSingleton:boolean;
-    execIterationObj:Object;
+    execIterationObj:DCRafFunctionObject;
     win:DCRafWin;
-
 }
+
+interface DCRafFunctionObject {
+    countProperties():number;
+} 
 
 interface DCRafWin {
     _avgrafs:number;

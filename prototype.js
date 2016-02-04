@@ -1,8 +1,8 @@
 /// <reference path="../describer-core/libs/jquery.d.ts" />
+/// <reference path="../describer-core/jquery-dc.d.ts" />
 /// <reference path="../describer-core/window.d.ts" />
 /// <reference path="../describer-core/libs/underscore.d.ts" />
-/// <reference path="../describer-core/prototype.d.ts" />
-define(["require", "exports", "jquery", "underscore", "_config", './describer-config/config', "core"], function (require, exports, $, _, _config, config_1) {
+define(["require", "exports", "jquery", "underscore", '_config', "core"], function (require, exports, $, _, _config) {
     //declare var dc:any;
     var Prototype = (function () {
         function Prototype(elem, options, pluginName, pos, jmname) {
@@ -64,7 +64,7 @@ define(["require", "exports", "jquery", "underscore", "_config", './describer-co
                 this._execWait(e);
             //
             if (this.partOf('event', 'raf'))
-                this._raf();
+                this._raf(e);
             if (this.partOf('event', 'interval'))
                 this._interval(e);
             if (this.includes('event', 'init-by-perf'))
@@ -235,14 +235,14 @@ define(["require", "exports", "jquery", "underscore", "_config", './describer-co
             }
             this.$elem.on('keyup', _.debounce(this._execWaitAfterCondition.bind(this, e), _delay));
         };
-        Prototype.prototype._raf = function () {
+        Prototype.prototype._raf = function (e) {
             this.guaranteeDCRAF();
             // raf-100ms-one
             this.oneTimeExec = this.getPartOf('event', 'raf').indexOf('-one') !== -1;
             this.renderDelay = this._getRenderDelay();
             // Speicherung des condition-Strings auf der _config.js für das Kind-Modul (z.B. actions.ajax oder actions.sticky)
             this.conditionSource = this.isCondition('source');
-            this._addRenderFunctionToRafExecIterationObj();
+            this._addRenderFunctionToRafExecIterationObj(e);
         };
         Prototype.prototype._initByPerf = function (e) {
             var _initByPerfCounter = 2;
@@ -374,7 +374,7 @@ define(["require", "exports", "jquery", "underscore", "_config", './describer-co
         };
         // gibt für das jmplugin das entsprechende Objekt aus der _config.js zurück.
         Prototype.prototype._getStaticConfigObj = function () {
-            var _objForMyJmName = config_1.default.default[window.dc.helper.camelCase(this.myJmName)];
+            var _objForMyJmName = _config.default[window.dc.helper.camelCase(this.myJmName)];
             if (_objForMyJmName.hasOwnProperty('event')) {
                 return this.staticObj = _objForMyJmName;
             }
@@ -471,7 +471,7 @@ define(["require", "exports", "jquery", "underscore", "_config", './describer-co
                 $('body').trigger('dc-documentHeightChange');
             }
         };
-        Prototype.prototype._render = function () {
+        Prototype.prototype._render = function (e) {
             if ((window.dc.raf.win._counter % this.renderDelay) !== 0) {
                 return;
             }
@@ -479,11 +479,11 @@ define(["require", "exports", "jquery", "underscore", "_config", './describer-co
                 return;
             }
             if (!this.oneTimeExec && eval(this.conditionSource)) {
-                this._exec();
+                this._exec(e);
                 return;
             }
             if (this.oneTimeExec && eval(this.conditionSource)) {
-                this._exec();
+                this._exec(e);
                 this._removeRenderFunctionFromRafExecIterationObj();
             }
         };
@@ -493,9 +493,9 @@ define(["require", "exports", "jquery", "underscore", "_config", './describer-co
         //###################################################################################################################
         //###################################################################################################################
         // *********************************  add/remove renderFunctions Begin  *********************************************
-        Prototype.prototype._addRenderFunctionToRafExecIterationObj = function () {
+        Prototype.prototype._addRenderFunctionToRafExecIterationObj = function (e) {
             this.renderFunctionIndex = window.dc.raf.execIterationObj.countProperties();
-            window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this);
+            window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = this._render.bind(this, e);
         };
         Prototype.prototype._removeRenderFunctionFromRafExecIterationObj = function () {
             window.dc.raf.execIterationObj['renderFunction_' + this.renderFunctionIndex] = null;
