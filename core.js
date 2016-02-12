@@ -439,6 +439,8 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 						if(!_retrun){
 							_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 						}
+					}else{
+						_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 					}
 				}else if(_attr_counter > 1){
 					for(var j = 0, lenj = _attr_counter; j < lenj; j++){
@@ -448,6 +450,8 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 							if(!_retrun){
 								_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 							}
+						}else{
+							_retrun = dc.eventflow.isDominitEvent(eventArray[i]);
 						}
 					}
 				}else{
@@ -832,18 +836,25 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		//dc.client.setDeviceState();
 	};
 
-	dc.helper.createModal = function(html, isNotCloseable){
-		var _modalControl = $('<div style="display: none" href="#'+ Math.round(Math.random()*1000000000000) +'" data-jmname="modal-create-by-function"></div>');
-		$body.append(_modalControl);
-		if(isNotCloseable){
-			if($.type(html) !== 'undefined'){
-				_modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', "{ 'event': 'dominit', 'data': '" + html + "', 'notAutoOpen': 'true', 'notCloseable': true }");
-			}
-		}else{
-			if($.type(html) !== 'undefined'){
-				_modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', "{ 'event': 'dominit', 'data': '" + html + "', 'notAutoOpen': 'true' }");
-			}
-		}
+	dc.helper.createModal = function(html, isNotCloseable, autoOpen, removeAfterClose){
+        var _notAutoOpen = (!autoOpen || undefined);
+		var _modalControl = $('<div style="display: none" href="#'+ Math.round(Math.random()*1000000000000) +'" data-jmname="modal-create-by-function">'+ html +'</div>');
+		var _attrValue = '';
+        $body.append(_modalControl);
+        if($.type(html) !== 'undefined'){
+            _attrValue = "{ 'event': 'dominit'";
+            if(_notAutoOpen){
+                _attrValue = _attrValue + ", 'notAutoOpen': 'true'";   
+            }
+            if(isNotCloseable){
+                _attrValue = _attrValue + ", 'notCloseable': true";    
+            }
+            if(removeAfterClose){
+                _attrValue = _attrValue + ", 'removeAfterClose': true";
+            }
+            _attrValue = _attrValue + " }"
+            _modalControl.attr('data-dcconfig--modal-create-by-function--modules.modal', _attrValue);
+        }
 		dc.eventflow.eventDelegationTriggerForDomInit.call(_modalControl[0], $.Event('dominit', { target: _modalControl[0]}));
 		return _modalControl;
 	};
@@ -986,7 +997,7 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		}
 		return featureSupport;
 	};
-
+    
 	dc.helper.uuID = function() {};
 
 	/**
@@ -1135,7 +1146,7 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 			});
 		};
 	};
-
+	 
 	$.urlParam = function(name){
 		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 		if (results==null){
