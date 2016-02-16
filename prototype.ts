@@ -1,25 +1,16 @@
 /// <reference path="../describer-core/libs/jquery.d.ts" />
-/// <reference path="../describer-core/jquery-dc.d.ts" />
+/// <reference path="../describer-core/dc-core.d.ts" />
 /// <reference path="../describer-core/window.d.ts" />
 /// <reference path="../describer-core/libs/underscore.d.ts" />
 
 /// <reference path="../module-aliases.d.ts" />
 
-
-
 /// <amd-dependency path="jquery" name="$" />
 /// <amd-dependency path="underscore" name="_" />
 /// <amd-dependency path="core" />
 
-
-//import $ = require("jquery");
-
-//import dc from './ICore';
-
 import _config = require('_config');
 
-
-//declare var dc:any;
 
 export class Prototype {
 	$elem: JQuery;
@@ -616,7 +607,7 @@ export class Prototype {
 		return this.uniqueId = window.dc.helper.uuID.generate();
 	}
 
-	_finishing(p_$data) {
+	_finishing(p_$data?) {
 		var that = this;
 		this._scrollTo();
 		if ($.type(p_$data) !== 'undefined') {

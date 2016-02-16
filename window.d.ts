@@ -4,6 +4,8 @@
 
 interface DCClient {
     getHeight():number;
+    userOS:string;
+    userOSver:string;
     setUserOS():string;
     vendors:any[];
     orientation:string;
@@ -15,6 +17,7 @@ interface DCClient {
 
 interface DCConfig {
     debug:boolean;
+    loadUnminifyVersion:boolean;
 }
 
 interface DCDev {
@@ -51,7 +54,8 @@ interface DCEventflow {
 }
 
 interface DCForm {
-    serviceCheck():void
+    serviceCheck():void;
+    submittable:boolean;
 }
 
 interface DCHelper {
@@ -62,7 +66,7 @@ interface DCHelper {
     doTimeout:Object;
     setDevicePerfForParallax():void;
     checkOrientationAndTriggerDcResize():void;
-    createModal(html:string, isNotCloseable:boolean):JQuery;
+    createModal(html:string, isNotCloseable:boolean, autoOpen?:boolean, removeAfterClose?:boolean):JQuery;
     countProperties(obj:Object):number;
     returnRequireLoadPlugin(p_plugin:string):string;
     getScrollPos():number;
@@ -92,6 +96,12 @@ interface DCPerfOnHoldArray {
     obj:Prototype;
     e:JQueryEventObject;
     exec:boolean;
+}
+
+interface DCPointer {
+    start(e:JQueryEventObject):void;
+    move(e:JQueryEventObject):void;
+    end(e:JQueryEventObject):void;
 }
 
 interface DCRaf {
@@ -126,9 +136,13 @@ interface Describer {
     helper: DCHelper;
     modulPreloader: DCModulPreloader;
     perf: DCPerf;
+    pointer: DCPointer;
     raf: DCRaf;
 }
 
 interface Window {
-    dc:Describer
+    dc:Describer;
+    temppath:string;
+    execDomReadyObject():void;
+    picturefill():void;
 }

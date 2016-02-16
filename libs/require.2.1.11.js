@@ -207,7 +207,8 @@ var requirejs, require, define;
                 bundles: {},
                 pkgs: {},
                 shim: {},
-                config: {}
+                config: {},
+                locale: ''
             },
             registry = {},
             //registry of just enabled modules, to speed
