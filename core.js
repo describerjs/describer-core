@@ -7,6 +7,11 @@ define(['jquery', '_config', 'scrolltotop'], function($, _config){
 	window.jmHF = window.jmHF || {};
 	window.jmGO = window.jmGO || {};
 	window.dc = window.dc || {};
+	dc.helper = dc.helper || {};
+
+	dc.helper.hasClass = function(elem, selector){
+		return (" " + elem.className + " ").replace(/[\t\r\n\f]/g, " ").indexOf(" " + selector + " ") >= 0
+	};
 
 	$(window).on('hashchange', function() {
 		$body.trigger('dc-hashchange');
