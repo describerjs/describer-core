@@ -34,10 +34,18 @@ define(['jquery', '_super'], function ($, _super){
 
 		_exec: function(e){
 			var that = this;
+			var options = {};
+			if(that.is('options') !== ''){
+				if(this.is('optionsParse') === 'true'){
+					options = JSON.parse(this.is('options'));
+				}else{
+					options = that.is('options');
+				}
+			}
 			this.$destination = this.getRelatedToElem();
 			if(this.is('function') !== ''){
 				require([this.is('require')], function(){
-					that.$destination[that.is('function')]((that.is('options') !== '') ? that.is('options') : {});
+					that.$destination[that.is('function')](options);
 				});
 			}
 			this._finishing();
