@@ -1141,7 +1141,8 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		$.fn[name] = function(options){
 			return this.each(function(){ // für jedes Element in der Selection, an die der Funktionsaufruf angehangen wird.
 				if(!$.data(this, name)){
-					$.data(this, name, Object.create(object).init(options, this));
+					// $.data(this, name, Object.create(object).init(options, this));
+					$.data(this, name, new object.default(this, options, options.pluginName, options.pos, options.jmname));
 				}
 			});
 		};

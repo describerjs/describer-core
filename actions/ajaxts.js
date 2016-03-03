@@ -4,6 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 define(["require", "exports", 'prototype'], function (require, exports, prototype_1) {
+    "use strict";
     var Ajax = (function (_super) {
         __extends(Ajax, _super);
         function Ajax(elem, options, pluginName, pos, jmname) {
@@ -147,7 +148,7 @@ define(["require", "exports", 'prototype'], function (require, exports, prototyp
         Ajax.prototype.ajaxCompleteCallback = function () {
         };
         return Ajax;
-    })(prototype_1.Prototype);
+    }(prototype_1.Prototype));
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = Ajax;
 });

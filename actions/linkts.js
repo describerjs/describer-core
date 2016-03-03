@@ -4,6 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 define(["require", "exports", 'prototype'], function (require, exports, prototype_1) {
+    "use strict";
     var Link = (function (_super) {
         __extends(Link, _super);
         function Link(elem, options, pluginName, pos, jmname) {
@@ -50,7 +51,7 @@ define(["require", "exports", 'prototype'], function (require, exports, prototyp
             (this.$elem.attr('target') === '_blank') ? window.open(this.url, '_blank') : window.location.href = this.url;
         };
         return Link;
-    })(prototype_1.Prototype);
+    }(prototype_1.Prototype));
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = Link;
 });

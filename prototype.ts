@@ -1,5 +1,5 @@
 /// <reference path="../describer-core/libs/jquery.d.ts" />
-/// <reference path="../describer-core/dc-core.d.ts" />
+/// <reference path="../describer-core/jquery-dc.d.ts" />
 /// <reference path="../describer-core/window.d.ts" />
 /// <reference path="../describer-core/libs/underscore.d.ts" />
 

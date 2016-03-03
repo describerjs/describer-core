@@ -4,6 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 define(["require", "exports", 'prototype'], function (require, exports, prototype_1) {
+    "use strict";
     var Apply = (function (_super) {
         __extends(Apply, _super);
         function Apply(elem, options, pluginName, pos, jmname) {
@@ -36,7 +37,7 @@ define(["require", "exports", 'prototype'], function (require, exports, prototyp
             this._finishing();
         };
         return Apply;
-    })(prototype_1.Prototype);
+    }(prototype_1.Prototype));
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = Apply;
 });
