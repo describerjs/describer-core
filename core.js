@@ -997,6 +997,12 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		}
 		return featureSupport;
 	};
+
+	dc.helper.triggerRadioChangeOnAllRadiosInGroup = function(e){
+		$('[name="' + $(e.target).attr('name') + '"]').each(function(index, item){
+			$(item).jmtrigger('radiochange')
+		});
+	};
     
 	dc.helper.uuID = function() {};
 
