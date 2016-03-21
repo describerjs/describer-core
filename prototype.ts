@@ -631,7 +631,7 @@ export class Prototype {
 			window.dc.helper.scrollToPosition(this.is('scrollTo'), (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
 			return;
 		}
-		if ($.type(this.is('scrollTo')) === 'string') {
+		if ($.type(this.is('scrollTo')) === 'string' || $.type(this.is('scrollTo')) === 'object') {
 			try {
 				if ($.type($(this.is('scrollTo'))) === 'object') {
 					$(this.is('scrollTo')).scrollToMe((this.is('scrollToOffset') !== '') ? parseInt(this.is('scrollToOffset'), 10) : 0, (this.is('speed') !== '') ? parseInt(this.is('speed'), 10) : undefined);
