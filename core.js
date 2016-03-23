@@ -337,6 +337,15 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 		if($.urlParam('showua') !== null && $.urlParam('showua') === 'true'){
 			alert(navigator.userAgent);
 		}
+
+		if($.urlParam('openacc') !== null){
+			setTimeout(function(){
+				var _$link = $('#'+$.urlParam('openacc'));
+				if(!_$link.parent().hasClass('show')){
+					_$link.trigger('click');
+				}
+			}, 500);
+		}
 	};
 
 
