@@ -138,9 +138,9 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 
 	// gibt die Höhe des Browserfenster wieder
 	dc.client.getHeight = function () {
-		var $window = $(window);
+		var $body = $('body');
 		if($.type(dc.client._heightOrientationChangeListener) === 'undefined'){
-			$window.one('orientationchange', function(e) {
+			$body.on('dc-resize', function(e) {
 				dc.client._height = undefined;
 			});
 			dc.client._heightOrientationChangeListener = true;
