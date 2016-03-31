@@ -88,6 +88,7 @@ export default class Ajax extends Prototype {
     
     // TODO Andreas bereinigen der _getData-Funktion Sonderfall $$ als neues Modul, welches von ajax abgeleitet wird.
         _getData(){
+        	var _obj = {};
 	        // TODO Andreas ist doppelt siehe _super.js
 	        if(this.is('data').indexOf('this.') !== -1){
 		        return eval(this.is('data'));
@@ -109,7 +110,16 @@ export default class Ajax extends Prototype {
 	            return this.$elem.serialize();
             }*/
 			// data oder lehrString wird zuürckgegeben.
-	        return this.is('data') || '';
+			if(this.is('data') !== ''){
+				return this.is('data');
+			}
+
+			if (this.is('data') === '' && this.$elem[0].tagName.toLowerCase() === 'select') {
+				_obj[this.$elem.attr('name')] = this.$elem.val();
+				return _obj;
+			}
+
+	        return '';
 
         }
 

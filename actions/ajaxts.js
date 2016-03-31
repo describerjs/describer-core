@@ -77,6 +77,7 @@ define(["require", "exports", 'prototype'], function (require, exports, prototyp
             });
         };
         Ajax.prototype._getData = function () {
+            var _obj = {};
             if (this.is('data').indexOf('this.') !== -1) {
                 return eval(this.is('data'));
             }
@@ -87,7 +88,14 @@ define(["require", "exports", 'prototype'], function (require, exports, prototyp
                 }
                 return this._convertObjToQueryString(window.dc[this.is('data')]);
             }
-            return this.is('data') || '';
+            if (this.is('data') !== '') {
+                return this.is('data');
+            }
+            if (this.is('data') === '' && this.$elem[0].tagName.toLowerCase() === 'select') {
+                _obj[this.$elem.attr('name')] = this.$elem.val();
+                return _obj;
+            }
+            return '';
         };
         Ajax.prototype._getUrl = function () {
             if (this.is('url') !== '') {

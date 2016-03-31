@@ -45,6 +45,7 @@ export class Prototype {
 		this.namePostfix = (this.name.slice(-2).charAt(0) === '_') ? this.name.slice(-2) : '';
 		//this.myJmNamePos = ((this.$elem.data('jmname')).indexOf(' ') !== -1) ? $.inArray(this.myJmName, this.$elem.data('jmname').trim().split(' ')) : $.inArray(this.myJmName, this.$elem.data('jmname').trim().split('|'));
 		this.initExec();
+		this.onInitExec();
 		//this.$elem.addClass('JSINIT-' +this.myJmName +'-EL-'+  this.name);
 	}
 

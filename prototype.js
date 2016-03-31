@@ -14,6 +14,7 @@ define(["require", "exports", "jquery", "underscore", '_config', "core"], functi
             this.name = pluginName;
             this.namePostfix = (this.name.slice(-2).charAt(0) === '_') ? this.name.slice(-2) : '';
             this.initExec();
+            this.onInitExec();
         }
         Prototype.prototype._exec = function (e, p_data) { };
         ;
