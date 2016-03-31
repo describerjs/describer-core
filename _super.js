@@ -566,6 +566,9 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 // *********************************  Common-Functions use by actions Begin  ****************************************
 
 		getRelatedToElem: function(){
+			if(this.is('relatedToNoCache') !== ''){
+				return $(this.is('relatedTo'));
+			}
 			return (this.relatedTo) ? this.relatedTo : this.relatedTo = ((this.is('relatedTo') !== '') ? $(this.is('relatedTo')) : this.$elem);
 		},
 
