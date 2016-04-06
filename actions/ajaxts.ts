@@ -58,32 +58,32 @@ export default class Ajax extends Prototype {
     
     _exec(e, p_data){
         var that = this;
-	        if(this.is('loaderTo') !== ''){
-		        $(this.is('loaderTo')).append(this.$additionalloader);
-	        }
-	        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
-	        // TODO Andreas in den anderen actions wird nun auch this.$destination = this.getRelatedToElem(); verwendet. Bitte verallgemeinern
-            this.$destination = this.subObj_$destination || this.getRelatedToElem();
-	        this.injection = this.is('inject');
-            $.ajax({
-                type: (that.is('type') !== '') ? ((that.is('type', 'post')) ? 'POST' : 'GET') : 'GET',
-                url: that._getUrl(),
-                data: that._getData(),
-                beforeSend: function (){
-                    that._beforeSend(that.$destination);
-                }
-            }).done(function (p_data) {
-	            // if HTML -> wrap in jQuery
-		        that.data = ($.type(p_data) === 'string' && p_data.match(/<(.*)[^>]*>/)) ? $(p_data) : p_data;
-	            window.requestAnimationFrame(that._injectAfterFrame.bind(that));
-            }).always(function () {
+        if(this.is('loaderTo') !== ''){
+	        $(this.is('loaderTo')).append(this.$additionalloader);
+        }
+        // TODO Andreas bitte hier mal checken, wie hier eine algemeine Syntax zur Variablendefinition für erbende Plugins
+        // TODO Andreas in den anderen actions wird nun auch this.$destination = this.getRelatedToElem(); verwendet. Bitte verallgemeinern
+        this.$destination = this.subObj_$destination || this.getRelatedToElem();
+        this.injection = this.is('inject');
+        $.ajax({
+            type: (that.is('type') !== '') ? ((that.is('type', 'post')) ? 'POST' : 'GET') : 'GET',
+            url: that._getUrl(),
+            data: that._getData(),
+            beforeSend: function (){
+                that._beforeSend(that.$destination);
+            }
+        }).done(function (p_data) {
+            // if HTML -> wrap in jQuery
+	        that.data = ($.type(p_data) === 'string' && p_data.match(/<(.*)[^>]*>/)) ? $(p_data) : p_data;
+            window.requestAnimationFrame(that._injectAfterFrame.bind(that));
+        }).always(function () {
 
-            }).fail(function () {
-	            that.$ani.remove();
-	            if(that.is('loaderTo') !== ''){
-		            that.$additionalloader.remove();
-	            }
-            });
+        }).fail(function () {
+            that.$ani.remove();
+            if(that.is('loaderTo') !== ''){
+	            that.$additionalloader.remove();
+            }
+        });
     }
     
     // TODO Andreas bereinigen der _getData-Funktion Sonderfall $$ als neues Modul, welches von ajax abgeleitet wird.
