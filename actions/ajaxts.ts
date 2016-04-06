@@ -1,5 +1,5 @@
 /// <reference path="../../describer-core/window.d.ts" />
-
+/// <amd-dependency path="css!config.require-css.ajax" />
 
 import {Prototype} from 'prototype';
 
