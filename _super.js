@@ -38,12 +38,12 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 
 		// wird vom Body-Listener für 'click' aufgerufen
 		click: function(e){
-			if(this.includes('event', 'click') && this.isCondition()) this._execWait(e);
+			if(this.includes('event', 'click')) this._waitBefore_execWaitAfterCondition(e);
 		},
 
 		// wird vom Body-Listener für 'change' aufgerufen
 		change: function(e){
-			if(this.includes('event', 'change') && this.isCondition()) this._execWait(e);
+			if(this.includes('event', 'change')) this._waitBefore_execWaitAfterCondition(e);
 		},
 
 		// wird vom Body-Listener für 'jmtrigger' aufgerufen
@@ -54,12 +54,12 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 				}
 				return;
 			}
-			if(this.includes('event', 'jmtrigger:'+e_param.event) && this.isCondition()) this._execWait(e, e_param.data);
+			if(this.includes('event', 'jmtrigger:'+e_param.event)) this._waitBefore_execWaitAfterCondition(e, e_param.data);
 		},
 
 		// wird vom Body-Listener für 'dominit' aufgerufen
 		dominit: function(e){
-			if(this.includes('event', 'dominit') && this.isCondition()) this._execWait(e);
+			if(this.includes('event', 'dominit')) this._waitBefore_execWaitAfterCondition(e);
 
 			//
 			if(this.partOf('event', 'raf')) this._raf();
@@ -69,13 +69,13 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 			// init Event-Listener auf this.$elem
 			if(this.partOf('event', 'keyup')) this._keyup(e);
 
-			if(this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
-			if(this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
-			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'blur')) this.$elem.on('blur', this._waitBefore_execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'focus')) this.$elem.on('focus', this._waitBefore_execWaitAfterCondition.bind(this));
+			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._waitBefore_execWaitAfterCondition.bind(this));
 			// dynamic dc-eventlistener on body
 			if(this.startsWith('event', 'dc-')){
 				for(var i = 0, leni = this.dcEvents.length; i < leni; i++){
-					this.$elem.closest('body').on(this.dcEvents[i], this._execWaitAfterCondition.bind(this));
+					this.$elem.closest('body').on(this.dcEvents[i], this._waitBefore_execWaitAfterCondition.bind(this));
 				}
 			}
 		},
@@ -234,7 +234,7 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 		_interval : function(e){
 			var that = this;
 			setInterval(function(){
-				if(that.isCondition()) that._execWait(e);
+				that._waitBefore_execWaitAfterCondition(e);
 				// Die Intervalzeit wird aus dem Stirng gewonnen, der als value in der _config.js für 'event' angegeben ist. z.B. interval-5000 -> 5000 ms
 			}, parseInt(this.getPartOf('event', 'interval').split('interval-')[1], 10));
 		},
@@ -244,7 +244,7 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 			if($.type (parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10)) === 'number'){
 				_delay = parseInt(this.getPartOf('event', 'keyup').split('delay-')[1], 10);
 			}
-			this.$elem.on('keyup', _.debounce(this._execWaitAfterCondition.bind(this, e), _delay));
+			this.$elem.on('keyup', _.debounce(this._waitBefore_execWaitAfterCondition.bind(this, e), _delay));
 		},
 
 		_raf: function(){
@@ -264,7 +264,7 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 				return;
 			}
 			if(window.dc.perf.level === 1 || window.dc.perf.level === 4){
-				this._execWaitAfterCondition();
+				this._waitBefore_execWaitAfterCondition();
 				return;
 			}
 
@@ -289,9 +289,24 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 			}
 		},
 
-		_execWaitAfterCondition: function(e){
+		_waitBefore_execWaitAfterCondition: function(e, p_data){
+			var that = this;
+			if(this.is('waitBeforeCondition') === ''){
+				this._execWaitAfterCondition(e, p_data);
+				return;
+			}
+			if(this.is('waitBeforeCondition') === 'raf'){
+				window.requestAnimationFrame(this._execWaitAfterCondition.bind(this, e, p_data));
+				return;
+			}
+			if(this.is('waitBeforeCondition') !== ''){
+				setTimeout(function(){ that._execWaitAfterCondition(e, p_data); }, parseInt(this.is('waitBeforeCondition'), 10));
+			}
+		},
+
+		_execWaitAfterCondition: function(e, p_data){
 			if(this.isCondition()){
-				this._execWait(e);
+				this._execWait(e, p_data);
 			}
 		},
 
@@ -328,7 +343,7 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 			var _obj = window.dc.perf.onHoldArray[index].obj;
 			if(!_obj.exec){
 				_obj.exec = true;
-				_obj._execWaitAfterCondition();
+				_obj._waitBefore_execWaitAfterCondition();
 			}
 		},
 
@@ -339,7 +354,7 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 					_obj = window.dc.perf.onHoldArray[i].obj;
 					if(!_obj.exec){
 						_obj.exec = true;
-						_obj._execWaitAfterCondition();
+						_obj._waitBefore_execWaitAfterCondition();
 						if(window.dc.dev.debugview){
 							$('#init-by-perf-counter').text(' init-fx: '+(i+1)+'/'+leni);
 						}
