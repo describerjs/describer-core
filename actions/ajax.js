@@ -137,12 +137,17 @@ define(['jquery', '_super'], function ($, _super){
 	            window.requestAnimationFrame(that._injectAfterFrame.bind(that));
             }).always(function () {
 
-            }).fail(function () {
+            }).fail(function (XMLHttpRequest) {
+	            // Fallback for Ajax _components Dateien
+            try{
+	            that.data = ($.type(XMLHttpRequest.responseText) === 'string' && XMLHttpRequest.responseText.match(/<(.*)[^>]*>/)) ? $('<div class="fallback-hint">'+XMLHttpRequest.responseText+'</div>') : '<div class="fallback-hint">'+XMLHttpRequest.responseText+'</div>';
+	            window.requestAnimationFrame(that._injectAfterFrame.bind(that));
+            }catch(e){
 	            that.$ani.remove();
 	            if(that.is('loaderTo') !== ''){
 		            that.$additionalloader.remove();
 	            }
-            });
+            }});
         },
 
         _beforeSend: function(p_$target){
