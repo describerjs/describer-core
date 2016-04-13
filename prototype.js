@@ -422,7 +422,8 @@ define(["require", "exports", "jquery", "underscore", '_config', "core"], functi
                     p_$data
                         .requirementsForJmPlugins()
                         .triggerSelfexecObj()
-                        .picturefill();
+                        .picturefill()
+                        .refreshEqualHeight();
                     that._callback();
                 }, 200);
                 return;

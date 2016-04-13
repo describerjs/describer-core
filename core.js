@@ -1189,6 +1189,8 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 				elements: _array
 			});
 		}catch(e){}
+
+		return this;
 	};
 
 	$.fn.removeClassRegExp = function (regexp) {
@@ -1249,6 +1251,10 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 			});
 		});
 	};
+
+	$.fn.refreshEqualHeight = function(){
+		$(this).closest('[data-jmselector="equalHeights"]').data('modules.equalheights').refreshEqualHeight(this);
+	}
 
 	$.fn.scrollToMe = function(p_delta_offset, speed){
 		var _delta_offset = 0;

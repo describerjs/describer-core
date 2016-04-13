@@ -616,7 +616,9 @@ export class Prototype {
 				p_$data
 					.requirementsForJmPlugins()
 					.triggerSelfexecObj()
-					.picturefill();
+					.picturefill()
+					.refreshEqualHeight();
+
 				that._callback();
 			}, 200);
 			return;
