@@ -71,6 +71,7 @@ interface DCHelper {
     returnRequireLoadPlugin(p_plugin:string):string;
     getScrollPos():number;
     hasClass(elem:HTMLElement, selector:string):boolean;
+    md5(value: string, key?: string, raw?: boolean): string;
     scrollToPosition(pos:number, speed?:number);
     escapeHtml(str:string):string;
     transformSupport(value:string):boolean;
@@ -145,4 +146,5 @@ interface Window {
     temppath:string;
     execDomReadyObject():void;
     picturefill():void;
+    md5(value: string, key?: string, raw?: boolean):string
 }
