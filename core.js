@@ -242,9 +242,14 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 
 	dc.dev.checkEqualIDs = function(){
 		var _id_selection = $('body').find('[id]');
-		for (var i = _id_selection.length - 1; i >= 0; i--) {
-			if(_id_selection.filter('[id="'+ $(_id_selection[i]).attr('id')+'"]').length > 1){
-				dc.dev.warn('Es sind mehrere Element mit der gleiche ID ("'+ $(_id_selection[i]).attr('id') +'") versehen!!!');
+		var _id_selectino_filtered = _id_selection.map(function() {
+			if(!$(this).closest('.sf-toolbar-block').doesExist()){
+				return this;
+			}
+		});
+		for (var i = _id_selectino_filtered.length - 1; i >= 0; i--) {
+			if(_id_selectino_filtered.filter('[id="'+ $(_id_selectino_filtered[i]).attr('id')+'"]').length > 1){
+				dc.dev.warn('Es sind mehrere Element mit der gleiche ID ("'+ $(_id_selectino_filtered[i]).attr('id') +'") versehen!!!');
 			};
 			
 		};
