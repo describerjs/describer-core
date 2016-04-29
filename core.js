@@ -1500,7 +1500,10 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 	};
 
 	$.fn.refreshEqualHeight = function(){
-		$(this).closest('[data-jmselector="equalHeights"]').data('modules.equalheights').refreshEqualHeight(this);
+		var equalheightsSelector = $(this).closest('[data-jmselector="equalHeights"]');
+		if (equalheightsSelector.length) {
+			equalheightsSelector.data('modules.equalheights').refreshEqualHeight(this);
+		}
 	}
 
 	$.fn.scrollToMe = function(p_delta_offset, speed){
