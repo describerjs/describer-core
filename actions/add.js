@@ -37,6 +37,9 @@ define(['jquery', '_super'], function ($, _super){
 			this.$destination = this.getRelatedToElem();
 
 			if($.type(p_data) !== 'undefined'){
+				if(this.is('wrapIn') !== ''){
+					p_data = this.is('wrapIn').replace('{{}}', p_data);
+				}
 				this.data = (p_data.match(/<(.*)[^>]*>/)) ? $(p_data) : p_data;
 			}else if(this.is('data') !== ''){
 				this.data = this.is('data');
