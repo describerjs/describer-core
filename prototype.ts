@@ -108,7 +108,8 @@ export class Prototype {
 
 		// init Event-Listener auf this.$elem
 		if (this.partOf('event', 'keyup')) this._keyup(e);
-
+		if (this.partOf('event', 'mouseenter')) this.$elem.on('mouseenter', this._execWaitAfterCondition.bind(this));
+		if (this.partOf('event', 'mouseleave')) this.$elem.on('mouseleave', this._execWaitAfterCondition.bind(this));
 		if (this.includes('event', 'blur')) this.$elem.on('blur', this._execWaitAfterCondition.bind(this));
 		if (this.includes('event', 'focus')) this.$elem.on('focus', this._execWaitAfterCondition.bind(this));
 		if (this.includes('event', 'hover')) this.$elem.on('mouseover', this._execWaitAfterCondition.bind(this));

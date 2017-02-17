@@ -72,6 +72,8 @@ define(['jquery', 'underscore', '_config', 'core'], function ($, _, _config) {
 			if(this.includes('event', 'blur')) this.$elem.on('blur', this._waitBefore_execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'focus')) this.$elem.on('focus', this._waitBefore_execWaitAfterCondition.bind(this));
 			if(this.includes('event', 'hover')) this.$elem.on('mouseover', this._waitBefore_execWaitAfterCondition.bind(this));
+			if(this.partOf('event', 'mouseenter')) this.$elem.on('mouseenter', this._execWaitAfterCondition.bind(this));
+			if(this.partOf('event', 'mouseleave')) this.$elem.on('mouseleave', this._execWaitAfterCondition.bind(this));
 			// dynamic dc-eventlistener on body
 			if(this.startsWith('event', 'dc-')){
 				for(var i = 0, leni = this.dcEvents.length; i < leni; i++){

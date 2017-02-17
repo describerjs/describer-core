@@ -280,6 +280,8 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 					case 'focus':
 					case 'hover':
 					case 'init-by-perf':
+					case 'mouseenter':
+					case 'mouseleave':
 					case ((_eventsArray[m].match(/^dc-(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/raf(.*)/))? _eventsArray[m] : undefined):
 					case ((_eventsArray[m].match(/keyup(.*)/))? _eventsArray[m] : undefined):
@@ -487,6 +489,8 @@ define(['jquery', 'underscore', '_config'], function($, _, _config){
 				case 'focus':
 				case 'hover':
 				case 'init-by-perf':
+				case 'mouseenter':
+				case 'mouseleave':
 				case ((p_event.match(/^dc-(.*)/))? p_event : undefined):
 				case ((p_event.match(/raf(.*)/))? p_event : undefined):
 				case ((p_event.match(/keyup(.*)/))? p_event : undefined):
